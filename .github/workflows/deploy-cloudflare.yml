@@ -16,6 +16,11 @@ jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      BOOTSTRAP_TOKEN: ${{ secrets.BOOTSTRAP_TOKEN }}
+      CONVERSION_WEBHOOK_SECRET: ${{ secrets.CONVERSION_WEBHOOK_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,21 +38,10 @@ jobs:
 
       - name: Configure bootstrap secret
         run: printf '%s' "$BOOTSTRAP_TOKEN" | npx wrangler secret put BOOTSTRAP_TOKEN
-        env:
-          BOOTSTRAP_TOKEN: ${{ secrets.BOOTSTRAP_TOKEN }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Configure conversion webhook secret
-        if: ${{ secrets.CONVERSION_WEBHOOK_SECRET != '' }}
+        if: ${{ env.CONVERSION_WEBHOOK_SECRET != '' }}
         run: printf '%s' "$CONVERSION_WEBHOOK_SECRET" | npx wrangler secret put CONVERSION_WEBHOOK_SECRET
-        env:
-          CONVERSION_WEBHOOK_SECRET: ${{ secrets.CONVERSION_WEBHOOK_SECRET }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy Worker and assets
         run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
