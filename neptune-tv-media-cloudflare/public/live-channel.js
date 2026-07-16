@@ -30,6 +30,7 @@ export async function mountLiveChannel(root, providedCatalog) {
   let currentAd = null;
   let liveMode = true;
   let watchTick = 0;
+  let advancing = false;
   const sessionId = getSessionId();
   renderGuide();
   tuneToLive();
@@ -41,17 +42,27 @@ export async function mountLiveChannel(root, providedCatalog) {
   });
   resync?.addEventListener('click', tuneToLive);
   adLink.addEventListener('click', () => { if (currentAd) trackAd('click'); });
-  video.addEventListener('ended', () => {
-    if (currentAd) trackAd('complete');
-    if (liveMode) loadSegment((currentIndex + 1) % schedule.length, 0, true);
-    else loadEpisode((episodes.findIndex((item) => item.id === currentEpisode?.id) + 1) % episodes.length, 0, true);
-  });
+  video.addEventListener('ended', advance);
   video.addEventListener('play', () => currentAd ? trackAd('play') : track('play'));
   video.addEventListener('timeupdate', () => {
     watchTick += 1;
     if (!currentAd && watchTick % 20 === 0) track('watch', 10);
+    if (!liveMode || !currentSegment || advancing) return;
+    const boundary = currentSegment.type === 'episode'
+      ? Number(currentSegment.mediaStart || 0) + Number(currentSegment.duration || 1)
+      : Number(currentSegment.duration || 1);
+    if (video.currentTime >= boundary - 0.2) advance();
   });
   document.addEventListener('visibilitychange', () => { if (!document.hidden && liveMode) tuneToLive(); });
+
+  function advance() {
+    if (advancing) return;
+    advancing = true;
+    if (currentAd) trackAd('complete');
+    if (liveMode) loadSegment((currentIndex + 1) % schedule.length, 0, true);
+    else loadEpisode((episodes.findIndex((item) => item.id === currentEpisode?.id) + 1) % episodes.length, 0, true);
+    setTimeout(() => { advancing = false; }, 300);
+  }
 
   function tuneToLive() {
     liveMode = true;
