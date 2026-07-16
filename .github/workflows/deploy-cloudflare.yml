@@ -40,6 +40,9 @@ jobs:
       - name: Validate JavaScript
         run: npm run check
 
+      - name: Create or update Worker and assets
+        run: npx wrangler deploy
+
       - name: Configure bootstrap secret
         run: printf '%s' "$BOOTSTRAP_TOKEN" | npx wrangler secret put BOOTSTRAP_TOKEN
 
@@ -47,5 +50,5 @@ jobs:
         if: ${{ env.CONVERSION_WEBHOOK_SECRET != '' }}
         run: printf '%s' "$CONVERSION_WEBHOOK_SECRET" | npx wrangler secret put CONVERSION_WEBHOOK_SECRET
 
-      - name: Deploy Worker and assets
+      - name: Final deployment verification
         run: npx wrangler deploy
