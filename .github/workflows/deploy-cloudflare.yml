@@ -29,9 +29,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          registry-url: https://registry.npmjs.org
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies from public npm registry
+        run: npm install --package-lock=false --registry=https://registry.npmjs.org
 
       - name: Validate JavaScript
         run: npm run check
