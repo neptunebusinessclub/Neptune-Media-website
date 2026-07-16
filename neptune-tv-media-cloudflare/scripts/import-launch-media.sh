@@ -17,8 +17,8 @@ if ! curl --fail --silent --head "$MANIFEST_URL" >/dev/null; then
   python -m pip install --quiet gdown
   if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; fi
 
-  gdown --id 1mRY6iPBovv-Newy5sEujFJskl44SWb60 -O "$WORK/jeu-connexio.mp4"
-  gdown --id 1JY5HcW0jARCSeT7mMn6yK7M-hb3ugQGU -O "$WORK/hors-norme.mp4"
+  gdown "1mRY6iPBovv-Newy5sEujFJskl44SWb60" -O "$WORK/jeu-connexio.mp4"
+  gdown "1JY5HcW0jARCSeT7mMn6yK7M-hb3ugQGU" -O "$WORK/hors-norme.mp4"
   test -s "$WORK/jeu-connexio.mp4"
   test -s "$WORK/hors-norme.mp4"
 
