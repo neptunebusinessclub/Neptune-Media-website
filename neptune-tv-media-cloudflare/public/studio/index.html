@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Neptune Studio Admin</title>
+  <link rel="stylesheet" href="/studio/studio.css">
+</head>
+<body>
+  <div id="auth" class="auth">
+    <form id="login" class="authCard">
+      <a class="logo" href="/">NEPTUNE <span>STUDIO</span></a>
+      <p class="eyebrow">PILOTAGE DE LA WEB TV</p>
+      <h1>Administrer sans toucher au code.</h1>
+      <label><span>Email</span><input name="email" type="email" autocomplete="username" required></label>
+      <label><span>Mot de passe</span><input name="password" type="password" autocomplete="current-password" minlength="12" required></label>
+      <button class="primary">Se connecter</button>
+      <details>
+        <summary>Première initialisation uniquement</summary>
+        <label><span>Nom</span><input name="fullName" autocomplete="name"></label>
+        <label><span>Jeton d’amorçage Cloudflare</span><input name="token" autocomplete="off"></label>
+        <button type="button" id="bootstrap">Créer le premier administrateur</button>
+      </details>
+      <p id="authMsg" class="message" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <div id="app" hidden>
+    <aside>
+      <a class="logo" href="/">NEPTUNE <span>STUDIO</span></a>
+      <nav id="nav">
+        <button data-tab="dashboard">Vue d’ensemble</button>
+        <button data-tab="programs" data-role="admin,editor">Programmes</button>
+        <button data-tab="episodes" data-role="admin,editor">Émissions</button>
+        <button data-tab="ads" data-role="admin,editor,advertiser">Publicités</button>
+        <button data-tab="users" data-role="admin">Utilisateurs</button>
+        <button data-tab="ai">Neptune Copilot</button>
+        <button data-tab="audit" data-role="admin">Journal d’audit</button>
+      </nav>
+      <div class="account">
+        <strong id="accountName"></strong>
+        <span id="accountRole"></span>
+        <button id="logout">Déconnexion</button>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div><p class="eyebrow">NEPTUNE MEDIA</p><h1 id="title">Vue d’ensemble</h1></div>
+        <div class="headerActions"><span id="syncState">Synchronisé</span><button id="refresh">Actualiser</button></div>
+      </header>
+      <section id="content"></section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/studio/studio.js"></script>
+</body>
+</html>

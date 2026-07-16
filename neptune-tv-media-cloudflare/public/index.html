@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Neptune Media — la Web TV qui met en lumière les trajectoires entrepreneuriales.">
+  <title>Neptune Media — Web TV entrepreneuriale</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">NEPTUNE <span>MEDIA</span></a>
+    <nav aria-label="Navigation principale">
+      <a href="#emissions">Émissions</a>
+      <a href="#formats">Formats</a>
+      <a class="cta" data-booking href="https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=website&utm_campaign=neptune_media">Passer à l’écran</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="heroCopy">
+        <p class="eyebrow">WEB TV ENTREPRENEURIALE</p>
+        <h1>Des histoires vraies.<br>Pas des discours.</h1>
+        <p>Neptune Media révèle le vécu, les ruptures et les décisions derrière les entreprises. Regardez les émissions, partagez celles qui résonnent et découvrez le format qui donnera du relief à votre propre histoire.</p>
+        <div class="heroActions">
+          <a class="cta big" href="#emissions">Regarder maintenant</a>
+          <a class="ghost" data-booking href="https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=hero&utm_campaign=neptune_media">Réserver une émission</a>
+        </div>
+        <p class="liveStatus"><span></span><strong id="status">Chargement du catalogue…</strong></p>
+      </div>
+      <article class="heroCard" id="featured" aria-live="polite"></article>
+    </section>
+
+    <section id="emissions" class="section">
+      <div class="sectionHead">
+        <div>
+          <p class="eyebrow">À REGARDER MAINTENANT</p>
+          <h2>Les émissions</h2>
+        </div>
+        <div id="programFilters" class="filters" aria-label="Filtrer les émissions"></div>
+      </div>
+      <div class="grid" id="catalog" aria-live="polite"></div>
+    </section>
+
+    <section id="formats" class="formats section">
+      <div>
+        <p class="eyebrow">DEVENIR LE PROCHAIN INVITÉ</p>
+        <h2>Votre histoire mérite mieux qu’une vidéo corporate.</h2>
+      </div>
+      <div class="formatGrid">
+        <article><strong>Hors Norme</strong><p>Une conversation guidée par les scènes, les ruptures et les vérités qui ont construit votre trajectoire.</p><a data-booking href="https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=format&utm_campaign=neptune_media&format=hors-norme">Découvrir</a></article>
+        <article><strong>Concept Libre</strong><p>Un format plus ouvert pour transmettre une conviction, une expertise ou une idée forte avec un rendu professionnel.</p><a data-booking href="https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=format&utm_campaign=neptune_media&format=concept-libre">Découvrir</a></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="/">NEPTUNE <span>MEDIA</span></a>
+    <p>La Web TV des trajectoires entrepreneuriales.</p>
+    <a href="/studio/">Studio Admin</a>
+  </footer>
+
+  <div class="modal hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
+    <button id="close" aria-label="Fermer la vidéo">×</button>
+    <div class="playerShell">
+      <video id="player" controls playsinline preload="metadata"></video>
+      <div id="adLabel" class="adLabel hidden">PUBLICITÉ</div>
+      <a id="adClick" class="adClick hidden" target="_blank" rel="noopener">Découvrir l’annonceur</a>
+      <button id="skipAd" class="skipAd hidden">Passer dans <span>5</span>s</button>
+      <a id="bannerAd" class="bannerAd hidden" target="_blank" rel="noopener"><img alt="Publicité"></a>
+    </div>
+    <div class="videoMeta">
+      <div>
+        <p class="eyebrow" id="videoProgram"></p>
+        <h3 id="videoTitle"></h3>
+      </div>
+      <button id="share">Partager</button>
+      <a class="cta" id="book" href="https://media.neptunebusiness.com">Passer à l’écran</a>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
