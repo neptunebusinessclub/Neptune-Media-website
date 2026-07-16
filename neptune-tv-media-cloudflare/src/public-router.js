@@ -15,12 +15,12 @@ export async function handlePublicRoute(request, env) {
   if (path.startsWith('/emissions/')) {
     const slug = decodeURIComponent(path.slice('/emissions/'.length, -1));
     const episode = catalog.episodes.find((item) => item.slug === slug || item.id === slug);
-    return episode ? html(renderEpisode(origin, catalog, episode)) : renderNotFound(origin);
+    return episode ? html(renderEpisode(origin, catalog, episode)) : secure(renderNotFound(origin));
   }
   if (path.startsWith('/programmes/')) {
     const slug = decodeURIComponent(path.slice('/programmes/'.length, -1));
     const program = catalog.programs.find((item) => item.slug === slug || item.id === slug);
-    return program ? html(renderProgram(origin, catalog, program)) : renderNotFound(origin);
+    return program ? html(renderProgram(origin, catalog, program)) : secure(renderNotFound(origin));
   }
   if (path === '/mentions-legales/') return html(renderInformation(origin, 'Mentions légales', 'Informations relatives à l’éditeur et à l’hébergement de Neptune Media.', 'legal'));
   if (path === '/confidentialite/') return html(renderInformation(origin, 'Confidentialité', 'Comment Neptune Media traite les données et mesures d’audience.', 'privacy'));
@@ -41,6 +41,7 @@ export async function enhanceHtml(response, request, env, mode) {
   const headers = new Headers(response.headers);
   headers.set('Content-Type', 'text/html; charset=utf-8');
   headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+  applySecurity(headers);
   return new Response(body, { status: response.status, headers });
 }
 
@@ -66,5 +67,14 @@ function normalizePath(value) {
   return clean.endsWith('/') ? clean : `${clean}/`;
 }
 function canonicalOrigin(url, env) { return String(env.PUBLIC_ORIGIN || url.origin).replace(/\/$/, ''); }
-function html(value) { return new Response(value, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } }); }
-function text(value, type) { return new Response(value, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=300' } }); }
+function html(value) { const response = new Response(value, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } }); return secure(response); }
+function text(value, type) { const response = new Response(value, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=300' } }); return secure(response); }
+function secure(response) { const headers = new Headers(response.headers); applySecurity(headers); return new Response(response.body, { status: response.status, statusText: response.statusText, headers }); }
+function applySecurity(headers) {
+  headers.set('X-Content-Type-Options', 'nosniff');
+  headers.set('X-Frame-Options', 'DENY');
+  headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+  headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https: blob:; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://media.neptunebusiness.com");
+}
