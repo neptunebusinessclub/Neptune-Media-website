@@ -34,8 +34,9 @@ export async function enhanceHtml(response, request, env, mode) {
   let body = await response.text();
   body = body.replaceAll('https://tv.neptunebusiness.com', origin);
   const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=3' : '/upgrade.css?v=3';
+  const mediaStylesheet = mode === 'public' ? '<link rel="stylesheet" href="/upgrade-media.css?v=3">' : '';
   const script = mode === 'studio' ? '/studio-upgrade.js?v=3' : '/upgrade.js?v=3';
-  if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}"></head>`);
+  if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${mediaStylesheet}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
   if (!body.includes(script)) body = body.replace(marker, `<script src="${script}"></script>${marker}`);
   const headers = new Headers(response.headers);
