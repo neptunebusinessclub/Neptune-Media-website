@@ -3,10 +3,14 @@
 Application Web TV et Studio Admin native Cloudflare, sans Supabase.
 
 - Worker + Static Assets
-- Durable Object pour le catalogue, l’administration, les publicités et les statistiques
-- Groq côté serveur pour Neptune Copilot
+- Durable Object SQLite pour le catalogue, l’administration, les publicités et les statistiques
+- Workers AI pour Neptune Copilot
 - Tunnel de réservation séparé et inchangé
 
-Secrets Cloudflare requis : `SESSION_SECRET`, `BOOTSTRAP_TOKEN`, `GROQ_API_KEY`.
+Déploiement automatique via GitHub Actions avec :
 
-Déploiement : `npm install`, `npm run check`, puis `npm run deploy`.
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `BOOTSTRAP_TOKEN`
+
+Validation locale : `npm install && npm run check`.
