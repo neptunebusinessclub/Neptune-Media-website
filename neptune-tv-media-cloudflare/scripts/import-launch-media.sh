@@ -5,13 +5,63 @@ PUBLIC_URL="${PUBLIC_URL:-https://neptune-media-webtv.neptunebusinessclub.worker
 R2_BUCKET="${R2_BUCKET:-neptune-media-assets}"
 MANIFEST_URL="$PUBLIC_URL/media/manifests/launch-v1.json"
 WORK=/tmp/neptune-launch-media
+PART_SIZE=45M
 mkdir -p "$WORK"
 
-for attempt in $(seq 1 60); do
-  if curl --fail --silent "$PUBLIC_URL/api/auth/setup-status" >/dev/null; then break; fi
-  if [ "$attempt" = 60 ]; then echo 'La nouvelle version du Worker ne répond pas.' >&2; exit 1; fi
+for attempt in $(seq 1 90); do
+  if curl --fail --silent -H "X-Neptune-Import-Secret: $BOOTSTRAP_TOKEN" "$PUBLIC_URL/api/internal/multipart/status" | grep -q '"ready":true'; then break; fi
+  if [ "$attempt" = 90 ]; then echo 'La passerelle multipart R2 ne répond pas.' >&2; exit 1; fi
   sleep 10
 done
+
+upload_large_video() {
+  local file="$1"
+  local key="$2"
+  local start_payload start_result upload_id part_dir parts_json part_number part result etag complete_payload
+  start_payload=$(jq -n --arg key "$key" '{key:$key,contentType:"video/mp4"}')
+  start_result=$(curl --fail --silent --show-error --retry 5 --retry-all-errors -X POST "$PUBLIC_URL/api/internal/multipart/start" \
+    -H 'Content-Type: application/json' \
+    -H "X-Neptune-Import-Secret: $BOOTSTRAP_TOKEN" \
+    --data "$start_payload")
+  upload_id=$(jq -r '.uploadId // empty' <<<"$start_result")
+  test -n "$upload_id"
+
+  part_dir="$WORK/parts-$(basename "$file" .mp4)"
+  rm -rf "$part_dir"
+  mkdir -p "$part_dir"
+  split -b "$PART_SIZE" -d -a 4 "$file" "$part_dir/part-"
+  parts_json='[]'
+  part_number=1
+
+  for part in "$part_dir"/part-*; do
+    echo "Envoi de $key — partie $part_number"
+    if ! result=$(curl --fail --silent --show-error --retry 5 --retry-all-errors -X POST "$PUBLIC_URL/api/internal/multipart/part" \
+      -H 'Content-Type: application/octet-stream' \
+      -H "X-Neptune-Import-Secret: $BOOTSTRAP_TOKEN" \
+      -H "X-Neptune-Key: $key" \
+      -H "X-Neptune-Upload-Id: $upload_id" \
+      -H "X-Neptune-Part-Number: $part_number" \
+      --data-binary @"$part"); then
+      curl --silent -X POST "$PUBLIC_URL/api/internal/multipart/abort" \
+        -H 'Content-Type: application/json' \
+        -H "X-Neptune-Import-Secret: $BOOTSTRAP_TOKEN" \
+        --data "$(jq -n --arg key "$key" --arg uploadId "$upload_id" '{key:$key,uploadId:$uploadId}')" >/dev/null || true
+      return 1
+    fi
+    etag=$(jq -r '.etag // empty' <<<"$result")
+    test -n "$etag"
+    parts_json=$(jq --argjson number "$part_number" --arg etag "$etag" '. + [{partNumber:$number,etag:$etag}]' <<<"$parts_json")
+    rm -f "$part"
+    part_number=$((part_number + 1))
+  done
+
+  complete_payload=$(jq -n --arg key "$key" --arg uploadId "$upload_id" --argjson parts "$parts_json" '{key:$key,uploadId:$uploadId,parts:$parts}')
+  curl --fail --silent --show-error --retry 5 --retry-all-errors -X POST "$PUBLIC_URL/api/internal/multipart/complete" \
+    -H 'Content-Type: application/json' \
+    -H "X-Neptune-Import-Secret: $BOOTSTRAP_TOKEN" \
+    --data "$complete_payload" | grep -q '"ok":true'
+  rm -rf "$part_dir"
+}
 
 if ! curl --fail --silent --head "$MANIFEST_URL" >/dev/null; then
   python -m pip install --quiet gdown
@@ -27,8 +77,8 @@ if ! curl --fail --silent --head "$MANIFEST_URL" >/dev/null; then
   ffmpeg -y -ss 25 -i "$WORK/jeu-connexio.mp4" -frames:v 1 -vf 'scale=1280:-2' "$WORK/jeu-connexio.webp" >/dev/null 2>&1
   ffmpeg -y -ss 25 -i "$WORK/hors-norme.mp4" -frames:v 1 -vf 'scale=1280:-2' "$WORK/hors-norme.webp" >/dev/null 2>&1
 
-  npx wrangler r2 object put "$R2_BUCKET/emissions/jeu-connexio.mp4" --file="$WORK/jeu-connexio.mp4" --remote --content-type=video/mp4
-  npx wrangler r2 object put "$R2_BUCKET/emissions/hors-norme.mp4" --file="$WORK/hors-norme.mp4" --remote --content-type=video/mp4
+  upload_large_video "$WORK/jeu-connexio.mp4" "emissions/jeu-connexio.mp4"
+  upload_large_video "$WORK/hors-norme.mp4" "emissions/hors-norme.mp4"
   npx wrangler r2 object put "$R2_BUCKET/posters/jeu-connexio.webp" --file="$WORK/jeu-connexio.webp" --remote --content-type=image/webp
   npx wrangler r2 object put "$R2_BUCKET/posters/hors-norme.webp" --file="$WORK/hors-norme.webp" --remote --content-type=image/webp
 
