@@ -24,13 +24,27 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Validate JavaScript
         run: npm run check
+
+      - name: Configure bootstrap secret
+        run: printf '%s' "$BOOTSTRAP_TOKEN" | npx wrangler secret put BOOTSTRAP_TOKEN
+        env:
+          BOOTSTRAP_TOKEN: ${{ secrets.BOOTSTRAP_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Configure conversion webhook secret
+        if: ${{ secrets.CONVERSION_WEBHOOK_SECRET != '' }}
+        run: printf '%s' "$CONVERSION_WEBHOOK_SECRET" | npx wrangler secret put CONVERSION_WEBHOOK_SECRET
+        env:
+          CONVERSION_WEBHOOK_SECRET: ${{ secrets.CONVERSION_WEBHOOK_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy Worker and assets
         run: npx wrangler deploy
