@@ -36,7 +36,7 @@ export async function enhanceHtml(response, request, env, mode) {
   body = body.replaceAll('https://tv.neptunebusiness.com', origin);
   const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=5' : '/upgrade.css?v=5';
   const supplementalStyles = mode === 'public'
-    ? '<link rel="stylesheet" href="/upgrade-media.css?v=5"><link rel="stylesheet" href="/landing-conversion.css?v=1">'
+    ? '<link rel="stylesheet" href="/upgrade-media.css?v=6"><link rel="stylesheet" href="/landing-conversion.css?v=1">'
     : '<link rel="stylesheet" href="/studio-access.css?v=2"><link rel="stylesheet" href="/studio-live.css?v=2"><link rel="stylesheet" href="/studio-command.css?v=1">';
   const script = mode === 'studio' ? '/studio-upgrade.js?v=5' : '/upgrade.js?v=5';
   const extraScripts = mode === 'public'
