@@ -1,32 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="257" viewBox="0 0 1000 257" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="284" height="257" viewBox="25 20 235 215" role="img" aria-labelledby="title description">
   <title id="title">Neptune Business &amp; Média</title>
-  <desc id="description">Logo Neptune avec symbole multicolore</desc>
+  <desc id="description">Symbole Neptune multicolore sur fond transparent</desc>
   <defs>
     <linearGradient id="body" x1="52" y1="50" x2="246" y2="218" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#3BE8FF"/>
-      <stop offset="0.24" stop-color="#087DFF"/>
-      <stop offset="0.48" stop-color="#3A19FF"/>
-      <stop offset="0.70" stop-color="#D72EFF"/>
-      <stop offset="0.86" stop-color="#FF4A91"/>
-      <stop offset="1" stop-color="#FFBE2F"/>
+      <stop offset="0" stop-color="#3BE8FF"/><stop offset=".24" stop-color="#087DFF"/><stop offset=".48" stop-color="#3A19FF"/><stop offset=".70" stop-color="#D72EFF"/><stop offset=".86" stop-color="#FF4A91"/><stop offset="1" stop-color="#FFBE2F"/>
     </linearGradient>
     <radialGradient id="dot" cx="0" cy="0" r="1" gradientTransform="translate(220 41) rotate(128) scale(62)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF"/>
-      <stop offset="0.34" stop-color="#DDE2FF"/>
-      <stop offset="0.68" stop-color="#8D70FF"/>
-      <stop offset="1" stop-color="#4D25FF"/>
+      <stop stop-color="#FFFFFF"/><stop offset=".34" stop-color="#DDE2FF"/><stop offset=".68" stop-color="#8D70FF"/><stop offset="1" stop-color="#4D25FF"/>
     </radialGradient>
-    <filter id="glow" x="18" y="20" width="246" height="222" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#11172A" flood-opacity="0.30"/>
-    </filter>
+    <filter id="glow" x="18" y="20" width="246" height="222" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#050712" flood-opacity=".32"/></filter>
   </defs>
   <g filter="url(#glow)">
     <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="url(#body)" stroke-width="43" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="229" cy="60" r="24" fill="url(#dot)"/>
-    <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="2.2" stroke-linecap="round"/>
-  </g>
-  <g font-family="Inter,Arial,Helvetica,sans-serif">
-    <text x="315" y="139" fill="#FFFFFF" font-size="91" font-weight="900" letter-spacing="-5">NEPTUNE</text>
-    <text x="321" y="183" fill="#A8B5CC" font-size="22" font-weight="750" letter-spacing="5">BUSINESS &amp; MÉDIA</text>
+    <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="#fff" stroke-opacity=".23" stroke-width="2.2" stroke-linecap="round"/>
   </g>
 </svg>
