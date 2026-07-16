@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: neptune-media-import
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   import-media:
@@ -37,3 +37,16 @@ jobs:
       - run: npx wrangler r2 bucket create "$R2_BUCKET" 2>/dev/null || true
       - name: Download, publish and register the two emissions
         run: bash scripts/import-launch-media.sh
+      - name: Record media import status
+        if: always()
+        env:
+          IMPORT_STATUS: ${{ job.status }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          printf '{"status":"%s","source_sha":"%s","checked_at":"%s","catalog":"%s/api/public/catalog","direct":"%s/direct/"}\n' "$IMPORT_STATUS" "$SOURCE_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$PUBLIC_URL" "$PUBLIC_URL" > media-import-status.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media-import-status.json
+          git commit -m "chore: record media import status [skip ci]" || true
+          git push || true
