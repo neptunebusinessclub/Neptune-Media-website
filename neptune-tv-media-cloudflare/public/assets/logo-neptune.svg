@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="284" height="257" viewBox="0 0 284 257" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="257" viewBox="0 0 1000 257" role="img" aria-labelledby="title description">
   <title id="title">Neptune Business &amp; Média</title>
-  <desc id="description">Symbole Neptune multicolore</desc>
+  <desc id="description">Logo Neptune avec symbole multicolore</desc>
   <defs>
     <linearGradient id="body" x1="52" y1="50" x2="246" y2="218" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#3BE8FF"/>
@@ -24,5 +24,9 @@
     <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="url(#body)" stroke-width="43" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="229" cy="60" r="24" fill="url(#dot)"/>
     <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <g font-family="Inter,Arial,Helvetica,sans-serif">
+    <text x="315" y="139" fill="#FFFFFF" font-size="91" font-weight="900" letter-spacing="-5">NEPTUNE</text>
+    <text x="321" y="183" fill="#A8B5CC" font-size="22" font-weight="750" letter-spacing="5">BUSINESS &amp; MÉDIA</text>
   </g>
 </svg>
