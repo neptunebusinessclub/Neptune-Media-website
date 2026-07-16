@@ -2,6 +2,8 @@ const bridge = window.NeptuneUpgrade;
 if (bridge) {
   const { catalog, nativeFetch, sendTrack, bookingUrl } = bridge;
   let currentEpisode = null;
+  let midrollShownFor = '';
+  const bannerImpressions = new Set();
   const modal = document.querySelector('[data-video-modal]');
   const frame = modal?.querySelector('.modal-frame');
   const video = frame?.querySelector('video');
@@ -12,9 +14,11 @@ if (bridge) {
     frame.append(details);
 
     document.addEventListener('click', (event) => {
+      const previous = currentEpisode?.id;
       const card = event.target.closest('[data-episode-id]');
       if (card) currentEpisode = catalog.episodes.find((item) => item.id === card.dataset.episodeId) || currentEpisode;
       if (event.target.closest('#heroPlay')) currentEpisode = catalog.episodes.find((item) => item.id === document.querySelector('#heroPlay')?.dataset.episodeId) || catalog.episodes[0];
+      if (currentEpisode?.id !== previous) midrollShownFor = '';
       if (currentEpisode) updateDetails();
     }, { capture: true });
 
@@ -42,9 +46,26 @@ if (bridge) {
     banner.innerHTML = '<img alt="Publicité">';
     frame.append(banner);
 
-    new MutationObserver(() => { if (modal.classList.contains('is-open')) updateDetails(); }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    const midrollShell = document.createElement('div');
+    midrollShell.className = 'upgrade-midroll-shell';
+    midrollShell.hidden = true;
+    midrollShell.innerHTML = `<span>PUBLICITÉ</span><video controls playsinline></video><a hidden target="_blank" rel="noopener sponsored">Découvrir l’annonceur</a>`;
+    frame.append(midrollShell);
+    const midrollVideo = midrollShell.querySelector('video');
+    const midrollLink = midrollShell.querySelector('a');
+
+    new MutationObserver(() => {
+      if (modal.classList.contains('is-open')) updateDetails();
+      else closeMidroll(false);
+    }).observe(modal, { attributes: true, attributeFilter: ['class'] });
     video.addEventListener('loadedmetadata', refreshAds);
     video.addEventListener('play', refreshAds);
+    video.addEventListener('timeupdate', maybeStartMidroll);
+    midrollVideo.addEventListener('play', () => {
+      const id = midrollVideo.dataset.adId;
+      if (id) trackAd('play', id);
+    }, { once: false });
+    midrollVideo.addEventListener('ended', () => closeMidroll(true));
 
     function updateDetails() {
       if (!currentEpisode) return;
@@ -64,13 +85,50 @@ if (bridge) {
         adLink.onclick = () => trackAd('click', activeAd.id);
       }
       const contentPlaying = currentEpisode && absolute(currentEpisode.videoUrl) === src;
-      const bannerAd = contentPlaying ? (catalog.ads || []).find((item) => item.placement === 'banner' && item.assetUrl && item.active !== false) : null;
+      const bannerAd = contentPlaying ? (catalog.ads || []).find((item) => item.placement === 'banner' && item.assetUrl) : null;
       banner.hidden = !bannerAd;
       if (bannerAd) {
         banner.href = bannerAd.clickUrl || '#';
         banner.querySelector('img').src = bannerAd.assetUrl;
         banner.onclick = () => trackAd('click', bannerAd.id);
+        const key = `${currentEpisode.id}:${bannerAd.id}`;
+        if (!bannerImpressions.has(key)) {
+          bannerImpressions.add(key);
+          trackAd('impression', bannerAd.id);
+        }
       }
+    }
+
+    function maybeStartMidroll() {
+      if (!currentEpisode || !video.duration || midrollShownFor === currentEpisode.id || !midrollShell.hidden) return;
+      if (absolute(video.currentSrc || video.src) !== absolute(currentEpisode.videoUrl)) return;
+      if (video.currentTime / video.duration < .5) return;
+      const ad = (catalog.ads || []).find((item) => item.placement === 'midroll' && item.assetUrl);
+      if (!ad) return;
+      midrollShownFor = currentEpisode.id;
+      video.pause();
+      midrollVideo.dataset.adId = ad.id;
+      midrollVideo.src = ad.assetUrl;
+      midrollLink.hidden = !ad.clickUrl;
+      if (ad.clickUrl) {
+        midrollLink.href = ad.clickUrl;
+        midrollLink.onclick = () => trackAd('click', ad.id);
+      }
+      midrollShell.hidden = false;
+      trackAd('impression', ad.id);
+      midrollVideo.play().catch(() => {});
+    }
+
+    function closeMidroll(completed) {
+      if (midrollShell.hidden) return;
+      const adId = midrollVideo.dataset.adId;
+      if (completed && adId) trackAd('complete', adId);
+      midrollVideo.pause();
+      midrollVideo.removeAttribute('src');
+      midrollVideo.load();
+      midrollVideo.dataset.adId = '';
+      midrollShell.hidden = true;
+      if (completed && modal.classList.contains('is-open')) video.play().catch(() => {});
     }
 
     async function trackAd(event, adId) {
