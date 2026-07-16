@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/import-launch-emissions.yml'
+      - 'neptune-tv-media-cloudflare/scripts/import-launch-media.sh'
   workflow_dispatch:
 
 permissions:
