@@ -1,4 +1,4 @@
-import { renderEmissions, renderEpisode, renderProgram, renderInformation, renderNotFound } from './public-render.js';
+import { renderDirect, renderEmissions, renderEpisode, renderProgram, renderInformation, renderNotFound } from './public-render.js';
 import { buildRobots, buildSitemap, buildVideoSitemap } from './public-seo.js';
 
 export async function handlePublicRoute(request, env) {
@@ -11,6 +11,7 @@ export async function handlePublicRoute(request, env) {
   const catalog = await getCatalog(env);
   if (path === '/sitemap.xml') return text(buildSitemap(origin, catalog), 'application/xml; charset=utf-8');
   if (path === '/video-sitemap.xml') return text(buildVideoSitemap(origin, catalog), 'application/xml; charset=utf-8');
+  if (path === '/direct/') return html(renderDirect(origin, catalog));
   if (path === '/emissions/') return html(renderEmissions(origin, catalog));
   if (path.startsWith('/emissions/')) {
     const slug = decodeURIComponent(path.slice('/emissions/'.length, -1));
@@ -33,9 +34,9 @@ export async function enhanceHtml(response, request, env, mode) {
   const origin = canonicalOrigin(url, env);
   let body = await response.text();
   body = body.replaceAll('https://tv.neptunebusiness.com', origin);
-  const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=3' : '/upgrade.css?v=3';
-  const mediaStylesheet = mode === 'public' ? '<link rel="stylesheet" href="/upgrade-media.css?v=3">' : '';
-  const script = mode === 'studio' ? '/studio-upgrade.js?v=3' : '/upgrade.js?v=3';
+  const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=4' : '/upgrade.css?v=4';
+  const mediaStylesheet = mode === 'public' ? '<link rel="stylesheet" href="/upgrade-media.css?v=4">' : '';
+  const script = mode === 'studio' ? '/studio-upgrade.js?v=4' : '/upgrade.js?v=4';
   if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${mediaStylesheet}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
   if (!body.includes(script)) body = body.replace(marker, `<script src="${script}"></script>${marker}`);
@@ -60,22 +61,13 @@ async function getCatalog(env) {
 }
 
 function isPublicRoute(path) {
-  return path === '/sitemap.xml' || path === '/video-sitemap.xml' || path === '/emissions/' || path.startsWith('/emissions/') || path.startsWith('/programmes/') || path === '/mentions-legales/' || path === '/confidentialite/' || path === '/contact/';
+  return path === '/sitemap.xml' || path === '/video-sitemap.xml' || path === '/direct/' || path === '/emissions/' || path.startsWith('/emissions/') || path.startsWith('/programmes/') || path === '/mentions-legales/' || path === '/confidentialite/' || path === '/contact/';
 }
-function normalizePath(value) {
-  const clean = value.replace(/\/{2,}/g, '/');
-  if (clean === '/' || clean.endsWith('.xml') || clean.endsWith('.txt')) return clean;
-  return clean.endsWith('/') ? clean : `${clean}/`;
-}
+function normalizePath(value) { const clean = value.replace(/\/{2,}/g, '/'); if (clean === '/' || clean.endsWith('.xml') || clean.endsWith('.txt')) return clean; return clean.endsWith('/') ? clean : `${clean}/`; }
 function canonicalOrigin(url, env) { return String(env.PUBLIC_ORIGIN || url.origin).replace(/\/$/, ''); }
-function html(value) { const response = new Response(value, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } }); return secure(response); }
-function text(value, type) { const response = new Response(value, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=300' } }); return secure(response); }
+function html(value) { return secure(new Response(value, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })); }
+function text(value, type) { return secure(new Response(value, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=300' } })); }
 function secure(response) { const headers = new Headers(response.headers); applySecurity(headers); return new Response(response.body, { status: response.status, statusText: response.statusText, headers }); }
 function applySecurity(headers) {
-  headers.set('X-Content-Type-Options', 'nosniff');
-  headers.set('X-Frame-Options', 'DENY');
-  headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
-  headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-  headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https: blob:; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://media.neptunebusiness.com");
+  headers.set('X-Content-Type-Options', 'nosniff'); headers.set('X-Frame-Options', 'DENY'); headers.set('Referrer-Policy', 'strict-origin-when-cross-origin'); headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()'); headers.set('Cross-Origin-Opener-Policy', 'same-origin'); headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https: blob:; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://media.neptunebusiness.com");
 }
