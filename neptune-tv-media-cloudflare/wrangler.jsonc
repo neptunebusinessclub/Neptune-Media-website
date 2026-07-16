@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "neptune-media-webtv",
-  "main": "src/entry-v2.js",
+  "main": "src/entry-v3.js",
   "compatibility_date": "2026-07-16",
   "workers_dev": true,
   "assets": {
@@ -12,6 +12,8 @@
       "/",
       "/studio/*",
       "/api/*",
+      "/media/*",
+      "/direct/*",
       "/emissions/*",
       "/programmes/*",
       "/mentions-legales/*",
@@ -29,6 +31,9 @@
   },
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["StudioStore"] }
+  ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "neptune-media-assets" }
   ],
   "ai": { "binding": "AI" },
   "vars": {
