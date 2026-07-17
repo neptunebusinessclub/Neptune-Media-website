@@ -224,9 +224,9 @@ async function loginAttemptKey(request) {
 }
 
 function isAllowedPublicOrigin(request) {
-  const origin = request.headers.get('Origin');
-  if (!origin) return true;
   const requestUrl = new URL(request.url);
+  const origin = request.headers.get('Origin');
+  if (!origin) return ['localhost', '127.0.0.1'].includes(requestUrl.hostname);
   if (origin === requestUrl.origin) return true;
   return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/u.test(origin);
 }
