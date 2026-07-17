@@ -22,37 +22,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Probe production
-        shell: bash
-        run: |
-          set +e
-          portal_code=$(curl --silent --show-error --output /tmp/portal.html --write-out '%{http_code}' "$PUBLIC_URL/espace-client/")
-          studio_code=$(curl --silent --show-error --output /tmp/studio.html --write-out '%{http_code}' "$PUBLIC_URL/studio/clients.html")
-          session_code=$(curl --silent --show-error --output /tmp/session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
-          request_code=$(curl --silent --show-error --output /tmp/request.json --write-out '%{http_code}' -X POST "$PUBLIC_URL/api/client/request-code" -H "Origin: $PUBLIC_URL" -H 'Content-Type: application/json' --data '{"email":"portal-smoke-test@example.invalid"}')
-          admin_code=$(curl --silent --show-error --output /tmp/admin.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
-          webhook_code=$(curl --silent --show-error --output /tmp/webhook.json --write-out '%{http_code}' -X POST "$PUBLIC_URL/api/webhooks/client-order" -H "Origin: $PUBLIC_URL" -H 'Content-Type: application/json' --data '{}')
-
-          python3 - <<'PY'
-          import json, os, pathlib, datetime
-          def read(path):
-              try: return pathlib.Path(path).read_text(errors='replace')[:1000]
-              except Exception as exc: return f'ERROR:{exc}'
-          report = {
-            'checked_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'portal': {'status': os.environ.get('portal_code',''), 'contains_expected': 'Tous vos passages Neptune Media' in read('/tmp/portal.html'), 'body': read('/tmp/portal.html')},
-            'studio_clients': {'status': os.environ.get('studio_code',''), 'contains_expected': 'Comptes, passages et livrables' in read('/tmp/studio.html'), 'body': read('/tmp/studio.html')},
-            'client_session': {'status': os.environ.get('session_code',''), 'body': read('/tmp/session.json')},
-            'request_code': {'status': os.environ.get('request_code',''), 'body': read('/tmp/request.json')},
-            'admin_clients': {'status': os.environ.get('admin_code',''), 'body': read('/tmp/admin.json')},
-            'webhook': {'status': os.environ.get('webhook_code',''), 'body': read('/tmp/webhook.json')},
-          }
-          pathlib.Path('client-portal-production-diagnostic.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
-          PY
-        env:
-          portal_code: ${{ env.portal_code }}
-
-      - name: Rebuild report with shell values and commit
+      - name: Probe production and commit report
         shell: bash
         run: |
           set +e
@@ -84,3 +54,5 @@ jobs:
           git add client-portal-production-diagnostic.json
           git commit -m "chore: record client portal production diagnostic [skip ci]" || true
           git push
+
+# Trigger diagnostic after the workflow exists on main.
