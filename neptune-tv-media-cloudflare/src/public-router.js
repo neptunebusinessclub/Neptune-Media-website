@@ -50,7 +50,13 @@ export async function enhanceHtml(response, request, env, mode) {
   if (!body.includes(script)) body = body.replace(marker, `${extraScripts}<script src="${script}"></script>${marker}`);
   const headers = new Headers(response.headers);
   headers.set('Content-Type', 'text/html; charset=utf-8');
-  headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+  if (mode === 'studio') {
+    headers.set('Cache-Control', 'private, no-store, max-age=0');
+    headers.set('Pragma', 'no-cache');
+    headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+  } else {
+    headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+  }
   applySecurity(headers);
   return new Response(body, { status: response.status, headers });
 }
