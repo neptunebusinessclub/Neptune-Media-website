@@ -202,7 +202,7 @@ async function authenticatedRequest(request, studio, requireCsrf) {
   if (!sessionResponse.ok) return { ok: false, response: json({ error: 'unauthorized' }, 401) };
   const session = await sessionResponse.json();
   const csrfToken = request.headers.get('X-CSRF-Token') || '';
-  if (requireCsrf && csrfToken !== session.csrfToken) {
+  if (requireCsrf && !timingSafeEqual(csrfToken, session.csrfToken)) {
     return { ok: false, response: json({ error: 'csrf_failed' }, 403) };
   }
   return { ok: true, token, csrfToken, user: session.user };
