@@ -2,7 +2,7 @@ import legacy from './index.js';
 import { StudioStore } from './store-v3.js';
 import { handlePublicRoute, enhanceHtml } from './public-router.js';
 import { serveMedia } from './media-v3.js';
-import { isSameOrigin, json, securityHeaders } from './security.js';
+import { isSameOrigin, json, securityHeaders, timingSafeEqual } from './security.js';
 
 export { StudioStore };
 
@@ -19,7 +19,7 @@ export default {
       }
       if (url.pathname === '/api/internal/media-import' && request.method === 'POST') {
         const secret = request.headers.get('X-Neptune-Import-Secret') || '';
-        if (!env.BOOTSTRAP_TOKEN || secret !== env.BOOTSTRAP_TOKEN) return secure(json({ error: 'unauthorized' }, 401));
+        if (!env.BOOTSTRAP_TOKEN || !timingSafeEqual(secret, env.BOOTSTRAP_TOKEN)) return secure(json({ error: 'unauthorized' }, 401));
         return secure(await proxyBody(request, studio, '/internal/import-media'));
       }
       const publicResponse = await handlePublicRoute(request, env);
