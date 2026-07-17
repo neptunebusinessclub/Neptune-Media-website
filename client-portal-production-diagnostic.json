@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-07-17T19:33:24.296244+00:00",
+  "portal": {
+    "status": "200",
+    "contains_expected": true,
+    "body": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <meta name=\"robots\" content=\"noindex,nofollow\">\n  <title>Mon espace Neptune Media</title>\n  <link rel=\"icon\" href=\"/assets/logo-neptune.svg\">\n  <link rel=\"stylesheet\" href=\"/espace-client/client.css\">\n</head>\n<body>\n  <main class=\"page\">\n    <header class=\"site-header\">\n      <a class=\"brand\" href=\"/\" aria-label=\"Neptune Media\">\n        <img src=\"/assets/logo-neptune.svg\" alt=\"Neptune\">\n        <span><b>Neptune Media</b><small>Espace client</small></span>\n      </a>\n      <button id=\"logout\" class=\"ghost\" type=\"button\" hidden>Déconnexion</button>\n    </header>\n\n    <section id=\"auth\" class=\"auth-shell\">\n      <div class=\"auth-copy\">\n        <p class=\"eyebrow\">VOTRE ESPACE PERMANENT</p>\n        <h1>Tous vos passages Neptune Media, au même endroit.</h1>\n        <p>Suivez chaque réservation, préparez vos interviews et retrouvez vos rushs et livrables sans mot de passe.</p>\n        <div class=\"trust-row\">\n          <span>Code sécurisé</span><span>Accès privé</span><span>Historique conservé</span>\n        </div>\n      </div>\n\n      <form id=\"accessForm\" class=\"access-card\">\n        <div id=\"emailStep\">\n          <p class=\"step\">01 · IDENTIFICATION</p>\n          <h2>Recevoir mon code</h2>\n          <p>Utilisez l’adresse e-mail employée lors de votre réservation.</p>\n          <label>\n            <span>Adresse e-mail</span>\n            <input id=\"e"
+  },
+  "studio_clients": {
+    "status": "307",
+    "contains_expected": false,
+    "body": ""
+  },
+  "client_session": {
+    "status": "401",
+    "body": "{\"authenticated\":false}"
+  },
+  "request_code": {
+    "status": "200",
+    "body": "{\"ok\":true,\"retryAfter\":0}"
+  },
+  "admin_clients": {
+    "status": "401",
+    "body": "{\"error\":\"unauthorized\"}"
+  },
+  "webhook": {
+    "status": "401",
+    "body": "{\"error\":\"unauthorized\"}"
+  }
+}
