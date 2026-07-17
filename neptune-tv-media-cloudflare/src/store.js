@@ -9,6 +9,8 @@ import {
 } from './security.js';
 
 const SESSION_TTL_SECONDS = 12 * 60 * 60;
+const RESET_TTL_SECONDS = 20 * 60;
+const STUDIO_EMAIL = 'contact@neptunebusiness.com';
 const ROLES = ['admin', 'editor', 'analyst', 'advertiser'];
 const EPISODE_STATUSES = ['draft', 'scheduled', 'published', 'archived'];
 const AD_PLACEMENTS = ['preroll', 'midroll', 'postroll', 'banner'];
@@ -167,6 +169,16 @@ export class StudioStore {
         first_at TEXT NOT NULL,
         last_at TEXT NOT NULL
       );
+      CREATE TABLE IF NOT EXISTS password_resets (
+        id TEXT PRIMARY KEY,
+        email TEXT NOT NULL,
+        token_hash TEXT NOT NULL UNIQUE,
+        expires_at TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        used_at TEXT
+      );
+      CREATE INDEX IF NOT EXISTS idx_password_resets_token ON password_resets(token_hash);
+      CREATE INDEX IF NOT EXISTS idx_password_resets_expiry ON password_resets(expires_at);
     `);
   }
 
@@ -211,6 +223,8 @@ export class StudioStore {
     if (url.pathname === '/public/track' && method === 'POST') return this.track(body);
     if (url.pathname === '/public/ad-track' && method === 'POST') return this.trackAd(body);
     if (url.pathname === '/auth/bootstrap' && method === 'POST') return this.bootstrap(body);
+    if (url.pathname === '/auth/request-reset' && method === 'POST') return this.requestPasswordReset(body);
+    if (url.pathname === '/auth/reset-password' && method === 'POST') return this.resetPassword(body);
     if (url.pathname === '/auth/login' && method === 'POST') return this.login(body);
     if (url.pathname === '/auth/session' && method === 'POST') return this.session(body);
     if (url.pathname === '/auth/logout' && method === 'POST') return this.logout(body);
@@ -268,6 +282,58 @@ export class StudioStore {
       passwordData.salt, passwordData.iterations, 1, now, now,
     );
     this.audit(id, 'bootstrap_admin', 'user', id, { email });
+    return json({ ok: true });
+  }
+
+  async requestPasswordReset(body) {
+    const email = normalizeEmail(body.email);
+    if (email !== STUDIO_EMAIL) return json({ ok: true });
+    const rawToken = randomToken(32);
+    const tokenHash = await sha256(rawToken);
+    const now = new Date();
+    const expiresAt = new Date(now.getTime() + RESET_TTL_SECONDS * 1000).toISOString();
+    this.sql.exec('DELETE FROM password_resets WHERE email=? OR expires_at<? OR used_at IS NOT NULL', email, now.toISOString());
+    this.sql.exec(
+      `INSERT INTO password_resets (id,email,token_hash,expires_at,created_at,used_at)
+       VALUES (?,?,?,?,?,NULL)`,
+      crypto.randomUUID(), email, tokenHash, expiresAt, now.toISOString(),
+    );
+    return json({ ok: true, token: rawToken, expiresIn: RESET_TTL_SECONDS });
+  }
+
+  async resetPassword(body) {
+    const token = String(body.token || '');
+    const password = String(body.password || '');
+    if (token.length < 20 || password.length < 12) return json({ error: 'invalid_reset' }, 400);
+    const tokenHash = await sha256(token);
+    const now = new Date().toISOString();
+    const reset = this.sql.exec(
+      `SELECT id,email FROM password_resets
+       WHERE token_hash=? AND used_at IS NULL AND expires_at>?`,
+      tokenHash, now,
+    ).toArray()[0];
+    if (!reset || reset.email !== STUDIO_EMAIL) return json({ error: 'invalid_or_expired_reset' }, 400);
+    const passwordData = await hashPassword(password);
+    let user = this.sql.exec('SELECT id FROM users WHERE email=?', STUDIO_EMAIL).toArray()[0];
+    if (!user) {
+      user = { id: crypto.randomUUID() };
+      this.sql.exec(
+        `INSERT INTO users
+         (id,email,full_name,role,password_hash,password_salt,password_iterations,active,created_at,updated_at)
+         VALUES (?,?,?,?,?,?,?,?,?,?)`,
+        user.id, STUDIO_EMAIL, 'Neptune Media', 'admin', passwordData.hash,
+        passwordData.salt, passwordData.iterations, 1, now, now,
+      );
+      this.audit(user.id, 'first_login_password_created', 'user', user.id, { email: STUDIO_EMAIL });
+    } else {
+      this.sql.exec(
+        `UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,active=1,updated_at=? WHERE id=?`,
+        passwordData.hash, passwordData.salt, passwordData.iterations, now, user.id,
+      );
+      this.audit(user.id, 'password_reset', 'user', user.id, {});
+    }
+    this.sql.exec('UPDATE password_resets SET used_at=? WHERE id=?', now, reset.id);
+    this.sql.exec('DELETE FROM sessions WHERE user_id=?', user.id);
     return json({ ok: true });
   }
 

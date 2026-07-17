@@ -19,10 +19,26 @@ bindAuth();
 load();
 
 function bindAuth() {
+  const resetToken = new URLSearchParams(location.search).get('reset');
+  if (resetToken) {
+    $('#confirmField').hidden = false;
+    $('#passwordField span').textContent = 'Nouveau mot de passe';
+    $('#loginSubmit').textContent = 'Enregistrer mon mot de passe';
+    $('#requestReset').hidden = true;
+    $('#authHint').textContent = 'Choisissez au moins 12 caractères. Ce lien ne fonctionne qu’une fois.';
+  }
   $('#login').addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     try {
+      if (resetToken) {
+        if (form.get('password') !== form.get('confirmPassword')) throw new Error('passwords_do_not_match');
+        await api('/api/auth/reset-password', {
+          method: 'POST',
+          body: JSON.stringify({ token: resetToken, password: form.get('password') }),
+        }, false);
+        history.replaceState({}, '', '/studio/');
+      }
       const result = await api('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email: form.get('email'), password: form.get('password') }),
@@ -32,17 +48,20 @@ function bindAuth() {
       await load();
     } catch (error) { $('#authMsg').textContent = humanError(error.message); }
   });
-  $('#bootstrap').addEventListener('click', async () => {
-    const form = new FormData($('#login'));
+  $('#requestReset').addEventListener('click', async () => {
+    const button = $('#requestReset');
+    button.disabled = true;
+    $('#authMsg').textContent = 'Envoi du lien sécurisé…';
     try {
-      await api('/api/auth/bootstrap', {
+      await api('/api/auth/request-reset', {
         method: 'POST',
-        body: JSON.stringify({
-          email: form.get('email'), password: form.get('password'), fullName: form.get('fullName'), token: form.get('token'),
-        }),
+        body: JSON.stringify({ email: 'contact@neptunebusiness.com' }),
       }, false);
-      $('#authMsg').textContent = 'Administrateur créé. Connectez-vous avec les mêmes identifiants.';
-    } catch (error) { $('#authMsg').textContent = humanError(error.message); }
+      $('#authMsg').textContent = 'Lien envoyé à contact@neptunebusiness.com. Il expire dans 20 minutes.';
+    } catch (error) {
+      $('#authMsg').textContent = humanError(error.message);
+      button.disabled = false;
+    }
   });
   $('#logout').addEventListener('click', async () => {
     await api('/api/auth/logout', { method: 'POST' }, false).catch(() => {});
@@ -386,7 +405,12 @@ function retentionBlock(stats) {
 }
 function humanError(code) {
   return ({
-    invalid_credentials: 'Identifiants incorrects.', too_many_attempts: 'Trop de tentatives. Réessayez dans 15 minutes.',
+    invalid_credentials: 'Identifiants incorrects.',
+    invalid_or_expired_reset: 'Ce lien a expiré ou a déjà été utilisé.',
+    invalid_reset: 'Choisissez un mot de passe d’au moins 12 caractères.',
+    passwords_do_not_match: 'Les deux mots de passe ne correspondent pas.',
+    email_service_not_configured: 'Le service d’envoi d’e-mails doit être configuré.',
+    email_send_failed: 'Le lien n’a pas pu être envoyé. Vérifiez la configuration Resend.', too_many_attempts: 'Trop de tentatives. Réessayez dans 15 minutes.',
     already_initialized: 'Le premier administrateur existe déjà.', invalid_bootstrap_token: 'Jeton d’amorçage incorrect.',
     password_too_short: 'Le mot de passe doit contenir au moins 12 caractères.', program_not_empty: 'Déplacez ou supprimez les émissions avant ce programme.',
     csrf_failed: 'Session de sécurité expirée. Actualisez la page.', unauthorized: 'Votre session a expiré.',

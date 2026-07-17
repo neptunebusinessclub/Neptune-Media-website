@@ -15,15 +15,12 @@
       <p class="eyebrow">STUDIO ADMIN · CLOUDFLARE</p>
       <h1>Pilotez la chaîne depuis un seul espace.</h1>
       <p>Émissions, programmation, campagnes, audience, utilisateurs et Neptune Copilot sont synchronisés avec la Web TV publique.</p>
-      <label><span>Adresse e-mail</span><input name="email" type="email" autocomplete="username" required></label>
-      <label><span>Mot de passe</span><input name="password" type="password" autocomplete="current-password" minlength="12" required></label>
-      <button class="btn btn-primary" type="submit">Accéder au studio</button>
-      <details>
-        <summary>Première initialisation uniquement</summary>
-        <label><span>Nom complet</span><input name="fullName" autocomplete="name"></label>
-        <label><span>Jeton d’amorçage Cloudflare</span><input name="token" autocomplete="off"></label>
-        <button class="btn" type="button" id="bootstrap">Créer le premier administrateur</button>
-      </details>
+      <label><span>Adresse e-mail</span><input name="email" type="email" autocomplete="username" value="contact@neptunebusiness.com" readonly required></label>
+      <label id="passwordField"><span>Mot de passe</span><input name="password" type="password" autocomplete="current-password" minlength="12" required></label>
+      <label id="confirmField" hidden><span>Confirmer le mot de passe</span><input name="confirmPassword" type="password" autocomplete="new-password" minlength="12"></label>
+      <button class="btn btn-primary" type="submit" id="loginSubmit">Accéder au studio</button>
+      <button class="btn" type="button" id="requestReset">Première connexion ou mot de passe oublié</button>
+      <p id="authHint">Un lien sécurisé vous sera envoyé à contact@neptunebusiness.com.</p>
       <p id="authMsg" class="message" aria-live="polite"></p>
     </form>
   </div>

@@ -54,6 +54,25 @@ export default {
         return withSecurity(await callStore(studio, '/auth/bootstrap', payload));
       }
 
+      if (url.pathname === '/api/auth/request-reset' && request.method === 'POST') {
+        if (!isSameOrigin(request)) return withSecurity(json({ error: 'origin_forbidden' }, 403));
+        const payload = await request.json().catch(() => ({}));
+        const email = String(payload.email || '').trim().toLowerCase();
+        const resultResponse = await callStore(studio, '/auth/request-reset', { email });
+        const result = await resultResponse.json().catch(() => ({}));
+        if (result.token && email === 'contact@neptunebusiness.com') {
+          const sent = await sendResetEmail(env, request.url, result.token);
+          if (!sent.ok) return withSecurity(json({ error: sent.error }, 503));
+        }
+        return withSecurity(json({ ok: true }));
+      }
+
+      if (url.pathname === '/api/auth/reset-password' && request.method === 'POST') {
+        if (!isSameOrigin(request)) return withSecurity(json({ error: 'origin_forbidden' }, 403));
+        const payload = await request.json().catch(() => ({}));
+        return withSecurity(await callStore(studio, '/auth/reset-password', payload));
+      }
+
       if (url.pathname === '/api/auth/login' && request.method === 'POST') {
         if (!isSameOrigin(request)) return withSecurity(json({ error: 'origin_forbidden' }, 403));
         const payload = await request.json().catch(() => ({}));
@@ -144,6 +163,33 @@ export default {
     }
   },
 };
+
+async function sendResetEmail(env, requestUrl, token) {
+  if (!env.RESEND_API_KEY) return { ok: false, error: 'email_service_not_configured' };
+  const origin = new URL(requestUrl).origin;
+  const resetUrl = `${origin}/studio/?reset=${encodeURIComponent(token)}`;
+  const from = env.AUTH_FROM_EMAIL || 'Neptune Media <onboarding@resend.dev>';
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: ['contact@neptunebusiness.com'],
+      subject: 'Accès sécurisé au Studio Neptune Media',
+      html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;padding:32px"><h1>Studio Neptune Media</h1><p>Utilisez ce lien pour créer ou réinitialiser votre mot de passe.</p><p><a href="${resetUrl}" style="display:inline-block;padding:14px 22px;border-radius:999px;background:#5b42ff;color:#fff;text-decoration:none;font-weight:700">Choisir mon mot de passe</a></p><p>Ce lien expire dans 20 minutes et ne peut être utilisé qu’une fois.</p></div>`,
+      text: `Créez ou réinitialisez votre mot de passe Studio Neptune Media : ${resetUrl}
+Ce lien expire dans 20 minutes.`,
+    }),
+  });
+  if (!response.ok) {
+    console.error('resend_failed', response.status, await response.text());
+    return { ok: false, error: 'email_send_failed' };
+  }
+  return { ok: true };
+}
 
 async function runCopilot(env, prompt, context) {
   if (!env.AI) throw new Error('workers_ai_binding_missing');
