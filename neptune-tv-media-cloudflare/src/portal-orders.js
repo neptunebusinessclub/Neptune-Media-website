@@ -1,24 +1,192 @@
 import { json, sanitizeText, sanitizeUrl } from './security.js';
-import { cleanOrderPayload, createSteps, syncSteps, normalizeEmail } from './portal-utils.js';
+import { cleanOrderPayload, createSteps, syncSteps, normalizeEmail, nullableIso } from './portal-utils.js';
 import { requireClient } from './portal-auth.js';
 
-export async function upsertOrder(store,raw){
-  const p=cleanOrderPayload(raw);if(!p.email||!p.externalPaymentId)return json({error:'invalid_order'},400);
-  const paid=new Set(['paid','succeeded','complete','completed','no_payment_required']);
-  let order=store.sql.exec('SELECT id FROM portal_orders WHERE external_payment_id=?',p.externalPaymentId).toArray()[0];
-  if(!order&&!paid.has(p.paymentStatus))return json({error:'payment_not_confirmed'},409);
-  const now=new Date().toISOString();let client=store.sql.exec('SELECT id FROM portal_clients WHERE email=?',p.email).toArray()[0];const clientCreated=!client;
-  if(!client){client={id:crypto.randomUUID()};store.sql.exec('INSERT INTO portal_clients (id,email,full_name,company,active,created_at,updated_at,last_access_at) VALUES (?,?,?,?,1,?,?,NULL)',client.id,p.email,p.fullName,p.company,now,now);}
-  else store.sql.exec(`UPDATE portal_clients SET full_name=CASE WHEN ?<>'' THEN ? ELSE full_name END,company=CASE WHEN ?<>'' THEN ? ELSE company END,active=1,updated_at=? WHERE id=?`,p.fullName,p.fullName,p.company,p.company,now,client.id);
-  let created=false;
-  if(!order){created=true;order={id:crypto.randomUUID()};store.sql.exec(`INSERT INTO portal_orders (id,client_id,external_payment_id,order_reference,product_code,title,format,payment_status,amount_total,currency,status,appointment_at,filming_at,next_action,preparation_url,booking_url,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,order.id,client.id,p.externalPaymentId,p.orderReference,p.productCode,p.title||p.format||'Passage Neptune Media',p.format,p.paymentStatus,p.amountTotal,p.currency,p.status,p.appointmentAt,p.filmingAt,p.nextAction||'Choisir ou confirmer votre rendez-vous',p.preparationUrl,p.bookingUrl,now,now);createSteps(store,order.id,p.status,now);}
-  else store.sql.exec(`UPDATE portal_orders SET payment_status=?,amount_total=?,currency=?,order_reference=CASE WHEN ?<>'' THEN ? ELSE order_reference END,preparation_url=CASE WHEN ?<>'' THEN ? ELSE preparation_url END,booking_url=CASE WHEN ?<>'' THEN ? ELSE booking_url END,updated_at=? WHERE id=?`,p.paymentStatus,p.amountTotal,p.currency,p.orderReference,p.orderReference,p.preparationUrl,p.preparationUrl,p.bookingUrl,p.bookingUrl,now,order.id);
-  return json({ok:true,clientId:client.id,orderId:order.id,clientCreated,created,email:p.email});
+export async function upsertOrder(store, raw) {
+  const p = cleanOrderPayload(raw);
+  if (!p.email || !p.externalPaymentId) return json({ error: 'invalid_order' }, 400);
+  const paid = new Set(['paid', 'succeeded', 'complete', 'completed', 'no_payment_required']);
+  let order = store.sql.exec('SELECT id FROM portal_orders WHERE external_payment_id=?', p.externalPaymentId).toArray()[0];
+  if (!order && !paid.has(p.paymentStatus)) return json({ error: 'payment_not_confirmed' }, 409);
+  const now = new Date().toISOString();
+  let client = store.sql.exec('SELECT id FROM portal_clients WHERE email=?', p.email).toArray()[0];
+  const clientCreated = !client;
+  if (!client) {
+    client = { id: crypto.randomUUID() };
+    store.sql.exec(
+      'INSERT INTO portal_clients (id,email,full_name,company,active,created_at,updated_at,last_access_at) VALUES (?,?,?,?,1,?,?,NULL)',
+      client.id, p.email, p.fullName, p.company, now, now,
+    );
+  } else {
+    store.sql.exec(
+      `UPDATE portal_clients SET full_name=CASE WHEN ?<>'' THEN ? ELSE full_name END,
+       company=CASE WHEN ?<>'' THEN ? ELSE company END,active=1,updated_at=? WHERE id=?`,
+      p.fullName, p.fullName, p.company, p.company, now, client.id,
+    );
+  }
+  let created = false;
+  if (!order) {
+    created = true;
+    order = { id: crypto.randomUUID() };
+    store.sql.exec(
+      `INSERT INTO portal_orders
+       (id,client_id,external_payment_id,order_reference,product_code,title,format,payment_status,amount_total,currency,status,
+        appointment_at,filming_at,next_action,preparation_url,booking_url,created_at,updated_at)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      order.id, client.id, p.externalPaymentId, p.orderReference, p.productCode,
+      p.title || p.format || 'Passage Neptune Media', p.format, p.paymentStatus, p.amountTotal, p.currency, p.status,
+      p.appointmentAt, p.filmingAt, p.nextAction || 'Choisir ou confirmer votre rendez-vous', p.preparationUrl, p.bookingUrl, now, now,
+    );
+    createSteps(store, order.id, p.status, now);
+  } else {
+    store.sql.exec(
+      `UPDATE portal_orders SET payment_status=?,amount_total=?,currency=?,
+       order_reference=CASE WHEN ?<>'' THEN ? ELSE order_reference END,
+       preparation_url=CASE WHEN ?<>'' THEN ? ELSE preparation_url END,
+       booking_url=CASE WHEN ?<>'' THEN ? ELSE booking_url END,updated_at=? WHERE id=?`,
+      p.paymentStatus, p.amountTotal, p.currency, p.orderReference, p.orderReference,
+      p.preparationUrl, p.preparationUrl, p.bookingUrl, p.bookingUrl, now, order.id,
+    );
+  }
+  return json({ ok: true, clientId: client.id, orderId: order.id, clientCreated, created, email: p.email });
 }
-export async function authorizeFile(store,body){const session=await requireClient(store,body.token);if(!session)return json({error:'unauthorized'},401);const id=sanitizeText(body.fileId,100);const file=store.sql.exec(`SELECT f.id,f.name,f.storage_key AS storageKey,f.external_url AS externalUrl FROM portal_files f JOIN portal_orders o ON o.id=f.order_id WHERE f.id=? AND o.client_id=?`,id,session.id).toArray()[0];return file?json({ok:true,file}):json({error:'file_not_found'},404);}
-export async function adminList(store,body){const actor=await requireAdmin(store,body);if(!actor.ok)return actor.response;const clients=store.sql.exec(`SELECT c.id,c.email,c.full_name AS fullName,c.company,c.active,c.created_at AS createdAt,c.last_access_at AS lastAccessAt,COUNT(o.id) AS orderCount,MAX(o.updated_at) AS lastOrderAt FROM portal_clients c LEFT JOIN portal_orders o ON o.client_id=c.id GROUP BY c.id ORDER BY COALESCE(MAX(o.updated_at),c.updated_at) DESC`).toArray().map(r=>({...r,active:Number(r.active)===1,orderCount:Number(r.orderCount)}));const orders=store.sql.exec(`SELECT o.id,o.client_id AS clientId,c.email,c.full_name AS fullName,c.company,o.external_payment_id AS externalPaymentId,o.order_reference AS orderReference,o.product_code AS productCode,o.title,o.format,o.payment_status AS paymentStatus,o.amount_total AS amountTotal,o.currency,o.status,o.appointment_at AS appointmentAt,o.filming_at AS filmingAt,o.next_action AS nextAction,o.preparation_url AS preparationUrl,o.booking_url AS bookingUrl,o.created_at AS createdAt,o.updated_at AS updatedAt FROM portal_orders o JOIN portal_clients c ON c.id=o.client_id ORDER BY o.created_at DESC`).toArray();return json({clients,orders});}
-export async function adminUpsert(store,body){const actor=await requireAdmin(store,body);if(!actor.ok)return actor.response;const payload=body.payload&&typeof body.payload==='object'?body.payload:{};const response=await upsertOrder(store,{...payload,externalPaymentId:sanitizeText(payload.externalPaymentId,220)||`manual:${crypto.randomUUID()}`,paymentStatus:payload.paymentStatus||'paid'});if(response.ok)store.audit(actor.actor.id,'portal_order_upsert','portal_order','',{email:normalizeEmail(payload.email)});return response;}
-export async function adminUpdate(store,body){const actor=await requireAdmin(store,body);if(!actor.ok)return actor.response;const p=body.payload||{},id=sanitizeText(p.orderId,100),existing=store.sql.exec('SELECT id FROM portal_orders WHERE id=?',id).toArray()[0];if(!existing)return json({error:'order_not_found'},404);const clean=cleanOrderPayload({...p,email:'placeholder@example.com',externalPaymentId:'x'}),now=new Date().toISOString();store.sql.exec(`UPDATE portal_orders SET status=?,appointment_at=?,filming_at=?,next_action=?,preparation_url=?,booking_url=?,updated_at=? WHERE id=?`,clean.status,clean.appointmentAt,clean.filmingAt,clean.nextAction,clean.preparationUrl,clean.bookingUrl,now,id);syncSteps(store,id,clean.status,now);store.audit(actor.actor.id,'portal_order_update','portal_order',id,{status:clean.status});return json({ok:true});}
-export async function adminFile(store,body){const actor=await requireAdmin(store,body);if(!actor.ok)return actor.response;const p=body.payload||{},orderId=sanitizeText(p.orderId,100);if(!store.sql.exec('SELECT id FROM portal_orders WHERE id=?',orderId).toArray()[0])return json({error:'order_not_found'},404);const name=sanitizeText(p.name,240),storageKey=sanitizeText(p.storageKey,900),externalUrl=sanitizeUrl(p.externalUrl||p.url,1500);if(!name||(!storageKey&&!externalUrl))return json({error:'invalid_file'},400);const id=crypto.randomUUID();store.sql.exec('INSERT INTO portal_files (id,order_id,name,file_type,storage_key,external_url,size_label,created_at) VALUES (?,?,?,?,?,?,?,?)',id,orderId,name,sanitizeText(p.fileType,40)||'livrable',storageKey,externalUrl,sanitizeText(p.sizeLabel,60),new Date().toISOString());store.audit(actor.actor.id,'portal_file_add','portal_file',id,{orderId,name});return json({ok:true,fileId:id});}
-export async function adminAccess(store,body){const actor=await requireAdmin(store,body);if(!actor.ok)return actor.response;const email=normalizeEmail(body.email||body.payload?.email);const client=store.sql.exec('SELECT id,email,full_name AS fullName,company FROM portal_clients WHERE email=? AND active=1',email).toArray()[0];if(!client)return json({error:'client_not_found'},404);store.audit(actor.actor.id,'portal_access_email_requested','portal_client',client.id,{email});return json({ok:true,client});}
-async function requireAdmin(store,body){const actor=await store.requireSession(body.token);if(!actor||actor.role!=='admin')return {ok:false,response:json({error:'unauthorized'},401)};if(!body.csrfToken||body.csrfToken!==actor.csrfToken)return {ok:false,response:json({error:'csrf_failed'},403)};return {ok:true,actor};}
+
+export async function upsertAppointment(store, raw) {
+  const email = normalizeEmail(raw.email || raw.customerEmail || raw.customer_details?.email);
+  const externalPaymentId = sanitizeText(
+    raw.externalPaymentId || raw.stripePaymentId || raw.paymentIntentId || raw.payment_intent || raw.checkoutSessionId,
+    220,
+  );
+  const appointmentAt = nullableIso(raw.appointmentAt || raw.appointment_at || raw.start || raw.startAt);
+  if ((!email && !externalPaymentId) || !appointmentAt) return json({ error: 'invalid_appointment' }, 400);
+
+  let order = externalPaymentId
+    ? store.sql.exec(
+      `SELECT o.id,o.client_id AS clientId,c.email,o.title,o.preparation_url AS preparationUrl
+       FROM portal_orders o JOIN portal_clients c ON c.id=o.client_id WHERE o.external_payment_id=?`,
+      externalPaymentId,
+    ).toArray()[0]
+    : null;
+  if (!order && email) {
+    order = store.sql.exec(
+      `SELECT o.id,o.client_id AS clientId,c.email,o.title,o.preparation_url AS preparationUrl
+       FROM portal_orders o JOIN portal_clients c ON c.id=o.client_id
+       WHERE c.email=? AND o.status NOT IN ('completed','delivered') ORDER BY o.created_at DESC LIMIT 1`,
+      email,
+    ).toArray()[0];
+  }
+  if (!order) return json({ error: 'order_not_found' }, 404);
+
+  const now = new Date().toISOString();
+  const nextAction = sanitizeText(raw.nextAction, 320)
+    || (order.preparationUrl ? 'Préparer votre interview' : 'Découvrir la construction de votre interview');
+  store.sql.exec(
+    `UPDATE portal_orders SET appointment_at=?,status='appointment_confirmed',next_action=?,updated_at=? WHERE id=?`,
+    appointmentAt, nextAction, now, order.id,
+  );
+  syncSteps(store, order.id, 'appointment_confirmed', now);
+  return json({ ok: true, orderId: order.id, clientId: order.clientId, email: order.email, title: order.title, appointmentAt });
+}
+
+export async function authorizeFile(store, body) {
+  const session = await requireClient(store, body.token);
+  if (!session) return json({ error: 'unauthorized' }, 401);
+  const id = sanitizeText(body.fileId, 100);
+  const file = store.sql.exec(
+    `SELECT f.id,f.name,f.storage_key AS storageKey,f.external_url AS externalUrl
+     FROM portal_files f JOIN portal_orders o ON o.id=f.order_id WHERE f.id=? AND o.client_id=?`,
+    id, session.id,
+  ).toArray()[0];
+  return file ? json({ ok: true, file }) : json({ error: 'file_not_found' }, 404);
+}
+
+export async function adminList(store, body) {
+  const actor = await requireAdmin(store, body);
+  if (!actor.ok) return actor.response;
+  const clients = store.sql.exec(
+    `SELECT c.id,c.email,c.full_name AS fullName,c.company,c.active,c.created_at AS createdAt,c.last_access_at AS lastAccessAt,
+            COUNT(o.id) AS orderCount,MAX(o.updated_at) AS lastOrderAt
+     FROM portal_clients c LEFT JOIN portal_orders o ON o.client_id=c.id
+     GROUP BY c.id ORDER BY COALESCE(MAX(o.updated_at),c.updated_at) DESC`,
+  ).toArray().map((row) => ({ ...row, active: Number(row.active) === 1, orderCount: Number(row.orderCount) }));
+  const orders = store.sql.exec(
+    `SELECT o.id,o.client_id AS clientId,c.email,c.full_name AS fullName,c.company,o.external_payment_id AS externalPaymentId,
+            o.order_reference AS orderReference,o.product_code AS productCode,o.title,o.format,o.payment_status AS paymentStatus,
+            o.amount_total AS amountTotal,o.currency,o.status,o.appointment_at AS appointmentAt,o.filming_at AS filmingAt,
+            o.next_action AS nextAction,o.preparation_url AS preparationUrl,o.booking_url AS bookingUrl,
+            o.created_at AS createdAt,o.updated_at AS updatedAt
+     FROM portal_orders o JOIN portal_clients c ON c.id=o.client_id ORDER BY o.created_at DESC`,
+  ).toArray();
+  return json({ clients, orders });
+}
+
+export async function adminUpsert(store, body) {
+  const actor = await requireAdmin(store, body);
+  if (!actor.ok) return actor.response;
+  const payload = body.payload && typeof body.payload === 'object' ? body.payload : {};
+  const response = await upsertOrder(store, {
+    ...payload,
+    externalPaymentId: sanitizeText(payload.externalPaymentId, 220) || `manual:${crypto.randomUUID()}`,
+    paymentStatus: payload.paymentStatus || 'paid',
+  });
+  if (response.ok) store.audit(actor.actor.id, 'portal_order_upsert', 'portal_order', '', { email: normalizeEmail(payload.email) });
+  return response;
+}
+
+export async function adminUpdate(store, body) {
+  const actor = await requireAdmin(store, body);
+  if (!actor.ok) return actor.response;
+  const payload = body.payload || {};
+  const id = sanitizeText(payload.orderId, 100);
+  const existing = store.sql.exec('SELECT id FROM portal_orders WHERE id=?', id).toArray()[0];
+  if (!existing) return json({ error: 'order_not_found' }, 404);
+  const clean = cleanOrderPayload({ ...payload, email: 'placeholder@example.com', externalPaymentId: 'x' });
+  const now = new Date().toISOString();
+  store.sql.exec(
+    `UPDATE portal_orders SET status=?,appointment_at=?,filming_at=?,next_action=?,preparation_url=?,booking_url=?,updated_at=? WHERE id=?`,
+    clean.status, clean.appointmentAt, clean.filmingAt, clean.nextAction, clean.preparationUrl, clean.bookingUrl, now, id,
+  );
+  syncSteps(store, id, clean.status, now);
+  store.audit(actor.actor.id, 'portal_order_update', 'portal_order', id, { status: clean.status });
+  return json({ ok: true });
+}
+
+export async function adminFile(store, body) {
+  const actor = await requireAdmin(store, body);
+  if (!actor.ok) return actor.response;
+  const payload = body.payload || {};
+  const orderId = sanitizeText(payload.orderId, 100);
+  if (!store.sql.exec('SELECT id FROM portal_orders WHERE id=?', orderId).toArray()[0]) return json({ error: 'order_not_found' }, 404);
+  const name = sanitizeText(payload.name, 240);
+  const storageKey = sanitizeText(payload.storageKey, 900);
+  const externalUrl = sanitizeUrl(payload.externalUrl || payload.url, 1500);
+  if (!name || (!storageKey && !externalUrl)) return json({ error: 'invalid_file' }, 400);
+  const id = crypto.randomUUID();
+  store.sql.exec(
+    'INSERT INTO portal_files (id,order_id,name,file_type,storage_key,external_url,size_label,created_at) VALUES (?,?,?,?,?,?,?,?)',
+    id, orderId, name, sanitizeText(payload.fileType, 40) || 'livrable', storageKey, externalUrl,
+    sanitizeText(payload.sizeLabel, 60), new Date().toISOString(),
+  );
+  store.audit(actor.actor.id, 'portal_file_add', 'portal_file', id, { orderId, name });
+  return json({ ok: true, fileId: id });
+}
+
+export async function adminAccess(store, body) {
+  const actor = await requireAdmin(store, body);
+  if (!actor.ok) return actor.response;
+  const email = normalizeEmail(body.email || body.payload?.email);
+  const client = store.sql.exec(
+    'SELECT id,email,full_name AS fullName,company FROM portal_clients WHERE email=? AND active=1',
+    email,
+  ).toArray()[0];
+  if (!client) return json({ error: 'client_not_found' }, 404);
+  store.audit(actor.actor.id, 'portal_access_email_requested', 'portal_client', client.id, { email });
+  return json({ ok: true, client });
+}
+
+async function requireAdmin(store, body) {
+  const actor = await store.requireSession(body.token);
+  if (!actor || actor.role !== 'admin') return { ok: false, response: json({ error: 'unauthorized' }, 401) };
+  if (!body.csrfToken || body.csrfToken !== actor.csrfToken) return { ok: false, response: json({ error: 'csrf_failed' }, 403) };
+  return { ok: true, actor };
+}
