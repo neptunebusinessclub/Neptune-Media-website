@@ -83,3 +83,5 @@ jobs:
           done
           echo "Unable to push generated portal after retries" >&2
           exit 1
+
+# Triggered after the workflow was present on the default branch.
