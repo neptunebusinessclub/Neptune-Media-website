@@ -7,6 +7,7 @@ import {
   securityHeaders,
   sessionCookie,
   sha256,
+  timingSafeEqual,
 } from './security.js';
 
 export { StudioStore };
@@ -122,7 +123,7 @@ export default {
 
       if (url.pathname === '/api/webhooks/conversion' && request.method === 'POST') {
         const signature = request.headers.get('X-Neptune-Webhook-Secret') || '';
-        if (!env.CONVERSION_WEBHOOK_SECRET || signature !== env.CONVERSION_WEBHOOK_SECRET) {
+        if (!env.CONVERSION_WEBHOOK_SECRET || !timingSafeEqual(signature, env.CONVERSION_WEBHOOK_SECRET)) {
           return withSecurity(json({ error: 'unauthorized' }, 401));
         }
         return withSecurity(await proxyJson(request, studio, '/webhook/conversion'));
