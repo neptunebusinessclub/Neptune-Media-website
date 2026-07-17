@@ -1,18 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="284" height="257" viewBox="25 20 235 215" role="img" aria-labelledby="title description">
-  <title id="title">Neptune Business &amp; Média</title>
-  <desc id="description">Symbole Neptune multicolore sur fond transparent</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="594" viewBox="0 0 800 594" role="img" aria-labelledby="title description">
+  <title id="title">Neptune Media</title>
+  <desc id="description">Logo Neptune Media multicolore sur fond transparent</desc>
   <defs>
-    <linearGradient id="body" x1="52" y1="50" x2="246" y2="218" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#3BE8FF"/><stop offset=".24" stop-color="#087DFF"/><stop offset=".48" stop-color="#3A19FF"/><stop offset=".70" stop-color="#D72EFF"/><stop offset=".86" stop-color="#FF4A91"/><stop offset="1" stop-color="#FFBE2F"/>
+    <linearGradient id="neptuneBody" x1="170" y1="105" x2="660" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4BE8FF"/>
+      <stop offset="0.18" stop-color="#168CFF"/>
+      <stop offset="0.38" stop-color="#2737FF"/>
+      <stop offset="0.58" stop-color="#9B2CFF"/>
+      <stop offset="0.76" stop-color="#F22DDB"/>
+      <stop offset="0.89" stop-color="#FF5C72"/>
+      <stop offset="1" stop-color="#FFC62C"/>
     </linearGradient>
-    <radialGradient id="dot" cx="0" cy="0" r="1" gradientTransform="translate(220 41) rotate(128) scale(62)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF"/><stop offset=".34" stop-color="#DDE2FF"/><stop offset=".68" stop-color="#8D70FF"/><stop offset="1" stop-color="#4D25FF"/>
+    <radialGradient id="neptuneDot" cx="0" cy="0" r="1" gradientTransform="translate(625 112) rotate(128) scale(112)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.28" stop-color="#F3EEFF"/>
+      <stop offset="0.56" stop-color="#C9B5FF"/>
+      <stop offset="0.79" stop-color="#795BFF"/>
+      <stop offset="1" stop-color="#392BDA"/>
     </radialGradient>
-    <filter id="glow" x="18" y="20" width="246" height="222" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#050712" flood-opacity=".32"/></filter>
+    <filter id="softGlow" x="-25%" y="-25%" width="150%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.12 0 0 0 0 0.24 0 0 0 0 1 0 0 0 .55 0" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
-  <g filter="url(#glow)">
-    <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="url(#body)" stroke-width="43" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="229" cy="60" r="24" fill="url(#dot)"/>
-    <path d="M61 193V116C61 70 91 52 117 55C137 57 150 73 163 92L204 154C218 175 239 168 239 145V105" fill="none" stroke="#fff" stroke-opacity=".23" stroke-width="2.2" stroke-linecap="round"/>
+  <g filter="url(#softGlow)">
+    <path d="M180 472V236C180 135 236 91 307 97C365 102 401 150 437 205L548 374C581 424 635 405 635 350V224" fill="none" stroke="url(#neptuneBody)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="635" cy="105" r="58" fill="url(#neptuneDot)"/>
+    <path d="M180 472V236C180 135 236 91 307 97C365 102 401 150 437 205L548 374C581 424 635 405 635 350V224" fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="619" cy="87" r="20" fill="#FFFFFF" opacity="0.28"/>
   </g>
 </svg>
