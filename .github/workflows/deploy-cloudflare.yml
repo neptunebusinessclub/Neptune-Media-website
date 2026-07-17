@@ -97,7 +97,7 @@ jobs:
           for attempt in 1 2 3 4 5 6; do
             if curl --fail --silent --show-error "$PUBLIC_URL/espace-client/" > /tmp/client-portal.html \
               && grep -q 'Tous vos passages Neptune Media' /tmp/client-portal.html \
-              && curl --fail --silent --show-error "$PUBLIC_URL/studio/clients.html" > /tmp/studio-clients.html \
+              && curl --location --fail --silent --show-error "$PUBLIC_URL/studio/clients" > /tmp/studio-clients.html \
               && grep -q 'Comptes, passages et livrables' /tmp/studio-clients.html; then
               portal_ready=true
               break
