@@ -26,8 +26,8 @@ jobs:
         shell: bash
         run: |
           set +e
-          portal_code=$(curl --silent --output /tmp/portal.html --write-out '%{http_code}' "$PUBLIC_URL/espace-client/")
-          studio_code=$(curl --silent --output /tmp/studio.html --write-out '%{http_code}' "$PUBLIC_URL/studio/clients.html")
+          portal_code=$(curl --location --silent --output /tmp/portal.html --write-out '%{http_code}' "$PUBLIC_URL/espace-client/")
+          studio_code=$(curl --location --silent --output /tmp/studio.html --write-out '%{http_code}' "$PUBLIC_URL/studio/clients")
           session_code=$(curl --silent --output /tmp/session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
           request_code=$(curl --silent --output /tmp/request.json --write-out '%{http_code}' -X POST "$PUBLIC_URL/api/client/request-code" -H "Origin: $PUBLIC_URL" -H 'Content-Type: application/json' --data '{"email":"portal-smoke-test@example.invalid"}')
           admin_code=$(curl --silent --output /tmp/admin.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
@@ -55,4 +55,4 @@ jobs:
           git commit -m "chore: record client portal production diagnostic [skip ci]" || true
           git push
 
-# Trigger diagnostic after the workflow exists on main.
+# Canonical route diagnostic.
