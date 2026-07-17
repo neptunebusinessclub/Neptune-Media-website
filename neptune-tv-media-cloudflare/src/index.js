@@ -46,7 +46,12 @@ export default {
 
       if (url.pathname === '/api/auth/bootstrap' && request.method === 'POST') {
         if (!isSameOrigin(request)) return withSecurity(json({ error: 'origin_forbidden' }, 403));
-        return withSecurity(await proxyJson(request, studio, '/auth/bootstrap'));
+        const payload = await request.json().catch(() => ({}));
+        const suppliedToken = String(payload.token || '');
+        if (!env.BOOTSTRAP_TOKEN || !timingSafeEqual(suppliedToken, env.BOOTSTRAP_TOKEN)) {
+          return withSecurity(json({ error: 'invalid_bootstrap_token' }, 403));
+        }
+        return withSecurity(await callStore(studio, '/auth/bootstrap', payload));
       }
 
       if (url.pathname === '/api/auth/login' && request.method === 'POST') {
