@@ -1,33 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="594" viewBox="0 0 800 594" role="img" aria-labelledby="title description">
-  <title id="title">Neptune Media</title>
-  <desc id="description">Logo Neptune Media multicolore sur fond transparent</desc>
-  <defs>
-    <linearGradient id="neptuneBody" x1="170" y1="105" x2="660" y2="500" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4BE8FF"/>
-      <stop offset="0.18" stop-color="#168CFF"/>
-      <stop offset="0.38" stop-color="#2737FF"/>
-      <stop offset="0.58" stop-color="#9B2CFF"/>
-      <stop offset="0.76" stop-color="#F22DDB"/>
-      <stop offset="0.89" stop-color="#FF5C72"/>
-      <stop offset="1" stop-color="#FFC62C"/>
-    </linearGradient>
-    <radialGradient id="neptuneDot" cx="0" cy="0" r="1" gradientTransform="translate(625 112) rotate(128) scale(112)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="0.28" stop-color="#F3EEFF"/>
-      <stop offset="0.56" stop-color="#C9B5FF"/>
-      <stop offset="0.79" stop-color="#795BFF"/>
-      <stop offset="1" stop-color="#392BDA"/>
-    </radialGradient>
-    <filter id="softGlow" x="-25%" y="-25%" width="150%" height="160%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.12 0 0 0 0 0.24 0 0 0 0 1 0 0 0 .55 0" result="glow"/>
-      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-  <g filter="url(#softGlow)">
-    <path d="M180 472V236C180 135 236 91 307 97C365 102 401 150 437 205L548 374C581 424 635 405 635 350V224" fill="none" stroke="url(#neptuneBody)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="635" cy="105" r="58" fill="url(#neptuneDot)"/>
-    <path d="M180 472V236C180 135 236 91 307 97C365 102 401 150 437 205L548 374C581 424 635 405 635 350V224" fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="619" cy="87" r="20" fill="#FFFFFF" opacity="0.28"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="856" height="653" viewBox="0 0 856 653" role="img" aria-labelledby="title description">
+<title id="title">Neptune Media</title><desc id="description">Logo officiel Neptune Media multicolore sur fond transparent</desc>
+<defs>
+<linearGradient id="g" x1="60" y1="60" x2="820" y2="610" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#49e9ff"/><stop offset=".18" stop-color="#168cff"/><stop offset=".38" stop-color="#2737ff"/><stop offset=".58" stop-color="#9b2cff"/><stop offset=".76" stop-color="#f22ddb"/><stop offset=".89" stop-color="#ff5c72"/><stop offset="1" stop-color="#ffc62c"/></linearGradient>
+<radialGradient id="d" cx="0" cy="0" r="1" gradientTransform="translate(740 58) rotate(126) scale(170)" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".3" stop-color="#f5efff"/><stop offset=".56" stop-color="#c9b5ff"/><stop offset=".8" stop-color="#795bff"/><stop offset="1" stop-color="#392bda"/></radialGradient>
+<filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#11152b" flood-opacity=".32"/></filter>
+</defs>
+<g filter="url(#s)"><path d="M 69 138 L 54 166 L 50 179 L 48 180 L 35 234 L 35 550 L 39 562 L 41 563 L 42 571 L 51 587 L 53 587 L 66 602 L 75 608 L 86 611 L 88 614 L 104 615 L 109 618 L 121 618 L 128 615 L 143 614 L 146 611 L 155 608 L 171 596 L 181 584 L 190 568 L 194 553 L 194 287 L 197 281 L 197 274 L 206 252 L 216 241 L 229 231 L 247 225 L 269 225 L 278 228 L 290 236 L 295 237 L 315 256 L 323 269 L 322 274 L 325 273 L 333 284 L 333 287 L 345 305 L 346 310 L 354 320 L 355 325 L 361 332 L 392 385 L 392 389 L 395 390 L 398 398 L 402 402 L 403 408 L 407 412 L 410 421 L 414 423 L 419 431 L 419 434 L 432 453 L 435 462 L 441 468 L 441 471 L 471 522 L 501 559 L 516 571 L 518 575 L 528 580 L 543 592 L 548 593 L 557 599 L 561 599 L 568 604 L 595 611 L 600 614 L 628 615 L 631 617 L 645 618 L 660 615 L 681 615 L 695 609 L 705 608 L 722 599 L 726 599 L 756 580 L 778 559 L 780 554 L 789 546 L 790 542 L 795 537 L 796 532 L 799 531 L 801 523 L 805 519 L 811 505 L 811 500 L 814 496 L 820 461 L 820 284 L 817 278 L 817 269 L 811 260 L 811 256 L 800 242 L 790 235 L 789 232 L 779 229 L 772 223 L 764 223 L 756 219 L 727 220 L 726 222 L 715 223 L 707 229 L 702 229 L 701 232 L 690 240 L 678 256 L 671 275 L 671 392 L 665 409 L 654 422 L 644 428 L 626 429 L 619 428 L 609 422 L 594 406 L 593 401 L 590 399 L 590 396 L 584 389 L 577 374 L 565 357 L 565 353 L 562 351 L 556 336 L 544 319 L 537 303 L 534 301 L 525 282 L 519 275 L 519 271 L 516 269 L 495 229 L 479 204 L 476 195 L 470 188 L 470 185 L 458 167 L 455 159 L 446 148 L 439 133 L 434 129 L 433 125 L 418 107 L 396 86 L 363 63 L 341 54 L 338 51 L 332 50 L 331 48 L 325 47 L 325 45 L 313 44 L 303 39 L 278 38 L 273 35 L 240 35 L 236 38 L 217 38 L 209 41 L 202 41 L 200 44 L 188 45 L 166 54 L 163 57 L 159 57 L 157 60 L 147 63 L 136 72 L 128 75 L 88 112 Z" fill="url(#g)"/><path d="M 720 38 L 699 48 L 699 50 L 684 63 L 674 80 L 674 85 L 672 86 L 670 116 L 674 135 L 684 151 L 694 162 L 716 176 L 734 180 L 751 180 L 772 175 L 794 160 L 811 136 L 811 131 L 814 126 L 814 116 L 817 111 L 811 78 L 796 57 L 780 44 L 776 44 L 768 39 L 744 35 L 734 36 L 732 38 Z" fill="url(#d)"/></g>
 </svg>
