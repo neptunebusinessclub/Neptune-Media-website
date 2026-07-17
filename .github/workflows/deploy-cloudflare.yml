@@ -89,6 +89,33 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
+      - name: Smoke test permanent client portal
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error "$PUBLIC_URL/espace-client/" | grep -q 'Tous vos passages Neptune Media'
+          curl --fail --silent --show-error "$PUBLIC_URL/studio/clients.html" | grep -q 'Comptes, passages et livrables'
+
+          client_status=$(curl --silent --output /tmp/client-session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
+          test "$client_status" = "401"
+          grep -q '"authenticated":false' /tmp/client-session.json
+
+          curl --fail --silent --show-error \
+            -X POST "$PUBLIC_URL/api/client/request-code" \
+            -H 'Content-Type: application/json' \
+            --data '{"email":"portal-smoke-test@example.invalid"}' \
+            | grep -q '"ok":true'
+
+          admin_status=$(curl --silent --output /tmp/admin-clients.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
+          test "$admin_status" = "401"
+          grep -q '"error":"unauthorized"' /tmp/admin-clients.json
+
+          webhook_status=$(curl --silent --output /tmp/client-webhook.json --write-out '%{http_code}' \
+            -X POST "$PUBLIC_URL/api/webhooks/client-order" \
+            -H 'Content-Type: application/json' \
+            --data '{}')
+          test "$webhook_status" = "401"
+          grep -q '"error":"unauthorized"' /tmp/client-webhook.json
+
       - name: Record successful production deployment
         env:
           SOURCE_SHA: ${{ github.sha }}
