@@ -2,7 +2,8 @@ export async function mountLiveChannel(root, providedCatalog) {
   if (!root || root.dataset.liveMounted) return;
   root.dataset.liveMounted = '1';
   const catalog = providedCatalog || await fetch('/api/public/catalog').then((response) => response.ok ? response.json() : { programs: [], episodes: [], ads: [] });
-  const episodes = (catalog.episodes || []).filter((item) => item.status === 'published' && item.metadata?.live !== false && (item.metadata?.fullEpisode || String(item.videoUrl || '').startsWith('/media/'))).sort((a, b) => Number(a.displayOrder || 0) - Number(b.displayOrder || 0));
+  const activeProgramIds = new Set((catalog.programs || []).map((item) => item.id));
+  const episodes = (catalog.episodes || []).filter((item) => activeProgramIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl && item.metadata?.live !== false && (item.metadata?.fullEpisode || String(item.videoUrl || '').startsWith('/media/'))).sort((a, b) => Number(a.displayOrder || 0) - Number(b.displayOrder || 0));
   const ads = (catalog.ads || []).filter((item) => item.assetType === 'video' && item.assetUrl && ['preroll', 'midroll', 'postroll'].includes(item.placement));
   const schedule = buildSchedule(episodes, ads);
   const video = root.querySelector('[data-live-video]');
