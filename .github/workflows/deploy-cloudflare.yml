@@ -92,29 +92,48 @@ jobs:
       - name: Smoke test permanent client portal
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error "$PUBLIC_URL/espace-client/" | grep -q 'Tous vos passages Neptune Media'
-          curl --fail --silent --show-error "$PUBLIC_URL/studio/clients.html" | grep -q 'Comptes, passages et livrables'
 
-          client_status=$(curl --silent --output /tmp/client-session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
-          test "$client_status" = "401"
-          grep -q '"authenticated":false' /tmp/client-session.json
+          portal_ready=false
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error "$PUBLIC_URL/espace-client/" > /tmp/client-portal.html \
+              && grep -q 'Tous vos passages Neptune Media' /tmp/client-portal.html \
+              && curl --fail --silent --show-error "$PUBLIC_URL/studio/clients.html" > /tmp/studio-clients.html \
+              && grep -q 'Comptes, passages et livrables' /tmp/studio-clients.html; then
+              portal_ready=true
+              break
+            fi
+            sleep 10
+          done
+          test "$portal_ready" = "true"
+
+          api_ready=false
+          for attempt in 1 2 3 4 5 6; do
+            client_status=$(curl --silent --output /tmp/client-session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
+            admin_status=$(curl --silent --output /tmp/admin-clients.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
+            webhook_status=$(curl --silent --output /tmp/client-webhook.json --write-out '%{http_code}' \
+              -X POST "$PUBLIC_URL/api/webhooks/client-order" \
+              -H "Origin: $PUBLIC_URL" \
+              -H 'Content-Type: application/json' \
+              --data '{}')
+            if test "$client_status" = "401" \
+              && grep -q '"authenticated":false' /tmp/client-session.json \
+              && test "$admin_status" = "401" \
+              && grep -q '"error":"unauthorized"' /tmp/admin-clients.json \
+              && test "$webhook_status" = "401" \
+              && grep -q '"error":"unauthorized"' /tmp/client-webhook.json; then
+              api_ready=true
+              break
+            fi
+            sleep 10
+          done
+          test "$api_ready" = "true"
 
           curl --fail --silent --show-error \
             -X POST "$PUBLIC_URL/api/client/request-code" \
+            -H "Origin: $PUBLIC_URL" \
             -H 'Content-Type: application/json' \
             --data '{"email":"portal-smoke-test@example.invalid"}' \
             | grep -q '"ok":true'
-
-          admin_status=$(curl --silent --output /tmp/admin-clients.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
-          test "$admin_status" = "401"
-          grep -q '"error":"unauthorized"' /tmp/admin-clients.json
-
-          webhook_status=$(curl --silent --output /tmp/client-webhook.json --write-out '%{http_code}' \
-            -X POST "$PUBLIC_URL/api/webhooks/client-order" \
-            -H 'Content-Type: application/json' \
-            --data '{}')
-          test "$webhook_status" = "401"
-          grep -q '"error":"unauthorized"' /tmp/client-webhook.json
 
       - name: Record successful production deployment
         env:
