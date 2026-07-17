@@ -47,7 +47,7 @@ export function renderInformation(origin, title, description, type) {
 }
 
 export function renderNotFound(origin) { const body = layout({ origin, title: 'Page introuvable — Neptune Media', description: 'Cette page n’existe pas.', canonical: `${origin}/404`, body: '<main class="seo-main info-page"><article><h1>Cette émission n’est plus à l’antenne.</h1><p><a class="btn btn-primary" href="/emissions/">Voir toutes les émissions</a></p></article></main>' }); return new Response(body, { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8' } }); }
-function publishedEpisodes(catalog) { return (catalog.episodes || []).filter((item) => item.status === 'published' && item.slug && item.videoUrl); }
+function publishedEpisodes(catalog) { return (catalog.episodes || []).filter((item) => item.status === 'published' && item.slug && item.videoUrl && item.posterUrl); }
 function cards(origin, catalog, list) { return list.map((item) => episodeCard(origin, catalog, item)).join('') || '<div class="empty-state"><h2>Les prochaines émissions arrivent.</h2><p>Le Studio Neptune prépare la programmation.</p></div>'; }
 function breadcrumbs(origin, program, episode) { return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: `${origin}/` }, { '@type': 'ListItem', position: 2, name: program?.name || 'Émissions', item: program ? `${origin}/programmes/${program.slug}/` : `${origin}/emissions/` }, { '@type': 'ListItem', position: 3, name: episode.title, item: `${origin}/emissions/${episode.slug}/` }] }; }
 function validIsoDate(value) { const timestamp = Date.parse(String(value || '')); return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : ''; }
