@@ -28,7 +28,8 @@ export function buildVideoSitemap(origin, catalog) {
 
 export function buildLlms(origin, catalog) {
   const episodes = visibleEpisodes(catalog);
-  const programs = catalog.programs || [];
+  const publishedProgramIds = new Set(episodes.map((item) => item.programId));
+  const programs = (catalog.programs || []).filter((item) => item.slug && publishedProgramIds.has(item.id));
   return `# Neptune Media\n\n> Web TV professionnelle de Neptune Business consacrée aux histoires, expertises et trajectoires d'entrepreneurs.\n\n## Accès principaux\n- Accueil: ${origin}/\n- Web TV en direct 24h/24: ${origin}/direct/\n- Catalogue des émissions: ${origin}/emissions/\n- Contact: ${origin}/contact/\n\n## Programmes\n${programs.map((item) => `- ${item.name}: ${origin}/programmes/${item.slug}/`).join('\n') || '- Aucun programme publié.'}\n\n## Émissions publiées\n${episodes.map((item) => `- ${item.title}: ${origin}/emissions/${item.slug}/`).join('\n') || '- Aucune émission publiée.'}\n\n## Informations d'usage\n- Les pages /studio/ et /api/ ne sont pas des contenus publics à indexer.\n- La réservation commerciale reste gérée sur media.neptunebusiness.com.\n`;
 }
 
