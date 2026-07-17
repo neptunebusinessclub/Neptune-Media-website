@@ -36,7 +36,7 @@ export async function enhanceHtml(response, request, env, mode) {
   const origin = canonicalOrigin(url, env);
   let body = await response.text();
   body = body.replaceAll('https://tv.neptunebusiness.com', origin);
-  if (mode === 'public') body = injectLandingSchema(body, origin);
+  if (mode === 'public' && normalizePath(url.pathname) === '/') body = injectLandingSchema(body, origin);
   const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=5' : '/upgrade.css?v=5';
   const supplementalStyles = mode === 'public'
     ? '<link rel="stylesheet" href="/upgrade-media.css?v=6"><link rel="stylesheet" href="/landing-conversion.css?v=1">'
