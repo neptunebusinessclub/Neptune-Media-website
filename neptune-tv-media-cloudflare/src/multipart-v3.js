@@ -1,4 +1,4 @@
-import { json } from './security.js';
+import { json, timingSafeEqual } from './security.js';
 
 const IMPORT_SECRET_HEADER = 'X-Neptune-Import-Secret';
 
@@ -7,7 +7,7 @@ export async function handleMultipartRoute(request, env) {
   if (!url.pathname.startsWith('/api/internal/multipart/')) return null;
 
   const secret = request.headers.get(IMPORT_SECRET_HEADER) || '';
-  if (!env.BOOTSTRAP_TOKEN || secret !== env.BOOTSTRAP_TOKEN) {
+  if (!env.BOOTSTRAP_TOKEN || !timingSafeEqual(secret, env.BOOTSTRAP_TOKEN)) {
     return json({ error: 'unauthorized' }, 401);
   }
   if (!env.MEDIA) return json({ error: 'media_storage_unavailable' }, 503);
