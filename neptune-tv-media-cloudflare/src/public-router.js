@@ -36,6 +36,7 @@ export async function enhanceHtml(response, request, env, mode) {
   const origin = canonicalOrigin(url, env);
   let body = await response.text();
   body = body.replaceAll('https://tv.neptunebusiness.com', origin);
+  if (mode === 'public') body = injectLandingSchema(body, origin);
   const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=5' : '/upgrade.css?v=5';
   const supplementalStyles = mode === 'public'
     ? '<link rel="stylesheet" href="/upgrade-media.css?v=6"><link rel="stylesheet" href="/landing-conversion.css?v=1">'
@@ -52,6 +53,55 @@ export async function enhanceHtml(response, request, env, mode) {
   headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
   applySecurity(headers);
   return new Response(body, { status: response.status, headers });
+}
+
+function injectLandingSchema(body, origin) {
+  if (body.includes('"@id":"#neptune-media-service"')) return body;
+  const booking = 'https://media.neptunebusiness.com/';
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': '#neptune-media-service',
+        name: 'Création d’émissions vidéo professionnelles Neptune Media',
+        serviceType: 'Production éditoriale et audiovisuelle pour entreprises',
+        provider: { '@type': 'Organization', name: 'Neptune Media', url: `${origin}/` },
+        areaServed: { '@type': 'AdministrativeArea', name: 'Occitanie' },
+        audience: { '@type': 'BusinessAudience', audienceType: 'Dirigeants, fondateurs, indépendants et PME' },
+        description: 'Neptune Media prépare, tourne et monte des émissions professionnelles qui transforment l’histoire, l’expertise et les convictions d’une entreprise en contenu vidéo durable.',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Formats Neptune Media',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hors Norme', description: 'Une émission centrée sur la trajectoire, les ruptures et les convictions du dirigeant.' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Concept Libre', description: 'Une émission conçue autour de l’univers, de l’expertise ou de l’objectif éditorial de l’entreprise.' } },
+          ],
+        },
+        potentialAction: { '@type': 'ReserveAction', target: booking },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': '#neptune-media-faq',
+        mainEntity: [
+          faq('Dois-je être à l’aise devant une caméra ?', 'Non. La préparation et l’interviewer sont conçus pour guider les professionnels qui ne sont pas habitués à cet exercice.'),
+          faq('Dois-je apprendre un texte ?', 'Non. Vous préparez des idées, des événements et des messages importants, puis l’échange reste naturel.'),
+          faq('Quelle différence entre Hors Norme et Concept Libre ?', 'Hors Norme révèle l’histoire et la trajectoire du dirigeant. Concept Libre construit un format spécifique autour de l’entreprise, de son expertise ou de son univers.'),
+          faq('Puis-je utiliser la vidéo sur mes propres supports ?', 'Le fichier livré peut être exploité conformément aux conditions de l’offre et aux droits applicables.'),
+        ],
+      },
+    ],
+  };
+  const schema = `<script type="application/ld+json" data-neptune-landing-schema>${safeJson(data)}</script>`;
+  return body.replace('</head>', `${schema}</head>`);
+}
+
+function faq(name, text) {
+  return { '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } };
+}
+
+function safeJson(value) {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
 async function getCatalog(env) {
