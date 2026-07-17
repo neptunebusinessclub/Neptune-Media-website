@@ -105,11 +105,13 @@ export function isSameOrigin(request) {
 
 export function securityHeaders(headers = {}) {
   return {
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
     'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Resource-Policy': 'same-site',
     'Content-Security-Policy': [
       "default-src 'self'",
       "script-src 'self'",
