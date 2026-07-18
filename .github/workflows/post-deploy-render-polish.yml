@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/apply-render-polish.py
-      - scripts/apply-render-polish-v5.py
-      - scripts/apply-render-polish-v6.py
       - scripts/apply-render-polish-v7.py
       - .github/workflows/post-deploy-render-polish.yml
   workflow_run:
@@ -44,12 +41,8 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
 
-      - name: Apply detailed rendering polish
-        run: |
-          python3 scripts/apply-render-polish.py
-          python3 scripts/apply-render-polish-v5.py
-          python3 scripts/apply-render-polish-v6.py
-          python3 scripts/apply-render-polish-v7.py
+      - name: Apply current media rendering fix
+        run: python3 scripts/apply-render-polish-v7.py
 
       - name: Install dependencies
         working-directory: neptune-tv-media-cloudflare
