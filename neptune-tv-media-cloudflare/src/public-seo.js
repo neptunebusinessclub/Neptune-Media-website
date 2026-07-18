@@ -5,7 +5,7 @@ export function buildRobots(origin) {
 export function buildSitemap(origin, catalog) {
   const publishedEpisodes = visibleEpisodes(catalog);
   const publishedProgramIds = new Set(publishedEpisodes.map((item) => item.programId));
-  const programs = (catalog.programs || []).filter((item) => publishedProgramIds.has(item.id));
+  const programs = (catalog.programs || []).filter((item) => isActiveProgram(item) && publishedProgramIds.has(item.id));
   const staticUrls = [
     { loc: `${origin}/`, changefreq: 'weekly', priority: '1.0' },
     { loc: `${origin}/direct/`, changefreq: 'daily', priority: '0.9' },
@@ -29,11 +29,12 @@ export function buildVideoSitemap(origin, catalog) {
 export function buildLlms(origin, catalog) {
   const episodes = visibleEpisodes(catalog);
   const publishedProgramIds = new Set(episodes.map((item) => item.programId));
-  const programs = (catalog.programs || []).filter((item) => item.slug && publishedProgramIds.has(item.id));
+  const programs = (catalog.programs || []).filter((item) => isActiveProgram(item) && publishedProgramIds.has(item.id));
   return `# Neptune Media\n\n> Web TV professionnelle de Neptune Business consacrée aux histoires, expertises et trajectoires d'entrepreneurs.\n\n## Accès principaux\n- Accueil: ${origin}/\n- Web TV en direct 24h/24: ${origin}/direct/\n- Catalogue des émissions: ${origin}/emissions/\n- Contact: ${origin}/contact/\n\n## Programmes\n${programs.map((item) => `- ${item.name}: ${origin}/programmes/${item.slug}/`).join('\n') || '- Aucun programme publié.'}\n\n## Émissions publiées\n${episodes.map((item) => `- ${item.title}: ${origin}/emissions/${item.slug}/`).join('\n') || '- Aucune émission publiée.'}\n\n## Informations d'usage\n- Les pages /studio/ et /api/ ne sont pas des contenus publics à indexer.\n- La réservation commerciale reste gérée sur media.neptunebusiness.com.\n`;
 }
 
-function visibleEpisodes(catalog) { const programIds = new Set((catalog.programs || []).map((item) => item.id)); return (catalog.episodes || []).filter((item) => programIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl); }
+function isActiveProgram(program) { return Boolean(program?.slug) && program.active !== false && Number(program.active ?? 1) !== 0; }
+function visibleEpisodes(catalog) { const programIds = new Set((catalog.programs || []).filter(isActiveProgram).map((item) => item.id)); return (catalog.episodes || []).filter((item) => programIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl); }
 function entry(item) { const lastmod = validIsoDate(item.lastmod); return `<url><loc>${xml(item.loc)}</loc>${lastmod ? `<lastmod>${xml(lastmod.slice(0, 10))}</lastmod>` : ''}<changefreq>${item.changefreq}</changefreq><priority>${item.priority}</priority></url>`; }
 function videoEntry(origin, item) { const publicationDate = validIsoDate(item.publishedAt || item.createdAt); return `<url><loc>${xml(`${origin}/emissions/${item.slug}/`)}</loc><video:video><video:thumbnail_loc>${xml(absolute(origin, item.posterUrl))}</video:thumbnail_loc><video:title>${xml(item.title)}</video:title><video:description>${xml(item.description || item.title)}</video:description><video:content_loc>${xml(absolute(origin, item.videoUrl))}</video:content_loc><video:duration>${Math.max(1, Math.min(28800, Math.round(Number(item.durationSeconds || 1))))}</video:duration>${publicationDate ? `<video:publication_date>${xml(publicationDate)}</video:publication_date>` : ''}<video:family_friendly>yes</video:family_friendly></video:video></url>`; }
 function validIsoDate(value) { const timestamp = Date.parse(String(value || '')); return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : ''; }
