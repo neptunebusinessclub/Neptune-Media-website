@@ -31,7 +31,18 @@ export default {
       }
 
       if (url.pathname === '/api/public/catalog' && request.method === 'GET') {
-        return withSecurity(await studio.fetch('https://store/public/catalog'));
+        const response = await studio.fetch('https://store/public/catalog');
+        if (!response.ok) return withSecurity(response);
+        const catalog = await response.json();
+        const activeProgramIds = new Set((catalog.programs || []).map((program) => program.id));
+        catalog.episodes = (catalog.episodes || []).filter((episode) => (
+          activeProgramIds.has(episode.programId)
+          && episode.status === 'published'
+          && Boolean(episode.slug && episode.videoUrl && episode.posterUrl)
+        ));
+        return withSecurity(json(catalog, 200, {
+          'Cache-Control': response.headers.get('Cache-Control') || 'public, max-age=30',
+        }));
       }
 
       if (url.pathname === '/api/track' && request.method === 'POST') {
