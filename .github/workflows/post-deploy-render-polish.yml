@@ -7,6 +7,7 @@ on:
       - scripts/apply-render-polish.py
       - scripts/apply-render-polish-v5.py
       - scripts/apply-render-polish-v6.py
+      - scripts/apply-render-polish-v7.py
       - .github/workflows/post-deploy-render-polish.yml
   workflow_run:
     workflows: ["Deploy Neptune Media to Cloudflare"]
@@ -48,6 +49,7 @@ jobs:
           python3 scripts/apply-render-polish.py
           python3 scripts/apply-render-polish-v5.py
           python3 scripts/apply-render-polish-v6.py
+          python3 scripts/apply-render-polish-v7.py
 
       - name: Install dependencies
         working-directory: neptune-tv-media-cloudflare
@@ -71,11 +73,14 @@ jobs:
             if curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/home.html; then break; fi
             sleep 10
           done
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css" > /tmp/streaming.css
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=7" > /tmp/streaming.css
           curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" > /tmp/ux.js
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" > /tmp/app.js
+          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=2" > /tmp/landing.js
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
+          curl --fail --silent --show-error "$PUBLIC_URL/assets/posters/format-canape-sombre.svg" > /tmp/dark.svg
+          curl --fail --silent --show-error "$PUBLIC_URL/assets/posters/format-plateau-clair.svg" > /tmp/light.svg
           curl --fail --silent --show-error "$PUBLIC_URL/api/health" > /tmp/health.json
           curl --fail --silent --show-error --dump-header /tmp/studio.headers "$PUBLIC_URL/studio/" > /tmp/studio.html
           curl --fail --silent --show-error --dump-header /tmp/client.headers "$PUBLIC_URL/espace-client/" > /tmp/client.html
@@ -84,17 +89,18 @@ jobs:
           client_api_status=$(curl --silent --output /tmp/client-api.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/me")
           webhook_status=$(curl --silent --output /tmp/webhook.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{}' "$PUBLIC_URL/api/webhooks/conversion")
 
-          grep -q 'data-render-polish="v4"' /tmp/home.html
-          grep -q 'data-home-live' /tmp/home.html
-          grep -q 'data-empty-reset' /tmp/home.html
-          grep -q 'Render polish v5' /tmp/streaming.css
-          grep -q 'scheduleHeroPreview' /tmp/app.js
-          grep -q 'heroPreviewIsVisible' /tmp/app.js
-          test "$(grep -c "renderHomeLive('error')" /tmp/app.js)" = "1"
-          grep -q 'neptune:search-refresh' /tmp/ux.js
-          grep -q 'content-rail-shell.*hidden' /tmp/streaming.css
-          grep -q 'data-live-now' /tmp/direct.html
-          grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
+          grep -q 'data-render-media="v7"' /tmp/home.html
+          grep -q 'Render media fix v7' /tmp/streaming.css
+          grep -q 'function isShortEpisode' /tmp/app.js
+          grep -q 'shortsCatalog' /tmp/app.js
+          grep -q 'answer.hidden' /tmp/app.js
+          grep -q 'data-rail-track' /tmp/ux.js
+          grep -q 'format-canape-sombre.svg' /tmp/landing.js
+          grep -q 'live-page-immediate' /tmp/direct.html
+          grep -q 'Émissions complètes' /tmp/emissions.html
+          grep -q 'seo-grid-shorts' /tmp/emissions.html
+          grep -q 'data:image/webp;base64' /tmp/dark.svg
+          grep -q 'data:image/webp;base64' /tmp/light.svg
           grep -q '"ok":true' /tmp/health.json
 
           grep -Eqi '^cache-control:.*no-store' /tmp/studio.headers
@@ -113,21 +119,20 @@ jobs:
               "ready": True,
               "version": "v7",
               "home": {
-                  "render_polish": True,
-                  "dynamic_live_state": True,
-                  "search_empty_state": True,
-                  "restrained_preview": True
-              },
-              "assets": {
-                  "streaming_css": True,
-                  "searchable_cards": True,
-                  "rail_listener_guard": True,
-                  "rail_empty_state": True,
-                  "idempotent_runtime": True
+                  "episodes_and_shorts_separated": True,
+                  "short_aspect_preserved": True,
+                  "faq_operational": True,
+                  "format_visuals": True
               },
               "public_pages": {
-                  "direct_states": True,
-                  "emissions_streaming": True
+                  "direct_first": True,
+                  "player_controls_clear": True,
+                  "catalogue_separated": True
+              },
+              "assets": {
+                  "dark_sofa": True,
+                  "bright_set": True,
+                  "streaming_css": True
               },
               "studio_admin": {
                   "studio_route": True,
@@ -153,11 +158,14 @@ jobs:
             neptune-tv-media-cloudflare/public/index.html \
             neptune-tv-media-cloudflare/public/app.js \
             neptune-tv-media-cloudflare/public/ux-aida.js \
+            neptune-tv-media-cloudflare/public/landing-conversion.js \
+            neptune-tv-media-cloudflare/public/live-channel.js \
             neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/src/public-layout.js \
             neptune-tv-media-cloudflare/src/public-render.js \
+            neptune-tv-media-cloudflare/src/public-router.js \
             render-polish-production.json
-          git commit -m "chore: record verified Studio Admin production routes [skip ci]" || true
+          git commit -m "feat: persist verified Neptune media render fix v7 [skip ci]" || true
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main
             if git push origin HEAD:main; then exit 0; fi
