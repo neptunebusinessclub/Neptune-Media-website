@@ -36,6 +36,8 @@ def main() -> None:
             ("Regarder le direct 24h/24", "Regarder le direct"),
             ("Antenne 24/24", "Antenne programmée"),
             ("const labels = ['Émissions', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];", "const labels = ['Neptune TV', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];"),
+            ("setText('#a-voir .section-head h2', 'Ce ne sont pas des maquettes. Ce sont de vraies émissions.');", "setText('#a-voir .section-head h2', 'À regarder');"),
+            ("setText('#a-voir .section-head p', 'Découvrez les programmes produits par Neptune Media et observez le niveau de préparation, de cadrage, d’écoute et de montage proposé aux invités.');", "setText('#a-voir .section-head p', '');"),
         ],
     )
     patch(
@@ -54,7 +56,7 @@ def main() -> None:
             ("/landing-conversion.js?v=2", "/landing-conversion.js?v=3"),
         ],
     )
-    print("Applied Neptune media asset, live filter and landing navigation fix v8")
+    print("Applied Neptune media asset, live filter, landing navigation and catalogue copy fix v8")
 
 
 if __name__ == "__main__":
