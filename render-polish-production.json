@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-07-18T19:44:25.704199+00:00",
+  "ready": true,
+  "version": "v5",
+  "home": {
+    "render_polish": true,
+    "dynamic_live_state": true,
+    "search_empty_state": true,
+    "restrained_preview": true
+  },
+  "assets": {
+    "streaming_css": true,
+    "searchable_cards": true,
+    "rail_listener_guard": true,
+    "rail_empty_state": true
+  },
+  "public_pages": {
+    "direct_states": true,
+    "emissions_streaming": true
+  },
+  "health": {
+    "ok": true
+  }
+}
