@@ -41,13 +41,26 @@ jobs:
         working-directory: .
         run: python3 scripts/apply-studio-auth.py
 
-      - name: Persist corrected authentication source
+      - name: Apply public accessibility improvements
+        working-directory: .
+        run: python3 scripts/apply-public-accessibility.py
+
+      - name: Persist corrected source
         working-directory: .
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add neptune-tv-media-cloudflare/src/store.js neptune-tv-media-cloudflare/src/index.js neptune-tv-media-cloudflare/public/studio/index.html neptune-tv-media-cloudflare/public/studio/studio.js
-          git commit -m "feat: enable secure studio access by email [skip ci]" || true
+          git add \
+            neptune-tv-media-cloudflare/src/store.js \
+            neptune-tv-media-cloudflare/src/index.js \
+            neptune-tv-media-cloudflare/public/studio/index.html \
+            neptune-tv-media-cloudflare/public/studio/studio.js \
+            neptune-tv-media-cloudflare/public/index.html \
+            neptune-tv-media-cloudflare/public/app.js \
+            neptune-tv-media-cloudflare/public/accessibility.js \
+            neptune-tv-media-cloudflare/public/styles/accessibility.css \
+            neptune-tv-media-cloudflare/package.json
+          git commit -m "feat: apply public accessibility improvements [skip ci]" || true
           git push
 
       - name: Install dependencies from public npm registry
@@ -83,7 +96,14 @@ jobs:
             sleep 10
           done
           grep -q '"ok":true' /tmp/health.json
-          curl --fail --silent --show-error "$PUBLIC_URL/" | grep -q 'Votre entreprise ne mérite pas une vidéo de plus'
+          curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/public-home.html
+          grep -q 'Votre entreprise ne mérite pas une vidéo de plus' /tmp/public-home.html
+          grep -q 'Aller au contenu principal' /tmp/public-home.html
+          grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
+          grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
+          grep -q 'id="faq-answer-1"' /tmp/public-home.html
+          curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" | grep -q 'La chaîne Neptune Media ne s’arrête jamais'
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" | grep -q 'Des histoires d’entreprise qui méritent l’antenne'
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
