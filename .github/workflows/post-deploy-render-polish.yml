@@ -1,6 +1,11 @@
 name: Polish Neptune rendering
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/apply-render-polish.py
+      - .github/workflows/post-deploy-render-polish.yml
   workflow_run:
     workflows: ["Deploy Neptune Media to Cloudflare"]
     types: [completed]
@@ -15,7 +20,7 @@ concurrency:
 
 jobs:
   polish-and-deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
