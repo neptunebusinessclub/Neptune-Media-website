@@ -83,6 +83,23 @@
 .live-ux-error button{margin-left:8px;min-height:38px;border:0;border-radius:9px;background:#fff;color:#111827;font-weight:850;cursor:pointer}
 .seo-search-panel{display:grid;gap:12px;margin:0 0 24px;padding:15px;border:1px solid var(--aida-line);border-radius:19px;background:rgba(7,16,34,.72)}
 .seo-search-panel input{width:100%;min-height:48px;padding:0 15px;border:1px solid var(--aida-line);border-radius:13px;background:rgba(255,255,255,.05);color:#fff;font:inherit}
-@media(max-width:980px){.interest-grid,.desire-hero{grid-template-columns:1fr}.outcome-grid{grid-template-columns:1fr 1fr}.proof-compact{grid-template-columns:1fr 1fr}.proof-compact article:first-child{grid-column:1/-1}.aida-process{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.aida-proof-strip,.outcome-grid,.trust-bar{grid-template-columns:1fr}.aida-proof-strip>div{text-align:left}.media-search{display:block}.media-search input{margin-bottom:8px}.continue-card{grid-template-columns:72px 1fr}.continue-card .btn{grid-column:1/-1;width:100%}.interest-section,.desire-section{padding:58px 0}.proof-compact,.aida-process,.compact-details>div{grid-template-columns:1fr}.proof-compact article:first-child{grid-column:auto}.live-ux-status{grid-template-columns:1fr}.live-ux-next{text-align:left}}
+.public-header-inner{grid-template-columns:190px minmax(0,1fr)}
+.public-desktop-nav{display:flex;justify-content:flex-end;align-items:center;gap:4px;min-width:0}
+.public-desktop-nav>a{min-height:42px;padding:0 11px;display:inline-flex;align-items:center;border-radius:999px;color:#b9c6da;font-size:.8rem;font-weight:750;white-space:nowrap}
+.public-desktop-nav>a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.public-desktop-nav>.btn{color:#fff}
+.public-mobile-menu{display:none;position:relative}
+.public-mobile-menu summary{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04);cursor:pointer;list-style:none}
+.public-mobile-menu summary::-webkit-details-marker{display:none}
+.public-mobile-menu summary>span[aria-hidden="true"],.public-mobile-menu summary>span[aria-hidden="true"]::before,.public-mobile-menu summary>span[aria-hidden="true"]::after{width:18px;height:2px;display:block;position:relative;border-radius:10px;background:#fff;content:""}
+.public-mobile-menu summary>span[aria-hidden="true"]::before{position:absolute;top:-6px}
+.public-mobile-menu summary>span[aria-hidden="true"]::after{position:absolute;top:6px}
+.public-mobile-menu[open] summary>span[aria-hidden="true"]{background:transparent}
+.public-mobile-menu[open] summary>span[aria-hidden="true"]::before{top:0;transform:rotate(45deg)}
+.public-mobile-menu[open] summary>span[aria-hidden="true"]::after{top:0;transform:rotate(-45deg)}
+.public-mobile-menu .seo-nav{position:fixed;z-index:60;inset:74px 14px auto;max-height:calc(100vh - 88px);overflow:auto;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:11px;border:1px solid var(--line);border-radius:20px;background:rgba(4,10,23,.98);box-shadow:var(--shadow)}
+.public-mobile-menu .seo-nav a{min-height:48px;padding:0 14px;display:flex;align-items:center;border-radius:13px;color:#d7e0ef;font-size:.9rem;font-weight:780}
+.public-mobile-menu .seo-nav .btn{justify-content:center;margin-top:6px;color:#fff}
+@media(max-width:980px){.interest-grid,.desire-hero{grid-template-columns:1fr}.outcome-grid{grid-template-columns:1fr 1fr}.proof-compact{grid-template-columns:1fr 1fr}.proof-compact article:first-child{grid-column:1/-1}.aida-process{grid-template-columns:1fr 1fr}.public-header-inner{display:flex;justify-content:space-between}.public-desktop-nav{display:none}.public-mobile-menu{display:block}}
+@media(max-width:700px){.aida-proof-strip,.outcome-grid,.trust-bar{grid-template-columns:1fr}.aida-proof-strip>div{text-align:left}.media-search{display:block}.media-search input{margin-bottom:8px}.continue-card{grid-template-columns:72px 1fr}.continue-card .btn{grid-column:1/-1;width:100%}.interest-section,.desire-section{padding:58px 0}.proof-compact,.aida-process,.compact-details>div{grid-template-columns:1fr}.proof-compact article:first-child{grid-column:auto}.live-ux-status{grid-template-columns:1fr}.live-ux-next{text-align:left}.public-mobile-menu .seo-nav{inset:66px 11px auto}}
 @media(prefers-reduced-motion:reduce){.neptune-ident.is-visible{animation:none;opacity:1}.neptune-ident{display:none}}
