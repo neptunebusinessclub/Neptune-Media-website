@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /studio/
+Disallow: /espace-client/
+Disallow: /api/
+
+# Public discovery remains available through the HTML pages,
+# /sitemap.xml, /video-sitemap.xml and /llms.txt.
