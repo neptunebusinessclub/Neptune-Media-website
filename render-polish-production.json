@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-07-18T19:44:25.704199+00:00",
+  "checked_at": "2026-07-18T19:46:49.234280+00:00",
   "ready": true,
-  "version": "v5",
+  "version": "v6",
   "home": {
     "render_polish": true,
     "dynamic_live_state": true,
@@ -12,7 +12,8 @@
     "streaming_css": true,
     "searchable_cards": true,
     "rail_listener_guard": true,
-    "rail_empty_state": true
+    "rail_empty_state": true,
+    "idempotent_runtime": true
   },
   "public_pages": {
     "direct_states": true,
