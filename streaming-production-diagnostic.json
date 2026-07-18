@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-07-18T18:57:22.401902+00:00",
+  "ready": false,
+  "home": {
+    "status": "200",
+    "streaming_marker": false,
+    "content_rail": false,
+    "live_now": false,
+    "aida_hook": true
+  },
+  "assets": {
+    "css_status": "200",
+    "streaming_css": true,
+    "js_status": "200",
+    "progress": true,
+    "rail_controls": true,
+    "live_js_status": "200",
+    "live_feedback": true
+  },
+  "public_pages": {
+    "direct_status": "200",
+    "direct_now_next": true,
+    "direct_marker": true,
+    "emissions_status": "200",
+    "emissions_marker": true
+  },
+  "health": {
+    "status": "200",
+    "ok": true
+  }
+}
