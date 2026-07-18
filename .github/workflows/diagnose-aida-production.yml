@@ -1,0 +1,65 @@
+name: Diagnose AIDA production
+
+on:
+  workflow_run:
+    workflows: ["Deploy Neptune Media to Cloudflare"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check production UX
+        shell: bash
+        run: |
+          set +e
+          home_status=$(curl --silent --show-error --output /tmp/home.html --write-out '%{http_code}' "$PUBLIC_URL/")
+          css_status=$(curl --silent --show-error --output /tmp/aida.css --write-out '%{http_code}' "$PUBLIC_URL/styles/ux-aida.css")
+          js_status=$(curl --silent --show-error --output /tmp/aida.js --write-out '%{http_code}' "$PUBLIC_URL/ux-aida.js")
+          direct_status=$(curl --silent --show-error --output /tmp/direct.html --write-out '%{http_code}' "$PUBLIC_URL/direct/")
+          emissions_status=$(curl --silent --show-error --output /tmp/emissions.html --write-out '%{http_code}' "$PUBLIC_URL/emissions/")
+
+          has_marker=false; grep -q 'data-home-structure="aida-v2"' /tmp/home.html && has_marker=true
+          has_attention=false; grep -q 'data-aida-stage="attention"' /tmp/home.html && has_attention=true
+          has_interest=false; grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/home.html && has_interest=true
+          has_search=false; grep -q 'Invité, entreprise ou sujet' /tmp/home.html && has_search=true
+          has_css=false; grep -q 'interest-section' /tmp/aida.css && has_css=true
+          has_js=false; grep -q 'neptune_watch_progress_v2' /tmp/aida.js && has_js=true
+          direct_enhanced=false; grep -q '/ux-aida.js' /tmp/direct.html && direct_enhanced=true
+          emissions_enhanced=false; grep -q '/styles/ux-aida.css' /tmp/emissions.html && emissions_enhanced=true
+
+          ready=false
+          if test "$home_status" = "200" && test "$css_status" = "200" && test "$js_status" = "200" && test "$direct_status" = "200" && test "$emissions_status" = "200" && test "$has_marker" = "true" && test "$has_attention" = "true" && test "$has_interest" = "true" && test "$has_search" = "true" && test "$has_css" = "true" && test "$has_js" = "true" && test "$direct_enhanced" = "true" && test "$emissions_enhanced" = "true"; then ready=true; fi
+
+          python3 - <<PY
+          import json
+          from datetime import datetime, timezone
+          report = {
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "ready": $ready,
+            "home": {"status": "$home_status", "aida_marker": $has_marker, "attention": $has_attention, "hook": $has_interest, "search": $has_search},
+            "assets": {"css_status": "$css_status", "css_loaded": $has_css, "js_status": "$js_status", "js_loaded": $has_js},
+            "public_pages": {"direct_status": "$direct_status", "direct_enhanced": $direct_enhanced, "emissions_status": "$emissions_status", "emissions_enhanced": $emissions_enhanced}
+          }
+          with open("aida-production-diagnostic.json", "w", encoding="utf-8") as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write("\n")
+          PY
+
+      - name: Record diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aida-production-diagnostic.json
+          git commit -m "chore: record AIDA production diagnostic [skip ci]" || true
+          git push
