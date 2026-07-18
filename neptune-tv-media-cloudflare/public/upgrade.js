@@ -3,6 +3,8 @@
   const deferredImpressions = new Set();
   let catalog = { programs: [], episodes: [] };
 
+  const isStreamingHome = () => document.body?.matches('[data-home-structure="streaming-aida-v3"]');
+
   window.fetch = async (input, init = {}) => {
     try {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
@@ -18,7 +20,7 @@
   };
 
   updateCopy();
-  addDeliverables();
+  if (!isStreamingHome()) addDeliverables();
   start();
 
   async function start() {
@@ -27,8 +29,11 @@
       if (!response.ok) return;
       catalog = await response.json();
       await waitForCards();
-      addEpisodeLinks();
-      addDiscovery();
+      if (isStreamingHome()) cleanupLegacyCatalogEnhancements();
+      else {
+        addEpisodeLinks();
+        addDiscovery();
+      }
       observeImpressions();
       trackBookingLinks();
       window.NeptuneUpgrade = { catalog, nativeFetch, sendTrack, bookingUrl };
@@ -89,6 +94,16 @@
     });
   }
 
+  function cleanupLegacyCatalogEnhancements() {
+    document.querySelectorAll('.catalog-tools').forEach((item) => item.remove());
+    document.querySelectorAll('#dynamicCatalog .media-card-wrap').forEach((wrap) => {
+      const card = wrap.querySelector(':scope > [data-episode-id]');
+      if (card) wrap.replaceWith(card);
+      else wrap.remove();
+    });
+    document.querySelectorAll('#dynamicCatalog .media-detail-link').forEach((item) => item.remove());
+  }
+
   function addEpisodeLinks() {
     const grid = document.querySelector('#dynamicCatalog');
     if (!grid) return;
@@ -143,14 +158,22 @@
   }
 
   function observeImpressions() {
-    if (!('IntersectionObserver' in window)) return deferredImpressions.forEach((id) => sendTrack('impression', id));
+    const targets = isStreamingHome()
+      ? document.querySelectorAll('#dynamicCatalog [data-episode-id]')
+      : document.querySelectorAll('.media-card-wrap');
+    if (!('IntersectionObserver' in window)) {
+      deferredImpressions.forEach((id) => sendTrack('impression', id));
+      return;
+    }
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting || entry.intersectionRatio < .5) return;
-      const id = entry.target.querySelector('[data-episode-id]')?.dataset.episodeId;
+      const id = entry.target.matches('[data-episode-id]')
+        ? entry.target.dataset.episodeId
+        : entry.target.querySelector('[data-episode-id]')?.dataset.episodeId;
       if (id) sendTrack('impression', id);
       observer.unobserve(entry.target);
     }), { threshold: [.5] });
-    document.querySelectorAll('.media-card-wrap').forEach((item) => observer.observe(item));
+    targets.forEach((item) => observer.observe(item));
   }
 
   function trackBookingLinks() {
