@@ -1,3 +1,252 @@
 (() => {
   'use strict';
+
+  const q = (s, root = document) => root.querySelector(s);
+  const qa = (s, root = document) => [...root.querySelectorAll(s)];
+  const WATCH_KEY = 'neptune_watch_progress_v2';
+  let currentEpisode = null;
+
+  activeNavigation();
+  homeSearch();
+  emissionsSearch();
+  watchProgress();
+  directStatus();
+  clarifyBookingLinks();
+
+  window.addEventListener('neptune:catalog-ready', () => {
+    homeSearch(true);
+    renderContinue();
+  });
+
+  function activeNavigation() {
+    const path = cleanPath(location.pathname);
+    const links = qa('.nav a, .seo-nav a');
+    links.forEach((link) => {
+      const url = new URL(link.href, location.href);
+      const target = cleanPath(url.pathname);
+      if (url.origin === location.origin && target !== '/' && path.startsWith(target)) {
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+    if (path !== '/' || !('IntersectionObserver' in window)) return;
+    const anchors = links.filter((link) => link.hash && q(link.hash));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      anchors.forEach((link) => {
+        const selected = link.hash === `#${visible.target.id}`;
+        link.classList.toggle('is-active', selected);
+        if (selected) link.setAttribute('aria-current', 'location');
+        else if (link.getAttribute('aria-current') === 'location') link.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, .25] });
+    anchors.forEach((link) => observer.observe(q(link.hash)));
+  }
+
+  function homeSearch(force = false) {
+    const form = q('[data-media-search]');
+    const grid = q('#dynamicCatalog');
+    if (!form || !grid || (form.dataset.bound && !force)) return;
+    form.dataset.bound = '1';
+    const input = q('input[type="search"]', form);
+    const count = q('#mediaResultsCount');
+    const filters = qa('[data-media-filter]');
+    let selected = filters.find((item) => item.getAttribute('aria-pressed') === 'true')?.dataset.mediaFilter || 'all';
+
+    const apply = () => {
+      const needle = normal(input?.value);
+      let visible = 0;
+      qa('.media-card', grid).forEach((card) => {
+        const text = normal(card.textContent);
+        const show = (!needle || text.includes(needle)) && (selected === 'all' || text.includes(normal(selected)));
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (count) count.textContent = `${visible} émission${visible > 1 ? 's' : ''}`;
+    };
+
+    if (input && !input.dataset.bound) {
+      input.dataset.bound = '1';
+      input.addEventListener('input', apply);
+      form.addEventListener('submit', (event) => { event.preventDefault(); apply(); });
+      q('[data-search-reset]', form)?.addEventListener('click', () => {
+        input.value = '';
+        selected = 'all';
+        filters.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.mediaFilter === 'all')));
+        apply();
+        input.focus();
+      });
+      filters.forEach((button) => button.addEventListener('click', () => {
+        selected = button.dataset.mediaFilter || 'all';
+        filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        apply();
+      }));
+    }
+    apply();
+    renderContinue();
+  }
+
+  function emissionsSearch() {
+    if (!cleanPath(location.pathname).startsWith('/emissions')) return;
+    const grid = q('.seo-grid');
+    if (!grid || grid.dataset.searchEnhanced) return;
+    grid.dataset.searchEnhanced = '1';
+    const panel = document.createElement('div');
+    panel.className = 'seo-search-panel';
+    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Rechercher un invité, une entreprise ou un sujet"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><p class="media-results" aria-live="polite"></p>';
+    grid.before(panel);
+    const input = q('input', panel);
+    const result = q('.media-results', panel);
+    const filters = qa('[data-filter]', panel);
+    let selected = 'all';
+    const apply = () => {
+      const needle = normal(input.value);
+      let visible = 0;
+      qa('.seo-card', grid).forEach((card) => {
+        const text = normal(card.textContent);
+        const show = (!needle || text.includes(needle)) && (selected === 'all' || text.includes(selected));
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      result.textContent = `${visible} résultat${visible > 1 ? 's' : ''}`;
+    };
+    input.addEventListener('input', apply);
+    filters.forEach((button) => button.addEventListener('click', () => {
+      selected = button.dataset.filter;
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      apply();
+    }));
+    apply();
+  }
+
+  function watchProgress() {
+    const modal = q('[data-video-modal]');
+    const player = modal ? q('video', modal) : null;
+    if (modal && player) {
+      const frame = q('.modal-frame', modal);
+      const prompt = resumePrompt(frame);
+      const ident = document.createElement('div');
+      ident.className = 'neptune-ident';
+      ident.textContent = 'Neptune Media · À l’antenne';
+      frame?.append(ident);
+      window.addEventListener('neptune:episode-opened', (event) => {
+        currentEpisode = event.detail?.episode || null;
+        prompt.hidden = true;
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          ident.classList.remove('is-visible');
+          requestAnimationFrame(() => ident.classList.add('is-visible'));
+        }
+      });
+      player.addEventListener('loadedmetadata', () => {
+        if (currentEpisode && sameMedia(player.currentSrc, currentEpisode.videoUrl)) offerResume(prompt, player, episodeKey(currentEpisode));
+      });
+      let lastSave = 0;
+      player.addEventListener('timeupdate', () => {
+        if (!currentEpisode || !sameMedia(player.currentSrc, currentEpisode.videoUrl) || Date.now() - lastSave < 2500) return;
+        lastSave = Date.now();
+        saveProgress(episodeKey(currentEpisode), {
+          id: currentEpisode.id || '', slug: currentEpisode.slug || '', title: currentEpisode.title || 'Émission Neptune Media',
+          poster: currentEpisode.posterUrl || '', position: player.currentTime, duration: player.duration, updatedAt: Date.now(),
+        });
+      });
+      player.addEventListener('ended', () => currentEpisode && clearProgress(episodeKey(currentEpisode)));
+    }
+
+    const episodePlayer = q('.episode-player video');
+    if (!episodePlayer) return;
+    const key = decodeURIComponent(cleanPath(location.pathname).split('/').filter(Boolean).pop() || 'episode');
+    const prompt = resumePrompt(q('.episode-player'));
+    episodePlayer.addEventListener('loadedmetadata', () => offerResume(prompt, episodePlayer, key));
+    let lastSave = 0;
+    episodePlayer.addEventListener('timeupdate', () => {
+      if (Date.now() - lastSave < 2500) return;
+      lastSave = Date.now();
+      saveProgress(key, { slug: key, title: q('.episode-copy h1')?.textContent || document.title, poster: episodePlayer.poster || '', position: episodePlayer.currentTime, duration: episodePlayer.duration, updatedAt: Date.now() });
+    });
+    episodePlayer.addEventListener('ended', () => clearProgress(key));
+  }
+
+  function resumePrompt(container) {
+    const prompt = document.createElement('div');
+    prompt.className = 'resume-prompt';
+    prompt.hidden = true;
+    prompt.innerHTML = '<span></span><button type="button">Reprendre</button>';
+    container?.append(prompt);
+    return prompt;
+  }
+
+  function offerResume(prompt, player, key) {
+    const saved = readProgress()[key];
+    if (!saved || saved.position < 8 || saved.position > player.duration - 8) { prompt.hidden = true; return; }
+    q('span', prompt).textContent = `Reprendre à ${formatTime(saved.position)} ?`;
+    q('button', prompt).onclick = () => {
+      player.currentTime = Math.min(saved.position, player.duration - 2);
+      player.play().catch(() => {});
+      prompt.hidden = true;
+    };
+    prompt.hidden = false;
+  }
+
+  function renderContinue() {
+    const card = q('#continueWatching');
+    if (!card) return;
+    const item = Object.values(readProgress()).filter((entry) => entry?.position > 8 && entry?.duration > entry.position + 8).sort((a, b) => b.updatedAt - a.updatedAt)[0];
+    if (!item) { card.hidden = true; return; }
+    q('img', card).src = item.poster || '/assets/posters/default.svg';
+    q('[data-continue-title]', card).textContent = item.title;
+    q('[data-continue-time]', card).textContent = `Reprendre à ${formatTime(item.position)}`;
+    q('[data-continue-open]', card).onclick = () => {
+      const target = item.id ? q(`[data-episode-id="${escapeCss(item.id)}"]`) : null;
+      if (target) target.click();
+      else if (item.slug) location.href = `/emissions/${encodeURIComponent(item.slug)}/`;
+    };
+    card.hidden = false;
+  }
+
+  function directStatus() {
+    const root = q('[data-live-channel]');
+    const video = root ? q('[data-live-video]', root) : null;
+    if (!root || !video || root.dataset.uxEnhanced) return;
+    root.dataset.uxEnhanced = '1';
+    const status = document.createElement('div');
+    status.className = 'live-ux-status';
+    status.dataset.mode = 'live';
+    status.innerHTML = '<strong class="live-ux-mode">En direct</strong><span class="live-ux-message" role="status">Connexion à l’antenne…</span><span class="live-ux-next"></span>';
+    const error = document.createElement('div');
+    error.className = 'live-ux-error';
+    error.hidden = true;
+    error.innerHTML = 'Le direct ne peut pas être chargé. <button type="button">Réessayer</button> <a href="/emissions/">Voir les émissions</a>';
+    video.closest('.live-stage')?.before(status, error);
+    const message = q('.live-ux-message', status);
+    const mode = q('.live-ux-mode', status);
+    const setMode = (value) => { status.dataset.mode = value; mode.textContent = value === 'live' ? 'En direct' : 'À la demande'; };
+    video.addEventListener('waiting', () => { message.textContent = 'Mise en mémoire tampon…'; });
+    video.addEventListener('playing', () => { error.hidden = true; message.textContent = status.dataset.mode === 'live' ? 'Antenne synchronisée' : 'Lecture à la demande'; });
+    video.addEventListener('error', () => { error.hidden = false; message.textContent = 'Lecture interrompue'; });
+    q('button', error)?.addEventListener('click', () => { error.hidden = true; video.load(); video.play().catch(() => {}); });
+    q('[data-live-resync]', root)?.addEventListener('click', () => setMode('live'));
+    const bindGuide = () => qa('[data-live-episode]', root).forEach((button) => {
+      if (button.dataset.uxBound) return;
+      button.dataset.uxBound = '1';
+      button.addEventListener('click', () => setMode('replay'));
+    });
+    new MutationObserver(bindGuide).observe(q('[data-live-playlist]', root) || root, { childList: true, subtree: true });
+    window.addEventListener('offline', () => { error.hidden = false; message.textContent = 'Connexion internet perdue'; });
+    bindGuide();
+  }
+
+  function clarifyBookingLinks() {
+    qa('[data-funnel]').forEach((link) => { link.title = 'Ouvre l’espace officiel Neptune Media avec les tarifs, conditions et créneaux'; });
+  }
+
+  function readProgress() { try { return JSON.parse(localStorage.getItem(WATCH_KEY) || '{}'); } catch { return {}; } }
+  function saveProgress(key, value) { if (!key || !Number.isFinite(value.position) || !Number.isFinite(value.duration)) return; const data = readProgress(); data[key] = value; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); }
+  function clearProgress(key) { const data = readProgress(); delete data[key]; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); }
+  function episodeKey(episode) { return String(episode?.slug || episode?.id || ''); }
+  function sameMedia(a, b) { try { return new URL(a, location.href).pathname === new URL(b, location.href).pathname; } catch { return false; } }
+  function normal(value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); }
+  function cleanPath(value) { const path = String(value || '/').replace(/\/+$/, ''); return path || '/'; }
+  function formatTime(value) { const seconds = Math.max(0, Math.floor(Number(value || 0))); return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`; }
+  function escapeCss(value) { return window.CSS?.escape ? CSS.escape(String(value)) : String(value).replace(/["\\]/g, '\\$&'); }
 })();
