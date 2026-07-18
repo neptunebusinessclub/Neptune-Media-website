@@ -54,6 +54,12 @@ jobs:
         working-directory: .
         run: python3 scripts/apply-streaming-index.py
 
+      - name: Apply current media rendering fixes
+        working-directory: .
+        run: |
+          python3 scripts/apply-render-polish-v7.py
+          python3 scripts/apply-render-polish-v8.py
+
       - name: Persist corrected source
         working-directory: .
         run: |
@@ -64,19 +70,22 @@ jobs:
             neptune-tv-media-cloudflare/src/index.js \
             neptune-tv-media-cloudflare/src/public-layout.js \
             neptune-tv-media-cloudflare/src/public-render.js \
+            neptune-tv-media-cloudflare/src/public-router.js \
             neptune-tv-media-cloudflare/public/studio/index.html \
             neptune-tv-media-cloudflare/public/studio/studio.js \
             neptune-tv-media-cloudflare/public/index.html \
             neptune-tv-media-cloudflare/public/app.js \
             neptune-tv-media-cloudflare/public/accessibility.js \
             neptune-tv-media-cloudflare/public/ux-aida.js \
+            neptune-tv-media-cloudflare/public/landing-conversion.js \
             neptune-tv-media-cloudflare/public/live-channel.js \
             neptune-tv-media-cloudflare/public/styles/accessibility.css \
             neptune-tv-media-cloudflare/public/styles/ux-aida.css \
             neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/package.json \
             scripts/apply-streaming-index.py
-          git commit -m "feat: persist Neptune streaming UX rules [skip ci]" || true
+          git commit -m "feat: persist Neptune streaming UX and media fixes [skip ci]" || true
+          git pull --rebase origin main || true
           git push
 
       - name: Install dependencies from public npm registry
@@ -116,6 +125,7 @@ jobs:
           grep -q 'Votre expertise mérite d’être vue' /tmp/public-home.html
           grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/public-home.html
           grep -q 'data-home-structure="streaming-aida-v3"' /tmp/public-home.html
+          grep -q 'data-render-media="v7"' /tmp/public-home.html
           grep -q 'data-aida-stage="attention"' /tmp/public-home.html
           grep -q 'data-content-rail' /tmp/public-home.html
           grep -q 'live-now-card' /tmp/public-home.html
@@ -124,7 +134,7 @@ jobs:
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
           grep -q 'id="faq-answer-1"' /tmp/public-home.html
-          grep -q '/styles/neptune-streaming.css' /tmp/public-home.html
+          grep -q '/styles/neptune-streaming.css?v=7' /tmp/public-home.html
           grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
           if grep -Eq 'href="https://neptune-media-webtv\.neptunebusinessclub\.workers\.dev[^\"]*"' /tmp/public-home.html; then
             echo 'The public landing page contains a Worker URL where a conversion URL is expected.' >&2
@@ -132,20 +142,30 @@ jobs:
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
           curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'neptune_watch_progress_v2'
-          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'streamingRail'
+          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'data-rail-track'
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'shortsCatalog'
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'answer.hidden'
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q '!isShortEpisode(episode)'
+          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=3" | grep -q 'studio-wide.webp'
+          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=3" | grep -q 'concept-libre-wide.webp'
           curl --fail --silent --show-error "$PUBLIC_URL/live-channel.js" | grep -q 'neptune:live-status'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css" | grep -q 'content-rail-shell'
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=7" | grep -q 'Render media fix v7'
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
-          grep -Eq 'Neptune Media, à l’antenne|Les prochaines émissions arrivent' /tmp/direct.html
+          grep -q 'live-page-immediate' /tmp/direct.html
           grep -q 'data-live-now' /tmp/direct.html
           grep -q 'data-live-next' /tmp/direct.html
           grep -q 'data-public-ux="streaming-v3"' /tmp/direct.html
+          if grep -q '<h1>Neptune Media, à l’antenne' /tmp/direct.html; then
+            echo 'The direct page still exposes a marketing hero before the player.' >&2
+            exit 1
+          fi
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
-          grep -q 'Des histoires qui méritent l’antenne' /tmp/emissions.html
+          grep -q 'Émissions complètes' /tmp/emissions.html
+          grep -q 'seo-grid-shorts' /tmp/emissions.html
           grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
-          grep -q '/styles/neptune-streaming.css' /tmp/emissions.html
+          grep -q '/styles/neptune-streaming.css?v=7' /tmp/emissions.html
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
@@ -247,4 +267,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add deployment-status.json
           git commit -m "chore: record successful deployment [skip ci]" || true
+          git pull --rebase origin main || true
           git push
