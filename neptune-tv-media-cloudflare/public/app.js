@@ -470,6 +470,13 @@
     modal.style.setProperty('--player-aspect', `${player.videoWidth} / ${player.videoHeight}`);
   }
 
+  function syncModalAspect() {
+    if (!modal || !player || !player.videoWidth || !player.videoHeight) return;
+    const ratio = player.videoWidth / player.videoHeight;
+    modal.dataset.playerAspect = ratio < .92 ? 'portrait' : 'landscape';
+    modal.style.setProperty('--player-aspect', `${player.videoWidth} / ${player.videoHeight}`);
+  }
+
   function startContent() {
     if (!state.current || !player) return;
     clearInterval(state.skipTimer);
@@ -627,6 +634,7 @@
     return value;
   }
   function programName(id) { return state.programs.find((program) => program.id === id)?.name || 'Neptune Media'; }
+  function formatLabel(name) { return /hors\s*norme/i.test(String(name || '')) ? 'Hors Norme' : 'Concept Libre'; }
   function formatLabel(name) { return /hors\s*norme/i.test(String(name || '')) ? 'Hors Norme' : 'Concept Libre'; }
   function formatLabel(name) { return /hors\s*norme/i.test(String(name || '')) ? 'Hors Norme' : 'Concept Libre'; }
   function formatLabel(name) { return /hors\s*norme/i.test(String(name || '')) ? 'Hors Norme' : 'Concept Libre'; }
