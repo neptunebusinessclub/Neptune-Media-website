@@ -102,14 +102,13 @@
       bindFallbackVideos();
       return;
     }
-    grid.innerHTML = state.episodes.map((episode) => `
+    grid.innerHTML = state.episodes.slice(0, 6).map((episode) => `
       <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}">
         <img loading="lazy" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
         <span class="card-play" aria-hidden="true">▶</span>
         <span class="media-card-copy">
           <span class="media-card-meta"><span>${escapeHtml(programName(episode.programId))}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
           <h3>${escapeHtml(episode.title)}</h3>
-          <p>${escapeHtml(episode.description || 'Une histoire entrepreneuriale racontée sur le plateau Neptune Media.')}</p>
         </span>
       </button>`).join('');
     qsa('[data-episode-id]', grid).forEach((button) => {
