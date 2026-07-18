@@ -1,0 +1,80 @@
+name: Validate streaming source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/validate-streaming-source.yml'
+      - 'scripts/apply-streaming-index.py'
+      - 'neptune-tv-media-cloudflare/public/index.html'
+      - 'neptune-tv-media-cloudflare/public/app.js'
+      - 'neptune-tv-media-cloudflare/public/ux-aida.js'
+      - 'neptune-tv-media-cloudflare/public/live-channel.js'
+      - 'neptune-tv-media-cloudflare/src/public-layout.js'
+      - 'neptune-tv-media-cloudflare/src/public-render.js'
+      - 'neptune-tv-media-cloudflare/public/styles/neptune-streaming.css'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate source
+        id: validate
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            python3 -m py_compile scripts/apply-streaming-index.py
+            python3 scripts/apply-streaming-index.py
+            node --check neptune-tv-media-cloudflare/src/public-layout.js
+            node --check neptune-tv-media-cloudflare/src/public-render.js
+            node --check neptune-tv-media-cloudflare/public/app.js
+            node --check neptune-tv-media-cloudflare/public/ux-aida.js
+            node --check neptune-tv-media-cloudflare/public/live-channel.js
+            grep -q 'data-home-structure="streaming-aida-v3"' neptune-tv-media-cloudflare/public/index.html
+            grep -q 'data-content-rail' neptune-tv-media-cloudflare/public/index.html
+            grep -q 'content-rail-shell' neptune-tv-media-cloudflare/public/styles/neptune-streaming.css
+          } 2>&1 | tee /tmp/streaming-validation.log
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+
+      - name: Record validation
+        if: always()
+        env:
+          VALIDATION_STATUS: ${{ steps.validate.outputs.status }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          path = '/tmp/streaming-validation.log'
+          try:
+              log = open(path, encoding='utf-8', errors='replace').read()[-4000:]
+          except FileNotFoundError:
+              log = 'Validation step did not produce a log.'
+          status = os.environ.get('VALIDATION_STATUS', '1')
+          report = {
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'ready': status == '0',
+              'status': int(status) if status.isdigit() else status,
+              'log': log,
+          }
+          with open('streaming-source-validation.json', 'w', encoding='utf-8') as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write('\n')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add streaming-source-validation.json
+          git commit -m "chore: record streaming source validation [skip ci]" || true
+          git push
