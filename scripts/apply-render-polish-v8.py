@@ -27,14 +27,12 @@ def main() -> None:
             ("/assets/posters/format-canape-sombre.svg", "/assets/posters/studio-wide.webp"),
             ("/assets/posters/format-plateau-clair.svg", "/assets/posters/concept-libre-wide.webp"),
             ('<a href="/emissions/">Émissions</a>', '<a href="/emissions/">Neptune TV</a>'),
-            ("/styles/neptune-streaming.css?v=7", "/styles/neptune-streaming.css?v=8"),
         ],
     )
     patch(
         "neptune-tv-media-cloudflare/src/public-layout.js",
         [
             ('<a href="/emissions/">Neptune TV</a>', '<a href="/emissions/">Émissions</a>'),
-            ("/styles/neptune-streaming.css?v=7", "/styles/neptune-streaming.css?v=8"),
         ],
     )
     patch(
