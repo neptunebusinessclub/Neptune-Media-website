@@ -22,8 +22,11 @@ export default {
         if (!env.BOOTSTRAP_TOKEN || !timingSafeEqual(secret, env.BOOTSTRAP_TOKEN)) return secure(json({ error: 'unauthorized' }, 401));
         return secure(await proxyBody(request, studio, '/internal/import-media'));
       }
-      const publicResponse = await handlePublicRoute(request, env);
-      if (publicResponse) return secure(publicResponse);
+      const publicRequest = request.method === 'HEAD'
+        ? new Request(request.url, { method: 'GET', headers: request.headers })
+        : request;
+      const publicResponse = await handlePublicRoute(publicRequest, env);
+      if (publicResponse) return secure(request.method === 'HEAD' ? withoutBody(publicResponse) : publicResponse);
       const response = await legacy.fetch(request, env, ctx);
       const type = response.headers.get('Content-Type') || '';
       if (request.method === 'GET' && type.includes('text/html')) {
@@ -43,6 +46,13 @@ async function proxyBody(request, studio, path) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: await request.text(),
+  });
+}
+function withoutBody(response) {
+  return new Response(null, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
   });
 }
 function secure(response) {
