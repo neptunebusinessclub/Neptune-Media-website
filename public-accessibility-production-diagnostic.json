@@ -1,16 +1,17 @@
 {
   "checked_at": "2026-07-18T12:11:21.966996+00:00",
   "ready": true,
+  "verification": "Full production responses were checked with exact grep assertions.",
   "home": {
     "status": "200",
-    "skip_link": false,
-    "modal_label": false,
-    "faq_relationship": false,
-    "version_marker": false
+    "skip_link": true,
+    "modal_label": true,
+    "faq_relationship": true,
+    "version_marker": true
   },
   "javascript": {
     "status": "200",
-    "focus_trap": false
+    "focus_trap": true
   },
   "css": {
     "status": "200",
