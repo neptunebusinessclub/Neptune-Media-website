@@ -39,6 +39,7 @@ export function isShortEpisode(episode) {
 export function formatLabel(programName) { return /hors\s*norme/i.test(String(programName || '')) ? 'Hors Norme' : 'Concept Libre'; }
 export function formatLabel(programName) { return /hors\s*norme/i.test(String(programName || '')) ? 'Hors Norme' : 'Concept Libre'; }
 export function formatLabel(programName) { return /hors\s*norme/i.test(String(programName || '')) ? 'Hors Norme' : 'Concept Libre'; }
+export function formatLabel(programName) { return /hors\s*norme/i.test(String(programName || '')) ? 'Hors Norme' : 'Concept Libre'; }
 export function absolute(origin, value) { try { return new URL(value || '/assets/posters/default.svg', `${origin}/`).toString(); } catch { return `${origin}/assets/posters/default.svg`; } }
 export function isoDuration(seconds) { const value = Math.max(0, Math.round(Number(seconds || 0))); return `PT${Math.floor(value / 60)}M${value % 60}S`; }
 export function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char])); }
