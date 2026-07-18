@@ -42,6 +42,10 @@ jobs:
         working-directory: .
         run: python3 scripts/apply-studio-auth.py
 
+      - name: Apply concise AIDA media UX
+        working-directory: .
+        run: python3 scripts/apply-ux-aida.py
+
       - name: Apply public accessibility improvements
         working-directory: .
         run: python3 scripts/apply-public-accessibility.py
@@ -54,14 +58,17 @@ jobs:
           git add \
             neptune-tv-media-cloudflare/src/store.js \
             neptune-tv-media-cloudflare/src/index.js \
+            neptune-tv-media-cloudflare/src/public-layout.js \
             neptune-tv-media-cloudflare/public/studio/index.html \
             neptune-tv-media-cloudflare/public/studio/studio.js \
             neptune-tv-media-cloudflare/public/index.html \
             neptune-tv-media-cloudflare/public/app.js \
             neptune-tv-media-cloudflare/public/accessibility.js \
+            neptune-tv-media-cloudflare/public/ux-aida.js \
             neptune-tv-media-cloudflare/public/styles/accessibility.css \
+            neptune-tv-media-cloudflare/public/styles/ux-aida.css \
             neptune-tv-media-cloudflare/package.json
-          git commit -m "feat: apply public accessibility improvements [skip ci]" || true
+          git commit -m "feat: persist concise AIDA media UX [skip ci]" || true
           git push
 
       - name: Install dependencies from public npm registry
@@ -98,9 +105,11 @@ jobs:
           done
           grep -q '"ok":true' /tmp/health.json
           curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/public-home.html
-          grep -q 'Les histoires d’entreprise que l’on ne raconte' /tmp/public-home.html
+          grep -q 'Votre expertise mérite d’être vue' /tmp/public-home.html
           grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/public-home.html
-          grep -q 'data-home-structure="story-v1"' /tmp/public-home.html
+          grep -q 'data-home-structure="aida-v2"' /tmp/public-home.html
+          grep -q 'data-aida-stage="attention"' /tmp/public-home.html
+          grep -q 'Invité, entreprise ou sujet' /tmp/public-home.html
           grep -q 'Aller au contenu principal' /tmp/public-home.html
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
@@ -111,10 +120,15 @@ jobs:
             exit 1
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
+          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'neptune_watch_progress_v2'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/home-structure.css" | grep -q 'story-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/direct/" | grep -q 'La chaîne Neptune Media ne s’arrête jamais'
-          curl --fail --silent --show-error "$PUBLIC_URL/emissions/" | grep -q 'Des histoires d’entreprise qui méritent l’antenne'
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
+          curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
+          grep -q 'La chaîne Neptune Media ne s’arrête jamais' /tmp/direct.html
+          grep -q '/ux-aida.js' /tmp/direct.html
+          curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
+          grep -q 'Des histoires d’entreprise qui méritent l’antenne' /tmp/emissions.html
+          grep -q '/styles/ux-aida.css' /tmp/emissions.html
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
