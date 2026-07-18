@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/apply-render-polish.py
-      - scripts/apply-render-polish-v5.py
-      - scripts/apply-render-polish-v6.py
       - scripts/apply-render-polish-v7.py
       - .github/workflows/validate-render-polish.yml
   workflow_dispatch:
@@ -22,20 +19,14 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run source polishers and syntax checks
+      - name: Run current media fix and syntax checks
         shell: bash
         run: |
           set +e
           {
-            python3 scripts/apply-render-polish.py
-            v4_status=$?
-            python3 scripts/apply-render-polish-v5.py
-            v5_status=$?
-            python3 scripts/apply-render-polish-v6.py
-            v6_status=$?
             python3 scripts/apply-render-polish-v7.py
             v7_status=$?
-            if test "$v4_status" = "0" -a "$v5_status" = "0" -a "$v6_status" = "0" -a "$v7_status" = "0"; then
+            if test "$v7_status" = "0"; then
               cd neptune-tv-media-cloudflare
               npm run check
               check_status=$?
@@ -43,7 +34,7 @@ jobs:
             else
               check_status=99
             fi
-            test "$v4_status" = "0" -a "$v5_status" = "0" -a "$v6_status" = "0" -a "$v7_status" = "0" -a "$check_status" = "0"
+            test "$v7_status" = "0" -a "$check_status" = "0"
           } > /tmp/render-polish.log 2>&1
           status=$?
           STATUS="$status" python3 - <<'PY'
