@@ -16,6 +16,7 @@
   <link rel="icon" href="/assets/logo-neptune.svg">
   <link rel="preload" href="/assets/posters/poster-neptune-media.webp" as="image">
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/styles/accessibility.css">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -27,11 +28,12 @@
   }
   </script>
 </head>
-<body>
+<body data-a11y-version="2026-07-18">
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="Neptune Media, accueil"><img src="/assets/logo-neptune.svg" alt="Neptune"></a>
-    <nav class="nav" data-nav aria-label="Navigation principale">
+    <nav id="primary-navigation" class="nav" data-nav aria-label="Navigation principale">
       <a href="#a-voir">À voir</a>
       <a href="#formats">Formats</a>
       <a href="#studio">Le studio</a>
@@ -42,12 +44,12 @@
     <div class="header-actions">
       <a class="btn btn-secondary" href="#formats">Comparer les formats</a>
       <a class="btn btn-primary" data-funnel data-track="header_reservation" href="https://media.neptunebusiness.com/">Réserver</a>
-      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle><span></span></button>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle><span aria-hidden="true"></span></button>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -72,10 +74,11 @@
       <div class="hero-media-wrap">
         <div class="hero-glow" aria-hidden="true"></div>
         <article class="hero-media">
-          <video id="heroPreview" data-autoplay autoplay muted loop playsinline preload="metadata" poster="/assets/posters/poster-neptune-media.webp">
+          <video id="heroPreview" data-autoplay muted loop playsinline preload="metadata" poster="/assets/posters/poster-neptune-media.webp" aria-hidden="true" tabindex="-1">
             <source id="heroPreviewSource" src="/assets/media/neptune-media-mis-en-lumiere.mp4" type="video/mp4">
           </video>
           <div class="hero-media-top"><span class="live-label">À l'antenne</span><span class="real-label">Extrait réel</span></div>
+          <button class="motion-toggle" id="heroMotionToggle" type="button" aria-pressed="false">Mettre l’aperçu en pause</button>
           <div class="hero-media-copy">
             <small>Connexio · Neptune Media</small>
             <h2 id="heroEpisodeTitle">Votre entrepreneuriat mis en lumière</h2>
@@ -84,7 +87,7 @@
               data-video-poster="/assets/posters/poster-neptune-media.webp"
               data-video-title="Neptune Media — Votre entrepreneuriat mis en lumière"
               data-track="hero_video_play">
-              <span class="play-dot">▶</span> Écouter l'extrait · 44 s
+              <span class="play-dot" aria-hidden="true">▶</span> Écouter l'extrait · 44 s
             </button>
           </div>
         </article>
@@ -107,14 +110,19 @@
         <div><span class="eyebrow">À regarder maintenant</span><h2>Le savoir-faire se regarde avant de s'acheter.</h2></div>
         <p>Ces extraits proviennent de tournages Neptune. Ils montrent le niveau de réalisation, le rythme, la qualité du plateau et la manière dont une parole entrepreneuriale devient un contenu regardable.</p>
       </div>
-      <div class="video-grid" id="dynamicCatalog" aria-live="polite">
+      <p id="catalogStatus" class="sr-only" role="status" aria-live="polite"></p>
+      <div id="catalogError" class="catalog-error" role="alert" hidden>
+        Le catalogue dynamique n’a pas pu être chargé. Les extraits disponibles sur la page restent accessibles.
+        <button id="catalogRetry" type="button">Réessayer</button>
+      </div>
+      <div class="video-grid" id="dynamicCatalog" aria-busy="true">
         <button class="media-card" type="button"
           data-video-src="/assets/media/accident-moto-entreprise.mp4"
           data-video-poster="/assets/posters/poster-accident.webp"
           data-video-title="Un accident de moto met fin à son entreprise"
           data-track="clip_accident">
           <img src="/assets/posters/poster-accident.webp" alt="Invitée racontant un accident de moto sur le plateau Neptune">
-          <span class="card-play">▶</span>
+          <span class="card-play" aria-hidden="true">▶</span>
           <span class="media-card-copy"><span class="media-card-meta"><span>Hors Norme</span><span>20 s</span></span><h3>Un accident de moto met fin à son entreprise.</h3><p>Une scène vécue qui donne immédiatement du poids au récit.</p></span>
         </button>
         <button class="media-card" type="button"
@@ -123,7 +131,7 @@
           data-video-title="Le secret d'un storytelling qui ne sonne pas faux"
           data-track="clip_storytelling">
           <img src="/assets/posters/poster-storytelling.webp" alt="Échange sur le storytelling pendant une émission Neptune">
-          <span class="card-play">▶</span>
+          <span class="card-play" aria-hidden="true">▶</span>
           <span class="media-card-copy"><span class="media-card-meta"><span>Éditorial</span><span>19 s</span></span><h3>Le storytelling utile ne s'invente pas.</h3><p>Il part du vécu, des décisions et de ce que le public doit comprendre.</p></span>
         </button>
         <button class="media-card" type="button"
@@ -132,7 +140,7 @@
           data-video-title="L'humain avant le business"
           data-track="clip_humain">
           <img src="/assets/posters/poster-humain.webp" alt="Entrepreneure expliquant la place de l'humain dans le business">
-          <span class="card-play">▶</span>
+          <span class="card-play" aria-hidden="true">▶</span>
           <span class="media-card-copy"><span class="media-card-meta"><span>Interview</span><span>19 s</span></span><h3>L'humain avant le business.</h3><p>Une conviction claire, formulée dans une conversation naturelle.</p></span>
         </button>
         <button class="media-card" type="button"
@@ -141,7 +149,7 @@
           data-video-title="Filmer chez soi ? Laissez tomber."
           data-track="clip_video_pro">
           <img src="/assets/posters/poster-video-pro.webp" alt="Dirigeant expliquant pourquoi une vidéo professionnelle est plus stratégique">
-          <span class="card-play">▶</span>
+          <span class="card-play" aria-hidden="true">▶</span>
           <span class="media-card-copy"><span class="media-card-meta"><span>Connexio</span><span>57 s</span></span><h3>Filmer chez soi ? Laissez tomber.</h3><p>Une prise de position directe qui transforme le plateau en démonstration.</p></span>
         </button>
       </div>
@@ -162,8 +170,7 @@
             <h3>Hors Norme</h3>
             <p>Une émission qui remonte au problème d'origine, aux moments de rupture et aux vérités qui expliquent pourquoi votre entreprise compte.</p>
             <div class="format-card-actions">
-              <a class="btn btn-dark" href="#formats">Découvrir Hors Norme</a>
-              <a class="btn btn-secondary" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Voir l'offre officielle</a>
+              <a class="btn btn-dark" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Découvrir et réserver Hors Norme</a>
             </div>
           </div>
         </article>
@@ -174,8 +181,7 @@
             <h3>Concept Libre</h3>
             <p>Un cadre construit autour de votre objectif : conversation, duo, démonstration, jeu, lancement ou série de marque.</p>
             <div class="format-card-actions">
-              <a class="btn btn-dark" href="#formats">Découvrir Concept Libre</a>
-              <a class="btn btn-secondary" data-funnel data-format="libre" data-track="home_libre_reservation" href="https://media.neptunebusiness.com/">Voir l'offre officielle</a>
+              <a class="btn btn-dark" data-funnel data-format="libre" data-track="home_libre_reservation" href="https://media.neptunebusiness.com/">Découvrir et réserver Concept Libre</a>
             </div>
           </div>
         </article>
@@ -218,10 +224,22 @@
     <div class="container faq-layout">
       <div class="faq-intro"><span class="eyebrow">Questions fréquentes</span><h2>Avant de passer à l'antenne.</h2><p>Les tarifs, conditions et créneaux en vigueur restent centralisés sur l'espace officiel de réservation.</p></div>
       <div class="faq-list">
-        <article class="faq-item" data-faq><button type="button" aria-expanded="false"><span>Dois-je être à l'aise face caméra ?</span><span>+</span></button><div class="faq-answer"><div><p>Non. La préparation et la conduite de l'interview servent précisément à éviter la récitation et à sécuriser votre prise de parole.</p></div></div></article>
-        <article class="faq-item" data-faq><button type="button" aria-expanded="false"><span>Quelle différence entre Hors Norme et Concept Libre ?</span><span>+</span></button><div class="faq-answer"><div><p>Hors Norme révèle l'histoire et la tension humaine derrière votre entreprise. Concept Libre adapte le dispositif à un objectif ou à un univers particulier.</p></div></div></article>
-        <article class="faq-item" data-faq><button type="button" aria-expanded="false"><span>Les vidéos visibles sur ce site sont-elles réelles ?</span><span>+</span></button><div class="faq-answer"><div><p>Oui. Les extraits et images utilisés sur cette version proviennent de tournages Neptune Media et remplacent les anciens visuels génériques.</p></div></div></article>
-        <article class="faq-item" data-faq><button type="button" aria-expanded="false"><span>Où consulter le tarif et réserver ?</span><span>+</span></button><div class="faq-answer"><div><p>La Web TV explique et prouve. Le tunnel officiel media.neptunebusiness.com centralise l'offre disponible, les conditions et la réservation.</p></div></div></article>
+        <article class="faq-item" data-faq>
+          <button id="faq-button-1" type="button" aria-expanded="false" aria-controls="faq-answer-1"><span>Dois-je être à l'aise face caméra ?</span><span aria-hidden="true">+</span></button>
+          <div id="faq-answer-1" class="faq-answer" role="region" aria-labelledby="faq-button-1" hidden><div><p>Non. La préparation et la conduite de l'interview servent précisément à éviter la récitation et à sécuriser votre prise de parole.</p></div></div>
+        </article>
+        <article class="faq-item" data-faq>
+          <button id="faq-button-2" type="button" aria-expanded="false" aria-controls="faq-answer-2"><span>Quelle différence entre Hors Norme et Concept Libre ?</span><span aria-hidden="true">+</span></button>
+          <div id="faq-answer-2" class="faq-answer" role="region" aria-labelledby="faq-button-2" hidden><div><p>Hors Norme révèle l'histoire et la tension humaine derrière votre entreprise. Concept Libre adapte le dispositif à un objectif ou à un univers particulier.</p></div></div>
+        </article>
+        <article class="faq-item" data-faq>
+          <button id="faq-button-3" type="button" aria-expanded="false" aria-controls="faq-answer-3"><span>Les vidéos visibles sur ce site sont-elles réelles ?</span><span aria-hidden="true">+</span></button>
+          <div id="faq-answer-3" class="faq-answer" role="region" aria-labelledby="faq-button-3" hidden><div><p>Oui. Les extraits et images utilisés sur cette version proviennent de tournages Neptune Media et remplacent les anciens visuels génériques.</p></div></div>
+        </article>
+        <article class="faq-item" data-faq>
+          <button id="faq-button-4" type="button" aria-expanded="false" aria-controls="faq-answer-4"><span>Où consulter le tarif et réserver ?</span><span aria-hidden="true">+</span></button>
+          <div id="faq-answer-4" class="faq-answer" role="region" aria-labelledby="faq-button-4" hidden><div><p>La Web TV explique et prouve. Le tunnel officiel media.neptunebusiness.com centralise l'offre disponible, les conditions et la réservation.</p></div></div>
+        </article>
       </div>
     </div>
   </section>
@@ -250,13 +268,20 @@
   </div>
 </footer>
 
-<div class="video-modal" data-video-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
-  <div class="modal-frame">
+<div class="video-modal" data-video-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+  <div class="modal-frame" role="document">
     <button class="modal-close" type="button" data-video-close aria-label="Fermer la vidéo">×</button>
-    <span class="modal-ad-label" id="modalAdLabel" hidden>PUBLICITÉ</span><button class="modal-skip" id="modalSkip" hidden>Passer dans <span>5</span>s</button><video controls playsinline preload="metadata"></video>
-    <p class="modal-caption" data-video-title>Extrait Neptune Media</p>
+    <span class="modal-ad-label" id="modalAdLabel" hidden>PUBLICITÉ</span>
+    <button class="modal-skip" id="modalSkip" type="button" hidden>Passer dans <span>5</span>s</button>
+    <video controls playsinline preload="metadata" aria-describedby="video-modal-help captionNotice"></video>
+    <p class="modal-caption" id="video-modal-title" data-video-title>Extrait Neptune Media</p>
+    <p id="video-modal-help" class="sr-only">Utilisez les contrôles natifs du lecteur. Appuyez sur Échap pour fermer la fenêtre.</p>
+    <div id="mediaError" class="media-error" role="alert" hidden><span data-error-text></span><br><button id="mediaRetry" type="button">Réessayer la lecture</button></div>
+    <p id="captionNotice" class="caption-notice" role="status">Vérification des sous-titres…</p>
+    <details id="transcriptPanel" class="transcript-panel" hidden><summary>Lire la transcription</summary><p id="transcriptText"></p></details>
   </div>
 </div>
 <script src="/app.js"></script>
+<script src="/accessibility.js"></script>
 </body>
 </html>

@@ -58,6 +58,7 @@
       state.ads = data.ads || [];
       renderHero();
       renderCatalog();
+      window.dispatchEvent(new CustomEvent('neptune:catalog-ready', { detail: { count: state.episodes.length } }));
       state.episodes.forEach((episode) => track('impression', { episodeId: episode.id }));
       const deepLink = new URLSearchParams(location.search).get('episode');
       if (deepLink) {
@@ -67,6 +68,7 @@
     } catch (error) {
       console.error(error);
       bindFallbackVideos();
+      window.dispatchEvent(new CustomEvent('neptune:catalog-error'));
     }
   }
 
@@ -82,7 +84,7 @@
       heroSource.src = episode.videoUrl;
       heroVideo.poster = episode.posterUrl || '/assets/posters/poster-neptune-media.webp';
       heroVideo.load();
-      heroVideo.play().catch(() => {});
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.play().catch(() => {});
     }
     if (heroTitle) heroTitle.textContent = episode.title;
     if (heroPlay) {
@@ -103,7 +105,7 @@
     grid.innerHTML = state.episodes.map((episode) => `
       <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}">
         <img loading="lazy" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
-        <span class="card-play">▶</span>
+        <span class="card-play" aria-hidden="true">▶</span>
         <span class="media-card-copy">
           <span class="media-card-meta"><span>${escapeHtml(programName(episode.programId))}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
           <h3>${escapeHtml(episode.title)}</h3>
@@ -130,6 +132,8 @@
           description: '',
           videoUrl: trigger.dataset.videoSrc,
           posterUrl: trigger.dataset.videoPoster || '',
+          captionsUrl: trigger.dataset.captionsSrc || '',
+          transcript: trigger.dataset.transcript || '',
           programId: '',
         };
         openEpisode(episode, trigger);
@@ -207,6 +211,7 @@
     if (preroll?.assetUrl) startAd(preroll);
     else startContent();
     closeButton?.focus();
+    window.dispatchEvent(new CustomEvent('neptune:episode-opened', { detail: { episode } }));
   }
 
   function closeVideo() {
