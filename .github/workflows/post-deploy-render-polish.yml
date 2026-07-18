@@ -99,8 +99,8 @@ jobs:
           grep -q 'live-page-immediate' /tmp/direct.html
           grep -q 'Émissions complètes' /tmp/emissions.html
           grep -q 'seo-grid-shorts' /tmp/emissions.html
-          grep -q 'data:image/webp;base64' /tmp/dark.svg
-          grep -q 'data:image/webp;base64' /tmp/light.svg
+          grep -q 'studio-wide.webp' /tmp/dark.svg
+          grep -q 'concept-libre-wide.webp' /tmp/light.svg
           grep -q '"ok":true' /tmp/health.json
 
           grep -Eqi '^cache-control:.*no-store' /tmp/studio.headers
