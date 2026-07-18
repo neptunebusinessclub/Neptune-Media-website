@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/apply-render-polish.py
-      - scripts/apply-render-polish-v5.py
-      - scripts/apply-render-polish-v6.py
       - scripts/apply-render-polish-v7.py
       - .github/workflows/persist-render-polish-source.yml
   workflow_dispatch:
@@ -27,11 +24,8 @@ jobs:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - name: Apply polish and validate JavaScript
+      - name: Apply media fix and validate JavaScript
         run: |
-          python3 scripts/apply-render-polish.py
-          python3 scripts/apply-render-polish-v5.py
-          python3 scripts/apply-render-polish-v6.py
           python3 scripts/apply-render-polish-v7.py
           cd neptune-tv-media-cloudflare
           npm run check
@@ -52,15 +46,13 @@ jobs:
             neptune-tv-media-cloudflare/src/public-render.js \
             neptune-tv-media-cloudflare/src/public-router.js
           if git diff --cached --quiet; then
-            echo "Render polish v7 source already persisted."
+            echo "Media fix v7 source already persisted."
             exit 0
           fi
           git commit -m "feat: persist Neptune media render fix v7 [skip ci]"
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main
-            if git push origin HEAD:main; then
-              exit 0
-            fi
+            if git push origin HEAD:main; then exit 0; fi
             sleep 3
           done
           exit 1
