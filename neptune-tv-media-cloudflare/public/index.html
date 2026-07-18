@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Neptune Media TV — Émissions business et studio éditorial pour dirigeants</title>
-  <meta name="description" content="Regardez des histoires d’entreprise réelles et découvrez comment Neptune Media transforme la parole des dirigeants en émissions, extraits et contenus prêts à être diffusés.">
+  <meta name="description" content="Regardez des histoires d’entreprise réelles et découvrez comment Neptune Media transforme la parole des dirigeants en émissions et contenus prêts à diffuser.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-video-preview:-1,max-snippet:-1">
   <link rel="canonical" href="https://tv.neptunebusiness.com/">
   <meta property="og:type" content="website">
@@ -14,11 +14,12 @@
   <meta property="og:image" content="https://tv.neptunebusiness.com/assets/posters/studio-wide.webp">
   <meta name="theme-color" content="#020611">
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="preload" href="/assets/posters/poster-neptune-media.webp" as="image">
+  <link rel="preload" href="/assets/posters/poster-neptune-media.webp" as="image" fetchpriority="high">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/styles/home-structure.css">
   <link rel="stylesheet" href="/styles/accessibility.css">
   <link rel="stylesheet" href="/styles/ux-aida.css">
+  <link rel="stylesheet" href="/styles/neptune-streaming.css">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -30,23 +31,20 @@
   }
   </script>
 </head>
-<body data-a11y-version="2026-07-18" data-home-structure="aida-v2">
+<body data-a11y-version="2026-07-18" data-home-structure="streaming-aida-v3" data-density="marketing">
 <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="Neptune Media TV, accueil"><img src="/assets/logo-neptune.svg" alt="Neptune Media"></a>
     <nav id="primary-navigation" class="nav" data-nav aria-label="Navigation principale">
-      <a href="#a-voir">Regarder</a>
-      <a href="/emissions/">Émissions</a>
       <a href="/direct/">Direct</a>
-      <a href="#probleme">Pourquoi Neptune</a>
+      <a href="/emissions/">Émissions</a>
       <a href="#formats">Formats</a>
-      <a href="#questions">Questions</a>
-      <a class="nav-cta" data-funnel data-track="mobile_reservation" href="https://media.neptunebusiness.com/">Devenir invité</a>
+      <a href="/espace-client/">Espace client</a>
+      <a class="nav-cta" data-funnel data-track="mobile_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-secondary" href="/espace-client/">Espace client</a>
-      <a class="btn btn-primary" data-funnel data-track="header_reservation" href="https://media.neptunebusiness.com/">Devenir invité</a>
+      <a class="btn btn-primary" data-funnel data-track="header_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a>
       <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle><span aria-hidden="true"></span></button>
     </div>
   </div>
@@ -58,38 +56,27 @@
       <div class="hero-copy">
         <span class="aida-signal">Web TV business · Histoires réelles</span>
         <h1>Votre expertise mérite d’être vue. <span class="gradient-text">Pas noyée dans le fil.</span></h1>
-        <p class="hero-subtitle">Regardez des dirigeants raconter ce qui a réellement façonné leur entreprise. Puis transformez votre propre histoire en émission et en contenus prêts à diffuser.</p>
-        <div class="hero-actions">
-          <a class="btn btn-dark" href="#a-voir">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.7v6.6l5-3.3-5-3.3Z" fill="currentColor"/></svg>
-            Regarder maintenant
-          </a>
-          <a class="btn btn-secondary" data-funnel data-track="hero_guest" href="https://media.neptunebusiness.com/">Faire produire mon émission</a>
+        <p class="hero-subtitle">Regardez des dirigeants raconter ce qui a façonné leur entreprise. Puis découvrez comment votre propre parole peut devenir une émission et des contenus prêts à diffuser.</p>
+        <div class="hero-meta" aria-label="Informations clés">
+          <span>Dirigeants et experts</span><span>Émission + moments forts</span><span>Plateau réel</span>
         </div>
-        <div class="hero-proof" aria-label="Éléments de confiance">
-          <span class="proof-chip">Extraits réels</span>
-          <span class="proof-chip">Plateau réel</span>
-          <span class="proof-chip">Parcours client dédié</span>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#a-voir"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.7v6.6l5-3.3-5-3.3Z" fill="currentColor"/></svg>Regarder maintenant</a>
+          <a class="btn btn-secondary" href="#formats">Découvrir les formats</a>
         </div>
       </div>
       <div class="hero-media-wrap">
         <div class="hero-glow" aria-hidden="true"></div>
-        <article class="hero-media">
-          <video id="heroPreview" data-autoplay muted loop playsinline preload="metadata" poster="/assets/posters/poster-neptune-media.webp" aria-hidden="true" tabindex="-1">
-            <source id="heroPreviewSource" src="/assets/media/neptune-media-mis-en-lumiere.mp4" type="video/mp4">
+        <article class="hero-media" data-loading="true">
+          <video id="heroPreview" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/poster-neptune-media.webp" aria-hidden="true" tabindex="-1">
+            <source id="heroPreviewSource" data-src="/assets/media/neptune-media-mis-en-lumiere.mp4" type="video/mp4">
           </video>
           <div class="hero-media-top"><span class="live-label">À la une</span><span class="real-label">Extrait réel</span></div>
-          <button class="motion-toggle" id="heroMotionToggle" type="button" aria-pressed="false">Mettre l’aperçu en pause</button>
+          <button class="motion-toggle" id="heroMotionToggle" type="button" aria-pressed="false">Lancer l’aperçu</button>
           <div class="hero-media-copy">
-            <small>Connexio · Neptune Media</small>
+            <small>Connexio · 44 s</small>
             <h2 id="heroEpisodeTitle">Votre entrepreneuriat mis en lumière</h2>
-            <button class="video-trigger" id="heroPlay" type="button"
-              data-video-src="/assets/media/neptune-media-mis-en-lumiere.mp4"
-              data-video-poster="/assets/posters/poster-neptune-media.webp"
-              data-video-title="Neptune Media — Votre entrepreneuriat mis en lumière"
-              data-track="hero_video_play">
-              <span class="play-dot" aria-hidden="true">▶</span> Voir l’extrait · 44 s
-            </button>
+            <button class="video-trigger" id="heroPlay" type="button" data-video-src="/assets/media/neptune-media-mis-en-lumiere.mp4" data-video-poster="/assets/posters/poster-neptune-media.webp" data-video-title="Neptune Media — Votre entrepreneuriat mis en lumière" data-track="hero_video_play"><span class="play-dot" aria-hidden="true">▶</span> Regarder l’extrait</button>
           </div>
         </article>
       </div>
@@ -105,17 +92,26 @@
   <section class="section" id="a-voir" data-aida-stage="attention">
     <div class="container">
       <div class="section-head">
-        <div><span class="eyebrow">À regarder maintenant</span><h2>Jugez le résultat avant de réserver.</h2></div>
-        <p>Choisissez un extrait. Le niveau éditorial et visuel se voit immédiatement.</p>
+        <div><span class="eyebrow">À regarder</span><h2>Le contenu est la preuve.</h2></div>
+        <p>Reprenez, rejoignez le direct ou choisissez une nouveauté.</p>
       </div>
-      <article class="continue-card" id="continueWatching" hidden>
-        <img src="/assets/posters/default.svg" alt="">
-        <div><small>Continuer à regarder</small><strong data-continue-title></strong><span data-continue-time></span></div>
-        <button class="btn btn-secondary" type="button" data-continue-open>Reprendre</button>
-      </article>
+
+      <div class="home-streaming-stack">
+        <article class="continue-card" id="continueWatching" hidden>
+          <img src="/assets/posters/default.svg" alt="">
+          <div><small>Continuer à regarder</small><strong data-continue-title></strong><span data-continue-time></span></div>
+          <button class="btn btn-secondary" type="button" data-continue-open>Reprendre</button>
+        </article>
+        <article class="live-now-card">
+          <div class="live-now-visual"><img src="/assets/posters/studio-wide.webp" alt="Plateau Neptune Media" loading="lazy" decoding="async"><span class="live-now-badge">En direct</span></div>
+          <div class="live-now-copy"><small>Programme continu</small><h3>Neptune Media à l’antenne.</h3><p>Rejoignez la diffusion en cours ou choisissez une émission à la demande.</p></div>
+          <a class="btn btn-primary" href="/direct/">Voir le direct</a>
+        </article>
+      </div>
+
       <div class="media-discovery">
         <form class="media-search" role="search" data-media-search>
-          <label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet"></label>
+          <label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label>
           <button class="btn btn-secondary" type="button" data-search-reset>Effacer</button>
         </form>
         <div class="media-filter-row" aria-label="Filtrer les émissions">
@@ -126,59 +122,54 @@
         </div>
         <p id="mediaResultsCount" class="media-results" aria-live="polite"></p>
       </div>
-      <p id="catalogStatus" class="sr-only" role="status" aria-live="polite"></p>
-      <div id="catalogError" class="catalog-error" role="alert" hidden>Le catalogue n’a pas pu être chargé. <button id="catalogRetry" type="button">Réessayer</button></div>
-      <div class="video-grid" id="dynamicCatalog" aria-busy="true">
-        <button class="media-card" type="button" data-video-src="/assets/media/accident-moto-entreprise.mp4" data-video-poster="/assets/posters/poster-accident.webp" data-video-title="Un accident de moto met fin à son entreprise" data-track="clip_accident">
-          <img src="/assets/posters/poster-accident.webp" alt="Invitée racontant un accident de moto sur le plateau Neptune"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Hors Norme</span><span>20 s</span></span><h3>Un accident de moto met fin à son entreprise.</h3></span>
-        </button>
-        <button class="media-card" type="button" data-video-src="/assets/media/storytelling-efficace.mp4" data-video-poster="/assets/posters/poster-storytelling.webp" data-video-title="Le secret d’un storytelling qui ne sonne pas faux" data-track="clip_storytelling">
-          <img src="/assets/posters/poster-storytelling.webp" alt="Échange sur le storytelling pendant une émission Neptune"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Éditorial</span><span>19 s</span></span><h3>Le storytelling utile ne s’invente pas.</h3></span>
-        </button>
-        <button class="media-card" type="button" data-video-src="/assets/media/humain-avant-business.mp4" data-video-poster="/assets/posters/poster-humain.webp" data-video-title="L’humain avant le business" data-track="clip_humain">
-          <img src="/assets/posters/poster-humain.webp" alt="Entrepreneure expliquant la place de l’humain dans le business"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Interview</span><span>19 s</span></span><h3>L’humain avant le business.</h3></span>
-        </button>
-        <button class="media-card" type="button" data-video-src="/assets/media/solution-video-pro.mp4" data-video-poster="/assets/posters/poster-video-pro.webp" data-video-title="Filmer chez soi ? Laissez tomber." data-track="clip_video_pro">
-          <img src="/assets/posters/poster-video-pro.webp" alt="Dirigeant expliquant pourquoi une vidéo professionnelle est plus stratégique"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Connexio</span><span>57 s</span></span><h3>Filmer chez soi ? Laissez tomber.</h3></span>
-        </button>
+
+      <div class="content-rail-shell" data-content-rail>
+        <div class="content-rail-head">
+          <h3>Nouveautés</h3>
+          <div class="content-rail-controls" aria-label="Faire défiler les nouveautés">
+            <button class="rail-control" type="button" data-rail-prev aria-label="Émissions précédentes">←</button>
+            <button class="rail-control" type="button" data-rail-next aria-label="Émissions suivantes">→</button>
+          </div>
+        </div>
+        <p id="catalogStatus" class="sr-only" role="status" aria-live="polite"></p>
+        <div id="catalogError" class="catalog-error" role="alert" hidden>Le catalogue n’a pas pu être chargé. <button id="catalogRetry" type="button">Réessayer</button></div>
+        <div class="video-grid" id="dynamicCatalog" aria-busy="true">
+          <button class="media-card" type="button" data-video-src="/assets/media/accident-moto-entreprise.mp4" data-video-poster="/assets/posters/poster-accident.webp" data-video-title="Un accident de moto met fin à son entreprise" data-track="clip_accident"><img src="/assets/posters/poster-accident.webp" alt="Invitée racontant un accident de moto sur le plateau Neptune" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Hors Norme</span><span>20 s</span></span><h3>Un accident de moto met fin à son entreprise.</h3></span></button>
+          <button class="media-card" type="button" data-video-src="/assets/media/storytelling-efficace.mp4" data-video-poster="/assets/posters/poster-storytelling.webp" data-video-title="Le secret d’un storytelling qui ne sonne pas faux" data-track="clip_storytelling"><img src="/assets/posters/poster-storytelling.webp" alt="Échange sur le storytelling pendant une émission Neptune" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Éditorial</span><span>19 s</span></span><h3>Le storytelling utile ne s’invente pas.</h3></span></button>
+          <button class="media-card" type="button" data-video-src="/assets/media/humain-avant-business.mp4" data-video-poster="/assets/posters/poster-humain.webp" data-video-title="L’humain avant le business" data-track="clip_humain"><img src="/assets/posters/poster-humain.webp" alt="Entrepreneure expliquant la place de l’humain dans le business" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Interview</span><span>19 s</span></span><h3>L’humain avant le business.</h3></span></button>
+          <button class="media-card" type="button" data-video-src="/assets/media/solution-video-pro.mp4" data-video-poster="/assets/posters/poster-video-pro.webp" data-video-title="Filmer chez soi ? Laissez tomber." data-track="clip_video_pro"><img src="/assets/posters/poster-video-pro.webp" alt="Dirigeant expliquant pourquoi une vidéo professionnelle est plus stratégique" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Connexio</span><span>57 s</span></span><h3>Filmer chez soi ? Laissez tomber.</h3></span></button>
+        </div>
       </div>
-      <div class="editorial-actions"><p>Explorez librement la chaîne.</p><div class="hero-actions"><a class="btn btn-secondary" href="/emissions/">Toutes les émissions</a><a class="btn btn-dark" href="/direct/">Regarder le direct</a></div></div>
+      <div class="editorial-actions"><p>Tout le catalogue reste disponible sur la page Émissions.</p><a class="btn btn-secondary" href="/emissions/">Voir toutes les émissions</a></div>
     </div>
   </section>
 
   <section class="interest-section" id="probleme" data-aida-stage="interest">
     <div class="container interest-grid">
-      <div class="interest-copy">
-        <span class="eyebrow">Le problème n’est pas votre potentiel</span>
-        <h2>Visible, sans devenir vidéaste.</h2>
-        <p>Votre audience est en ligne. Votre vrai métier est ailleurs.</p>
-      </div>
+      <div class="interest-copy"><span class="eyebrow">Le problème</span><h2>Visible, sans devenir vidéaste.</h2><p>Votre audience est en ligne. Votre vrai métier est ailleurs.</p></div>
       <article class="hook-scene">
         <p class="hook-lead">Vous recommencez la prise pour la sixième fois.</p>
-        <p>Le téléphone tient contre une pile de livres. La lumière vous donne mauvaise mine. Votre lancement approche, mais vous repoussez encore la publication.</p>
+        <p>Le téléphone tient contre une pile de livres. Votre lancement approche, mais vous repoussez encore la publication.</p>
         <p class="hook-beat">Pas par manque d’ambition. Par manque de temps.</p>
         <p>Vous avez une entreprise à faire tourner. Pas des heures à filmer, monter et publier.</p>
-        <details><summary>Lire la scène complète</summary><p>Vous savez que sans contenu votre nouvelle offre peut passer inaperçue. Vous avez peut-être déjà testé un freelance ou une agence : le rendu était propre, mais votre crédibilité n’a pas vraiment décollé. Le potentiel est là. L’expertise aussi. Ce qui manque, ce n’est pas une autre vidéo. C’est une manière de devenir visible sans devenir vidéaste chaque jour.</p></details>
+        <details><summary>Lire la scène complète</summary><p>Sans contenu, votre offre peut passer inaperçue. Vous avez peut-être déjà testé un freelance ou une agence : le rendu était propre, mais votre crédibilité n’a pas vraiment décollé. Le potentiel est là. L’expertise aussi. Ce qui manque, c’est une manière de devenir visible sans devenir vidéaste chaque jour.</p></details>
       </article>
     </div>
   </section>
 
   <section class="desire-section" id="solution" data-aida-stage="desire">
     <div class="container">
-      <div class="desire-hero">
-        <div><span class="eyebrow">La transformation Neptune</span><h2>Une prise de parole. Plusieurs occasions d’être vu.</h2></div>
-        <p>Neptune réunit l’angle, la préparation, le plateau, l’interview et la production. Vous restez concentré sur votre entreprise.</p>
-      </div>
+      <div class="desire-hero"><div><span class="eyebrow">La transformation</span><h2>Une prise de parole. Plusieurs occasions d’être vu.</h2></div><p>Neptune réunit l’angle, la préparation, le plateau, l’interview et la production.</p></div>
       <div class="outcome-grid">
-        <article class="outcome-card"><span>01</span><h3>Un message clair</h3><p>Vous savez quoi raconter sans réciter un texte.</p></article>
-        <article class="outcome-card"><span>02</span><h3>Une crédibilité visible</h3><p>Votre image rejoint enfin le niveau de votre expertise.</p></article>
-        <article class="outcome-card"><span>03</span><h3>Des contenus réutilisables</h3><p>Les moments forts prolongent la portée du tournage.</p></article>
+        <article class="outcome-card"><span>01</span><h3>Un message clair</h3><p>Vous savez quoi raconter sans réciter.</p></article>
+        <article class="outcome-card"><span>02</span><h3>Une crédibilité visible</h3><p>Votre image rejoint le niveau de votre expertise.</p></article>
+        <article class="outcome-card"><span>03</span><h3>Des contenus réutilisables</h3><p>Les moments forts prolongent le tournage.</p></article>
       </div>
       <details class="compact-details"><summary>Voir ce qui est pris en charge</summary><div><p><strong>Avant :</strong> angle et préparation.</p><p><strong>Pendant :</strong> plateau, conduite et réalisation.</p><p><strong>Après :</strong> production, suivi et fichiers selon l’offre.</p></div></details>
       <div class="proof-compact" aria-label="Preuves réelles">
-        <article><img src="/assets/posters/studio-wide.webp" alt="Vue réelle du plateau Neptune Media"><div><small>Plateau réel</small><h3>Jugez l’environnement avant de réserver.</h3></div></article>
-        <article><img src="/assets/posters/poster-accident.webp" alt="Extrait Hors Norme"><div><small>Histoire vécue</small><h3>Une vraie scène crée l’attention.</h3></div></article>
-        <article><img src="/assets/posters/poster-storytelling.webp" alt="Échange éditorial Neptune"><div><small>Expertise incarnée</small><h3>Une conviction devient mémorable.</h3></div></article>
+        <article><img src="/assets/posters/studio-wide.webp" alt="Vue réelle du plateau Neptune Media" loading="lazy" decoding="async"><div><small>Plateau réel</small><h3>Jugez l’environnement avant de réserver.</h3></div></article>
+        <article><img src="/assets/posters/poster-accident.webp" alt="Extrait Hors Norme" loading="lazy" decoding="async"><div><small>Histoire vécue</small><h3>Une vraie scène crée l’attention.</h3></div></article>
+        <article><img src="/assets/posters/poster-storytelling.webp" alt="Échange éditorial Neptune" loading="lazy" decoding="async"><div><small>Expertise incarnée</small><h3>Une conviction devient mémorable.</h3></div></article>
       </div>
     </div>
   </section>
@@ -187,8 +178,8 @@
     <div class="container">
       <div class="section-head"><div><span class="eyebrow">Deux formats</span><h2>Que doit retenir votre audience ?</h2></div><p>Choisissez l’intention, pas seulement le décor.</p></div>
       <div class="format-grid">
-        <article class="format-card"><img src="/assets/posters/hors-norme-wide.webp" alt="Interview Hors Norme sur le plateau Neptune"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><p>Le problème, le déclic et la vision qui expliquent pourquoi votre entreprise compte.</p><ul class="offer-list"><li>Préparation éditoriale guidée</li><li>Interview narrative multi-caméras</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Choisir Hors Norme</a></div></div></article>
-        <article class="format-card"><img src="/assets/posters/concept-libre-wide.webp" alt="Format Concept Libre sur le plateau Neptune"><div class="format-card-content"><small>Votre objectif</small><h3>Concept Libre</h3><p>Un dispositif construit pour une démonstration, un lancement ou une série de marque.</p><ul class="offer-list"><li>Concept éditorial personnalisé</li><li>Mise en scène adaptable</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="libre" data-track="home_libre_reservation" href="https://media.neptunebusiness.com/">Construire mon concept</a></div></div></article>
+        <article class="format-card"><img src="/assets/posters/hors-norme-wide.webp" alt="Interview Hors Norme sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><p>Le problème, le déclic et la vision qui expliquent pourquoi votre entreprise compte.</p><ul class="offer-list"><li>Préparation éditoriale guidée</li><li>Interview narrative multi-caméras</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div></div></article>
+        <article class="format-card"><img src="/assets/posters/concept-libre-wide.webp" alt="Format Concept Libre sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre objectif</small><h3>Concept Libre</h3><p>Un dispositif construit pour une démonstration, un lancement ou une série de marque.</p><ul class="offer-list"><li>Concept éditorial personnalisé</li><li>Mise en scène adaptable</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="libre" data-track="home_libre_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div></div></article>
       </div>
       <p class="offer-note"><strong>Avant toute confirmation :</strong> l’espace officiel affiche les tarifs, livrables, délais, droits et conditions en vigueur.</p>
     </div>
@@ -203,12 +194,7 @@
         <article><span>03 · TOURNER</span><h3>Une vraie conversation</h3><p>Vous êtes guidé sur le plateau.</p></article>
         <article><span>04 · RECEVOIR</span><h3>Vos contenus</h3><p>Suivi et fichiers dans votre espace.</p></article>
       </div>
-      <div class="trust-bar" id="engagements">
-        <div><b>Offre visible avant l’achat</b><span>Prix et conditions consultables.</span></div>
-        <div><b>Préparation avant caméra</b><span>Vous savez où va la conversation.</span></div>
-        <div><b>Suivi dans votre espace</b><span>Rendez-vous, production et fichiers réunis.</span></div>
-      </div>
-      <div class="editorial-actions"><p>Aucune promesse artificielle de vues : un processus clair et une production réelle.</p><a class="btn btn-primary" data-funnel data-track="journey_availability" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div>
+      <div class="trust-bar" id="engagements"><div><b>Offre visible avant l’achat</b><span>Prix et conditions consultables.</span></div><div><b>Préparation avant caméra</b><span>Vous savez où va la conversation.</span></div><div><b>Suivi dans votre espace</b><span>Rendez-vous, production et fichiers réunis.</span></div></div>
     </div>
   </section>
 
@@ -226,12 +212,10 @@
 
   <section class="cta-section aida-action" data-aida-stage="action">
     <div class="container cta-card">
-      <span class="eyebrow">À vous de choisir</span>
-      <h2>Regarder une histoire. Ou commencer la vôtre.</h2>
-      <div class="dual-cta">
-        <article class="dual-cta-card"><small>Je viens regarder</small><h3>Explorer Neptune TV.</h3><p>Émissions, histoires et expertises à la demande.</p><a class="btn btn-dark" href="/emissions/">Voir les émissions</a></article>
-        <article class="dual-cta-card"><small>Je veux être visible</small><h3>Passer à l’antenne.</h3><p>Consultez l’offre et les créneaux avant de réserver.</p><a class="btn btn-primary" data-funnel data-track="final_reservation" href="https://media.neptunebusiness.com/">Devenir invité Neptune</a></article>
-      </div>
+      <span class="eyebrow">Passer à l’action</span>
+      <h2>Votre histoire peut prendre l’antenne.</h2>
+      <p>Consultez les formats, les tarifs et les créneaux avant toute confirmation.</p>
+      <div class="cta-actions"><a class="btn btn-primary" data-funnel data-track="final_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a><a class="btn btn-secondary" href="/emissions/">Continuer à regarder</a></div>
     </div>
   </section>
 </main>
@@ -239,9 +223,9 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><img src="/assets/logo-neptune.svg" alt="Neptune Media"><p>Web TV business et studio éditorial pour transformer les histoires d’entreprise en émissions que l’on a envie de regarder.</p></div>
-      <div class="footer-col"><h3>Regarder</h3><a href="/emissions/">Émissions</a><a href="/direct/">Direct</a><a href="#a-voir">Extraits</a></div>
-      <div class="footer-col"><h3>Votre parcours</h3><a data-funnel href="https://media.neptunebusiness.com/">Devenir invité</a><a href="/espace-client/">Espace client</a><a href="mailto:contact@neptunebusiness.com">Contact et informations légales</a></div>
+      <div class="footer-brand"><img src="/assets/logo-neptune.svg" alt="Neptune Media"><p>La Web TV des histoires d’entreprise qui méritent l’antenne.</p></div>
+      <div class="footer-col"><h3>Regarder</h3><a href="/emissions/">Émissions</a><a href="/direct/">Direct</a><a href="#a-voir">Nouveautés</a></div>
+      <div class="footer-col"><h3>Votre parcours</h3><a data-funnel href="https://media.neptunebusiness.com/">Voir les créneaux</a><a href="/espace-client/">Espace client</a><a href="mailto:contact@neptunebusiness.com">Contact</a></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Neptune Media.</span><span>Des histoires d’entreprise qui méritent l’antenne.</span></div>
   </div>
