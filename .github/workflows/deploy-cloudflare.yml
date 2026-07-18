@@ -118,6 +118,10 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
+          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/direct/")" = "200"
+          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/emissions/")" = "200"
+          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/video-sitemap.xml")" = "200"
+
           curl --silent --show-error --dump-header /tmp/public-headers.txt --output /dev/null "$PUBLIC_URL/"
           grep -Eiq '^x-content-type-options:[[:space:]]*nosniff' /tmp/public-headers.txt
           grep -Eiq '^content-security-policy:' /tmp/public-headers.txt
