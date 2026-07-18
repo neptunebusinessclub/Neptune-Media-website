@@ -148,11 +148,12 @@ jobs:
           done
           test "$api_ready" = "true"
 
+          smoke_email="portal-smoke-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@example.invalid"
           curl --fail --silent --show-error \
             -X POST "$PUBLIC_URL/api/client/request-code" \
             -H "Origin: $PUBLIC_URL" \
             -H 'Content-Type: application/json' \
-            --data '{"email":"portal-smoke-test@example.invalid"}' \
+            --data "{\"email\":\"$smoke_email\"}" \
             | grep -q '"ok":true'
 
       - name: Record successful production deployment
