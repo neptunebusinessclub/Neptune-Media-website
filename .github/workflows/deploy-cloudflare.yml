@@ -134,10 +134,16 @@ jobs:
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
           grep -q 'id="faq-answer-1"' /tmp/public-home.html
-          grep -q '/styles/neptune-streaming.css?v=7' /tmp/public-home.html
+          grep -q '/styles/neptune-streaming.css?v=9' /tmp/public-home.html
+          grep -q '/home-live.js?v=3' /tmp/public-home.html
+          grep -q '/landing-conversion.js?v=4' /tmp/public-home.html
           grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
           if grep -Eq 'href="https://neptune-media-webtv\.neptunebusinessclub\.workers\.dev[^\"]*"' /tmp/public-home.html; then
             echo 'The public landing page contains a Worker URL where a conversion URL is expected.' >&2
+            exit 1
+          fi
+          if grep -q 'Neptune Media diffuse les émissions programmées' /tmp/public-home.html; then
+            echo 'The obsolete live-section title is still present in production HTML.' >&2
             exit 1
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
@@ -146,12 +152,26 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'shortsCatalog'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'answer.hidden'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q '!isShortEpisode(episode)'
-          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=3" | grep -q 'studio-wide.webp'
-          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=3" | grep -q 'concept-libre-wide.webp'
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'formatLabel'
+          curl --fail --silent --show-error "$PUBLIC_URL/home-live.js?v=3" > /tmp/home-live.js
+          grep -q 'Votre expertise peut passer à l’antenne' /tmp/home-live.js
+          if grep -q '24H/24' /tmp/home-live.js; then
+            echo 'The obsolete 24H/24 claim remains in home-live.js.' >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=4" > /tmp/landing-conversion.js
+          grep -q 'Votre expertise peut passer à l’antenne' /tmp/landing-conversion.js
+          grep -q 'studio-wide.webp' /tmp/landing-conversion.js
+          grep -q 'concept-libre-wide.webp' /tmp/landing-conversion.js
+          if grep -q 'Neptune Media diffuse les émissions programmées' /tmp/landing-conversion.js; then
+            echo 'The obsolete live-section copy remains in landing-conversion.js.' >&2
+            exit 1
+          fi
           curl --fail --silent --show-error "$PUBLIC_URL/live-channel.js" | grep -q 'neptune:live-status'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=7" | grep -q 'Render media fix v7'
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=9" > /tmp/neptune-streaming.css
+          grep -q 'Compact shorts and avatar-first headings v9' /tmp/neptune-streaming.css
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
           grep -q 'live-page-immediate' /tmp/direct.html
           grep -q 'data-live-now' /tmp/direct.html
@@ -165,7 +185,7 @@ jobs:
           grep -q 'Émissions complètes' /tmp/emissions.html
           grep -q 'seo-grid-shorts' /tmp/emissions.html
           grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
-          grep -q '/styles/neptune-streaming.css?v=7' /tmp/emissions.html
+          grep -q '/styles/neptune-streaming.css?v=9' /tmp/emissions.html
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
