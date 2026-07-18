@@ -6,30 +6,33 @@ export function renderDirect(origin, catalog) {
   const description = available
     ? 'Regardez Neptune Media en direct et choisissez à tout moment une émission à la demande.'
     : 'La programmation Neptune Media est en cours de préparation.';
-  const badge = available ? 'EN DIRECT' : 'PROGRAMMATION EN PRÉPARATION';
-  const heading = available ? 'Neptune Media, à l’antenne.' : 'Les prochaines émissions arrivent.';
-  const intro = available
-    ? 'Rejoignez la diffusion en cours ou choisissez une émission du programme.'
-    : 'Le Studio Neptune prépare la prochaine programmation.';
+  const commonHead = `<nav class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Direct</span></nav>`;
+  const body = available
+    ? `<main id="main-content" class="seo-main live-page" tabindex="-1">
+      ${commonHead}
+      <section class="seo-hero live-page-hero"><span class="live-badge"><i></i> EN DIRECT</span><h1>Neptune Media, à l’antenne.</h1><p>Rejoignez la diffusion en cours ou choisissez une émission du programme.</p></section>
+      <section class="live-channel" data-live-channel data-live-available="true">
+        <div class="live-program-status" aria-live="polite"><div><small>Maintenant</small><strong data-live-now>Connexion à l’antenne…</strong></div><div><small>Ensuite</small><strong data-live-next>Calcul du programme…</strong></div></div>
+        <div class="live-stage"><video data-live-video autoplay muted controls playsinline preload="metadata" aria-label="Lecteur du direct Neptune Media"></video><div class="live-overlay"><div><span data-live-program>NEPTUNE MEDIA</span><strong data-live-title>Chargement de l’antenne…</strong></div><button type="button" data-live-sound>Activer le son</button></div></div>
+        <aside class="live-guide"><div class="live-guide-head"><div><span class="eyebrow">Programme</span><h2>À l’antenne</h2></div><button type="button" class="btn btn-secondary" data-live-resync>Reprendre le direct</button></div><div data-live-playlist></div></aside>
+      </section>
+      <section class="related"><span class="eyebrow">À la demande</span><h2>Choisir une émission</h2><div class="seo-grid">${cards(origin, catalog, live)}</div></section>
+    </main><script type="module" src="/live-channel.js?v=2"></script>`
+    : `<main id="main-content" class="seo-main live-page" tabindex="-1">
+      ${commonHead}
+      <section class="seo-hero live-page-hero"><span class="live-badge is-offline">PROGRAMMATION EN PRÉPARATION</span><h1>Les prochaines émissions arrivent.</h1><p>Le Studio Neptune prépare la prochaine programmation.</p></section>
+      <section class="live-empty-panel" data-live-channel data-live-available="false">
+        <div class="live-program-status" aria-live="polite"><div><small>Maintenant</small><strong data-live-now>Aucune émission en cours</strong></div><div><small>Ensuite</small><strong data-live-next>Programmation à venir</strong></div></div>
+        <div class="empty-state"><h2>Regardez déjà les émissions disponibles.</h2><p>Le catalogue reste accessible pendant la préparation du prochain direct.</p><a class="btn btn-primary" href="/emissions/">Voir les émissions</a></div>
+      </section>
+    </main>`;
   return layout({
     origin,
     title: available ? 'Neptune Media en direct — Web TV business' : 'Programmation Neptune Media',
     description,
     canonical: `${origin}/direct/`,
     structuredData: [{ '@context': 'https://schema.org', '@type': 'BroadcastService', name: 'Neptune Media — Direct', description, url: `${origin}/direct/` }],
-    body: `<main id="main-content" class="seo-main live-page" tabindex="-1">
-      <nav class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Direct</span></nav>
-      <section class="seo-hero live-page-hero"><span class="live-badge"><i></i> ${badge}</span><h1>${heading}</h1><p>${intro}</p></section>
-      <section class="live-channel" data-live-channel data-live-available="${available}">
-        <div class="live-program-status" aria-live="polite">
-          <div><small>Maintenant</small><strong data-live-now>${available ? 'Connexion à l’antenne…' : 'Aucune émission en cours'}</strong></div>
-          <div><small>Ensuite</small><strong data-live-next>${available ? 'Calcul du programme…' : 'Programmation à venir'}</strong></div>
-        </div>
-        <div class="live-stage"><video data-live-video ${available ? 'autoplay' : ''} muted controls playsinline preload="metadata" aria-label="Lecteur du direct Neptune Media"></video><div class="live-overlay"><div><span data-live-program>NEPTUNE MEDIA</span><strong data-live-title>${available ? 'Chargement de l’antenne…' : 'Programmation en préparation'}</strong></div><button type="button" data-live-sound ${available ? '' : 'disabled'}>Activer le son</button></div></div>
-        <aside class="live-guide"><div class="live-guide-head"><div><span class="eyebrow">Programme</span><h2>À l’antenne</h2></div><button type="button" class="btn btn-secondary" data-live-resync ${available ? '' : 'disabled'}>Reprendre le direct</button></div><div data-live-playlist>${available ? '' : '<div class="empty-state"><h2>La programmation arrive.</h2><p>Retrouvez déjà les émissions disponibles à la demande.</p><a class="btn btn-primary" href="/emissions/">Voir les émissions</a></div>'}</div></aside>
-      </section>
-      ${available ? `<section class="related"><span class="eyebrow">À la demande</span><h2>Choisir une émission</h2><div class="seo-grid">${cards(origin, catalog, live)}</div></section>` : ''}
-    </main><script type="module" src="/live-channel.js?v=2"></script>`
+    body
   });
 }
 

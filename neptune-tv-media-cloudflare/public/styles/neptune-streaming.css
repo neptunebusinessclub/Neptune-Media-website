@@ -307,3 +307,47 @@ body[data-public-ux="streaming-v3"] .seo-card a:focus-visible { outline: 3px sol
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
 }
+
+
+/* Render polish v4: detail-level hierarchy, state and interaction corrections. */
+[data-home-structure="streaming-aida-v3"] .hero-media { aspect-ratio: 16 / 9; }
+[data-home-structure="streaming-aida-v3"] .hero-actions .btn-primary { box-shadow: 0 12px 30px rgba(32,169,255,.22); }
+[data-loading="true"]::after { animation:none; transform:none; background:linear-gradient(180deg,rgba(0,0,0,.02) 50%,rgba(1,4,12,.67) 100%); }
+[data-loading="true"]::before { content:""; position:absolute; z-index:2; inset:0; pointer-events:none; transform:translateX(-100%); background:linear-gradient(90deg,transparent,rgba(255,255,255,.09),transparent); animation:neptuneSkeleton 1.2s linear infinite; }
+.live-now-badge[data-state="loading"]::before { background:var(--neptune-warning); box-shadow:0 0 12px rgba(255,180,84,.55); }
+.live-now-badge[data-state="offline"]::before { background:#8190a8; box-shadow:none; }
+.live-now-badge[data-state="error"]::before { background:var(--neptune-danger); box-shadow:0 0 12px rgba(255,94,115,.55); }
+.media-discovery { position:static; display:grid; gap:10px; }
+.media-search { min-width:0; }
+.media-empty { margin-top:16px; padding:18px; display:flex; align-items:center; justify-content:space-between; gap:14px; border:1px solid var(--neptune-line); border-radius:var(--neptune-radius-md); background:var(--neptune-surface); }
+.media-empty-inline { margin:0; color:var(--neptune-muted); }
+#dynamicCatalog.video-grid { padding:8px 4px 20px; }
+#dynamicCatalog .media-card .watch-progress { left:0; right:0; bottom:0; height:4px; border-radius:0; }
+body[data-public-ux="streaming-v3"] .seo-card .watch-progress { left:14px; right:14px; bottom:8px; height:3px; border-radius:99px; }
+.hook-scene summary,.compact-details summary,.transcript summary { min-height:44px; display:inline-flex; align-items:center; }
+.footer-col a { min-height:32px; display:flex; align-items:center; }
+.breadcrumbs a { min-height:32px; display:inline-flex; align-items:center; }
+.program-pills a { min-height:44px; }
+body[data-public-ux="streaming-v3"] .seo-hero { max-width:880px; padding:32px 0 40px; }
+body[data-public-ux="streaming-v3"] .seo-hero h1,
+body[data-public-ux="streaming-v3"] .info-page h1,
+body[data-public-ux="streaming-v3"] .episode-copy h1 { font-size:clamp(2.7rem,5.4vw,4.8rem); line-height:.95; }
+.format-card { min-height:520px; }
+.live-overlay { bottom:48px; padding:42px 24px 14px; }
+.live-empty-panel { display:grid; gap:16px; }
+.live-empty-panel .empty-state { background:var(--neptune-surface); }
+.live-badge.is-offline { color:#c8d2e2; }
+@media (min-width:900px) {
+  .media-discovery { position:sticky; top:82px; grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr) auto; align-items:center; padding:8px; }
+  .media-discovery .media-results { justify-self:end; white-space:nowrap; }
+}
+@media (min-width:941px) and (max-width:1080px) {
+  [data-home-structure="streaming-aida-v3"] .hero-grid { grid-template-columns:minmax(0,4fr) minmax(380px,6fr); }
+}
+@media (max-width:760px) {
+  [data-home-structure="streaming-aida-v3"] .hero-media { aspect-ratio:16 / 9; }
+  .format-card { min-height:440px; }
+  .media-empty { align-items:stretch; flex-direction:column; }
+  .media-empty .btn { width:100%; }
+  .live-overlay { bottom:46px; padding:32px 16px 12px; }
+}

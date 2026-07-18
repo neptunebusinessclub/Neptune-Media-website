@@ -52,44 +52,54 @@
   function homeSearch(force = false) {
     const form = q('[data-media-search]');
     const grid = q('#dynamicCatalog');
-    if (!form || !grid || (form.dataset.bound && !force)) return;
+    if (!form || !grid) return;
+    if (form.dataset.bound) {
+      if (force) form.dispatchEvent(new CustomEvent('neptune:search-refresh'));
+      return;
+    }
     form.dataset.bound = '1';
     const input = q('input[type="search"]', form);
     const count = q('#mediaResultsCount');
     const filters = qa('[data-media-filter]');
+    const reset = q('[data-search-reset]', form);
+    const empty = q('#mediaEmpty');
     let selected = filters.find((item) => item.getAttribute('aria-pressed') === 'true')?.dataset.mediaFilter || 'all';
 
     const apply = () => {
       const needle = normal(input?.value);
       let visible = 0;
       qa('.media-card', grid).forEach((card) => {
-        const text = normal(card.textContent);
-        const show = (!needle || text.includes(needle)) && (selected === 'all' || text.includes(normal(selected)));
+        const text = normal(card.dataset.search || card.textContent);
+        const program = normal(card.dataset.program || card.textContent);
+        const show = (!needle || text.includes(needle)) && (selected === 'all' || program.includes(normal(selected)));
         card.hidden = !show;
         if (show) visible += 1;
       });
-      if (count) count.textContent = `${visible} émission${visible > 1 ? 's' : ''}`;
+      const filtered = Boolean(needle) || selected !== 'all';
+      if (count) count.textContent = filtered ? `${visible} résultat${visible > 1 ? 's' : ''}` : `${visible} nouveauté${visible > 1 ? 's' : ''}`;
+      if (reset) reset.hidden = !filtered;
+      if (empty) empty.hidden = visible !== 0;
       grid.scrollTo({ left: 0, behavior: motionBehavior() });
       updateRailButtons();
     };
+    const resetAll = () => {
+      if (input) input.value = '';
+      selected = 'all';
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.mediaFilter === 'all')));
+      apply();
+      input?.focus();
+    };
 
-    if (input && !input.dataset.bound) {
-      input.dataset.bound = '1';
-      input.addEventListener('input', apply);
-      form.addEventListener('submit', (event) => { event.preventDefault(); apply(); });
-      q('[data-search-reset]', form)?.addEventListener('click', () => {
-        input.value = '';
-        selected = 'all';
-        filters.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.mediaFilter === 'all')));
-        apply();
-        input.focus();
-      });
-      filters.forEach((button) => button.addEventListener('click', () => {
-        selected = button.dataset.mediaFilter || 'all';
-        filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        apply();
-      }));
-    }
+    input?.addEventListener('input', apply);
+    form.addEventListener('submit', (event) => { event.preventDefault(); apply(); });
+    form.addEventListener('neptune:search-refresh', apply);
+    reset?.addEventListener('click', resetAll);
+    q('[data-empty-reset]')?.addEventListener('click', resetAll);
+    filters.forEach((button) => button.addEventListener('click', () => {
+      selected = button.dataset.mediaFilter || 'all';
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      apply();
+    }));
     apply();
     renderContinue();
   }
@@ -101,24 +111,38 @@
     grid.dataset.searchEnhanced = '1';
     const panel = document.createElement('div');
     panel.className = 'seo-search-panel';
-    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><p class="media-results" aria-live="polite"></p>';
+    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><button class="btn btn-secondary" type="button" data-emissions-reset hidden>Effacer</button><p class="media-results" aria-live="polite"></p><p class="media-empty-inline" hidden>Aucune émission ne correspond à cette recherche.</p>';
     grid.before(panel);
     const input = q('input', panel);
     const result = q('.media-results', panel);
+    const empty = q('.media-empty-inline', panel);
+    const reset = q('[data-emissions-reset]', panel);
     const filters = qa('[data-filter]', panel);
     let selected = 'all';
     const apply = () => {
       const needle = normal(input.value);
       let visible = 0;
       qa('.seo-card', grid).forEach((card) => {
-        const text = normal(card.textContent);
-        const show = (!needle || text.includes(needle)) && (selected === 'all' || text.includes(selected));
+        const text = normal(card.dataset.search || card.textContent);
+        const program = normal(card.dataset.program || card.textContent);
+        const show = (!needle || text.includes(needle)) && (selected === 'all' || program.includes(selected));
         card.hidden = !show;
         if (show) visible += 1;
       });
+      const filtered = Boolean(needle) || selected !== 'all';
       result.textContent = `${visible} résultat${visible > 1 ? 's' : ''}`;
+      reset.hidden = !filtered;
+      empty.hidden = visible !== 0;
+    };
+    const resetAll = () => {
+      input.value = '';
+      selected = 'all';
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.filter === 'all')));
+      apply();
+      input.focus();
     };
     input.addEventListener('input', apply);
+    reset.addEventListener('click', resetAll);
     filters.forEach((button) => button.addEventListener('click', () => {
       selected = button.dataset.filter;
       filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
@@ -130,7 +154,11 @@
   function streamingRail(force = false) {
     const shell = q('[data-content-rail]');
     const rail = q('#dynamicCatalog');
-    if (!shell || !rail || (shell.dataset.railBound && !force)) return;
+    if (!shell || !rail) return;
+    if (shell.dataset.railBound) {
+      if (force) updateRailButtons();
+      return;
+    }
     shell.dataset.railBound = '1';
     const previous = q('[data-rail-prev]', shell);
     const next = q('[data-rail-next]', shell);
@@ -259,7 +287,7 @@
   function directStatus() {
     const root = q('[data-live-channel]');
     const video = root ? q('[data-live-video]', root) : null;
-    if (!root || !video || root.dataset.uxEnhanced) return;
+    if (!root || !video || root.dataset.uxEnhanced || root.dataset.liveAvailable === 'false') return;
     root.dataset.uxEnhanced = '1';
     const status = document.createElement('div');
     status.className = 'live-ux-status';
@@ -303,9 +331,23 @@
   }
 
   function closeMobileNavigation() {
-    qa('.public-mobile-menu a').forEach((link) => link.addEventListener('click', () => {
-      link.closest('details')?.removeAttribute('open');
+    const menus = qa('.public-mobile-menu');
+    menus.forEach((menu) => {
+      const summary = q('summary', menu);
+      qa('a', menu).forEach((link) => link.addEventListener('click', () => menu.removeAttribute('open')));
+      menu.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !menu.open) return;
+        event.preventDefault();
+        menu.removeAttribute('open');
+        summary?.focus();
+      });
+    });
+    document.addEventListener('pointerdown', (event) => menus.forEach((menu) => {
+      if (menu.open && !menu.contains(event.target)) menu.removeAttribute('open');
     }));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980) menus.forEach((menu) => menu.removeAttribute('open'));
+    });
   }
 
   function readProgress() { try { return JSON.parse(localStorage.getItem(WATCH_KEY) || '{}'); } catch { return {}; } }

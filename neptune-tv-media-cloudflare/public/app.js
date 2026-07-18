@@ -59,6 +59,7 @@
       state.ads = data.ads || [];
       renderHero();
       renderCatalog();
+      renderHomeLive();
       window.dispatchEvent(new CustomEvent('neptune:catalog-ready', { detail: { count: state.episodes.length } }));
       state.episodes.forEach((episode) => track('impression', { episodeId: episode.id }));
       const deepLink = new URLSearchParams(location.search).get('episode');
@@ -68,6 +69,8 @@
       }
     } catch (error) {
       console.error(error);
+      setHeroLoading(false);
+      renderHomeLive('error');
       bindFallbackVideos();
       window.dispatchEvent(new CustomEvent('neptune:catalog-error'));
     }
@@ -75,22 +78,35 @@
 
   function renderHero() {
     const episode = state.episodes[0];
-    if (!episode) return;
+    if (!episode) {
+      setHeroLoading(false);
+      return;
+    }
     const heroVideo = qs('#heroPreview');
     const heroSource = qs('#heroPreviewSource');
     const heroTitle = qs('#heroEpisodeTitle');
     const heroPlay = qs('#heroPlay');
+    const motionToggle = qs('#heroMotionToggle');
     if (heroVideo && heroSource) {
       clearTimeout(state.heroPreviewTimer);
       state.heroPreviewLoaded = false;
       heroVideo.pause();
       heroSource.removeAttribute('src');
-      heroSource.dataset.src = episode.videoUrl;
+      heroSource.dataset.src = previewSourceFor(episode);
       heroVideo.poster = episode.posterUrl || '/assets/posters/poster-neptune-media.webp';
       heroVideo.load();
-      const mayPreview = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData;
-      if (mayPreview) state.heroPreviewTimer = window.setTimeout(() => loadHeroPreview(true), 1200);
-      qs('#heroMotionToggle')?.addEventListener('click', () => loadHeroPreview(true), { once: true });
+      if (motionToggle) {
+        motionToggle.hidden = !heroSource.dataset.src;
+        if (!motionToggle.dataset.previewBound) {
+          motionToggle.dataset.previewBound = '1';
+          motionToggle.addEventListener('click', () => loadHeroPreview(true));
+        }
+      }
+      if (heroSource.dataset.src && canAutoPreview()) {
+        state.heroPreviewTimer = window.setTimeout(() => loadHeroPreview(true), 900);
+      } else {
+        setHeroLoading(false);
+      }
     }
     if (heroTitle) heroTitle.textContent = episode.title;
     if (heroPlay) {
@@ -102,19 +118,80 @@
     }
   }
 
+  function previewSourceFor(episode) {
+    const metadata = episode?.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+    const explicit = metadata.previewUrl || metadata.trailerUrl || metadata.teaserUrl || '';
+    if (explicit) return String(explicit);
+    const duration = Number(episode?.durationSeconds || 0);
+    return duration > 0 && duration <= 90 ? String(episode.videoUrl || '') : '';
+  }
+
+  function canAutoPreview() {
+    const connection = navigator.connection || {};
+    const slowConnection = /(^|-)2g$/.test(String(connection.effectiveType || ''));
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !connection.saveData && !slowConnection;
+  }
+
+  function setHeroLoading(loading) {
+    const media = qs('#heroPreview')?.closest('.hero-media');
+    if (!media) return;
+    media.toggleAttribute('data-loading', Boolean(loading));
+    media.setAttribute('aria-busy', String(Boolean(loading)));
+  }
+
   function loadHeroPreview(autoplay = false) {
     const heroVideo = qs('#heroPreview');
     const heroSource = qs('#heroPreviewSource');
     if (!heroVideo || !heroSource) return;
     if (!state.heroPreviewLoaded) {
       const source = heroSource.dataset.src;
-      if (!source) return;
+      if (!source) {
+        setHeroLoading(false);
+        return;
+      }
+      setHeroLoading(true);
       heroSource.src = source;
       state.heroPreviewLoaded = true;
       heroVideo.load();
-      heroVideo.addEventListener('loadeddata', () => heroVideo.closest('[data-loading]')?.removeAttribute('data-loading'), { once: true });
+      heroVideo.addEventListener('loadeddata', () => setHeroLoading(false), { once: true });
+      heroVideo.addEventListener('error', () => setHeroLoading(false), { once: true });
     }
-    if (autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.play().catch(() => {});
+    if (autoplay && canAutoPreview()) heroVideo.play().catch(() => setHeroLoading(false));
+  }
+
+  function renderHomeLive(status = 'ready') {
+    const card = qs('[data-home-live]');
+    if (!card) return;
+    const badge = qs('[data-home-live-badge]', card);
+    const title = qs('[data-home-live-title]', card);
+    const copy = qs('[data-home-live-copy]', card);
+    const action = qs('[data-home-live-action]', card);
+    const liveEpisodes = state.episodes.filter((episode) => episode.metadata?.live !== false && (episode.metadata?.fullEpisode || String(episode.videoUrl || '').startsWith('/media/')));
+    card.setAttribute('aria-busy', 'false');
+    if (status === 'error') {
+      badge.dataset.state = 'error';
+      badge.textContent = 'Indisponible';
+      title.textContent = 'Le programme ne peut pas être vérifié.';
+      copy.textContent = 'Ouvrez le direct pour réessayer ou consultez les émissions disponibles.';
+      action.href = '/direct/';
+      action.textContent = 'Vérifier le direct';
+      return;
+    }
+    if (liveEpisodes.length) {
+      badge.dataset.state = 'live';
+      badge.textContent = 'En direct';
+      title.textContent = 'Neptune Media à l’antenne.';
+      copy.textContent = 'Rejoignez la diffusion en cours ou choisissez une émission du programme.';
+      action.href = '/direct/';
+      action.textContent = 'Voir le direct';
+      return;
+    }
+    badge.dataset.state = 'offline';
+    badge.textContent = 'À la demande';
+    title.textContent = 'Aucun direct pour le moment.';
+    copy.textContent = 'Les émissions déjà publiées restent disponibles immédiatement.';
+    action.href = '/emissions/';
+    action.textContent = 'Voir les émissions';
   }
 
   function renderCatalog() {
@@ -123,16 +200,22 @@
       bindFallbackVideos();
       return;
     }
-    grid.innerHTML = state.episodes.slice(0, 8).map((episode) => `
-      <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" aria-label="Regarder ${escapeHtml(episode.title)}">
+    grid.innerHTML = state.episodes.slice(0, 8).map((episode) => {
+      const program = programName(episode.programId);
+      const metadata = episode.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+      const tags = Array.isArray(metadata.tags) ? metadata.tags.join(' ') : String(metadata.tags || '');
+      const search = [episode.title, episode.description, program, metadata.guestName, metadata.guestCompany, tags].filter(Boolean).join(' ');
+      return `
+      <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" data-program="${escapeHtml(program)}" data-search="${escapeHtml(search)}" aria-label="Regarder ${escapeHtml(episode.title)}">
         <img loading="lazy" decoding="async" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
         <span class="card-play" aria-hidden="true">▶</span>
         <span class="media-card-copy">
-          <span class="media-card-meta"><span>${escapeHtml(programName(episode.programId))}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
+          <span class="media-card-meta"><span>${escapeHtml(program)}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
           <h3>${escapeHtml(episode.title)}</h3>
         </span>
-        <span class="watch-progress" aria-hidden="true"><i></i></span>
-      </button>`).join('');
+        <span class="watch-progress" aria-hidden="true" hidden><i></i></span>
+      </button>`;
+    }).join('');
     qsa('[data-episode-id]', grid).forEach((button) => {
       button.addEventListener('click', () => {
         const episode = state.episodes.find((item) => item.id === button.dataset.episodeId);
@@ -205,8 +288,7 @@
   }
 
   function bindAutoplay() {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion || navigator.connection?.saveData || !('IntersectionObserver' in window)) return;
+    if (!canAutoPreview() || !('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
@@ -252,7 +334,7 @@
     state.currentAd = null;
     hideAdUi();
     lastTrigger?.focus?.();
-    if (state.heroPreviewLoaded && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
+    if (state.heroPreviewLoaded && canAutoPreview()) {
       window.setTimeout(() => qs('#heroPreview')?.play().catch(() => {}), 180);
     }
   }

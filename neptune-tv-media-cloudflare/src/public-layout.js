@@ -9,7 +9,10 @@ export function layout({ origin, title, description, canonical, body, image, str
 
 export function episodeCard(origin, catalog, episode) {
   const program = catalog.programs.find((item) => item.id === episode.programId);
-  return `<article class="seo-card" data-episode-slug="${escapeHtml(episode.slug)}"><a href="/emissions/${encodeURIComponent(episode.slug)}/" aria-label="Regarder ${escapeHtml(episode.title)}"><div class="seo-card-media"><img loading="lazy" decoding="async" src="${escapeHtml(absolute(origin, episode.posterUrl))}" alt="${escapeHtml(episode.title)}"><span class="card-play" aria-hidden="true">▶</span><span class="watch-progress" aria-hidden="true"><i></i></span></div><div class="seo-card-copy"><span>${escapeHtml(program?.name || 'Neptune Media')} · ${formatDuration(episode.durationSeconds)}</span><h2>${escapeHtml(episode.title)}</h2><strong>Regarder →</strong></div></a></article>`;
+  const metadata = episode.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+  const tags = Array.isArray(metadata.tags) ? metadata.tags.join(' ') : String(metadata.tags || '');
+  const searchText = [episode.title, episode.description, program?.name, metadata.guestName, metadata.guestCompany, tags].filter(Boolean).join(' ');
+  return `<article class="seo-card" data-episode-slug="${escapeHtml(episode.slug)}" data-program="${escapeHtml(program?.name || 'Neptune Media')}" data-search="${escapeHtml(searchText)}"><a href="/emissions/${encodeURIComponent(episode.slug)}/" aria-label="Regarder ${escapeHtml(episode.title)}"><div class="seo-card-media"><img loading="lazy" decoding="async" src="${escapeHtml(absolute(origin, episode.posterUrl))}" alt="${escapeHtml(episode.title)}"><span class="card-play" aria-hidden="true">▶</span><span class="watch-progress" aria-hidden="true" hidden><i></i></span></div><div class="seo-card-copy"><span>${escapeHtml(program?.name || 'Neptune Media')} · ${formatDuration(episode.durationSeconds)}</span><h2>${escapeHtml(episode.title)}</h2><strong>Regarder →</strong></div></a></article>`;
 }
 
 export function bookingUrl(medium, parameters = {}) {
