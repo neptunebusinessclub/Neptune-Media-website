@@ -16,14 +16,14 @@ export async function handlePublicRoute(request, env) {
   if (path === '/emissions/') return html(renderEmissions(origin, catalog));
   if (path.startsWith('/emissions/')) {
     const slug = decodeURIComponent(path.slice('/emissions/'.length, -1));
-    const episode = catalog.episodes.find((item) => item.status === 'published' && (item.slug === slug || item.id === slug));
+    const episode = catalog.episodes.find((item) => isPublicEpisode(catalog, item) && (item.slug === slug || item.id === slug));
     return episode ? html(renderEpisode(origin, catalog, episode)) : secure(renderNotFound(origin));
   }
   if (path.startsWith('/programmes/')) {
     const slug = decodeURIComponent(path.slice('/programmes/'.length, -1));
-    const program = catalog.programs.find((item) => item.slug === slug || item.id === slug);
-    const hasPublishedEpisode = program && catalog.episodes.some((item) => item.status === 'published' && item.programId === program.id);
-    return hasPublishedEpisode ? html(renderProgram(origin, { ...catalog, episodes: catalog.episodes.filter((item) => item.status === 'published') }, program)) : secure(renderNotFound(origin));
+    const program = catalog.programs.find((item) => isActiveProgram(item) && (item.slug === slug || item.id === slug));
+    const hasPublishedEpisode = program && catalog.episodes.some((item) => isPublicEpisode(catalog, item) && item.programId === program.id);
+    return hasPublishedEpisode ? html(renderProgram(origin, catalog, program)) : secure(renderNotFound(origin));
   }
   if (path === '/mentions-legales/') return html(renderInformation(origin, 'Mentions légales', 'Informations relatives à l’éditeur et à l’hébergement de Neptune Media.', 'legal'));
   if (path === '/confidentialite/') return html(renderInformation(origin, 'Confidentialité', 'Comment Neptune Media traite les données et mesures d’audience.', 'privacy'));
@@ -124,6 +124,8 @@ async function getCatalog(env) {
 }
 
 function isPublicRoute(path) { return path === '/sitemap.xml' || path === '/video-sitemap.xml' || path === '/llms.txt' || path === '/direct/' || path === '/emissions/' || path.startsWith('/emissions/') || path.startsWith('/programmes/') || path === '/mentions-legales/' || path === '/confidentialite/' || path === '/contact/'; }
+function isActiveProgram(program) { return Boolean(program?.slug) && program.active !== false && Number(program.active ?? 1) !== 0; }
+function isPublicEpisode(catalog, episode) { const program = (catalog.programs || []).find((item) => item.id === episode?.programId); return isActiveProgram(program) && episode?.status === 'published' && Boolean(episode.slug && episode.videoUrl && episode.posterUrl); }
 function normalizePath(value) { const clean = value.replace(/\/{2,}/g, '/'); if (clean === '/' || clean.endsWith('.xml') || clean.endsWith('.txt')) return clean; return clean.endsWith('/') ? clean : `${clean}/`; }
 function canonicalOrigin(url, env) { return String(env.PUBLIC_ORIGIN || url.origin).replace(/\/$/, ''); }
 function html(value) { return secure(new Response(value, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })); }
