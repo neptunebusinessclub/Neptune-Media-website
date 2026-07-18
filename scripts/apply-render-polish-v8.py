@@ -9,7 +9,8 @@ def patch(path: str, replacements: list[tuple[str, str]]) -> None:
     target = ROOT / path
     text = target.read_text(encoding="utf-8")
     for old, new in replacements:
-        text = text.replace(old, new)
+        if new not in text:
+            text = text.replace(old, new)
     target.write_text(text, encoding="utf-8")
 
 
