@@ -253,14 +253,15 @@
 
   function mediaCardMarkup(episode, kind) {
     const program = programName(episode.programId);
+    const format = formatLabel(program);
     const metadata = episode.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
     const tags = Array.isArray(metadata.tags) ? metadata.tags.join(' ') : String(metadata.tags || '');
     const search = [episode.title, episode.description, program, metadata.guestName, metadata.guestCompany, tags].filter(Boolean).join(' ');
     const className = kind === 'short' ? 'media-card media-card--short' : 'media-card media-card--episode';
-    return `<button class="${className}" type="button" data-media-item data-media-kind="${kind}" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" data-program="${escapeHtml(program)}" data-search="${escapeHtml(search)}" aria-label="Regarder ${escapeHtml(episode.title)}">
+    return `<button class="${className}" type="button" data-media-item data-media-kind="${kind}" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" data-program="${escapeHtml(format)}" data-search="${escapeHtml(search)}" aria-label="Regarder ${escapeHtml(episode.title)}">
       <img loading="lazy" decoding="async" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
       <span class="card-play" aria-hidden="true">▶</span>
-      <span class="media-card-copy"><span class="media-card-meta"><span>${escapeHtml(program)}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span><h3>${escapeHtml(episode.title)}</h3></span>
+      <span class="media-card-copy"><span class="media-card-meta"><span>${escapeHtml(format)}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span><h3>${escapeHtml(episode.title)}</h3></span>
       <span class="watch-progress" aria-hidden="true" hidden><i></i></span>
     </button>`;
   }
@@ -441,6 +442,13 @@
     modal.style.setProperty('--player-aspect', `${player.videoWidth} / ${player.videoHeight}`);
   }
 
+  function syncModalAspect() {
+    if (!modal || !player || !player.videoWidth || !player.videoHeight) return;
+    const ratio = player.videoWidth / player.videoHeight;
+    modal.dataset.playerAspect = ratio < .92 ? 'portrait' : 'landscape';
+    modal.style.setProperty('--player-aspect', `${player.videoWidth} / ${player.videoHeight}`);
+  }
+
   function startContent() {
     if (!state.current || !player) return;
     clearInterval(state.skipTimer);
@@ -598,6 +606,7 @@
     return value;
   }
   function programName(id) { return state.programs.find((program) => program.id === id)?.name || 'Neptune Media'; }
+  function formatLabel(name) { return /hors\s*norme/i.test(String(name || '')) ? 'Hors Norme' : 'Concept Libre'; }
   function formatDuration(seconds) { const value = Number(seconds || 0); return value < 60 ? `${value}s` : `${Math.floor(value / 60)} min ${value % 60}s`; }
   function today() { return new Date().toISOString().slice(0, 10); }
 })();

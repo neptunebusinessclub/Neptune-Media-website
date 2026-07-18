@@ -64,17 +64,13 @@
       const section = document.querySelector('#direct');
       if (!section || section.dataset.conversionReady) return Boolean(section);
       section.dataset.conversionReady = '1';
-      setText('#direct .live-home-head h2', 'Neptune Media diffuse les émissions programmées.');
-      setText('#direct .live-home-head p', 'Les émissions complètes s’enchaînent selon la programmation pilotée depuis le Studio Media. Regardez le direct ou choisissez votre émission.');
+      setText('#direct .live-home-head h2', 'Votre expertise peut passer à l’antenne.');
+      setText('#direct .live-home-head p', 'Regardez le direct, puis découvrez le format qui mettra votre histoire ou votre expertise en valeur.');
+      const badge = section.querySelector('.live-badge');
+      if (badge) badge.innerHTML = '<i></i> EN DIRECT';
       const button = section.querySelector('.live-home-head .btn');
       if (button) button.textContent = 'Ouvrir la chaîne en direct';
-      const head = section.querySelector('.section-head');
-      if (head && !head.querySelector('.live-admin-proof')) {
-        const proof = document.createElement('div');
-        proof.className = 'live-admin-proof';
-        proof.innerHTML = '<span>Émissions pilotées depuis le Studio</span><span>Programmation permanente</span><span>Publicités administrables</span>';
-        head.after(proof);
-      }
+      section.querySelector('.live-admin-proof')?.remove();
       return true;
     };
     if (apply()) return;
