@@ -64,15 +64,39 @@ export async function enhanceHtml(response, request, env, mode) {
 function injectLandingSchema(body, origin) {
   if (body.includes('"@id":"#neptune-media-service"')) return body;
   const booking = 'https://media.neptunebusiness.com/';
+  const organizationId = `${origin}/#organization`;
+  const featuredVideoId = `${origin}/#featured-video`;
   const data = {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'Neptune Media',
+        url: `${origin}/`,
+        logo: { '@type': 'ImageObject', url: `${origin}/assets/logo-neptune.svg` },
+      },
+      {
+        '@type': 'VideoObject',
+        '@id': featuredVideoId,
+        name: 'Neptune Media — Votre entrepreneuriat mis en lumière',
+        description: 'Extrait réel d’un tournage Neptune Media consacré à la mise en lumière de l’entrepreneuriat.',
+        thumbnailUrl: [`${origin}/assets/posters/poster-neptune-media.webp`],
+        contentUrl: `${origin}/assets/media/neptune-media-mis-en-lumiere.mp4`,
+        uploadDate: '2026-07-15',
+        duration: 'PT44S',
+        inLanguage: 'fr-FR',
+        isFamilyFriendly: true,
+        publisher: { '@id': organizationId },
+        potentialAction: { '@type': 'WatchAction', target: `${origin}/#a-voir` },
+      },
       {
         '@type': 'Service',
         '@id': '#neptune-media-service',
         name: 'Création d’émissions vidéo professionnelles Neptune Media',
         serviceType: 'Production éditoriale et audiovisuelle pour entreprises',
-        provider: { '@type': 'Organization', name: 'Neptune Media', url: `${origin}/` },
+        provider: { '@id': organizationId },
+        subjectOf: { '@id': featuredVideoId },
         areaServed: { '@type': 'AdministrativeArea', name: 'Occitanie' },
         audience: { '@type': 'BusinessAudience', audienceType: 'Dirigeants, fondateurs, indépendants et PME' },
         description: 'Neptune Media prépare, tourne et monte des émissions professionnelles qui transforment l’histoire, l’expertise et les convictions d’une entreprise en contenu vidéo durable.',
