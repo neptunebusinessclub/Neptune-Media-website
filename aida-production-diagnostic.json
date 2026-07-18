@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-07-18T20:47:33.966454+00:00",
+  "checked_at": "2026-07-18T20:59:08.347133+00:00",
   "ready": false,
   "home": {
     "status": "200",
-    "aida_marker": false,
+    "aida_marker": true,
     "attention": true,
     "hook": true,
     "search": true
@@ -19,5 +19,18 @@
     "direct_enhanced": true,
     "emissions_status": "200",
     "emissions_enhanced": true
+  },
+  "protected_pages": {
+    "studio_status": "200",
+    "studio_no_store": true,
+    "studio_noindex": true,
+    "client_status": "200",
+    "client_no_store": true,
+    "client_noindex": true
+  },
+  "protected_apis": {
+    "admin_status": "401",
+    "client_status": "404",
+    "webhook_status": "401"
   }
 }
