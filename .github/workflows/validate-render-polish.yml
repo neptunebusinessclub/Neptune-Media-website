@@ -1,0 +1,48 @@
+name: Validate render polish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/apply-render-polish.py
+      - .github/workflows/validate-render-polish.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run source polisher
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/apply-render-polish.py > /tmp/render-polish.log 2>&1
+          status=$?
+          STATUS="$status" python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          log = open('/tmp/render-polish.log', encoding='utf-8').read()
+          report = {
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'ready': os.environ['STATUS'] == '0',
+              'status': int(os.environ['STATUS']),
+              'log': log[-12000:]
+          }
+          with open('render-polish-source-validation.json', 'w', encoding='utf-8') as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write('\n')
+          PY
+      - name: Record validation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add render-polish-source-validation.json
+          git commit -m "chore: record render polish validation [skip ci]" || true
+          git push
