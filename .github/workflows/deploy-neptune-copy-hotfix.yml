@@ -37,15 +37,23 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
+        id: install
+        continue-on-error: true
         run: npm install --package-lock=false --registry=https://registry.npmjs.org
 
       - name: Validate source
+        id: validate
+        continue-on-error: true
         run: npm run check
 
       - name: Deploy current source
+        id: deploy
+        continue-on-error: true
         run: npx wrangler deploy
 
       - name: Verify exact production update
+        id: verify
+        continue-on-error: true
         run: |
           set -euo pipefail
           ready=false
@@ -67,11 +75,36 @@ jobs:
           ! grep -q 'Neptune Media diffuse les émissions programmées' /tmp/landing.js
           ! grep -q '24H/24' /tmp/home-live.js
 
-      - name: Record successful hotfix deployment
-        if: success()
+      - name: Record hotfix deployment result
+        if: always()
+        env:
+          INSTALL_OUTCOME: ${{ steps.install.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
         run: |
           cd "$GITHUB_WORKSPACE"
-          printf '{"status":"success","source_sha":"%s","deployed_at":"%s","home_live":"v3","landing_conversion":"v4"}\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > copy-hotfix-deployment-status.json
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          outcomes = {
+              'install': os.environ.get('INSTALL_OUTCOME', 'unknown'),
+              'validate': os.environ.get('VALIDATE_OUTCOME', 'unknown'),
+              'deploy': os.environ.get('DEPLOY_OUTCOME', 'unknown'),
+              'verify': os.environ.get('VERIFY_OUTCOME', 'unknown'),
+          }
+          report = {
+              'status': 'success' if all(value == 'success' for value in outcomes.values()) else 'failed',
+              'source_sha': os.environ.get('GITHUB_SHA', ''),
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'home_live': 'v3',
+              'landing_conversion': 'v4',
+              'outcomes': outcomes,
+          }
+          with open('copy-hotfix-deployment-status.json', 'w', encoding='utf-8') as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write('\n')
+          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add copy-hotfix-deployment-status.json
