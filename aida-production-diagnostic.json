@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-07-18T22:34:55.970079+00:00",
-  "ready": false,
+  "checked_at": "2026-07-18T22:51:31.537329+00:00",
+  "ready": true,
   "home": {
     "status": "200",
     "aida_marker": true,
@@ -30,7 +30,8 @@
   },
   "protected_apis": {
     "admin_status": "401",
-    "client_status": "404",
+    "client_status": "401",
+    "client_unauthenticated": true,
     "webhook_status": "401"
   }
 }
