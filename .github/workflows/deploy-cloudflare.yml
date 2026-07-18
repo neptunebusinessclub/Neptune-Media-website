@@ -148,6 +148,31 @@ jobs:
           grep -Eiq '^cache-control:.*no-store' /tmp/client-headers.txt
           grep -Eiq '^x-robots-tag:.*noindex' /tmp/client-headers.txt
 
+          python3 - <<'PY' > /tmp/oversized-tracking.json
+          import json
+          print(json.dumps({"payload": "x" * 17000}))
+          PY
+
+          for endpoint in track ad-track; do
+            test "$(curl --silent --output /tmp/${endpoint}-type.json --write-out '%{http_code}' \
+              -X POST "$PUBLIC_URL/api/$endpoint" \
+              -H 'Content-Type: text/plain' \
+              --data '{}')" = "415"
+            grep -q '"error":"unsupported_media_type"' "/tmp/${endpoint}-type.json"
+
+            test "$(curl --silent --output /tmp/${endpoint}-json.json --write-out '%{http_code}' \
+              -X POST "$PUBLIC_URL/api/$endpoint" \
+              -H 'Content-Type: application/json' \
+              --data '{')" = "400"
+            grep -q '"error":"invalid_json"' "/tmp/${endpoint}-json.json"
+
+            test "$(curl --silent --output /tmp/${endpoint}-size.json --write-out '%{http_code}' \
+              -X POST "$PUBLIC_URL/api/$endpoint" \
+              -H 'Content-Type: application/json' \
+              --data-binary @/tmp/oversized-tracking.json)" = "413"
+            grep -q '"error":"payload_too_large"' "/tmp/${endpoint}-size.json"
+          done
+
       - name: Smoke test permanent client portal
         run: |
           set -euo pipefail
