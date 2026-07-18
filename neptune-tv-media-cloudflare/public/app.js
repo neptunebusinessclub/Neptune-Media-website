@@ -12,6 +12,7 @@
   const state = {
     programs: [], episodes: [], ads: [], current: null, currentAd: null,
     mode: 'content', lastReportedTime: 0, thresholds: new Set(), skipTimer: null,
+    heroPreviewLoaded: false, heroPreviewTimer: null,
   };
 
   const modal = qs('[data-video-modal]');
@@ -80,11 +81,16 @@
     const heroTitle = qs('#heroEpisodeTitle');
     const heroPlay = qs('#heroPlay');
     if (heroVideo && heroSource) {
+      clearTimeout(state.heroPreviewTimer);
+      state.heroPreviewLoaded = false;
       heroVideo.pause();
-      heroSource.src = episode.videoUrl;
+      heroSource.removeAttribute('src');
+      heroSource.dataset.src = episode.videoUrl;
       heroVideo.poster = episode.posterUrl || '/assets/posters/poster-neptune-media.webp';
       heroVideo.load();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.play().catch(() => {});
+      const mayPreview = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData;
+      if (mayPreview) state.heroPreviewTimer = window.setTimeout(() => loadHeroPreview(true), 1200);
+      qs('#heroMotionToggle')?.addEventListener('click', () => loadHeroPreview(true), { once: true });
     }
     if (heroTitle) heroTitle.textContent = episode.title;
     if (heroPlay) {
@@ -96,20 +102,36 @@
     }
   }
 
+  function loadHeroPreview(autoplay = false) {
+    const heroVideo = qs('#heroPreview');
+    const heroSource = qs('#heroPreviewSource');
+    if (!heroVideo || !heroSource) return;
+    if (!state.heroPreviewLoaded) {
+      const source = heroSource.dataset.src;
+      if (!source) return;
+      heroSource.src = source;
+      state.heroPreviewLoaded = true;
+      heroVideo.load();
+      heroVideo.addEventListener('loadeddata', () => heroVideo.closest('[data-loading]')?.removeAttribute('data-loading'), { once: true });
+    }
+    if (autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.play().catch(() => {});
+  }
+
   function renderCatalog() {
     const grid = qs('#dynamicCatalog');
     if (!grid || !state.episodes.length) {
       bindFallbackVideos();
       return;
     }
-    grid.innerHTML = state.episodes.slice(0, 6).map((episode) => `
-      <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}">
-        <img loading="lazy" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
+    grid.innerHTML = state.episodes.slice(0, 8).map((episode) => `
+      <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" aria-label="Regarder ${escapeHtml(episode.title)}">
+        <img loading="lazy" decoding="async" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
         <span class="card-play" aria-hidden="true">▶</span>
         <span class="media-card-copy">
           <span class="media-card-meta"><span>${escapeHtml(programName(episode.programId))}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
           <h3>${escapeHtml(episode.title)}</h3>
         </span>
+        <span class="watch-progress" aria-hidden="true"><i></i></span>
       </button>`).join('');
     qsa('[data-episode-id]', grid).forEach((button) => {
       button.addEventListener('click', () => {
@@ -184,19 +206,21 @@
 
   function bindAutoplay() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion || !('IntersectionObserver' in window)) return;
+    if (reducedMotion || navigator.connection?.saveData || !('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
-        if (entry.isIntersecting) video.play().catch(() => {});
+        if (entry.isIntersecting) loadHeroPreview(true);
         else video.pause();
       });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.45 });
     qsa('video[data-autoplay]').forEach((video) => observer.observe(video));
   }
 
   function openEpisode(episode, trigger) {
     if (!modal || !player) return;
+    clearTimeout(state.heroPreviewTimer);
+    qs('#heroPreview')?.pause();
     state.current = episode;
     state.thresholds.clear();
     state.lastReportedTime = 0;
@@ -228,6 +252,9 @@
     state.currentAd = null;
     hideAdUi();
     lastTrigger?.focus?.();
+    if (state.heroPreviewLoaded && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
+      window.setTimeout(() => qs('#heroPreview')?.play().catch(() => {}), 180);
+    }
   }
 
   function startContent() {
