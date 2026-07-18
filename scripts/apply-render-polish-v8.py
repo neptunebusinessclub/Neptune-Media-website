@@ -19,7 +19,7 @@ def main() -> None:
         [
             ("/assets/posters/format-canape-sombre.svg", "/assets/posters/studio-wide.webp"),
             ("/assets/posters/format-plateau-clair.svg", "/assets/posters/concept-libre-wide.webp"),
-            ('<a href="/emissions/">Neptune TV</a>', '<a href="/emissions/">Émissions</a>'),
+            ('<a href="/emissions/">Émissions</a>', '<a href="/emissions/">Neptune TV</a>'),
         ],
     )
     patch(
@@ -53,7 +53,7 @@ def main() -> None:
             ("/landing-conversion.js?v=2", "/landing-conversion.js?v=3"),
         ],
     )
-    print("Applied Neptune media asset, live filter and Web TV navigation fix v8")
+    print("Applied Neptune media asset, live filter and scoped navigation fix v8")
 
 
 if __name__ == "__main__":
