@@ -22,8 +22,8 @@ export function buildSitemap(origin, catalog) {
 }
 
 export function buildVideoSitemap(origin, catalog) {
-  const episodes = visibleEpisodes(catalog).filter((item) => item.videoUrl && item.posterUrl);
-  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${episodes.map((item) => `<url><loc>${xml(`${origin}/emissions/${item.slug}/`)}</loc><video:video><video:thumbnail_loc>${xml(absolute(origin, item.posterUrl))}</video:thumbnail_loc><video:title>${xml(item.title)}</video:title><video:description>${xml(item.description || item.title)}</video:description><video:content_loc>${xml(absolute(origin, item.videoUrl))}</video:content_loc><video:duration>${Math.max(1, Math.min(28800, Math.round(Number(item.durationSeconds || 1))))}</video:duration><video:publication_date>${xml(validDate(item.publishedAt || item.createdAt))}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video></url>`).join('')}</urlset>`;
+  const episodes = visibleEpisodes(catalog);
+  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${episodes.map((item) => videoEntry(origin, item)).join('')}</urlset>`;
 }
 
 export function buildLlms(origin, catalog) {
@@ -33,8 +33,9 @@ export function buildLlms(origin, catalog) {
   return `# Neptune Media\n\n> Web TV professionnelle de Neptune Business consacrée aux histoires, expertises et trajectoires d'entrepreneurs.\n\n## Accès principaux\n- Accueil: ${origin}/\n- Web TV en direct 24h/24: ${origin}/direct/\n- Catalogue des émissions: ${origin}/emissions/\n- Contact: ${origin}/contact/\n\n## Programmes\n${programs.map((item) => `- ${item.name}: ${origin}/programmes/${item.slug}/`).join('\n') || '- Aucun programme publié.'}\n\n## Émissions publiées\n${episodes.map((item) => `- ${item.title}: ${origin}/emissions/${item.slug}/`).join('\n') || '- Aucune émission publiée.'}\n\n## Informations d'usage\n- Les pages /studio/ et /api/ ne sont pas des contenus publics à indexer.\n- La réservation commerciale reste gérée sur media.neptunebusiness.com.\n`;
 }
 
-function visibleEpisodes(catalog) { return (catalog.episodes || []).filter((item) => item.status === 'published' && item.slug && item.videoUrl); }
-function entry(item) { return `<url><loc>${xml(item.loc)}</loc>${item.lastmod ? `<lastmod>${xml(validDate(item.lastmod).slice(0, 10))}</lastmod>` : ''}<changefreq>${item.changefreq}</changefreq><priority>${item.priority}</priority></url>`; }
-function validDate(value) { const date = new Date(value || Date.now()); return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString(); }
+function visibleEpisodes(catalog) { const programIds = new Set((catalog.programs || []).map((item) => item.id)); return (catalog.episodes || []).filter((item) => programIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl); }
+function entry(item) { const lastmod = validIsoDate(item.lastmod); return `<url><loc>${xml(item.loc)}</loc>${lastmod ? `<lastmod>${xml(lastmod.slice(0, 10))}</lastmod>` : ''}<changefreq>${item.changefreq}</changefreq><priority>${item.priority}</priority></url>`; }
+function videoEntry(origin, item) { const publicationDate = validIsoDate(item.publishedAt || item.createdAt); return `<url><loc>${xml(`${origin}/emissions/${item.slug}/`)}</loc><video:video><video:thumbnail_loc>${xml(absolute(origin, item.posterUrl))}</video:thumbnail_loc><video:title>${xml(item.title)}</video:title><video:description>${xml(item.description || item.title)}</video:description><video:content_loc>${xml(absolute(origin, item.videoUrl))}</video:content_loc><video:duration>${Math.max(1, Math.min(28800, Math.round(Number(item.durationSeconds || 1))))}</video:duration>${publicationDate ? `<video:publication_date>${xml(publicationDate)}</video:publication_date>` : ''}<video:family_friendly>yes</video:family_friendly></video:video></url>`; }
+function validIsoDate(value) { const timestamp = Date.parse(String(value || '')); return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : ''; }
 function absolute(origin, value) { try { return new URL(value || '/assets/posters/default.svg', `${origin}/`).toString(); } catch { return `${origin}/assets/posters/default.svg`; } }
 function xml(value) { return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[char])); }
