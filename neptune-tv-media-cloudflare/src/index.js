@@ -14,6 +14,7 @@ export { StudioStore };
 
 const MODEL = '@cf/openai/gpt-oss-120b';
 const COOKIE_NAME = '__Host-neptune_session';
+const MAX_JSON_BODY_BYTES = 16 * 1024;
 const MUTATING_ADMIN_PATHS = new Set([
   '/api/admin/apply',
   '/api/admin/ai',
@@ -289,11 +290,32 @@ function isAllowedPublicOrigin(request) {
 }
 
 async function proxyJson(request, studio, path) {
-  const body = await request.text();
+  const contentType = request.headers.get('Content-Type') || '';
+  if (!/^application\/json(?:\s*;|$)/iu.test(contentType)) {
+    return json({ error: 'unsupported_media_type' }, 415);
+  }
+
+  const declaredLength = Number(request.headers.get('Content-Length') || 0);
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_JSON_BODY_BYTES) {
+    return json({ error: 'payload_too_large' }, 413);
+  }
+
+  const bytes = new Uint8Array(await request.arrayBuffer());
+  if (bytes.byteLength > MAX_JSON_BODY_BYTES) {
+    return json({ error: 'payload_too_large' }, 413);
+  }
+
+  let payload;
+  try {
+    payload = JSON.parse(new TextDecoder().decode(bytes));
+  } catch {
+    return json({ error: 'invalid_json' }, 400);
+  }
+
   return studio.fetch(`https://store${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body,
+    body: JSON.stringify(payload),
   });
 }
 
