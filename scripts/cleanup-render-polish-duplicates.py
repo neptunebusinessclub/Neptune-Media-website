@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def keep_one(text: str, pattern: str, replacement: str) -> str:
-    return re.sub(pattern, replacement, text, flags=re.MULTILINE)
+    return re.sub(pattern, lambda _match: replacement, text, flags=re.MULTILINE)
 
 
 def clean_app() -> None:
