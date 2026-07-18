@@ -354,6 +354,7 @@
     player?.addEventListener('pause', onPause);
     player?.addEventListener('timeupdate', onTimeUpdate);
     player?.addEventListener('ended', onEnded);
+    player?.addEventListener('loadedmetadata', syncModalAspect);
     window.addEventListener('pagehide', flushWatchTime);
   }
 
@@ -385,6 +386,9 @@
     clearTimeout(state.heroPreviewTimer);
     qs('#heroPreview')?.pause();
     state.current = episode;
+    modal.dataset.mediaKind = isShortEpisode(episode) ? 'short' : 'episode';
+    modal.removeAttribute('data-player-aspect');
+    modal.style.removeProperty('--player-aspect');
     state.thresholds.clear();
     state.lastReportedTime = 0;
     lastTrigger = trigger || document.activeElement;
@@ -409,6 +413,9 @@
     player.removeAttribute('poster');
     player.load();
     modal.classList.remove('is-open');
+    modal.removeAttribute('data-media-kind');
+    modal.removeAttribute('data-player-aspect');
+    modal.style.removeProperty('--player-aspect');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
     state.current = null;
@@ -418,6 +425,13 @@
     if (state.heroPreviewLoaded && canAutoPreview() && heroPreviewIsVisible()) {
       window.setTimeout(() => qs('#heroPreview')?.play().catch(() => {}), 180);
     }
+  }
+
+  function syncModalAspect() {
+    if (!modal || !player || !player.videoWidth || !player.videoHeight) return;
+    const ratio = player.videoWidth / player.videoHeight;
+    modal.dataset.playerAspect = ratio < .92 ? 'portrait' : 'landscape';
+    modal.style.setProperty('--player-aspect', `${player.videoWidth} / ${player.videoHeight}`);
   }
 
   function startContent() {
