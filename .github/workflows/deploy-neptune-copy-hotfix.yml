@@ -1,0 +1,80 @@
+name: Deploy Neptune Copy Hotfix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'neptune-tv-media-cloudflare/src/public-router.js'
+      - 'neptune-tv-media-cloudflare/public/home-live.js'
+      - 'neptune-tv-media-cloudflare/public/landing-conversion.js'
+      - '.github/workflows/deploy-neptune-copy-hotfix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: neptune-copy-hotfix-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: neptune-tv-media-cloudflare
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm install --package-lock=false --registry=https://registry.npmjs.org
+
+      - name: Validate source
+        run: npm run check
+
+      - name: Deploy current source
+        run: npx wrangler deploy
+
+      - name: Verify exact production update
+        run: |
+          set -euo pipefail
+          ready=false
+          for attempt in 1 2 3 4 5 6 7 8; do
+            nonce="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
+            curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/?verify=$nonce" > /tmp/home.html
+            if grep -q '/home-live.js?v=3' /tmp/home.html \
+              && grep -q '/landing-conversion.js?v=4' /tmp/home.html; then
+              ready=true
+              break
+            fi
+            sleep 8
+          done
+          test "$ready" = "true"
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=3&verify=$nonce" > /tmp/home-live.js
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=4&verify=$nonce" > /tmp/landing.js
+          grep -q 'Votre expertise peut passer à l’antenne' /tmp/home-live.js
+          grep -q 'Votre expertise peut passer à l’antenne' /tmp/landing.js
+          ! grep -q 'Neptune Media diffuse les émissions programmées' /tmp/landing.js
+          ! grep -q '24H/24' /tmp/home-live.js
+
+      - name: Record successful hotfix deployment
+        if: success()
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          printf '{"status":"success","source_sha":"%s","deployed_at":"%s","home_live":"v3","landing_conversion":"v4"}\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > copy-hotfix-deployment-status.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add copy-hotfix-deployment-status.json
+          git commit -m 'chore: record Neptune copy hotfix deployment [skip ci]' || true
+          git pull --rebase origin main || true
+          git push
