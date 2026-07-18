@@ -25,6 +25,7 @@ jobs:
       BOOTSTRAP_TOKEN: ${{ secrets.BOOTSTRAP_TOKEN }}
       CONVERSION_WEBHOOK_SECRET: ${{ secrets.CONVERSION_WEBHOOK_SECRET }}
       PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+      OFFICIAL_BOOKING_URL: https://media.neptunebusiness.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -102,12 +103,29 @@ jobs:
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
           grep -q 'id="faq-answer-1"' /tmp/public-home.html
+          grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
+          if grep -Eq 'href="https://neptune-media-webtv\.neptunebusinessclub\.workers\.dev[^\"]*"' /tmp/public-home.html; then
+            echo 'The public landing page contains a Worker URL where a conversion URL is expected.' >&2
+            exit 1
+          fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" | grep -q 'La chaîne Neptune Media ne s’arrête jamais'
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" | grep -q 'Des histoires d’entreprise qui méritent l’antenne'
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
+
+          curl --silent --show-error --dump-header /tmp/public-headers.txt --output /dev/null "$PUBLIC_URL/"
+          grep -Eiq '^x-content-type-options:[[:space:]]*nosniff' /tmp/public-headers.txt
+          grep -Eiq '^content-security-policy:' /tmp/public-headers.txt
+
+          curl --silent --show-error --dump-header /tmp/studio-headers.txt --output /dev/null "$PUBLIC_URL/studio/"
+          grep -Eiq '^cache-control:.*no-store' /tmp/studio-headers.txt
+          grep -Eiq '^x-robots-tag:.*noindex' /tmp/studio-headers.txt
+
+          curl --silent --show-error --dump-header /tmp/client-headers.txt --output /dev/null "$PUBLIC_URL/espace-client/"
+          grep -Eiq '^cache-control:.*no-store' /tmp/client-headers.txt
+          grep -Eiq '^x-robots-tag:.*noindex' /tmp/client-headers.txt
 
       - name: Smoke test permanent client portal
         run: |
