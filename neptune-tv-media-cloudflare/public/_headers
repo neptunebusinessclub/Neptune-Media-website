@@ -1,3 +1,9 @@
+/studio/*
+  Cache-Control: no-store
+
+/espace-client/*
+  Cache-Control: no-store
+
 /assets/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
 
