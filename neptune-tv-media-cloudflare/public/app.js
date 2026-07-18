@@ -71,10 +71,6 @@
       console.error(error);
       setHeroLoading(false);
       renderHomeLive('error');
-      setHeroLoading(false);
-      renderHomeLive('error');
-      setHeroLoading(false);
-      renderHomeLive('error');
       bindFallbackVideos();
       window.dispatchEvent(new CustomEvent('neptune:catalog-error'));
     }
