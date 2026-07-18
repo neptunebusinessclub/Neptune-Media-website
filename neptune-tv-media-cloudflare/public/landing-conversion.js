@@ -84,8 +84,8 @@
   }
 
   function enhanceCatalog() {
-    setText('#a-voir .section-head h2', 'Ce ne sont pas des maquettes. Ce sont de vraies émissions.');
-    setText('#a-voir .section-head p', 'Découvrez les programmes produits par Neptune Media et observez le niveau de préparation, de cadrage, d’écoute et de montage proposé aux invités.');
+    setText('#a-voir .section-head h2', 'À regarder');
+    setText('#a-voir .section-head p', '');
     const container = document.querySelector('#a-voir .container');
     if (container && !container.querySelector('.catalog-conversion-actions')) {
       const actions = document.createElement('div');
