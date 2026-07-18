@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - scripts/apply-render-polish.py
+      - scripts/apply-render-polish-v5.py
       - .github/workflows/post-deploy-render-polish.yml
   workflow_run:
     workflows: ["Deploy Neptune Media to Cloudflare"]
@@ -33,6 +34,7 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -41,7 +43,9 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Apply detailed rendering polish
-        run: python3 scripts/apply-render-polish.py
+        run: |
+          python3 scripts/apply-render-polish.py
+          python3 scripts/apply-render-polish-v5.py
 
       - name: Install dependencies
         working-directory: neptune-tv-media-cloudflare
@@ -75,9 +79,11 @@ jobs:
           grep -q 'data-render-polish="v4"' /tmp/home.html
           grep -q 'data-home-live' /tmp/home.html
           grep -q 'data-empty-reset' /tmp/home.html
-          grep -q 'Render polish v4' /tmp/streaming.css
-          grep -q 'data-search' /tmp/app.js
+          grep -q 'Render polish v5' /tmp/streaming.css
+          grep -q 'scheduleHeroPreview' /tmp/app.js
+          grep -q 'heroPreviewIsVisible' /tmp/app.js
           grep -q 'neptune:search-refresh' /tmp/ux.js
+          grep -q 'content-rail-shell.*hidden' /tmp/streaming.css
           grep -q 'data-live-now' /tmp/direct.html
           grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
           grep -q '"ok":true' /tmp/health.json
@@ -88,15 +94,18 @@ jobs:
           report = {
               "checked_at": datetime.now(timezone.utc).isoformat(),
               "ready": True,
+              "version": "v5",
               "home": {
                   "render_polish": True,
                   "dynamic_live_state": True,
-                  "search_empty_state": True
+                  "search_empty_state": True,
+                  "restrained_preview": True
               },
               "assets": {
                   "streaming_css": True,
                   "searchable_cards": True,
-                  "rail_listener_guard": True
+                  "rail_listener_guard": True,
+                  "rail_empty_state": True
               },
               "public_pages": {
                   "direct_states": True,
@@ -110,7 +119,9 @@ jobs:
           PY
 
       - name: Persist polished source and diagnostic
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
@@ -121,5 +132,10 @@ jobs:
             neptune-tv-media-cloudflare/src/public-layout.js \
             neptune-tv-media-cloudflare/src/public-render.js \
             render-polish-production.json
-          git commit -m "feat: persist detailed Neptune render polish [skip ci]" || true
-          git push
+          git commit -m "feat: persist detailed Neptune render polish v5 [skip ci]" || true
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
