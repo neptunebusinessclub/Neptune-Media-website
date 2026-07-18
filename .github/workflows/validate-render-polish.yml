@@ -19,11 +19,23 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run source polisher
+      - name: Run source polisher and syntax checks
         shell: bash
         run: |
           set +e
-          python3 scripts/apply-render-polish.py > /tmp/render-polish.log 2>&1
+          {
+            python3 scripts/apply-render-polish.py
+            polish_status=$?
+            if test "$polish_status" = "0"; then
+              cd neptune-tv-media-cloudflare
+              npm run check
+              check_status=$?
+              cd ..
+            else
+              check_status=99
+            fi
+            test "$polish_status" = "0" -a "$check_status" = "0"
+          } > /tmp/render-polish.log 2>&1
           status=$?
           STATUS="$status" python3 - <<'PY'
           import json, os
@@ -33,7 +45,7 @@ jobs:
               'checked_at': datetime.now(timezone.utc).isoformat(),
               'ready': os.environ['STATUS'] == '0',
               'status': int(os.environ['STATUS']),
-              'log': log[-12000:]
+              'log': log[-16000:]
           }
           with open('render-polish-source-validation.json', 'w', encoding='utf-8') as handle:
               json.dump(report, handle, ensure_ascii=False, indent=2)
