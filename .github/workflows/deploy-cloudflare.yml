@@ -98,7 +98,9 @@ jobs:
           done
           grep -q '"ok":true' /tmp/health.json
           curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/public-home.html
-          grep -q 'Votre entreprise ne mérite pas une vidéo de plus' /tmp/public-home.html
+          grep -q 'Les histoires d’entreprise que l’on ne raconte' /tmp/public-home.html
+          grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/public-home.html
+          grep -q 'data-home-structure="story-v1"' /tmp/public-home.html
           grep -q 'Aller au contenu principal' /tmp/public-home.html
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
@@ -110,6 +112,7 @@ jobs:
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/home-structure.css" | grep -q 'story-section'
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" | grep -q 'La chaîne Neptune Media ne s’arrête jamais'
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" | grep -q 'Des histoires d’entreprise qui méritent l’antenne'
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
