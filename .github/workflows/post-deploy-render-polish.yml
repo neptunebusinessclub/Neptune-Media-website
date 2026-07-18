@@ -77,6 +77,12 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
           curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
           curl --fail --silent --show-error "$PUBLIC_URL/api/health" > /tmp/health.json
+          curl --fail --silent --show-error --dump-header /tmp/studio.headers "$PUBLIC_URL/studio/" > /tmp/studio.html
+          curl --fail --silent --show-error --dump-header /tmp/client.headers "$PUBLIC_URL/espace-client/" > /tmp/client.html
+
+          studio_api_status=$(curl --silent --output /tmp/studio-api.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
+          client_api_status=$(curl --silent --output /tmp/client-api.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/me")
+          webhook_status=$(curl --silent --output /tmp/webhook.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{}' "$PUBLIC_URL/api/webhooks/conversion")
 
           grep -q 'data-render-polish="v4"' /tmp/home.html
           grep -q 'data-home-live' /tmp/home.html
@@ -91,13 +97,21 @@ jobs:
           grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
           grep -q '"ok":true' /tmp/health.json
 
+          grep -Eqi '^cache-control:.*no-store' /tmp/studio.headers
+          grep -Eqi '^x-robots-tag:.*noindex' /tmp/studio.headers
+          grep -Eqi '^cache-control:.*no-store' /tmp/client.headers
+          grep -Eqi '^x-robots-tag:.*noindex' /tmp/client.headers
+          test "$studio_api_status" = "401"
+          test "$client_api_status" = "401"
+          test "$webhook_status" = "401"
+
           python3 - <<'PY'
           import json
           from datetime import datetime, timezone
           report = {
               "checked_at": datetime.now(timezone.utc).isoformat(),
               "ready": True,
-              "version": "v6",
+              "version": "v7",
               "home": {
                   "render_polish": True,
                   "dynamic_live_state": True,
@@ -114,6 +128,13 @@ jobs:
               "public_pages": {
                   "direct_states": True,
                   "emissions_streaming": True
+              },
+              "studio_admin": {
+                  "studio_route": True,
+                  "client_route": True,
+                  "no_store": True,
+                  "noindex": True,
+                  "protected_apis": True
               },
               "health": {"ok": True}
           }
@@ -136,7 +157,7 @@ jobs:
             neptune-tv-media-cloudflare/src/public-layout.js \
             neptune-tv-media-cloudflare/src/public-render.js \
             render-polish-production.json
-          git commit -m "feat: persist detailed Neptune render polish v6 [skip ci]" || true
+          git commit -m "chore: record verified Studio Admin production routes [skip ci]" || true
           for attempt in 1 2 3 4 5; do
             git pull --rebase origin main
             if git push origin HEAD:main; then exit 0; fi
