@@ -358,3 +358,73 @@ body[data-public-ux="streaming-v3"] .episode-copy h1 { font-size:clamp(2.7rem,5.
 .nav .nav-cta:hover { background:linear-gradient(180deg,#76d5ff,#2bb5ff); }
 .content-rail-shell[hidden] { display:none !important; }
 .hero-media:not([data-loading="true"])::before { display:none; }
+
+
+/* Render media fix v7: separate aspect ratios, reliable FAQ and unobstructed player controls. */
+[data-render-media="v7"] #dynamicCatalog,
+[data-render-media="v7"] #shortsCatalog { scrollbar-width:none; }
+[data-render-media="v7"] #dynamicCatalog::-webkit-scrollbar,
+[data-render-media="v7"] #shortsCatalog::-webkit-scrollbar { display:none; }
+[data-render-media="v7"] .content-rail-shell { min-width:0; overflow:hidden; }
+[data-render-media="v7"] [data-rail-track] { scroll-padding-inline:4px; }
+[data-render-media="v7"] #dynamicCatalog .media-card--episode { flex:0 0 clamp(300px,31vw,430px); aspect-ratio:16/9; }
+[data-render-media="v7"] #dynamicCatalog .media-card--episode img { object-fit:cover; }
+[data-render-media="v7"] .shorts-rail-shell { margin-top:32px; }
+[data-render-media="v7"] #shortsCatalog .media-card--short { flex:0 0 clamp(160px,16vw,220px); aspect-ratio:9/16; min-height:0; background:#000; }
+[data-render-media="v7"] #shortsCatalog .media-card--short img { object-fit:contain; object-position:center; background:#000; }
+[data-render-media="v7"] #shortsCatalog .media-card-copy { left:12px; right:12px; bottom:12px; padding:12px; border-radius:14px; background:linear-gradient(180deg,rgba(4,8,18,.74),rgba(4,8,18,.96)); }
+[data-render-media="v7"] #shortsCatalog .media-card h3 { display:-webkit-box; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; font-size:.95rem; }
+[data-render-media="v7"] #shortsCatalog .card-play { width:40px; height:40px; }
+
+#questions .faq-intro h2 { max-width:10ch; font-size:clamp(2.7rem,4.8vw,4.9rem); overflow-wrap:normal; }
+#questions .faq-intro p { max-width:34ch; }
+#questions .faq-answer[hidden] { display:none !important; }
+#questions .faq-answer:not([hidden]) { grid-template-rows:1fr; }
+#questions .faq-item.is-open .faq-answer { grid-template-rows:1fr; }
+#questions .faq-item button { min-height:72px; }
+#questions .faq-item button span:first-child { text-align:left; }
+
+#formats .format-card[data-format-visual="horsnorme"] img { object-position:center center; }
+#formats .format-card[data-format-visual="libre"] img { object-position:center center; }
+#formats .format-card::after { background:linear-gradient(180deg,rgba(1,5,14,.04) 20%,rgba(2,6,17,.96) 88%); }
+
+.live-page-immediate { padding-top:18px; }
+.live-page-immediate .live-channel { align-items:start; }
+.live-page-immediate .live-program-status { grid-column:1/-1; margin:0; }
+.live-page-immediate .related { margin-top:54px; }
+.live-page-immediate .live-stage,
+.live-page-immediate .live-stage video { min-height:min(68vh,680px); }
+.live-overlay { top:0; bottom:auto; align-items:flex-start; padding:18px 20px 70px; background:linear-gradient(180deg,rgba(2,6,17,.93) 0%,rgba(2,6,17,.55) 48%,transparent 100%); }
+.live-overlay strong { max-width:min(720px,calc(100% - 190px)); }
+.live-overlay button { margin-left:auto; flex:0 0 auto; }
+.live-ad-link { top:78px; right:20px; bottom:auto; }
+.modal-skip { top:18px; right:18px; bottom:auto; }
+
+body[data-public-ux="streaming-v3"] .catalogue-hero { max-width:760px; padding:28px 0 30px; }
+body[data-public-ux="streaming-v3"] .catalogue-hero h1 { margin:10px 0 8px; font-size:clamp(2.5rem,4.2vw,4rem); }
+.catalog-section { margin-top:38px; }
+.catalog-section-head { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:16px; }
+.catalog-section-head h2 { margin:0; font-size:clamp(1.7rem,3vw,2.6rem); }
+.catalog-section-head p { margin:0; color:var(--neptune-muted); }
+body[data-public-ux="streaming-v3"] .seo-grid-shorts { grid-template-columns:repeat(5,minmax(0,1fr)); }
+body[data-public-ux="streaming-v3"] .seo-card.is-short { background:#000; }
+body[data-public-ux="streaming-v3"] .seo-card.is-short .seo-card-media { aspect-ratio:9/16; background:#000; }
+body[data-public-ux="streaming-v3"] .seo-card.is-short .seo-card-media img { object-fit:contain; background:#000; }
+body[data-public-ux="streaming-v3"] .seo-card.is-short .seo-card-copy h2 { display:-webkit-box; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+
+@media(max-width:1080px) {
+  body[data-public-ux="streaming-v3"] .seo-grid-shorts { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+@media(max-width:760px) {
+  #questions .faq-intro h2 { max-width:14ch; font-size:clamp(2.45rem,11vw,3.8rem); }
+  [data-render-media="v7"] #dynamicCatalog .media-card--episode { flex-basis:min(86vw,390px); }
+  [data-render-media="v7"] #shortsCatalog .media-card--short { flex-basis:min(58vw,210px); }
+  .live-page-immediate { padding-top:8px; }
+  .live-page-immediate .live-stage,
+  .live-page-immediate .live-stage video { min-height:56vw; }
+  .live-overlay { padding:14px 14px 56px; }
+  .live-overlay strong { max-width:calc(100% - 130px); font-size:1rem; }
+  .live-overlay button { padding:8px 10px; }
+  body[data-public-ux="streaming-v3"] .seo-grid-shorts { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .catalog-section-head { align-items:flex-start; flex-direction:column; }
+}

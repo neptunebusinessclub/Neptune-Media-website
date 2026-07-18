@@ -51,8 +51,7 @@
 
   function homeSearch(force = false) {
     const form = q('[data-media-search]');
-    const grid = q('#dynamicCatalog');
-    if (!form || !grid) return;
+    if (!form) return;
     if (form.dataset.bound) {
       if (force) form.dispatchEvent(new CustomEvent('neptune:search-refresh'));
       return;
@@ -66,23 +65,26 @@
     let selected = filters.find((item) => item.getAttribute('aria-pressed') === 'true')?.dataset.mediaFilter || 'all';
 
     const apply = () => {
+      const items = qa('[data-media-item]');
+      if (!items.length) return;
       const needle = normal(input?.value);
       let visible = 0;
-      qa('.media-card', grid).forEach((card) => {
-        const text = normal(card.dataset.search || card.textContent);
+      items.forEach((card) => {
+        const textValue = normal(card.dataset.search || card.textContent);
         const program = normal(card.dataset.program || card.textContent);
-        const show = (!needle || text.includes(needle)) && (selected === 'all' || program.includes(normal(selected)));
+        const show = (!needle || textValue.includes(needle)) && (selected === 'all' || program.includes(normal(selected)));
         card.hidden = !show;
         if (show) visible += 1;
       });
       const filtered = Boolean(needle) || selected !== 'all';
-      if (count) count.textContent = filtered ? `${visible} résultat${visible !== 1 ? 's' : ''}` : `${visible} nouveauté${visible !== 1 ? 's' : ''}`;
+      if (count) count.textContent = filtered ? `${visible} résultat${visible !== 1 ? 's' : ''}` : `${visible} contenu${visible !== 1 ? 's' : ''}`;
       if (reset) reset.hidden = !filtered;
       if (empty) empty.hidden = visible !== 0;
-      const railShell = q('[data-content-rail]');
-      if (railShell) railShell.hidden = visible === 0;
-      grid.scrollTo({ left: 0, behavior: motionBehavior() });
-      updateRailButtons();
+      qa('[data-content-rail]').forEach((shell) => {
+        const shellVisible = qa('[data-media-item]:not([hidden])', shell).length;
+        shell.hidden = shellVisible === 0;
+        updateRailButtons(shell);
+      });
     };
     const resetAll = () => {
       if (input) input.value = '';
@@ -108,13 +110,14 @@
 
   function emissionsSearch() {
     if (!cleanPath(location.pathname).startsWith('/emissions')) return;
-    const grid = q('.seo-grid');
-    if (!grid || grid.dataset.searchEnhanced) return;
-    grid.dataset.searchEnhanced = '1';
+    const cards = qa('.catalog-section .seo-card');
+    if (!cards.length || document.body.dataset.emissionsSearchEnhanced) return;
+    document.body.dataset.emissionsSearchEnhanced = '1';
+    const firstSection = q('.catalog-section');
     const panel = document.createElement('div');
     panel.className = 'seo-search-panel';
-    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><button class="btn btn-secondary" type="button" data-emissions-reset hidden>Effacer</button><p class="media-results" aria-live="polite"></p><p class="media-empty-inline" hidden>Aucune émission ne correspond à cette recherche.</p>';
-    grid.before(panel);
+    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><button class="btn btn-secondary" type="button" data-emissions-reset hidden>Effacer</button><p class="media-results" aria-live="polite"></p><p class="media-empty-inline" hidden>Aucun contenu ne correspond à cette recherche.</p>';
+    firstSection?.before(panel);
     const input = q('input', panel);
     const result = q('.media-results', panel);
     const empty = q('.media-empty-inline', panel);
@@ -124,13 +127,14 @@
     const apply = () => {
       const needle = normal(input.value);
       let visible = 0;
-      qa('.seo-card', grid).forEach((card) => {
-        const text = normal(card.dataset.search || card.textContent);
+      cards.forEach((card) => {
+        const textValue = normal(card.dataset.search || card.textContent);
         const program = normal(card.dataset.program || card.textContent);
-        const show = (!needle || text.includes(needle)) && (selected === 'all' || program.includes(selected));
+        const show = (!needle || textValue.includes(needle)) && (selected === 'all' || program.includes(selected));
         card.hidden = !show;
         if (show) visible += 1;
       });
+      qa('.catalog-section').forEach((section) => { section.hidden = qa('.seo-card:not([hidden])', section).length === 0; });
       const filtered = Boolean(needle) || selected !== 'all';
       result.textContent = `${visible} résultat${visible !== 1 ? 's' : ''}`;
       reset.hidden = !filtered;
@@ -154,31 +158,33 @@
   }
 
   function streamingRail(force = false) {
-    const shell = q('[data-content-rail]');
-    const rail = q('#dynamicCatalog');
-    if (!shell || !rail) return;
-    if (shell.dataset.railBound) {
-      if (force) updateRailButtons();
-      return;
+    const shells = qa('[data-content-rail]');
+    if (!shells.length) return;
+    shells.forEach((shell) => {
+      const rail = q('[data-rail-track]', shell) || q('.video-grid', shell);
+      if (!rail) return;
+      if (!shell.dataset.railBound) {
+        shell.dataset.railBound = '1';
+        q('[data-rail-prev]', shell)?.addEventListener('click', () => rail.scrollBy({ left: -railAmount(rail), behavior: motionBehavior() }));
+        q('[data-rail-next]', shell)?.addEventListener('click', () => rail.scrollBy({ left: railAmount(rail), behavior: motionBehavior() }));
+        rail.addEventListener('scroll', () => updateRailButtons(shell), { passive: true });
+      }
+      if (force || shell.dataset.railBound) updateRailButtons(shell);
+    });
+    if (!document.documentElement.dataset.railResizeBound) {
+      document.documentElement.dataset.railResizeBound = '1';
+      window.addEventListener('resize', () => qa('[data-content-rail]').forEach(updateRailButtons));
     }
-    shell.dataset.railBound = '1';
-    const previous = q('[data-rail-prev]', shell);
-    const next = q('[data-rail-next]', shell);
-    const amount = () => {
-      const card = qa('.media-card:not([hidden])', rail)[0];
-      return card ? card.getBoundingClientRect().width + 16 : Math.max(280, rail.clientWidth * .8);
-    };
-    previous?.addEventListener('click', () => rail.scrollBy({ left: -amount(), behavior: motionBehavior() }));
-    next?.addEventListener('click', () => rail.scrollBy({ left: amount(), behavior: motionBehavior() }));
-    rail.addEventListener('scroll', updateRailButtons, { passive: true });
-    window.addEventListener('resize', updateRailButtons);
-    updateRailButtons();
   }
 
-  function updateRailButtons() {
-    const shell = q('[data-content-rail]');
-    const rail = q('#dynamicCatalog');
-    if (!shell || !rail) return;
+  function railAmount(rail) {
+    const card = qa('[data-media-item]:not([hidden])', rail)[0];
+    return card ? card.getBoundingClientRect().width + 16 : Math.max(240, rail.clientWidth * .8);
+  }
+
+  function updateRailButtons(shell) {
+    const rail = q('[data-rail-track]', shell) || q('.video-grid', shell);
+    if (!rail) return;
     const previous = q('[data-rail-prev]', shell);
     const next = q('[data-rail-next]', shell);
     if (previous) previous.disabled = rail.scrollLeft <= 4;

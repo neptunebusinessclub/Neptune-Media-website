@@ -28,7 +28,7 @@ export async function mountLiveChannel(root, providedCatalog) {
 
   const activeProgramIds = new Set((catalog.programs || []).filter(isActiveProgram).map((item) => item.id));
   const episodes = (catalog.episodes || [])
-    .filter((item) => activeProgramIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl && item.metadata?.live !== false && (item.metadata?.fullEpisode || String(item.videoUrl || '').startsWith('/media/')))
+    .filter((item) => activeProgramIds.has(item.programId) && item.status === 'published' && item.slug && item.videoUrl && item.posterUrl && !isShortEpisode(item) && item.metadata?.live !== false && (item.metadata?.fullEpisode || String(item.videoUrl || '').startsWith('/media/')))
     .sort((a, b) => Number(a.displayOrder || 0) - Number(b.displayOrder || 0));
   const ads = (catalog.ads || []).filter((item) => item.assetType === 'video' && item.assetUrl && ['preroll', 'midroll', 'postroll'].includes(item.placement));
   const schedule = buildSchedule(episodes, ads);
@@ -223,6 +223,7 @@ export async function mountLiveChannel(root, providedCatalog) {
   }
 }
 
+function isShortEpisode(episode) { const metadata = episode?.metadata && typeof episode.metadata === 'object' ? episode.metadata : {}; const declared = [metadata.format, metadata.type, metadata.orientation, ...(Array.isArray(metadata.tags) ? metadata.tags : [])].filter(Boolean).join(' '); const duration = Number(episode?.durationSeconds || 0); return metadata.short === true || metadata.vertical === true || /short|reel|vertical|portrait/i.test(String(declared)) || (!metadata.fullEpisode && duration > 0 && duration <= 90); }
 function isActiveProgram(program) { return Boolean(program?.slug) && program.active !== false && Number(program.active ?? 1) !== 0; }
 function buildSchedule(episodes, ads) {
   const grouped = { preroll: [], midroll: [], postroll: [] };

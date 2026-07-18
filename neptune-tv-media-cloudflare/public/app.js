@@ -206,33 +206,70 @@
   }
 
   function renderCatalog() {
-    const grid = qs('#dynamicCatalog');
-    if (!grid || !state.episodes.length) {
+    const fullGrid = qs('#dynamicCatalog');
+    if (!fullGrid || !state.episodes.length) {
       bindFallbackVideos();
       return;
     }
-    grid.innerHTML = state.episodes.slice(0, 8).map((episode) => {
-      const program = programName(episode.programId);
-      const metadata = episode.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
-      const tags = Array.isArray(metadata.tags) ? metadata.tags.join(' ') : String(metadata.tags || '');
-      const search = [episode.title, episode.description, program, metadata.guestName, metadata.guestCompany, tags].filter(Boolean).join(' ');
-      return `
-      <button class="media-card" type="button" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" data-program="${escapeHtml(program)}" data-search="${escapeHtml(search)}" aria-label="Regarder ${escapeHtml(episode.title)}">
-        <img loading="lazy" decoding="async" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
-        <span class="card-play" aria-hidden="true">▶</span>
-        <span class="media-card-copy">
-          <span class="media-card-meta"><span>${escapeHtml(program)}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span>
-          <h3>${escapeHtml(episode.title)}</h3>
-        </span>
-        <span class="watch-progress" aria-hidden="true" hidden><i></i></span>
-      </button>`;
-    }).join('');
+    const fullShell = fullGrid.closest('[data-content-rail]');
+    const shortsShell = ensureShortsRail(fullShell);
+    const shortsGrid = qs('#shortsCatalog');
+    const fullEpisodes = state.episodes.filter((episode) => !isShortEpisode(episode)).slice(0, 8);
+    const shorts = state.episodes.filter(isShortEpisode).slice(0, 12);
+
+    fullGrid.dataset.railTrack = '';
+    fullGrid.dataset.mediaKind = 'episode';
+    fullShell?.setAttribute('data-media-kind', 'episode');
+    const fullTitle = qs('.content-rail-head h3', fullShell || document);
+    if (fullTitle) fullTitle.textContent = 'Émissions';
+
+    renderMediaRail(fullGrid, fullEpisodes, 'episode');
+    if (shortsGrid) renderMediaRail(shortsGrid, shorts, 'short');
+    if (fullShell) fullShell.hidden = fullEpisodes.length === 0;
+    if (shortsShell) shortsShell.hidden = shorts.length === 0;
+  }
+
+  function ensureShortsRail(afterShell) {
+    let shell = qs('[data-content-rail][data-media-kind="short"]');
+    if (shell) return shell;
+    shell = document.createElement('div');
+    shell.className = 'content-rail-shell shorts-rail-shell';
+    shell.dataset.contentRail = '';
+    shell.dataset.mediaKind = 'short';
+    shell.innerHTML = `<div class="content-rail-head"><h3>Shorts</h3><div class="content-rail-controls" aria-label="Faire défiler les shorts"><button class="rail-control" type="button" data-rail-prev aria-label="Shorts précédents">←</button><button class="rail-control" type="button" data-rail-next aria-label="Shorts suivants">→</button></div></div><div class="video-grid shorts-grid" id="shortsCatalog" data-rail-track data-media-kind="short" aria-live="polite"></div>`;
+    afterShell?.after(shell);
+    return shell;
+  }
+
+  function renderMediaRail(grid, episodes, kind) {
+    grid.innerHTML = episodes.map((episode) => mediaCardMarkup(episode, kind)).join('');
     qsa('[data-episode-id]', grid).forEach((button) => {
       button.addEventListener('click', () => {
         const episode = state.episodes.find((item) => item.id === button.dataset.episodeId);
         if (episode) openEpisode(episode, button);
       });
     });
+  }
+
+  function mediaCardMarkup(episode, kind) {
+    const program = programName(episode.programId);
+    const metadata = episode.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+    const tags = Array.isArray(metadata.tags) ? metadata.tags.join(' ') : String(metadata.tags || '');
+    const search = [episode.title, episode.description, program, metadata.guestName, metadata.guestCompany, tags].filter(Boolean).join(' ');
+    const className = kind === 'short' ? 'media-card media-card--short' : 'media-card media-card--episode';
+    return `<button class="${className}" type="button" data-media-item data-media-kind="${kind}" data-episode-id="${escapeHtml(episode.id)}" data-episode-slug="${escapeHtml(episode.slug || episode.id)}" data-program="${escapeHtml(program)}" data-search="${escapeHtml(search)}" aria-label="Regarder ${escapeHtml(episode.title)}">
+      <img loading="lazy" decoding="async" src="${escapeHtml(episode.posterUrl || '/assets/posters/default.svg')}" alt="Miniature de ${escapeHtml(episode.title)}">
+      <span class="card-play" aria-hidden="true">▶</span>
+      <span class="media-card-copy"><span class="media-card-meta"><span>${escapeHtml(program)}</span><span>${escapeHtml(formatDuration(episode.durationSeconds))}</span></span><h3>${escapeHtml(episode.title)}</h3></span>
+      <span class="watch-progress" aria-hidden="true" hidden><i></i></span>
+    </button>`;
+  }
+
+  function isShortEpisode(episode) {
+    const metadata = episode?.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+    const declared = [metadata.format, metadata.type, metadata.orientation, ...(Array.isArray(metadata.tags) ? metadata.tags : [])].filter(Boolean).join(' ');
+    const duration = Number(episode?.durationSeconds || 0);
+    return metadata.short === true || metadata.vertical === true || /short|reel|vertical|portrait/i.test(String(declared)) || (!metadata.fullEpisode && duration > 0 && duration <= 90);
   }
 
   function bindFallbackVideos() {
@@ -275,12 +312,34 @@
   }
 
   function bindFaq() {
-    qsa('[data-faq]').forEach((item) => {
-      const button = qs('button', item);
-      button?.addEventListener('click', () => {
-        const open = item.classList.toggle('is-open');
-        button.setAttribute('aria-expanded', String(open));
-      });
+    if (document.documentElement.dataset.faqBound === '1') return;
+    document.documentElement.dataset.faqBound = '1';
+    const close = (item) => {
+      const button = qs(':scope > button', item);
+      const answer = qs('.faq-answer', item);
+      item.classList.remove('is-open');
+      if (button) {
+        button.setAttribute('aria-expanded', 'false');
+        const icon = button.lastElementChild;
+        if (icon) icon.textContent = '+';
+      }
+      if (answer) answer.hidden = true;
+    };
+    qsa('[data-faq]').forEach(close);
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      const item = button?.closest('[data-faq]');
+      if (!button || !item || button.parentElement !== item) return;
+      const answer = qs('.faq-answer', item);
+      if (!answer) return;
+      const open = !item.classList.contains('is-open');
+      qsa('[data-faq].is-open').forEach((other) => { if (other !== item) close(other); });
+      if (!open) return close(item);
+      item.classList.add('is-open');
+      button.setAttribute('aria-expanded', 'true');
+      const icon = button.lastElementChild;
+      if (icon) icon.textContent = '−';
+      answer.hidden = false;
     });
   }
 

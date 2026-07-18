@@ -28,7 +28,7 @@
     const secondary = document.querySelector('.header-actions .btn-secondary');
     if (secondary) {
       secondary.href = '/direct/';
-      secondary.textContent = 'Web TV 24h/24';
+      secondary.textContent = 'Voir le direct';
       secondary.classList.add('header-live-link');
     }
     const primary = document.querySelector('.header-actions .btn-primary');
@@ -64,7 +64,7 @@
       const section = document.querySelector('#direct');
       if (!section || section.dataset.conversionReady) return Boolean(section);
       section.dataset.conversionReady = '1';
-      setText('#direct .live-home-head h2', 'La Web TV Neptune Business diffuse 24h/24.');
+      setText('#direct .live-home-head h2', 'Neptune Media diffuse les émissions programmées.');
       setText('#direct .live-home-head p', 'Les émissions complètes s’enchaînent selon la programmation pilotée depuis le Studio Media. Regardez le direct ou choisissez votre émission.');
       const button = section.querySelector('.live-home-head .btn');
       if (button) button.textContent = 'Ouvrir la chaîne en direct';
@@ -98,33 +98,35 @@
   function enhanceFormats() {
     setText('#formats .eyebrow', 'DEUX MANIÈRES DE PRENDRE LA PAROLE');
     setText('#formats .section-head h2', 'Le bon format dépend de ce que vous voulez révéler.');
-    setText('#formats .section-head p', 'Hors Norme révèle votre trajectoire. Concept Libre construit un programme autour de votre expertise, de votre marque ou de votre audience.');
+    setText('#formats .section-head p', 'Hors Norme révèle votre trajectoire. Concept Libre construit un programme autour de votre expertise.');
     const cards = document.querySelectorAll('#formats .format-card');
     const configs = [
-      { label: 'Hors Norme', promise: 'L’émission qui révèle l’histoire humaine derrière votre entreprise.', items: ['Raconter une trajectoire', 'Revenir sur un déclic ou une épreuve', 'Expliquer une conviction profonde'], program: '/programmes/hors-norme/', cta: 'Voir les créneaux Hors Norme', format: 'horsnorme' },
-      { label: 'Concept Libre', promise: 'Une émission conçue autour de votre univers, de votre expertise et de votre audience.', items: ['Créer un concept de marque', 'Présenter une méthode ou une démonstration', 'Imaginer un jeu, une chronique ou un échange'], program: '/programmes/concept-libre/', cta: 'Construire mon Concept Libre', format: 'libre' }
+      { label: 'Hors Norme', image: '/assets/posters/format-canape-sombre.svg', alt: 'Décor canapé sombre du format Hors Norme', promise: 'L’émission qui révèle l’histoire humaine derrière votre entreprise.', items: ['Raconter une trajectoire', 'Revenir sur un déclic ou une épreuve'], program: '/programmes/hors-norme/', cta: 'Voir les créneaux Hors Norme', format: 'horsnorme' },
+      { label: 'Concept Libre', image: '/assets/posters/format-plateau-clair.svg', alt: 'Plateau clair du format Concept Libre', promise: 'Une émission conçue autour de votre expertise, de votre marque ou de votre audience.', items: ['Présenter une méthode ou une démonstration', 'Imaginer un jeu, une chronique ou un échange'], program: '/programmes/concept-libre/', cta: 'Construire mon Concept Libre', format: 'libre' }
     ];
     cards.forEach((card, index) => {
       const config = configs[index];
       if (!config) return;
+      card.dataset.formatVisual = config.format;
+      const image = card.querySelector('img');
+      if (image) { image.src = config.image; image.alt = config.alt; }
       const paragraph = card.querySelector('.format-card-content > p');
       if (paragraph) paragraph.textContent = config.promise;
-      if (!card.querySelector('.format-benefits')) {
-        const benefits = document.createElement('div');
-        benefits.className = 'format-benefits';
-        benefits.innerHTML = `<strong>Idéal pour</strong><ul>${config.items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
-        paragraph?.after(benefits);
-      }
+      const oldBenefits = card.querySelector('.format-benefits');
+      if (oldBenefits) oldBenefits.remove();
+      const benefits = document.createElement('div');
+      benefits.className = 'format-benefits';
+      benefits.innerHTML = `<strong>Idéal pour</strong><ul>${config.items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+      paragraph?.after(benefits);
       const links = card.querySelectorAll('.format-card-actions a');
-      if (links[0]) { links[0].href = config.program; links[0].textContent = `Découvrir ${config.label}`; }
-      if (links[1]) {
+      if (links[0]) {
         const url = new URL(BOOKING);
         url.searchParams.set('utm_source', 'webtv');
         url.searchParams.set('utm_medium', 'landing_format');
         url.searchParams.set('utm_campaign', 'neptune_media');
         url.searchParams.set('format', config.format);
-        links[1].href = url.toString();
-        links[1].textContent = config.cta;
+        links[0].href = url.toString();
+        links[0].textContent = config.cta;
       }
     });
   }
@@ -177,30 +179,19 @@
   }
 
   function expandFaq() {
-    setText('#questions .faq-intro h2', 'Tout ce qu’il faut savoir avant de passer à l’antenne.');
-    setText('#questions .faq-intro p', 'Le rôle de Neptune est de réduire l’incertitude : préparation, tournage, utilisation des fichiers et choix du format.');
+    setText('#questions .faq-intro h2', 'Avant de passer à l’antenne.');
+    setText('#questions .faq-intro p', 'Les réponses essentielles, sans détour.');
     const list = document.querySelector('#questions .faq-list');
-    if (!list || list.dataset.expanded) return;
-    list.dataset.expanded = '1';
+    if (!list || list.dataset.normalized === '1') return;
+    list.dataset.normalized = '1';
     const items = [
-      ['Dois-je préparer ou apprendre un texte ?', 'Non. Vous préparez des idées, des événements et des messages importants. L’interviewer construit ensuite une conversation naturelle autour de cette matière.'],
-      ['Mon activité est très technique. Est-ce adapté ?', 'Oui. Une expertise technique devient intéressante lorsqu’elle est reliée à un problème réel, à une décision, à un usage et aux personnes qu’elle aide.'],
-      ['Puis-je utiliser l’émission sur mes propres supports ?', 'Les fichiers livrés peuvent être exploités conformément à l’offre choisie, aux conditions applicables et aux droits de propriété des contenus Neptune.'],
-      ['Comment accéder à la Web TV Neptune Business ?', 'Le direct est accessible 24h/24 depuis le bouton Web TV. Les émissions peuvent aussi être regardées individuellement depuis le catalogue.']
+      ['Dois-je être à l’aise face caméra ?', 'Non. La préparation et les relances vous aident à rester naturel.'],
+      ['Dois-je apprendre un texte ?', 'Non. Vous préparez des idées et des moments importants, puis la conversation reste naturelle.'],
+      ['Mon activité est très technique. Est-ce adapté ?', 'Oui. Neptune relie votre expertise à un problème, une décision et un résultat compréhensibles.'],
+      ['Puis-je publier sur mes réseaux et supports ?', 'Les droits d’utilisation sont précisés dans l’offre et les conditions de votre commande.'],
+      ['Comment accéder à la Web TV ?', 'Le direct et les émissions à la demande sont accessibles depuis la navigation Neptune Media.']
     ];
-    items.forEach(([question, answer]) => {
-      const article = document.createElement('article');
-      article.className = 'faq-item';
-      article.dataset.faq = '';
-      article.innerHTML = `<button type="button" aria-expanded="false"><span>${question}</span><span>+</span></button><div class="faq-answer"><div><p>${answer}</p></div></div>`;
-      list.append(article);
-      const button = article.querySelector('button');
-      button.addEventListener('click', () => {
-        const open = article.classList.toggle('open');
-        button.setAttribute('aria-expanded', String(open));
-        button.lastElementChild.textContent = open ? '−' : '+';
-      });
-    });
+    list.innerHTML = items.map(([question, answer], index) => `<article class="faq-item" data-faq><button id="faq-button-${index + 1}" type="button" aria-expanded="false" aria-controls="faq-answer-${index + 1}"><span>${question}</span><span aria-hidden="true">+</span></button><div id="faq-answer-${index + 1}" class="faq-answer" role="region" aria-labelledby="faq-button-${index + 1}" hidden><div><p>${answer}</p></div></div></article>`).join('');
   }
 
   function enhanceFinalCta() {
@@ -215,7 +206,7 @@
   function enhanceFooter() {
     const explore = document.querySelector('.footer-col:nth-child(2)');
     if (explore && !explore.querySelector('a[href="/emissions/"]')) {
-      explore.insertAdjacentHTML('afterbegin', '<a href="/direct/">Web TV 24h/24</a><a href="/emissions/">Toutes les émissions</a>');
+      explore.insertAdjacentHTML('afterbegin', '<a href="/direct/">Voir le direct</a><a href="/emissions/">Toutes les émissions</a>');
     }
     const information = document.querySelector('.footer-col:last-child');
     if (information && !information.querySelector('a[href="/studio/"]')) information.insertAdjacentHTML('beforeend', '<a href="/studio/">Studio Media</a>');
