@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const q = (s, root = document) => root.querySelector(s);
-  const qa = (s, root = document) => [...root.querySelectorAll(s)];
+  const q = (selector, root = document) => root.querySelector(selector);
+  const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
   const WATCH_KEY = 'neptune_watch_progress_v2';
   let currentEpisode = null;
 
@@ -10,12 +10,17 @@
   homeSearch();
   emissionsSearch();
   watchProgress();
+  streamingRail();
   directStatus();
   clarifyBookingLinks();
+  closeMobileNavigation();
+  renderProgressBars();
 
   window.addEventListener('neptune:catalog-ready', () => {
     homeSearch(true);
     renderContinue();
+    streamingRail(true);
+    renderProgressBars();
   });
 
   function activeNavigation() {
@@ -64,6 +69,8 @@
         if (show) visible += 1;
       });
       if (count) count.textContent = `${visible} émission${visible > 1 ? 's' : ''}`;
+      grid.scrollTo({ left: 0, behavior: motionBehavior() });
+      updateRailButtons();
     };
 
     if (input && !input.dataset.bound) {
@@ -94,7 +101,7 @@
     grid.dataset.searchEnhanced = '1';
     const panel = document.createElement('div');
     panel.className = 'seo-search-panel';
-    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Rechercher un invité, une entreprise ou un sujet"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><p class="media-results" aria-live="polite"></p>';
+    panel.innerHTML = '<label><span class="sr-only">Rechercher une émission</span><input type="search" placeholder="Invité, entreprise ou sujet" autocomplete="off"></label><div class="media-filter-row"><button class="media-filter" type="button" data-filter="all" aria-pressed="true">Tout</button><button class="media-filter" type="button" data-filter="hors norme" aria-pressed="false">Hors Norme</button><button class="media-filter" type="button" data-filter="concept libre" aria-pressed="false">Concept Libre</button></div><p class="media-results" aria-live="polite"></p>';
     grid.before(panel);
     const input = q('input', panel);
     const result = q('.media-results', panel);
@@ -118,6 +125,34 @@
       apply();
     }));
     apply();
+  }
+
+  function streamingRail(force = false) {
+    const shell = q('[data-content-rail]');
+    const rail = q('#dynamicCatalog');
+    if (!shell || !rail || (shell.dataset.railBound && !force)) return;
+    shell.dataset.railBound = '1';
+    const previous = q('[data-rail-prev]', shell);
+    const next = q('[data-rail-next]', shell);
+    const amount = () => {
+      const card = qa('.media-card:not([hidden])', rail)[0];
+      return card ? card.getBoundingClientRect().width + 16 : Math.max(280, rail.clientWidth * .8);
+    };
+    previous?.addEventListener('click', () => rail.scrollBy({ left: -amount(), behavior: motionBehavior() }));
+    next?.addEventListener('click', () => rail.scrollBy({ left: amount(), behavior: motionBehavior() }));
+    rail.addEventListener('scroll', updateRailButtons, { passive: true });
+    window.addEventListener('resize', updateRailButtons);
+    updateRailButtons();
+  }
+
+  function updateRailButtons() {
+    const shell = q('[data-content-rail]');
+    const rail = q('#dynamicCatalog');
+    if (!shell || !rail) return;
+    const previous = q('[data-rail-prev]', shell);
+    const next = q('[data-rail-next]', shell);
+    if (previous) previous.disabled = rail.scrollLeft <= 4;
+    if (next) next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
   }
 
   function watchProgress() {
@@ -204,6 +239,23 @@
     card.hidden = false;
   }
 
+  function renderProgressBars() {
+    const progress = readProgress();
+    qa('.media-card[data-episode-id]').forEach((card) => {
+      const item = progress[card.dataset.episodeSlug] || progress[card.dataset.episodeId];
+      setProgress(card, item);
+    });
+    qa('.seo-card[data-episode-slug]').forEach((card) => setProgress(card, progress[card.dataset.episodeSlug]));
+  }
+
+  function setProgress(card, item) {
+    const bar = q('.watch-progress', card);
+    if (!bar) return;
+    const percent = item?.duration > 0 ? Math.min(100, Math.max(0, (item.position / item.duration) * 100)) : 0;
+    bar.style.setProperty('--watch-progress', `${percent}%`);
+    bar.hidden = percent < 1 || percent > 98;
+  }
+
   function directStatus() {
     const root = q('[data-live-channel]');
     const video = root ? q('[data-live-video]', root) : null;
@@ -217,36 +269,53 @@
     error.className = 'live-ux-error';
     error.hidden = true;
     error.innerHTML = 'Le direct ne peut pas être chargé. <button type="button">Réessayer</button> <a href="/emissions/">Voir les émissions</a>';
-    video.closest('.live-stage')?.before(status, error);
+    q('.live-program-status', root)?.after(status, error);
     const message = q('.live-ux-message', status);
     const mode = q('.live-ux-mode', status);
-    const setMode = (value) => { status.dataset.mode = value; mode.textContent = value === 'live' ? 'En direct' : 'À la demande'; };
-    video.addEventListener('waiting', () => { message.textContent = 'Mise en mémoire tampon…'; });
-    video.addEventListener('playing', () => { error.hidden = true; message.textContent = status.dataset.mode === 'live' ? 'Antenne synchronisée' : 'Lecture à la demande'; });
-    video.addEventListener('error', () => { error.hidden = false; message.textContent = 'Lecture interrompue'; });
-    q('button', error)?.addEventListener('click', () => { error.hidden = true; video.load(); video.play().catch(() => {}); });
-    q('[data-live-resync]', root)?.addEventListener('click', () => setMode('live'));
-    const bindGuide = () => qa('[data-live-episode]', root).forEach((button) => {
-      if (button.dataset.uxBound) return;
-      button.dataset.uxBound = '1';
-      button.addEventListener('click', () => setMode('replay'));
+    const next = q('.live-ux-next', status);
+    const setMode = (value) => {
+      status.dataset.mode = value;
+      mode.textContent = value === 'live' ? 'En direct' : 'À la demande';
+    };
+    root.addEventListener('neptune:live-status', (event) => {
+      const detail = event.detail || {};
+      setMode(detail.mode === 'live' ? 'live' : 'replay');
+      error.hidden = true;
+      message.textContent = detail.remaining > 0 ? `${detail.program} · ${formatTime(detail.remaining)} restantes` : detail.program || 'Lecture en cours';
+      next.textContent = detail.nextTitle ? `Ensuite : ${detail.nextTitle}` : '';
     });
-    new MutationObserver(bindGuide).observe(q('[data-live-playlist]', root) || root, { childList: true, subtree: true });
+    root.addEventListener('neptune:live-error', () => {
+      error.hidden = false;
+      message.textContent = 'Lecture interrompue';
+    });
+    video.addEventListener('waiting', () => { message.textContent = 'Mise en mémoire tampon…'; });
+    video.addEventListener('playing', () => { error.hidden = true; });
+    q('button', error)?.addEventListener('click', () => { error.hidden = true; location.reload(); });
+    q('[data-live-resync]', root)?.addEventListener('click', () => setMode('live'));
     window.addEventListener('offline', () => { error.hidden = false; message.textContent = 'Connexion internet perdue'; });
-    bindGuide();
   }
 
   function clarifyBookingLinks() {
-    qa('[data-funnel]').forEach((link) => { link.title = 'Ouvre l’espace officiel Neptune Media avec les tarifs, conditions et créneaux'; });
+    qa('[data-funnel]').forEach((link) => {
+      link.title = 'Ouvre l’espace officiel Neptune Media avec les tarifs, conditions et créneaux';
+      if (!link.textContent.trim()) link.textContent = 'Voir les créneaux';
+    });
+  }
+
+  function closeMobileNavigation() {
+    qa('.public-mobile-menu a').forEach((link) => link.addEventListener('click', () => {
+      link.closest('details')?.removeAttribute('open');
+    }));
   }
 
   function readProgress() { try { return JSON.parse(localStorage.getItem(WATCH_KEY) || '{}'); } catch { return {}; } }
-  function saveProgress(key, value) { if (!key || !Number.isFinite(value.position) || !Number.isFinite(value.duration)) return; const data = readProgress(); data[key] = value; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); }
-  function clearProgress(key) { const data = readProgress(); delete data[key]; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); }
+  function saveProgress(key, value) { if (!key || !Number.isFinite(value.position) || !Number.isFinite(value.duration)) return; const data = readProgress(); data[key] = value; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); renderProgressBars(); }
+  function clearProgress(key) { const data = readProgress(); delete data[key]; localStorage.setItem(WATCH_KEY, JSON.stringify(data)); renderContinue(); renderProgressBars(); }
   function episodeKey(episode) { return String(episode?.slug || episode?.id || ''); }
   function sameMedia(a, b) { try { return new URL(a, location.href).pathname === new URL(b, location.href).pathname; } catch { return false; } }
   function normal(value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); }
   function cleanPath(value) { const path = String(value || '/').replace(/\/+$/, ''); return path || '/'; }
   function formatTime(value) { const seconds = Math.max(0, Math.floor(Number(value || 0))); return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`; }
   function escapeCss(value) { return window.CSS?.escape ? CSS.escape(String(value)) : String(value).replace(/["\\]/g, '\\$&'); }
+  function motionBehavior() { return matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; }
 })();
