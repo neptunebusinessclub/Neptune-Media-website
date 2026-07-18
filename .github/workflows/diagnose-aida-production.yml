@@ -46,10 +46,10 @@ jobs:
           from datetime import datetime, timezone
           report = {
             "checked_at": datetime.now(timezone.utc).isoformat(),
-            "ready": $ready,
-            "home": {"status": "$home_status", "aida_marker": $has_marker, "attention": $has_attention, "hook": $has_interest, "search": $has_search},
-            "assets": {"css_status": "$css_status", "css_loaded": $has_css, "js_status": "$js_status", "js_loaded": $has_js},
-            "public_pages": {"direct_status": "$direct_status", "direct_enhanced": $direct_enhanced, "emissions_status": "$emissions_status", "emissions_enhanced": $emissions_enhanced}
+            "ready": "$ready" == "true",
+            "home": {"status": "$home_status", "aida_marker": "$has_marker" == "true", "attention": "$has_attention" == "true", "hook": "$has_interest" == "true", "search": "$has_search" == "true"},
+            "assets": {"css_status": "$css_status", "css_loaded": "$has_css" == "true", "js_status": "$js_status", "js_loaded": "$has_js" == "true"},
+            "public_pages": {"direct_status": "$direct_status", "direct_enhanced": "$direct_enhanced" == "true", "emissions_status": "$emissions_status", "emissions_enhanced": "$emissions_enhanced" == "true"}
           }
           with open("aida-production-diagnostic.json", "w", encoding="utf-8") as handle:
               json.dump(report, handle, ensure_ascii=False, indent=2)
