@@ -1,12 +1,13 @@
 {
-  "checked_at": "2026-07-18T20:21:31.921826+00:00",
+  "checked_at": "2026-07-18T20:52:38.147494+00:00",
   "ready": true,
   "home": {
     "status": "200",
     "streaming_marker": true,
     "content_rail": true,
     "live_now": true,
-    "aida_hook": true
+    "aida_hook": true,
+    "upgrade_v6": true
   },
   "assets": {
     "css_status": "200",
@@ -14,6 +15,8 @@
     "js_status": "200",
     "progress": true,
     "rail_controls": true,
+    "upgrade_status": "200",
+    "legacy_catalog_disabled": true,
     "live_js_status": "200",
     "live_feedback": true
   },
