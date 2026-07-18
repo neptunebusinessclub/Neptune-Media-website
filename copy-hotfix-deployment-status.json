@@ -1,10 +1,11 @@
 {
   "status": "failed",
-  "source_sha": "5e24e8d317215903163ddda9ae8702e68e68c5ba",
-  "checked_at": "2026-07-18T23:39:05.987295+00:00",
+  "source_sha": "230ad3b7e69875d95ddc6770fac1cce7d0475bb0",
+  "checked_at": "2026-07-18T23:44:57.194479+00:00",
   "home_live": "v3",
   "landing_conversion": "v4",
   "outcomes": {
+    "normalize": "failure",
     "install": "success",
     "validate": "failure",
     "deploy": "failure",
