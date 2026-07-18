@@ -1,0 +1,120 @@
+name: Polish Neptune rendering
+
+on:
+  workflow_run:
+    workflows: ["Deploy Neptune Media to Cloudflare"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: neptune-render-polish
+  cancel-in-progress: true
+
+jobs:
+  polish-and-deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Apply detailed rendering polish
+        run: python3 scripts/apply-render-polish.py
+
+      - name: Install dependencies
+        working-directory: neptune-tv-media-cloudflare
+        run: npm install --package-lock=false --registry=https://registry.npmjs.org
+
+      - name: Validate source
+        working-directory: neptune-tv-media-cloudflare
+        run: |
+          npm run check
+          npx wrangler deploy --dry-run
+
+      - name: Deploy polished rendering
+        working-directory: neptune-tv-media-cloudflare
+        run: npx wrangler deploy
+
+      - name: Verify production rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/home.html; then break; fi
+            sleep 10
+          done
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css" > /tmp/streaming.css
+          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" > /tmp/ux.js
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" > /tmp/app.js
+          curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
+          curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
+          curl --fail --silent --show-error "$PUBLIC_URL/api/health" > /tmp/health.json
+
+          grep -q 'data-render-polish="v4"' /tmp/home.html
+          grep -q 'data-home-live' /tmp/home.html
+          grep -q 'data-empty-reset' /tmp/home.html
+          grep -q 'Render polish v4' /tmp/streaming.css
+          grep -q 'data-search' /tmp/app.js
+          grep -q 'neptune:search-refresh' /tmp/ux.js
+          grep -q 'data-live-now' /tmp/direct.html
+          grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
+          grep -q '"ok":true' /tmp/health.json
+
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          report = {
+              "checked_at": datetime.now(timezone.utc).isoformat(),
+              "ready": True,
+              "home": {
+                  "render_polish": True,
+                  "dynamic_live_state": True,
+                  "search_empty_state": True
+              },
+              "assets": {
+                  "streaming_css": True,
+                  "searchable_cards": True,
+                  "rail_listener_guard": True
+              },
+              "public_pages": {
+                  "direct_states": True,
+                  "emissions_streaming": True
+              },
+              "health": {"ok": True}
+          }
+          with open("render-polish-production.json", "w", encoding="utf-8") as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write("\n")
+          PY
+
+      - name: Persist polished source and diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            neptune-tv-media-cloudflare/public/index.html \
+            neptune-tv-media-cloudflare/public/app.js \
+            neptune-tv-media-cloudflare/public/ux-aida.js \
+            neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
+            neptune-tv-media-cloudflare/src/public-layout.js \
+            neptune-tv-media-cloudflare/src/public-render.js \
+            render-polish-production.json
+          git commit -m "feat: persist detailed Neptune render polish [skip ci]" || true
+          git push
