@@ -76,9 +76,11 @@
         if (show) visible += 1;
       });
       const filtered = Boolean(needle) || selected !== 'all';
-      if (count) count.textContent = filtered ? `${visible} résultat${visible > 1 ? 's' : ''}` : `${visible} nouveauté${visible > 1 ? 's' : ''}`;
+      if (count) count.textContent = filtered ? `${visible} résultat${visible !== 1 ? 's' : ''}` : `${visible} nouveauté${visible !== 1 ? 's' : ''}`;
       if (reset) reset.hidden = !filtered;
       if (empty) empty.hidden = visible !== 0;
+      const railShell = q('[data-content-rail]');
+      if (railShell) railShell.hidden = visible === 0;
       grid.scrollTo({ left: 0, behavior: motionBehavior() });
       updateRailButtons();
     };
@@ -130,7 +132,7 @@
         if (show) visible += 1;
       });
       const filtered = Boolean(needle) || selected !== 'all';
-      result.textContent = `${visible} résultat${visible > 1 ? 's' : ''}`;
+      result.textContent = `${visible} résultat${visible !== 1 ? 's' : ''}`;
       reset.hidden = !filtered;
       empty.hidden = visible !== 0;
     };

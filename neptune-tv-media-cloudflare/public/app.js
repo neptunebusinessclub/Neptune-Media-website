@@ -46,7 +46,6 @@
   bindNavigation();
   bindFaq();
   bindModal();
-  bindAutoplay();
   bootstrapCatalog();
 
   async function bootstrapCatalog() {
@@ -58,6 +57,7 @@
       state.episodes = [...(data.episodes || [])].sort((a, b) => Number(a.displayOrder || 0) - Number(b.displayOrder || 0));
       state.ads = data.ads || [];
       renderHero();
+      bindAutoplay();
       renderCatalog();
       renderHomeLive();
       window.dispatchEvent(new CustomEvent('neptune:catalog-ready', { detail: { count: state.episodes.length } }));
@@ -69,6 +69,8 @@
       }
     } catch (error) {
       console.error(error);
+      setHeroLoading(false);
+      renderHomeLive('error');
       setHeroLoading(false);
       renderHomeLive('error');
       bindFallbackVideos();
@@ -102,11 +104,8 @@
           motionToggle.addEventListener('click', () => loadHeroPreview(true));
         }
       }
-      if (heroSource.dataset.src && canAutoPreview()) {
-        state.heroPreviewTimer = window.setTimeout(() => loadHeroPreview(true), 900);
-      } else {
-        setHeroLoading(false);
-      }
+      setHeroLoading(false);
+      if (heroSource.dataset.src) scheduleHeroPreview();
     }
     if (heroTitle) heroTitle.textContent = episode.title;
     if (heroPlay) {
@@ -137,6 +136,20 @@
     if (!media) return;
     media.toggleAttribute('data-loading', Boolean(loading));
     media.setAttribute('aria-busy', String(Boolean(loading)));
+  }
+
+  function heroPreviewIsVisible(video = qs('#heroPreview')) {
+    if (!video || document.hidden) return false;
+    const rect = video.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+  }
+
+  function scheduleHeroPreview() {
+    clearTimeout(state.heroPreviewTimer);
+    if (!canAutoPreview() || !heroPreviewIsVisible()) return;
+    state.heroPreviewTimer = window.setTimeout(() => {
+      if (heroPreviewIsVisible()) loadHeroPreview(true);
+    }, 900);
   }
 
   function loadHeroPreview(autoplay = false) {
@@ -288,15 +301,26 @@
   }
 
   function bindAutoplay() {
-    if (!canAutoPreview() || !('IntersectionObserver' in window)) return;
+    if (!('IntersectionObserver' in window)) {
+      scheduleHeroPreview();
+      return;
+    }
+    const heroVideo = qs('#heroPreview');
+    if (!heroVideo || heroVideo.dataset.previewObserved) return;
+    heroVideo.dataset.previewObserved = '1';
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
-        if (entry.isIntersecting) loadHeroPreview(true);
-        else video.pause();
+        if (entry.isIntersecting) {
+          if (state.heroPreviewLoaded && canAutoPreview()) video.play().catch(() => {});
+          else scheduleHeroPreview();
+        } else {
+          clearTimeout(state.heroPreviewTimer);
+          video.pause();
+        }
       });
     }, { threshold: 0.45 });
-    qsa('video[data-autoplay]').forEach((video) => observer.observe(video));
+    observer.observe(heroVideo);
   }
 
   function openEpisode(episode, trigger) {
@@ -334,7 +358,7 @@
     state.currentAd = null;
     hideAdUi();
     lastTrigger?.focus?.();
-    if (state.heroPreviewLoaded && canAutoPreview()) {
+    if (state.heroPreviewLoaded && canAutoPreview() && heroPreviewIsVisible()) {
       window.setTimeout(() => qs('#heroPreview')?.play().catch(() => {}), 180);
     }
   }

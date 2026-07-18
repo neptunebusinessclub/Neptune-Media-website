@@ -351,3 +351,10 @@ body[data-public-ux="streaming-v3"] .episode-copy h1 { font-size:clamp(2.7rem,5.
   .media-empty .btn { width:100%; }
   .live-overlay { bottom:46px; padding:32px 16px 12px; }
 }
+
+
+/* Render polish v5: preview restraint and single-action consistency. */
+.nav .nav-cta { color:#03101e; background:linear-gradient(180deg,#55c9ff,var(--neptune-action)); border:1px solid rgba(255,255,255,.22); }
+.nav .nav-cta:hover { background:linear-gradient(180deg,#76d5ff,#2bb5ff); }
+.content-rail-shell[hidden] { display:none !important; }
+.hero-media:not([data-loading="true"])::before { display:none; }
