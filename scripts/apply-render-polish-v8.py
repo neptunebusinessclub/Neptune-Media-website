@@ -35,6 +35,7 @@ def main() -> None:
             ("/assets/posters/format-plateau-clair.svg", "/assets/posters/concept-libre-wide.webp"),
             ("Regarder le direct 24h/24", "Regarder le direct"),
             ("Antenne 24/24", "Antenne programmée"),
+            ("const labels = ['Émissions', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];", "const labels = ['Neptune TV', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];"),
         ],
     )
     patch(
@@ -53,7 +54,7 @@ def main() -> None:
             ("/landing-conversion.js?v=2", "/landing-conversion.js?v=3"),
         ],
     )
-    print("Applied Neptune media asset, live filter and scoped navigation fix v8")
+    print("Applied Neptune media asset, live filter and landing navigation fix v8")
 
 
 if __name__ == "__main__":
