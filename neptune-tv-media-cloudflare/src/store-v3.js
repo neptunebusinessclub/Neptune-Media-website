@@ -1,5 +1,5 @@
 import { StudioStore as BaseStore } from './index.js';
-import { hashPassword, json, sanitizeText, sanitizeUrl, sha256 } from './security.js';
+import { hashPassword, json, sanitizeText, sanitizeUrl, sha256, timingSafeEqual } from './security.js';
 import { ensurePortalSchema } from './portal-schema.js';
 import { requestCode, verifyCode, portalSession, logout } from './portal-auth.js';
 import {
@@ -58,7 +58,10 @@ export class StudioStore extends BaseStore {
   }
 
   async recoverAccess(body) {
-    if (!this.env.BOOTSTRAP_TOKEN || body.token !== this.env.BOOTSTRAP_TOKEN) return json({ error: 'invalid_bootstrap_token' }, 403);
+    const suppliedToken = String(body.token || '');
+    if (!this.env.BOOTSTRAP_TOKEN || !timingSafeEqual(suppliedToken, this.env.BOOTSTRAP_TOKEN)) {
+      return json({ error: 'invalid_bootstrap_token' }, 403);
+    }
     const email = sanitizeText(body.email, 240).toLowerCase();
     const password = String(body.password || '');
     if (!email || password.length < 12) return json({ error: 'invalid_credentials' }, 400);
