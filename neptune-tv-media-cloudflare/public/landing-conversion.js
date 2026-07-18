@@ -22,7 +22,7 @@
   function updateHeader() {
     const nav = document.querySelector('.nav');
     const links = nav ? [...nav.querySelectorAll('a:not(.nav-cta)')] : [];
-    const labels = ['Émissions', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];
+    const labels = ['Neptune TV', 'Les formats', 'Le studio', 'Comment ça se passe', 'Questions'];
     links.slice(-5).forEach((link, index) => { if (labels[index]) link.textContent = labels[index]; });
 
     const secondary = document.querySelector('.header-actions .btn-secondary');
