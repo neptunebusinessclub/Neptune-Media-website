@@ -177,7 +177,7 @@
     const title = qs('[data-home-live-title]', card);
     const copy = qs('[data-home-live-copy]', card);
     const action = qs('[data-home-live-action]', card);
-    const liveEpisodes = state.episodes.filter((episode) => episode.metadata?.live !== false && (episode.metadata?.fullEpisode || String(episode.videoUrl || '').startsWith('/media/')));
+    const liveEpisodes = state.episodes.filter((episode) => !isShortEpisode(episode) && episode.metadata?.live !== false && (episode.metadata?.fullEpisode || String(episode.videoUrl || '').startsWith('/media/')));
     card.setAttribute('aria-busy', 'false');
     if (status === 'error') {
       badge.dataset.state = 'error';

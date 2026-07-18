@@ -90,7 +90,7 @@
     if (container && !container.querySelector('.catalog-conversion-actions')) {
       const actions = document.createElement('div');
       actions.className = 'catalog-conversion-actions';
-      actions.innerHTML = '<a class="btn btn-dark" href="/direct/">Regarder le direct 24h/24</a><a class="btn btn-secondary" href="/emissions/">Voir toutes les émissions</a>';
+      actions.innerHTML = '<a class="btn btn-dark" href="/direct/">Regarder le direct</a><a class="btn btn-secondary" href="/emissions/">Voir toutes les émissions</a>';
       container.append(actions);
     }
   }
@@ -101,8 +101,8 @@
     setText('#formats .section-head p', 'Hors Norme révèle votre trajectoire. Concept Libre construit un programme autour de votre expertise.');
     const cards = document.querySelectorAll('#formats .format-card');
     const configs = [
-      { label: 'Hors Norme', image: '/assets/posters/format-canape-sombre.svg', alt: 'Décor canapé sombre du format Hors Norme', promise: 'L’émission qui révèle l’histoire humaine derrière votre entreprise.', items: ['Raconter une trajectoire', 'Revenir sur un déclic ou une épreuve'], program: '/programmes/hors-norme/', cta: 'Voir les créneaux Hors Norme', format: 'horsnorme' },
-      { label: 'Concept Libre', image: '/assets/posters/format-plateau-clair.svg', alt: 'Plateau clair du format Concept Libre', promise: 'Une émission conçue autour de votre expertise, de votre marque ou de votre audience.', items: ['Présenter une méthode ou une démonstration', 'Imaginer un jeu, une chronique ou un échange'], program: '/programmes/concept-libre/', cta: 'Construire mon Concept Libre', format: 'libre' }
+      { label: 'Hors Norme', image: '/assets/posters/studio-wide.webp', alt: 'Décor canapé sombre du format Hors Norme', promise: 'L’émission qui révèle l’histoire humaine derrière votre entreprise.', items: ['Raconter une trajectoire', 'Revenir sur un déclic ou une épreuve'], program: '/programmes/hors-norme/', cta: 'Voir les créneaux Hors Norme', format: 'horsnorme' },
+      { label: 'Concept Libre', image: '/assets/posters/concept-libre-wide.webp', alt: 'Plateau clair du format Concept Libre', promise: 'Une émission conçue autour de votre expertise, de votre marque ou de votre audience.', items: ['Présenter une méthode ou une démonstration', 'Imaginer un jeu, une chronique ou un échange'], program: '/programmes/concept-libre/', cta: 'Construire mon Concept Libre', format: 'libre' }
     ];
     cards.forEach((card, index) => {
       const config = configs[index];
@@ -153,7 +153,7 @@
     if (copy && !copy.querySelector('.studio-control-preview')) {
       const preview = document.createElement('div');
       preview.className = 'studio-control-preview';
-      preview.innerHTML = `${controlItem('●','Antenne 24/24','Activer, retirer et réordonner les émissions diffusées en continu.')}${controlItem('▶','Émissions','Publier, programmer et enrichir chaque page vidéo.')}${controlItem('◈','Publicités','Gérer les campagnes, emplacements, périodes et statistiques.')}${controlItem('⌁','Audience','Suivre les vues, le temps regardé, les clics et les conversions.')}`;
+      preview.innerHTML = `${controlItem('●','Antenne programmée','Activer, retirer et réordonner les émissions diffusées en continu.')}${controlItem('▶','Émissions','Publier, programmer et enrichir chaque page vidéo.')}${controlItem('◈','Publicités','Gérer les campagnes, emplacements, périodes et statistiques.')}${controlItem('⌁','Audience','Suivre les vues, le temps regardé, les clics et les conversions.')}`;
       copy.append(preview);
       const actions = document.createElement('div');
       actions.className = 'studio-public-actions';

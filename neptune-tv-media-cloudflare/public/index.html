@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/styles/home-structure.css">
   <link rel="stylesheet" href="/styles/accessibility.css">
   <link rel="stylesheet" href="/styles/ux-aida.css">
-  <link rel="stylesheet" href="/styles/neptune-streaming.css">
+  <link rel="stylesheet" href="/styles/neptune-streaming.css?v=7">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -31,7 +31,7 @@
   }
   </script>
 </head>
-<body data-a11y-version="2026-07-18" data-home-structure="streaming-aida-v3" data-density="marketing">
+<body data-a11y-version="2026-07-18" data-home-structure="streaming-aida-v3" data-density="marketing" data-render-media="v7">
 <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 <header class="site-header">
   <div class="container header-inner">
@@ -125,7 +125,7 @@
 
       <div class="content-rail-shell" data-content-rail>
         <div class="content-rail-head">
-          <h3>Nouveautés</h3>
+          <h3>Émissions</h3>
           <div class="content-rail-controls" aria-label="Faire défiler les nouveautés">
             <button class="rail-control" type="button" data-rail-prev aria-label="Émissions précédentes">←</button>
             <button class="rail-control" type="button" data-rail-next aria-label="Émissions suivantes">→</button>
@@ -133,7 +133,7 @@
         </div>
         <p id="catalogStatus" class="sr-only" role="status" aria-live="polite"></p>
         <div id="catalogError" class="catalog-error" role="alert" hidden>Le catalogue n’a pas pu être chargé. <button id="catalogRetry" type="button">Réessayer</button></div>
-        <div class="video-grid" id="dynamicCatalog" aria-busy="true">
+        <div class="video-grid" id="dynamicCatalog" data-rail-track data-media-kind="episode" aria-busy="true">
           <button class="media-card" type="button" data-video-src="/assets/media/accident-moto-entreprise.mp4" data-video-poster="/assets/posters/poster-accident.webp" data-video-title="Un accident de moto met fin à son entreprise" data-track="clip_accident"><img src="/assets/posters/poster-accident.webp" alt="Invitée racontant un accident de moto sur le plateau Neptune" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Hors Norme</span><span>20 s</span></span><h3>Un accident de moto met fin à son entreprise.</h3></span></button>
           <button class="media-card" type="button" data-video-src="/assets/media/storytelling-efficace.mp4" data-video-poster="/assets/posters/poster-storytelling.webp" data-video-title="Le secret d’un storytelling qui ne sonne pas faux" data-track="clip_storytelling"><img src="/assets/posters/poster-storytelling.webp" alt="Échange sur le storytelling pendant une émission Neptune" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Éditorial</span><span>19 s</span></span><h3>Le storytelling utile ne s’invente pas.</h3></span></button>
           <button class="media-card" type="button" data-video-src="/assets/media/humain-avant-business.mp4" data-video-poster="/assets/posters/poster-humain.webp" data-video-title="L’humain avant le business" data-track="clip_humain"><img src="/assets/posters/poster-humain.webp" alt="Entrepreneure expliquant la place de l’humain dans le business" loading="lazy" decoding="async"><span class="card-play" aria-hidden="true">▶</span><span class="media-card-copy"><span class="media-card-meta"><span>Interview</span><span>19 s</span></span><h3>L’humain avant le business.</h3></span></button>
@@ -178,7 +178,7 @@
     <div class="container">
       <div class="section-head"><div><span class="eyebrow">Deux formats</span><h2>Que doit retenir votre audience ?</h2></div><p>Choisissez l’intention, pas seulement le décor.</p></div>
       <div class="format-grid">
-        <article class="format-card"><img src="/assets/posters/hors-norme-wide.webp" alt="Interview Hors Norme sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><p>Le problème, le déclic et la vision qui expliquent pourquoi votre entreprise compte.</p><ul class="offer-list"><li>Préparation éditoriale guidée</li><li>Interview narrative multi-caméras</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div></div></article>
+        <article class="format-card"><img src="/assets/posters/studio-wide.webp" alt="Interview Hors Norme sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><p>Le problème, le déclic et la vision qui expliquent pourquoi votre entreprise compte.</p><ul class="offer-list"><li>Préparation éditoriale guidée</li><li>Interview narrative multi-caméras</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="horsnorme" data-track="home_horsnorme_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div></div></article>
         <article class="format-card"><img src="/assets/posters/concept-libre-wide.webp" alt="Format Concept Libre sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre objectif</small><h3>Concept Libre</h3><p>Un dispositif construit pour une démonstration, un lancement ou une série de marque.</p><ul class="offer-list"><li>Concept éditorial personnalisé</li><li>Mise en scène adaptable</li></ul><div class="format-card-actions"><a class="btn btn-dark" data-funnel data-format="libre" data-track="home_libre_reservation" href="https://media.neptunebusiness.com/">Voir les créneaux</a></div></div></article>
       </div>
       <p class="offer-note"><strong>Avant toute confirmation :</strong> l’espace officiel affiche les tarifs, livrables, délais, droits et conditions en vigueur.</p>
