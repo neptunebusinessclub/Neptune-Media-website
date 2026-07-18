@@ -1,14 +1,14 @@
 {
-  "status": "failed",
-  "source_sha": "230ad3b7e69875d95ddc6770fac1cce7d0475bb0",
-  "checked_at": "2026-07-18T23:44:57.194479+00:00",
+  "status": "success",
+  "source_sha": "4e81cf68d14a55369c188dbd98c98701de8e03d9",
+  "checked_at": "2026-07-18T23:46:43.234300+00:00",
   "home_live": "v3",
   "landing_conversion": "v4",
   "outcomes": {
-    "normalize": "failure",
+    "normalize": "success",
     "install": "success",
-    "validate": "failure",
-    "deploy": "failure",
-    "verify": "failure"
+    "validate": "success",
+    "deploy": "success",
+    "verify": "success"
   }
 }
