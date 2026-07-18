@@ -1,0 +1,152 @@
+name: Diagnose story-led homepage production
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - story-home-production-diagnostic.json
+      - deployment-status.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: neptune-media-story-home-diagnostic
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for production and collect evidence
+        run: |
+          set -u
+          ready=false
+          home_status=000
+          css_status=000
+          health_status=000
+          for attempt in $(seq 1 24); do
+            home_status=$(curl --silent --show-error --output /tmp/home.html --write-out '%{http_code}' "$PUBLIC_URL/" || true)
+            css_status=$(curl --silent --show-error --output /tmp/home-structure.css --write-out '%{http_code}' "$PUBLIC_URL/styles/home-structure.css" || true)
+            health_status=$(curl --silent --show-error --output /tmp/health.json --write-out '%{http_code}' "$PUBLIC_URL/api/health" || true)
+            if test "$home_status" = "200" \
+              && test "$css_status" = "200" \
+              && test "$health_status" = "200" \
+              && grep -q 'data-home-structure="story-v1"' /tmp/home.html \
+              && grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/home.html \
+              && grep -q 'story-section' /tmp/home-structure.css \
+              && grep -q '"ok":true' /tmp/health.json; then
+              ready=true
+              break
+            fi
+            sleep 10
+          done
+
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          def contains(path, needle):
+              try:
+                  return needle in Path(path).read_text(encoding='utf-8', errors='replace')
+              except FileNotFoundError:
+                  return False
+
+          report = {
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'ready': os.environ.get('ready', 'false') == 'true',
+              'home': {
+                  'status': os.environ.get('home_status', '000'),
+                  'structure_marker': contains('/tmp/home.html', 'data-home-structure="story-v1"'),
+                  'story_hook': contains('/tmp/home.html', 'Vous recommencez la prise pour la sixième fois'),
+                  'solution_section': contains('/tmp/home.html', 'id="solution"'),
+                  'benefits_section': contains('/tmp/home.html', 'id="benefices"'),
+                  'proof_section': contains('/tmp/home.html', 'id="preuves"'),
+                  'commitments_section': contains('/tmp/home.html', 'id="engagements"'),
+                  'faq_eight': contains('/tmp/home.html', 'id="faq-answer-8"'),
+              },
+              'css': {
+                  'status': os.environ.get('css_status', '000'),
+                  'story_styles': contains('/tmp/home-structure.css', 'story-section'),
+              },
+              'health': {
+                  'status': os.environ.get('health_status', '000'),
+                  'ok': contains('/tmp/health.json', '"ok":true'),
+              },
+          }
+          Path('story-home-production-diagnostic.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+        env:
+          ready: ${{ env.ready }}
+          home_status: ${{ env.home_status }}
+          css_status: ${{ env.css_status }}
+          health_status: ${{ env.health_status }}
+
+      - name: Rebuild report from shell evidence
+        run: |
+          home_status=$(curl --silent --show-error --output /tmp/home.html --write-out '%{http_code}' "$PUBLIC_URL/" || true)
+          css_status=$(curl --silent --show-error --output /tmp/home-structure.css --write-out '%{http_code}' "$PUBLIC_URL/styles/home-structure.css" || true)
+          health_status=$(curl --silent --show-error --output /tmp/health.json --write-out '%{http_code}' "$PUBLIC_URL/api/health" || true)
+          ready=false
+          if test "$home_status" = "200" \
+            && test "$css_status" = "200" \
+            && test "$health_status" = "200" \
+            && grep -q 'data-home-structure="story-v1"' /tmp/home.html \
+            && grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/home.html \
+            && grep -q 'story-section' /tmp/home-structure.css \
+            && grep -q '"ok":true' /tmp/health.json; then
+            ready=true
+          fi
+          READY="$ready" HOME_STATUS="$home_status" CSS_STATUS="$css_status" HEALTH_STATUS="$health_status" python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          def contains(path, needle):
+              try:
+                  return needle in Path(path).read_text(encoding='utf-8', errors='replace')
+              except FileNotFoundError:
+                  return False
+
+          report = {
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'ready': os.environ['READY'] == 'true',
+              'home': {
+                  'status': os.environ['HOME_STATUS'],
+                  'structure_marker': contains('/tmp/home.html', 'data-home-structure="story-v1"'),
+                  'story_hook': contains('/tmp/home.html', 'Vous recommencez la prise pour la sixième fois'),
+                  'solution_section': contains('/tmp/home.html', 'id="solution"'),
+                  'benefits_section': contains('/tmp/home.html', 'id="benefices"'),
+                  'proof_section': contains('/tmp/home.html', 'id="preuves"'),
+                  'commitments_section': contains('/tmp/home.html', 'id="engagements"'),
+                  'faq_eight': contains('/tmp/home.html', 'id="faq-answer-8"'),
+              },
+              'css': {
+                  'status': os.environ['CSS_STATUS'],
+                  'story_styles': contains('/tmp/home-structure.css', 'story-section'),
+              },
+              'health': {
+                  'status': os.environ['HEALTH_STATUS'],
+                  'ok': contains('/tmp/health.json', '"ok":true'),
+              },
+          }
+          Path('story-home-production-diagnostic.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit production diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add story-home-production-diagnostic.json
+          git commit -m "chore: record story homepage production diagnostic [skip ci]" || true
+          git push
