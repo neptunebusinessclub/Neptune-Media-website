@@ -30,7 +30,7 @@ export default {
         if (url.pathname === '/' || url.pathname === '/index.html') return secure(await enhanceHtml(response, request, env, 'public'));
         if (url.pathname === '/studio' || url.pathname.startsWith('/studio/')) return secure(await enhanceHtml(response, request, env, 'studio'));
       }
-      return response;
+      return secure(response);
     } catch (error) {
       console.error('entry_v3_failed', error);
       return secure(json({ error: 'internal_error' }, 500));
