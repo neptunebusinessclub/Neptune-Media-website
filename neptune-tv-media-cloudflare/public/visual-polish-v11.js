@@ -13,6 +13,7 @@
 
     if (home) {
       applyHomepagePolish();
+      bindMobileBarGuard();
       window.addEventListener('neptune:catalog-ready', applyHomepagePolish);
       const observer = new MutationObserver(applyHomepagePolish);
       observer.observe(document.body, { childList: true, subtree: true, characterData: true });
@@ -71,6 +72,24 @@
       event.preventDefault();
       card.click();
     };
+  }
+
+  function bindMobileBarGuard() {
+    if (document.documentElement.dataset.mobileBarGuard === '1') return;
+    document.documentElement.dataset.mobileBarGuard = '1';
+    const update = () => {
+      const bar = document.querySelector('.mobile-conversion-bar');
+      const faq = document.querySelector('#questions');
+      if (!bar || !faq) return;
+      const faqHasStarted = faq.getBoundingClientRect().top < innerHeight * .88;
+      bar.classList.toggle('visual-hidden', faqHasStarted);
+    };
+    update();
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    const observer = new MutationObserver(update);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.setTimeout(() => observer.disconnect(), 12000);
   }
 
   function normalizeEmissionsFilters() {
