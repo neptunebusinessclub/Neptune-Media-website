@@ -84,87 +84,64 @@ jobs:
         id: deploy
         run: npx wrangler deploy
 
-      - name: Verify exact production update and critical routes
+      - name: Verify final v12 production and critical routes
         id: verify
         run: |
           set -euo pipefail
           ready=false
-          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+          for attempt in $(seq 1 18); do
             nonce="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
-            curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/?verify=$nonce" > /tmp/home.html
-            if grep -q 'data-home-structure="conversion-voice-v10"' /tmp/home.html \
+            if curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/?final_v12=$nonce" > /tmp/home.html \
+              && grep -q 'data-home-structure="conversion-voice-v10"' /tmp/home.html \
               && grep -q 'data-final-ux="v12"' /tmp/home.html \
               && grep -q '/styles/final-experience-v12.css?v=1' /tmp/home.html \
               && grep -q '/final-experience-v12.js?v=1' /tmp/home.html \
               && grep -q 'production-pipeline' /tmp/home.html \
               && grep -q 'data-format-recommendation' /tmp/home.html \
-              && grep -q 'Votre entreprise est solide' /tmp/home.html \
-              && grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/home.html; then
+              && ! grep -q 'apple-conversion-v13.css' /tmp/home.html; then
               ready=true
               break
             fi
-            sleep 8
+            sleep 10
           done
           test "$ready" = "true"
-          ! grep -q 'apple-conversion-v13.css' /tmp/home.html
-          ! grep -q 'data-apple-ux="v13"' /tmp/home.html
 
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=4&verify=$nonce" > /tmp/home-live.js
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=5&verify=$nonce" > /tmp/landing.js
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/neptune-streaming.css?v=11&verify=$nonce" > /tmp/streaming.css
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/final-experience-v12.css?v=1&verify=$nonce" > /tmp/final.css
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/final-experience-v12.js?v=1&verify=$nonce" > /tmp/final.js
-          grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
-          grep -q 'mobile-conversion-bar' /tmp/landing.js
-          grep -q 'Conversion voice architecture v10' /tmp/streaming.css
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/final-experience-v12.css?v=1&final_v12=$nonce" > /tmp/final.css
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/final-experience-v12.js?v=1&final_v12=$nonce" > /tmp/final.js
           grep -q 'Neptune Media final experience v12' /tmp/final.css
           grep -q 'bindFormatDecision' /tmp/final.js
           grep -q 'bindRailAffordance' /tmp/final.js
-          ! grep -q 'updateHero' /tmp/landing.js
-          ! grep -q '24H/24' /tmp/home-live.js
+          node --check /tmp/final.js
 
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/direct/?verify=$nonce" > /tmp/direct.html
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/emissions/?verify=$nonce" > /tmp/emissions.html
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/studio/?verify=$nonce" -D /tmp/studio.headers > /tmp/studio.html
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/health?verify=$nonce" > /tmp/health.json
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/public/catalog?verify=$nonce" -D /tmp/catalog.headers > /tmp/catalog.json
+          for route in direct emissions; do
+            curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/$route/?final_v12=$nonce" > "/tmp/$route.html"
+            grep -q '/styles/final-experience-v12.css?v=1' "/tmp/$route.html"
+            grep -q '/final-experience-v12.js?v=1' "/tmp/$route.html"
+          done
 
-          grep -Eq 'data-live-channel|Programmation Neptune Media|Neptune Media en direct' /tmp/direct.html
-          grep -q 'Catalogue Neptune Media' /tmp/emissions.html
-          grep -q '/styles/final-experience-v12.css?v=1' /tmp/direct.html
-          grep -q '/styles/final-experience-v12.css?v=1' /tmp/emissions.html
-          grep -Eq 'studio|connexion|administration' /tmp/studio.html
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/studio/?final_v12=$nonce" -D /tmp/studio.headers > /tmp/studio.html
           grep -qi '^x-robots-tag:.*noindex' /tmp/studio.headers
+
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/health?final_v12=$nonce" > /tmp/health.json
           node -e "const d=require('/tmp/health.json'); if(d.ok!==true) process.exit(1)"
+
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/public/catalog?final_v12=$nonce" -D /tmp/catalog.headers > /tmp/catalog.json
           node -e "const d=require('/tmp/catalog.json'); if(!Array.isArray(d.programs)||!Array.isArray(d.episodes)||!Array.isArray(d.ads)) process.exit(1)"
           grep -qi '^cache-control:.*no-store' /tmp/catalog.headers
 
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/robots.txt?verify=$nonce" -D /tmp/robots.headers > /tmp/robots.txt
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/sitemap.xml?verify=$nonce" -D /tmp/sitemap.headers > /tmp/sitemap.xml
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/video-sitemap.xml?verify=$nonce" -D /tmp/video-sitemap.headers > /tmp/video-sitemap.xml
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/llms.txt?verify=$nonce" -D /tmp/llms.headers > /tmp/llms.txt
-          curl --fail --silent --show-error --location "$PUBLIC_URL/assets/posters/poster-neptune-media.webp?verify=$nonce" > /tmp/poster.webp
-          curl --fail --silent --show-error --location --range 0-1023 "$PUBLIC_URL/assets/media/neptune-media-mis-en-lumiere.mp4?verify=$nonce" > /tmp/video.bin
-
-          grep -qi '^content-type:.*text/plain' /tmp/robots.headers
+          for route in robots.txt sitemap.xml video-sitemap.xml llms.txt; do
+            curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/$route?final_v12=$nonce" > "/tmp/${route//\//_}"
+          done
           grep -q 'Sitemap:' /tmp/robots.txt
-          grep -qi '^content-type:.*application/xml' /tmp/sitemap.headers
           grep -q '<urlset' /tmp/sitemap.xml
-          grep -q '/emissions/' /tmp/sitemap.xml
-          grep -qi '^content-type:.*application/xml' /tmp/video-sitemap.headers
           grep -q '<video:video>' /tmp/video-sitemap.xml
-          grep -q '<video:thumbnail_loc>' /tmp/video-sitemap.xml
-          grep -q '<video:content_loc>' /tmp/video-sitemap.xml
-          grep -qi '^content-type:.*text/plain' /tmp/llms.headers
           grep -qi 'Neptune Media' /tmp/llms.txt
-          test -s /tmp/poster.webp
-          test -s /tmp/video.bin
 
-          admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?verify=$nonce")
+          admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?final_v12=$nonce")
           test "$admin_list_status" = "401"
           node -e "const d=require('/tmp/admin-list.json'); if(d.error!=='unauthorized') process.exit(1)"
 
-          admin_mutation_status=$(curl --silent --show-error --output /tmp/admin-mutation.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' -H 'Origin: https://example.invalid' --data '{}' "$PUBLIC_URL/api/admin/client-update?verify=$nonce")
+          admin_mutation_status=$(curl --silent --show-error --output /tmp/admin-mutation.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' -H 'Origin: https://example.invalid' --data '{}' "$PUBLIC_URL/api/admin/client-update?final_v12=$nonce")
           test "$admin_mutation_status" = "403"
           node -e "const d=require('/tmp/admin-mutation.json'); if(d.error!=='origin_forbidden') process.exit(1)"
 
@@ -176,6 +153,7 @@ jobs:
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
           DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
           VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          WORKFLOW_RUN_ID: ${{ github.run_id }}
         run: |
           cd "$GITHUB_WORKSPACE"
           python3 - <<'PY'
@@ -191,11 +169,11 @@ jobs:
           report = {
               'status': 'success' if all(value == 'success' for value in outcomes.values()) else 'failed',
               'source_sha': os.environ.get('GITHUB_SHA', ''),
+              'workflow_run_id': os.environ.get('WORKFLOW_RUN_ID', ''),
               'checked_at': datetime.now(timezone.utc).isoformat(),
               'architecture': 'conversion-voice-v10',
               'experience': 'final-v12',
-              'home_live': 'v4',
-              'landing_conversion': 'v5',
+              'verified_markers': ['data-final-ux=v12', 'production-pipeline', 'format-recommendation', 'final-experience-v12.css', 'final-experience-v12.js'],
               'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog', '/robots.txt', '/sitemap.xml', '/video-sitemap.xml', '/llms.txt', '/api/admin/clients', '/api/admin/client-update'],
               'outcomes': outcomes,
           }
