@@ -1,0 +1,98 @@
+name: Neptune UI Quality Gate
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy Neptune Media to Cloudflare
+      - Deploy Neptune Copy Hotfix
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: neptune-ui-quality-production
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: neptune-tv-media-cloudflare
+    env:
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - name: Checkout current production source
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Install browser audit tooling
+        run: |
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+
+      - name: Audit desktop, tablet and mobile production
+        id: ui_audit
+        continue-on-error: true
+        run: node scripts/qa-production-ui.mjs
+
+      - name: Upload production captures and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neptune-ui-quality-${{ github.event.workflow_run.id }}
+          path: neptune-tv-media-cloudflare/artifacts/ui-qa
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Record UI quality result
+        if: always()
+        env:
+          UI_AUDIT_OUTCOME: ${{ steps.ui_audit.outcome }}
+          SOURCE_WORKFLOW_ID: ${{ github.event.workflow_run.id }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          outcome = os.environ.get('UI_AUDIT_OUTCOME', 'unknown')
+          report = {
+              'status': 'success' if outcome == 'success' else 'failed',
+              'source_sha': os.environ.get('SOURCE_SHA', ''),
+              'source_workflow_id': os.environ.get('SOURCE_WORKFLOW_ID', ''),
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'architecture': 'conversion-voice-v10',
+              'experience': 'final-v12',
+              'audit': 'playwright-production',
+              'viewports': ['1440x1100', '834x1112', '390x844'],
+              'routes': ['/', '/emissions/', '/direct/'],
+          }
+          with open('ui-quality-status.json', 'w', encoding='utf-8') as handle:
+              json.dump(report, handle, ensure_ascii=False, indent=2)
+              handle.write('\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ui-quality-status.json
+          git commit -m 'chore: record Neptune production UI quality [skip ci]' || true
+          git pull --rebase origin main || true
+          git push
+
+      - name: Enforce UI quality gate
+        if: always()
+        env:
+          UI_AUDIT_OUTCOME: ${{ steps.ui_audit.outcome }}
+        run: test "$UI_AUDIT_OUTCOME" = "success"
