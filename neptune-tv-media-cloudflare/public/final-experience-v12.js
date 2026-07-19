@@ -12,10 +12,13 @@
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
+    document.body.dataset.visualDensity = 'v17';
     loadJourneyV14();
     ensurePrdVisualStyles();
+    ensureVisualDensityStyles();
+    simplifyHeroCopy();
+    removeJourneyNavigation();
     bindFormatDecision();
-    bindJourneyNavigation();
     bindRevealMotion();
     bindRailAffordance();
   });
@@ -45,6 +48,10 @@
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
   }
 
+  function ensureVisualDensityStyles() {
+    appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
+  }
+
   function loadJourneyV14() {
     if (!document.querySelector('link[data-media-journey-v14]')) {
       const stylesheet = document.createElement('link');
@@ -60,6 +67,18 @@
       script.dataset.mediaJourneyV14 = '1';
       document.head.append(script);
     }
+  }
+
+  function simplifyHeroCopy() {
+    const subtitle = qs('.hero-subtitle');
+    if (subtitle) subtitle.textContent = 'Neptune prépare votre angle, vous guide sur un vrai plateau et produit des contenus prêts à publier.';
+    qsa('.journey-nav').forEach((node) => node.remove());
+  }
+
+  function removeJourneyNavigation() {
+    qsa('.journey-nav').forEach((node) => node.remove());
+    const observer = new MutationObserver(() => qsa('.journey-nav').forEach((node) => node.remove()));
+    observer.observe(document.body, { childList: true });
   }
 
   function bindFormatDecision() {
@@ -102,35 +121,6 @@
     });
   }
 
-  function bindJourneyNavigation() {
-    if (!document.body.matches('[data-home-structure="conversion-voice-v10"]')) return;
-    if (!matchMedia('(min-width:1181px)').matches || qs('.journey-nav')) return;
-    const definitions = [['a-voir', 'Voir'], ['probleme', 'Se reconnaître'], ['solution', 'Comprendre'], ['formats', 'Choisir'], ['questions', 'Décider']];
-    const stops = definitions.map(([id, label]) => ({ id, label, node: document.getElementById(id) })).filter((item) => item.node);
-    if (stops.length < 3) return;
-    const nav = document.createElement('nav');
-    nav.className = 'journey-nav';
-    nav.setAttribute('aria-label', 'Progression dans la page');
-    stops.forEach((item) => {
-      const link = document.createElement('a');
-      const dot = document.createElement('span');
-      link.href = `#${item.id}`;
-      link.dataset.journeyLink = item.id;
-      link.append(document.createTextNode(item.label), dot);
-      nav.append(link);
-    });
-    document.body.append(nav);
-    const links = qsa('[data-journey-link]', nav);
-    const select = (id) => links.forEach((link) => link.classList.toggle('is-current', link.dataset.journeyLink === id));
-    select(stops[0].id);
-    if (!('IntersectionObserver' in window)) return;
-    const observer = new IntersectionObserver((entries) => {
-      const current = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (current) select(current.target.id);
-    }, { rootMargin: '-28% 0px -58% 0px', threshold: [0, .12, .3] });
-    stops.forEach((item) => observer.observe(item.node));
-  }
-
   function bindRevealMotion() {
     const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.voice-process article,.faq-item').filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
@@ -171,4 +161,4 @@
   }
 })();
 
-// Production browser quality gate revision 7.
+// Production browser quality gate revision 8.
