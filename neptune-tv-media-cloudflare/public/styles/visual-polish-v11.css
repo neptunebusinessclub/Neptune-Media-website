@@ -1,6 +1,7 @@
 /* Neptune Media visual QA v11 — corrections derived from desktop, laptop, tablet and mobile captures. */
-.skip-link{top:-100px;transform:none}
-.skip-link:focus{top:10px;transform:none}
+.skip-link:not(:focus){top:0!important;left:0!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;transform:none!important}
+.skip-link:focus{top:10px!important;left:10px!important;width:auto!important;height:auto!important;padding:12px 16px!important;margin:0!important;overflow:visible!important;clip-path:none!important;white-space:normal!important;transform:none!important}
+.mobile-conversion-bar.visual-hidden{opacity:0!important;pointer-events:none!important;transform:translateY(calc(100% + 28px))!important}
 body[data-home-structure="conversion-voice-v10"] .voice-hero{padding-top:clamp(64px,7vw,104px);padding-bottom:clamp(52px,6vw,82px)}
 body[data-home-structure="conversion-voice-v10"] .hero-grid{gap:clamp(34px,5vw,72px)}
 body[data-home-structure="conversion-voice-v10"] .hero-copy h1{max-width:700px;padding-bottom:.08em;font-size:clamp(2.7rem,4.35vw,4.75rem);line-height:.96}
