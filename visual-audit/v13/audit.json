@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T14:32:50.112Z",
+  "generatedAt": "2026-07-19T14:36:40.764Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -44,15 +44,15 @@
       },
       "page": "emissions",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [],
         "legacyBlocks": 0,
-        "duplicatePills": 1,
+        "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -65,7 +65,7 @@
       },
       "page": "direct",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [],
@@ -73,7 +73,7 @@
         "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -120,7 +120,7 @@
       },
       "page": "emissions",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [
@@ -162,10 +162,10 @@
           }
         ],
         "legacyBlocks": 0,
-        "duplicatePills": 1,
+        "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -178,7 +178,7 @@
       },
       "page": "direct",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [
@@ -223,7 +223,7 @@
         "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -270,7 +270,7 @@
       },
       "page": "emissions",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [
@@ -312,10 +312,10 @@
           }
         ],
         "legacyBlocks": 0,
-        "duplicatePills": 1,
+        "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -328,7 +328,7 @@
       },
       "page": "direct",
       "diagnostics": {
-        "polish": "",
+        "polish": "v11",
         "overflow": 0,
         "brokenImages": [],
         "clippedText": [
@@ -373,7 +373,7 @@
         "duplicatePills": 0,
         "finalThought": "",
         "finalPseudo": "none",
-        "skipBottom": -16,
+        "skipBottom": -57,
         "proofCards": [],
         "faqFontSize": 0
       }
@@ -381,41 +381,6 @@
   ],
   "issues": [
     {
-      "severity": "error",
-      "viewport": "desktop-1440",
-      "page": "emissions",
-      "type": "missing-polish",
-      "message": "absent"
-    },
-    {
-      "severity": "error",
-      "viewport": "desktop-1440",
-      "page": "emissions",
-      "type": "duplicate-filters",
-      "message": "1"
-    },
-    {
-      "severity": "error",
-      "viewport": "desktop-1440",
-      "page": "direct",
-      "type": "missing-polish",
-      "message": "absent"
-    },
-    {
-      "severity": "error",
-      "viewport": "tablet-834",
-      "page": "emissions",
-      "type": "missing-polish",
-      "message": "absent"
-    },
-    {
-      "severity": "error",
-      "viewport": "tablet-834",
-      "page": "emissions",
-      "type": "duplicate-filters",
-      "message": "1"
-    },
-    {
       "severity": "warning",
       "viewport": "tablet-834",
       "page": "emissions",
@@ -464,13 +429,6 @@
       ]
     },
     {
-      "severity": "error",
-      "viewport": "tablet-834",
-      "page": "direct",
-      "type": "missing-polish",
-      "message": "absent"
-    },
-    {
       "severity": "warning",
       "viewport": "tablet-834",
       "page": "direct",
@@ -517,20 +475,6 @@
         51,
         46
       ]
-    },
-    {
-      "severity": "error",
-      "viewport": "mobile-390",
-      "page": "emissions",
-      "type": "missing-polish",
-      "message": "absent"
-    },
-    {
-      "severity": "error",
-      "viewport": "mobile-390",
-      "page": "emissions",
-      "type": "duplicate-filters",
-      "message": "1"
     },
     {
       "severity": "warning",
@@ -579,13 +523,6 @@
         51,
         46
       ]
-    },
-    {
-      "severity": "error",
-      "viewport": "mobile-390",
-      "page": "direct",
-      "type": "missing-polish",
-      "message": "absent"
     },
     {
       "severity": "warning",
