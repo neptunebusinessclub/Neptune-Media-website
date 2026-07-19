@@ -1,7 +1,7 @@
 {
   "status": "success",
-  "source_sha": "f733d671034710b442c778528848dcbbbea5140b",
-  "checked_at": "2026-07-19T11:53:55.889623+00:00",
+  "source_sha": "17b4c6d4332d270b40b6413e829db959e30c679a",
+  "checked_at": "2026-07-19T12:57:53.352716+00:00",
   "architecture": "conversion-voice-v10",
   "home_live": "v4",
   "landing_conversion": "v5",
@@ -11,7 +11,9 @@
     "/emissions/",
     "/studio/",
     "/api/health",
-    "/api/public/catalog"
+    "/api/public/catalog",
+    "/api/admin/clients",
+    "/api/admin/client-update"
   ],
   "outcomes": {
     "normalize": "success",
