@@ -26,7 +26,7 @@
     appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
     appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
     loadVisibilityShowcase();
-    appendStylesheet('/styles/hero-live-v21.css?v=22', 'heroLive', 'v22', true);
+    appendStylesheet('/styles/hero-live-v21.css?v=25', 'heroLive', 'v25', true);
     loadHeroLiveV24();
     removeJourneyNavigation();
     bindFormatDecision();
@@ -165,4 +165,4 @@
   }
 })();
 
-// Production browser quality gate revision 15.
+// Production browser quality gate revision 16.
