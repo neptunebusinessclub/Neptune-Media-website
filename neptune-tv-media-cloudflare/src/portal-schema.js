@@ -1,3 +1,5 @@
+import { syncSteps } from './portal-utils.js';
+
 export function ensurePortalSchema(store){
   if(store.portalSchemaReady)return;
   store.sql.exec(`
@@ -22,5 +24,7 @@ export function ensurePortalSchema(store){
     CREATE INDEX IF NOT EXISTS idx_portal_codes_email ON portal_codes(email,created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_sessions_token ON portal_sessions(token_hash);
   `);
+  const now=new Date().toISOString();
+  for(const order of store.sql.exec('SELECT id,status,updated_at AS updatedAt FROM portal_orders').toArray())syncSteps(store,order.id,order.status,order.updatedAt||now);
   store.portalSchemaReady=true;
 }
