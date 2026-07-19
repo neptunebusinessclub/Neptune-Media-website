@@ -2,21 +2,29 @@
   'use strict';
   if (document.documentElement.dataset.finalExperienceBound === '1') return;
   document.documentElement.dataset.finalExperienceBound = '1';
+
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => [...scope.querySelectorAll(selector)];
-  const ready = (callback) => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', callback, { once: true }) : callback();
+  const ready = (callback) => document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', callback, { once: true })
+    : callback();
 
   ensureQualityStyles();
   ensureClarityStyles();
+
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
+    document.body.dataset.visibilityShowcase = 'v19';
+
     loadJourneyV18();
     ensurePrdVisualStyles();
     ensureVisualDensityStyles();
     ensureIntentActionStyles();
+    ensureVisibilityShowcaseStyles();
+    loadVisibilityShowcase();
     simplifyHeroCopy();
     removeJourneyNavigation();
     bindFormatDecision();
@@ -57,6 +65,10 @@
     appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
   }
 
+  function ensureVisibilityShowcaseStyles() {
+    appendStylesheet('/styles/visibility-showcase-v19.css?v=19', 'visibilityShowcase', 'v19', true);
+  }
+
   function loadJourneyV18() {
     const oldScript = document.querySelector('script[data-media-journey-v14]');
     if (oldScript) oldScript.remove();
@@ -67,6 +79,15 @@
       script.dataset.mediaJourneyV18 = '1';
       document.head.append(script);
     }
+  }
+
+  function loadVisibilityShowcase() {
+    if (document.querySelector('script[data-visibility-showcase-v19]')) return;
+    const script = document.createElement('script');
+    script.src = '/visibility-showcase-v19.js?v=19';
+    script.defer = true;
+    script.dataset.visibilityShowcaseV19 = '1';
+    document.head.append(script);
   }
 
   function simplifyHeroCopy() {
@@ -86,13 +107,23 @@
     const panel = qs('[data-format-recommendation]');
     if (!cards.length || !panel || panel.dataset.bound === '1') return;
     panel.dataset.bound = '1';
+
     const title = qs('[data-format-result]', panel);
     const copy = qs('[data-format-result-copy]', panel);
     const booking = qs('[data-format-booking]', panel);
     const options = {
-      horsnorme: ['Hors Norme est probablement votre point de départ.', 'Votre audience doit comprendre ce qui vous a conduit à créer, tenir ou transformer votre entreprise.', 'Voir les créneaux Hors Norme'],
-      libre: ['Concept Libre est probablement votre point de départ.', 'Votre audience doit comprendre une offre, une méthode, une démonstration, un lancement ou un univers de marque.', 'Voir les créneaux Concept Libre'],
+      horsnorme: [
+        'Hors Norme est probablement votre point de départ.',
+        'Votre audience doit comprendre ce qui vous a conduit à créer, tenir ou transformer votre entreprise.',
+        'Voir les créneaux Hors Norme'
+      ],
+      libre: [
+        'Concept Libre est probablement votre point de départ.',
+        'Votre audience doit comprendre une offre, une méthode, une démonstration, un lancement ou un univers de marque.',
+        'Voir les créneaux Concept Libre'
+      ],
     };
+
     const choose = (card) => {
       const key = card.dataset.format;
       const option = options[key];
@@ -107,10 +138,13 @@
       if (booking) {
         booking.dataset.format = key;
         booking.textContent = option[2];
-        booking.href = key === 'horsnorme' ? 'https://media.neptunebusiness.com/?format=horsnorme&offre=horsnorme' : 'https://media.neptunebusiness.com/?format=libre&offre=libre';
+        booking.href = key === 'horsnorme'
+          ? 'https://media.neptunebusiness.com/?format=horsnorme&offre=horsnorme'
+          : 'https://media.neptunebusiness.com/?format=libre&offre=libre';
       }
       panel.dataset.selectedFormat = key;
     };
+
     cards.forEach((card) => {
       card.addEventListener('click', () => choose(card));
       card.addEventListener('keydown', (event) => {
@@ -122,23 +156,28 @@
   }
 
   function bindRevealMotion() {
-    const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.voice-process article,.faq-item').filter((item) => !item.dataset.revealBound);
+    const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.voice-process article,.faq-item')
+      .filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
+
     items.forEach((item, index) => {
       item.dataset.revealBound = '1';
       item.classList.add('neptune-reveal');
       item.dataset.revealDelay = String(index % 4);
     });
+
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
       items.forEach((item) => item.classList.add('is-visible'));
       return;
     }
+
     document.body.classList.add('reveal-ready');
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('is-visible');
       observer.unobserve(entry.target);
     }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+
     items.forEach((item) => observer.observe(item));
   }
 
@@ -161,4 +200,4 @@
   }
 })();
 
-// Production browser quality gate revision 9.
+// Production browser quality gate revision 10.
