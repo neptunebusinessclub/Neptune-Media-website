@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T14:09:46.222Z",
+  "generatedAt": "2026-07-19T14:15:03.366Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -153,6 +153,10 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -320,6 +324,14 @@
       },
       "consoleErrors": [],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
@@ -1721,14 +1733,6 @@
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
           "reason": "net::ERR_ABORTED"
         }
@@ -2209,14 +2213,6 @@
       },
       "consoleErrors": [],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
