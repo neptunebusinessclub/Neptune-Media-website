@@ -6,7 +6,7 @@
     : callback();
 
   const first = ['influenceur.se', 'caméraman', 'vidéaste'];
-  const second = ["chef.fe d'entreprise", 'entrepreneur.se', 'expert.e dans votre domaine'];
+  const second = ["chef.fe d'entreprise", 'entrepreneur.se', 'expert.e dans mon domaine'];
   const fallbackPoster = '/assets/posters/poster-neptune-media.webp';
 
   const ensureCriticalStyles = () => {
