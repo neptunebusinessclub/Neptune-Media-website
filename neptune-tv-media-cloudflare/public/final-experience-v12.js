@@ -18,6 +18,7 @@
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v20';
+    document.body.dataset.heroRefresh = 'v21';
 
     loadJourneyV18();
     ensurePrdVisualStyles();
@@ -25,7 +26,8 @@
     ensureIntentActionStyles();
     ensureVisibilityShowcaseStyles();
     loadVisibilityShowcase();
-    simplifyHeroCopy();
+    ensureHeroLiveStyles();
+    loadHeroLive();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
@@ -69,6 +71,10 @@
     appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
   }
 
+  function ensureHeroLiveStyles() {
+    appendStylesheet('/styles/hero-live-v21.css?v=21', 'heroLive', 'v21', true);
+  }
+
   function loadJourneyV18() {
     const oldScript = document.querySelector('script[data-media-journey-v14]');
     if (oldScript) oldScript.remove();
@@ -90,10 +96,13 @@
     document.head.append(script);
   }
 
-  function simplifyHeroCopy() {
-    const subtitle = qs('.hero-subtitle');
-    if (subtitle) subtitle.textContent = 'Neptune prépare votre angle, vous guide sur un vrai plateau et produit des contenus prêts à publier.';
-    qsa('.journey-nav').forEach((node) => node.remove());
+  function loadHeroLive() {
+    if (document.querySelector('script[data-hero-live-v21]')) return;
+    const script = document.createElement('script');
+    script.src = '/hero-live-v21.js?v=21';
+    script.defer = true;
+    script.dataset.heroLiveV21 = '1';
+    document.head.append(script);
   }
 
   function removeJourneyNavigation() {
@@ -200,4 +209,4 @@
   }
 })();
 
-// Production browser quality gate revision 11.
+// Production browser quality gate revision 12.
