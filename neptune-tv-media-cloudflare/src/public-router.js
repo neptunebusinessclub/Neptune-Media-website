@@ -43,7 +43,7 @@ export async function enhanceHtml(response, request, env, mode) {
     : '<link rel="stylesheet" href="/studio-access.css?v=2"><link rel="stylesheet" href="/studio-live.css?v=2"><link rel="stylesheet" href="/studio-command.css?v=1">';
   const script = mode === 'studio' ? '/studio-upgrade.js?v=5' : '/upgrade.js?v=6';
   const extraScripts = mode === 'public'
-    ? '<script type="module" src="/home-live.js?v=3"></script><script src="/landing-conversion.js?v=4"></script>'
+    ? '<script type="module" src="/home-live.js?v=4"></script><script src="/landing-conversion.js?v=5"></script>'
     : '<script src="/studio-access.js?v=2"></script><script src="/studio-live.js?v=2"></script><script src="/studio-command.js?v=1"></script>';
   if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${supplementalStyles}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
@@ -79,7 +79,7 @@ function injectLandingSchema(body, origin) {
       {
         '@type': 'VideoObject',
         '@id': featuredVideoId,
-        name: 'Neptune Media — Votre entrepreneuriat mis en lumière',
+        name: 'Neptune Media — Votre entreprise est solide. Il faut que ça se voie.',
         description: 'Extrait réel d’un tournage Neptune Media consacré à la mise en lumière de l’entrepreneuriat.',
         thumbnailUrl: [`${origin}/assets/posters/poster-neptune-media.webp`],
         contentUrl: `${origin}/assets/media/neptune-media-mis-en-lumiere.mp4`,
@@ -99,7 +99,7 @@ function injectLandingSchema(body, origin) {
         subjectOf: { '@id': featuredVideoId },
         areaServed: { '@type': 'AdministrativeArea', name: 'Occitanie' },
         audience: { '@type': 'BusinessAudience', audienceType: 'Dirigeants, fondateurs, indépendants et PME' },
-        description: 'Neptune Media prépare, tourne et monte des émissions professionnelles qui transforment l’histoire, l’expertise et les convictions d’une entreprise en contenu vidéo durable.',
+        description: 'Neptune aide les dirigeants à être visibles sans devenir influenceurs : angle, préparation, plateau, interview et production sont pris en charge.',
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: 'Formats Neptune Media',
