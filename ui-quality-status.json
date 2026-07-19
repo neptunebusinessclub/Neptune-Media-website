@@ -1,8 +1,9 @@
 {
   "status": "failed",
-  "source_sha": "c8ae522caa5868e693dc41b6c8553dcb61f5d96f",
-  "source_workflow_id": "29694240263",
-  "checked_at": "2026-07-19T16:09:19.285259+00:00",
+  "source_sha": "6cd954ff8a81e5d114e642ed16b12b31145f47a7",
+  "source_workflow_id": "29694444655",
+  "ui_workflow_run_id": "29694462699",
+  "checked_at": "2026-07-19T16:15:36.555652+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -15,5 +16,68 @@
     "/",
     "/emissions/",
     "/direct/"
+  ],
+  "issues": [
+    "home-desktop: texte critique coupé: À regarder.",
+    "emissions-desktop: texte critique coupé: À regarder.",
+    "emissions-mobile: texte critique coupé: Voir les créneaux",
+    "emissions-mobile: cibles tactiles trop petites: Voir les créneaux"
+  ],
+  "pages": [
+    {
+      "name": "home-desktop",
+      "route": "/",
+      "issues": [
+        "texte critique coupé: À regarder."
+      ],
+      "width": 1440,
+      "height": 1100,
+      "scrollHeight": 8387
+    },
+    {
+      "name": "home-tablet",
+      "route": "/",
+      "issues": [],
+      "width": 834,
+      "height": 1112,
+      "scrollHeight": 9934
+    },
+    {
+      "name": "home-mobile",
+      "route": "/",
+      "issues": [],
+      "width": 390,
+      "height": 844,
+      "scrollHeight": 12142
+    },
+    {
+      "name": "emissions-desktop",
+      "route": "/emissions/",
+      "issues": [
+        "texte critique coupé: À regarder."
+      ],
+      "width": 1440,
+      "height": 1000,
+      "scrollHeight": 1915
+    },
+    {
+      "name": "emissions-mobile",
+      "route": "/emissions/",
+      "issues": [
+        "texte critique coupé: Voir les créneaux",
+        "cibles tactiles trop petites: Voir les créneaux"
+      ],
+      "width": 390,
+      "height": 844,
+      "scrollHeight": 2589
+    },
+    {
+      "name": "direct-desktop",
+      "route": "/direct/",
+      "issues": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollHeight": 1903
+    }
   ]
 }
