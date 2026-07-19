@@ -8,20 +8,24 @@
 
   ensureQualityStyles();
   ensureClarityStyles();
-  ensurePrdVisualStyles();
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
     loadJourneyV14();
+    ensurePrdVisualStyles();
     bindFormatDecision();
     bindJourneyNavigation();
     bindRevealMotion();
     bindRailAffordance();
   });
 
-  function appendStylesheet(href, dataKey, dataValue) {
-    if (document.querySelector(`link[href="${href}"]`)) return;
+  function appendStylesheet(href, dataKey, dataValue, moveToEnd = false) {
+    const existing = document.querySelector(`link[href="${href}"]`);
+    if (existing) {
+      if (moveToEnd) document.head.append(existing);
+      return;
+    }
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
@@ -38,7 +42,7 @@
   }
 
   function ensurePrdVisualStyles() {
-    appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16');
+    appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
   }
 
   function loadJourneyV14() {
@@ -167,4 +171,4 @@
   }
 })();
 
-// Production browser quality gate revision 6.
+// Production browser quality gate revision 7.
