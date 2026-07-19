@@ -1,7 +1,7 @@
 {
   "status": "success",
-  "source_sha": "b231d450d55d1ee6b6305084f36225e9777e27cd",
-  "checked_at": "2026-07-19T14:43:40.406691+00:00",
+  "source_sha": "df4eee781cca091917bd1b9a999bdf534358aa8f",
+  "checked_at": "2026-07-19T14:54:35.483974+00:00",
   "architecture": "conversion-voice-v10",
   "home_live": "v4",
   "landing_conversion": "v5",
@@ -12,6 +12,10 @@
     "/studio/",
     "/api/health",
     "/api/public/catalog",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/video-sitemap.xml",
+    "/llms.txt",
     "/api/admin/clients",
     "/api/admin/client-update"
   ],
