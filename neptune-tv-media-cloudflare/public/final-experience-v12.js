@@ -27,6 +27,7 @@
     appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
     loadVisibilityShowcase();
     appendStylesheet('/styles/hero-live-v21.css?v=27', 'heroLive', 'v27', true);
+    appendStylesheet('/styles/neptune-brand-bridge-v20.css?v=20', 'neptuneBrandBridge', 'v20', true);
     loadHeroLiveV27();
     removeJourneyNavigation();
     bindFormatDecision();
@@ -166,4 +167,4 @@
   }
 })();
 
-// Production browser quality gate revision 19.
+// Production browser quality gate revision 20.
