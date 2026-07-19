@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-19T19:19:11.397Z
+Généré : 2026-07-19T20:17:47.290Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 268
+- Avertissements : 264
 
 ## Problèmes détectés
 
@@ -50,8 +50,6 @@ Généré : 2026-07-19T19:19:11.397Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
-| warning | desktop-1440 | home | console-error | Refused to apply style from 'https://neptune-media-webtv.neptunebusinessclub.workers.dev/styles/neptune-brand-bridge-v20.css?v=20' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. |
-| warning | desktop-1440 | home | console-error | Refused to apply style from 'https://neptune-media-webtv.neptunebusinessclub.workers.dev/styles/neptune-brand-bridge-v20.css?v=20' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -130,3 +128,5 @@ Généré : 2026-07-19T19:19:11.397Z
 | warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
 | warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
 | warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
+| warning | tablet-834 | home | offscreen-element | video |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
