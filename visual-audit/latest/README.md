@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-19T18:00:27.071Z
+Généré : 2026-07-19T18:03:30.267Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 242
+- Avertissements : 252
 
 ## Problèmes détectés
 
@@ -99,6 +99,14 @@ Généré : 2026-07-19T18:00:27.071Z
 | warning | laptop-1280 | direct | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | direct | clipped-text | Neptune Media en direct |
 | warning | tablet-834 | home | clipped-text | Aller au contenu principal |
+| warning | tablet-834 | home | clipped-text | Je ne suis pas un.e
+          influenceur.se |
+| warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
+| warning | tablet-834 | home | clipped-text | influenceur.se |
+| warning | tablet-834 | home | clipped-text | Je suis un.e
+          chef.fe d'entreprise |
+| warning | tablet-834 | home | clipped-text | Je suis un.e |
+| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
@@ -124,9 +132,3 @@ Généré : 2026-07-19T18:00:27.071Z
 | warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
 | warning | tablet-834 | home | offscreen-element | video |
 | warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
-| warning | tablet-834 | home | offscreen-element | span.visibility-short__label |
-| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
-| warning | tablet-834 | home | offscreen-element | video |
-| warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
-| warning | tablet-834 | home | offscreen-element | span.visibility-short__label |
-| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
