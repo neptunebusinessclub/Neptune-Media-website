@@ -1,9 +1,9 @@
 {
-  "status": "failed",
-  "source_sha": "6cd954ff8a81e5d114e642ed16b12b31145f47a7",
-  "source_workflow_id": "29694444655",
-  "ui_workflow_run_id": "29694462699",
-  "checked_at": "2026-07-19T16:15:36.555652+00:00",
+  "status": "success",
+  "source_sha": "b54a146a8a25f1b5e82ef5d4a65a06d1839f9953",
+  "source_workflow_id": "29694641534",
+  "ui_workflow_run_id": "29694661615",
+  "checked_at": "2026-07-19T16:21:40.356250+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -17,22 +17,15 @@
     "/emissions/",
     "/direct/"
   ],
-  "issues": [
-    "home-desktop: texte critique coupé: À regarder.",
-    "emissions-desktop: texte critique coupé: À regarder.",
-    "emissions-mobile: texte critique coupé: Voir les créneaux",
-    "emissions-mobile: cibles tactiles trop petites: Voir les créneaux"
-  ],
+  "issues": [],
   "pages": [
     {
       "name": "home-desktop",
       "route": "/",
-      "issues": [
-        "texte critique coupé: À regarder."
-      ],
+      "issues": [],
       "width": 1440,
       "height": 1100,
-      "scrollHeight": 8387
+      "scrollHeight": 8503
     },
     {
       "name": "home-tablet",
@@ -40,7 +33,7 @@
       "issues": [],
       "width": 834,
       "height": 1112,
-      "scrollHeight": 9934
+      "scrollHeight": 10043
     },
     {
       "name": "home-mobile",
@@ -48,28 +41,23 @@
       "issues": [],
       "width": 390,
       "height": 844,
-      "scrollHeight": 12142
+      "scrollHeight": 12339
     },
     {
       "name": "emissions-desktop",
       "route": "/emissions/",
-      "issues": [
-        "texte critique coupé: À regarder."
-      ],
+      "issues": [],
       "width": 1440,
       "height": 1000,
-      "scrollHeight": 1915
+      "scrollHeight": 1933
     },
     {
       "name": "emissions-mobile",
       "route": "/emissions/",
-      "issues": [
-        "texte critique coupé: Voir les créneaux",
-        "cibles tactiles trop petites: Voir les créneaux"
-      ],
+      "issues": [],
       "width": 390,
       "height": 844,
-      "scrollHeight": 2589
+      "scrollHeight": 2683
     },
     {
       "name": "direct-desktop",
