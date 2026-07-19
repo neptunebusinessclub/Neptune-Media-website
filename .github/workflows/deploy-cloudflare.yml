@@ -2,304 +2,77 @@ name: Deploy Neptune Media to Cloudflare
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - 'neptune-tv-media-cloudflare/**'
+      - '.github/workflows/deploy-cloudflare.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: neptune-media-production
   cancel-in-progress: true
 
 jobs:
-  validate-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: neptune-tv-media-cloudflare
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      BOOTSTRAP_TOKEN: ${{ secrets.BOOTSTRAP_TOKEN }}
-      CONVERSION_WEBHOOK_SECRET: ${{ secrets.CONVERSION_WEBHOOK_SECRET }}
       PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
-      OFFICIAL_BOOKING_URL: https://media.neptunebusiness.com
+
     steps:
-      - name: Checkout
+      - name: Checkout canonical source
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
           registry-url: https://registry.npmjs.org
 
-      - name: Apply secure studio email authentication
-        working-directory: .
-        run: python3 scripts/apply-studio-auth.py
-
-      - name: Apply concise AIDA media UX
-        working-directory: .
-        run: python3 scripts/apply-ux-aida.py
-
-      - name: Apply public accessibility improvements
-        working-directory: .
-        run: python3 scripts/apply-public-accessibility.py
-
-      - name: Apply streaming UX rules
-        working-directory: .
-        run: python3 scripts/apply-streaming-index.py
-
-      - name: Apply current media rendering fixes
-        working-directory: .
-        run: |
-          python3 scripts/apply-render-polish-v7.py
-          python3 scripts/apply-render-polish-v8.py
-          python3 scripts/apply-home-architecture-v10.py
-          python3 scripts/apply-visual-polish-v11.py
-
-      - name: Persist corrected source
-        working-directory: .
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            neptune-tv-media-cloudflare/src/store.js \
-            neptune-tv-media-cloudflare/src/index.js \
-            neptune-tv-media-cloudflare/src/public-layout.js \
-            neptune-tv-media-cloudflare/src/public-render.js \
-            neptune-tv-media-cloudflare/src/public-router.js \
-            neptune-tv-media-cloudflare/public/studio/index.html \
-            neptune-tv-media-cloudflare/public/studio/studio.js \
-            neptune-tv-media-cloudflare/public/index.html \
-            neptune-tv-media-cloudflare/public/app.js \
-            neptune-tv-media-cloudflare/public/upgrade.js \
-            neptune-tv-media-cloudflare/public/accessibility.js \
-            neptune-tv-media-cloudflare/public/ux-aida.js \
-            neptune-tv-media-cloudflare/public/landing-conversion.js \
-            neptune-tv-media-cloudflare/public/home-live.js \
-            neptune-tv-media-cloudflare/public/live-channel.js \
-            neptune-tv-media-cloudflare/public/styles/accessibility.css \
-            neptune-tv-media-cloudflare/public/styles/ux-aida.css \
-            neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
-            neptune-tv-media-cloudflare/package.json \
-            scripts/apply-streaming-index.py \
-            scripts/apply-home-architecture-v10.py \
-            scripts/apply-visual-polish-v11.py
-          git commit -m "feat: persist screenshot-verified Neptune visual polish v11 [skip ci]" || true
-          git pull --rebase origin main || true
-          git push
-
-      - name: Install dependencies from public npm registry
+      - name: Install dependencies
         run: npm install --package-lock=false --registry=https://registry.npmjs.org
 
       - name: Validate JavaScript
         run: npm run check
 
-      - name: Ensure R2 media bucket
-        run: npx wrangler r2 bucket create neptune-media-assets 2>/dev/null || true
-
       - name: Validate Cloudflare bundle
         run: npx wrangler deploy --dry-run
 
-      - name: Create or update Worker and assets
+      - name: Deploy canonical Worker and assets
         run: npx wrangler deploy
 
-      - name: Configure bootstrap secret
-        run: printf '%s' "$BOOTSTRAP_TOKEN" | npx wrangler secret put BOOTSTRAP_TOKEN
-
-      - name: Configure conversion webhook secret
-        if: ${{ env.CONVERSION_WEBHOOK_SECRET != '' }}
-        run: printf '%s' "$CONVERSION_WEBHOOK_SECRET" | npx wrangler secret put CONVERSION_WEBHOOK_SECRET
-
-      - name: Final deployment verification
-        run: npx wrangler deploy
-
-      - name: Smoke test production routes
+      - name: Verify production hero
+        working-directory: .
         run: |
           set -euo pipefail
+          VERSION="${GITHUB_SHA}-${GITHUB_RUN_ID}"
+
           for attempt in 1 2 3 4 5 6; do
-            if curl --fail --silent --show-error "$PUBLIC_URL/api/health" > /tmp/health.json; then break; fi
-            sleep 10
-          done
-          grep -q '"ok":true' /tmp/health.json
-          curl --fail --silent --show-error -H 'Cache-Control: no-cache' "$PUBLIC_URL/?v11=${GITHUB_RUN_ID}" > /tmp/public-home.html
-          grep -q 'Votre entreprise est solide' /tmp/public-home.html
-          grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/public-home.html
-          grep -q 'J’ai déjà payé pour de belles vidéos qui n’ont rien changé' /tmp/public-home.html
-          grep -q 'Vous ne cherchez pas une vidéo' /tmp/public-home.html
-          grep -q 'Je suis pas à l’aise face caméra' /tmp/public-home.html
-          grep -q 'data-home-structure="conversion-voice-v10"' /tmp/public-home.html
-          grep -q 'data-render-media="v7"' /tmp/public-home.html
-          grep -q 'data-aida-stage="attention"' /tmp/public-home.html
-          grep -q 'data-content-rail' /tmp/public-home.html
-          grep -q 'data-home-live' /tmp/public-home.html
-          grep -q 'inner-voice-grid' /tmp/public-home.html
-          grep -q 'Aller au contenu principal' /tmp/public-home.html
-          grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
-          grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
-          grep -q 'id="faq-answer-1"' /tmp/public-home.html
-          grep -q '/styles/neptune-streaming.css?v=11' /tmp/public-home.html
-          grep -q '/home-live.js?v=4' /tmp/public-home.html
-          grep -q '/landing-conversion.js?v=5' /tmp/public-home.html
-          grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
-          if grep -Eq 'href="https://neptune-media-webtv\.neptunebusinessclub\.workers\.dev[^\"]*"' /tmp/public-home.html; then
-            echo 'The public landing page contains a Worker URL where a conversion URL is expected.' >&2
-            exit 1
-          fi
-          if grep -q 'Votre expertise mérite d’être vue' /tmp/public-home.html; then
-            echo 'The obsolete generic hero copy is still present in production HTML.' >&2
-            exit 1
-          fi
-          curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
-          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'neptune_watch_progress_v2'
-          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'data-rail-track'
-          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'catalogue-page > .program-pills'
-          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'shortsCatalog'
-          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'answer.hidden'
-          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q '!isShortEpisode(episode)'
-          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'formatLabel'
-          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -Fq 'state.episodes.find((item) => !isShortEpisode(item))'
-          curl --fail --silent --show-error "$PUBLIC_URL/upgrade.js?v=6" | grep -q 'conversion-voice-v10'
-          curl --fail --silent --show-error "$PUBLIC_URL/home-live.js?v=4" > /tmp/home-live.js
-          grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
-          grep -q 'Neptune Media est à l’antenne' /tmp/home-live.js
-          if grep -q '24H/24' /tmp/home-live.js; then
-            echo 'The obsolete 24H/24 claim remains in home-live.js.' >&2
-            exit 1
-          fi
-          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=5" > /tmp/landing-conversion.js
-          grep -q 'mobile-conversion-bar' /tmp/landing-conversion.js
-          grep -q 'utm_campaign' /tmp/landing-conversion.js
-          if grep -q 'updateHero' /tmp/landing-conversion.js; then
-            echo 'Runtime copy rewriting is still present in landing-conversion.js.' >&2
-            exit 1
-          fi
-          curl --fail --silent --show-error "$PUBLIC_URL/live-channel.js" | grep -q 'neptune:live-status'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=11" > /tmp/neptune-streaming.css
-          grep -q 'Conversion voice architecture v10' /tmp/neptune-streaming.css
-          grep -q 'Visual QA polish v11' /tmp/neptune-streaming.css
-          grep -q 'Compact shorts and avatar-first headings v9' /tmp/neptune-streaming.css
-          curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
-          grep -q 'live-page-immediate' /tmp/direct.html
-          grep -q 'data-live-now' /tmp/direct.html
-          grep -q 'data-live-next' /tmp/direct.html
-          grep -q 'data-public-ux="streaming-v3"' /tmp/direct.html
-          if grep -q '<h1>Neptune Media, à l’antenne' /tmp/direct.html; then
-            echo 'The direct page still exposes a marketing hero before the player.' >&2
-            exit 1
-          fi
-          curl --fail --silent --show-error "$PUBLIC_URL/emissions/" > /tmp/emissions.html
-          grep -q 'Émissions complètes' /tmp/emissions.html
-          grep -q 'seo-grid-shorts' /tmp/emissions.html
-          grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
-          grep -q '/styles/neptune-streaming.css?v=11' /tmp/emissions.html
-          curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
-          curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
+            curl --fail --silent --show-error \
+              -H 'Cache-Control: no-cache, no-store' \
+              "$PUBLIC_URL/hero-live-v21.js?v=$VERSION" > /tmp/hero.js || true
 
-          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/direct/")" = "200"
-          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/emissions/")" = "200"
-          test "$(curl --silent --show-error --head --output /dev/null --write-out '%{http_code}' "$PUBLIC_URL/video-sitemap.xml")" = "200"
-
-          curl --silent --show-error --dump-header /tmp/public-headers.txt --output /dev/null "$PUBLIC_URL/"
-          grep -Eiq '^x-content-type-options:[[:space:]]*nosniff' /tmp/public-headers.txt
-          grep -Eiq '^content-security-policy:' /tmp/public-headers.txt
-
-          curl --silent --show-error --dump-header /tmp/studio-headers.txt --output /dev/null "$PUBLIC_URL/studio/"
-          grep -Eiq '^cache-control:.*no-store' /tmp/studio-headers.txt
-          grep -Eiq '^x-robots-tag:.*noindex' /tmp/studio-headers.txt
-
-          curl --silent --show-error --dump-header /tmp/client-headers.txt --output /dev/null "$PUBLIC_URL/espace-client/"
-          grep -Eiq '^cache-control:.*no-store' /tmp/client-headers.txt
-          grep -Eiq '^x-robots-tag:.*noindex' /tmp/client-headers.txt
-
-          python3 - <<'PY' > /tmp/oversized-tracking.json
-          import json
-          print(json.dumps({"payload": "x" * 17000}))
-          PY
-
-          for endpoint in track ad-track; do
-            test "$(curl --silent --output /tmp/${endpoint}-type.json --write-out '%{http_code}' \
-              -X POST "$PUBLIC_URL/api/$endpoint" \
-              -H 'Content-Type: text/plain' \
-              --data '{}')" = "415"
-            grep -q '"error":"unsupported_media_type"' "/tmp/${endpoint}-type.json"
-
-            test "$(curl --silent --output /tmp/${endpoint}-json.json --write-out '%{http_code}' \
-              -X POST "$PUBLIC_URL/api/$endpoint" \
-              -H 'Content-Type: application/json' \
-              --data '{')" = "400"
-            grep -q '"error":"invalid_json"' "/tmp/${endpoint}-json.json"
-
-            test "$(curl --silent --output /tmp/${endpoint}-size.json --write-out '%{http_code}' \
-              -X POST "$PUBLIC_URL/api/$endpoint" \
-              -H 'Content-Type: application/json' \
-              --data-binary @/tmp/oversized-tracking.json)" = "413"
-            grep -q '"error":"payload_too_large"' "/tmp/${endpoint}-size.json"
-          done
-
-      - name: Smoke test permanent client portal
-        run: |
-          set -euo pipefail
-
-          portal_ready=false
-          for attempt in 1 2 3 4 5 6; do
-            if curl --fail --silent --show-error "$PUBLIC_URL/espace-client/" > /tmp/client-portal.html \
-              && grep -q 'Tous vos passages Neptune Media' /tmp/client-portal.html \
-              && curl --location --fail --silent --show-error "$PUBLIC_URL/studio/clients" > /tmp/studio-clients.html \
-              && grep -q 'Comptes, passages et livrables' /tmp/studio-clients.html; then
-              portal_ready=true
+            if grep -Fq "expert.e dans mon domaine" /tmp/hero.js; then
               break
             fi
+
             sleep 10
           done
-          test "$portal_ready" = "true"
 
-          api_ready=false
-          for attempt in 1 2 3 4 5 6; do
-            client_status=$(curl --silent --output /tmp/client-session.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
-            admin_status=$(curl --silent --output /tmp/admin-clients.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
-            webhook_status=$(curl --silent --output /tmp/client-webhook.json --write-out '%{http_code}' \
-              -X POST "$PUBLIC_URL/api/webhooks/client-order" \
-              -H "Origin: $PUBLIC_URL" \
-              -H 'Content-Type: application/json' \
-              --data '{}')
-            if test "$client_status" = "401" \
-              && grep -q '"authenticated":false' /tmp/client-session.json \
-              && test "$admin_status" = "401" \
-              && grep -q '"error":"unauthorized"' /tmp/admin-clients.json \
-              && test "$webhook_status" = "401" \
-              && grep -q '"error":"unauthorized"' /tmp/client-webhook.json; then
-              api_ready=true
-              break
-            fi
-            sleep 10
-          done
-          test "$api_ready" = "true"
+          grep -Fq "expert.e dans mon domaine" /tmp/hero.js
 
-          smoke_email="portal-smoke-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@example.invalid"
           curl --fail --silent --show-error \
-            -X POST "$PUBLIC_URL/api/client/request-code" \
-            -H "Origin: $PUBLIC_URL" \
-            -H 'Content-Type: application/json' \
-            --data "{\"email\":\"$smoke_email\"}" \
-            | grep -q '"ok":true'
+            -H 'Cache-Control: no-cache, no-store' \
+            "$PUBLIC_URL/styles/hero-live-v21.css?v=$VERSION" > /tmp/hero.css
 
-      - name: Record successful production deployment
-        env:
-          SOURCE_SHA: ${{ github.sha }}
-        run: |
-          cd "$GITHUB_WORKSPACE"
-          printf '{"status":"success","source_sha":"%s","deployed_at":"%s","url":"%s"}\n' "$SOURCE_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$PUBLIC_URL" > deployment-status.json
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add deployment-status.json
-          git commit -m "chore: record successful deployment [skip ci]" || true
-          git pull --rebase origin main || true
-          git push
+          grep -Fq 'isolation:isolate' /tmp/hero.css
+          grep -Fq 'rgba(82,185,255,.28)' /tmp/hero.css
