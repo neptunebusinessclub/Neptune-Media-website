@@ -1,0 +1,40 @@
+name: Publish Visual Audit Artifact
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-visual-artifact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+actions:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: neptune-visual-audit-${{ github.run_id }}
+          path: visual-audit/latest
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Record artifact run
+        run: |
+          printf '{"run_id":%s,"artifact_name":"neptune-visual-audit-%s","source_sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ID" "$GITHUB_SHA" > visual-audit/latest/artifact-run.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add visual-audit/latest/artifact-run.json
+          git commit -m 'chore: record visual audit artifact run [skip ci]' || true
+          git pull --rebase origin main || true
+          git push
