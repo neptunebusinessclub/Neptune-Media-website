@@ -1,24 +1,16 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-19T17:57:44.484Z
+Généré : 2026-07-19T18:00:27.071Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 248
+- Avertissements : 242
 
 ## Problèmes détectés
 
 | Niveau | Écran | Page | Type | Détail |
 |---|---|---|---|---|
 | warning | desktop-1440 | home | clipped-text | Aller au contenu principal |
-| warning | desktop-1440 | home | clipped-text | Je ne suis pas un.e
-          influenceur.se |
-| warning | desktop-1440 | home | clipped-text | Je ne suis pas un.e |
-| warning | desktop-1440 | home | clipped-text | influenceur.se |
-| warning | desktop-1440 | home | clipped-text | Je suis un.e
-          chef.fe d'entreprise |
-| warning | desktop-1440 | home | clipped-text | Je suis un.e |
-| warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
@@ -132,3 +124,9 @@ Généré : 2026-07-19T17:57:44.484Z
 | warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
 | warning | tablet-834 | home | offscreen-element | video |
 | warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__label |
+| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
+| warning | tablet-834 | home | offscreen-element | video |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__label |
+| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
