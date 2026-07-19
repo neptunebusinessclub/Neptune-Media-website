@@ -1,19 +1,22 @@
 {
-  "checked_at": "2026-07-19T01:56:04.903232+00:00",
-  "ready": false,
+  "checked_at": "2026-07-19T02:50:13.890871+00:00",
+  "ready": true,
   "home": {
     "status": "200",
-    "structure_marker": false,
+    "structure_marker": true,
+    "conversion_hook": true,
     "story_hook": true,
-    "solution_section": true,
-    "benefits_section": false,
-    "proof_section": false,
+    "content_rail": true,
+    "live_card": true,
+    "search": true,
+    "formats_section": true,
     "commitments_section": true,
-    "faq_eight": false
+    "faq": true,
+    "official_tunnel": true
   },
   "css": {
     "status": "200",
-    "story_styles": true
+    "streaming_styles": true
   },
   "health": {
     "status": "200",
