@@ -106,6 +106,17 @@ jobs:
           node -e "const d=require('/tmp/catalog.json'); if(!Array.isArray(d.programs)||!Array.isArray(d.episodes)||!Array.isArray(d.ads)) process.exit(1)"
           grep -qi '^cache-control:.*no-store' /tmp/catalog.headers
 
+          admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' \
+            -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?verify=$nonce")
+          test "$admin_list_status" = "401"
+          node -e "const d=require('/tmp/admin-list.json'); if(d.error!=='unauthorized') process.exit(1)"
+
+          admin_mutation_status=$(curl --silent --show-error --output /tmp/admin-mutation.json --write-out '%{http_code}' \
+            -X POST -H 'Content-Type: application/json' -H 'Origin: https://example.invalid' \
+            --data '{}' "$PUBLIC_URL/api/admin/client-update?verify=$nonce")
+          test "$admin_mutation_status" = "403"
+          node -e "const d=require('/tmp/admin-mutation.json'); if(d.error!=='origin_forbidden') process.exit(1)"
+
       - name: Record hotfix deployment result
         if: always()
         env:
@@ -133,7 +144,7 @@ jobs:
               'architecture': 'conversion-voice-v10',
               'home_live': 'v4',
               'landing_conversion': 'v5',
-              'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog'],
+              'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog', '/api/admin/clients', '/api/admin/client-update'],
               'outcomes': outcomes,
           }
           with open('copy-hotfix-deployment-status.json', 'w', encoding='utf-8') as handle:
