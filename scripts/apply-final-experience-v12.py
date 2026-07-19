@@ -88,8 +88,8 @@ def patch_public_layout() -> None:
 def patch_router() -> None:
     source = ROUTER.read_text(encoding="utf-8")
     anchor = "  if (!body.includes(script)) body = body.replace(marker, `${extraScripts}<script src=\"${script}\"></script>${marker}${mode === 'public' ? '<script src=\"/visual-polish-v11.js?v=3\"></script>' : ''}`);"
-    addition = anchor + "\n  if (mode === 'public' && !body.includes('/styles/final-experience-v12.css')) body = body.replace('</head>', '<link rel=\"stylesheet\" href=\"/styles/final-experience-v12.css?v=1\"></head>');\n  if (mode === 'public' && !body.includes('/final-experience-v12.js')) body = body.replace('</body>', '<script src=\"/final-experience-v12.js?v=1\" defer></script></body>');"
-    if "final-experience-v12.css" not in source:
+    addition = anchor + "\n  if (mode === 'public') {\n    body = body.replaceAll('<link rel=\"stylesheet\" href=\"/styles/final-experience-v12.css?v=1\">', '');\n    body = body.replace('</head>', '<link rel=\"stylesheet\" href=\"/styles/final-experience-v12.css?v=1\"></head>');\n    body = body.replaceAll('<script src=\"/final-experience-v12.js?v=1\" defer></script>', '');\n    body = body.replace('</body>', '<script src=\"/final-experience-v12.js?v=1\" defer></script></body>');\n  }"
+    if "body.replaceAll('<link rel=\"stylesheet\" href=\"/styles/final-experience-v12.css" not in source:
         if anchor not in source:
             raise RuntimeError("Could not add final public assets to the HTML enhancer")
         source = source.replace(anchor, addition, 1)
