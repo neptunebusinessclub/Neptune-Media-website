@@ -48,6 +48,14 @@ export async function enhanceHtml(response, request, env, mode) {
   if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${supplementalStyles}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
   if (!body.includes(script)) body = body.replace(marker, `${extraScripts}<script src="${script}"></script>${marker}${mode === 'public' ? '<script src="/visual-polish-v11.js?v=3"></script>' : ''}`);
+  if (mode === 'public') {
+    body = body.replaceAll('<link rel="stylesheet" href="/styles/apple-conversion-v13.css?v=13">', '');
+    body = body.replaceAll(' data-apple-ux="v13"', '');
+    body = body.replaceAll('<link rel="stylesheet" href="/styles/final-experience-v12.css?v=1">', '');
+    body = body.replace('</head>', '<link rel="stylesheet" href="/styles/final-experience-v12.css?v=1"></head>');
+    body = body.replaceAll('<script src="/final-experience-v12.js?v=1" defer></script>', '');
+    body = body.replace('</body>', '<script src="/final-experience-v12.js?v=1" defer></script></body>');
+  }
   const headers = new Headers(response.headers);
   headers.set('Content-Type', 'text/html; charset=utf-8');
   if (mode === 'studio') {

@@ -19,8 +19,7 @@
   <link rel="stylesheet" href="/styles/home-structure.css">
   <link rel="stylesheet" href="/styles/accessibility.css">
   <link rel="stylesheet" href="/styles/ux-aida.css">
-  <link rel="stylesheet" href="/styles/neptune-streaming.css?v=10">
-  <link rel="stylesheet" href="/styles/apple-conversion-v13.css?v=13">
+  <link rel="stylesheet" href="/styles/neptune-streaming.css?v=11">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -31,8 +30,9 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/styles/final-experience-v12.css?v=1">
 </head>
-<body data-a11y-version="2026-07-18" data-home-structure="conversion-voice-v10" data-density="marketing" data-render-media="v7" data-apple-ux="v13">
+<body data-a11y-version="2026-07-18" data-home-structure="conversion-voice-v10" data-final-ux="v12" data-density="marketing" data-render-media="v7">
 <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 <header class="site-header">
   <div class="container header-inner">
@@ -151,6 +151,13 @@
         <article><img src="/assets/posters/poster-accident.webp" alt="Extrait Hors Norme" loading="lazy" decoding="async"><div><small>Pendant</small><h3>Vous êtes guidé dans une vraie conversation.</h3></div></article>
         <article><img src="/assets/posters/poster-storytelling.webp" alt="Échange éditorial Neptune" loading="lazy" decoding="async"><div><small>Après</small><h3>Neptune prend en charge la production.</h3></div></article>
       </div>
+      <div class="production-pipeline" aria-label="Une intervention devient un système de contenus selon l’offre choisie">
+        <div><small>Vous venez avec</small><strong>Une vraie conversation</strong></div>
+        <span aria-hidden="true">→</span>
+        <div><small>Neptune construit</small><strong>Une émission qui se regarde</strong></div>
+        <span aria-hidden="true">→</span>
+        <div><small>Selon l’offre</small><strong>Des contenus prêts à utiliser</strong></div>
+      </div>
     </div>
   </section>
 
@@ -158,10 +165,14 @@
     <div class="container">
       <div class="section-head"><div><span class="eyebrow">Deux formats</span><h2>Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.</h2></div></div>
       <div class="format-grid">
-        <article class="format-card format-card--voice"><img src="/assets/posters/studio-wide.webp" alt="Interview Hors Norme sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><blockquote class="format-thought">« Les gens savent ce que je fais. Mais ils savent pas ce qui m’a poussé à le faire. »</blockquote><p>Le problème vécu, le déclic et les convictions qui expliquent pourquoi votre entreprise existe et pourquoi elle compte.</p><ul class="offer-list"><li>Trajectoire et histoire humaine</li><li>Interview narrative guidée</li></ul></div></article>
-        <article class="format-card format-card--voice"><img src="/assets/posters/concept-libre-wide.webp" alt="Format Concept Libre sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre objectif</small><h3>Concept Libre</h3><blockquote class="format-thought">« Mon offre est bonne. Mais j’arrive pas à l’expliquer simplement. »</blockquote><p>Un format construit autour de ce que votre audience doit comprendre, ressentir ou retenir : expertise, démonstration, lancement, jeu ou série.</p><ul class="offer-list"><li>Concept éditorial personnalisé</li><li>Mise en scène adaptable</li></ul></div></article>
+        <article class="format-card format-card--voice" data-format-choice data-format="horsnorme" role="button" tabindex="0" aria-pressed="false"><img src="/assets/posters/studio-wide.webp" alt="Interview Hors Norme sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre histoire</small><h3>Hors Norme</h3><blockquote class="format-thought">« Les gens savent ce que je fais. Mais ils savent pas ce qui m’a poussé à le faire. »</blockquote><p>Le problème vécu, le déclic et les convictions qui expliquent pourquoi votre entreprise existe et pourquoi elle compte.</p><ul class="offer-list"><li>Trajectoire et histoire humaine</li><li>Interview narrative guidée</li></ul></div></article>
+        <article class="format-card format-card--voice" data-format-choice data-format="libre" role="button" tabindex="0" aria-pressed="false"><img src="/assets/posters/concept-libre-wide.webp" alt="Format Concept Libre sur le plateau Neptune" loading="lazy" decoding="async"><div class="format-card-content"><small>Votre objectif</small><h3>Concept Libre</h3><blockquote class="format-thought">« Mon offre est bonne. Mais j’arrive pas à l’expliquer simplement. »</blockquote><p>Un format construit autour de ce que votre audience doit comprendre, ressentir ou retenir : expertise, démonstration, lancement, jeu ou série.</p><ul class="offer-list"><li>Concept éditorial personnalisé</li><li>Mise en scène adaptable</li></ul></div></article>
       </div>
-      <div class="format-compare-actions"><a class="btn btn-primary" data-funnel data-track="formats_compare" href="https://media.neptunebusiness.com/">Comparer les offres et les créneaux</a><p>Tarifs, livrables, délais, droits et conditions visibles avant confirmation.</p></div>
+      <div class="format-recommendation" data-format-recommendation aria-live="polite">
+        <div class="format-recommendation-copy"><span>Votre point de départ</span><strong data-format-result>Choisissez ce que votre audience doit comprendre.</strong><p data-format-result-copy>Votre histoire oriente vers Hors Norme. Une offre, une démonstration ou un lancement oriente vers Concept Libre.</p></div>
+        <a class="btn btn-primary" data-funnel data-track="formats_compare" data-format-booking href="https://media.neptunebusiness.com/">Comparer les offres et les créneaux</a>
+      </div>
+      <p class="format-conditions">Tarifs, livrables, délais, droits et conditions visibles avant confirmation.</p>
     </div>
   </section>
 
@@ -230,5 +241,6 @@
 <script src="/app.js"></script>
 <script src="/accessibility.js"></script>
 <script src="/ux-aida.js"></script>
+<script src="/final-experience-v12.js?v=1" defer></script>
 </body>
 </html>

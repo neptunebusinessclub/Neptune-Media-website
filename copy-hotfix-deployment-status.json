@@ -1,8 +1,9 @@
 {
-  "status": "success",
-  "source_sha": "71128d18ccd2c746f8950c640ef1dc18f6e5bfff",
-  "checked_at": "2026-07-19T16:00:18.693202+00:00",
+  "status": "failed",
+  "source_sha": "5b63289596c6bb820a3fe7e63b72caa66bcebaa3",
+  "checked_at": "2026-07-19T16:05:20.672671+00:00",
   "architecture": "conversion-voice-v10",
+  "experience": "final-v12",
   "home_live": "v4",
   "landing_conversion": "v5",
   "critical_routes": [
@@ -24,6 +25,6 @@
     "install": "success",
     "validate": "success",
     "deploy": "success",
-    "verify": "success"
+    "verify": "failure"
   }
 }

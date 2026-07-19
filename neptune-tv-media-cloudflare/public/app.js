@@ -77,7 +77,7 @@
   }
 
   function renderHero() {
-    const episode = state.episodes[0];
+    const episode = state.episodes.find((item) => !isShortEpisode(item)) || state.episodes[0];
     if (!episode) {
       setHeroLoading(false);
       return;
