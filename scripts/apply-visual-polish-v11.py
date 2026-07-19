@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +13,7 @@ APP = PUBLIC / "app.js"
 UPGRADE = PUBLIC / "upgrade.js"
 UX = PUBLIC / "ux-aida.js"
 STREAMING_CSS = PUBLIC / "styles" / "neptune-streaming.css"
+FINAL_V12 = ROOT / "scripts" / "apply-final-experience-v12.py"
 
 CSS = r'''/* Visual QA polish v11: screenshot-verified hierarchy, compact flow and responsive hero. */
 body[data-home-structure="conversion-voice-v10"] .voice-hero{padding-top:clamp(64px,7vw,104px);padding-bottom:clamp(52px,6vw,82px)}
@@ -98,6 +101,12 @@ def patch_css() -> None:
     STREAMING_CSS.write_text(text.rstrip() + "\n\n" + CSS + "\n", encoding="utf-8")
 
 
+def apply_final_v12() -> None:
+    if not FINAL_V12.exists():
+        raise RuntimeError("Final experience v12 script is missing")
+    subprocess.run([sys.executable, str(FINAL_V12)], check=True, cwd=ROOT)
+
+
 def main() -> None:
     bump_stylesheet(INDEX)
     bump_stylesheet(LAYOUT)
@@ -105,7 +114,8 @@ def main() -> None:
     patch_upgrade()
     patch_ux()
     patch_css()
-    print("Applied screenshot-driven Neptune visual polish v11")
+    apply_final_v12()
+    print("Applied screenshot-driven Neptune visual polish v11 and final experience v12")
 
 
 if __name__ == "__main__":
