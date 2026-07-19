@@ -7,6 +7,7 @@
   const ready = (callback) => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', callback, { once: true }) : callback();
 
   ensureQualityStyles();
+  ensureClarityStyles();
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
@@ -24,6 +25,16 @@
     link.rel = 'stylesheet';
     link.href = href;
     link.dataset.finalQuality = 'v12';
+    document.head.append(link);
+  }
+
+  function ensureClarityStyles() {
+    const href = '/styles/clarity-air-v15.css?v=15';
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset.clarityAir = 'v15';
     document.head.append(link);
   }
 
@@ -153,4 +164,4 @@
   }
 })();
 
-// Production browser quality gate revision 4.
+// Production browser quality gate revision 5.
