@@ -9,8 +9,8 @@
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
 
-  ensureQualityStyles();
-  ensureClarityStyles();
+  appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
+  appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
 
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
@@ -18,16 +18,16 @@
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v20';
-    document.body.dataset.heroRefresh = 'v21';
+    document.body.dataset.heroRefresh = 'v22';
 
     loadJourneyV18();
-    ensurePrdVisualStyles();
-    ensureVisualDensityStyles();
-    ensureIntentActionStyles();
-    ensureVisibilityShowcaseStyles();
+    appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
+    appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
+    appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
+    appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
     loadVisibilityShowcase();
-    ensureHeroLiveStyles();
-    loadHeroLive();
+    appendStylesheet('/styles/hero-live-v21.css?v=22', 'heroLive', 'v22', true);
+    loadHeroLiveV22();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
@@ -47,44 +47,15 @@
     document.head.append(link);
   }
 
-  function ensureQualityStyles() {
-    appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
-  }
-
-  function ensureClarityStyles() {
-    appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
-  }
-
-  function ensurePrdVisualStyles() {
-    appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
-  }
-
-  function ensureVisualDensityStyles() {
-    appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
-  }
-
-  function ensureIntentActionStyles() {
-    appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
-  }
-
-  function ensureVisibilityShowcaseStyles() {
-    appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
-  }
-
-  function ensureHeroLiveStyles() {
-    appendStylesheet('/styles/hero-live-v21.css?v=21', 'heroLive', 'v21', true);
-  }
-
   function loadJourneyV18() {
     const oldScript = document.querySelector('script[data-media-journey-v14]');
     if (oldScript) oldScript.remove();
-    if (!document.querySelector('script[data-media-journey-v18]')) {
-      const script = document.createElement('script');
-      script.src = '/media-journey-v14.js?v=18';
-      script.defer = true;
-      script.dataset.mediaJourneyV18 = '1';
-      document.head.append(script);
-    }
+    if (document.querySelector('script[data-media-journey-v18]')) return;
+    const script = document.createElement('script');
+    script.src = '/media-journey-v14.js?v=18';
+    script.defer = true;
+    script.dataset.mediaJourneyV18 = '1';
+    document.head.append(script);
   }
 
   function loadVisibilityShowcase() {
@@ -96,12 +67,12 @@
     document.head.append(script);
   }
 
-  function loadHeroLive() {
-    if (document.querySelector('script[data-hero-live-v21]')) return;
+  function loadHeroLiveV22() {
+    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/hero-live-v21.js?v=21';
+    script.src = '/hero-live-v21.js?v=22';
     script.defer = true;
-    script.dataset.heroLiveV21 = '1';
+    script.dataset.heroLiveV22 = '1';
     document.head.append(script);
   }
 
@@ -116,23 +87,13 @@
     const panel = qs('[data-format-recommendation]');
     if (!cards.length || !panel || panel.dataset.bound === '1') return;
     panel.dataset.bound = '1';
-
     const title = qs('[data-format-result]', panel);
     const copy = qs('[data-format-result-copy]', panel);
     const booking = qs('[data-format-booking]', panel);
     const options = {
-      horsnorme: [
-        'Hors Norme est probablement votre point de départ.',
-        'Votre audience doit comprendre ce qui vous a conduit à créer, tenir ou transformer votre entreprise.',
-        'Voir les créneaux Hors Norme'
-      ],
-      libre: [
-        'Concept Libre est probablement votre point de départ.',
-        'Votre audience doit comprendre une offre, une méthode, une démonstration, un lancement ou un univers de marque.',
-        'Voir les créneaux Concept Libre'
-      ],
+      horsnorme: ['Hors Norme est probablement votre point de départ.', 'Votre audience doit comprendre ce qui vous a conduit à créer, tenir ou transformer votre entreprise.', 'Voir les créneaux Hors Norme'],
+      libre: ['Concept Libre est probablement votre point de départ.', 'Votre audience doit comprendre une offre, une méthode, une démonstration, un lancement ou un univers de marque.', 'Voir les créneaux Concept Libre']
     };
-
     const choose = (card) => {
       const key = card.dataset.format;
       const option = options[key];
@@ -153,7 +114,6 @@
       }
       panel.dataset.selectedFormat = key;
     };
-
     cards.forEach((card) => {
       card.addEventListener('click', () => choose(card));
       card.addEventListener('keydown', (event) => {
@@ -168,25 +128,21 @@
     const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.voice-process article,.faq-item')
       .filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
-
     items.forEach((item, index) => {
       item.dataset.revealBound = '1';
       item.classList.add('neptune-reveal');
       item.dataset.revealDelay = String(index % 4);
     });
-
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
       items.forEach((item) => item.classList.add('is-visible'));
       return;
     }
-
     document.body.classList.add('reveal-ready');
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('is-visible');
       observer.unobserve(entry.target);
     }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
-
     items.forEach((item) => observer.observe(item));
   }
 
@@ -209,4 +165,4 @@
   }
 })();
 
-// Production browser quality gate revision 12.
+// Production browser quality gate revision 13.
