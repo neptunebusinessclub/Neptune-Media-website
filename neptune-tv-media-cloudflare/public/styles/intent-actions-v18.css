@@ -1,22 +1,24 @@
-/* Neptune Media — intent area v18. One seamless transition, two unmistakable actions. */
-body[data-media-journey="v18"] .voice-proof-strip,
-body[data-media-journey="v18"] .intent-router{
+/* Neptune Media — booking intent area v19. */
+body[data-media-journey="v19"] .voice-proof-strip,
+body[data-media-journey="v19"] .intent-router{
   width:min(1120px,calc(100% - 40px))!important;
 }
 
-/* Remove the visible gradient seam between hero and the following content. */
-body[data-media-journey="v18"] .voice-hero{
+body[data-media-journey="v19"] .voice-hero{
   padding-bottom:42px!important;
 }
-body[data-media-journey="v18"] .voice-hero::after{
+body[data-media-journey="v19"] .voice-hero::after{
   content:"";
   position:absolute;
-  left:0;right:0;bottom:-120px;
+  left:0;
+  right:0;
+  bottom:-120px;
   height:180px;
   pointer-events:none;
   background:linear-gradient(180deg,transparent,#020611 72%);
 }
-body[data-media-journey="v18"] .voice-proof-strip{
+
+body[data-media-journey="v19"] .voice-proof-strip{
   position:relative;
   z-index:2;
   margin:0 auto!important;
@@ -28,7 +30,7 @@ body[data-media-journey="v18"] .voice-proof-strip{
   box-shadow:none!important;
   overflow:visible!important;
 }
-body[data-media-journey="v18"] .voice-proof-strip>div{
+body[data-media-journey="v19"] .voice-proof-strip>div{
   flex:0 1 auto;
   min-width:0;
   padding:9px 13px!important;
@@ -40,10 +42,12 @@ body[data-media-journey="v18"] .voice-proof-strip>div{
   background:rgba(7,16,34,.74)!important;
   box-shadow:none!important;
 }
-body[data-media-journey="v18"] .voice-proof-strip>div::before{
+body[data-media-journey="v19"] .voice-proof-strip>div::before{
   content:"✓";
-  width:18px;height:18px;
-  display:grid;place-items:center;
+  width:18px;
+  height:18px;
+  display:grid;
+  place-items:center;
   flex:0 0 auto;
   border-radius:50%;
   background:rgba(65,190,255,.15);
@@ -51,110 +55,133 @@ body[data-media-journey="v18"] .voice-proof-strip>div::before{
   font-size:.68rem;
   font-weight:900;
 }
-body[data-media-journey="v18"] .voice-proof-strip b{
+body[data-media-journey="v19"] .voice-proof-strip b{
   font-size:.77rem!important;
   line-height:1.2!important;
   white-space:nowrap;
 }
-body[data-media-journey="v18"] .voice-proof-strip span{
+body[data-media-journey="v19"] .voice-proof-strip span{
   display:none!important;
 }
-body[data-media-journey="v18"] .voice-proof-strip>div+div{
+body[data-media-journey="v19"] .voice-proof-strip>div+div{
   border-left:1px solid rgba(255,255,255,.08)!important;
 }
 
-/* Two real action cards instead of a segmented control. */
-body[data-media-journey="v18"] .intent-router{
+body[data-media-journey="v19"] .booking-router{
   position:relative;
   z-index:2;
   margin:22px auto 0!important;
-  padding:0!important;
+  padding:22px 24px!important;
   display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:16px!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  backdrop-filter:none!important;
-}
-body[data-media-journey="v18"] .intent-action{
-  min-height:92px!important;
-  padding:18px 20px!important;
-  display:grid!important;
-  grid-template-columns:44px minmax(0,1fr) 24px;
+  grid-template-columns:minmax(0,1fr) auto!important;
   align-items:center;
-  gap:15px!important;
-  border:1px solid rgba(255,255,255,.1)!important;
-  border-radius:18px!important;
-  text-decoration:none!important;
-  color:#f7f9fd!important;
-  box-shadow:0 14px 36px rgba(0,0,0,.18)!important;
-  transition:transform .22s cubic-bezier(.22,1,.36,1),border-color .2s ease,background .2s ease,box-shadow .22s ease!important;
+  gap:24px!important;
+  overflow:hidden;
+  border:1px solid rgba(124,205,255,.22)!important;
+  border-radius:22px!important;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(58,188,255,.16),transparent 34%),
+    radial-gradient(circle at 88% 100%,rgba(116,87,255,.16),transparent 38%),
+    linear-gradient(135deg,rgba(11,28,54,.96),rgba(5,14,31,.98))!important;
+  box-shadow:0 24px 64px rgba(0,0,0,.28),0 0 54px rgba(57,168,255,.08)!important;
 }
-body[data-media-journey="v18"] .intent-action--watch{
-  background:linear-gradient(145deg,#f7f9fd,#dce8f5)!important;
-  color:#07101f!important;
-  border-color:rgba(255,255,255,.55)!important;
+body[data-media-journey="v19"] .booking-router::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.05),transparent 26%,transparent 72%,rgba(255,255,255,.025));
 }
-body[data-media-journey="v18"] .intent-action--produce{
-  background:linear-gradient(145deg,#0d1d38,#09152b)!important;
-}
-body[data-media-journey="v18"] .intent-icon{
-  width:44px;height:44px;
-  display:grid;place-items:center;
-  border-radius:14px;
-  background:rgba(7,16,31,.09);
-  font-size:.95rem;
-  font-weight:900;
-}
-body[data-media-journey="v18"] .intent-action--produce .intent-icon{
-  background:rgba(70,190,255,.12);
-  color:#75d5ff;
-}
-body[data-media-journey="v18"] .intent-copy{
+body[data-media-journey="v19"] .booking-router__copy{
+  position:relative;
+  z-index:1;
   display:grid;
-  gap:4px;
+  gap:5px;
   min-width:0;
 }
-body[data-media-journey="v18"] .intent-copy strong{
-  font-size:1rem;
+body[data-media-journey="v19"] .booking-router__eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#9edfff;
+  font-size:.72rem;
   line-height:1.2;
-  letter-spacing:-.02em;
+  font-weight:850;
+  letter-spacing:.1em;
+  text-transform:uppercase;
 }
-body[data-media-journey="v18"] .intent-copy small{
-  color:inherit;
-  opacity:.62;
-  font-size:.78rem;
-  line-height:1.3;
+body[data-media-journey="v19"] .booking-router__eyebrow>span{
+  width:8px;
+  height:8px;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:#40c9ff;
+  box-shadow:0 0 0 6px rgba(64,201,255,.12),0 0 18px rgba(64,201,255,.52);
 }
-body[data-media-journey="v18"] .intent-arrow{
-  font-size:1.15rem;
-  opacity:.7;
+body[data-media-journey="v19"] .booking-router__copy strong{
+  color:#f7fbff;
+  font-size:clamp(1.25rem,2.2vw,1.8rem);
+  line-height:1.1;
+  letter-spacing:-.035em;
+}
+body[data-media-journey="v19"] .booking-router__copy small{
+  color:#a9b8cc;
+  font-size:.92rem;
+  line-height:1.45;
+}
+body[data-media-journey="v19"] .booking-router__cta{
+  position:relative;
+  z-index:1;
+  min-height:54px;
+  padding:0 20px 0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:999px;
+  background:linear-gradient(135deg,#f8fbff,#dbeaf8);
+  color:#061225;
+  text-decoration:none;
+  font-size:.9rem;
+  font-weight:900;
+  white-space:nowrap;
+  box-shadow:0 14px 34px rgba(0,0,0,.24),0 0 24px rgba(104,205,255,.12);
+  transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s ease,background .2s ease;
+}
+body[data-media-journey="v19"] .booking-router__arrow{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(7,18,37,.08);
+  font-size:1rem;
   transition:transform .2s ease;
 }
 @media(hover:hover){
-  body[data-media-journey="v18"] .intent-action:hover{
-    transform:translateY(-3px)!important;
-    border-color:rgba(103,207,255,.38)!important;
-    box-shadow:0 20px 46px rgba(0,0,0,.28)!important;
+  body[data-media-journey="v19"] .booking-router__cta:hover{
+    transform:translateY(-2px);
+    background:#fff;
+    box-shadow:0 20px 44px rgba(0,0,0,.3),0 0 32px rgba(104,205,255,.18);
   }
-  body[data-media-journey="v18"] .intent-action:hover .intent-arrow{transform:translateX(3px)}
+  body[data-media-journey="v19"] .booking-router__cta:hover .booking-router__arrow{
+    transform:translateX(3px);
+  }
 }
-body[data-media-journey="v18"] .intent-action:focus-visible{
-  outline:3px solid #71d3ff!important;
-  outline-offset:4px!important;
+body[data-media-journey="v19"] .booking-router__cta:focus-visible{
+  outline:3px solid #71d3ff;
+  outline-offset:4px;
 }
 
-/* Let the following section start naturally with no color break. */
-body[data-media-journey="v18"] .proof-by-content{
+body[data-media-journey="v19"] .proof-by-content{
   margin-top:0!important;
   padding-top:76px!important;
   background:none!important;
 }
 
 @media(max-width:760px){
-  body[data-media-journey="v18"] .voice-proof-strip{
+  body[data-media-journey="v19"] .voice-proof-strip{
     width:calc(100% - 28px)!important;
     display:flex!important;
     justify-content:flex-start;
@@ -162,26 +189,24 @@ body[data-media-journey="v18"] .proof-by-content{
     scrollbar-width:none;
     padding-bottom:2px;
   }
-  body[data-media-journey="v18"] .voice-proof-strip::-webkit-scrollbar{display:none}
-  body[data-media-journey="v18"] .voice-proof-strip>div{flex:0 0 auto}
-  body[data-media-journey="v18"] .intent-router{
+  body[data-media-journey="v19"] .voice-proof-strip::-webkit-scrollbar{display:none}
+  body[data-media-journey="v19"] .voice-proof-strip>div{flex:0 0 auto}
+  body[data-media-journey="v19"] .booking-router{
     width:calc(100% - 28px)!important;
-    grid-template-columns:1fr!important;
-    gap:12px!important;
     margin-top:18px!important;
+    padding:20px!important;
+    grid-template-columns:1fr!important;
+    gap:18px!important;
+    border-radius:19px!important;
   }
-  body[data-media-journey="v18"] .intent-action{
-    min-height:82px!important;
-    padding:15px 16px!important;
-    grid-template-columns:40px minmax(0,1fr) 20px;
-    gap:12px!important;
-    border-radius:16px!important;
+  body[data-media-journey="v19"] .booking-router__cta{
+    width:100%;
+    min-height:52px;
   }
-  body[data-media-journey="v18"] .intent-icon{width:40px;height:40px;border-radius:12px}
-  body[data-media-journey="v18"] .proof-by-content{padding-top:62px!important}
+  body[data-media-journey="v19"] .proof-by-content{padding-top:62px!important}
 }
 
 @media(prefers-reduced-motion:reduce){
-  body[data-media-journey="v18"] .intent-action,
-  body[data-media-journey="v18"] .intent-arrow{transition:none!important}
+  body[data-media-journey="v19"] .booking-router__cta,
+  body[data-media-journey="v19"] .booking-router__arrow{transition:none!important}
 }

@@ -8,25 +8,29 @@
   const compareActions = document.querySelector('.format-compare-actions');
   const hero = document.querySelector('.voice-hero');
 
-  body.dataset.mediaJourney = 'v18';
+  body.dataset.mediaJourney = 'v19';
 
   if (proofStrip && !document.querySelector('.intent-router')) {
-    const router = document.createElement('nav');
-    router.className = 'intent-router';
-    router.setAttribute('aria-label', 'Choisir votre parcours Neptune Media');
-    router.innerHTML = `
-      <a class="intent-action intent-action--watch" href="#a-voir" data-track="intent_watch">
-        <span class="intent-icon" aria-hidden="true">▶</span>
-        <span class="intent-copy"><strong>Regarder Neptune TV</strong><small>Découvrir les émissions</small></span>
-        <span class="intent-arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="intent-action intent-action--produce" href="#formats" data-track="intent_guest">
-        <span class="intent-icon" aria-hidden="true">✦</span>
-        <span class="intent-copy"><strong>Créer mon émission</strong><small>Voir les formats Neptune</small></span>
-        <span class="intent-arrow" aria-hidden="true">→</span>
+    const booking = document.createElement('section');
+    booking.className = 'intent-router booking-router';
+    booking.setAttribute('aria-label', 'Réserver un prochain passage dans une émission Neptune Media');
+    booking.innerHTML = `
+      <div class="booking-router__copy">
+        <span class="booking-router__eyebrow"><span aria-hidden="true"></span>Prochains créneaux disponibles</span>
+        <strong>Je réserve mon passage</strong>
+        <small>Vos futurs clients n'attendent que vous</small>
+      </div>
+      <a
+        class="booking-router__cta"
+        href="https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=homepage_booking_cta&utm_campaign=neptune_media"
+        data-funnel
+        data-track="intent_book_passage"
+      >
+        <span>Je réserve mon passage</span>
+        <span class="booking-router__arrow" aria-hidden="true">→</span>
       </a>
     `;
-    proofStrip.insertAdjacentElement('afterend', router);
+    proofStrip.insertAdjacentElement('afterend', booking);
   }
 
   if (formatGrid && formatCards.length === 2 && !document.querySelector('.format-guidance')) {
