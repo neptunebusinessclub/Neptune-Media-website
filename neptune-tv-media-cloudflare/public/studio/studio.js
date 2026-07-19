@@ -1,420 +1,93 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => [...document.querySelectorAll(selector)];
-const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-}[character]));
+const $=(selector,root=document)=>root.querySelector(selector);
+const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+const escapeHtml=(value)=>String(value??'').replace(/[&<>"']/gu,(character)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+let state=null;
+let tab='dashboard';
+let csrfToken=sessionStorage.getItem('neptune_csrf')||'';
+let activePlan=null;
+let activePlanId=null;
+const titles={dashboard:'Aujourd’hui',episodes:'Programme',programs:'Formats',insights:'Audience',finances:'Finances',ads:'Publicités',users:'Utilisateurs',ai:'Neptune Copilot',audit:'Journal d’audit',settings:'Réglages'};
+const statusLabels={payment_confirmed:'Paiement reçu',reservation_confirmed:'Rendez-vous à réserver',preparation_booking_pending:'Rendez-vous à réserver',appointment_confirmed:'Préparation réservée',appointment_booked:'Préparation réservée',preparation:'Préparation en cours',studio_date_confirmation_pending:'Date à confirmer',preparation_complete:'Préparation terminée',filming_scheduled:'Passage confirmé',filming_confirmed:'Passage confirmé',filmed:'Passage réalisé',videos_pending:'Vidéos attendues',videos_received:'Vidéos reçues',editing:'Traitement en cours',approval:'Traitement en cours',delivered:'Livré',completed:'Terminé'};
+const nextStatuses={payment_confirmed:'reservation_confirmed',reservation_confirmed:'appointment_confirmed',preparation_booking_pending:'appointment_confirmed',appointment_confirmed:'studio_date_confirmation_pending',appointment_booked:'studio_date_confirmation_pending',preparation:'preparation_complete',studio_date_confirmation_pending:'preparation_complete',preparation_complete:'filming_scheduled',filming_scheduled:'filmed',filming_confirmed:'filmed',filmed:'videos_pending',videos_pending:'videos_received',videos_received:'editing',editing:'delivered',approval:'delivered',delivered:'completed'};
+const nextLabels={reservation_confirmed:'Rendez-vous réservé',preparation_booking_pending:'Rendez-vous réservé',appointment_confirmed:'Demander confirmation',appointment_booked:'Demander confirmation',preparation:'Préparation terminée',studio_date_confirmation_pending:'Préparation terminée',preparation_complete:'Confirmer le passage',filming_scheduled:'Passage réalisé',filming_confirmed:'Passage réalisé',filmed:'Vidéos attendues',videos_pending:'Vidéos reçues',videos_received:'Lancer le traitement',editing:'Marquer livré',approval:'Marquer livré',delivered:'Clôturer'};
 
-let state = null;
-let tab = 'dashboard';
-let csrfToken = sessionStorage.getItem('neptune_csrf') || '';
-let activePlan = null;
-let activePlanId = null;
+bindAuth();load();
 
-const titles = {
-  dashboard: 'Vue d’ensemble', programs: 'Programmes', episodes: 'Émissions', ads: 'Publicités',
-  users: 'Utilisateurs', ai: 'Neptune Copilot', audit: 'Journal d’audit',
-};
-
-bindAuth();
-load();
-
-function bindAuth() {
-  const resetToken = new URLSearchParams(location.search).get('reset');
-  if (resetToken) {
-    $('#confirmField').hidden = false;
-    $('#passwordField span').textContent = 'Nouveau mot de passe';
-    $('#loginSubmit').textContent = 'Enregistrer mon mot de passe';
-    $('#requestReset').hidden = true;
-    $('#authHint').textContent = 'Choisissez au moins 12 caractères. Ce lien ne fonctionne qu’une fois.';
-  }
-  $('#login').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    try {
-      if (resetToken) {
-        if (form.get('password') !== form.get('confirmPassword')) throw new Error('passwords_do_not_match');
-        await api('/api/auth/reset-password', {
-          method: 'POST',
-          body: JSON.stringify({ token: resetToken, password: form.get('password') }),
-        }, false);
-        history.replaceState({}, '', '/studio/');
-      }
-      const result = await api('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ email: form.get('email'), password: form.get('password') }),
-      }, false);
-      csrfToken = result.csrfToken;
-      sessionStorage.setItem('neptune_csrf', csrfToken);
-      await load();
-    } catch (error) { $('#authMsg').textContent = humanError(error.message); }
-  });
-  $('#requestReset').addEventListener('click', async () => {
-    const button = $('#requestReset');
-    button.disabled = true;
-    $('#authMsg').textContent = 'Envoi du lien sécurisé…';
-    try {
-      await api('/api/auth/request-reset', {
-        method: 'POST',
-        body: JSON.stringify({ email: 'contact@neptunebusiness.com' }),
-      }, false);
-      $('#authMsg').textContent = 'Lien envoyé à contact@neptunebusiness.com. Il expire dans 20 minutes.';
-    } catch (error) {
-      $('#authMsg').textContent = humanError(error.message);
-      button.disabled = false;
-    }
-  });
-  $('#logout').addEventListener('click', async () => {
-    await api('/api/auth/logout', { method: 'POST' }, false).catch(() => {});
-    sessionStorage.removeItem('neptune_csrf');
-    location.reload();
-  });
-  $('#refresh').addEventListener('click', load);
-  $$('[data-tab]').forEach((button) => button.addEventListener('click', () => {
-    tab = button.dataset.tab;
-    render();
-  }));
+function bindAuth(){
+  const resetToken=new URLSearchParams(location.search).get('reset');
+  if(resetToken){$('#confirmField').hidden=false;$('#passwordField span').textContent='Nouveau mot de passe';$('#loginSubmit').textContent='Enregistrer mon mot de passe';$('#requestReset').hidden=true;$('#authHint').textContent='Choisissez au moins 12 caractères. Ce lien ne fonctionne qu’une fois.';}
+  $('#login').addEventListener('submit',async(event)=>{event.preventDefault();const form=new FormData(event.currentTarget);try{if(resetToken){if(form.get('password')!==form.get('confirmPassword'))throw new Error('passwords_do_not_match');await api('/api/auth/reset-password',{method:'POST',body:JSON.stringify({token:resetToken,password:form.get('password')})},false);history.replaceState({},'','/studio/');}const result=await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:form.get('email'),password:form.get('password')})},false);csrfToken=result.csrfToken;sessionStorage.setItem('neptune_csrf',csrfToken);await load();}catch(error){$('#authMsg').textContent=humanError(error.message);}});
+  $('#requestReset').addEventListener('click',async()=>{const button=$('#requestReset');button.disabled=true;$('#authMsg').textContent='Envoi du lien sécurisé…';try{await api('/api/auth/request-reset',{method:'POST',body:JSON.stringify({email:'contact@neptunebusiness.com'})},false);$('#authMsg').textContent='Lien envoyé. Il expire dans 20 minutes.';}catch(error){$('#authMsg').textContent=humanError(error.message);button.disabled=false;}});
+  $('#logout').addEventListener('click',async()=>{await api('/api/auth/logout',{method:'POST'},false).catch(()=>{});sessionStorage.removeItem('neptune_csrf');location.reload();});
+  $('#refresh').addEventListener('click',load);
+  $$('[data-tab]').forEach((button)=>button.addEventListener('click',()=>{tab=button.dataset.tab;render();}));
 }
 
-async function api(url, options = {}, addCsrf = true) {
-  const headers = { Accept: 'application/json', ...(options.headers || {}) };
-  if (options.body) headers['Content-Type'] = 'application/json';
-  if (addCsrf && options.method && options.method !== 'GET') headers['X-CSRF-Token'] = csrfToken;
-  const response = await fetch(url, { ...options, headers });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || `http_${response.status}`);
-  return data;
-}
+async function api(url,options={},addCsrf=true){const headers={Accept:'application/json',...(options.headers||{})};if(options.body)headers['Content-Type']='application/json';if(addCsrf&&options.method&&options.method!=='GET')headers['X-CSRF-Token']=csrfToken;const response=await fetch(url,{...options,headers,credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||`http_${response.status}`);return data;}
 
-async function load() {
-  $('#syncState').textContent = 'Synchronisation…';
-  try {
-    const auth = await api('/api/auth/status', {}, false);
-    csrfToken = auth.csrfToken;
-    sessionStorage.setItem('neptune_csrf', csrfToken);
-    state = await api('/api/admin/state');
-    $('#auth').hidden = true;
-    $('#app').hidden = false;
-    applyRoleVisibility();
-    $('#accountName').textContent = state.user.fullName || state.user.email;
-    $('#accountRole').textContent = state.user.role;
-    $('#syncState').textContent = 'Synchronisé';
-    render();
-  } catch {
-    $('#auth').hidden = false;
-    $('#app').hidden = true;
-  }
+async function load(){
+  $('#syncState').textContent='Synchronisation…';
+  try{
+    const auth=await api('/api/auth/status',{},false);csrfToken=auth.csrfToken;sessionStorage.setItem('neptune_csrf',csrfToken);
+    const adminState=await api('/api/admin/state');let portal={clients:[],orders:[],supplierPayments:[],refundRequests:[],deletionRequests:[],finance:{}};
+    if(auth.user?.role==='admin')portal=await api('/api/admin/clients').catch(()=>portal);
+    state={...adminState,portal};$('#auth').hidden=true;$('#app').hidden=false;applyRoleVisibility();$('#accountName').textContent=state.user.fullName||state.user.email;$('#accountRole').textContent=state.user.role;$('#syncState').textContent='Synchronisé';render();
+  }catch{$('#auth').hidden=false;$('#app').hidden=true;}
 }
+function applyRoleVisibility(){$$('[data-role]').forEach((element)=>{const roles=element.dataset.role.split(',');element.hidden=!roles.includes(state.user.role);});const current=$(`[data-tab="${tab}"]`);if(current?.hidden)tab='dashboard';}
+function render(){$('#title').textContent=titles[tab]||'Studio';$$('[data-tab]').forEach((button)=>button.classList.toggle('active',button.dataset.tab===tab));if(tab==='dashboard')renderDashboard();if(tab==='programs')renderPrograms();if(tab==='episodes')renderEpisodes();if(tab==='insights')renderInsights();if(tab==='finances')renderFinances();if(tab==='ads')renderAds();if(tab==='users')renderUsers();if(tab==='ai')renderAi();if(tab==='audit')renderAudit();if(tab==='settings')renderSettings();}
 
-function applyRoleVisibility() {
-  $$('[data-role]').forEach((element) => {
-    const roles = element.dataset.role.split(',');
-    element.hidden = !roles.includes(state.user.role);
-  });
-  const current = $(`[data-tab="${tab}"]`);
-  if (current?.hidden) tab = 'dashboard';
+function renderDashboard(){
+  const orders=state.portal?.orders||[],active=orders.filter((order)=>!['completed'].includes(order.status));
+  const tasks=[...active].sort((a,b)=>(deadlineFor(a)?.getTime()??Infinity)-(deadlineFor(b)?.getTime()??Infinity)).slice(0,6);
+  const finance=state.portal?.finance||{};
+  $('#content').innerHTML=`<div class="page-intro"><div><p class="eyebrow">CE QUI COMPTE MAINTENANT</p><h2>${tasks.length?`${tasks.length} action${tasks.length>1?'s':''} à traiter`:'Tout est sous contrôle'}</h2><p>Chaque carte montre la prochaine décision. Les délais et les e-mails sont gérés automatiquement.</p></div><a class="primary" href="/studio/clients">Voir tous les clients</a></div>
+  <div class="cards">${metric(active.length,'Clients en cours')}${metric(tasks.filter((order)=>isUrgent(order)).length,'Délais urgents')}${metric(formatCurrency(finance.revenueCents),'Chiffre d’affaires')}${metric(formatCurrency(finance.supplierDueCents),'Fournisseurs à payer')}</div>
+  <section class="section"><div class="section-head"><div><h2>À faire aujourd’hui</h2><p>Une seule action principale par client.</p></div></div><div class="task-grid">${tasks.length?tasks.map(taskCard).join(''):'<p class="empty">Aucune action urgente. Les prochains passages apparaîtront ici.</p>'}</div></section>
+  <section class="section"><div class="section-head"><div><h2>Accès rapides</h2><p>Les trois espaces utilisés le plus souvent.</p></div></div><div class="quick-links"><a class="quick-link" href="/studio/clients"><span>◎</span><strong>Parcours clients</strong><p>Suivi, livrables, calendrier et facturation.</p></a><button class="quick-link" data-go="episodes"><span>▶</span><strong>Programme à l’antenne</strong><p>Réordonner et publier les émissions.</p></button><a class="quick-link" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener"><span>✦</span><strong>Neptune Video Studio</strong><p>Ouvrir immédiatement l’outil vidéo.</p></a></div></section>`;
+  $$('[data-advance-order]').forEach((button)=>button.addEventListener('click',()=>advanceOrder(button.dataset.advanceOrder,button)));
+  $$('[data-go]').forEach((button)=>button.addEventListener('click',()=>{tab=button.dataset.go;render();}));
 }
+function taskCard(order){const deadline=deadlineFor(order),remaining=deadline?remainingLabel(deadline):'',urgent=isUrgent(order),next=nextStatuses[order.status],needsDate=['preparation_complete'].includes(order.status)&&!order.filmingAt;const action=next&&!needsDate?`<button class="primary" data-advance-order="${order.id}">${escapeHtml(nextLabels[order.status]||'Valider l’étape')}</button>`:`<a class="primary" href="/studio/clients#${encodeURIComponent(order.id)}">Ouvrir le dossier</a>`;return `<article class="task ${urgent?'task--urgent':''}"><div class="task__top"><div><div class="task__client">${escapeHtml(order.fullName||order.email)}${order.company?` · ${escapeHtml(order.company)}`:''}</div><h3>${escapeHtml(statusLabels[order.status]||order.status)}</h3></div>${remaining?`<span class="deadline ${deadline<Date.now()?'overdue':''}">${escapeHtml(remaining)}</span>`:''}</div><p>${escapeHtml(order.title||'Passage Neptune Media')} · ${escapeHtml(order.format||'Format à préciser')}</p><p>${escapeHtml(order.nextAction||'Consulter le dossier client')}</p><div class="task-actions">${action}<a class="secondary" href="/studio/clients#${encodeURIComponent(order.id)}">Dossier</a></div></article>`;}
+async function advanceOrder(orderId,button){const order=(state.portal.orders||[]).find((item)=>item.id===orderId),status=nextStatuses[order?.status];if(!order||!status)return;button.disabled=true;button.textContent='Mise à jour…';try{const result=await api('/api/admin/client-update',{method:'POST',body:JSON.stringify({orderId,status,appointmentAt:order.appointmentAt,filmingAt:order.filmingAt,preparationUrl:order.preparationUrl})});toast(result.warning?'Étape enregistrée. E-mail à vérifier.':'Étape enregistrée et e-mails envoyés.');await load();}catch(error){toast(humanError(error.message),true);button.disabled=false;}}
 
-function render() {
-  $('#title').textContent = titles[tab];
-  $$('[data-tab]').forEach((button) => button.classList.toggle('active', button.dataset.tab === tab));
-  if (tab === 'dashboard') renderDashboard();
-  if (tab === 'programs') renderPrograms();
-  if (tab === 'episodes') renderEpisodes();
-  if (tab === 'ads') renderAds();
-  if (tab === 'users') renderUsers();
-  if (tab === 'ai') renderAi();
-  if (tab === 'audit') renderAudit();
-}
+function renderInsights(){const stats=state.stats,topViews=Math.max(1,...state.episodes.map((episode)=>stats.byEpisode[episode.id]?.views||0));$('#content').innerHTML=`<div class="page-intro"><div><p class="eyebrow">INSIGHTS RÉELS</p><h2>Comprendre ce qui attire et convertit.</h2><p>Données de la Web TV Neptune Media et des clics de réservation déjà connectés. Les sources détaillées nécessitent des liens UTM cohérents sur media.neptunebusiness.com.</p></div></div><div class="cards">${metric(formatNumber(stats.views),'Vues')}${metric(formatDuration(stats.watchSeconds),'Temps regardé')}${metric(formatNumber(stats.uniqueViewers),'Spectateurs uniques')}${metric(conversionRate(stats.bookingClicks,stats.views),'Clic vers réservation')}</div><div class="layout2"><div class="panel"><h2>Performance par émission</h2><div class="barList">${state.episodes.map((episode)=>{const value=stats.byEpisode[episode.id]||{},width=Math.max(2,Math.round((Number(value.views||0)/topViews)*100));return `<div class="barRow"><div><strong>${escapeHtml(episode.title)}</strong><br><small>${formatNumber(value.views||0)} vues · ${formatDuration(value.watchSeconds||0)}</small></div><div class="barTrack"><span style="width:${width}%"></span></div><small>${conversionRate(value.bookingClicks,value.views)} réservation</small></div>`;}).join('')||'<p class="empty">Aucune donnée.</p>'}</div></div><div class="panel"><h2>Conversion attribuée</h2><div class="cards">${metric(formatNumber(stats.conversions.count),'Paiements')}${metric(formatCurrency(stats.conversions.revenueCents),'Revenu attribué')}</div><p class="empty">Sites suivis : Web TV Neptune Media et parcours de réservation. Ajoutez des paramètres UTM aux liens externes pour isoler précisément chaque source.</p></div></div>`;}
 
-function renderDashboard() {
-  const stats = state.stats;
-  const topViews = Math.max(1, ...state.episodes.map((episode) => stats.byEpisode[episode.id]?.views || 0));
-  $('#content').innerHTML = `
-    <div class="cards">
-      ${metric(formatNumber(stats.views), 'Vues')}
-      ${metric(formatDuration(stats.watchSeconds), 'Watch time')}
-      ${metric(formatNumber(stats.uniqueViewers), 'Spectateurs uniques')}
-      ${metric(formatNumber(stats.shares), 'Partages')}
-      ${metric(formatNumber(stats.bookingClicks), 'Clics réservation')}
-    </div>
-    <div class="layout2">
-      <div class="panel"><h2>Performance par émission</h2><div class="barList">
-        ${state.episodes.map((episode) => {
-          const value = stats.byEpisode[episode.id] || {};
-          const width = Math.max(2, Math.round((Number(value.views || 0) / topViews) * 100));
-          return `<div class="barRow"><div><strong>${escapeHtml(episode.title)}</strong><br><small>${formatNumber(value.views || 0)} vues · ${formatDuration(value.watchSeconds || 0)}</small></div><div class="barTrack"><span style="width:${width}%"></span></div><small>${conversionRate(value.bookingClicks, value.views)} vers réservation</small></div>`;
-        }).join('') || '<p class="empty">Aucune donnée.</p>'}
-      </div></div>
-      <div class="panel"><h2>Rétention globale</h2>${retentionBlock(stats)}</div>
-    </div>
-    <div class="panel"><h2>Conversions attribuées</h2><div class="cards">
-      ${metric(formatNumber(stats.conversions.count), 'Conversions payées')}
-      ${metric(formatCurrency(stats.conversions.revenueCents), 'Revenu attribué')}
-      ${metric(conversionRate(stats.bookingClicks, stats.views), 'Taux clic réservation')}
-    </div></div>`;
-}
+function renderFinances(){const portal=state.portal||{},finance=portal.finance||{},payments=portal.supplierPayments||[],due=payments.filter((payment)=>payment.status==='due');$('#content').innerHTML=`<div class="page-intro"><div><p class="eyebrow">FINANCES</p><h2>Encaissements, marge et paiements à effectuer.</h2><p>Une dette fournisseur de 720 € TTC est créée automatiquement dès qu’un passage est marqué comme réalisé.</p></div></div><div class="cards">${metric(formatCurrency(finance.revenueCents),'Chiffre d’affaires encaissé')}${metric(formatNumber(finance.payingClients),'Clients payants')}${metric(formatCurrency(finance.supplierDueCents),'Fournisseurs à payer')}${metric(formatCurrency(finance.estimatedMarginCents),'Marge estimée')}</div><section class="section"><div class="section-head"><div><h2>Paiements fournisseurs</h2><p>${due.length} paiement${due.length>1?'s':''} à effectuer.</p></div></div><div class="finance-list">${payments.length?payments.map((payment)=>`<article class="finance-row"><div><strong>${escapeHtml(payment.fullName||payment.company||payment.title)}</strong><p>${escapeHtml(payment.title)} · échéance ${formatDate(payment.dueAt)}</p></div><strong>${formatCurrency(payment.amountTotal)}</strong>${payment.status==='due'?`<button class="primary" data-pay-supplier="${payment.id}">Marquer payé</button>`:`<span class="tag paid">Payé</span>`}</article>`).join(''):'<p class="empty">Aucun paiement fournisseur.</p>'}</div></section><section class="section"><div class="section-head"><div><h2>Demandes</h2><p>Remboursements, annulations et suppressions de compte.</p></div></div><div class="cards">${metric((portal.refundRequests||[]).filter((item)=>item.status==='pending').length,'Remboursements en attente')}${metric((portal.deletionRequests||[]).filter((item)=>item.status==='pending').length,'Suppressions de compte')}</div></section>`;$$('[data-pay-supplier]').forEach((button)=>button.addEventListener('click',()=>paySupplier(button.dataset.paySupplier,button)));}
+async function paySupplier(paymentId,button){button.disabled=true;try{await api('/api/admin/supplier-payment',{method:'POST',body:JSON.stringify({paymentId})});toast('Paiement fournisseur marqué comme payé.');await load();}catch(error){toast(humanError(error.message),true);button.disabled=false;}}
 
-function renderPrograms() {
-  $('#content').innerHTML = `<div class="toolbar"><p>Organisez les univers éditoriaux de la chaîne.</p><button class="primary" id="newProgram">Nouveau programme</button></div><div class="panel list">${state.programs.map((program) => `<div class="row"><div><strong>${escapeHtml(program.name)}</strong><br><small>${escapeHtml(program.slug)} · ordre ${program.displayOrder} · ${program.active ? 'public' : 'masqué'}</small></div><div class="actions"><button data-program="${program.id}">Modifier</button><button class="danger" data-delete-program="${program.id}">Supprimer</button></div></div>`).join('')}</div><div id="editor"></div>`;
-  $('#newProgram').addEventListener('click', () => editProgram({ active: true }));
-  $$('[data-program]').forEach((button) => button.addEventListener('click', () => editProgram(state.programs.find((program) => program.id === button.dataset.program))));
-  $$('[data-delete-program]').forEach((button) => button.addEventListener('click', async () => {
-    if (!confirm('Supprimer ce programme vide ?')) return;
-    await apply('delete_program', { id: button.dataset.deleteProgram });
-  }));
-}
+function renderSettings(){$('#content').innerHTML=`<div class="page-intro"><div><p class="eyebrow">RÉGLAGES</p><h2>Les fonctions avancées, sans encombrer le quotidien.</h2><p>Ces réglages restent disponibles, mais ne polluent plus l’écran principal.</p></div></div><div class="quick-links"><button class="quick-link" data-go="programs"><span>▦</span><strong>Formats éditoriaux</strong><p>Hors Norme, Concept Libre et futurs formats.</p></button><button class="quick-link" data-go="ads"><span>◈</span><strong>Publicités</strong><p>Campagnes, placements et résultats.</p></button><button class="quick-link" data-go="users"><span>◎</span><strong>Utilisateurs</strong><p>Rôles et accès au Studio.</p></button><button class="quick-link" data-go="ai"><span>✦</span><strong>Neptune Copilot</strong><p>Analyse assistée des données.</p></button><button class="quick-link" data-go="audit"><span>≣</span><strong>Journal d’audit</strong><p>Historique des actions administratives.</p></button><a class="quick-link" href="/espace-client/" target="_blank" rel="noopener"><span>↗</span><strong>Voir l’espace client</strong><p>Contrôler l’expérience côté client.</p></a></div>`;$$('[data-go]').forEach((button)=>button.addEventListener('click',()=>{tab=button.dataset.go;render();}));}
 
-function editProgram(program) {
-  $('#editor').innerHTML = `<form class="panel editor" id="programForm">
-    <input type="hidden" name="id" value="${escapeHtml(program.id || '')}">
-    ${field('Nom', 'name', program.name, true)}${field('Slug', 'slug', program.slug)}
-    ${field('Description', 'description', program.description, false, 'textarea', 'full')}
-    ${field('URL couverture', 'coverUrl', program.coverUrl, false, 'input', 'full')}
-    ${field('Ordre', 'displayOrder', program.displayOrder ?? 100, false, 'number')}
-    <label class="inline"><input name="active" type="checkbox" ${program.active !== false ? 'checked' : ''}> Programme visible</label>
-    <div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div>
-  </form>`;
-  const form = $('#programForm');
-  form.querySelector('[data-cancel]').onclick = () => { $('#editor').innerHTML = ''; };
-  form.onsubmit = async (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
-    data.active = form.active.checked;
-    data.displayOrder = Number(data.displayOrder);
-    await apply('save_program', data);
-  };
-}
+function renderPrograms(){$('#content').innerHTML=`<div class="toolbar"><p>Organisez les formats éditoriaux de la chaîne.</p><button class="primary" id="newProgram">Nouveau format</button></div><div class="panel list">${state.programs.map((program)=>`<div class="row"><div><strong>${escapeHtml(program.name)}</strong><br><small>${escapeHtml(program.slug)} · ordre ${program.displayOrder} · ${program.active?'public':'masqué'}</small></div><div class="actions"><button data-program="${program.id}">Modifier</button><button class="danger" data-delete-program="${program.id}">Supprimer</button></div></div>`).join('')}</div><div id="editor"></div>`;$('#newProgram').addEventListener('click',()=>editProgram({active:true}));$$('[data-program]').forEach((button)=>button.addEventListener('click',()=>editProgram(state.programs.find((program)=>program.id===button.dataset.program))));$$('[data-delete-program]').forEach((button)=>button.addEventListener('click',async()=>{if(!confirm('Supprimer ce format vide ?'))return;await apply('delete_program',{id:button.dataset.deleteProgram});}));}
+function editProgram(program){$('#editor').innerHTML=`<form class="panel editor" id="programForm"><input type="hidden" name="id" value="${escapeHtml(program.id||'')}">${field('Nom','name',program.name,true)}${field('Slug','slug',program.slug)}${field('Description','description',program.description,false,'textarea','full')}${field('URL couverture','coverUrl',program.coverUrl,false,'input','full')}${field('Ordre','displayOrder',program.displayOrder??100,false,'number')}<label class="inline"><input name="active" type="checkbox" ${program.active!==false?'checked':''}> Format visible</label><div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div></form>`;const form=$('#programForm');form.querySelector('[data-cancel]').onclick=()=>{$('#editor').innerHTML='';};form.onsubmit=async(event)=>{event.preventDefault();const data=Object.fromEntries(new FormData(form));data.active=form.active.checked;data.displayOrder=Number(data.displayOrder);await apply('save_program',data);};}
 
-function renderEpisodes() {
-  const sorted = [...state.episodes].sort((a, b) => a.displayOrder - b.displayOrder);
-  $('#content').innerHTML = `<div class="toolbar"><p>Glissez les lignes pour modifier l’ordre d’antenne.</p><button class="primary" id="newEpisode">Nouvelle émission</button></div><div class="panel list" id="episodeList">${sorted.map((episode) => episodeRow(episode)).join('')}</div><div id="editor"></div>`;
-  $('#newEpisode').addEventListener('click', () => editEpisode({ status: 'draft', displayOrder: (sorted.length + 1) * 10, programId: state.programs[0]?.id }));
-  $$('[data-edit-episode]').forEach((button) => button.addEventListener('click', () => editEpisode(state.episodes.find((episode) => episode.id === button.dataset.editEpisode))));
-  $$('[data-delete-episode]').forEach((button) => button.addEventListener('click', async () => {
-    if (!confirm('Supprimer définitivement cette émission et son historique éditorial ?')) return;
-    await apply('delete_episode', { id: button.dataset.deleteEpisode });
-  }));
-  bindReorder();
-}
+function renderEpisodes(){const sorted=[...state.episodes].sort((a,b)=>a.displayOrder-b.displayOrder);$('#content').innerHTML=`<div class="page-intro"><div><p class="eyebrow">PROGRAMME À L’ANTENNE</p><h2>L’ordre de visionnage, sans complexité.</h2><p>Glissez les émissions pour modifier l’ordre. Le catalogue public se synchronise automatiquement.</p></div><button class="primary" id="newEpisode">Nouvelle émission</button></div><div class="panel list" id="episodeList">${sorted.map(episodeRow).join('')}</div><div id="editor"></div>`;$('#newEpisode').addEventListener('click',()=>editEpisode({status:'draft',displayOrder:(sorted.length+1)*10,programId:state.programs[0]?.id}));$$('[data-edit-episode]').forEach((button)=>button.addEventListener('click',()=>editEpisode(state.episodes.find((episode)=>episode.id===button.dataset.editEpisode))));$$('[data-delete-episode]').forEach((button)=>button.addEventListener('click',async()=>{if(!confirm('Supprimer définitivement cette émission ?'))return;await apply('delete_episode',{id:button.dataset.deleteEpisode});}));bindReorder();}
+function episodeRow(episode){const performance=state.stats.byEpisode[episode.id]||{};return `<div class="row" draggable="true" data-episode-row="${episode.id}"><span class="drag" aria-label="Déplacer">⋮⋮</span><div><strong>${escapeHtml(episode.title)}</strong> <span class="tag ${escapeHtml(episode.status)}">${escapeHtml(episode.status)}</span><br><small>${escapeHtml(programName(episode.programId))} · position ${episode.displayOrder} · ${formatNumber(performance.views||0)} vues</small></div><div class="actions"><button data-move="up">↑</button><button data-move="down">↓</button><button data-edit-episode="${episode.id}">Modifier</button><button class="danger" data-delete-episode="${episode.id}">Supprimer</button></div></div>`;}
+function bindReorder(){const list=$('#episodeList');let dragged=null;list.querySelectorAll('[data-episode-row]').forEach((row)=>{row.addEventListener('dragstart',()=>{dragged=row;row.classList.add('dragging');});row.addEventListener('dragend',async()=>{row.classList.remove('dragging');dragged=null;await saveCurrentOrder();});row.addEventListener('dragover',(event)=>{event.preventDefault();if(!dragged||dragged===row)return;const box=row.getBoundingClientRect();list.insertBefore(dragged,event.clientY<box.top+box.height/2?row:row.nextSibling);});});$$('[data-move]').forEach((button)=>button.addEventListener('click',async()=>{const row=button.closest('[data-episode-row]');if(button.dataset.move==='up'&&row.previousElementSibling)list.insertBefore(row,row.previousElementSibling);if(button.dataset.move==='down'&&row.nextElementSibling)list.insertBefore(row.nextElementSibling,row);await saveCurrentOrder();}));}
+async function saveCurrentOrder(){const ids=$$('#episodeList [data-episode-row]').map((row)=>row.dataset.episodeRow);await apply('reorder_episodes',{ids});}
+function editEpisode(episode){$('#editor').innerHTML=`<form class="panel editor" id="episodeForm"><input type="hidden" name="id" value="${escapeHtml(episode.id||'')}">${field('Titre','title',episode.title,true)}${field('Slug','slug',episode.slug)}<label class="field"><span>Format</span><select name="programId">${state.programs.map((program)=>`<option value="${program.id}">${escapeHtml(program.name)}</option>`).join('')}</select></label><label class="field"><span>Statut</span><select name="status"><option value="draft">Brouillon</option><option value="scheduled">Programmé</option><option value="published">Publié</option><option value="archived">Archivé</option></select></label>${field('Description','description',episode.description,false,'textarea','full')}${field('URL vidéo Cloudflare / externe','videoUrl',episode.videoUrl,true,'input','full')}${field('URL miniature','posterUrl',episode.posterUrl,false,'input','full')}${field('Durée en secondes','durationSeconds',episode.durationSeconds??0,false,'number')}${field('Ordre','displayOrder',episode.displayOrder??100,false,'number')}${field('Publication','publishedAt',dateForInput(episode.publishedAt),false,'datetime-local')}${field('Programmation','scheduledAt',dateForInput(episode.scheduledAt),false,'datetime-local')}<div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div></form>`;const form=$('#episodeForm');form.programId.value=episode.programId||state.programs[0]?.id||'';form.status.value=episode.status||'draft';form.querySelector('[data-cancel]').onclick=()=>{$('#editor').innerHTML='';};form.onsubmit=async(event)=>{event.preventDefault();const data=Object.fromEntries(new FormData(form));data.durationSeconds=Number(data.durationSeconds);data.displayOrder=Number(data.displayOrder);await apply('save_episode',data);};}
 
-function episodeRow(episode) {
-  const performance = state.stats.byEpisode[episode.id] || {};
-  return `<div class="row" draggable="true" data-episode-row="${episode.id}"><span class="drag" aria-label="Déplacer">⋮⋮</span><div><strong>${escapeHtml(episode.title)}</strong> <span class="tag ${escapeHtml(episode.status)}">${escapeHtml(episode.status)}</span><br><small>${escapeHtml(programName(episode.programId))} · ordre ${episode.displayOrder} · ${formatNumber(performance.views || 0)} vues · ${formatDuration(performance.watchSeconds || 0)}</small></div><div class="actions"><button data-move="up" data-id="${episode.id}">↑</button><button data-move="down" data-id="${episode.id}">↓</button><button data-edit-episode="${episode.id}">Modifier</button><button class="danger" data-delete-episode="${episode.id}">Supprimer</button></div></div>`;
-}
+function renderAds(){$('#content').innerHTML=`<div class="toolbar"><p>Programmez les placements, leur période et leur fréquence.</p><button class="primary" id="newAd">Nouvelle campagne</button></div><div class="panel list">${state.ads.map((ad)=>{const metrics=state.stats.adStats[ad.id]||{};return `<div class="row"><div><strong>${escapeHtml(ad.name)}</strong> <span class="tag ${ad.active?'active':'inactive'}">${ad.active?'active':'inactive'}</span><br><small>${escapeHtml(ad.placement)} · ${formatNumber(metrics.impressions||0)} impressions · ${formatNumber(metrics.clicks||0)} clics</small></div><div class="actions"><button data-edit-ad="${ad.id}">Modifier</button><button class="danger" data-delete-ad="${ad.id}">Supprimer</button></div></div>`;}).join('')||'<p class="empty">Aucune campagne.</p>'}</div><div id="editor"></div>`;$('#newAd').addEventListener('click',()=>editAd({placement:'preroll',assetType:'video',frequencyCap:3,active:false}));$$('[data-edit-ad]').forEach((button)=>button.addEventListener('click',()=>editAd(state.ads.find((ad)=>ad.id===button.dataset.editAd))));$$('[data-delete-ad]').forEach((button)=>button.addEventListener('click',async()=>{if(!confirm('Supprimer cette campagne ?'))return;await apply('delete_ad',{id:button.dataset.deleteAd});}));}
+function editAd(ad){$('#editor').innerHTML=`<form class="panel editor" id="adForm">${field('Nom campagne','name',ad.name,true)}${field('Annonceur','advertiserName',ad.advertiserName)}<input type="hidden" name="id" value="${escapeHtml(ad.id||'')}"><label class="field"><span>Placement</span><select name="placement"><option>preroll</option><option>midroll</option><option>postroll</option><option>banner</option></select></label><label class="field"><span>Type</span><select name="assetType"><option value="video">Vidéo</option><option value="image">Image</option></select></label>${field('URL média','assetUrl',ad.assetUrl,false,'input','full')}${field('URL de clic','clickUrl',ad.clickUrl,false,'input','full')}${field('Début','startAt',dateForInput(ad.startAt),false,'datetime-local')}${field('Fin','endAt',dateForInput(ad.endAt),false,'datetime-local')}${field('Fréquence maximale / jour','frequencyCap',ad.frequencyCap??3,false,'number')}<label class="inline"><input name="active" type="checkbox" ${ad.active?'checked':''}> Campagne active</label><div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div></form>`;const form=$('#adForm');form.placement.value=ad.placement||'preroll';form.assetType.value=ad.assetType||'video';form.querySelector('[data-cancel]').onclick=()=>{$('#editor').innerHTML='';};form.onsubmit=async(event)=>{event.preventDefault();const data=Object.fromEntries(new FormData(form));data.active=form.active.checked;data.frequencyCap=Number(data.frequencyCap);await apply('save_ad',data);};}
 
-function bindReorder() {
-  const list = $('#episodeList');
-  let dragged = null;
-  list.querySelectorAll('[data-episode-row]').forEach((row) => {
-    row.addEventListener('dragstart', () => { dragged = row; row.classList.add('dragging'); });
-    row.addEventListener('dragend', async () => { row.classList.remove('dragging'); dragged = null; await saveCurrentOrder(); });
-    row.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      if (!dragged || dragged === row) return;
-      const box = row.getBoundingClientRect();
-      list.insertBefore(dragged, event.clientY < box.top + box.height / 2 ? row : row.nextSibling);
-    });
-  });
-  $$('[data-move]').forEach((button) => button.addEventListener('click', async () => {
-    const row = button.closest('[data-episode-row]');
-    if (button.dataset.move === 'up' && row.previousElementSibling) list.insertBefore(row, row.previousElementSibling);
-    if (button.dataset.move === 'down' && row.nextElementSibling) list.insertBefore(row.nextElementSibling, row);
-    await saveCurrentOrder();
-  }));
-}
-
-async function saveCurrentOrder() {
-  const ids = $$('#episodeList [data-episode-row]').map((row) => row.dataset.episodeRow);
-  await apply('reorder_episodes', { ids });
-}
-
-function editEpisode(episode) {
-  $('#editor').innerHTML = `<form class="panel editor" id="episodeForm">
-    <input type="hidden" name="id" value="${escapeHtml(episode.id || '')}">
-    ${field('Titre', 'title', episode.title, true)}${field('Slug', 'slug', episode.slug)}
-    <label class="field"><span>Programme</span><select name="programId">${state.programs.map((program) => `<option value="${program.id}">${escapeHtml(program.name)}</option>`).join('')}</select></label>
-    <label class="field"><span>Statut</span><select name="status"><option value="draft">Brouillon</option><option value="scheduled">Programmé</option><option value="published">Publié</option><option value="archived">Archivé</option></select></label>
-    ${field('Description', 'description', episode.description, false, 'textarea', 'full')}
-    ${field('URL vidéo Cloudflare / externe', 'videoUrl', episode.videoUrl, true, 'input', 'full')}
-    ${field('URL miniature', 'posterUrl', episode.posterUrl, false, 'input', 'full')}
-    ${field('Durée en secondes', 'durationSeconds', episode.durationSeconds ?? 0, false, 'number')}
-    ${field('Ordre', 'displayOrder', episode.displayOrder ?? 100, false, 'number')}
-    ${field('Publication', 'publishedAt', dateForInput(episode.publishedAt), false, 'datetime-local')}
-    ${field('Programmation', 'scheduledAt', dateForInput(episode.scheduledAt), false, 'datetime-local')}
-    <div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div>
-  </form>`;
-  const form = $('#episodeForm');
-  form.programId.value = episode.programId || state.programs[0]?.id || '';
-  form.status.value = episode.status || 'draft';
-  form.querySelector('[data-cancel]').onclick = () => { $('#editor').innerHTML = ''; };
-  form.onsubmit = async (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
-    data.durationSeconds = Number(data.durationSeconds);
-    data.displayOrder = Number(data.displayOrder);
-    await apply('save_episode', data);
-  };
-}
-
-function renderAds() {
-  $('#content').innerHTML = `<div class="toolbar"><p>Programmez les placements, leur période et leur fréquence.</p><button class="primary" id="newAd">Nouvelle campagne</button></div><div class="panel list">${state.ads.map((ad) => {
-    const metrics = state.stats.adStats[ad.id] || {};
-    return `<div class="row"><div><strong>${escapeHtml(ad.name)}</strong> <span class="tag ${ad.active ? 'active' : 'inactive'}">${ad.active ? 'active' : 'inactive'}</span><br><small>${escapeHtml(ad.placement)} · ${formatNumber(metrics.impressions || 0)} impressions · ${formatNumber(metrics.clicks || 0)} clics · CTR ${conversionRate(metrics.clicks, metrics.impressions)}</small></div><div class="actions"><button data-edit-ad="${ad.id}">Modifier</button><button class="danger" data-delete-ad="${ad.id}">Supprimer</button></div></div>`;
-  }).join('') || '<p class="empty">Aucune campagne.</p>'}</div><div id="editor"></div>`;
-  $('#newAd').addEventListener('click', () => editAd({ placement: 'preroll', assetType: 'video', frequencyCap: 3, active: false }));
-  $$('[data-edit-ad]').forEach((button) => button.addEventListener('click', () => editAd(state.ads.find((ad) => ad.id === button.dataset.editAd))));
-  $$('[data-delete-ad]').forEach((button) => button.addEventListener('click', async () => {
-    if (!confirm('Supprimer cette campagne ?')) return;
-    await apply('delete_ad', { id: button.dataset.deleteAd });
-  }));
-}
-
-function editAd(ad) {
-  $('#editor').innerHTML = `<form class="panel editor" id="adForm">
-    <input type="hidden" name="id" value="${escapeHtml(ad.id || '')}">
-    ${field('Nom campagne', 'name', ad.name, true)}${field('Annonceur', 'advertiserName', ad.advertiserName)}
-    <label class="field"><span>Placement</span><select name="placement"><option>preroll</option><option>midroll</option><option>postroll</option><option>banner</option></select></label>
-    <label class="field"><span>Type de média</span><select name="assetType"><option value="video">Vidéo</option><option value="image">Image</option></select></label>
-    ${field('URL média', 'assetUrl', ad.assetUrl, false, 'input', 'full')}
-    ${field('URL de clic', 'clickUrl', ad.clickUrl, false, 'input', 'full')}
-    ${field('Début', 'startAt', dateForInput(ad.startAt), false, 'datetime-local')}
-    ${field('Fin', 'endAt', dateForInput(ad.endAt), false, 'datetime-local')}
-    ${field('Fréquence maximale / jour', 'frequencyCap', ad.frequencyCap ?? 3, false, 'number')}
-    <label class="inline"><input name="active" type="checkbox" ${ad.active ? 'checked' : ''}> Campagne active</label>
-    <div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div>
-  </form>`;
-  const form = $('#adForm');
-  form.placement.value = ad.placement || 'preroll';
-  form.assetType.value = ad.assetType || 'video';
-  form.querySelector('[data-cancel]').onclick = () => { $('#editor').innerHTML = ''; };
-  form.onsubmit = async (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
-    data.active = form.active.checked;
-    data.frequencyCap = Number(data.frequencyCap);
-    await apply('save_ad', data);
-  };
-}
-
-function renderUsers() {
-  $('#content').innerHTML = `<div class="toolbar"><p>Attribuez des rôles sans partager le compte administrateur.</p><button class="primary" id="newUser">Nouvel utilisateur</button></div><div class="panel list">${state.users.map((user) => `<div class="row"><div><strong>${escapeHtml(user.fullName || user.email)}</strong> <span class="tag ${user.active ? 'active' : 'inactive'}">${escapeHtml(user.role)}</span><br><small>${escapeHtml(user.email)} · dernière connexion ${user.lastLoginAt ? formatDate(user.lastLoginAt) : 'jamais'}</small></div><div class="actions"><button data-edit-user="${user.id}">Modifier</button>${user.id !== state.user.id ? `<button class="danger" data-delete-user="${user.id}">Supprimer</button>` : ''}</div></div>`).join('')}</div><div id="editor"></div>`;
-  $('#newUser').addEventListener('click', () => editUser({ role: 'analyst', active: true }));
-  $$('[data-edit-user]').forEach((button) => button.addEventListener('click', () => editUser(state.users.find((user) => user.id === button.dataset.editUser))));
-  $$('[data-delete-user]').forEach((button) => button.addEventListener('click', async () => {
-    if (!confirm('Supprimer cet accès ?')) return;
-    await apply('delete_user', { id: button.dataset.deleteUser });
-  }));
-}
-
-function editUser(user) {
-  $('#editor').innerHTML = `<form class="panel editor" id="userForm">
-    <input type="hidden" name="id" value="${escapeHtml(user.id || '')}">
-    ${field('Nom', 'fullName', user.fullName)}${field('Email', 'email', user.email, true, 'email')}
-    <label class="field"><span>Rôle</span><select name="role"><option value="admin">Administrateur</option><option value="editor">Éditeur</option><option value="analyst">Analyste</option><option value="advertiser">Annonceur</option></select></label>
-    ${field(user.id ? 'Nouveau mot de passe (laisser vide pour conserver)' : 'Mot de passe initial (12 caractères minimum)', 'password', '', !user.id, 'password')}
-    <label class="inline"><input name="active" type="checkbox" ${user.active !== false ? 'checked' : ''}> Accès actif</label>
-    <div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div>
-  </form>`;
-  const form = $('#userForm');
-  form.role.value = user.role || 'analyst';
-  form.querySelector('[data-cancel]').onclick = () => { $('#editor').innerHTML = ''; };
-  form.onsubmit = async (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
-    data.active = form.active.checked;
-    await apply('save_user', data);
-  };
-}
-
-function renderAi() {
-  $('#content').innerHTML = `<div class="copilot"><div class="panel"><p class="eyebrow">WORKERS AI · GPT-OSS-120B</p><h2>Demander à Neptune Copilot</h2><p>Il analyse les données réelles du Studio. Toute action exige votre validation.</p><textarea id="prompt" placeholder="Exemple : analyse la rétention des émissions, explique les abandons et propose un nouvel ordre d’antenne."></textarea><button class="primary" id="ask">Analyser le Studio</button></div><div class="panel"><h2>Plan proposé</h2><div id="plan" class="plan">Aucune analyse lancée.</div><div id="recommendations"></div><div id="aiActions"></div></div></div>`;
-  $('#ask').addEventListener('click', askAi);
-  if (activePlan) displayPlan(activePlan);
-}
-
-async function askAi() {
-  const prompt = $('#prompt').value.trim();
-  if (!prompt) return;
-  $('#plan').textContent = 'Analyse des données réelles en cours…';
-  $('#ask').disabled = true;
-  try {
-    const result = await api('/api/admin/ai', { method: 'POST', body: JSON.stringify({ prompt }) });
-    activePlan = result.plan;
-    activePlanId = result.actionLogId;
-    displayPlan(activePlan);
-  } catch (error) {
-    $('#plan').textContent = humanError(error.message);
-  } finally { $('#ask').disabled = false; }
-}
-
-function displayPlan(plan) {
-  if (!$('#plan')) return;
-  $('#plan').textContent = plan.summary || 'Analyse terminée.';
-  $('#recommendations').innerHTML = (plan.recommendations || []).map((item) => `<p class="recommendation">${escapeHtml(item)}</p>`).join('');
-  $('#aiActions').innerHTML = (plan.actions || []).map((action, index) => `<div class="aiAction"><div><strong>${escapeHtml(action.label || action.action)}</strong><br><code>${escapeHtml(action.action)}</code></div><button class="primary" data-ai-action="${index}">Valider</button></div>`).join('');
-  $$('[data-ai-action]').forEach((button) => button.addEventListener('click', async () => {
-    const action = plan.actions[Number(button.dataset.aiAction)];
-    if (!confirm(`Appliquer cette action ?\n\n${action.label || action.action}`)) return;
-    await apply(action.action, action.payload, false);
-    if (activePlanId) await apply('mark_ai_action', { id: activePlanId, status: 'executed' }, false);
-    activePlan = null;
-    activePlanId = null;
-    toast('Action validée et journalisée.');
-    tab = 'dashboard';
-    render();
-  }));
-}
-
-function renderAudit() {
-  $('#content').innerHTML = `<div class="panel"><h2>150 dernières actions</h2><div class="audit">${state.audit.map((item) => `<article><strong>${escapeHtml(item.action)}</strong> · ${escapeHtml(item.entityType)} ${escapeHtml(item.entityId)}<br><time>${formatDate(item.occurredAt)}</time></article>`).join('') || '<p class="empty">Aucune action journalisée.</p>'}</div></div>`;
-}
-
-async function apply(action, payload, reload = true) {
-  $('#syncState').textContent = 'Enregistrement…';
-  try {
-    await api('/api/admin/apply', { method: 'POST', body: JSON.stringify({ action, payload }) });
-    toast('Modification enregistrée.');
-    if (reload) await load();
-  } catch (error) {
-    $('#syncState').textContent = 'Erreur';
-    toast(humanError(error.message), true);
-    throw error;
-  }
-}
-
-function field(label, name, value = '', required = false, type = 'input', className = '') {
-  const tag = type === 'textarea'
-    ? `<textarea name="${name}" ${required ? 'required' : ''}>${escapeHtml(value || '')}</textarea>`
-    : `<input name="${name}" type="${type}" value="${escapeHtml(value ?? '')}" ${required ? 'required' : ''}>`;
-  return `<label class="field ${className}"><span>${escapeHtml(label)}</span>${tag}</label>`;
-}
-
-function metric(value, label) { return `<div class="metric"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`; }
-function programName(id) { return state.programs.find((program) => program.id === id)?.name || id; }
-function formatNumber(value) { return new Intl.NumberFormat('fr-FR').format(Number(value || 0)); }
-function formatCurrency(cents) { return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(cents || 0) / 100); }
-function formatDuration(seconds) { const value = Math.round(Number(seconds || 0)); if (value < 60) return `${value}s`; const hours = Math.floor(value / 3600); const minutes = Math.floor((value % 3600) / 60); return hours ? `${hours}h ${minutes}min` : `${minutes}min`; }
-function conversionRate(numerator, denominator) { const rate = Number(denominator || 0) ? (Number(numerator || 0) / Number(denominator)) * 100 : 0; return `${rate.toFixed(1).replace('.', ',')} %`; }
-function formatDate(value) { return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(value)); }
-function dateForInput(value) { return value ? new Date(value).toISOString().slice(0, 16) : ''; }
-function retentionBlock(stats) {
-  const totals = Object.values(stats.byEpisode || {}).reduce((sum, item) => ({
-    views: sum.views + Number(item.views || 0), p25: sum.p25 + Number(item.progress25 || 0), p50: sum.p50 + Number(item.progress50 || 0), p75: sum.p75 + Number(item.progress75 || 0), complete: sum.complete + Number(item.completions || 0),
-  }), { views: 0, p25: 0, p50: 0, p75: 0, complete: 0 });
-  return `<div class="retention"><div><strong>${conversionRate(totals.p25, totals.views)}</strong><span>25 % vus</span></div><div><strong>${conversionRate(totals.p50, totals.views)}</strong><span>50 % vus</span></div><div><strong>${conversionRate(totals.p75, totals.views)}</strong><span>75 % vus</span></div><div><strong>${conversionRate(totals.complete, totals.views)}</strong><span>Terminées</span></div></div>`;
-}
-function humanError(code) {
-  return ({
-    invalid_credentials: 'Identifiants incorrects.',
-    invalid_or_expired_reset: 'Ce lien a expiré ou a déjà été utilisé.',
-    invalid_reset: 'Choisissez un mot de passe d’au moins 12 caractères.',
-    passwords_do_not_match: 'Les deux mots de passe ne correspondent pas.',
-    email_service_not_configured: 'Le service d’envoi d’e-mails doit être configuré.',
-    email_send_failed: 'Le lien n’a pas pu être envoyé. Vérifiez la configuration Resend.', too_many_attempts: 'Trop de tentatives. Réessayez dans 15 minutes.',
-    already_initialized: 'Le premier administrateur existe déjà.', invalid_bootstrap_token: 'Jeton d’amorçage incorrect.',
-    password_too_short: 'Le mot de passe doit contenir au moins 12 caractères.', program_not_empty: 'Déplacez ou supprimez les émissions avant ce programme.',
-    csrf_failed: 'Session de sécurité expirée. Actualisez la page.', unauthorized: 'Votre session a expiré.',
-    workers_ai_binding_missing: 'Workers AI n’est pas activé sur le déploiement.', internal_error: 'Erreur serveur. Consultez les logs Cloudflare.',
-  }[code] || code.replaceAll('_', ' '));
-}
-function toast(message, error = false) { const element = $('#toast'); element.textContent = message; element.classList.toggle('error', error); element.hidden = false; clearTimeout(toast.timer); toast.timer = setTimeout(() => { element.hidden = true; }, 3500); }
+function renderUsers(){$('#content').innerHTML=`<div class="toolbar"><p>Attribuez des rôles sans partager le compte administrateur.</p><button class="primary" id="newUser">Nouvel utilisateur</button></div><div class="panel list">${state.users.map((user)=>`<div class="row"><div><strong>${escapeHtml(user.fullName||user.email)}</strong> <span class="tag ${user.active?'active':'inactive'}">${escapeHtml(user.role)}</span><br><small>${escapeHtml(user.email)}</small></div><div class="actions"><button data-edit-user="${user.id}">Modifier</button>${user.id!==state.user.id?`<button class="danger" data-delete-user="${user.id}">Supprimer</button>`:''}</div></div>`).join('')}</div><div id="editor"></div>`;$('#newUser').addEventListener('click',()=>editUser({role:'analyst',active:true}));$$('[data-edit-user]').forEach((button)=>button.addEventListener('click',()=>editUser(state.users.find((user)=>user.id===button.dataset.editUser))));$$('[data-delete-user]').forEach((button)=>button.addEventListener('click',async()=>{if(!confirm('Supprimer cet accès ?'))return;await apply('delete_user',{id:button.dataset.deleteUser});}));}
+function editUser(user){$('#editor').innerHTML=`<form class="panel editor" id="userForm"><input type="hidden" name="id" value="${escapeHtml(user.id||'')}">${field('Nom','fullName',user.fullName)}${field('Email','email',user.email,true,'email')}<label class="field"><span>Rôle</span><select name="role"><option value="admin">Administrateur</option><option value="editor">Éditeur</option><option value="analyst">Analyste</option><option value="advertiser">Annonceur</option></select></label>${field(user.id?'Nouveau mot de passe (facultatif)':'Mot de passe initial','password','',!user.id,'password')}<label class="inline"><input name="active" type="checkbox" ${user.active!==false?'checked':''}> Accès actif</label><div class="formActions"><button type="button" class="secondary" data-cancel>Annuler</button><button class="primary">Enregistrer</button></div></form>`;const form=$('#userForm');form.role.value=user.role||'analyst';form.querySelector('[data-cancel]').onclick=()=>{$('#editor').innerHTML='';};form.onsubmit=async(event)=>{event.preventDefault();const data=Object.fromEntries(new FormData(form));data.active=form.active.checked;await apply('save_user',data);};}
+function renderAi(){$('#content').innerHTML=`<div class="copilot"><div class="panel"><p class="eyebrow">NEPTUNE COPILOT</p><h2>Demander une analyse</h2><p>Il analyse les données réelles. Toute action exige votre validation.</p><textarea id="prompt" placeholder="Analyse la rétention et propose un nouvel ordre d’antenne."></textarea><button class="primary" id="ask">Analyser le Studio</button></div><div class="panel"><h2>Plan proposé</h2><div id="plan" class="plan">Aucune analyse lancée.</div><div id="recommendations"></div><div id="aiActions"></div></div></div>`;$('#ask').addEventListener('click',askAi);if(activePlan)displayPlan(activePlan);}
+async function askAi(){const prompt=$('#prompt').value.trim();if(!prompt)return;$('#plan').textContent='Analyse en cours…';$('#ask').disabled=true;try{const result=await api('/api/admin/ai',{method:'POST',body:JSON.stringify({prompt})});activePlan=result.plan;activePlanId=result.actionLogId;displayPlan(activePlan);}catch(error){$('#plan').textContent=humanError(error.message);}finally{$('#ask').disabled=false;}}
+function displayPlan(plan){if(!$('#plan'))return;$('#plan').textContent=plan.summary||'Analyse terminée.';$('#recommendations').innerHTML=(plan.recommendations||[]).map((item)=>`<p class="recommendation">${escapeHtml(item)}</p>`).join('');$('#aiActions').innerHTML=(plan.actions||[]).map((action,index)=>`<div class="aiAction"><div><strong>${escapeHtml(action.label||action.action)}</strong><br><code>${escapeHtml(action.action)}</code></div><button class="primary" data-ai-action="${index}">Valider</button></div>`).join('');$$('[data-ai-action]').forEach((button)=>button.addEventListener('click',async()=>{const action=plan.actions[Number(button.dataset.aiAction)];if(!confirm(`Appliquer cette action ?\n\n${action.label||action.action}`))return;await apply(action.action,action.payload,false);if(activePlanId)await apply('mark_ai_action',{id:activePlanId,status:'executed'},false);activePlan=null;activePlanId=null;toast('Action validée.');tab='dashboard';render();}));}
+function renderAudit(){$('#content').innerHTML=`<div class="panel"><h2>150 dernières actions</h2><div class="audit">${state.audit.map((item)=>`<article><strong>${escapeHtml(item.action)}</strong> · ${escapeHtml(item.entityType)} ${escapeHtml(item.entityId)}<br><time>${formatDate(item.occurredAt)}</time></article>`).join('')||'<p class="empty">Aucune action.</p>'}</div></div>`;}
+async function apply(action,payload,reload=true){$('#syncState').textContent='Enregistrement…';try{await api('/api/admin/apply',{method:'POST',body:JSON.stringify({action,payload})});toast('Modification enregistrée.');if(reload)await load();}catch(error){$('#syncState').textContent='Erreur';toast(humanError(error.message),true);throw error;}}
+function field(label,name,value='',required=false,type='input',className=''){const tag=type==='textarea'?`<textarea name="${name}" ${required?'required':''}>${escapeHtml(value||'')}</textarea>`:`<input name="${name}" type="${type}" value="${escapeHtml(value??'')}" ${required?'required':''}>`;return `<label class="field ${className}"><span>${escapeHtml(label)}</span>${tag}</label>`;}
+function metric(value,label){return `<div class="metric"><strong>${escapeHtml(value??0)}</strong><span>${escapeHtml(label)}</span></div>`;}
+function programName(id){return state.programs.find((program)=>program.id===id)?.name||id;}
+function formatNumber(value){return new Intl.NumberFormat('fr-FR').format(Number(value||0));}
+function formatCurrency(cents){return new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(Number(cents||0)/100);}
+function formatDuration(seconds){const value=Math.round(Number(seconds||0));if(value<60)return `${value}s`;const hours=Math.floor(value/3600),minutes=Math.floor((value%3600)/60);return hours?`${hours}h ${minutes}min`:`${minutes}min`;}
+function conversionRate(numerator,denominator){const rate=Number(denominator||0)?(Number(numerator||0)/Number(denominator))*100:0;return `${rate.toFixed(1).replace('.',',')} %`;}
+function formatDate(value){if(!value)return '—';const date=new Date(value);return Number.isNaN(date.getTime())?'—':new Intl.DateTimeFormat('fr-FR',{dateStyle:'short',timeStyle:'short'}).format(date);}
+function dateForInput(value){return value?new Date(value).toISOString().slice(0,16):'';}
+function deadlineFor(order){const base=new Date(order.updatedAt||order.createdAt||Date.now());if(order.status==='studio_date_confirmation_pending')return new Date(base.getTime()+48*3600000);if(order.status==='videos_pending')return new Date(new Date(order.filmingAt||base).getTime()+7*86400000);if(['videos_received','editing','approval'].includes(order.status))return new Date(new Date(order.filmingAt||base).getTime()+15*86400000);if(['preparation_complete','filming_scheduled','filming_confirmed'].includes(order.status)&&order.filmingAt)return new Date(order.filmingAt);return null;}
+function remainingLabel(deadline){const ms=deadline-Date.now(),abs=Math.abs(ms),days=Math.floor(abs/86400000),hours=Math.max(1,Math.ceil((abs%86400000)/3600000));return ms<0?`Retard ${days?`${days} j`:`${hours} h`}`:days?`J-${days}`:`${hours} h`;}
+function isUrgent(order){const deadline=deadlineFor(order);return Boolean(deadline&&deadline-Date.now()<48*3600000);}
+function toast(message,isError=false){const element=$('#toast');element.textContent=message;element.className=`toast${isError?' error':''}`;element.hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>{element.hidden=true;},3600);}
+function humanError(code){return ({passwords_do_not_match:'Les mots de passe ne correspondent pas.',invalid_credentials:'Identifiants incorrects.',too_many_attempts:'Trop de tentatives. Réessayez plus tard.',csrf_failed:'La session a expiré. Rechargez la page.',email_service_not_configured:'Le service e-mail Resend n’est pas configuré.',email_send_failed:'La mise à jour est enregistrée, mais l’e-mail n’a pas été envoyé.',supplier_payment_not_found:'Ce paiement fournisseur est introuvable.',workers_ai_binding_missing:'Workers AI n’est pas configuré.'})[code]||'Une erreur est survenue. Réessayez.';}
