@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T16:16:08.578Z",
+  "generatedAt": "2026-07-19T16:23:10.332Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -29,18 +29,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "h2",
-            "text": "À regarder.",
-            "client": [
-              780,
-              56
-            ],
-            "scroll": [
-              780,
-              61
             ]
           },
           {
@@ -119,24 +107,24 @@
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              581,
-              52
+              465,
+              46
             ],
             "scroll": [
-              581,
-              57
+              465,
+              50
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              581,
-              52
+              465,
+              46
             ],
             "scroll": [
-              581,
-              57
+              465,
+              50
             ]
           }
         ],
@@ -145,14 +133,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            57.59375,
-            323.21875,
-            700,
-            185.375,
-            323.21875,
-            757.59375,
-            508.59375,
-            57.59375
+            130,
+            252.28125,
+            506.90625,
+            448.921875,
+            252.28125,
+            636.90625,
+            701.203125,
+            130
           ]
         }
       },
@@ -165,6 +153,10 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -214,18 +206,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "h1",
-            "text": "À regarder.",
-            "client": [
-              760,
-              59
-            ],
-            "scroll": [
-              760,
-              64
             ]
           },
           {
@@ -283,12 +263,12 @@
           "text": "À regarder.",
           "rect": [
             57.59375,
-            202.765625,
+            212.53125,
             760,
-            59.265625,
-            202.765625,
+            77.40625,
+            212.53125,
             817.59375,
-            262.03125,
+            289.9375,
             57.59375
           ]
         }
@@ -348,12 +328,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             56.59375,
-            92,
+            90,
             1,
             1,
-            92,
+            90,
             57.59375,
-            93,
+            91,
             56.59375
           ]
         }
@@ -401,18 +381,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "h2",
-            "text": "À regarder.",
-            "client": [
-              658,
-              50
-            ],
-            "scroll": [
-              658,
-              55
             ]
           },
           {
@@ -491,24 +459,24 @@
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              507,
-              49
+              464,
+              43
             ],
             "scroll": [
-              507,
-              54
+              464,
+              47
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              507,
-              49
+              464,
+              43
             ],
             "scroll": [
-              507,
-              54
+              464,
+              47
             ]
           }
         ],
@@ -518,12 +486,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             51.203125,
-            322.375,
-            699.078125,
-            164.8125,
-            322.375,
-            750.28125,
-            487.1875,
+            241.765625,
+            506.359375,
+            399.75,
+            241.765625,
+            557.5625,
+            641.515625,
             51.203125
           ]
         }
@@ -582,18 +550,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "h1",
-            "text": "À regarder.",
-            "client": [
-              760,
-              53
-            ],
-            "scroll": [
-              760,
-              57
             ]
           },
           {
@@ -675,12 +631,12 @@
           "text": "À regarder.",
           "rect": [
             51.203125,
-            202.765625,
+            212.53125,
             760,
-            52.6875,
-            202.765625,
+            68.8125,
+            212.53125,
             811.203125,
-            255.453125,
+            281.34375,
             51.203125
           ]
         }
@@ -740,12 +696,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             50.203125,
-            92,
+            90,
             1,
             1,
-            92,
+            90,
             51.203125,
-            93,
+            91,
             50.203125
           ]
         }
@@ -902,30 +858,6 @@
               62,
               48
             ]
-          },
-          {
-            "selector": "h3",
-            "text": "Hors Norme",
-            "client": [
-              695,
-              32
-            ],
-            "scroll": [
-              695,
-              35
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Concept Libre",
-            "client": [
-              695,
-              32
-            ],
-            "scroll": [
-              695,
-              35
-            ]
           }
         ],
         "offscreen": [],
@@ -942,8 +874,8 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              50,
-              38
+              45,
+              34
             ]
           },
           {
@@ -1007,12 +939,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             33.359375,
-            209.625,
-            700,
-            86.390625,
-            209.625,
-            733.359375,
-            296.015625,
+            206.75,
+            408.390625,
+            209.203125,
+            206.75,
+            441.75,
+            415.953125,
             33.359375
           ]
         }
@@ -1026,14 +958,6 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -1115,18 +1039,6 @@
             "scroll": [
               51,
               46
-            ]
-          },
-          {
-            "selector": "h1",
-            "text": "À regarder.",
-            "client": [
-              760,
-              34
-            ],
-            "scroll": [
-              760,
-              37
             ]
           },
           {
@@ -1217,7 +1129,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               58,
-              38
+              34
             ]
           },
           {
@@ -1321,12 +1233,12 @@
           "text": "À regarder.",
           "rect": [
             33.359375,
-            202.765625,
+            212.53125,
             760,
-            34.484375,
-            202.765625,
+            45.046875,
+            212.53125,
             793.359375,
-            237.25,
+            257.578125,
             33.359375
           ]
         }
@@ -1431,7 +1343,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               58,
-              38
+              34
             ]
           },
           {
@@ -1567,12 +1479,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             32.359375,
-            92,
+            90,
             1,
             1,
-            92,
+            90,
             33.359375,
-            93,
+            91,
             32.359375
           ]
         }
@@ -1729,30 +1641,6 @@
               64,
               48
             ]
-          },
-          {
-            "selector": "h3",
-            "text": "Hors Norme",
-            "client": [
-              282,
-              41
-            ],
-            "scroll": [
-              282,
-              45
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Concept Libre",
-            "client": [
-              282,
-              82
-            ],
-            "scroll": [
-              282,
-              86
-            ]
           }
         ],
         "offscreen": [],
@@ -1769,15 +1657,15 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              50,
-              38
+              45,
+              34
             ]
           },
           {
             "selector": "a",
             "text": "Neptune TV",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1785,7 +1673,7 @@
             "selector": "a",
             "text": "Direct",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1793,7 +1681,7 @@
             "selector": "a",
             "text": "Nouveautés",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1801,7 +1689,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1809,7 +1697,7 @@
             "selector": "a",
             "text": "Espace client",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1817,7 +1705,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1825,7 +1713,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              350,
+              362,
               32
             ]
           }
@@ -1833,14 +1721,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            25,
-            206.9375,
-            340,
-            168.171875,
-            206.9375,
-            365,
-            375.109375,
-            25
+            14,
+            213.625,
+            362,
+            271.859375,
+            213.625,
+            376,
+            485.484375,
+            14
           ]
         }
       },
@@ -1852,6 +1740,14 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -1897,54 +1793,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "a.is-active",
-            "text": "Émissions",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              89,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              67,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "client": [
-              28,
-              46
-            ],
-            "scroll": [
-              51,
-              46
-            ]
-          },
-          {
-            "selector": "h1",
-            "text": "À regarder.",
-            "client": [
-              350,
-              34
-            ],
-            "scroll": [
-              350,
-              37
             ]
           },
           {
@@ -2035,54 +1883,14 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              38
-            ]
-          },
-          {
-            "selector": "a.live-nav-link",
-            "text": "Direct",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.is-active",
-            "text": "Émissions",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Formats",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "size": [
-              30,
-              48
+              34
             ]
           },
           {
             "selector": "a",
             "text": "En direct",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2090,7 +1898,7 @@
             "selector": "a",
             "text": "Toutes les émissions",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2098,7 +1906,7 @@
             "selector": "a",
             "text": "Les formats",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2106,7 +1914,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2114,7 +1922,7 @@
             "selector": "a",
             "text": "Mentions légales",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2122,7 +1930,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2130,7 +1938,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              350,
+              362,
               32
             ]
           }
@@ -2139,12 +1947,12 @@
           "text": "À regarder.",
           "rect": [
             20,
-            169.765625,
+            181.53125,
             350,
-            34.484375,
-            169.765625,
+            45.046875,
+            181.53125,
             370,
-            204.25,
+            226.578125,
             20
           ]
         }
@@ -2186,42 +1994,6 @@
             ]
           },
           {
-            "selector": "a",
-            "text": "Émissions",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              89,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              67,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "client": [
-              28,
-              46
-            ],
-            "scroll": [
-              51,
-              46
-            ]
-          },
-          {
             "selector": "h1.sr-only",
             "text": "Neptune Media en direct",
             "client": [
@@ -2249,47 +2021,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              38
-            ]
-          },
-          {
-            "selector": "a.live-nav-link.is-active",
-            "text": "Direct",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Émissions",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Formats",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "size": [
-              30,
-              48
+              34
             ]
           },
           {
@@ -2328,7 +2060,7 @@
             "selector": "a",
             "text": "En direct",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2336,7 +2068,7 @@
             "selector": "a",
             "text": "Toutes les émissions",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2344,7 +2076,7 @@
             "selector": "a",
             "text": "Les formats",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2352,7 +2084,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2360,7 +2092,7 @@
             "selector": "a",
             "text": "Mentions légales",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2368,7 +2100,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -2376,7 +2108,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              350,
+              362,
               32
             ]
           }
@@ -2397,14 +2129,6 @@
       },
       "consoleErrors": [],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
@@ -2446,6 +2170,30 @@
             "scroll": [
               233,
               19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder Neptune TV",
+            "client": [
+              60,
+              68
+            ],
+            "scroll": [
+              66,
+              68
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Faire produire mon émission",
+            "client": [
+              60,
+              84
+            ],
+            "scroll": [
+              64,
+              84
             ]
           },
           {
@@ -2555,30 +2303,6 @@
               64,
               48
             ]
-          },
-          {
-            "selector": "h3",
-            "text": "Hors Norme",
-            "client": [
-              252,
-              82
-            ],
-            "scroll": [
-              252,
-              86
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Concept Libre",
-            "client": [
-              252,
-              82
-            ],
-            "scroll": [
-              252,
-              86
-            ]
           }
         ],
         "offscreen": [],
@@ -2595,15 +2319,15 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              50,
-              38
+              45,
+              34
             ]
           },
           {
             "selector": "a",
             "text": "Neptune TV",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2611,7 +2335,7 @@
             "selector": "a",
             "text": "Direct",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2619,7 +2343,7 @@
             "selector": "a",
             "text": "Nouveautés",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2627,7 +2351,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2635,7 +2359,7 @@
             "selector": "a",
             "text": "Espace client",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2643,7 +2367,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2651,7 +2375,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              320,
+              332,
               32
             ]
           }
@@ -2659,14 +2383,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            20,
-            206.9375,
-            320,
-            155.15625,
-            206.9375,
-            340,
-            362.09375,
-            20
+            14,
+            213.625,
+            332,
+            250.984375,
+            213.625,
+            346,
+            464.609375,
+            14
           ]
         }
       },
@@ -2678,10 +2402,6 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -2727,54 +2447,6 @@
             "scroll": [
               233,
               19
-            ]
-          },
-          {
-            "selector": "a.is-active",
-            "text": "Émissions",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              89,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              67,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "client": [
-              28,
-              46
-            ],
-            "scroll": [
-              51,
-              46
-            ]
-          },
-          {
-            "selector": "h1",
-            "text": "À regarder.",
-            "client": [
-              320,
-              34
-            ],
-            "scroll": [
-              320,
-              37
             ]
           },
           {
@@ -2865,54 +2537,14 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              38
-            ]
-          },
-          {
-            "selector": "a.live-nav-link",
-            "text": "Direct",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.is-active",
-            "text": "Émissions",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Formats",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "size": [
-              30,
-              48
+              34
             ]
           },
           {
             "selector": "a",
             "text": "En direct",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2920,7 +2552,7 @@
             "selector": "a",
             "text": "Toutes les émissions",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2928,7 +2560,7 @@
             "selector": "a",
             "text": "Les formats",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2936,7 +2568,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2944,7 +2576,7 @@
             "selector": "a",
             "text": "Mentions légales",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2952,7 +2584,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2960,7 +2592,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              320,
+              332,
               32
             ]
           }
@@ -2969,12 +2601,12 @@
           "text": "À regarder.",
           "rect": [
             20,
-            169.765625,
+            181.53125,
             320,
-            34.484375,
-            169.765625,
+            45.046875,
+            181.53125,
             340,
-            204.25,
+            226.578125,
             20
           ]
         }
@@ -3016,42 +2648,6 @@
             ]
           },
           {
-            "selector": "a",
-            "text": "Émissions",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              89,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "client": [
-              28,
-              48
-            ],
-            "scroll": [
-              67,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "client": [
-              28,
-              46
-            ],
-            "scroll": [
-              51,
-              46
-            ]
-          },
-          {
             "selector": "h1.sr-only",
             "text": "Neptune Media en direct",
             "client": [
@@ -3079,47 +2675,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              38
-            ]
-          },
-          {
-            "selector": "a.live-nav-link.is-active",
-            "text": "Direct",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Émissions",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Formats",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Espace client",
-            "size": [
-              28,
-              48
-            ]
-          },
-          {
-            "selector": "a.btn.btn-primary",
-            "text": "Voir les créneaux",
-            "size": [
-              30,
-              48
+              34
             ]
           },
           {
@@ -3158,7 +2714,7 @@
             "selector": "a",
             "text": "En direct",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3166,7 +2722,7 @@
             "selector": "a",
             "text": "Toutes les émissions",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3174,7 +2730,7 @@
             "selector": "a",
             "text": "Les formats",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3182,7 +2738,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3190,7 +2746,7 @@
             "selector": "a",
             "text": "Mentions légales",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3198,7 +2754,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -3206,7 +2762,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              320,
+              332,
               32
             ]
           }
@@ -3257,22 +2813,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "desktop-1440",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h2",
-      "text": "À regarder.",
-      "client": [
-        780,
-        56
-      ],
-      "scroll": [
-        780,
-        61
       ]
     },
     {
@@ -3379,12 +2919,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        581,
-        52
+        465,
+        46
       ],
       "scroll": [
-        581,
-        57
+        465,
+        50
       ]
     },
     {
@@ -3395,12 +2935,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        581,
-        52
+        465,
+        46
       ],
       "scroll": [
-        581,
-        57
+        465,
+        50
       ]
     },
     {
@@ -3459,22 +2999,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "desktop-1440",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "h1",
-      "text": "À regarder.",
-      "client": [
-        760,
-        59
-      ],
-      "scroll": [
-        760,
-        64
       ]
     },
     {
@@ -3587,22 +3111,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "laptop-1280",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h2",
-      "text": "À regarder.",
-      "client": [
-        658,
-        50
-      ],
-      "scroll": [
-        658,
-        55
       ]
     },
     {
@@ -3709,12 +3217,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        507,
-        49
+        464,
+        43
       ],
       "scroll": [
-        507,
-        54
+        464,
+        47
       ]
     },
     {
@@ -3725,12 +3233,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        507,
-        49
+        464,
+        43
       ],
       "scroll": [
-        507,
-        54
+        464,
+        47
       ]
     },
     {
@@ -3789,22 +3297,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "laptop-1280",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "h1",
-      "text": "À regarder.",
-      "client": [
-        760,
-        53
-      ],
-      "scroll": [
-        760,
-        57
       ]
     },
     {
@@ -4099,38 +3591,6 @@
       "severity": "warning",
       "viewport": "tablet-834",
       "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Hors Norme",
-      "client": [
-        695,
-        32
-      ],
-      "scroll": [
-        695,
-        35
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Concept Libre",
-      "client": [
-        695,
-        32
-      ],
-      "scroll": [
-        695,
-        35
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
       "type": "console-error",
       "message": "Failed to load resource: the server responded with a status of 400 ()"
     },
@@ -4231,22 +3691,6 @@
       "scroll": [
         51,
         46
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "h1",
-      "text": "À regarder.",
-      "client": [
-        760,
-        34
-      ],
-      "scroll": [
-        760,
-        37
       ]
     },
     {
@@ -4589,38 +4033,6 @@
       "severity": "warning",
       "viewport": "mobile-390",
       "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Hors Norme",
-      "client": [
-        282,
-        41
-      ],
-      "scroll": [
-        282,
-        45
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Concept Libre",
-      "client": [
-        282,
-        82
-      ],
-      "scroll": [
-        282,
-        86
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
       "type": "console-error",
       "message": "Failed to load resource: the server responded with a status of 400 ()"
     },
@@ -4666,70 +4078,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a.is-active",
-      "text": "Émissions",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        89,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Espace client",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        67,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a.btn.btn-primary",
-      "text": "Voir les créneaux",
-      "client": [
-        28,
-        46
-      ],
-      "scroll": [
-        51,
-        46
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "h1",
-      "text": "À regarder.",
-      "client": [
-        350,
-        34
-      ],
-      "scroll": [
-        350,
-        37
       ]
     },
     {
@@ -4849,54 +4197,6 @@
       "viewport": "mobile-390",
       "route": "direct",
       "type": "clipped-text",
-      "selector": "a",
-      "text": "Émissions",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        89,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "direct",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Espace client",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        67,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "direct",
-      "type": "clipped-text",
-      "selector": "a.btn.btn-primary",
-      "text": "Voir les créneaux",
-      "client": [
-        28,
-        46
-      ],
-      "scroll": [
-        51,
-        46
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "direct",
-      "type": "clipped-text",
       "selector": "h1.sr-only",
       "text": "Neptune Media en direct",
       "client": [
@@ -4922,6 +4222,38 @@
       "scroll": [
         233,
         19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Regarder Neptune TV",
+      "client": [
+        60,
+        68
+      ],
+      "scroll": [
+        66,
+        68
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Faire produire mon émission",
+      "client": [
+        60,
+        84
+      ],
+      "scroll": [
+        64,
+        84
       ]
     },
     {
@@ -5072,38 +4404,6 @@
       "severity": "warning",
       "viewport": "mobile-360",
       "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Hors Norme",
-      "client": [
-        252,
-        82
-      ],
-      "scroll": [
-        252,
-        86
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Concept Libre",
-      "client": [
-        252,
-        82
-      ],
-      "scroll": [
-        252,
-        86
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
       "type": "console-error",
       "message": "Failed to load resource: the server responded with a status of 400 ()"
     },
@@ -5149,70 +4449,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a.is-active",
-      "text": "Émissions",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        89,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Espace client",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        67,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "a.btn.btn-primary",
-      "text": "Voir les créneaux",
-      "client": [
-        28,
-        46
-      ],
-      "scroll": [
-        51,
-        46
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "emissions",
-      "type": "clipped-text",
-      "selector": "h1",
-      "text": "À regarder.",
-      "client": [
-        320,
-        34
-      ],
-      "scroll": [
-        320,
-        37
       ]
     },
     {
@@ -5325,54 +4561,6 @@
       "scroll": [
         233,
         19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "direct",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Émissions",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        89,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "direct",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Espace client",
-      "client": [
-        28,
-        48
-      ],
-      "scroll": [
-        67,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "direct",
-      "type": "clipped-text",
-      "selector": "a.btn.btn-primary",
-      "text": "Voir les créneaux",
-      "client": [
-        28,
-        46
-      ],
-      "scroll": [
-        51,
-        46
       ]
     },
     {
