@@ -2,6 +2,24 @@ const response = await fetch('/api/public/catalog', { headers: { Accept: 'applic
 const catalog = response?.ok ? await response.json() : { episodes: [] };
 const card = document.querySelector('[data-home-live]');
 
+const parseTimestamp = (value) => {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : null;
+};
+
+const isCurrentlyLive = (item, now = Date.now()) => {
+  const metadata = item?.metadata && typeof item.metadata === 'object' ? item.metadata : {};
+  if (metadata.live !== true) return false;
+
+  const startsAt = parseTimestamp(metadata.liveStart || metadata.startsAt || metadata.startAt);
+  const endsAt = parseTimestamp(metadata.liveEnd || metadata.endsAt || metadata.endAt);
+
+  if (startsAt !== null && now < startsAt) return false;
+  if (endsAt !== null && now >= endsAt) return false;
+  return true;
+};
+
 if (card) {
   const badge = card.querySelector('[data-home-live-badge]');
   const title = card.querySelector('[data-home-live-title]');
@@ -12,7 +30,7 @@ if (card) {
     const declared = [metadata.format, metadata.type, metadata.orientation, ...(Array.isArray(metadata.tags) ? metadata.tags : [])].filter(Boolean).join(' ');
     const duration = Number(item.durationSeconds || 0);
     const isShort = metadata.short === true || metadata.vertical === true || /short|reel|vertical|portrait/i.test(String(declared)) || (!metadata.fullEpisode && duration > 0 && duration <= 90);
-    return !isShort && item.status === 'published' && metadata.live !== false && (metadata.fullEpisode || String(item.videoUrl || '').startsWith('/media/'));
+    return !isShort && item.status === 'published' && isCurrentlyLive(item) && (metadata.fullEpisode || String(item.videoUrl || '').startsWith('/media/'));
   });
   card.setAttribute('aria-busy', 'false');
   if (liveEpisodes.length) {
