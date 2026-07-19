@@ -60,6 +60,7 @@ jobs:
           python3 scripts/apply-render-polish-v7.py
           python3 scripts/apply-render-polish-v8.py
           python3 scripts/apply-home-architecture-v10.py
+          python3 scripts/apply-visual-polish-v11.py
 
       - name: Persist corrected source
         working-directory: .
@@ -76,6 +77,7 @@ jobs:
             neptune-tv-media-cloudflare/public/studio/studio.js \
             neptune-tv-media-cloudflare/public/index.html \
             neptune-tv-media-cloudflare/public/app.js \
+            neptune-tv-media-cloudflare/public/upgrade.js \
             neptune-tv-media-cloudflare/public/accessibility.js \
             neptune-tv-media-cloudflare/public/ux-aida.js \
             neptune-tv-media-cloudflare/public/landing-conversion.js \
@@ -86,8 +88,9 @@ jobs:
             neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/package.json \
             scripts/apply-streaming-index.py \
-            scripts/apply-home-architecture-v10.py
-          git commit -m "feat: persist Neptune emotional conversion architecture v10 [skip ci]" || true
+            scripts/apply-home-architecture-v10.py \
+            scripts/apply-visual-polish-v11.py
+          git commit -m "feat: persist screenshot-verified Neptune visual polish v11 [skip ci]" || true
           git pull --rebase origin main || true
           git push
 
@@ -124,7 +127,7 @@ jobs:
             sleep 10
           done
           grep -q '"ok":true' /tmp/health.json
-          curl --fail --silent --show-error -H 'Cache-Control: no-cache' "$PUBLIC_URL/?v10=${GITHUB_RUN_ID}" > /tmp/public-home.html
+          curl --fail --silent --show-error -H 'Cache-Control: no-cache' "$PUBLIC_URL/?v11=${GITHUB_RUN_ID}" > /tmp/public-home.html
           grep -q 'Votre entreprise est solide' /tmp/public-home.html
           grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/public-home.html
           grep -q 'J’ai déjà payé pour de belles vidéos qui n’ont rien changé' /tmp/public-home.html
@@ -140,7 +143,7 @@ jobs:
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
           grep -q 'id="faq-answer-1"' /tmp/public-home.html
-          grep -q '/styles/neptune-streaming.css?v=10' /tmp/public-home.html
+          grep -q '/styles/neptune-streaming.css?v=11' /tmp/public-home.html
           grep -q '/home-live.js?v=4' /tmp/public-home.html
           grep -q '/landing-conversion.js?v=5' /tmp/public-home.html
           grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
@@ -155,10 +158,13 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
           curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'neptune_watch_progress_v2'
           curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'data-rail-track'
+          curl --fail --silent --show-error "$PUBLIC_URL/ux-aida.js" | grep -q 'catalogue-page > .program-pills'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'shortsCatalog'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'answer.hidden'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q '!isShortEpisode(episode)'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'formatLabel'
+          curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -Fq 'state.episodes.find((item) => !isShortEpisode(item))'
+          curl --fail --silent --show-error "$PUBLIC_URL/upgrade.js?v=6" | grep -q 'conversion-voice-v10'
           curl --fail --silent --show-error "$PUBLIC_URL/home-live.js?v=4" > /tmp/home-live.js
           grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
           grep -q 'Neptune Media est à l’antenne' /tmp/home-live.js
@@ -176,8 +182,9 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/live-channel.js" | grep -q 'neptune:live-status'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=10" > /tmp/neptune-streaming.css
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=11" > /tmp/neptune-streaming.css
           grep -q 'Conversion voice architecture v10' /tmp/neptune-streaming.css
+          grep -q 'Visual QA polish v11' /tmp/neptune-streaming.css
           grep -q 'Compact shorts and avatar-first headings v9' /tmp/neptune-streaming.css
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
           grep -q 'live-page-immediate' /tmp/direct.html
@@ -192,7 +199,7 @@ jobs:
           grep -q 'Émissions complètes' /tmp/emissions.html
           grep -q 'seo-grid-shorts' /tmp/emissions.html
           grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html
-          grep -q '/styles/neptune-streaming.css?v=9' /tmp/emissions.html
+          grep -q '/styles/neptune-streaming.css?v=11' /tmp/emissions.html
           curl --fail --silent --show-error "$PUBLIC_URL/api/auth/setup-status" | grep -q 'initialized'
           curl --fail --silent --show-error "$PUBLIC_URL/studio/" | grep -q 'Première connexion ou mot de passe oublié'
 
