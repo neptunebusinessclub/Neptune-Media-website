@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T15:57:21.043Z",
+  "generatedAt": "2026-07-19T16:00:52.990Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -27,20 +27,20 @@
               1
             ],
             "scroll": [
-              233,
-              19
+              196,
+              18
             ]
           },
           {
             "selector": "h2",
             "text": "À regarder.",
             "client": [
-              780,
-              56
+              660,
+              76
             ],
             "scroll": [
-              780,
-              61
+              660,
+              81
             ]
           },
           {
@@ -51,8 +51,8 @@
               1
             ],
             "scroll": [
-              176,
-              19
+              154,
+              18
             ]
           },
           {
@@ -63,8 +63,8 @@
               24
             ],
             "scroll": [
-              92,
-              48
+              85,
+              36
             ]
           },
           {
@@ -76,7 +76,7 @@
             ],
             "scroll": [
               85,
-              48
+              36
             ]
           },
           {
@@ -93,50 +93,26 @@
           },
           {
             "selector": "h3",
-            "text": "L’humain avant le business",
-            "client": [
-              85,
-              24
-            ],
-            "scroll": [
-              85,
-              36
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Filmer chez soi ? Laissez tomber.",
-            "client": [
-              85,
-              24
-            ],
-            "scroll": [
-              85,
-              36
-            ]
-          },
-          {
-            "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              581,
-              52
+              453,
+              53
             ],
             "scroll": [
-              581,
-              57
+              453,
+              58
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              581,
-              52
+              453,
+              53
             ],
             "scroll": [
-              581,
-              57
+              453,
+              58
             ]
           }
         ],
@@ -145,14 +121,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            57.59375,
-            324.21875,
-            700,
-            185.375,
-            324.21875,
-            757.59375,
-            509.59375,
-            57.59375
+            130,
+            300.5625,
+            660,
+            411.625,
+            300.5625,
+            790,
+            712.1875,
+            130
           ]
         }
       },
@@ -165,6 +141,14 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -395,20 +379,20 @@
               1
             ],
             "scroll": [
-              233,
-              19
+              196,
+              18
             ]
           },
           {
             "selector": "h2",
             "text": "À regarder.",
             "client": [
-              658,
-              50
+              653,
+              68
             ],
             "scroll": [
-              658,
-              55
+              653,
+              72
             ]
           },
           {
@@ -419,8 +403,8 @@
               1
             ],
             "scroll": [
-              176,
-              19
+              154,
+              18
             ]
           },
           {
@@ -431,8 +415,8 @@
               24
             ],
             "scroll": [
-              92,
-              48
+              74,
+              36
             ]
           },
           {
@@ -444,7 +428,7 @@
             ],
             "scroll": [
               72,
-              60
+              36
             ]
           },
           {
@@ -456,7 +440,7 @@
             ],
             "scroll": [
               72,
-              48
+              36
             ]
           },
           {
@@ -487,24 +471,24 @@
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              507,
+              453,
               49
             ],
             "scroll": [
-              507,
-              54
+              453,
+              52
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              507,
+              453,
               49
             ],
             "scroll": [
-              507,
-              54
+              453,
+              52
             ]
           }
         ],
@@ -513,14 +497,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            51.203125,
-            323.375,
-            699.078125,
-            164.8125,
-            323.375,
-            750.28125,
-            488.1875,
-            51.203125
+            50,
+            305.609375,
+            660,
+            278.375,
+            305.609375,
+            710,
+            583.984375,
+            50
           ]
         }
       },
@@ -751,10 +735,6 @@
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
         }
       ],
       "files": [
@@ -787,8 +767,20 @@
               1
             ],
             "scroll": [
-              233,
-              19
+              196,
+              18
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "À regarder.",
+            "client": [
+              605,
+              63
+            ],
+            "scroll": [
+              605,
+              67
             ]
           },
           {
@@ -799,19 +791,7 @@
               1
             ],
             "scroll": [
-              176,
-              19
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre44s",
-            "client": [
-              62,
-              18
-            ],
-            "scroll": [
-              69,
+              154,
               18
             ]
           },
@@ -823,7 +803,7 @@
               24
             ],
             "scroll": [
-              92,
+              74,
               48
             ]
           },
@@ -836,7 +816,7 @@
             ],
             "scroll": [
               62,
-              72
+              48
             ]
           },
           {
@@ -847,20 +827,8 @@
               24
             ],
             "scroll": [
-              66,
-              48
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre19s",
-            "client": [
               62,
-              18
-            ],
-            "scroll": [
-              69,
-              18
+              48
             ]
           },
           {
@@ -876,18 +844,6 @@
             ]
           },
           {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre57s",
-            "client": [
-              62,
-              18
-            ],
-            "scroll": [
-              69,
-              18
-            ]
-          },
-          {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
@@ -897,30 +853,6 @@
             "scroll": [
               62,
               48
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Hors Norme",
-            "client": [
-              695,
-              32
-            ],
-            "scroll": [
-              695,
-              35
-            ]
-          },
-          {
-            "selector": "h3",
-            "text": "Concept Libre",
-            "client": [
-              695,
-              32
-            ],
-            "scroll": [
-              695,
-              35
             ]
           }
         ],
@@ -935,34 +867,42 @@
             ]
           },
           {
+            "selector": "a.brand",
+            "text": "Neptune Media TV, accueil",
+            "size": [
+              47,
+              36
+            ]
+          },
+          {
             "selector": "a.hero-detail-link",
             "text": "Voir la page de l’émission →",
             "size": [
-              196,
-              15
+              168,
+              14
             ]
           },
           {
             "selector": "a.media-detail-link",
             "text": "Détails, partage et transcription →",
             "size": [
-              372,
-              26
+              391,
+              25
             ]
           },
           {
             "selector": "a.media-detail-link",
             "text": "Détails, partage et transcription →",
             "size": [
-              372,
-              26
+              391,
+              25
             ]
           },
           {
             "selector": "a",
             "text": "Neptune TV",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -970,7 +910,7 @@
             "selector": "a",
             "text": "Direct",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -978,7 +918,7 @@
             "selector": "a",
             "text": "Nouveautés",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -986,7 +926,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -994,7 +934,7 @@
             "selector": "a",
             "text": "Espace client",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -1002,7 +942,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              163,
+              172,
               32
             ]
           },
@@ -1010,7 +950,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              163,
+              172,
               32
             ]
           }
@@ -1018,14 +958,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            33.359375,
-            209.625,
-            700,
-            86.390625,
-            209.625,
-            733.359375,
-            296.015625,
-            33.359375
+            14,
+            239.09375,
+            660,
+            241.25,
+            239.09375,
+            674,
+            480.34375,
+            14
           ]
         }
       },
@@ -1038,6 +978,10 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -1566,6 +1510,10 @@
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
         }
       ],
       "files": [
@@ -1598,8 +1546,20 @@
               1
             ],
             "scroll": [
-              233,
-              19
+              196,
+              18
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "À regarder.",
+            "client": [
+              362,
+              42
+            ],
+            "scroll": [
+              362,
+              45
             ]
           },
           {
@@ -1610,19 +1570,7 @@
               1
             ],
             "scroll": [
-              176,
-              19
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre44s",
-            "client": [
-              64,
-              18
-            ],
-            "scroll": [
-              69,
+              154,
               18
             ]
           },
@@ -1634,7 +1582,7 @@
               24
             ],
             "scroll": [
-              92,
+              74,
               48
             ]
           },
@@ -1647,7 +1595,7 @@
             ],
             "scroll": [
               64,
-              72
+              48
             ]
           },
           {
@@ -1658,20 +1606,8 @@
               24
             ],
             "scroll": [
-              66,
-              48
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre19s",
-            "client": [
               64,
-              18
-            ],
-            "scroll": [
-              69,
-              18
+              48
             ]
           },
           {
@@ -1687,18 +1623,6 @@
             ]
           },
           {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre57s",
-            "client": [
-              64,
-              18
-            ],
-            "scroll": [
-              69,
-              18
-            ]
-          },
-          {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
@@ -1707,31 +1631,31 @@
             ],
             "scroll": [
               64,
-              48
+              36
             ]
           },
           {
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              282,
-              41
+              266,
+              30
             ],
             "scroll": [
-              282,
-              45
+              266,
+              33
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              282,
-              82
+              266,
+              30
             ],
             "scroll": [
-              282,
-              86
+              266,
+              33
             ]
           }
         ],
@@ -1749,16 +1673,16 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              50,
-              38
+              47,
+              36
             ]
           },
           {
             "selector": "a.hero-detail-link",
             "text": "Voir la page de l’émission →",
             "size": [
-              196,
-              15
+              168,
+              14
             ]
           },
           {
@@ -1766,7 +1690,7 @@
             "text": "Détails, partage et transcription →",
             "size": [
               320,
-              26
+              25
             ]
           },
           {
@@ -1774,14 +1698,14 @@
             "text": "Détails, partage et transcription →",
             "size": [
               320,
-              26
+              25
             ]
           },
           {
             "selector": "a",
             "text": "Neptune TV",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1789,7 +1713,7 @@
             "selector": "a",
             "text": "Direct",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1797,7 +1721,7 @@
             "selector": "a",
             "text": "Nouveautés",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1805,7 +1729,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1813,7 +1737,7 @@
             "selector": "a",
             "text": "Espace client",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1821,7 +1745,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              350,
+              362,
               32
             ]
           },
@@ -1829,7 +1753,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              350,
+              362,
               32
             ]
           }
@@ -1838,12 +1762,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             25,
-            206.9375,
+            231.09375,
             340,
-            168.171875,
-            206.9375,
+            279.59375,
+            231.09375,
             365,
-            375.109375,
+            510.6875,
             25
           ]
         }
@@ -1856,6 +1780,14 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -2392,6 +2324,10 @@
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
         }
       ],
       "files": [
@@ -2424,8 +2360,8 @@
               1
             ],
             "scroll": [
-              233,
-              19
+              196,
+              18
             ]
           },
           {
@@ -2436,19 +2372,7 @@
               1
             ],
             "scroll": [
-              176,
-              19
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre44s",
-            "client": [
-              64,
-              18
-            ],
-            "scroll": [
-              69,
+              154,
               18
             ]
           },
@@ -2460,7 +2384,7 @@
               24
             ],
             "scroll": [
-              92,
+              74,
               48
             ]
           },
@@ -2473,7 +2397,7 @@
             ],
             "scroll": [
               64,
-              72
+              48
             ]
           },
           {
@@ -2484,20 +2408,8 @@
               24
             ],
             "scroll": [
-              66,
-              48
-            ]
-          },
-          {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre19s",
-            "client": [
               64,
-              18
-            ],
-            "scroll": [
-              69,
-              18
+              48
             ]
           },
           {
@@ -2513,18 +2425,6 @@
             ]
           },
           {
-            "selector": "span.media-card-meta",
-            "text": "Concept Libre57s",
-            "client": [
-              64,
-              18
-            ],
-            "scroll": [
-              69,
-              18
-            ]
-          },
-          {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
@@ -2533,31 +2433,31 @@
             ],
             "scroll": [
               64,
-              48
+              36
             ]
           },
           {
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              252,
-              82
+              236,
+              30
             ],
             "scroll": [
-              252,
-              86
+              236,
+              33
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              252,
-              82
+              236,
+              30
             ],
             "scroll": [
-              252,
-              86
+              236,
+              33
             ]
           }
         ],
@@ -2575,16 +2475,16 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              50,
-              38
+              47,
+              36
             ]
           },
           {
             "selector": "a.hero-detail-link",
             "text": "Voir la page de l’émission →",
             "size": [
-              196,
-              15
+              168,
+              14
             ]
           },
           {
@@ -2592,7 +2492,7 @@
             "text": "Détails, partage et transcription →",
             "size": [
               295,
-              26
+              25
             ]
           },
           {
@@ -2600,14 +2500,14 @@
             "text": "Détails, partage et transcription →",
             "size": [
               295,
-              26
+              25
             ]
           },
           {
             "selector": "a",
             "text": "Neptune TV",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2615,7 +2515,7 @@
             "selector": "a",
             "text": "Direct",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2623,7 +2523,7 @@
             "selector": "a",
             "text": "Nouveautés",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2631,7 +2531,7 @@
             "selector": "a",
             "text": "Voir les créneaux",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2639,7 +2539,7 @@
             "selector": "a",
             "text": "Espace client",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2647,7 +2547,7 @@
             "selector": "a",
             "text": "Confidentialité",
             "size": [
-              320,
+              332,
               32
             ]
           },
@@ -2655,7 +2555,7 @@
             "selector": "a",
             "text": "Contact",
             "size": [
-              320,
+              332,
               32
             ]
           }
@@ -2663,14 +2563,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            20,
-            206.9375,
-            320,
-            155.15625,
-            206.9375,
-            340,
-            362.09375,
-            20
+            14,
+            231.09375,
+            332,
+            207.3125,
+            231.09375,
+            346,
+            438.40625,
+            14
           ]
         }
       },
@@ -2682,6 +2582,10 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -3210,6 +3114,10 @@
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
         }
       ],
       "files": [
@@ -3231,8 +3139,8 @@
         1
       ],
       "scroll": [
-        233,
-        19
+        196,
+        18
       ]
     },
     {
@@ -3243,12 +3151,12 @@
       "selector": "h2",
       "text": "À regarder.",
       "client": [
-        780,
-        56
+        660,
+        76
       ],
       "scroll": [
-        780,
-        61
+        660,
+        81
       ]
     },
     {
@@ -3263,8 +3171,8 @@
         1
       ],
       "scroll": [
-        176,
-        19
+        154,
+        18
       ]
     },
     {
@@ -3279,8 +3187,8 @@
         24
       ],
       "scroll": [
-        92,
-        48
+        85,
+        36
       ]
     },
     {
@@ -3296,7 +3204,7 @@
       ],
       "scroll": [
         85,
-        48
+        36
       ]
     },
     {
@@ -3321,46 +3229,14 @@
       "route": "home",
       "type": "clipped-text",
       "selector": "h3",
-      "text": "L’humain avant le business",
-      "client": [
-        85,
-        24
-      ],
-      "scroll": [
-        85,
-        36
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "desktop-1440",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Filmer chez soi ? Laissez tomber.",
-      "client": [
-        85,
-        24
-      ],
-      "scroll": [
-        85,
-        36
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "desktop-1440",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        581,
-        52
+        453,
+        53
       ],
       "scroll": [
-        581,
-        57
+        453,
+        58
       ]
     },
     {
@@ -3371,12 +3247,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        581,
-        52
+        453,
+        53
       ],
       "scroll": [
-        581,
-        57
+        453,
+        58
       ]
     },
     {
@@ -3561,8 +3437,8 @@
         1
       ],
       "scroll": [
-        233,
-        19
+        196,
+        18
       ]
     },
     {
@@ -3573,12 +3449,12 @@
       "selector": "h2",
       "text": "À regarder.",
       "client": [
-        658,
-        50
+        653,
+        68
       ],
       "scroll": [
-        658,
-        55
+        653,
+        72
       ]
     },
     {
@@ -3593,8 +3469,8 @@
         1
       ],
       "scroll": [
-        176,
-        19
+        154,
+        18
       ]
     },
     {
@@ -3609,8 +3485,8 @@
         24
       ],
       "scroll": [
-        92,
-        48
+        74,
+        36
       ]
     },
     {
@@ -3626,7 +3502,7 @@
       ],
       "scroll": [
         72,
-        60
+        36
       ]
     },
     {
@@ -3642,7 +3518,7 @@
       ],
       "scroll": [
         72,
-        48
+        36
       ]
     },
     {
@@ -3685,12 +3561,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        507,
+        453,
         49
       ],
       "scroll": [
-        507,
-        54
+        453,
+        52
       ]
     },
     {
@@ -3701,12 +3577,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        507,
+        453,
         49
       ],
       "scroll": [
-        507,
-        54
+        453,
+        52
       ]
     },
     {
@@ -3923,8 +3799,24 @@
         1
       ],
       "scroll": [
-        233,
-        19
+        196,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "À regarder.",
+      "client": [
+        605,
+        63
+      ],
+      "scroll": [
+        605,
+        67
       ]
     },
     {
@@ -3939,23 +3831,7 @@
         1
       ],
       "scroll": [
-        176,
-        19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre44s",
-      "client": [
-        62,
-        18
-      ],
-      "scroll": [
-        69,
+        154,
         18
       ]
     },
@@ -3971,7 +3847,7 @@
         24
       ],
       "scroll": [
-        92,
+        74,
         48
       ]
     },
@@ -3988,7 +3864,7 @@
       ],
       "scroll": [
         62,
-        72
+        48
       ]
     },
     {
@@ -4003,24 +3879,8 @@
         24
       ],
       "scroll": [
-        66,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre19s",
-      "client": [
         62,
-        18
-      ],
-      "scroll": [
-        69,
-        18
+        48
       ]
     },
     {
@@ -4044,22 +3904,6 @@
       "viewport": "tablet-834",
       "route": "home",
       "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre57s",
-      "client": [
-        62,
-        18
-      ],
-      "scroll": [
-        69,
-        18
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
@@ -4069,38 +3913,6 @@
       "scroll": [
         62,
         48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Hors Norme",
-      "client": [
-        695,
-        32
-      ],
-      "scroll": [
-        695,
-        35
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "tablet-834",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Concept Libre",
-      "client": [
-        695,
-        32
-      ],
-      "scroll": [
-        695,
-        35
       ]
     },
     {
@@ -4413,39 +4225,7 @@
         1
       ],
       "scroll": [
-        233,
-        19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "#catalogStatus",
-      "text": "2 extraits disponibles.",
-      "client": [
-        1,
-        1
-      ],
-      "scroll": [
-        176,
-        19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre44s",
-      "client": [
-        64,
-        18
-      ],
-      "scroll": [
-        69,
+        196,
         18
       ]
     },
@@ -4454,126 +4234,14 @@
       "viewport": "mobile-390",
       "route": "home",
       "type": "clipped-text",
-      "selector": "h3",
-      "text": "Votre entrepreneuriat mis en lumière",
+      "selector": "h2",
+      "text": "À regarder.",
       "client": [
-        64,
-        24
+        362,
+        42
       ],
       "scroll": [
-        92,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Un accident de moto met fin à son entreprise",
-      "client": [
-        64,
-        24
-      ],
-      "scroll": [
-        64,
-        72
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Le secret d’un storytelling efficace",
-      "client": [
-        64,
-        24
-      ],
-      "scroll": [
-        66,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre19s",
-      "client": [
-        64,
-        18
-      ],
-      "scroll": [
-        69,
-        18
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "L’humain avant le business",
-      "client": [
-        64,
-        24
-      ],
-      "scroll": [
-        64,
-        36
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre57s",
-      "client": [
-        64,
-        18
-      ],
-      "scroll": [
-        69,
-        18
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Filmer chez soi ? Laissez tomber.",
-      "client": [
-        64,
-        24
-      ],
-      "scroll": [
-        64,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-390",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "h3",
-      "text": "Hors Norme",
-      "client": [
-        282,
-        41
-      ],
-      "scroll": [
-        282,
+        362,
         45
       ]
     },
@@ -4582,15 +4250,127 @@
       "viewport": "mobile-390",
       "route": "home",
       "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        154,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        74,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        266,
+        30
+      ],
+      "scroll": [
+        266,
+        33
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        282,
-        82
+        266,
+        30
       ],
       "scroll": [
-        282,
-        86
+        266,
+        33
       ]
     },
     {
@@ -4896,8 +4676,8 @@
         1
       ],
       "scroll": [
-        233,
-        19
+        196,
+        18
       ]
     },
     {
@@ -4912,23 +4692,7 @@
         1
       ],
       "scroll": [
-        176,
-        19
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre44s",
-      "client": [
-        64,
-        18
-      ],
-      "scroll": [
-        69,
+        154,
         18
       ]
     },
@@ -4944,7 +4708,7 @@
         24
       ],
       "scroll": [
-        92,
+        74,
         48
       ]
     },
@@ -4961,7 +4725,7 @@
       ],
       "scroll": [
         64,
-        72
+        48
       ]
     },
     {
@@ -4976,24 +4740,8 @@
         24
       ],
       "scroll": [
-        66,
-        48
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre19s",
-      "client": [
         64,
-        18
-      ],
-      "scroll": [
-        69,
-        18
+        48
       ]
     },
     {
@@ -5017,22 +4765,6 @@
       "viewport": "mobile-360",
       "route": "home",
       "type": "clipped-text",
-      "selector": "span.media-card-meta",
-      "text": "Concept Libre57s",
-      "client": [
-        64,
-        18
-      ],
-      "scroll": [
-        69,
-        18
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
@@ -5041,7 +4773,7 @@
       ],
       "scroll": [
         64,
-        48
+        36
       ]
     },
     {
@@ -5052,12 +4784,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        252,
-        82
+        236,
+        30
       ],
       "scroll": [
-        252,
-        86
+        236,
+        33
       ]
     },
     {
@@ -5068,12 +4800,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        252,
-        82
+        236,
+        30
       ],
       "scroll": [
-        252,
-        86
+        236,
+        33
       ]
     },
     {
