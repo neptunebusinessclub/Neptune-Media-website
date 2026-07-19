@@ -7,17 +7,16 @@
 
   const first = ['influenceur.se', 'caméraman', 'vidéaste'];
   const second = ["chef.fe d'entreprise", 'entrepreneur.se', 'expert.e dans votre domaine'];
+  const liveVideo = 'https://drive.google.com/uc?export=download&id=1aOyEB0UCbzHGkEuk3ruYzTdGAJdRdpRf';
+  const livePoster = 'https://drive.google.com/thumbnail?id=1aOyEB0UCbzHGkEuk3ruYzTdGAJdRdpRf&sz=w1600';
 
   ready(() => {
     const hero = document.querySelector('.voice-hero');
     const heroGrid = hero?.querySelector('.hero-grid');
-    if (!hero || !heroGrid || hero.dataset.heroRefresh === 'v21') return;
+    if (!hero || !heroGrid || hero.dataset.heroRefresh === 'v22') return;
 
-    const mediaWrap = hero.querySelector('.hero-media-wrap, .hero-media, .hero-grid > :last-child');
-    if (!mediaWrap) return;
-
-    hero.dataset.heroRefresh = 'v21';
-    document.body.dataset.heroRefresh = 'v21';
+    hero.dataset.heroRefresh = 'v22';
+    document.body.dataset.heroRefresh = 'v22';
 
     const stage = document.createElement('div');
     stage.className = 'hero-v21';
@@ -38,15 +37,14 @@
         </div>
       </div>
       <div class="hero-v21__live">
-        <div class="hero-v21__live-head">
-          <span class="hero-v21__live-dot"></span>
-          <span>En direct sur Neptune TV</span>
+        <div class="hero-v21__live-head"><span class="hero-v21__live-dot"></span><span>En direct sur Neptune TV</span></div>
+        <div class="hero-v21__video-frame">
+          <video muted autoplay loop playsinline preload="metadata" poster="${livePoster}" aria-label="Émission Hors Norme en direct sur Neptune TV">
+            <source src="${liveVideo}" type="video/mp4">
+          </video>
+          <a class="hero-v21__watch" href="/emissions/">Regarder l'émission</a>
         </div>
-      </div>
-    `;
-
-    const liveSlot = stage.querySelector('.hero-v21__live');
-    liveSlot.appendChild(mediaWrap);
+      </div>`;
 
     heroGrid.replaceChildren(stage);
     heroGrid.classList.add('hero-grid--v21');
@@ -62,7 +60,6 @@
       index = (index + 1) % first.length;
       primaryNode.classList.add('is-exiting');
       secondaryNode.classList.add('is-exiting');
-
       window.setTimeout(() => {
         primaryNode.textContent = first[index];
         secondaryNode.textContent = second[index];
@@ -71,7 +68,6 @@
         primaryNode.classList.add('is-entering');
         secondaryNode.classList.add('is-entering');
       }, 260);
-
       window.setTimeout(() => {
         primaryNode.classList.remove('is-entering');
         secondaryNode.classList.remove('is-entering');
@@ -79,8 +75,6 @@
       }, 680);
     };
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.setInterval(swap, 2600);
-    }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) window.setInterval(swap, 2600);
   });
 })();
