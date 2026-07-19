@@ -11,7 +11,11 @@ export async function sha256(value) {
   return toHex(new Uint8Array(digest));
 }
 
-export async function hashPassword(password, salt = randomToken(16), iterations = 120000) {
+// The Workers Free plan allows 10 ms of CPU per request. A 120k-round
+// PBKDF2 regularly exceeds that budget once Durable Object and SQL work are
+// included. 30k keeps the native Web Crypto calculation inside the budget.
+// The stored iteration count keeps every hash independently upgradeable.
+export async function hashPassword(password, salt = randomToken(16), iterations = 30000) {
   const key = await crypto.subtle.importKey(
     'raw',
     encoder.encode(String(password)),
