@@ -4,6 +4,12 @@
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
 
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
 /studio/*
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow, noarchive
@@ -16,10 +22,10 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
 
 /*.css
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: no-cache, must-revalidate
 
 /*.js
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: no-cache, must-revalidate
 
 /*.woff2
   Cache-Control: public, max-age=2592000, stale-while-revalidate=2592000
