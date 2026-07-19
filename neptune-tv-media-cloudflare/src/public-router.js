@@ -39,7 +39,7 @@ export async function enhanceHtml(response, request, env, mode) {
   if (mode === 'public' && normalizePath(url.pathname) === '/') body = injectLandingSchema(body, origin);
   const stylesheet = mode === 'studio' ? '/studio-upgrade.css?v=5' : '/upgrade.css?v=5';
   const supplementalStyles = mode === 'public'
-    ? '<link rel="stylesheet" href="/upgrade-media.css?v=6"><link rel="stylesheet" href="/landing-conversion.css?v=3"><link rel="stylesheet" href="/styles/visual-polish-v11.css?v=2">'
+    ? '<link rel="stylesheet" href="/upgrade-media.css?v=6"><link rel="stylesheet" href="/landing-conversion.css?v=3"><link rel="stylesheet" href="/styles/visual-polish-v11.css?v=3">'
     : '<link rel="stylesheet" href="/studio-access.css?v=2"><link rel="stylesheet" href="/studio-live.css?v=2"><link rel="stylesheet" href="/studio-command.css?v=1">';
   const script = mode === 'studio' ? '/studio-upgrade.js?v=5' : '/upgrade.js?v=6';
   const extraScripts = mode === 'public'
@@ -47,7 +47,7 @@ export async function enhanceHtml(response, request, env, mode) {
     : '<script src="/studio-access.js?v=2"></script><script src="/studio-live.js?v=2"></script><script src="/studio-command.js?v=1"></script>';
   if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${supplementalStyles}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
-  if (!body.includes(script)) body = body.replace(marker, `${extraScripts}<script src="${script}"></script>${marker}${mode === 'public' ? '<script src="/visual-polish-v11.js?v=2"></script>' : ''}`);
+  if (!body.includes(script)) body = body.replace(marker, `${extraScripts}<script src="${script}"></script>${marker}${mode === 'public' ? '<script src="/visual-polish-v11.js?v=3"></script>' : ''}`);
   const headers = new Headers(response.headers);
   headers.set('Content-Type', 'text/html; charset=utf-8');
   if (mode === 'studio') {
