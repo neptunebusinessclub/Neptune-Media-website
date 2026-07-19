@@ -39,7 +39,8 @@
   "ai": { "binding": "AI" },
   "vars": {
     "BOOKING_URL": "https://media.neptunebusiness.com",
-    "AI_MODEL": "@cf/openai/gpt-oss-120b"
+    "AI_MODEL": "@cf/openai/gpt-oss-120b",
+    "AUTH_FROM_EMAIL": "Neptune Media <connexion@neptunebusiness.com>"
   },
   "observability": { "enabled": true }
 }
