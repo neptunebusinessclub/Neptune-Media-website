@@ -17,7 +17,7 @@
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
-    document.body.dataset.visibilityShowcase = 'v19';
+    document.body.dataset.visibilityShowcase = 'v20';
 
     loadJourneyV18();
     ensurePrdVisualStyles();
@@ -66,7 +66,7 @@
   }
 
   function ensureVisibilityShowcaseStyles() {
-    appendStylesheet('/styles/visibility-showcase-v19.css?v=19', 'visibilityShowcase', 'v19', true);
+    appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
   }
 
   function loadJourneyV18() {
@@ -82,11 +82,11 @@
   }
 
   function loadVisibilityShowcase() {
-    if (document.querySelector('script[data-visibility-showcase-v19]')) return;
+    if (document.querySelector('script[data-visibility-showcase-v20]')) return;
     const script = document.createElement('script');
-    script.src = '/visibility-showcase-v19.js?v=19';
+    script.src = '/visibility-showcase-v19.js?v=20';
     script.defer = true;
-    script.dataset.visibilityShowcaseV19 = '1';
+    script.dataset.visibilityShowcaseV20 = '1';
     document.head.append(script);
   }
 
@@ -200,4 +200,4 @@
   }
 })();
 
-// Production browser quality gate revision 10.
+// Production browser quality gate revision 11.
