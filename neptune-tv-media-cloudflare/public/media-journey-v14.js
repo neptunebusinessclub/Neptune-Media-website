@@ -8,16 +8,23 @@
   const compareActions = document.querySelector('.format-compare-actions');
   const hero = document.querySelector('.voice-hero');
 
-  body.dataset.mediaJourney = 'v14';
+  body.dataset.mediaJourney = 'v18';
 
   if (proofStrip && !document.querySelector('.intent-router')) {
     const router = document.createElement('nav');
     router.className = 'intent-router';
     router.setAttribute('aria-label', 'Choisir votre parcours Neptune Media');
     router.innerHTML = `
-      <span>Vous êtes ici pour</span>
-      <a href="#a-voir" data-track="intent_watch">Regarder Neptune TV</a>
-      <a href="#formats" data-track="intent_guest">Faire produire mon émission</a>
+      <a class="intent-action intent-action--watch" href="#a-voir" data-track="intent_watch">
+        <span class="intent-icon" aria-hidden="true">▶</span>
+        <span class="intent-copy"><strong>Regarder Neptune TV</strong><small>Découvrir les émissions</small></span>
+        <span class="intent-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="intent-action intent-action--produce" href="#formats" data-track="intent_guest">
+        <span class="intent-icon" aria-hidden="true">✦</span>
+        <span class="intent-copy"><strong>Créer mon émission</strong><small>Voir les formats Neptune</small></span>
+        <span class="intent-arrow" aria-hidden="true">→</span>
+      </a>
     `;
     proofStrip.insertAdjacentElement('afterend', router);
   }
