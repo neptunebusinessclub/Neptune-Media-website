@@ -18,7 +18,7 @@
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v20';
-    document.body.dataset.heroRefresh = 'v24';
+    document.body.dataset.heroRefresh = 'v26';
 
     loadJourneyV18();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
@@ -26,8 +26,8 @@
     appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
     appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
     loadVisibilityShowcase();
-    appendStylesheet('/styles/hero-live-v21.css?v=25', 'heroLive', 'v25', true);
-    loadHeroLiveV24();
+    appendStylesheet('/styles/hero-live-v21.css?v=26', 'heroLive', 'v26', true);
+    loadHeroLiveV26();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
@@ -67,12 +67,12 @@
     document.head.append(script);
   }
 
-  function loadHeroLiveV24() {
-    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24]').forEach((node) => node.remove());
+  function loadHeroLiveV26() {
+    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24],script[data-hero-live-v26]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/hero-live-v21.js?v=24';
+    script.src = '/hero-live-v21.js?v=26';
     script.defer = true;
-    script.dataset.heroLiveV24 = '1';
+    script.dataset.heroLiveV26 = '1';
     document.head.append(script);
   }
 
@@ -165,4 +165,4 @@
   }
 })();
 
-// Production browser quality gate revision 16.
+// Production browser quality gate revision 17.
