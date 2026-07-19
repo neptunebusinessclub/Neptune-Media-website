@@ -5,10 +5,13 @@ on:
     branches: [main]
     paths:
       - 'neptune-tv-media-cloudflare/src/public-router.js'
+      - 'neptune-tv-media-cloudflare/public/index.html'
       - 'neptune-tv-media-cloudflare/public/home-live.js'
       - 'neptune-tv-media-cloudflare/public/landing-conversion.js'
+      - 'neptune-tv-media-cloudflare/public/styles/neptune-streaming.css'
       - 'neptune-tv-media-cloudflare/public/app.js'
       - 'neptune-tv-media-cloudflare/src/public-layout.js'
+      - 'scripts/apply-home-architecture-v10.py'
       - 'scripts/cleanup-render-polish-duplicates.py'
       - '.github/workflows/deploy-neptune-copy-hotfix.yml'
   workflow_dispatch:
@@ -40,7 +43,9 @@ jobs:
         id: normalize
         continue-on-error: true
         working-directory: .
-        run: python3 scripts/cleanup-render-polish-duplicates.py
+        run: |
+          python3 scripts/cleanup-render-polish-duplicates.py
+          python3 scripts/apply-home-architecture-v10.py
 
       - uses: actions/setup-node@v4
         with:
@@ -71,19 +76,24 @@ jobs:
           for attempt in 1 2 3 4 5 6 7 8; do
             nonce="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
             curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/?verify=$nonce" > /tmp/home.html
-            if grep -q '/home-live.js?v=3' /tmp/home.html \
-              && grep -q '/landing-conversion.js?v=4' /tmp/home.html; then
+            if grep -q 'data-home-structure="conversion-voice-v10"' /tmp/home.html \
+              && grep -q '/home-live.js?v=4' /tmp/home.html \
+              && grep -q '/landing-conversion.js?v=5' /tmp/home.html \
+              && grep -q 'Votre entreprise est solide' /tmp/home.html \
+              && grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/home.html; then
               ready=true
               break
             fi
             sleep 8
           done
           test "$ready" = "true"
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=3&verify=$nonce" > /tmp/home-live.js
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=4&verify=$nonce" > /tmp/landing.js
-          grep -q 'Votre expertise peut passer à l’antenne' /tmp/home-live.js
-          grep -q 'Votre expertise peut passer à l’antenne' /tmp/landing.js
-          ! grep -q 'Neptune Media diffuse les émissions programmées' /tmp/landing.js
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=4&verify=$nonce" > /tmp/home-live.js
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=5&verify=$nonce" > /tmp/landing.js
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/neptune-streaming.css?v=10&verify=$nonce" > /tmp/streaming.css
+          grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
+          grep -q 'mobile-conversion-bar' /tmp/landing.js
+          grep -q 'Conversion voice architecture v10' /tmp/streaming.css
+          ! grep -q 'updateHero' /tmp/landing.js
           ! grep -q '24H/24' /tmp/home-live.js
 
       - name: Record hotfix deployment result
@@ -110,8 +120,9 @@ jobs:
               'status': 'success' if all(value == 'success' for value in outcomes.values()) else 'failed',
               'source_sha': os.environ.get('GITHUB_SHA', ''),
               'checked_at': datetime.now(timezone.utc).isoformat(),
-              'home_live': 'v3',
-              'landing_conversion': 'v4',
+              'architecture': 'conversion-voice-v10',
+              'home_live': 'v4',
+              'landing_conversion': 'v5',
               'outcomes': outcomes,
           }
           with open('copy-hotfix-deployment-status.json', 'w', encoding='utf-8') as handle:
@@ -122,8 +133,13 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
             copy-hotfix-deployment-status.json \
+            neptune-tv-media-cloudflare/public/index.html \
+            neptune-tv-media-cloudflare/public/home-live.js \
+            neptune-tv-media-cloudflare/public/landing-conversion.js \
+            neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/public/app.js \
-            neptune-tv-media-cloudflare/src/public-layout.js
-          git commit -m 'chore: record Neptune copy hotfix deployment and cleaned source [skip ci]' || true
+            neptune-tv-media-cloudflare/src/public-layout.js \
+            neptune-tv-media-cloudflare/src/public-router.js
+          git commit -m 'chore: record Neptune v10 hotfix deployment [skip ci]' || true
           git pull --rebase origin main || true
           git push
