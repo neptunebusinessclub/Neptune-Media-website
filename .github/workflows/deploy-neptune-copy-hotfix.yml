@@ -11,9 +11,17 @@ on:
       - 'neptune-tv-media-cloudflare/public/home-live.js'
       - 'neptune-tv-media-cloudflare/public/landing-conversion.js'
       - 'neptune-tv-media-cloudflare/public/styles/neptune-streaming.css'
+      - 'neptune-tv-media-cloudflare/public/styles/visual-polish-v11.css'
+      - 'neptune-tv-media-cloudflare/public/visual-polish-v11.js'
+      - 'neptune-tv-media-cloudflare/public/styles/final-experience-v12.css'
+      - 'neptune-tv-media-cloudflare/public/final-experience-v12.js'
       - 'neptune-tv-media-cloudflare/public/app.js'
       - 'neptune-tv-media-cloudflare/src/public-layout.js'
+      - 'neptune-tv-media-cloudflare/package.json'
+      - 'neptune-tv-media-cloudflare/scripts/qa-production-ui.mjs'
       - 'scripts/apply-home-architecture-v10.py'
+      - 'scripts/apply-visual-polish-v11.py'
+      - 'scripts/apply-final-experience-v12.py'
       - 'scripts/cleanup-render-polish-duplicates.py'
       - '.github/workflows/deploy-neptune-copy-hotfix.yml'
   workflow_dispatch:
@@ -28,7 +36,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     defaults:
       run:
         working-directory: neptune-tv-media-cloudflare
@@ -41,12 +49,20 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Normalize generated source
+      - name: Normalize and finalize generated source
         id: normalize
         working-directory: .
         run: |
+          set -euo pipefail
           python3 scripts/cleanup-render-polish-duplicates.py
           python3 scripts/apply-home-architecture-v10.py
+          python3 scripts/apply-visual-polish-v11.py
+          grep -q 'data-final-ux="v12"' neptune-tv-media-cloudflare/public/index.html
+          grep -q 'production-pipeline' neptune-tv-media-cloudflare/public/index.html
+          grep -q 'data-format-recommendation' neptune-tv-media-cloudflare/public/index.html
+          grep -q '/styles/final-experience-v12.css?v=1' neptune-tv-media-cloudflare/public/index.html
+          grep -q '/final-experience-v12.js?v=1' neptune-tv-media-cloudflare/public/index.html
+          ! grep -q 'apple-conversion-v13.css' neptune-tv-media-cloudflare/public/index.html
 
       - uses: actions/setup-node@v4
         with:
@@ -61,6 +77,9 @@ jobs:
         id: validate
         run: npm run check
 
+      - name: Validate Cloudflare bundle
+        run: npx wrangler deploy --dry-run
+
       - name: Deploy current source
         id: deploy
         run: npx wrangler deploy
@@ -70,12 +89,15 @@ jobs:
         run: |
           set -euo pipefail
           ready=false
-          for attempt in 1 2 3 4 5 6 7 8; do
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
             nonce="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}"
             curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/?verify=$nonce" > /tmp/home.html
             if grep -q 'data-home-structure="conversion-voice-v10"' /tmp/home.html \
-              && grep -q '/home-live.js?v=4' /tmp/home.html \
-              && grep -q '/landing-conversion.js?v=5' /tmp/home.html \
+              && grep -q 'data-final-ux="v12"' /tmp/home.html \
+              && grep -q '/styles/final-experience-v12.css?v=1' /tmp/home.html \
+              && grep -q '/final-experience-v12.js?v=1' /tmp/home.html \
+              && grep -q 'production-pipeline' /tmp/home.html \
+              && grep -q 'data-format-recommendation' /tmp/home.html \
               && grep -q 'Votre entreprise est solide' /tmp/home.html \
               && grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/home.html; then
               ready=true
@@ -84,13 +106,20 @@ jobs:
             sleep 8
           done
           test "$ready" = "true"
+          ! grep -q 'apple-conversion-v13.css' /tmp/home.html
+          ! grep -q 'data-apple-ux="v13"' /tmp/home.html
 
           curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=4&verify=$nonce" > /tmp/home-live.js
           curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=5&verify=$nonce" > /tmp/landing.js
-          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/neptune-streaming.css?v=10&verify=$nonce" > /tmp/streaming.css
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/neptune-streaming.css?v=11&verify=$nonce" > /tmp/streaming.css
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/final-experience-v12.css?v=1&verify=$nonce" > /tmp/final.css
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/final-experience-v12.js?v=1&verify=$nonce" > /tmp/final.js
           grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
           grep -q 'mobile-conversion-bar' /tmp/landing.js
           grep -q 'Conversion voice architecture v10' /tmp/streaming.css
+          grep -q 'Neptune Media final experience v12' /tmp/final.css
+          grep -q 'bindFormatDecision' /tmp/final.js
+          grep -q 'bindRailAffordance' /tmp/final.js
           ! grep -q 'updateHero' /tmp/landing.js
           ! grep -q '24H/24' /tmp/home-live.js
 
@@ -102,6 +131,8 @@ jobs:
 
           grep -Eq 'data-live-channel|Programmation Neptune Media|Neptune Media en direct' /tmp/direct.html
           grep -q 'Catalogue Neptune Media' /tmp/emissions.html
+          grep -q '/styles/final-experience-v12.css?v=1' /tmp/direct.html
+          grep -q '/styles/final-experience-v12.css?v=1' /tmp/emissions.html
           grep -Eq 'studio|connexion|administration' /tmp/studio.html
           grep -qi '^x-robots-tag:.*noindex' /tmp/studio.headers
           node -e "const d=require('/tmp/health.json'); if(d.ok!==true) process.exit(1)"
@@ -129,14 +160,11 @@ jobs:
           test -s /tmp/poster.webp
           test -s /tmp/video.bin
 
-          admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' \
-            -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?verify=$nonce")
+          admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?verify=$nonce")
           test "$admin_list_status" = "401"
           node -e "const d=require('/tmp/admin-list.json'); if(d.error!=='unauthorized') process.exit(1)"
 
-          admin_mutation_status=$(curl --silent --show-error --output /tmp/admin-mutation.json --write-out '%{http_code}' \
-            -X POST -H 'Content-Type: application/json' -H 'Origin: https://example.invalid' \
-            --data '{}' "$PUBLIC_URL/api/admin/client-update?verify=$nonce")
+          admin_mutation_status=$(curl --silent --show-error --output /tmp/admin-mutation.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' -H 'Origin: https://example.invalid' --data '{}' "$PUBLIC_URL/api/admin/client-update?verify=$nonce")
           test "$admin_mutation_status" = "403"
           node -e "const d=require('/tmp/admin-mutation.json'); if(d.error!=='origin_forbidden') process.exit(1)"
 
@@ -165,6 +193,7 @@ jobs:
               'source_sha': os.environ.get('GITHUB_SHA', ''),
               'checked_at': datetime.now(timezone.utc).isoformat(),
               'architecture': 'conversion-voice-v10',
+              'experience': 'final-v12',
               'home_live': 'v4',
               'landing_conversion': 'v5',
               'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog', '/robots.txt', '/sitemap.xml', '/video-sitemap.xml', '/llms.txt', '/api/admin/clients', '/api/admin/client-update'],
@@ -184,7 +213,8 @@ jobs:
             neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/public/app.js \
             neptune-tv-media-cloudflare/src/public-layout.js \
-            neptune-tv-media-cloudflare/src/public-router.js
-          git commit -m 'chore: record Neptune v10 hotfix deployment [skip ci]' || true
+            neptune-tv-media-cloudflare/src/public-router.js \
+            neptune-tv-media-cloudflare/package.json
+          git commit -m 'chore: record Neptune final v12 deployment [skip ci]' || true
           git pull --rebase origin main || true
           git push
