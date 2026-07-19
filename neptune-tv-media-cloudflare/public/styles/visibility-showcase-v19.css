@@ -1,99 +1,38 @@
-/* Neptune Media — visibility showcase v19 */
+/* Neptune Media — visibility showcase v20 */
 .visibility-showcase{
   position:relative;
   overflow:hidden;
   padding:clamp(72px,8vw,112px) 0 clamp(70px,8vw,106px);
-  background:
-    radial-gradient(circle at 50% 18%,rgba(34,158,255,.13),transparent 34%),
-    linear-gradient(180deg,#020611 0%,#050b18 42%,#020611 100%);
+  background:radial-gradient(circle at 50% 18%,rgba(34,158,255,.13),transparent 34%),linear-gradient(180deg,#020611 0%,#050b18 42%,#020611 100%);
   isolation:isolate;
 }
-.visibility-showcase::before,
-.visibility-showcase::after{
-  content:"";
-  position:absolute;
-  z-index:4;
-  top:0;
-  bottom:0;
-  width:clamp(38px,8vw,150px);
-  pointer-events:none;
-}
+.visibility-showcase::before,.visibility-showcase::after{content:"";position:absolute;z-index:4;top:0;bottom:0;width:clamp(38px,8vw,150px);pointer-events:none}
 .visibility-showcase::before{left:0;background:linear-gradient(90deg,#020611,transparent)}
 .visibility-showcase::after{right:0;background:linear-gradient(-90deg,#020611,transparent)}
 .visibility-showcase__intro{position:relative;z-index:5;text-align:center}
 .visibility-showcase__intro .eyebrow{display:block;margin-bottom:14px}
-.visibility-showcase__intro h2{
-  max-width:16ch!important;
-  margin:0 auto;
-  font-size:clamp(2.6rem,5.8vw,5.4rem)!important;
-  line-height:.96!important;
-  letter-spacing:-.06em!important;
-}
-.visibility-showcase__intro h2 strong{
-  display:block;
-  color:#fff;
-  background:linear-gradient(110deg,#fff 12%,#6fcfff 54%,#a894ff 96%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.visibility-showcase__intro p{
-  max-width:50ch!important;
-  margin:22px auto 0!important;
-  color:#9eacc0;
-  font-size:clamp(1rem,1.5vw,1.15rem);
-  line-height:1.58;
-}
-.visibility-showcase__stage{position:relative;z-index:2;margin-top:clamp(42px,6vw,72px)}
-.visibility-marquee{overflow:hidden;padding-block:8px}
+.visibility-showcase__intro h2{max-width:16ch!important;margin:0 auto;font-size:clamp(2.6rem,5.8vw,5.4rem)!important;line-height:.96!important;letter-spacing:-.06em!important}
+.visibility-showcase__intro h2 strong{display:block;color:#fff;background:linear-gradient(110deg,#fff 12%,#6fcfff 54%,#a894ff 96%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.visibility-showcase__intro p{max-width:50ch!important;margin:22px auto 0!important;color:#9eacc0;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.58}
+.visibility-showcase__stage{position:relative;z-index:2;width:100%;margin-top:clamp(42px,6vw,72px)}
+.visibility-marquee{width:100%;overflow:hidden;padding-block:8px;contain:paint}
 .visibility-marquee + .visibility-marquee{margin-top:10px}
-.visibility-marquee__track{display:flex;width:max-content;will-change:transform}
+.visibility-marquee__track{display:flex;width:max-content;min-width:400vw;will-change:transform;transform:translate3d(0,0,0)}
 .visibility-marquee__group{display:flex;flex:none;gap:14px;padding-right:14px}
-.visibility-marquee--top .visibility-marquee__track{animation:visibility-scroll-left 78s linear infinite}
-.visibility-marquee--bottom .visibility-marquee__track{animation:visibility-scroll-right 48s linear infinite}
+.visibility-marquee--top .visibility-marquee__track{animation:visibility-scroll-left 96s linear infinite}
+.visibility-marquee--bottom .visibility-marquee__track{animation:visibility-scroll-right 58s linear infinite}
 .visibility-showcase__stage:hover .visibility-marquee__track{animation-play-state:paused}
-.visibility-short{
-  position:relative;
-  flex:none;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:#071022;
-  box-shadow:0 20px 60px rgba(0,0,0,.28);
-  transform:translateZ(0);
-}
+.visibility-short{position:relative;flex:none;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#071022;box-shadow:0 20px 60px rgba(0,0,0,.28);transform:translateZ(0)}
 .visibility-short--large{width:clamp(150px,13vw,210px);aspect-ratio:9/16;border-radius:20px}
 .visibility-short--small{width:clamp(96px,8.2vw,132px);aspect-ratio:9/16;border-radius:15px}
 .visibility-short video{width:100%;height:100%;display:block;object-fit:cover;background:#071022}
 .visibility-short__shade{position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(2,6,17,.88));pointer-events:none}
-.visibility-short__label{
-  position:absolute;
-  z-index:2;
-  left:12px;
-  right:12px;
-  bottom:12px;
-  color:#fff;
-  font-size:.78rem;
-  font-weight:760;
-  line-height:1.18;
-  letter-spacing:-.02em;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
+.visibility-short__label{position:absolute;z-index:2;left:12px;right:12px;bottom:12px;color:#fff;font-size:.78rem;font-weight:760;line-height:1.18;letter-spacing:-.02em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .visibility-short--small .visibility-short__label{left:9px;right:9px;bottom:9px;font-size:.64rem}
-.visibility-showcase__footer{
-  position:relative;
-  z-index:5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:24px;
-  margin-top:clamp(36px,5vw,58px);
-}
+.visibility-showcase__footer{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;gap:24px;margin-top:clamp(36px,5vw,58px)}
 .visibility-showcase__footer span{color:#8291a7;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-@keyframes visibility-scroll-left{to{transform:translateX(-50%)}}
-@keyframes visibility-scroll-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes visibility-scroll-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(-25%,0,0)}}
+@keyframes visibility-scroll-right{from{transform:translate3d(-25%,0,0)}to{transform:translate3d(0,0,0)}}
 @media(max-width:760px){
   .visibility-showcase{padding:64px 0 70px}
   .visibility-showcase__intro h2{font-size:clamp(2.55rem,12vw,4rem)!important}
@@ -107,6 +46,6 @@
 }
 @media(prefers-reduced-motion:reduce){
   .visibility-marquee{overflow-x:auto;scrollbar-width:none}
-  .visibility-marquee__track{animation:none!important}
-  .visibility-marquee__group[aria-hidden="true"]{display:none}
+  .visibility-marquee__track{animation:none!important;min-width:max-content}
+  .visibility-marquee__group:nth-child(n+2){display:none}
 }
