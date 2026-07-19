@@ -13,9 +13,10 @@
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
-    loadJourneyV14();
+    loadJourneyV18();
     ensurePrdVisualStyles();
     ensureVisualDensityStyles();
+    ensureIntentActionStyles();
     simplifyHeroCopy();
     removeJourneyNavigation();
     bindFormatDecision();
@@ -52,19 +53,18 @@
     appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
   }
 
-  function loadJourneyV14() {
-    if (!document.querySelector('link[data-media-journey-v14]')) {
-      const stylesheet = document.createElement('link');
-      stylesheet.rel = 'stylesheet';
-      stylesheet.href = '/styles/media-journey-v14.css?v=14';
-      stylesheet.dataset.mediaJourneyV14 = '1';
-      document.head.append(stylesheet);
-    }
-    if (!document.querySelector('script[data-media-journey-v14]')) {
+  function ensureIntentActionStyles() {
+    appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
+  }
+
+  function loadJourneyV18() {
+    const oldScript = document.querySelector('script[data-media-journey-v14]');
+    if (oldScript) oldScript.remove();
+    if (!document.querySelector('script[data-media-journey-v18]')) {
       const script = document.createElement('script');
-      script.src = '/media-journey-v14.js?v=14';
+      script.src = '/media-journey-v14.js?v=18';
       script.defer = true;
-      script.dataset.mediaJourneyV14 = '1';
+      script.dataset.mediaJourneyV18 = '1';
       document.head.append(script);
     }
   }
@@ -161,4 +161,4 @@
   }
 })();
 
-// Production browser quality gate revision 8.
+// Production browser quality gate revision 9.
