@@ -59,6 +59,7 @@ jobs:
         run: |
           python3 scripts/apply-render-polish-v7.py
           python3 scripts/apply-render-polish-v8.py
+          python3 scripts/apply-home-architecture-v10.py
 
       - name: Persist corrected source
         working-directory: .
@@ -78,13 +79,15 @@ jobs:
             neptune-tv-media-cloudflare/public/accessibility.js \
             neptune-tv-media-cloudflare/public/ux-aida.js \
             neptune-tv-media-cloudflare/public/landing-conversion.js \
+            neptune-tv-media-cloudflare/public/home-live.js \
             neptune-tv-media-cloudflare/public/live-channel.js \
             neptune-tv-media-cloudflare/public/styles/accessibility.css \
             neptune-tv-media-cloudflare/public/styles/ux-aida.css \
             neptune-tv-media-cloudflare/public/styles/neptune-streaming.css \
             neptune-tv-media-cloudflare/package.json \
-            scripts/apply-streaming-index.py
-          git commit -m "feat: persist Neptune streaming UX and media fixes [skip ci]" || true
+            scripts/apply-streaming-index.py \
+            scripts/apply-home-architecture-v10.py
+          git commit -m "feat: persist Neptune emotional conversion architecture v10 [skip ci]" || true
           git pull --rebase origin main || true
           git push
 
@@ -121,29 +124,32 @@ jobs:
             sleep 10
           done
           grep -q '"ok":true' /tmp/health.json
-          curl --fail --silent --show-error "$PUBLIC_URL/" > /tmp/public-home.html
-          grep -q 'Votre expertise mérite d’être vue' /tmp/public-home.html
-          grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/public-home.html
-          grep -q 'data-home-structure="streaming-aida-v3"' /tmp/public-home.html
+          curl --fail --silent --show-error -H 'Cache-Control: no-cache' "$PUBLIC_URL/?v10=${GITHUB_RUN_ID}" > /tmp/public-home.html
+          grep -q 'Votre entreprise est solide' /tmp/public-home.html
+          grep -q 'J’ai pas le temps de jouer à l’influenceur' /tmp/public-home.html
+          grep -q 'J’ai déjà payé pour de belles vidéos qui n’ont rien changé' /tmp/public-home.html
+          grep -q 'Vous ne cherchez pas une vidéo' /tmp/public-home.html
+          grep -q 'Je suis pas à l’aise face caméra' /tmp/public-home.html
+          grep -q 'data-home-structure="conversion-voice-v10"' /tmp/public-home.html
           grep -q 'data-render-media="v7"' /tmp/public-home.html
           grep -q 'data-aida-stage="attention"' /tmp/public-home.html
           grep -q 'data-content-rail' /tmp/public-home.html
-          grep -q 'live-now-card' /tmp/public-home.html
-          grep -q 'Invité, entreprise ou sujet' /tmp/public-home.html
+          grep -q 'data-home-live' /tmp/public-home.html
+          grep -q 'inner-voice-grid' /tmp/public-home.html
           grep -q 'Aller au contenu principal' /tmp/public-home.html
           grep -q 'aria-controls="primary-navigation"' /tmp/public-home.html
           grep -q 'aria-labelledby="video-modal-title"' /tmp/public-home.html
           grep -q 'id="faq-answer-1"' /tmp/public-home.html
-          grep -q '/styles/neptune-streaming.css?v=9' /tmp/public-home.html
-          grep -q '/home-live.js?v=3' /tmp/public-home.html
-          grep -q '/landing-conversion.js?v=4' /tmp/public-home.html
+          grep -q '/styles/neptune-streaming.css?v=10' /tmp/public-home.html
+          grep -q '/home-live.js?v=4' /tmp/public-home.html
+          grep -q '/landing-conversion.js?v=5' /tmp/public-home.html
           grep -Fq "$OFFICIAL_BOOKING_URL" /tmp/public-home.html
           if grep -Eq 'href="https://neptune-media-webtv\.neptunebusinessclub\.workers\.dev[^\"]*"' /tmp/public-home.html; then
             echo 'The public landing page contains a Worker URL where a conversion URL is expected.' >&2
             exit 1
           fi
-          if grep -q 'Neptune Media diffuse les émissions programmées' /tmp/public-home.html; then
-            echo 'The obsolete live-section title is still present in production HTML.' >&2
+          if grep -q 'Votre expertise mérite d’être vue' /tmp/public-home.html; then
+            echo 'The obsolete generic hero copy is still present in production HTML.' >&2
             exit 1
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/accessibility.js" | grep -q 'trapFocus'
@@ -153,24 +159,25 @@ jobs:
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'answer.hidden'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q '!isShortEpisode(episode)'
           curl --fail --silent --show-error "$PUBLIC_URL/app.js" | grep -q 'formatLabel'
-          curl --fail --silent --show-error "$PUBLIC_URL/home-live.js?v=3" > /tmp/home-live.js
-          grep -q 'Votre expertise peut passer à l’antenne' /tmp/home-live.js
+          curl --fail --silent --show-error "$PUBLIC_URL/home-live.js?v=4" > /tmp/home-live.js
+          grep -q 'Les émissions restent disponibles immédiatement' /tmp/home-live.js
+          grep -q 'Neptune Media est à l’antenne' /tmp/home-live.js
           if grep -q '24H/24' /tmp/home-live.js; then
             echo 'The obsolete 24H/24 claim remains in home-live.js.' >&2
             exit 1
           fi
-          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=4" > /tmp/landing-conversion.js
-          grep -q 'Votre expertise peut passer à l’antenne' /tmp/landing-conversion.js
-          grep -q 'studio-wide.webp' /tmp/landing-conversion.js
-          grep -q 'concept-libre-wide.webp' /tmp/landing-conversion.js
-          if grep -q 'Neptune Media diffuse les émissions programmées' /tmp/landing-conversion.js; then
-            echo 'The obsolete live-section copy remains in landing-conversion.js.' >&2
+          curl --fail --silent --show-error "$PUBLIC_URL/landing-conversion.js?v=5" > /tmp/landing-conversion.js
+          grep -q 'mobile-conversion-bar' /tmp/landing-conversion.js
+          grep -q 'utm_campaign' /tmp/landing-conversion.js
+          if grep -q 'updateHero' /tmp/landing-conversion.js; then
+            echo 'Runtime copy rewriting is still present in landing-conversion.js.' >&2
             exit 1
           fi
           curl --fail --silent --show-error "$PUBLIC_URL/live-channel.js" | grep -q 'neptune:live-status'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/accessibility.css" | grep -q 'skip-link'
           curl --fail --silent --show-error "$PUBLIC_URL/styles/ux-aida.css" | grep -q 'interest-section'
-          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=9" > /tmp/neptune-streaming.css
+          curl --fail --silent --show-error "$PUBLIC_URL/styles/neptune-streaming.css?v=10" > /tmp/neptune-streaming.css
+          grep -q 'Conversion voice architecture v10' /tmp/neptune-streaming.css
           grep -q 'Compact shorts and avatar-first headings v9' /tmp/neptune-streaming.css
           curl --fail --silent --show-error "$PUBLIC_URL/direct/" > /tmp/direct.html
           grep -q 'live-page-immediate' /tmp/direct.html
