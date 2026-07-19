@@ -22,11 +22,30 @@ export async function handlePortalPublicRoute(request, env, studio) {
     const response = await callStore(studio, '/portal/request-code', { email });
     const result = await response.json().catch(() => ({}));
     if (!response.ok) return json(result, response.status);
+
+    let delivered = false;
+    let codeExpected = Boolean(result.retryAfter || result.throttled);
+    let emailId = null;
+
     if (result.deliver && result.code) {
       const sent = await sendCode(env, request.url, email, result.code);
       if (!sent.ok) return json({ error: sent.error }, 503);
+      delivered = true;
+      codeExpected = true;
+      emailId = sent.id || null;
+      console.log('client_security_code_sent', { emailId, to: email });
+    } else if (!codeExpected) {
+      console.warn('client_security_code_not_sent', { to: email, reason: result.reason || 'client_not_found' });
     }
-    return json({ ok: true, retryAfter: result.retryAfter || 0 });
+
+    return json({
+      ok: true,
+      delivered,
+      codeExpected,
+      emailId,
+      retryAfter: result.retryAfter || 0,
+      throttled: Boolean(result.throttled),
+    });
   }
 
   if (url.pathname === '/api/client/verify-code' && request.method === 'POST') {
