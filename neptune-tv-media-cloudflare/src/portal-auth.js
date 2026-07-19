@@ -1,10 +1,21 @@
 import { json, randomToken, sha256 } from './security.js';
 import { CODE_TTL, SESSION_TTL, normalizeEmail } from './portal-utils.js';
 
+const INTERNAL_PORTAL_EMAIL = 'contact@neptunebusiness.com';
+
 export async function requestCode(store,body){
-  const email=normalizeEmail(body.email);if(!email)return json({ok:true,deliver:false});
-  const client=store.sql.exec('SELECT id,active FROM portal_clients WHERE email=?',email).toArray()[0];
-  if(!client||Number(client.active)!==1)return json({ok:true,deliver:false});
+  const email=normalizeEmail(body.email);if(!email)return json({ok:true,deliver:false,reason:'invalid_email'});
+  let client=store.sql.exec('SELECT id,active FROM portal_clients WHERE email=?',email).toArray()[0];
+  if(email===INTERNAL_PORTAL_EMAIL&&(!client||Number(client.active)!==1)){
+    const now=new Date().toISOString();
+    if(client){
+      store.sql.exec('UPDATE portal_clients SET active=1,updated_at=? WHERE id=?',now,client.id);
+    }else{
+      store.sql.exec('INSERT INTO portal_clients (id,email,full_name,company,active,created_at,updated_at,last_access_at) VALUES (?,?,?,?,?,?,?,NULL)',crypto.randomUUID(),email,'Neptune Business','Neptune Business',1,now,now);
+    }
+    client=store.sql.exec('SELECT id,active FROM portal_clients WHERE email=?',email).toArray()[0];
+  }
+  if(!client||Number(client.active)!==1)return json({ok:true,deliver:false,reason:'client_not_found'});
   const now=new Date(),hourAgo=new Date(now.getTime()-3600000).toISOString();
   const recent=store.sql.exec('SELECT created_at AS createdAt FROM portal_codes WHERE email=? AND created_at>? ORDER BY created_at DESC',email,hourAgo).toArray();
   if(recent.length>=5)return json({ok:true,deliver:false,throttled:true});
