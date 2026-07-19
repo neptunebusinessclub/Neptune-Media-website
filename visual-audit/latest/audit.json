@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T16:23:10.332Z",
+  "generatedAt": "2026-07-19T16:33:43.816Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -44,87 +44,207 @@
             ]
           },
           {
-            "selector": "h3",
-            "text": "Votre entrepreneuriat mis en lumière",
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
             "client": [
-              85,
+              83,
+              95
+            ],
+            "scroll": [
+              99,
+              95
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre44s",
+            "client": [
+              69,
               24
             ],
             "scroll": [
               92,
-              48
+              24
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              69,
+              43
+            ],
+            "scroll": [
+              155,
+              86
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              83,
+              95
+            ],
+            "scroll": [
+              86,
+              95
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme20s",
+            "client": [
+              69,
+              24
+            ],
+            "scroll": [
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Un accident de moto met fin à son entreprise",
             "client": [
-              85,
+              69,
+              43
+            ],
+            "scroll": [
+              101,
+              151
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              83,
+              95
+            ],
+            "scroll": [
+              86,
+              95
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme19s",
+            "client": [
+              69,
               24
             ],
             "scroll": [
-              85,
-              48
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Le secret d’un storytelling efficace",
             "client": [
-              85,
+              69,
+              43
+            ],
+            "scroll": [
+              111,
+              108
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre19sL’humain avant le business",
+            "client": [
+              83,
+              95
+            ],
+            "scroll": [
+              99,
+              95
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre19s",
+            "client": [
+              69,
               24
             ],
             "scroll": [
-              85,
-              36
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "L’humain avant le business",
             "client": [
-              85,
+              69,
+              43
+            ],
+            "scroll": [
+              86,
+              86
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              83,
+              95
+            ],
+            "scroll": [
+              99,
+              95
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre57s",
+            "client": [
+              69,
               24
             ],
             "scroll": [
-              85,
-              36
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
-              85,
-              24
+              69,
+              43
             ],
             "scroll": [
-              85,
-              36
+              75,
+              108
             ]
           },
           {
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              465,
-              46
+              480,
+              43
             ],
             "scroll": [
-              465,
-              50
+              480,
+              47
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              465,
-              46
+              480,
+              43
             ],
             "scroll": [
-              465,
-              50
+              480,
+              47
             ]
           }
         ],
@@ -133,14 +253,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            130,
-            252.28125,
-            506.90625,
-            448.921875,
-            252.28125,
-            636.90625,
-            701.203125,
-            130
+            120,
+            238.9375,
+            505.796875,
+            419.8125,
+            238.9375,
+            625.796875,
+            658.75,
+            120
           ]
         }
       },
@@ -153,14 +273,6 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -263,12 +375,12 @@
           "text": "À regarder.",
           "rect": [
             57.59375,
-            212.53125,
+            208.359375,
             760,
             77.40625,
-            212.53125,
+            208.359375,
             817.59375,
-            289.9375,
+            285.765625,
             57.59375
           ]
         }
@@ -328,12 +440,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             56.59375,
-            90,
+            88,
             1,
             1,
-            90,
+            88,
             57.59375,
-            91,
+            89,
             56.59375
           ]
         }
@@ -396,87 +508,243 @@
             ]
           },
           {
-            "selector": "h3",
-            "text": "Votre entrepreneuriat mis en lumière",
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
             "client": [
-              72,
+              100,
+              180
+            ],
+            "scroll": [
+              114,
+              180
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              70,
+              94
+            ],
+            "scroll": [
+              99,
+              94
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre44s",
+            "client": [
+              56,
               24
             ],
             "scroll": [
               92,
-              48
+              24
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              56,
+              42
+            ],
+            "scroll": [
+              152,
+              106
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              70,
+              94
+            ],
+            "scroll": [
+              86,
+              94
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme20s",
+            "client": [
+              56,
+              24
+            ],
+            "scroll": [
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Un accident de moto met fin à son entreprise",
             "client": [
-              72,
+              56,
+              42
+            ],
+            "scroll": [
+              99,
+              169
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              70,
+              94
+            ],
+            "scroll": [
+              86,
+              94
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme19s",
+            "client": [
+              56,
               24
             ],
             "scroll": [
-              72,
-              60
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Le secret d’un storytelling efficace",
             "client": [
-              72,
+              56,
+              42
+            ],
+            "scroll": [
+              109,
+              106
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre19sL’humain avant le business",
+            "client": [
+              100,
+              180
+            ],
+            "scroll": [
+              114,
+              180
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre19sL’humain avant le business",
+            "client": [
+              70,
+              94
+            ],
+            "scroll": [
+              99,
+              94
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre19s",
+            "client": [
+              56,
               24
             ],
             "scroll": [
-              72,
-              48
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "L’humain avant le business",
             "client": [
-              72,
+              56,
+              42
+            ],
+            "scroll": [
+              84,
+              85
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              100,
+              180
+            ],
+            "scroll": [
+              114,
+              180
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              70,
+              94
+            ],
+            "scroll": [
+              99,
+              94
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre57s",
+            "client": [
+              56,
               24
             ],
             "scroll": [
-              72,
-              36
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
-              72,
-              24
+              56,
+              42
             ],
             "scroll": [
-              72,
-              36
+              73,
+              106
             ]
           },
           {
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              464,
-              43
+              469,
+              39
             ],
             "scroll": [
-              464,
-              47
+              469,
+              43
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              464,
-              43
+              469,
+              39
             ],
             "scroll": [
-              464,
-              47
+              469,
+              43
             ]
           }
         ],
@@ -486,12 +754,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             51.203125,
-            241.765625,
-            506.359375,
-            399.75,
-            241.765625,
-            557.5625,
-            641.515625,
+            225.8125,
+            495.703125,
+            376.609375,
+            225.8125,
+            546.90625,
+            602.421875,
             51.203125
           ]
         }
@@ -631,12 +899,12 @@
           "text": "À regarder.",
           "rect": [
             51.203125,
-            212.53125,
+            208.359375,
             760,
             68.8125,
-            212.53125,
+            208.359375,
             811.203125,
-            281.34375,
+            277.171875,
             51.203125
           ]
         }
@@ -696,18 +964,26 @@
           "text": "Neptune Media en direct",
           "rect": [
             50.203125,
-            90,
+            88,
             1,
             1,
-            90,
+            88,
             51.203125,
-            91,
+            89,
             50.203125
           ]
         }
       },
       "consoleErrors": [],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
@@ -764,99 +1040,267 @@
             ]
           },
           {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              90,
+              162
+            ],
+            "scroll": [
+              114,
+              162
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              60,
+              89
+            ],
+            "scroll": [
+              99,
+              89
+            ]
+          },
+          {
             "selector": "span.media-card-meta",
             "text": "Concept Libre44s",
             "client": [
-              62,
-              18
+              46,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Votre entrepreneuriat mis en lumière",
             "client": [
-              62,
+              46,
+              37
+            ],
+            "scroll": [
+              133,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              90,
+              162
+            ],
+            "scroll": [
+              101,
+              162
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              60,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme20s",
+            "client": [
+              46,
               24
             ],
             "scroll": [
-              92,
-              48
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Un accident de moto met fin à son entreprise",
             "client": [
-              62,
+              46,
+              37
+            ],
+            "scroll": [
+              86,
+              148
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              90,
+              162
+            ],
+            "scroll": [
+              101,
+              162
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              60,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme19s",
+            "client": [
+              46,
               24
             ],
             "scroll": [
-              62,
-              72
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Le secret d’un storytelling efficace",
             "client": [
-              62,
-              24
+              46,
+              37
             ],
             "scroll": [
-              66,
-              48
+              96,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre19sL’humain avant le business",
+            "client": [
+              90,
+              162
+            ],
+            "scroll": [
+              114,
+              162
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre19sL’humain avant le business",
+            "client": [
+              60,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre19s",
             "client": [
-              62,
-              18
+              46,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "L’humain avant le business",
             "client": [
-              62,
-              24
+              46,
+              37
             ],
             "scroll": [
-              62,
-              36
+              74,
+              74
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              90,
+              162
+            ],
+            "scroll": [
+              114,
+              162
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              60,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre57s",
             "client": [
-              62,
-              18
+              46,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
-              62,
-              24
+              46,
+              37
             ],
             "scroll": [
-              62,
-              48
+              64,
+              93
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              668,
+              27
+            ],
+            "scroll": [
+              668,
+              30
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              668,
+              27
+            ],
+            "scroll": [
+              668,
+              30
             ]
           }
         ],
@@ -874,8 +1318,8 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              45,
-              34
+              42,
+              32
             ]
           },
           {
@@ -939,12 +1383,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             33.359375,
-            206.75,
-            408.390625,
-            209.203125,
-            206.75,
-            441.75,
-            415.953125,
+            195.8125,
+            375.953125,
+            245.40625,
+            195.8125,
+            409.3125,
+            441.21875,
             33.359375
           ]
         }
@@ -1129,7 +1573,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               58,
-              34
+              32
             ]
           },
           {
@@ -1233,12 +1677,12 @@
           "text": "À regarder.",
           "rect": [
             33.359375,
-            212.53125,
+            208.359375,
             760,
             45.046875,
-            212.53125,
+            208.359375,
             793.359375,
-            257.578125,
+            253.40625,
             33.359375
           ]
         }
@@ -1343,7 +1787,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               58,
-              34
+              32
             ]
           },
           {
@@ -1479,12 +1923,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             32.359375,
-            90,
+            88,
             1,
             1,
-            90,
+            88,
             33.359375,
-            91,
+            89,
             32.359375
           ]
         }
@@ -1547,99 +1991,267 @@
             ]
           },
           {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
+            ]
+          },
+          {
             "selector": "span.media-card-meta",
             "text": "Concept Libre44s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Votre entrepreneuriat mis en lumière",
             "client": [
-              64,
+              48,
+              37
+            ],
+            "scroll": [
+              133,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              101,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme20s",
+            "client": [
+              48,
               24
             ],
             "scroll": [
-              92,
-              48
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Un accident de moto met fin à son entreprise",
             "client": [
-              64,
+              48,
+              37
+            ],
+            "scroll": [
+              86,
+              148
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              101,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme19s",
+            "client": [
+              48,
               24
             ],
             "scroll": [
-              64,
-              72
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Le secret d’un storytelling efficace",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
-              66,
-              48
+              96,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre19sL’humain avant le business",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre19sL’humain avant le business",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre19s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "L’humain avant le business",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
-              64,
-              36
+              74,
+              74
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre57s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
               64,
-              48
+              93
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              270,
+              27
+            ],
+            "scroll": [
+              270,
+              30
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              270,
+              27
+            ],
+            "scroll": [
+              270,
+              30
             ]
           }
         ],
@@ -1657,8 +2269,8 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              45,
-              34
+              42,
+              32
             ]
           },
           {
@@ -1722,12 +2334,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             14,
-            213.625,
-            362,
-            271.859375,
-            213.625,
-            376,
-            485.484375,
+            202.21875,
+            320.734375,
+            167.65625,
+            202.21875,
+            334.734375,
+            369.875,
             14
           ]
         }
@@ -1740,10 +2352,6 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -1883,7 +2491,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              34
+              32
             ]
           },
           {
@@ -1947,12 +2555,12 @@
           "text": "À regarder.",
           "rect": [
             20,
-            181.53125,
+            177.359375,
             350,
             45.046875,
-            181.53125,
+            177.359375,
             370,
-            226.578125,
+            222.40625,
             20
           ]
         }
@@ -2021,7 +2629,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              34
+              32
             ]
           },
           {
@@ -2117,12 +2725,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             19,
-            74,
+            72,
             1,
             1,
-            74,
+            72,
             20,
-            75,
+            73,
             19
           ]
         }
@@ -2173,30 +2781,6 @@
             ]
           },
           {
-            "selector": "a",
-            "text": "Regarder Neptune TV",
-            "client": [
-              60,
-              68
-            ],
-            "scroll": [
-              66,
-              68
-            ]
-          },
-          {
-            "selector": "a",
-            "text": "Faire produire mon émission",
-            "client": [
-              60,
-              84
-            ],
-            "scroll": [
-              64,
-              84
-            ]
-          },
-          {
             "selector": "#catalogStatus",
             "text": "2 extraits disponibles.",
             "client": [
@@ -2209,99 +2793,267 @@
             ]
           },
           {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
+            ]
+          },
+          {
             "selector": "span.media-card-meta",
             "text": "Concept Libre44s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Votre entrepreneuriat mis en lumière",
             "client": [
-              64,
+              48,
+              37
+            ],
+            "scroll": [
+              133,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              101,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme20s",
+            "client": [
+              48,
               24
             ],
             "scroll": [
-              92,
-              48
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Un accident de moto met fin à son entreprise",
             "client": [
-              64,
+              48,
+              37
+            ],
+            "scroll": [
+              86,
+              148
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              101,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Hors Norme19sLe secret d’un storytelling efficace",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              86,
+              89
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Hors Norme19s",
+            "client": [
+              48,
               24
             ],
             "scroll": [
-              64,
-              72
+              79,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Le secret d’un storytelling efficace",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
-              66,
-              48
+              96,
+              93
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre19sL’humain avant le business",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre19sL’humain avant le business",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre19s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "L’humain avant le business",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
-              64,
-              36
+              74,
+              74
+            ]
+          },
+          {
+            "selector": "button.media-card.media-card--short",
+            "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              92,
+              165
+            ],
+            "scroll": [
+              114,
+              165
+            ]
+          },
+          {
+            "selector": "span.media-card-copy",
+            "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+            "client": [
+              62,
+              89
+            ],
+            "scroll": [
+              99,
+              89
             ]
           },
           {
             "selector": "span.media-card-meta",
             "text": "Concept Libre57s",
             "client": [
-              64,
-              18
+              48,
+              24
             ],
             "scroll": [
-              69,
-              18
+              92,
+              24
             ]
           },
           {
             "selector": "h3",
             "text": "Filmer chez soi ? Laissez tomber.",
             "client": [
-              64,
-              24
+              48,
+              37
             ],
             "scroll": [
               64,
-              48
+              93
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              240,
+              27
+            ],
+            "scroll": [
+              240,
+              30
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              240,
+              27
+            ],
+            "scroll": [
+              240,
+              30
             ]
           }
         ],
@@ -2319,8 +3071,8 @@
             "selector": "a.brand",
             "text": "Neptune Media TV, accueil",
             "size": [
-              45,
-              34
+              42,
+              32
             ]
           },
           {
@@ -2384,12 +3136,12 @@
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
             14,
-            213.625,
-            332,
-            250.984375,
-            213.625,
-            346,
-            464.609375,
+            202.21875,
+            320.734375,
+            167.65625,
+            202.21875,
+            334.734375,
+            369.875,
             14
           ]
         }
@@ -2537,7 +3289,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              34
+              32
             ]
           },
           {
@@ -2601,12 +3353,12 @@
           "text": "À regarder.",
           "rect": [
             20,
-            181.53125,
+            177.359375,
             320,
             45.046875,
-            181.53125,
+            177.359375,
             340,
-            226.578125,
+            222.40625,
             20
           ]
         }
@@ -2675,7 +3427,7 @@
             "text": "Neptune Media, accueil",
             "size": [
               48,
-              34
+              32
             ]
           },
           {
@@ -2771,12 +3523,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             19,
-            74,
+            72,
             1,
             1,
-            74,
+            72,
             20,
-            75,
+            73,
             19
           ]
         }
@@ -2836,15 +3588,79 @@
       "viewport": "desktop-1440",
       "route": "home",
       "type": "clipped-text",
-      "selector": "h3",
-      "text": "Votre entrepreneuriat mis en lumière",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
       "client": [
-        85,
+        83,
+        95
+      ],
+      "scroll": [
+        99,
+        95
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre44s",
+      "client": [
+        69,
         24
       ],
       "scroll": [
         92,
-        48
+        24
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        69,
+        43
+      ],
+      "scroll": [
+        155,
+        86
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        83,
+        95
+      ],
+      "scroll": [
+        86,
+        95
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme20s",
+      "client": [
+        69,
+        24
+      ],
+      "scroll": [
+        79,
+        24
       ]
     },
     {
@@ -2855,12 +3671,44 @@
       "selector": "h3",
       "text": "Un accident de moto met fin à son entreprise",
       "client": [
-        85,
+        69,
+        43
+      ],
+      "scroll": [
+        101,
+        151
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        83,
+        95
+      ],
+      "scroll": [
+        86,
+        95
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme19s",
+      "client": [
+        69,
         24
       ],
       "scroll": [
-        85,
-        48
+        79,
+        24
       ]
     },
     {
@@ -2871,12 +3719,44 @@
       "selector": "h3",
       "text": "Le secret d’un storytelling efficace",
       "client": [
-        85,
+        69,
+        43
+      ],
+      "scroll": [
+        111,
+        108
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre19sL’humain avant le business",
+      "client": [
+        83,
+        95
+      ],
+      "scroll": [
+        99,
+        95
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre19s",
+      "client": [
+        69,
         24
       ],
       "scroll": [
-        85,
-        36
+        92,
+        24
       ]
     },
     {
@@ -2887,12 +3767,44 @@
       "selector": "h3",
       "text": "L’humain avant le business",
       "client": [
-        85,
+        69,
+        43
+      ],
+      "scroll": [
+        86,
+        86
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        83,
+        95
+      ],
+      "scroll": [
+        99,
+        95
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre57s",
+      "client": [
+        69,
         24
       ],
       "scroll": [
-        85,
-        36
+        92,
+        24
       ]
     },
     {
@@ -2903,12 +3815,12 @@
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
-        85,
-        24
+        69,
+        43
       ],
       "scroll": [
-        85,
-        36
+        75,
+        108
       ]
     },
     {
@@ -2919,12 +3831,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        465,
-        46
+        480,
+        43
       ],
       "scroll": [
-        465,
-        50
+        480,
+        47
       ]
     },
     {
@@ -2935,12 +3847,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        465,
-        46
+        480,
+        43
       ],
       "scroll": [
-        465,
-        50
+        480,
+        47
       ]
     },
     {
@@ -3134,15 +4046,95 @@
       "viewport": "laptop-1280",
       "route": "home",
       "type": "clipped-text",
-      "selector": "h3",
-      "text": "Votre entrepreneuriat mis en lumière",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
       "client": [
-        72,
+        100,
+        180
+      ],
+      "scroll": [
+        114,
+        180
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        70,
+        94
+      ],
+      "scroll": [
+        99,
+        94
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre44s",
+      "client": [
+        56,
         24
       ],
       "scroll": [
         92,
-        48
+        24
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        56,
+        42
+      ],
+      "scroll": [
+        152,
+        106
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        70,
+        94
+      ],
+      "scroll": [
+        86,
+        94
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme20s",
+      "client": [
+        56,
+        24
+      ],
+      "scroll": [
+        79,
+        24
       ]
     },
     {
@@ -3153,12 +4145,44 @@
       "selector": "h3",
       "text": "Un accident de moto met fin à son entreprise",
       "client": [
-        72,
+        56,
+        42
+      ],
+      "scroll": [
+        99,
+        169
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        70,
+        94
+      ],
+      "scroll": [
+        86,
+        94
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme19s",
+      "client": [
+        56,
         24
       ],
       "scroll": [
-        72,
-        60
+        79,
+        24
       ]
     },
     {
@@ -3169,12 +4193,60 @@
       "selector": "h3",
       "text": "Le secret d’un storytelling efficace",
       "client": [
-        72,
+        56,
+        42
+      ],
+      "scroll": [
+        109,
+        106
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre19sL’humain avant le business",
+      "client": [
+        100,
+        180
+      ],
+      "scroll": [
+        114,
+        180
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre19sL’humain avant le business",
+      "client": [
+        70,
+        94
+      ],
+      "scroll": [
+        99,
+        94
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre19s",
+      "client": [
+        56,
         24
       ],
       "scroll": [
-        72,
-        48
+        92,
+        24
       ]
     },
     {
@@ -3185,12 +4257,60 @@
       "selector": "h3",
       "text": "L’humain avant le business",
       "client": [
-        72,
+        56,
+        42
+      ],
+      "scroll": [
+        84,
+        85
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        100,
+        180
+      ],
+      "scroll": [
+        114,
+        180
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        70,
+        94
+      ],
+      "scroll": [
+        99,
+        94
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre57s",
+      "client": [
+        56,
         24
       ],
       "scroll": [
-        72,
-        36
+        92,
+        24
       ]
     },
     {
@@ -3201,12 +4321,12 @@
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
-        72,
-        24
+        56,
+        42
       ],
       "scroll": [
-        72,
-        36
+        73,
+        106
       ]
     },
     {
@@ -3217,12 +4337,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        464,
-        43
+        469,
+        39
       ],
       "scroll": [
-        464,
-        47
+        469,
+        43
       ]
     },
     {
@@ -3233,12 +4353,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        464,
-        43
+        469,
+        39
       ],
       "scroll": [
-        464,
-        47
+        469,
+        43
       ]
     },
     {
@@ -3464,15 +4584,47 @@
       "viewport": "tablet-834",
       "route": "home",
       "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        90,
+        162
+      ],
+      "scroll": [
+        114,
+        162
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        60,
+        89
+      ],
+      "scroll": [
+        99,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
       "selector": "span.media-card-meta",
       "text": "Concept Libre44s",
       "client": [
-        62,
-        18
+        46,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -3483,12 +4635,60 @@
       "selector": "h3",
       "text": "Votre entrepreneuriat mis en lumière",
       "client": [
-        62,
+        46,
+        37
+      ],
+      "scroll": [
+        133,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        90,
+        162
+      ],
+      "scroll": [
+        101,
+        162
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        60,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme20s",
+      "client": [
+        46,
         24
       ],
       "scroll": [
-        92,
-        48
+        79,
+        24
       ]
     },
     {
@@ -3499,12 +4699,60 @@
       "selector": "h3",
       "text": "Un accident de moto met fin à son entreprise",
       "client": [
-        62,
+        46,
+        37
+      ],
+      "scroll": [
+        86,
+        148
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        90,
+        162
+      ],
+      "scroll": [
+        101,
+        162
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        60,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme19s",
+      "client": [
+        46,
         24
       ],
       "scroll": [
-        62,
-        72
+        79,
+        24
       ]
     },
     {
@@ -3515,12 +4763,44 @@
       "selector": "h3",
       "text": "Le secret d’un storytelling efficace",
       "client": [
-        62,
-        24
+        46,
+        37
       ],
       "scroll": [
-        66,
-        48
+        96,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre19sL’humain avant le business",
+      "client": [
+        90,
+        162
+      ],
+      "scroll": [
+        114,
+        162
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre19sL’humain avant le business",
+      "client": [
+        60,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -3531,12 +4811,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre19s",
       "client": [
-        62,
-        18
+        46,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -3547,12 +4827,44 @@
       "selector": "h3",
       "text": "L’humain avant le business",
       "client": [
-        62,
-        24
+        46,
+        37
       ],
       "scroll": [
-        62,
-        36
+        74,
+        74
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        90,
+        162
+      ],
+      "scroll": [
+        114,
+        162
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        60,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -3563,12 +4875,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre57s",
       "client": [
-        62,
-        18
+        46,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -3579,12 +4891,44 @@
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
-        62,
-        24
+        46,
+        37
       ],
       "scroll": [
-        62,
-        48
+        64,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        668,
+        27
+      ],
+      "scroll": [
+        668,
+        30
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        668,
+        27
+      ],
+      "scroll": [
+        668,
+        30
       ]
     },
     {
@@ -3906,15 +5250,47 @@
       "viewport": "mobile-390",
       "route": "home",
       "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
       "selector": "span.media-card-meta",
       "text": "Concept Libre44s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -3925,12 +5301,60 @@
       "selector": "h3",
       "text": "Votre entrepreneuriat mis en lumière",
       "client": [
-        64,
+        48,
+        37
+      ],
+      "scroll": [
+        133,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        101,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme20s",
+      "client": [
+        48,
         24
       ],
       "scroll": [
-        92,
-        48
+        79,
+        24
       ]
     },
     {
@@ -3941,12 +5365,60 @@
       "selector": "h3",
       "text": "Un accident de moto met fin à son entreprise",
       "client": [
-        64,
+        48,
+        37
+      ],
+      "scroll": [
+        86,
+        148
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        101,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme19s",
+      "client": [
+        48,
         24
       ],
       "scroll": [
-        64,
-        72
+        79,
+        24
       ]
     },
     {
@@ -3957,12 +5429,44 @@
       "selector": "h3",
       "text": "Le secret d’un storytelling efficace",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
-        66,
-        48
+        96,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre19sL’humain avant le business",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre19sL’humain avant le business",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -3973,12 +5477,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre19s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -3989,12 +5493,44 @@
       "selector": "h3",
       "text": "L’humain avant le business",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
-        64,
-        36
+        74,
+        74
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -4005,12 +5541,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre57s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -4021,12 +5557,44 @@
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
         64,
-        48
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        270,
+        27
+      ],
+      "scroll": [
+        270,
+        30
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        270,
+        27
+      ],
+      "scroll": [
+        270,
+        30
       ]
     },
     {
@@ -4229,38 +5797,6 @@
       "viewport": "mobile-360",
       "route": "home",
       "type": "clipped-text",
-      "selector": "a",
-      "text": "Regarder Neptune TV",
-      "client": [
-        60,
-        68
-      ],
-      "scroll": [
-        66,
-        68
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
-      "selector": "a",
-      "text": "Faire produire mon émission",
-      "client": [
-        60,
-        84
-      ],
-      "scroll": [
-        64,
-        84
-      ]
-    },
-    {
-      "severity": "warning",
-      "viewport": "mobile-360",
-      "route": "home",
-      "type": "clipped-text",
       "selector": "#catalogStatus",
       "text": "2 extraits disponibles.",
       "client": [
@@ -4277,15 +5813,47 @@
       "viewport": "mobile-360",
       "route": "home",
       "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
       "selector": "span.media-card-meta",
       "text": "Concept Libre44s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -4296,12 +5864,60 @@
       "selector": "h3",
       "text": "Votre entrepreneuriat mis en lumière",
       "client": [
-        64,
+        48,
+        37
+      ],
+      "scroll": [
+        133,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        101,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme20s",
+      "client": [
+        48,
         24
       ],
       "scroll": [
-        92,
-        48
+        79,
+        24
       ]
     },
     {
@@ -4312,12 +5928,60 @@
       "selector": "h3",
       "text": "Un accident de moto met fin à son entreprise",
       "client": [
-        64,
+        48,
+        37
+      ],
+      "scroll": [
+        86,
+        148
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        101,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Hors Norme19sLe secret d’un storytelling efficace",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        86,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Hors Norme19s",
+      "client": [
+        48,
         24
       ],
       "scroll": [
-        64,
-        72
+        79,
+        24
       ]
     },
     {
@@ -4328,12 +5992,44 @@
       "selector": "h3",
       "text": "Le secret d’un storytelling efficace",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
-        66,
-        48
+        96,
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre19sL’humain avant le business",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre19sL’humain avant le business",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -4344,12 +6040,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre19s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -4360,12 +6056,44 @@
       "selector": "h3",
       "text": "L’humain avant le business",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
-        64,
-        36
+        74,
+        74
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "button.media-card.media-card--short",
+      "text": "▶\n      Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        92,
+        165
+      ],
+      "scroll": [
+        114,
+        165
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-copy",
+      "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
+      "client": [
+        62,
+        89
+      ],
+      "scroll": [
+        99,
+        89
       ]
     },
     {
@@ -4376,12 +6104,12 @@
       "selector": "span.media-card-meta",
       "text": "Concept Libre57s",
       "client": [
-        64,
-        18
+        48,
+        24
       ],
       "scroll": [
-        69,
-        18
+        92,
+        24
       ]
     },
     {
@@ -4392,12 +6120,44 @@
       "selector": "h3",
       "text": "Filmer chez soi ? Laissez tomber.",
       "client": [
-        64,
-        24
+        48,
+        37
       ],
       "scroll": [
         64,
-        48
+        93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        240,
+        27
+      ],
+      "scroll": [
+        240,
+        30
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        240,
+        27
+      ],
+      "scroll": [
+        240,
+        30
       ]
     },
     {
