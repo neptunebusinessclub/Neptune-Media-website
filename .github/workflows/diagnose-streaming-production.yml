@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+      OFFICIAL_TUNNEL: https://media.neptunebusiness.com/
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check production streaming UX
+      - name: Check production streaming UX, admin security and discovery
         shell: bash
         run: |
           set +e
@@ -31,11 +32,22 @@ jobs:
           direct_status=$(curl --silent --show-error --output /tmp/direct.html --write-out '%{http_code}' "$PUBLIC_URL/direct/")
           emissions_status=$(curl --silent --show-error --output /tmp/emissions.html --write-out '%{http_code}' "$PUBLIC_URL/emissions/")
           health_status=$(curl --silent --show-error --output /tmp/health.json --write-out '%{http_code}' "$PUBLIC_URL/api/health")
+          robots_status=$(curl --silent --show-error --output /tmp/robots.txt --write-out '%{http_code}' "$PUBLIC_URL/robots.txt")
+          sitemap_status=$(curl --silent --show-error --output /tmp/sitemap.xml --write-out '%{http_code}' "$PUBLIC_URL/sitemap.xml")
+          video_sitemap_status=$(curl --silent --show-error --output /tmp/video-sitemap.xml --write-out '%{http_code}' "$PUBLIC_URL/video-sitemap.xml")
+          llms_status=$(curl --silent --show-error --output /tmp/llms.txt --write-out '%{http_code}' "$PUBLIC_URL/llms.txt")
+          studio_status=$(curl --silent --show-error --dump-header /tmp/studio.headers --output /tmp/studio.html --write-out '%{http_code}' "$PUBLIC_URL/studio/")
+          client_status=$(curl --silent --show-error --dump-header /tmp/client.headers --output /tmp/client.html --write-out '%{http_code}' "$PUBLIC_URL/espace-client/")
+          admin_api_status=$(curl --silent --show-error --output /tmp/admin-api.json --write-out '%{http_code}' "$PUBLIC_URL/api/admin/clients")
+          client_api_status=$(curl --silent --show-error --output /tmp/client-api.json --write-out '%{http_code}' "$PUBLIC_URL/api/client/session")
+          webhook_status=$(curl --silent --show-error --output /tmp/webhook.json --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{}' "$PUBLIC_URL/api/webhooks/conversion")
 
           home_marker=false; grep -q 'data-home-structure="streaming-aida-v3"' /tmp/home.html && home_marker=true
           content_rail=false; grep -q 'data-content-rail' /tmp/home.html && content_rail=true
           live_card=false; grep -q 'live-now-card' /tmp/home.html && live_card=true
           aida_hook=false; grep -q 'Vous recommencez la prise pour la sixième fois' /tmp/home.html && aida_hook=true
+          official_tunnel=false; grep -q "$OFFICIAL_TUNNEL" /tmp/home.html && official_tunnel=true
+          worker_tunnel_leak=false; grep -Eq 'href=["'"'][^"'"']*workers\.dev' /tmp/home.html && worker_tunnel_leak=true
           upgrade_v6=false; grep -q '/upgrade.js?v=6' /tmp/home.html && upgrade_v6=true
           legacy_catalog_disabled=false; grep -q 'if (isStreamingHome()) cleanupLegacyCatalogEnhancements()' /tmp/upgrade.js && grep -q 'if (!isStreamingHome()) addDeliverables()' /tmp/upgrade.js && legacy_catalog_disabled=true
           streaming_css=false; grep -q 'content-rail-shell' /tmp/streaming.css && streaming_css=true
@@ -46,11 +58,21 @@ jobs:
           direct_marker=false; grep -q 'data-public-ux="streaming-v3"' /tmp/direct.html && direct_marker=true
           emissions_marker=false; grep -q 'data-public-ux="streaming-v3"' /tmp/emissions.html && emissions_marker=true
           health_ok=false; grep -q '"ok":true' /tmp/health.json && health_ok=true
+          robots_protected=false; grep -q '^Disallow: /studio/' /tmp/robots.txt && grep -q '^Disallow: /espace-client/' /tmp/robots.txt && grep -q '^Disallow: /api/' /tmp/robots.txt && robots_protected=true
+          robots_discovery=false; grep -q '/sitemap.xml' /tmp/robots.txt && grep -q '/video-sitemap.xml' /tmp/robots.txt && robots_discovery=true
+          sitemap_valid=false; grep -q '<urlset' /tmp/sitemap.xml && grep -q "$PUBLIC_URL" /tmp/sitemap.xml && sitemap_valid=true
+          video_sitemap_valid=false; grep -q '<video:video>' /tmp/video-sitemap.xml && grep -q '<video:title>' /tmp/video-sitemap.xml && video_sitemap_valid=true
+          llms_valid=false; grep -qi 'Neptune Media' /tmp/llms.txt && grep -q "$PUBLIC_URL" /tmp/llms.txt && llms_valid=true
+          studio_no_store=false; grep -qi '^cache-control:.*no-store' /tmp/studio.headers && studio_no_store=true
+          studio_noindex=false; grep -qi '^x-robots-tag:.*noindex' /tmp/studio.headers && studio_noindex=true
+          client_no_store=false; grep -qi '^cache-control:.*no-store' /tmp/client.headers && client_no_store=true
+          client_noindex=false; grep -qi '^x-robots-tag:.*noindex' /tmp/client.headers && client_noindex=true
+          client_unauthenticated=false; grep -q '"authenticated":false' /tmp/client-api.json && client_unauthenticated=true
 
           ready=false
-          if test "$home_status" = "200" && test "$css_status" = "200" && test "$js_status" = "200" && test "$upgrade_status" = "200" && test "$live_js_status" = "200" && test "$direct_status" = "200" && test "$emissions_status" = "200" && test "$health_status" = "200" && test "$home_marker" = "true" && test "$content_rail" = "true" && test "$live_card" = "true" && test "$aida_hook" = "true" && test "$upgrade_v6" = "true" && test "$legacy_catalog_disabled" = "true" && test "$streaming_css" = "true" && test "$progress_js" = "true" && test "$rail_js" = "true" && test "$live_status_js" = "true" && test "$direct_now_next" = "true" && test "$direct_marker" = "true" && test "$emissions_marker" = "true" && test "$health_ok" = "true"; then ready=true; fi
+          if test "$home_status" = "200" && test "$css_status" = "200" && test "$js_status" = "200" && test "$upgrade_status" = "200" && test "$live_js_status" = "200" && test "$direct_status" = "200" && test "$emissions_status" = "200" && test "$health_status" = "200" && test "$robots_status" = "200" && test "$sitemap_status" = "200" && test "$video_sitemap_status" = "200" && test "$llms_status" = "200" && test "$studio_status" = "200" && test "$client_status" = "200" && test "$admin_api_status" = "401" && test "$client_api_status" = "401" && test "$webhook_status" = "401" && test "$home_marker" = "true" && test "$content_rail" = "true" && test "$live_card" = "true" && test "$aida_hook" = "true" && test "$official_tunnel" = "true" && test "$worker_tunnel_leak" = "false" && test "$upgrade_v6" = "true" && test "$legacy_catalog_disabled" = "true" && test "$streaming_css" = "true" && test "$progress_js" = "true" && test "$rail_js" = "true" && test "$live_status_js" = "true" && test "$direct_now_next" = "true" && test "$direct_marker" = "true" && test "$emissions_marker" = "true" && test "$health_ok" = "true" && test "$robots_protected" = "true" && test "$robots_discovery" = "true" && test "$sitemap_valid" = "true" && test "$video_sitemap_valid" = "true" && test "$llms_valid" = "true" && test "$studio_no_store" = "true" && test "$studio_noindex" = "true" && test "$client_no_store" = "true" && test "$client_noindex" = "true" && test "$client_unauthenticated" = "true"; then ready=true; fi
 
-          HOME_STATUS="$home_status" CSS_STATUS="$css_status" JS_STATUS="$js_status" UPGRADE_STATUS="$upgrade_status" LIVE_JS_STATUS="$live_js_status" DIRECT_STATUS="$direct_status" EMISSIONS_STATUS="$emissions_status" HEALTH_STATUS="$health_status" HOME_MARKER="$home_marker" CONTENT_RAIL="$content_rail" LIVE_CARD="$live_card" AIDA_HOOK="$aida_hook" UPGRADE_V6="$upgrade_v6" LEGACY_CATALOG_DISABLED="$legacy_catalog_disabled" STREAMING_CSS="$streaming_css" PROGRESS_JS="$progress_js" RAIL_JS="$rail_js" LIVE_STATUS_JS="$live_status_js" DIRECT_NOW_NEXT="$direct_now_next" DIRECT_MARKER="$direct_marker" EMISSIONS_MARKER="$emissions_marker" HEALTH_OK="$health_ok" READY="$ready" python3 - <<'PY'
+          HOME_STATUS="$home_status" CSS_STATUS="$css_status" JS_STATUS="$js_status" UPGRADE_STATUS="$upgrade_status" LIVE_JS_STATUS="$live_js_status" DIRECT_STATUS="$direct_status" EMISSIONS_STATUS="$emissions_status" HEALTH_STATUS="$health_status" ROBOTS_STATUS="$robots_status" SITEMAP_STATUS="$sitemap_status" VIDEO_SITEMAP_STATUS="$video_sitemap_status" LLMS_STATUS="$llms_status" STUDIO_STATUS="$studio_status" CLIENT_STATUS="$client_status" ADMIN_API_STATUS="$admin_api_status" CLIENT_API_STATUS="$client_api_status" WEBHOOK_STATUS="$webhook_status" HOME_MARKER="$home_marker" CONTENT_RAIL="$content_rail" LIVE_CARD="$live_card" AIDA_HOOK="$aida_hook" OFFICIAL_TUNNEL_OK="$official_tunnel" WORKER_TUNNEL_LEAK="$worker_tunnel_leak" UPGRADE_V6="$upgrade_v6" LEGACY_CATALOG_DISABLED="$legacy_catalog_disabled" STREAMING_CSS="$streaming_css" PROGRESS_JS="$progress_js" RAIL_JS="$rail_js" LIVE_STATUS_JS="$live_status_js" DIRECT_NOW_NEXT="$direct_now_next" DIRECT_MARKER="$direct_marker" EMISSIONS_MARKER="$emissions_marker" HEALTH_OK="$health_ok" ROBOTS_PROTECTED="$robots_protected" ROBOTS_DISCOVERY="$robots_discovery" SITEMAP_VALID="$sitemap_valid" VIDEO_SITEMAP_VALID="$video_sitemap_valid" LLMS_VALID="$llms_valid" STUDIO_NO_STORE="$studio_no_store" STUDIO_NOINDEX="$studio_noindex" CLIENT_NO_STORE="$client_no_store" CLIENT_NOINDEX="$client_noindex" CLIENT_UNAUTHENTICATED="$client_unauthenticated" READY="$ready" python3 - <<'PY'
           import json
           import os
           from datetime import datetime, timezone
@@ -59,30 +81,38 @@ jobs:
             "checked_at": datetime.now(timezone.utc).isoformat(),
             "ready": truth("READY"),
             "home": {
-              "status": os.environ["HOME_STATUS"],
-              "streaming_marker": truth("HOME_MARKER"),
-              "content_rail": truth("CONTENT_RAIL"),
-              "live_now": truth("LIVE_CARD"),
-              "aida_hook": truth("AIDA_HOOK"),
-              "upgrade_v6": truth("UPGRADE_V6")
+              "status": os.environ["HOME_STATUS"], "streaming_marker": truth("HOME_MARKER"),
+              "content_rail": truth("CONTENT_RAIL"), "live_now": truth("LIVE_CARD"),
+              "aida_hook": truth("AIDA_HOOK"), "official_tunnel": truth("OFFICIAL_TUNNEL_OK"),
+              "worker_tunnel_leak": truth("WORKER_TUNNEL_LEAK"), "upgrade_v6": truth("UPGRADE_V6")
             },
             "assets": {
-              "css_status": os.environ["CSS_STATUS"],
-              "streaming_css": truth("STREAMING_CSS"),
-              "js_status": os.environ["JS_STATUS"],
-              "progress": truth("PROGRESS_JS"),
-              "rail_controls": truth("RAIL_JS"),
-              "upgrade_status": os.environ["UPGRADE_STATUS"],
+              "css_status": os.environ["CSS_STATUS"], "streaming_css": truth("STREAMING_CSS"),
+              "js_status": os.environ["JS_STATUS"], "progress": truth("PROGRESS_JS"),
+              "rail_controls": truth("RAIL_JS"), "upgrade_status": os.environ["UPGRADE_STATUS"],
               "legacy_catalog_disabled": truth("LEGACY_CATALOG_DISABLED"),
-              "live_js_status": os.environ["LIVE_JS_STATUS"],
-              "live_feedback": truth("LIVE_STATUS_JS")
+              "live_js_status": os.environ["LIVE_JS_STATUS"], "live_feedback": truth("LIVE_STATUS_JS")
             },
             "public_pages": {
-              "direct_status": os.environ["DIRECT_STATUS"],
-              "direct_now_next": truth("DIRECT_NOW_NEXT"),
-              "direct_marker": truth("DIRECT_MARKER"),
-              "emissions_status": os.environ["EMISSIONS_STATUS"],
+              "direct_status": os.environ["DIRECT_STATUS"], "direct_now_next": truth("DIRECT_NOW_NEXT"),
+              "direct_marker": truth("DIRECT_MARKER"), "emissions_status": os.environ["EMISSIONS_STATUS"],
               "emissions_marker": truth("EMISSIONS_MARKER")
+            },
+            "discovery": {
+              "robots_status": os.environ["ROBOTS_STATUS"], "robots_protected": truth("ROBOTS_PROTECTED"),
+              "robots_discovery": truth("ROBOTS_DISCOVERY"), "sitemap_status": os.environ["SITEMAP_STATUS"],
+              "sitemap_valid": truth("SITEMAP_VALID"), "video_sitemap_status": os.environ["VIDEO_SITEMAP_STATUS"],
+              "video_sitemap_valid": truth("VIDEO_SITEMAP_VALID"), "llms_status": os.environ["LLMS_STATUS"],
+              "llms_valid": truth("LLMS_VALID")
+            },
+            "protected_pages": {
+              "studio_status": os.environ["STUDIO_STATUS"], "studio_no_store": truth("STUDIO_NO_STORE"),
+              "studio_noindex": truth("STUDIO_NOINDEX"), "client_status": os.environ["CLIENT_STATUS"],
+              "client_no_store": truth("CLIENT_NO_STORE"), "client_noindex": truth("CLIENT_NOINDEX")
+            },
+            "protected_apis": {
+              "admin_status": os.environ["ADMIN_API_STATUS"], "client_status": os.environ["CLIENT_API_STATUS"],
+              "client_unauthenticated": truth("CLIENT_UNAUTHENTICATED"), "webhook_status": os.environ["WEBHOOK_STATUS"]
             },
             "health": {"status": os.environ["HEALTH_STATUS"], "ok": truth("HEALTH_OK")}
           }
@@ -91,10 +121,14 @@ jobs:
               handle.write("\n")
           PY
 
+          test "$ready" = "true"
+
       - name: Record diagnostic
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add streaming-production-diagnostic.json
           git commit -m "chore: record streaming production diagnostic [skip ci]" || true
+          git pull --rebase
           git push
