@@ -1,9 +1,9 @@
 {
-  "status": "success",
-  "source_sha": "e83c70658d34f0187140ea3a1afe0bca131252c9",
-  "source_workflow_id": "29694725706",
-  "ui_workflow_run_id": "29694744533",
-  "checked_at": "2026-07-19T16:24:00.490805+00:00",
+  "status": "failed",
+  "source_sha": "cd8da64bfaeca0d20cd68241f046ff703ee95530",
+  "source_workflow_id": "29695049527",
+  "ui_workflow_run_id": "29695066391",
+  "checked_at": "2026-07-19T16:33:15.456697+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -18,54 +18,5 @@
     "/direct/"
   ],
   "issues": [],
-  "pages": [
-    {
-      "name": "home-desktop",
-      "route": "/",
-      "issues": [],
-      "width": 1440,
-      "height": 1100,
-      "scrollHeight": 9768
-    },
-    {
-      "name": "home-tablet",
-      "route": "/",
-      "issues": [],
-      "width": 834,
-      "height": 1112,
-      "scrollHeight": 10808
-    },
-    {
-      "name": "home-mobile",
-      "route": "/",
-      "issues": [],
-      "width": 390,
-      "height": 844,
-      "scrollHeight": 13022
-    },
-    {
-      "name": "emissions-desktop",
-      "route": "/emissions/",
-      "issues": [],
-      "width": 1440,
-      "height": 1000,
-      "scrollHeight": 2055
-    },
-    {
-      "name": "emissions-mobile",
-      "route": "/emissions/",
-      "issues": [],
-      "width": 390,
-      "height": 844,
-      "scrollHeight": 2807
-    },
-    {
-      "name": "direct-desktop",
-      "route": "/direct/",
-      "issues": [],
-      "width": 1440,
-      "height": 1000,
-      "scrollHeight": 2025
-    }
-  ]
+  "pages": []
 }
