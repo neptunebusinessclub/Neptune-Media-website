@@ -9,11 +9,29 @@
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
+    loadJourneyV14();
     bindFormatDecision();
     bindJourneyNavigation();
     bindRevealMotion();
     bindRailAffordance();
   });
+
+  function loadJourneyV14() {
+    if (!document.querySelector('link[data-media-journey-v14]')) {
+      const stylesheet = document.createElement('link');
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = '/styles/media-journey-v14.css?v=14';
+      stylesheet.dataset.mediaJourneyV14 = '1';
+      document.head.append(stylesheet);
+    }
+    if (!document.querySelector('script[data-media-journey-v14]')) {
+      const script = document.createElement('script');
+      script.src = '/media-journey-v14.js?v=14';
+      script.defer = true;
+      script.dataset.mediaJourneyV14 = '1';
+      document.head.append(script);
+    }
+  }
 
   function bindFormatDecision() {
     const cards = qsa('[data-format-choice]');
@@ -124,4 +142,4 @@
   }
 })();
 
-// Production browser quality gate revision 2.
+// Production browser quality gate revision 3.
