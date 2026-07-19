@@ -1,6 +1,7 @@
 (() => {
   'use strict';
 
+  const FINAL_THOUGHT = '« Je veux être plus visible. Mais je veux pas devenir quelqu’un d’autre pour y arriver. »';
   const ready = (callback) => document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
@@ -11,25 +12,29 @@
     const emissions = location.pathname.replace(/\/+$/, '/') === '/emissions/';
 
     if (home) {
-      cleanHomepage();
-      curateHero();
-      window.addEventListener('neptune:catalog-ready', () => {
-        cleanHomepage();
-        curateHero();
-      });
-      const observer = new MutationObserver(() => {
-        cleanHomepage();
-        curateHero();
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-      window.setTimeout(() => observer.disconnect(), 10000);
+      applyHomepagePolish();
+      window.addEventListener('neptune:catalog-ready', applyHomepagePolish);
+      const observer = new MutationObserver(applyHomepagePolish);
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+      window.setTimeout(() => observer.disconnect(), 12000);
     }
 
     if (emissions) normalizeEmissionsFilters();
   });
 
+  function applyHomepagePolish() {
+    cleanHomepage();
+    restoreFinalThought();
+    curateHero();
+  }
+
   function cleanHomepage() {
     document.querySelectorAll('.media-discovery,.catalog-tools,#livrables').forEach((element) => element.remove());
+  }
+
+  function restoreFinalThought() {
+    const thought = document.querySelector('.voice-final .inner-voice-hook');
+    if (thought && thought.textContent.trim() !== FINAL_THOUGHT) thought.textContent = FINAL_THOUGHT;
   }
 
   function curateHero() {
@@ -39,7 +44,7 @@
     const source = document.querySelector('#heroPreviewSource');
     const title = document.querySelector('#heroEpisodeTitle');
     const motion = document.querySelector('#heroMotionToggle');
-    if (!card || !hero || hero.dataset.visualCurated === card.dataset.episodeId) return;
+    if (!card || !hero || hero.dataset.visualCurated === (card.dataset.episodeId || card.dataset.videoTitle)) return;
 
     const image = card.querySelector('img');
     const heading = card.querySelector('h3');
@@ -59,7 +64,7 @@
     if (motion) motion.hidden = true;
     if (title) title.textContent = cardTitle;
 
-    hero.dataset.visualCurated = card.dataset.episodeId || cardTitle;
+    hero.dataset.visualCurated = card.dataset.episodeId || card.dataset.videoTitle || cardTitle;
     hero.dataset.videoPoster = poster;
     hero.dataset.videoTitle = cardTitle;
     hero.onclick = (event) => {
@@ -70,17 +75,15 @@
 
   function normalizeEmissionsFilters() {
     const apply = () => {
+      document.querySelectorAll('.catalogue-page > .program-pills').forEach((element) => element.remove());
       const panel = document.querySelector('.seo-search-panel');
       if (!panel) return false;
       document.body.dataset.emissionsSearchEnhanced = '1';
-      document.querySelector('.catalogue-page > .program-pills')?.remove();
       return true;
     };
-    if (apply()) return;
-    const observer = new MutationObserver(() => {
-      if (apply()) observer.disconnect();
-    });
+    apply();
+    const observer = new MutationObserver(apply);
     observer.observe(document.body, { childList: true, subtree: true });
-    window.setTimeout(() => observer.disconnect(), 8000);
+    window.setTimeout(() => observer.disconnect(), 10000);
   }
 })();
