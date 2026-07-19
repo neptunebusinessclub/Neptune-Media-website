@@ -22,6 +22,17 @@ export default {async fetch(request,env,ctx){
   const studio=env.STUDIO.get(env.STUDIO.idFromName('neptune-media-main'));
   const portal=await handlePortalPublicRoute(request,env,studio)||await handlePortalAdminRoute(request,env,studio);if(portal)return secure(portal);
   const multipart=await handleMultipartRoute(request,env);if(multipart)return secure(multipart);
-  return application.fetch(request,env,ctx);
+  const response=await application.fetch(request,env,ctx);
+  if(url.pathname==='/api/public/catalog'&&request.method==='GET'&&response.ok)return secure(await filterPublicCatalog(response));
+  return response;
 }};
+async function filterPublicCatalog(response){
+  const catalog=await response.json();
+  const programs=(catalog.programs||[]).filter(isActiveProgram);
+  const programIds=new Set(programs.map((program)=>program.id));
+  const episodes=(catalog.episodes||[]).filter((episode)=>programIds.has(episode.programId)&&episode.status==='published'&&Boolean(episode.slug&&episode.videoUrl&&episode.posterUrl));
+  const headers=new Headers(response.headers);headers.set('Content-Type','application/json; charset=utf-8');
+  return new Response(JSON.stringify({...catalog,programs,episodes}),{status:response.status,statusText:response.statusText,headers});
+}
+function isActiveProgram(program){return Boolean(program?.slug)&&program.active!==false&&Number(program.active??1)!==0;}
 function secure(response){const headers=new Headers(response.headers);for(const [key,value] of Object.entries(securityHeaders()))headers.set(key,value);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
