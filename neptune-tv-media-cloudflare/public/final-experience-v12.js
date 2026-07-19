@@ -8,9 +8,11 @@
 
   ensureQualityStyles();
   ensureClarityStyles();
+  ensurePrdVisualStyles();
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
+    document.body.dataset.prdVisual = 'v16';
     loadJourneyV14();
     bindFormatDecision();
     bindJourneyNavigation();
@@ -18,24 +20,25 @@
     bindRailAffordance();
   });
 
-  function ensureQualityStyles() {
-    const href = '/styles/final-quality-v12.css?v=1';
+  function appendStylesheet(href, dataKey, dataValue) {
     if (document.querySelector(`link[href="${href}"]`)) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
-    link.dataset.finalQuality = 'v12';
+    link.dataset[dataKey] = dataValue;
     document.head.append(link);
   }
 
+  function ensureQualityStyles() {
+    appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
+  }
+
   function ensureClarityStyles() {
-    const href = '/styles/clarity-air-v15.css?v=15';
-    if (document.querySelector(`link[href="${href}"]`)) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.dataset.clarityAir = 'v15';
-    document.head.append(link);
+    appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
+  }
+
+  function ensurePrdVisualStyles() {
+    appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16');
   }
 
   function loadJourneyV14() {
@@ -164,4 +167,4 @@
   }
 })();
 
-// Production browser quality gate revision 5.
+// Production browser quality gate revision 6.
