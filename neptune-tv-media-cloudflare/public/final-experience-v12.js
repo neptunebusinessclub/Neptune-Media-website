@@ -18,7 +18,7 @@
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v20';
-    document.body.dataset.heroRefresh = 'v26';
+    document.body.dataset.heroRefresh = 'v27';
 
     loadJourneyV18();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
@@ -26,8 +26,8 @@
     appendStylesheet('/styles/intent-actions-v18.css?v=18', 'intentActions', 'v18', true);
     appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
     loadVisibilityShowcase();
-    appendStylesheet('/styles/hero-live-v21.css?v=26', 'heroLive', 'v26', true);
-    loadHeroLiveV26();
+    appendStylesheet('/styles/hero-live-v21.css?v=27', 'heroLive', 'v27', true);
+    loadHeroLiveV27();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
@@ -35,6 +35,9 @@
   });
 
   function appendStylesheet(href, dataKey, dataValue, moveToEnd = false) {
+    document.querySelectorAll(`link[data-${dataKey.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}]`).forEach((node) => {
+      if (node.getAttribute('href') !== href) node.remove();
+    });
     const existing = document.querySelector(`link[href="${href}"]`);
     if (existing) {
       if (moveToEnd) document.head.append(existing);
@@ -67,12 +70,12 @@
     document.head.append(script);
   }
 
-  function loadHeroLiveV26() {
-    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24],script[data-hero-live-v26]').forEach((node) => node.remove());
+  function loadHeroLiveV27() {
+    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24],script[data-hero-live-v26],script[data-hero-live-v27]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/hero-live-v21.js?v=26';
+    script.src = '/hero-live-v21.js?v=27';
     script.defer = true;
-    script.dataset.heroLiveV26 = '1';
+    script.dataset.heroLiveV27 = '1';
     document.head.append(script);
   }
 
@@ -165,4 +168,4 @@
   }
 })();
 
-// Production browser quality gate revision 17.
+// Production browser quality gate revision 18.
