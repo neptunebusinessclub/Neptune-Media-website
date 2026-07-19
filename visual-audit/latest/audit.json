@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T16:37:41.971Z",
+  "generatedAt": "2026-07-19T16:43:16.548Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -48,11 +48,11 @@
             "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
             "client": [
               83,
-              95
+              130
             ],
             "scroll": [
               99,
-              95
+              130
             ]
           },
           {
@@ -84,11 +84,11 @@
             "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
             "client": [
               83,
-              95
+              130
             ],
             "scroll": [
               86,
-              95
+              130
             ]
           },
           {
@@ -120,11 +120,11 @@
             "text": "Hors Norme19sLe secret d’un storytelling efficace",
             "client": [
               83,
-              95
+              130
             ],
             "scroll": [
               86,
-              95
+              130
             ]
           },
           {
@@ -156,11 +156,11 @@
             "text": "Concept Libre19sL’humain avant le business",
             "client": [
               83,
-              95
+              130
             ],
             "scroll": [
               99,
-              95
+              130
             ]
           },
           {
@@ -192,11 +192,11 @@
             "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
             "client": [
               83,
-              95
+              130
             ],
             "scroll": [
               99,
-              95
+              130
             ]
           },
           {
@@ -227,24 +227,24 @@
             "selector": "h3",
             "text": "Hors Norme",
             "client": [
-              480,
-              43
+              520,
+              37
             ],
             "scroll": [
-              480,
-              47
+              520,
+              41
             ]
           },
           {
             "selector": "h3",
             "text": "Concept Libre",
             "client": [
-              480,
-              43
+              520,
+              37
             ],
             "scroll": [
-              480,
-              47
+              520,
+              41
             ]
           }
         ],
@@ -253,14 +253,14 @@
         "h1": {
           "text": "Votre entreprise est solide. Il faut que ça se voie.",
           "rect": [
-            120,
-            238.9375,
-            505.796875,
-            419.8125,
-            238.9375,
-            625.796875,
-            658.75,
-            120
+            100,
+            167.90625,
+            506.53125,
+            387.484375,
+            167.90625,
+            606.53125,
+            555.390625,
+            100
           ]
         }
       },
@@ -375,12 +375,12 @@
           "text": "À regarder.",
           "rect": [
             57.59375,
-            208.359375,
+            202.359375,
             760,
             77.40625,
-            208.359375,
+            202.359375,
             817.59375,
-            285.765625,
+            279.765625,
             57.59375
           ]
         }
@@ -440,12 +440,12 @@
           "text": "Neptune Media en direct",
           "rect": [
             56.59375,
-            88,
+            82,
             1,
             1,
-            88,
+            82,
             57.59375,
-            89,
+            83,
             56.59375
           ]
         }
@@ -983,14 +983,6 @@
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
-        },
-        {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
         }
       ],
       "files": [
@@ -1353,6 +1345,22 @@
               163,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -1647,6 +1655,22 @@
               163,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -1893,6 +1917,22 @@
               163,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -1911,6 +1951,14 @@
       },
       "consoleErrors": [],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
@@ -2207,7 +2255,44 @@
             ]
           }
         ],
-        "offscreen": [],
+        "offscreen": [
+          {
+            "selector": "div",
+            "rect": [
+              221,
+              803,
+              414,
+              841
+            ]
+          },
+          {
+            "selector": "b",
+            "rect": [
+              235,
+              814,
+              400,
+              829
+            ]
+          },
+          {
+            "selector": "div",
+            "rect": [
+              424,
+              803,
+              669,
+              841
+            ]
+          },
+          {
+            "selector": "b",
+            "rect": [
+              438,
+              814,
+              655,
+              829
+            ]
+          }
+        ],
         "smallTargets": [
           {
             "selector": "a.skip-link",
@@ -2280,6 +2365,22 @@
               362,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -2304,6 +2405,14 @@
         "Failed to load resource: the server responded with a status of 400 ()"
       ],
       "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
@@ -2497,6 +2606,22 @@
               362,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -2666,6 +2791,22 @@
             "size": [
               362,
               32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
             ]
           }
         ],
@@ -2981,7 +3122,44 @@
             ]
           }
         ],
-        "offscreen": [],
+        "offscreen": [
+          {
+            "selector": "div",
+            "rect": [
+              221,
+              790,
+              414,
+              828
+            ]
+          },
+          {
+            "selector": "b",
+            "rect": [
+              235,
+              802,
+              400,
+              816
+            ]
+          },
+          {
+            "selector": "div",
+            "rect": [
+              424,
+              790,
+              669,
+              828
+            ]
+          },
+          {
+            "selector": "b",
+            "rect": [
+              438,
+              802,
+              655,
+              816
+            ]
+          }
+        ],
         "smallTargets": [
           {
             "selector": "a.skip-link",
@@ -3053,6 +3231,22 @@
             "size": [
               332,
               32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
             ]
           }
         ],
@@ -3271,6 +3465,22 @@
               332,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -3441,6 +3651,22 @@
               332,
               32
             ]
+          },
+          {
+            "selector": "a",
+            "text": "Regarder",
+            "size": [
+              73,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les offres",
+            "size": [
+              109,
+              19
+            ]
           }
         ],
         "h1": {
@@ -3516,11 +3742,11 @@
       "text": "Concept Libre44sVotre entrepreneuriat mis en lumière",
       "client": [
         83,
-        95
+        130
       ],
       "scroll": [
         99,
-        95
+        130
       ]
     },
     {
@@ -3564,11 +3790,11 @@
       "text": "Hors Norme20sUn accident de moto met fin à son entreprise",
       "client": [
         83,
-        95
+        130
       ],
       "scroll": [
         86,
-        95
+        130
       ]
     },
     {
@@ -3612,11 +3838,11 @@
       "text": "Hors Norme19sLe secret d’un storytelling efficace",
       "client": [
         83,
-        95
+        130
       ],
       "scroll": [
         86,
-        95
+        130
       ]
     },
     {
@@ -3660,11 +3886,11 @@
       "text": "Concept Libre19sL’humain avant le business",
       "client": [
         83,
-        95
+        130
       ],
       "scroll": [
         99,
-        95
+        130
       ]
     },
     {
@@ -3708,11 +3934,11 @@
       "text": "Concept Libre57sFilmer chez soi ? Laissez tomber.",
       "client": [
         83,
-        95
+        130
       ],
       "scroll": [
         99,
-        95
+        130
       ]
     },
     {
@@ -3755,12 +3981,12 @@
       "selector": "h3",
       "text": "Hors Norme",
       "client": [
-        480,
-        43
+        520,
+        37
       ],
       "scroll": [
-        480,
-        47
+        520,
+        41
       ]
     },
     {
@@ -3771,12 +3997,12 @@
       "selector": "h3",
       "text": "Concept Libre",
       "client": [
-        480,
-        43
+        520,
+        37
       ],
       "scroll": [
-        480,
-        47
+        520,
+        41
       ]
     },
     {
@@ -5461,6 +5687,58 @@
       "severity": "warning",
       "viewport": "mobile-390",
       "route": "home",
+      "type": "offscreen-element",
+      "selector": "div",
+      "rect": [
+        221,
+        803,
+        414,
+        841
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "b",
+      "rect": [
+        235,
+        814,
+        400,
+        829
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "div",
+      "rect": [
+        424,
+        803,
+        669,
+        841
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "b",
+      "rect": [
+        438,
+        814,
+        655,
+        829
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
       "type": "console-error",
       "message": "Failed to load resource: the server responded with a status of 400 ()"
     },
@@ -5986,6 +6264,58 @@
       "scroll": [
         64,
         93
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "div",
+      "rect": [
+        221,
+        790,
+        414,
+        828
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "b",
+      "rect": [
+        235,
+        802,
+        400,
+        816
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "div",
+      "rect": [
+        424,
+        790,
+        669,
+        828
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "b",
+      "rect": [
+        438,
+        802,
+        655,
+        816
       ]
     },
     {
