@@ -17,15 +17,15 @@
     document.body.dataset.finalUx = 'v12';
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
-    document.body.dataset.visibilityShowcase = 'v20';
+    document.body.dataset.visibilityShowcase = 'v21';
     document.body.dataset.heroRefresh = 'v27';
 
     loadJourneyV19();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
     appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
     appendStylesheet('/styles/intent-actions-v18.css?v=19', 'intentActions', 'v19', true);
-    appendStylesheet('/styles/visibility-showcase-v19.css?v=20', 'visibilityShowcase', 'v20', true);
-    loadVisibilityShowcase();
+    appendStylesheet('/styles/visibility-showcase-v19.css?v=21', 'visibilityShowcase', 'v21', true);
+    loadVisibilityShowcaseV21();
     appendStylesheet('/styles/hero-live-v21.css?v=27', 'heroLive', 'v27', true);
     appendStylesheet('/styles/neptune-brand-bridge-v20.css?v=20', 'neptuneBrandBridge', 'v20', true);
     loadHeroLiveV27();
@@ -60,12 +60,12 @@
     document.head.append(script);
   }
 
-  function loadVisibilityShowcase() {
-    if (document.querySelector('script[data-visibility-showcase-v20]')) return;
+  function loadVisibilityShowcaseV21() {
+    document.querySelectorAll('script[data-visibility-showcase-v20],script[data-visibility-showcase-v21]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/visibility-showcase-v19.js?v=20';
+    script.src = '/visibility-showcase-v19.js?v=21';
     script.defer = true;
-    script.dataset.visibilityShowcaseV20 = '1';
+    script.dataset.visibilityShowcaseV21 = '1';
     document.head.append(script);
   }
 
@@ -167,4 +167,4 @@
   }
 })();
 
-// Production browser quality gate revision 20.
+// Production browser quality gate revision 21.

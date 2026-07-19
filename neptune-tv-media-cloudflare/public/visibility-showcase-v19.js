@@ -2,7 +2,7 @@
   'use strict';
 
   const target = document.querySelector('.proof-by-content');
-  if (!target || target.dataset.visibilityShowcase === 'v20') return;
+  if (!target || target.dataset.visibilityShowcase === 'v21') return;
 
   /* Exclusively Hors Norme + Jeu Connexio rushes. No workshop reels. */
   const topVideos = [
@@ -54,7 +54,7 @@
     return Array.from({ length: 4 }, (_, index) => `<div class="visibility-marquee__group"${index ? ' aria-hidden="true"' : ''}>${cards}</div>`).join('');
   };
 
-  target.dataset.visibilityShowcase = 'v20';
+  target.dataset.visibilityShowcase = 'v21';
   target.className = 'visibility-showcase';
   target.id = 'a-voir';
   target.innerHTML = `
@@ -68,8 +68,14 @@
       <div class="visibility-marquee visibility-marquee--bottom"><div class="visibility-marquee__track">${track(bottomVideos, 'small')}</div></div>
     </div>
     <div class="visibility-showcase__footer container">
-      <span>Formats verticaux · sous-titrés · prêts à publier</span>
-      <a class="btn btn-primary" href="#formats">Découvrir les formats</a>
+      <div class="visibility-delivery">
+        <p class="visibility-delivery__title">Tout ça livré en <strong>moins de 15 jours</strong> dans votre espace client.</p>
+        <p class="visibility-delivery__subtitle">accessible dès votre réservation confirmée</p>
+      </div>
+      <a class="visibility-showcase__next" href="#formats">
+        <span>Pas encore convaincu ? <strong>Voyez la suite</strong></span>
+        <span class="visibility-showcase__next-arrow" aria-hidden="true">↓</span>
+      </a>
     </div>`;
 
   const videos = [...target.querySelectorAll('[data-showcase-video]')];
