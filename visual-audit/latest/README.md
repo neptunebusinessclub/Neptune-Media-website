@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-19T16:33:43.816Z
+Généré : 2026-07-19T16:37:41.971Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 190
+- Avertissements : 184
 
 ## Problèmes détectés
 
@@ -109,8 +109,6 @@ Généré : 2026-07-19T16:33:43.816Z
 | warning | tablet-834 | home | clipped-text | Concept Libre57sFilmer chez soi ? Laissez tomber. |
 | warning | tablet-834 | home | clipped-text | Concept Libre57s |
 | warning | tablet-834 | home | clipped-text | Filmer chez soi ? Laissez tomber. |
-| warning | tablet-834 | home | clipped-text | Hors Norme |
-| warning | tablet-834 | home | clipped-text | Concept Libre |
 | warning | tablet-834 | home | console-error | Failed to load resource: the server responded with a status of 400 () |
 | warning | tablet-834 | home | console-error | Failed to load resource: the server responded with a status of 400 () |
 | warning | tablet-834 | home | console-error | Failed to load resource: the server responded with a status of 400 () |
@@ -139,3 +137,6 @@ Généré : 2026-07-19T16:33:43.816Z
 | warning | mobile-390 | home | clipped-text | Concept Libre44sVotre entrepreneuriat mis en lumière |
 | warning | mobile-390 | home | clipped-text | Concept Libre44s |
 | warning | mobile-390 | home | clipped-text | Votre entrepreneuriat mis en lumière |
+| warning | mobile-390 | home | clipped-text | ▶
+      Hors Norme20sUn accident de moto met fin à son entreprise |
+| warning | mobile-390 | home | clipped-text | Hors Norme20sUn accident de moto met fin à son entreprise |
