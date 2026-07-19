@@ -6,6 +6,7 @@
   const qsa = (selector, scope = document) => [...scope.querySelectorAll(selector)];
   const ready = (callback) => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', callback, { once: true }) : callback();
 
+  ensureQualityStyles();
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
     document.body.dataset.finalUx = 'v12';
@@ -15,6 +16,16 @@
     bindRevealMotion();
     bindRailAffordance();
   });
+
+  function ensureQualityStyles() {
+    const href = '/styles/final-quality-v12.css?v=1';
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset.finalQuality = 'v12';
+    document.head.append(link);
+  }
 
   function loadJourneyV14() {
     if (!document.querySelector('link[data-media-journey-v14]')) {
@@ -142,4 +153,4 @@
   }
 })();
 
-// Production browser quality gate revision 3.
+// Production browser quality gate revision 4.
