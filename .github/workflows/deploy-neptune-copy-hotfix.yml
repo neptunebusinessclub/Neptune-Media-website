@@ -67,7 +67,7 @@ jobs:
         continue-on-error: true
         run: npx wrangler deploy
 
-      - name: Verify exact production update
+      - name: Verify exact production update and critical routes
         id: verify
         continue-on-error: true
         run: |
@@ -87,6 +87,7 @@ jobs:
             sleep 8
           done
           test "$ready" = "true"
+
           curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/home-live.js?v=4&verify=$nonce" > /tmp/home-live.js
           curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/landing-conversion.js?v=5&verify=$nonce" > /tmp/landing.js
           curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/styles/neptune-streaming.css?v=10&verify=$nonce" > /tmp/streaming.css
@@ -95,6 +96,20 @@ jobs:
           grep -q 'Conversion voice architecture v10' /tmp/streaming.css
           ! grep -q 'updateHero' /tmp/landing.js
           ! grep -q '24H/24' /tmp/home-live.js
+
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/direct/?verify=$nonce" > /tmp/direct.html
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/emissions/?verify=$nonce" > /tmp/emissions.html
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/studio/?verify=$nonce" -D /tmp/studio.headers > /tmp/studio.html
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/health?verify=$nonce" > /tmp/health.json
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/public/catalog?verify=$nonce" -D /tmp/catalog.headers > /tmp/catalog.json
+
+          grep -Eq 'data-live-channel|Programmation Neptune Media|Neptune Media en direct' /tmp/direct.html
+          grep -q 'Catalogue Neptune Media' /tmp/emissions.html
+          grep -Eq 'studio|connexion|administration' /tmp/studio.html
+          grep -qi '^x-robots-tag:.*noindex' /tmp/studio.headers
+          node -e "const d=require('/tmp/health.json'); if(d.ok!==true) process.exit(1)"
+          node -e "const d=require('/tmp/catalog.json'); if(!Array.isArray(d.programs)||!Array.isArray(d.episodes)||!Array.isArray(d.ads)) process.exit(1)"
+          grep -qi '^cache-control:.*no-store' /tmp/catalog.headers
 
       - name: Record hotfix deployment result
         if: always()
@@ -123,6 +138,7 @@ jobs:
               'architecture': 'conversion-voice-v10',
               'home_live': 'v4',
               'landing_conversion': 'v5',
+              'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog'],
               'outcomes': outcomes,
           }
           with open('copy-hotfix-deployment-status.json', 'w', encoding='utf-8') as handle:
