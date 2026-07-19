@@ -17,7 +17,8 @@ export class StudioStore extends BaseStore {
   async fetch(request) {
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
-    const body = method === 'GET' ? {} : await request.json().catch(() => ({}));
+    // Parse a clone so inherited routes can still read the original request body.
+    const body = method === 'GET' ? {} : await request.clone().json().catch(() => ({}));
     if (url.pathname.startsWith('/portal/')) {
       ensurePortalSchema(this);
       if (url.pathname === '/portal/request-code' && method === 'POST') return requestCode(this, body);
