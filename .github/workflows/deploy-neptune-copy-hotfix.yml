@@ -41,7 +41,6 @@ jobs:
 
       - name: Normalize generated source
         id: normalize
-        continue-on-error: true
         working-directory: .
         run: |
           python3 scripts/cleanup-render-polish-duplicates.py
@@ -54,22 +53,18 @@ jobs:
 
       - name: Install dependencies
         id: install
-        continue-on-error: true
         run: npm install --package-lock=false --registry=https://registry.npmjs.org
 
       - name: Validate source
         id: validate
-        continue-on-error: true
         run: npm run check
 
       - name: Deploy current source
         id: deploy
-        continue-on-error: true
         run: npx wrangler deploy
 
       - name: Verify exact production update and critical routes
         id: verify
-        continue-on-error: true
         run: |
           set -euo pipefail
           ready=false
