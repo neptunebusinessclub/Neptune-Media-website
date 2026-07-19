@@ -31,7 +31,12 @@ async function filterPublicCatalog(response){
   const programs=(catalog.programs||[]).filter(isActiveProgram);
   const programIds=new Set(programs.map((program)=>program.id));
   const episodes=(catalog.episodes||[]).filter((episode)=>programIds.has(episode.programId)&&episode.status==='published'&&Boolean(episode.slug&&episode.videoUrl&&episode.posterUrl));
-  const headers=new Headers(response.headers);headers.set('Content-Type','application/json; charset=utf-8');
+  const headers=new Headers(response.headers);
+  headers.set('Content-Type','application/json; charset=utf-8');
+  headers.set('Cache-Control','no-store');
+  headers.delete('Content-Length');
+  headers.delete('ETag');
+  headers.delete('Last-Modified');
   return new Response(JSON.stringify({...catalog,programs,episodes}),{status:response.status,statusText:response.statusText,headers});
 }
 function isActiveProgram(program){return Boolean(program?.slug)&&program.active!==false&&Number(program.active??1)!==0;}
