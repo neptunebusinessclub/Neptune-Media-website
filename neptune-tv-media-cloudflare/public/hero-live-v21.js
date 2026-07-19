@@ -43,13 +43,18 @@
     }
   };
 
+  const playableSource = (episode) => {
+    const metadata = episode?.metadata && typeof episode.metadata === 'object' ? episode.metadata : {};
+    return metadata.previewUrl || metadata.trailerUrl || metadata.teaserUrl || episode?.videoUrl || '';
+  };
+
   ready(async () => {
     const hero = document.querySelector('.voice-hero');
     const heroGrid = hero?.querySelector('.hero-grid');
-    if (!hero || !heroGrid || hero.dataset.heroRefresh === 'v23') return;
+    if (!hero || !heroGrid || hero.dataset.heroRefresh === 'v24') return;
 
-    hero.dataset.heroRefresh = 'v23';
-    document.body.dataset.heroRefresh = 'v23';
+    hero.dataset.heroRefresh = 'v24';
+    document.body.dataset.heroRefresh = 'v24';
 
     const stage = document.createElement('div');
     stage.className = 'hero-v21';
@@ -72,7 +77,7 @@
       <div class="hero-v21__live" aria-busy="true">
         <div class="hero-v21__live-head"><span class="hero-v21__live-dot"></span><span>Hors Norme · En direct sur Neptune TV</span></div>
         <div class="hero-v21__video-frame">
-          <video muted autoplay loop playsinline preload="metadata" poster="${fallbackPoster}" aria-label="Émission Hors Norme de Neptune Business en direct"></video>
+          <video muted playsinline preload="auto" poster="${fallbackPoster}" aria-label="Émission Hors Norme de Neptune Business en direct"></video>
           <a class="hero-v21__watch" href="/emissions/">Regarder l'émission</a>
         </div>
       </div>`;
@@ -81,20 +86,80 @@
     heroGrid.classList.add('hero-grid--v21');
 
     const live = stage.querySelector('.hero-v21__live');
-    const video = stage.querySelector('.hero-v21__video-frame video');
+    const frame = stage.querySelector('.hero-v21__video-frame');
+    const video = frame.querySelector('video');
     const watch = stage.querySelector('.hero-v21__watch');
     const episode = await resolveHorsNormeEpisode();
 
-    if (episode?.videoUrl) {
+    const attemptPlay = async () => {
+      if (!video.src || document.hidden) return false;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      try {
+        await video.play();
+        frame.dataset.playing = 'true';
+        frame.removeAttribute('data-stalled');
+        return true;
+      } catch (error) {
+        frame.dataset.playing = 'false';
+        return false;
+      }
+    };
+
+    if (episode) {
+      const source = playableSource(episode);
       video.poster = episode.posterUrl || fallbackPoster;
-      video.src = episode.videoUrl;
-      video.load();
-      video.play().catch(() => {});
       watch.href = `/emissions/?episode=${encodeURIComponent(episode.slug || episode.id)}`;
       watch.setAttribute('aria-label', `Regarder ${episode.title}`);
       live.dataset.episodeId = episode.id;
       live.dataset.program = 'hors-norme';
+
+      if (source) {
+        video.src = source;
+        video.autoplay = true;
+        video.loop = true;
+        video.load();
+
+        const startPlayback = () => {
+          if (Number.isFinite(video.duration) && video.duration > 40 && video.currentTime < 1) {
+            try { video.currentTime = Math.min(8, Math.max(0, video.duration - 2)); } catch (_) {}
+          }
+          attemptPlay();
+        };
+
+        video.addEventListener('loadedmetadata', startPlayback, { once: true });
+        video.addEventListener('canplay', attemptPlay, { once: true });
+        video.addEventListener('playing', () => { frame.dataset.playing = 'true'; });
+        video.addEventListener('pause', () => { frame.dataset.playing = 'false'; });
+        video.addEventListener('waiting', () => frame.setAttribute('data-stalled', 'true'));
+        video.addEventListener('playing', () => frame.removeAttribute('data-stalled'));
+        video.addEventListener('error', () => {
+          frame.dataset.playing = 'false';
+          frame.setAttribute('data-stalled', 'true');
+        });
+
+        frame.addEventListener('click', (event) => {
+          if (event.target.closest('.hero-v21__watch')) return;
+          if (video.paused) attemptPlay();
+          else video.pause();
+        });
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) attemptPlay();
+            else video.pause();
+          }, { threshold: 0.25 });
+          observer.observe(frame);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) video.pause();
+          else attemptPlay();
+        });
+      }
     }
+
     live.setAttribute('aria-busy', 'false');
 
     const primaryNode = stage.querySelector('[data-hero-word-primary]');
