@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-19T16:05:42.023Z
+Généré : 2026-07-19T16:08:18.989Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 148
+- Avertissements : 150
 
 ## Problèmes détectés
 
@@ -16,6 +16,8 @@ Généré : 2026-07-19T16:05:42.023Z
 | warning | desktop-1440 | home | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | desktop-1440 | home | clipped-text | Un accident de moto met fin à son entreprise |
 | warning | desktop-1440 | home | clipped-text | Le secret d’un storytelling efficace |
+| warning | desktop-1440 | home | clipped-text | L’humain avant le business |
+| warning | desktop-1440 | home | clipped-text | Filmer chez soi ? Laissez tomber. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 400 () |
@@ -128,5 +130,3 @@ Généré : 2026-07-19T16:05:42.023Z
 | warning | mobile-360 | home | clipped-text | Aller au contenu principal |
 | warning | mobile-360 | home | clipped-text | 2 extraits disponibles. |
 | warning | mobile-360 | home | clipped-text | Concept Libre44s |
-| warning | mobile-360 | home | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | mobile-360 | home | clipped-text | Un accident de moto met fin à son entreprise |
