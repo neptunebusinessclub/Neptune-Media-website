@@ -23,7 +23,10 @@ export default {async fetch(request,env,ctx){
   const portal=await handlePortalPublicRoute(request,env,studio)||await handlePortalAdminRoute(request,env,studio);if(portal)return secure(portal);
   const multipart=await handleMultipartRoute(request,env);if(multipart)return secure(multipart);
   const response=await application.fetch(request,env,ctx);
-  if(url.pathname==='/api/public/catalog'&&request.method==='GET'&&response.ok)return secure(await filterPublicCatalog(response));
+  if(url.pathname==='/api/public/catalog'&&response.ok){
+    if(request.method==='GET')return secure(await filterPublicCatalog(response));
+    if(request.method==='HEAD')return secure(withNoStoreCatalogHeaders(response));
+  }
   return response;
 }};
 async function filterPublicCatalog(response){
@@ -31,13 +34,20 @@ async function filterPublicCatalog(response){
   const programs=(catalog.programs||[]).filter(isActiveProgram);
   const programIds=new Set(programs.map((program)=>program.id));
   const episodes=(catalog.episodes||[]).filter((episode)=>programIds.has(episode.programId)&&episode.status==='published'&&Boolean(episode.slug&&episode.videoUrl&&episode.posterUrl));
-  const headers=new Headers(response.headers);
+  const headers=cleanCatalogHeaders(response.headers);
   headers.set('Content-Type','application/json; charset=utf-8');
+  return new Response(JSON.stringify({...catalog,programs,episodes}),{status:response.status,statusText:response.statusText,headers});
+}
+function withNoStoreCatalogHeaders(response){
+  return new Response(null,{status:response.status,statusText:response.statusText,headers:cleanCatalogHeaders(response.headers)});
+}
+function cleanCatalogHeaders(source){
+  const headers=new Headers(source);
   headers.set('Cache-Control','no-store');
   headers.delete('Content-Length');
   headers.delete('ETag');
   headers.delete('Last-Modified');
-  return new Response(JSON.stringify({...catalog,programs,episodes}),{status:response.status,statusText:response.statusText,headers});
+  return headers;
 }
 function isActiveProgram(program){return Boolean(program?.slug)&&program.active!==false&&Number(program.active??1)!==0;}
 function secure(response){const headers=new Headers(response.headers);for(const [key,value] of Object.entries(securityHeaders()))headers.set(key,value);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
