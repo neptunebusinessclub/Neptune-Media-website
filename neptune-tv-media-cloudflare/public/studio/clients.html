@@ -6,87 +6,49 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Clients · Neptune Media Studio</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/studio/clients.css">
+  <link rel="stylesheet" href="/studio/clients.css?v=30">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/studio/">
-      <img src="/assets/logo-neptune.svg" alt="Neptune">
-      <span><b>Neptune Media</b><small>Studio · Clients</small></span>
-    </a>
-    <div class="actions">
-      <a class="button secondary" href="/studio/">Retour au Studio</a>
-      <a class="button" href="/espace-client/" target="_blank" rel="noopener">Voir l’espace client</a>
-    </div>
+    <a class="brand" href="/studio/"><img src="/assets/logo-neptune.svg" alt="Neptune"><span><b>Neptune Media</b><small>Parcours clients</small></span></a>
+    <div class="top-actions"><a class="button secondary" href="/studio/">Aujourd’hui</a><a class="button secondary" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener">Video Studio</a><button id="newClient" class="button" type="button">Nouveau client</button></div>
   </header>
 
   <main>
-    <section class="hero">
-      <p class="eyebrow">RELATION CLIENT</p>
-      <h1>Comptes, passages et livrables.</h1>
-      <p>Un client conserve le même compte. Chaque nouvelle réservation ajoute un nouveau passage à son historique.</p>
+    <section class="intro">
+      <div><p class="eyebrow">PARCOURS CLIENTS</p><h1>Une prochaine action. Pas dix formulaires.</h1><p>Les délais sont calculés automatiquement. Chaque validation met à jour le client et envoie les e-mails nécessaires.</p></div>
+      <div class="stats" aria-label="Résumé"><div><b id="clientCount">0</b><span>clients</span></div><div><b id="activeCount">0</b><span>en cours</span></div><div><b id="urgentCount">0</b><span>urgents</span></div><button id="refresh" class="icon-button" type="button" aria-label="Actualiser">↻</button></div>
     </section>
 
-    <section class="grid">
-      <form id="newOrder" class="panel form-panel">
-        <div><p class="eyebrow">NOUVEL ACCÈS</p><h2>Ajouter une commande</h2></div>
-        <div class="fields">
-          <label><span>E-mail client *</span><input name="email" type="email" required></label>
-          <label><span>Nom complet</span><input name="fullName" autocomplete="name"></label>
-          <label><span>Entreprise</span><input name="company"></label>
-          <label><span>Nom du passage *</span><input name="title" value="Passage Neptune Media" required></label>
-          <label><span>Format</span><select name="format"><option value="Hors Norme">Hors Norme</option><option value="Concept Libre">Concept Libre</option><option value="Sur mesure">Sur mesure</option></select></label>
-          <label><span>Code produit</span><input name="productCode" placeholder="hors-norme"></label>
-          <label><span>Montant payé (€)</span><input name="amountEuros" type="number" min="0" step="0.01"></label>
-          <label><span>Date du rendez-vous</span><input name="appointmentAt" type="datetime-local"></label>
-          <label class="wide"><span>Lien de préparation</span><input name="preparationUrl" type="url" placeholder="https://…"></label>
-          <label class="wide"><span>Prochaine action</span><input name="nextAction" value="Choisir ou confirmer votre rendez-vous"></label>
-        </div>
-        <label class="check"><input name="sendEmail" type="checkbox" checked><span>Envoyer immédiatement l’accès au client</span></label>
-        <button class="button" type="submit">Créer le passage client</button>
-        <p id="formMessage" class="message" aria-live="polite"></p>
-      </form>
+    <section class="controls"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un client, une entreprise ou un format"></label><div class="view-links"><button type="button" data-open-section="contenus">Contenus</button><button type="button" data-open-section="calendrier">Calendrier</button><button type="button" data-open-section="finances">Facturation</button></div></section>
 
-      <section class="panel stats">
-        <p class="eyebrow">VUE GLOBALE</p>
-        <div class="stat-grid"><div><b id="clientCount">0</b><span>clients</span></div><div><b id="orderCount">0</b><span>passages</span></div><div><b id="activeCount">0</b><span>en cours</span></div></div>
-        <button id="refresh" class="button secondary" type="button">Actualiser</button>
-      </section>
-    </section>
-
-    <section class="orders-section">
-      <div class="section-title"><div><p class="eyebrow">TOUS LES PASSAGES</p><h2>Suivi opérationnel</h2></div><input id="search" type="search" placeholder="Rechercher un client…"></div>
-      <div id="orders" class="orders"></div>
-    </section>
+    <section id="pipeline" class="pipeline" aria-live="polite"></section>
   </main>
 
-  <template id="orderTemplate">
-    <article class="order">
-      <div class="order-head"><div><p class="client-line"></p><h3></h3><p class="meta"></p></div><button class="button secondary send-access" type="button">Renvoyer l’accès</button></div>
-      <form class="update-form">
-        <input name="orderId" type="hidden">
-        <div class="fields compact">
-          <label><span>Statut</span><select name="status"><option value="reservation_confirmed">Réservation confirmée</option><option value="appointment_confirmed">Rendez-vous confirmé</option><option value="preparation">Préparation</option><option value="preparation_complete">Préparation terminée</option><option value="filming_scheduled">Tournage planifié</option><option value="filmed">Tournage réalisé</option><option value="editing">Montage en cours</option><option value="approval">Validation demandée</option><option value="delivered">Livré</option><option value="completed">Terminé</option></select></label>
-          <label><span>Rendez-vous</span><input name="appointmentAt" type="datetime-local"></label>
-          <label><span>Tournage</span><input name="filmingAt" type="datetime-local"></label>
-          <label class="wide"><span>Prochaine action</span><input name="nextAction"></label>
-          <label class="wide"><span>Lien de préparation</span><input name="preparationUrl" type="url"></label>
-        </div>
-        <button class="button secondary" type="submit">Mettre à jour le suivi</button>
-      </form>
-      <form class="file-form">
-        <p class="eyebrow">AJOUTER UN LIVRABLE</p><input name="orderId" type="hidden">
-        <div class="fields compact">
-          <label><span>Nom du fichier</span><input name="name" required placeholder="Vidéo finale HD.mp4"></label>
-          <label><span>Type</span><select name="fileType"><option value="final">Vidéo finale</option><option value="rushes">Rushs</option><option value="teaser">Teaser</option><option value="document">Document</option></select></label>
-          <label><span>Taille affichée</span><input name="sizeLabel" placeholder="1,8 Go"></label>
-          <label class="wide"><span>URL externe ou clé R2</span><input name="fileLocation" required placeholder="https://… ou clients/.../fichier.mp4"></label>
-        </div>
-        <button class="button secondary" type="submit">Rendre disponible au client</button>
-      </form>
-      <p class="order-message message" aria-live="polite"></p>
-    </article>
-  </template>
-  <script type="module" src="/studio/clients.js"></script>
+  <dialog id="newDialog" class="dialog">
+    <form id="newOrder" class="dialog-card">
+      <div class="dialog-head"><div><p class="eyebrow">NOUVEAU PASSAGE</p><h2>Créer le dossier client</h2></div><button class="close" type="button" data-close="newDialog" aria-label="Fermer">×</button></div>
+      <div class="fields">
+        <label><span>E-mail client *</span><input name="email" type="email" required></label>
+        <label><span>Nom complet</span><input name="fullName" autocomplete="name"></label>
+        <label><span>Entreprise</span><input name="company"></label>
+        <label><span>Format</span><select name="format"><option>Hors Norme</option><option>Concept Libre</option><option>Sur mesure</option></select></label>
+        <label class="wide"><span>Nom du passage</span><input name="title" value="Passage Neptune Media" required></label>
+        <label><span>Montant payé (€)</span><input name="amountEuros" type="number" min="0" step="0.01"></label>
+        <label><span>Rendez-vous de préparation</span><input name="appointmentAt" type="datetime-local"></label>
+        <label class="wide"><span>Lien de préparation</span><input name="preparationUrl" type="url" placeholder="https://…"></label>
+      </div>
+      <label class="check"><input name="sendEmail" type="checkbox" checked><span>Envoyer immédiatement l’accès au client</span></label>
+      <button class="button" type="submit">Créer et envoyer l’accès</button><p id="formMessage" class="message" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <dialog id="clientDialog" class="dialog drawer">
+    <section class="dialog-card drawer-card">
+      <div id="clientDetail"></div>
+    </section>
+  </dialog>
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/studio/clients.js?v=30"></script>
 </body>
 </html>
