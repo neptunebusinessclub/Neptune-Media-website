@@ -1,5 +1,6 @@
 (() => {
   const BOOKING = 'https://media.neptunebusiness.com/';
+  const SESSION_KEY = 'neptune_media_session';
   const ready = (fn) => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn, { once: true }) : fn();
 
   ready(() => {
@@ -16,6 +17,7 @@
     enhanceFinalCta();
     enhanceFooter();
     addMobileBar();
+    decorateBookingLinks();
     watchLiveSection();
   });
 
@@ -136,7 +138,7 @@
     if (!section.querySelector('.deliverables-cta')) {
       const cta = document.createElement('div');
       cta.className = 'deliverables-cta';
-      cta.innerHTML = `<a class="btn btn-primary" href="#formats">Comparer les deux formats</a><a class="btn btn-secondary" data-funnel href="${BOOKING}">Voir les créneaux disponibles</a>`;
+      cta.innerHTML = `<a class="btn btn-primary" href="#formats">Comparer les deux formats</a><a class="btn btn-secondary" data-funnel data-track="deliverables_reservation" href="${BOOKING}">Voir les créneaux disponibles</a>`;
       section.querySelector('.container')?.append(cta);
     }
   }
@@ -212,8 +214,28 @@
     if (document.querySelector('.mobile-conversion-bar')) return;
     const bar = document.createElement('div');
     bar.className = 'mobile-conversion-bar';
-    bar.innerHTML = `<a href="/direct/"><span>●</span> Web TV</a><a class="primary" data-funnel href="${BOOKING}">Voir les créneaux</a>`;
+    bar.innerHTML = `<a href="/direct/"><span>●</span> Web TV</a><a class="primary" data-funnel data-track="mobile_bar_reservation" href="${BOOKING}">Voir les créneaux</a>`;
     document.body.append(bar);
+  }
+
+  function decorateBookingLinks() {
+    let sessionId = '';
+    try { sessionId = localStorage.getItem(SESSION_KEY) || ''; } catch {}
+    document.querySelectorAll('a[data-funnel]').forEach((link) => {
+      const url = new URL(link.href || BOOKING, location.href);
+      if (url.origin !== new URL(BOOKING).origin) return;
+      url.searchParams.set('utm_source', 'webtv');
+      url.searchParams.set('utm_campaign', 'neptune_media');
+      if (!url.searchParams.has('utm_medium')) url.searchParams.set('utm_medium', link.dataset.format ? 'landing_format' : 'website');
+      if (link.dataset.format) {
+        url.searchParams.set('format', link.dataset.format);
+        url.searchParams.set('offre', link.dataset.format);
+        if (!url.searchParams.has('utm_content')) url.searchParams.set('utm_content', link.dataset.format);
+      }
+      if (sessionId) url.searchParams.set('session_id', sessionId);
+      link.href = url.toString();
+      if (!link.dataset.track) link.dataset.track = 'booking_click';
+    });
   }
 
   function problemCard(number, title, text) { return `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`; }
