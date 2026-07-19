@@ -1,0 +1,6245 @@
+{
+  "generatedAt": "2026-07-19T13:32:23.770Z",
+  "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
+  "captures": [
+    {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "route": {
+        "name": "home",
+        "url": "/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media — Émissions et contenus vidéo pour dirigeants",
+        "bodyWidth": 1440,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "Votre entreprise est solide. Il faut que ça se voie.",
+            "client": [
+              720,
+              203
+            ],
+            "scroll": [
+              720,
+              210
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "À regarder.",
+            "client": [
+              780,
+              56
+            ],
+            "scroll": [
+              780,
+              61
+            ]
+          },
+          {
+            "selector": "#catalogStatus",
+            "text": "2 extraits disponibles.",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              176,
+              19
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              91,
+              19
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              85,
+              24
+            ],
+            "scroll": [
+              92,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              85,
+              24
+            ],
+            "scroll": [
+              85,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              85,
+              24
+            ],
+            "scroll": [
+              85,
+              36
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "L’humain avant le business",
+            "client": [
+              85,
+              24
+            ],
+            "scroll": [
+              85,
+              36
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              85,
+              24
+            ],
+            "scroll": [
+              85,
+              36
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+            "client": [
+              420,
+              520
+            ],
+            "scroll": [
+              420,
+              526
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Être visible sans transformer votre vie en contenu.",
+            "client": [
+              680,
+              203
+            ],
+            "scroll": [
+              680,
+              208
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+            "client": [
+              530,
+              519
+            ],
+            "scroll": [
+              530,
+              524
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              581,
+              52
+            ],
+            "scroll": [
+              581,
+              57
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              581,
+              52
+            ],
+            "scroll": [
+              581,
+              57
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+            "client": [
+              460,
+              635
+            ],
+            "scroll": [
+              460,
+              641
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+            "client": [
+              780,
+              107
+            ],
+            "scroll": [
+              780,
+              112
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Les questions que vous vous posez avant de dire oui.",
+            "client": [
+              414,
+              406
+            ],
+            "scroll": [
+              414,
+              412
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+            "client": [
+              900,
+              212
+            ],
+            "scroll": [
+              900,
+              218
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "Votre entreprise est solide. Il faut que ça se voie.",
+          "rect": [
+            57.59375,
+            365.859375,
+            720,
+            203.015625,
+            365.859375,
+            777.59375,
+            568.875,
+            57.59375
+          ]
+        }
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "home-desktop-1440-fold.jpg",
+        "home-desktop-1440-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "route": {
+        "name": "emissions",
+        "url": "/emissions/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Toutes les émissions — Neptune Media",
+        "bodyWidth": 1440,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "À regarder.",
+            "client": [
+              760,
+              59
+            ],
+            "scroll": [
+              760,
+              64
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher une émission",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              202,
+              19
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              112,
+              26
+            ],
+            "scroll": [
+              112,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              112,
+              26
+            ],
+            "scroll": [
+              112,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              112,
+              26
+            ],
+            "scroll": [
+              112,
+              39
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "À regarder.",
+          "rect": [
+            57.59375,
+            202.765625,
+            760,
+            59.265625,
+            202.765625,
+            817.59375,
+            262.03125,
+            57.59375
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "files": [
+        "emissions-desktop-1440-fold.jpg",
+        "emissions-desktop-1440-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "route": {
+        "name": "direct",
+        "url": "/direct/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media en direct — Web TV business",
+        "bodyWidth": 1440,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1.sr-only",
+            "text": "Neptune Media en direct",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              447,
+              38
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "Neptune Media en direct",
+          "rect": [
+            56.59375,
+            92,
+            1,
+            1,
+            92,
+            57.59375,
+            93,
+            56.59375
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "direct-desktop-1440-fold.jpg",
+        "direct-desktop-1440-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "laptop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "route": {
+        "name": "home",
+        "url": "/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media — Émissions et contenus vidéo pour dirigeants",
+        "bodyWidth": 1280,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "Votre entreprise est solide. Il faut que ça se voie.",
+            "client": [
+              691,
+              180
+            ],
+            "scroll": [
+              691,
+              187
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "À regarder.",
+            "client": [
+              658,
+              50
+            ],
+            "scroll": [
+              658,
+              55
+            ]
+          },
+          {
+            "selector": "#catalogStatus",
+            "text": "2 extraits disponibles.",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              176,
+              19
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              91,
+              19
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              72,
+              24
+            ],
+            "scroll": [
+              92,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              72,
+              24
+            ],
+            "scroll": [
+              72,
+              60
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              72,
+              24
+            ],
+            "scroll": [
+              72,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "L’humain avant le business",
+            "client": [
+              72,
+              24
+            ],
+            "scroll": [
+              72,
+              36
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              72,
+              24
+            ],
+            "scroll": [
+              72,
+              36
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+            "client": [
+              420,
+              404
+            ],
+            "scroll": [
+              420,
+              410
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Être visible sans transformer votre vie en contenu.",
+            "client": [
+              602,
+              181
+            ],
+            "scroll": [
+              602,
+              185
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+            "client": [
+              530,
+              404
+            ],
+            "scroll": [
+              530,
+              409
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              507,
+              49
+            ],
+            "scroll": [
+              507,
+              54
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              507,
+              49
+            ],
+            "scroll": [
+              507,
+              54
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+            "client": [
+              460,
+              452
+            ],
+            "scroll": [
+              460,
+              456
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+            "client": [
+              658,
+              95
+            ],
+            "scroll": [
+              658,
+              99
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Les questions que vous vous posez avant de dire oui.",
+            "client": [
+              366,
+              361
+            ],
+            "scroll": [
+              366,
+              366
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+            "client": [
+              900,
+              188
+            ],
+            "scroll": [
+              900,
+              193
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "Votre entreprise est solide. Il faut que ça se voie.",
+          "rect": [
+            51.203125,
+            362.796875,
+            691.046875,
+            180.46875,
+            362.796875,
+            742.25,
+            543.265625,
+            51.203125
+          ]
+        }
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "home-laptop-1280-fold.jpg",
+        "home-laptop-1280-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "laptop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "route": {
+        "name": "emissions",
+        "url": "/emissions/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Toutes les émissions — Neptune Media",
+        "bodyWidth": 1280,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "À regarder.",
+            "client": [
+              760,
+              53
+            ],
+            "scroll": [
+              760,
+              57
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher une émission",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              202,
+              19
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              97,
+              26
+            ],
+            "scroll": [
+              104,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              97,
+              26
+            ],
+            "scroll": [
+              97,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              97,
+              26
+            ],
+            "scroll": [
+              97,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "L’humain avant le business",
+            "client": [
+              97,
+              26
+            ],
+            "scroll": [
+              97,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              97,
+              26
+            ],
+            "scroll": [
+              97,
+              39
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "À regarder.",
+          "rect": [
+            51.203125,
+            202.765625,
+            760,
+            52.6875,
+            202.765625,
+            811.203125,
+            255.453125,
+            51.203125
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "files": [
+        "emissions-laptop-1280-fold.jpg",
+        "emissions-laptop-1280-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "laptop-1280",
+        "width": 1280,
+        "height": 800
+      },
+      "route": {
+        "name": "direct",
+        "url": "/direct/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media en direct — Web TV business",
+        "bodyWidth": 1280,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1.sr-only",
+            "text": "Neptune Media en direct",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              447,
+              38
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [],
+        "h1": {
+          "text": "Neptune Media en direct",
+          "rect": [
+            50.203125,
+            92,
+            1,
+            1,
+            92,
+            51.203125,
+            93,
+            50.203125
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "direct-laptop-1280-fold.jpg",
+        "direct-laptop-1280-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "tablet-834",
+        "width": 834,
+        "height": 1112
+      },
+      "route": {
+        "name": "home",
+        "url": "/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media — Émissions et contenus vidéo pour dirigeants",
+        "bodyWidth": 834,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "Votre entreprise est solide. Il faut que ça se voie.",
+            "client": [
+              720,
+              84
+            ],
+            "scroll": [
+              720,
+              89
+            ]
+          },
+          {
+            "selector": "#catalogStatus",
+            "text": "2 extraits disponibles.",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              176,
+              19
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              91,
+              19
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre44s",
+            "client": [
+              62,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              62,
+              24
+            ],
+            "scroll": [
+              92,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              62,
+              24
+            ],
+            "scroll": [
+              62,
+              72
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              62,
+              24
+            ],
+            "scroll": [
+              66,
+              48
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre19s",
+            "client": [
+              62,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "L’humain avant le business",
+            "client": [
+              62,
+              24
+            ],
+            "scroll": [
+              62,
+              36
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre57s",
+            "client": [
+              62,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              62,
+              24
+            ],
+            "scroll": [
+              62,
+              48
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+            "client": [
+              767,
+              113
+            ],
+            "scroll": [
+              767,
+              116
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Être visible sans transformer votre vie en contenu.",
+            "client": [
+              767,
+              78
+            ],
+            "scroll": [
+              767,
+              81
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+            "client": [
+              767,
+              113
+            ],
+            "scroll": [
+              767,
+              116
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              695,
+              32
+            ],
+            "scroll": [
+              695,
+              35
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              695,
+              32
+            ],
+            "scroll": [
+              695,
+              35
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+            "client": [
+              767,
+              110
+            ],
+            "scroll": [
+              767,
+              114
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+            "client": [
+              767,
+              64
+            ],
+            "scroll": [
+              767,
+              67
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Les questions que vous vous posez avant de dire oui.",
+            "client": [
+              300,
+              254
+            ],
+            "scroll": [
+              300,
+              258
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+            "client": [
+              665,
+              123
+            ],
+            "scroll": [
+              665,
+              126
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.hero-detail-link",
+            "text": "Voir la page de l’émission →",
+            "size": [
+              196,
+              15
+            ]
+          },
+          {
+            "selector": "a.catalog-all-link",
+            "text": "Toutes les émissions →",
+            "size": [
+              767,
+              15
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              372,
+              26
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              372,
+              26
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Neptune TV",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Direct",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Nouveautés",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              163,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Votre entreprise est solide. Il faut que ça se voie.",
+          "rect": [
+            33.359375,
+            220.671875,
+            720,
+            84.1875,
+            220.671875,
+            753.359375,
+            304.859375,
+            33.359375
+          ]
+        }
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "home-tablet-834-fold.jpg",
+        "home-tablet-834-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "tablet-834",
+        "width": 834,
+        "height": 1112
+      },
+      "route": {
+        "name": "emissions",
+        "url": "/emissions/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Toutes les émissions — Neptune Media",
+        "bodyWidth": 834,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1",
+            "text": "À regarder.",
+            "client": [
+              760,
+              34
+            ],
+            "scroll": [
+              760,
+              37
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher une émission",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              202,
+              19
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              86,
+              26
+            ],
+            "scroll": [
+              104,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              86,
+              26
+            ],
+            "scroll": [
+              86,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              86,
+              26
+            ],
+            "scroll": [
+              86,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "L’humain avant le business",
+            "client": [
+              86,
+              26
+            ],
+            "scroll": [
+              86,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              86,
+              26
+            ],
+            "scroll": [
+              86,
+              39
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              163,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "À regarder.",
+          "rect": [
+            33.359375,
+            202.765625,
+            760,
+            34.484375,
+            202.765625,
+            793.359375,
+            237.25,
+            33.359375
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "files": [
+        "emissions-tablet-834-fold.jpg",
+        "emissions-tablet-834-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "tablet-834",
+        "width": 834,
+        "height": 1112
+      },
+      "route": {
+        "name": "direct",
+        "url": "/direct/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media en direct — Web TV business",
+        "bodyWidth": 834,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1.sr-only",
+            "text": "Neptune Media en direct",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              447,
+              38
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link.is-active",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Activer le son",
+            "size": [
+              141,
+              41
+            ]
+          },
+          {
+            "selector": "button.btn.btn-secondary",
+            "text": "Reprendre le direct",
+            "size": [
+              150,
+              38
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Réessayer",
+            "size": [
+              105,
+              38
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les émissions",
+            "size": [
+              143,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              163,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              163,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Neptune Media en direct",
+          "rect": [
+            32.359375,
+            92,
+            1,
+            1,
+            92,
+            33.359375,
+            93,
+            32.359375
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "direct-tablet-834-fold.jpg",
+        "direct-tablet-834-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "route": {
+        "name": "home",
+        "url": "/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media — Émissions et contenus vidéo pour dirigeants",
+        "bodyWidth": 390,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "Votre entreprise est solide. Il faut que ça se voie.",
+            "client": [
+              360,
+              176
+            ],
+            "scroll": [
+              360,
+              181
+            ]
+          },
+          {
+            "selector": "#catalogStatus",
+            "text": "2 extraits disponibles.",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              176,
+              19
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              91,
+              19
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre44s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              92,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              72
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              66,
+              48
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre19s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "L’humain avant le business",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              36
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre57s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              48
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+            "client": [
+              350,
+              180
+            ],
+            "scroll": [
+              350,
+              184
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Être visible sans transformer votre vie en contenu.",
+            "client": [
+              350,
+              113
+            ],
+            "scroll": [
+              350,
+              116
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+            "client": [
+              350,
+              216
+            ],
+            "scroll": [
+              350,
+              219
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              282,
+              41
+            ],
+            "scroll": [
+              282,
+              45
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              282,
+              82
+            ],
+            "scroll": [
+              282,
+              86
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+            "client": [
+              350,
+              216
+            ],
+            "scroll": [
+              350,
+              219
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+            "client": [
+              350,
+              145
+            ],
+            "scroll": [
+              350,
+              148
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Les questions que vous vous posez avant de dire oui.",
+            "client": [
+              350,
+              168
+            ],
+            "scroll": [
+              350,
+              172
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+            "client": [
+              276,
+              230
+            ],
+            "scroll": [
+              276,
+              233
+            ]
+          }
+        ],
+        "offscreen": [
+          {
+            "selector": "button",
+            "rect": [
+              313,
+              2392,
+              416,
+              2434
+            ]
+          }
+        ],
+        "smallTargets": [
+          {
+            "selector": "a.brand",
+            "text": "Neptune Media TV, accueil",
+            "size": [
+              50,
+              38
+            ]
+          },
+          {
+            "selector": "a.hero-detail-link",
+            "text": "Voir la page de l’émission →",
+            "size": [
+              196,
+              15
+            ]
+          },
+          {
+            "selector": "a.catalog-all-link",
+            "text": "Toutes les émissions →",
+            "size": [
+              350,
+              15
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              320,
+              26
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              320,
+              26
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Neptune TV",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Direct",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Nouveautés",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              350,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Votre entreprise est solide. Il faut que ça se voie.",
+          "rect": [
+            20,
+            212.9375,
+            360,
+            175.9375,
+            212.9375,
+            380,
+            388.875,
+            20
+          ]
+        }
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "home-mobile-390-fold.jpg",
+        "home-mobile-390-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "route": {
+        "name": "emissions",
+        "url": "/emissions/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Toutes les émissions — Neptune Media",
+        "bodyWidth": 390,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1",
+            "text": "À regarder.",
+            "client": [
+              350,
+              34
+            ],
+            "scroll": [
+              350,
+              37
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher une émission",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              202,
+              19
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              104,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "L’humain avant le business",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              39
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              350,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "À regarder.",
+          "rect": [
+            20,
+            169.765625,
+            350,
+            34.484375,
+            169.765625,
+            370,
+            204.25,
+            20
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "files": [
+        "emissions-mobile-390-fold.jpg",
+        "emissions-mobile-390-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "route": {
+        "name": "direct",
+        "url": "/direct/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media en direct — Web TV business",
+        "bodyWidth": 390,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1.sr-only",
+            "text": "Neptune Media en direct",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              447,
+              38
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link.is-active",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Activer le son",
+            "size": [
+              131,
+              37
+            ]
+          },
+          {
+            "selector": "button.btn.btn-secondary",
+            "text": "Reprendre le direct",
+            "size": [
+              150,
+              38
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Réessayer",
+            "size": [
+              105,
+              38
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les émissions",
+            "size": [
+              143,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              350,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              350,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Neptune Media en direct",
+          "rect": [
+            19,
+            74,
+            1,
+            1,
+            74,
+            20,
+            75,
+            19
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "direct-mobile-390-fold.jpg",
+        "direct-mobile-390-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-360",
+        "width": 360,
+        "height": 800
+      },
+      "route": {
+        "name": "home",
+        "url": "/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media — Émissions et contenus vidéo pour dirigeants",
+        "bodyWidth": 360,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "h1",
+            "text": "Votre entreprise est solide. Il faut que ça se voie.",
+            "client": [
+              338,
+              162
+            ],
+            "scroll": [
+              338,
+              167
+            ]
+          },
+          {
+            "selector": "#catalogStatus",
+            "text": "2 extraits disponibles.",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              176,
+              19
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              91,
+              19
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre44s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              92,
+              48
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              72
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              66,
+              48
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre19s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "L’humain avant le business",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              36
+            ]
+          },
+          {
+            "selector": "span.media-card-meta",
+            "text": "Concept Libre57s",
+            "client": [
+              64,
+              18
+            ],
+            "scroll": [
+              69,
+              18
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              64,
+              24
+            ],
+            "scroll": [
+              64,
+              48
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+            "client": [
+              320,
+              216
+            ],
+            "scroll": [
+              320,
+              220
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Être visible sans transformer votre vie en contenu.",
+            "client": [
+              320,
+              151
+            ],
+            "scroll": [
+              320,
+              154
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+            "client": [
+              320,
+              288
+            ],
+            "scroll": [
+              320,
+              291
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Hors Norme",
+            "client": [
+              252,
+              82
+            ],
+            "scroll": [
+              252,
+              86
+            ]
+          },
+          {
+            "selector": "h3",
+            "text": "Concept Libre",
+            "client": [
+              252,
+              82
+            ],
+            "scroll": [
+              252,
+              86
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+            "client": [
+              320,
+              252
+            ],
+            "scroll": [
+              320,
+              255
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+            "client": [
+              320,
+              134
+            ],
+            "scroll": [
+              320,
+              137
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Les questions que vous vous posez avant de dire oui.",
+            "client": [
+              320,
+              155
+            ],
+            "scroll": [
+              320,
+              158
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+            "client": [
+              246,
+              230
+            ],
+            "scroll": [
+              246,
+              233
+            ]
+          }
+        ],
+        "offscreen": [
+          {
+            "selector": "button",
+            "rect": [
+              313,
+              2369,
+              416,
+              2411
+            ]
+          }
+        ],
+        "smallTargets": [
+          {
+            "selector": "a.brand",
+            "text": "Neptune Media TV, accueil",
+            "size": [
+              50,
+              38
+            ]
+          },
+          {
+            "selector": "a.hero-detail-link",
+            "text": "Voir la page de l’émission →",
+            "size": [
+              196,
+              15
+            ]
+          },
+          {
+            "selector": "a.catalog-all-link",
+            "text": "Toutes les émissions →",
+            "size": [
+              320,
+              15
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              295,
+              26
+            ]
+          },
+          {
+            "selector": "a.media-detail-link",
+            "text": "Détails, partage et transcription →",
+            "size": [
+              295,
+              26
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Neptune TV",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Direct",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Nouveautés",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              320,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Votre entreprise est solide. Il faut que ça se voie.",
+          "rect": [
+            20,
+            212.9375,
+            338.390625,
+            162.4375,
+            212.9375,
+            358.390625,
+            375.375,
+            20
+          ]
+        }
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()",
+        "Failed to load resource: the server responded with a status of 400 ()"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/assets/media/neptune-media-mis-en-lumiere.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "home-mobile-360-fold.jpg",
+        "home-mobile-360-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-360",
+        "width": 360,
+        "height": 800
+      },
+      "route": {
+        "name": "emissions",
+        "url": "/emissions/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Toutes les émissions — Neptune Media",
+        "bodyWidth": 360,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1",
+            "text": "À regarder.",
+            "client": [
+              320,
+              34
+            ],
+            "scroll": [
+              320,
+              37
+            ]
+          },
+          {
+            "selector": "span.sr-only",
+            "text": "Rechercher une émission",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              202,
+              19
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Votre entrepreneuriat mis en lumière",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              104,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Un accident de moto met fin à son entreprise",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Le secret d’un storytelling efficace",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              52
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "L’humain avant le business",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              39
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Filmer chez soi ? Laissez tomber.",
+            "client": [
+              90,
+              26
+            ],
+            "scroll": [
+              90,
+              39
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.is-active",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              320,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "À regarder.",
+          "rect": [
+            20,
+            169.765625,
+            320,
+            34.484375,
+            169.765625,
+            340,
+            204.25,
+            20
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "files": [
+        "emissions-mobile-360-fold.jpg",
+        "emissions-mobile-360-full.jpg"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-360",
+        "width": 360,
+        "height": 800
+      },
+      "route": {
+        "name": "direct",
+        "url": "/direct/"
+      },
+      "status": 200,
+      "diagnostics": {
+        "title": "Neptune Media en direct — Web TV business",
+        "bodyWidth": 360,
+        "horizontalOverflow": 0,
+        "brokenImages": [],
+        "clippedText": [
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              95,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "client": [
+              28,
+              48
+            ],
+            "scroll": [
+              71,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "client": [
+              28,
+              46
+            ],
+            "scroll": [
+              51,
+              46
+            ]
+          },
+          {
+            "selector": "h1.sr-only",
+            "text": "Neptune Media en direct",
+            "client": [
+              1,
+              1
+            ],
+            "scroll": [
+              447,
+              38
+            ]
+          }
+        ],
+        "offscreen": [],
+        "smallTargets": [
+          {
+            "selector": "a.live-nav-link.is-active",
+            "text": "Direct",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Émissions",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Formats",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Espace client",
+            "size": [
+              28,
+              48
+            ]
+          },
+          {
+            "selector": "a.btn.btn-primary",
+            "text": "Voir les créneaux",
+            "size": [
+              30,
+              48
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Activer le son",
+            "size": [
+              131,
+              37
+            ]
+          },
+          {
+            "selector": "button.btn.btn-secondary",
+            "text": "Reprendre le direct",
+            "size": [
+              150,
+              38
+            ]
+          },
+          {
+            "selector": "button",
+            "text": "Réessayer",
+            "size": [
+              105,
+              38
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les émissions",
+            "size": [
+              143,
+              19
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "En direct",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Toutes les émissions",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Les formats",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Voir les créneaux",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Mentions légales",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Confidentialité",
+            "size": [
+              320,
+              32
+            ]
+          },
+          {
+            "selector": "a",
+            "text": "Contact",
+            "size": [
+              320,
+              32
+            ]
+          }
+        ],
+        "h1": {
+          "text": "Neptune Media en direct",
+          "rect": [
+            19,
+            74,
+            1,
+            1,
+            74,
+            20,
+            75,
+            19
+          ]
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        }
+      ],
+      "files": [
+        "direct-mobile-360-fold.jpg",
+        "direct-mobile-360-full.jpg"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "Votre entreprise est solide. Il faut que ça se voie.",
+      "client": [
+        720,
+        203
+      ],
+      "scroll": [
+        720,
+        210
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "À regarder.",
+      "client": [
+        780,
+        56
+      ],
+      "scroll": [
+        780,
+        61
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        176,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        91,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        85,
+        24
+      ],
+      "scroll": [
+        92,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        85,
+        24
+      ],
+      "scroll": [
+        85,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        85,
+        24
+      ],
+      "scroll": [
+        85,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        85,
+        24
+      ],
+      "scroll": [
+        85,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        85,
+        24
+      ],
+      "scroll": [
+        85,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+      "client": [
+        420,
+        520
+      ],
+      "scroll": [
+        420,
+        526
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Être visible sans transformer votre vie en contenu.",
+      "client": [
+        680,
+        203
+      ],
+      "scroll": [
+        680,
+        208
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+      "client": [
+        530,
+        519
+      ],
+      "scroll": [
+        530,
+        524
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        581,
+        52
+      ],
+      "scroll": [
+        581,
+        57
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        581,
+        52
+      ],
+      "scroll": [
+        581,
+        57
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+      "client": [
+        460,
+        635
+      ],
+      "scroll": [
+        460,
+        641
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+      "client": [
+        780,
+        107
+      ],
+      "scroll": [
+        780,
+        112
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Les questions que vous vous posez avant de dire oui.",
+      "client": [
+        414,
+        406
+      ],
+      "scroll": [
+        414,
+        412
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+      "client": [
+        900,
+        212
+      ],
+      "scroll": [
+        900,
+        218
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "À regarder.",
+      "client": [
+        760,
+        59
+      ],
+      "scroll": [
+        760,
+        64
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher une émission",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        202,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        112,
+        26
+      ],
+      "scroll": [
+        112,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        112,
+        26
+      ],
+      "scroll": [
+        112,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        112,
+        26
+      ],
+      "scroll": [
+        112,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "h1.sr-only",
+      "text": "Neptune Media en direct",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        447,
+        38
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "Votre entreprise est solide. Il faut que ça se voie.",
+      "client": [
+        691,
+        180
+      ],
+      "scroll": [
+        691,
+        187
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "À regarder.",
+      "client": [
+        658,
+        50
+      ],
+      "scroll": [
+        658,
+        55
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        176,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        91,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        72,
+        24
+      ],
+      "scroll": [
+        92,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        72,
+        24
+      ],
+      "scroll": [
+        72,
+        60
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        72,
+        24
+      ],
+      "scroll": [
+        72,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        72,
+        24
+      ],
+      "scroll": [
+        72,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        72,
+        24
+      ],
+      "scroll": [
+        72,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+      "client": [
+        420,
+        404
+      ],
+      "scroll": [
+        420,
+        410
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Être visible sans transformer votre vie en contenu.",
+      "client": [
+        602,
+        181
+      ],
+      "scroll": [
+        602,
+        185
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+      "client": [
+        530,
+        404
+      ],
+      "scroll": [
+        530,
+        409
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        507,
+        49
+      ],
+      "scroll": [
+        507,
+        54
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        507,
+        49
+      ],
+      "scroll": [
+        507,
+        54
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+      "client": [
+        460,
+        452
+      ],
+      "scroll": [
+        460,
+        456
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+      "client": [
+        658,
+        95
+      ],
+      "scroll": [
+        658,
+        99
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Les questions que vous vous posez avant de dire oui.",
+      "client": [
+        366,
+        361
+      ],
+      "scroll": [
+        366,
+        366
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+      "client": [
+        900,
+        188
+      ],
+      "scroll": [
+        900,
+        193
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "À regarder.",
+      "client": [
+        760,
+        53
+      ],
+      "scroll": [
+        760,
+        57
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher une émission",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        202,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        97,
+        26
+      ],
+      "scroll": [
+        104,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        97,
+        26
+      ],
+      "scroll": [
+        97,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        97,
+        26
+      ],
+      "scroll": [
+        97,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "L’humain avant le business",
+      "client": [
+        97,
+        26
+      ],
+      "scroll": [
+        97,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        97,
+        26
+      ],
+      "scroll": [
+        97,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "h1.sr-only",
+      "text": "Neptune Media en direct",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        447,
+        38
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "Votre entreprise est solide. Il faut que ça se voie.",
+      "client": [
+        720,
+        84
+      ],
+      "scroll": [
+        720,
+        89
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        176,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        91,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre44s",
+      "client": [
+        62,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        62,
+        24
+      ],
+      "scroll": [
+        92,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        62,
+        24
+      ],
+      "scroll": [
+        62,
+        72
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        62,
+        24
+      ],
+      "scroll": [
+        66,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre19s",
+      "client": [
+        62,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        62,
+        24
+      ],
+      "scroll": [
+        62,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre57s",
+      "client": [
+        62,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        62,
+        24
+      ],
+      "scroll": [
+        62,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+      "client": [
+        767,
+        113
+      ],
+      "scroll": [
+        767,
+        116
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Être visible sans transformer votre vie en contenu.",
+      "client": [
+        767,
+        78
+      ],
+      "scroll": [
+        767,
+        81
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+      "client": [
+        767,
+        113
+      ],
+      "scroll": [
+        767,
+        116
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        695,
+        32
+      ],
+      "scroll": [
+        695,
+        35
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        695,
+        32
+      ],
+      "scroll": [
+        695,
+        35
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+      "client": [
+        767,
+        110
+      ],
+      "scroll": [
+        767,
+        114
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+      "client": [
+        767,
+        64
+      ],
+      "scroll": [
+        767,
+        67
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Les questions que vous vous posez avant de dire oui.",
+      "client": [
+        300,
+        254
+      ],
+      "scroll": [
+        300,
+        258
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+      "client": [
+        665,
+        123
+      ],
+      "scroll": [
+        665,
+        126
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.is-active",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "À regarder.",
+      "client": [
+        760,
+        34
+      ],
+      "scroll": [
+        760,
+        37
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher une émission",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        202,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        86,
+        26
+      ],
+      "scroll": [
+        104,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        86,
+        26
+      ],
+      "scroll": [
+        86,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        86,
+        26
+      ],
+      "scroll": [
+        86,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "L’humain avant le business",
+      "client": [
+        86,
+        26
+      ],
+      "scroll": [
+        86,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        86,
+        26
+      ],
+      "scroll": [
+        86,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "h1.sr-only",
+      "text": "Neptune Media en direct",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        447,
+        38
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "Votre entreprise est solide. Il faut que ça se voie.",
+      "client": [
+        360,
+        176
+      ],
+      "scroll": [
+        360,
+        181
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        176,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        91,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre44s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        92,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        72
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        66,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre19s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre57s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+      "client": [
+        350,
+        180
+      ],
+      "scroll": [
+        350,
+        184
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Être visible sans transformer votre vie en contenu.",
+      "client": [
+        350,
+        113
+      ],
+      "scroll": [
+        350,
+        116
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+      "client": [
+        350,
+        216
+      ],
+      "scroll": [
+        350,
+        219
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        282,
+        41
+      ],
+      "scroll": [
+        282,
+        45
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        282,
+        82
+      ],
+      "scroll": [
+        282,
+        86
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+      "client": [
+        350,
+        216
+      ],
+      "scroll": [
+        350,
+        219
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+      "client": [
+        350,
+        145
+      ],
+      "scroll": [
+        350,
+        148
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Les questions que vous vous posez avant de dire oui.",
+      "client": [
+        350,
+        168
+      ],
+      "scroll": [
+        350,
+        172
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+      "client": [
+        276,
+        230
+      ],
+      "scroll": [
+        276,
+        233
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "button",
+      "rect": [
+        313,
+        2392,
+        416,
+        2434
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.is-active",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "À regarder.",
+      "client": [
+        350,
+        34
+      ],
+      "scroll": [
+        350,
+        37
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher une émission",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        202,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        104,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "L’humain avant le business",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "h1.sr-only",
+      "text": "Neptune Media en direct",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        447,
+        38
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "Votre entreprise est solide. Il faut que ça se voie.",
+      "client": [
+        338,
+        162
+      ],
+      "scroll": [
+        338,
+        167
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "#catalogStatus",
+      "text": "2 extraits disponibles.",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        176,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        91,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre44s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        92,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        72
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        66,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre19s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "L’humain avant le business",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        36
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.media-card-meta",
+      "text": "Concept Libre57s",
+      "client": [
+        64,
+        18
+      ],
+      "scroll": [
+        69,
+        18
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        64,
+        24
+      ],
+      "scroll": [
+        64,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous savez qu’il faut être visible. Pas au point d’en faire un deuxième métier.",
+      "client": [
+        320,
+        216
+      ],
+      "scroll": [
+        320,
+        220
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Être visible sans transformer votre vie en contenu.",
+      "client": [
+        320,
+        151
+      ],
+      "scroll": [
+        320,
+        154
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous ne cherchez pas une vidéo. Vous cherchez la bonne manière de faire comprendre quelque chose.",
+      "client": [
+        320,
+        288
+      ],
+      "scroll": [
+        320,
+        291
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Hors Norme",
+      "client": [
+        252,
+        82
+      ],
+      "scroll": [
+        252,
+        86
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h3",
+      "text": "Concept Libre",
+      "client": [
+        252,
+        82
+      ],
+      "scroll": [
+        252,
+        86
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous n’arrivez jamais au tournage en vous demandant ce que vous allez bien pouvoir raconter.",
+      "client": [
+        320,
+        252
+      ],
+      "scroll": [
+        320,
+        255
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Une parole maîtrisée. Des contenus prêts à vivre.",
+      "client": [
+        320,
+        134
+      ],
+      "scroll": [
+        320,
+        137
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Les questions que vous vous posez avant de dire oui.",
+      "client": [
+        320,
+        155
+      ],
+      "scroll": [
+        320,
+        158
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entreprise a déjà de la valeur. Il est temps que ça se voie.",
+      "client": [
+        246,
+        230
+      ],
+      "scroll": [
+        246,
+        233
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "offscreen-element",
+      "selector": "button",
+      "rect": [
+        313,
+        2369,
+        416,
+        2411
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.is-active",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h1",
+      "text": "À regarder.",
+      "client": [
+        320,
+        34
+      ],
+      "scroll": [
+        320,
+        37
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "span.sr-only",
+      "text": "Rechercher une émission",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        202,
+        19
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Votre entrepreneuriat mis en lumière",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        104,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Un accident de moto met fin à son entreprise",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Le secret d’un storytelling efficace",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        52
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "L’humain avant le business",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "emissions",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Filmer chez soi ? Laissez tomber.",
+      "client": [
+        90,
+        26
+      ],
+      "scroll": [
+        90,
+        39
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Émissions",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        95,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a",
+      "text": "Espace client",
+      "client": [
+        28,
+        48
+      ],
+      "scroll": [
+        71,
+        48
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "a.btn.btn-primary",
+      "text": "Voir les créneaux",
+      "client": [
+        28,
+        46
+      ],
+      "scroll": [
+        51,
+        46
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "direct",
+      "type": "clipped-text",
+      "selector": "h1.sr-only",
+      "text": "Neptune Media en direct",
+      "client": [
+        1,
+        1
+      ],
+      "scroll": [
+        447,
+        38
+      ]
+    }
+  ]
+}
