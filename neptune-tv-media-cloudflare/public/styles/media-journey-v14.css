@@ -1,0 +1,50 @@
+/* Neptune Media journey v14 — shared decision logic with media.neptunebusiness.com. */
+body[data-media-journey="v14"]{
+  --journey-blue:#2997ff;
+  --journey-surface:rgba(255,255,255,.045);
+  --journey-line:rgba(255,255,255,.12);
+  --journey-muted:rgba(218,227,239,.7);
+}
+body[data-media-journey="v14"] .site-header .nav a[href="#questions"]{display:none}
+body[data-media-journey="v14"] .header-actions .btn-primary{white-space:nowrap}
+
+/* First decision: preserve both audiences instead of forcing one funnel. */
+.intent-router{width:min(1120px,calc(100% - 40px));margin:22px auto 0;padding:10px;display:grid;grid-template-columns:auto 1fr 1fr;gap:10px;align-items:center;border:1px solid var(--journey-line);border-radius:22px;background:rgba(5,12,27,.78);box-shadow:0 18px 52px rgba(0,0,0,.2);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%)}
+.intent-router>span{padding:0 12px;color:var(--journey-muted);font-size:.76rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.intent-router a{min-height:54px;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 18px;border:1px solid transparent;border-radius:15px;color:#fff;text-decoration:none;font-size:.94rem;font-weight:720;letter-spacing:-.015em;transition:background .18s ease,border-color .18s ease,transform .22s cubic-bezier(.22,1,.36,1)}
+.intent-router a:first-of-type{background:#f5f7fb;color:#07101f}
+.intent-router a:last-of-type{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.045)}
+@media(hover:hover){.intent-router a:hover{transform:translateY(-2px)}.intent-router a:last-of-type:hover{background:rgba(255,255,255,.08);border-color:rgba(120,205,255,.26)}}
+
+/* Format choice behaves like a guided product decision, not two passive posters. */
+body[data-media-journey="v14"] .format-card[data-format-choice]{position:relative;cursor:pointer;outline:none;transition:transform .24s cubic-bezier(.22,1,.36,1),border-color .2s ease,box-shadow .24s ease,opacity .2s ease!important}
+body[data-media-journey="v14"] .format-card[data-format-choice]::before{content:"";position:absolute;z-index:8;top:18px;right:18px;width:34px;height:34px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(3,10,24,.74);box-shadow:0 10px 26px rgba(0,0,0,.22);backdrop-filter:blur(14px)}
+body[data-media-journey="v14"] .format-grid:has(.is-selected) .format-card:not(.is-selected){opacity:.7}
+body[data-media-journey="v14"] .format-card[data-format-choice].is-selected{opacity:1;transform:translateY(-4px);border-color:rgba(93,204,255,.72)!important;box-shadow:0 28px 74px rgba(0,0,0,.38),0 0 0 2px rgba(78,190,255,.15)!important}
+body[data-media-journey="v14"] .format-card[data-format-choice].is-selected::before{content:"✓";display:grid;place-items:center;border-color:#72d6ff;background:var(--journey-blue);color:#fff;font-size:1rem;font-weight:900}
+.format-guidance{margin-top:22px;padding:clamp(24px,4vw,38px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;border:1px solid rgba(99,204,255,.24);border-radius:26px;background:radial-gradient(circle at 4% 0,rgba(41,151,255,.15),transparent 34%),rgba(7,17,36,.88);box-shadow:0 24px 70px rgba(0,0,0,.24)}
+.format-guidance[hidden]{display:none}
+.format-guidance small{display:block;margin-bottom:8px;color:#72d1ff;font-size:.72rem;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+.format-guidance strong{display:block;color:#fff;font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.15;letter-spacing:-.035em}
+.format-guidance p{max-width:62ch;margin:10px 0 0;color:var(--journey-muted);line-height:1.58}
+.format-guidance .btn{white-space:nowrap}
+body[data-media-journey="v14"] .format-compare-actions{margin-top:16px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
+body[data-media-journey="v14"] .format-compare-actions .btn{display:none}
+body[data-media-journey="v14"] .format-compare-actions p{margin-inline:auto;color:rgba(203,214,229,.58)!important}
+
+/* Commercial mobile action follows the user without covering editorial content. */
+.mobile-journey-dock{display:none}
+@media(max-width:760px){
+  body[data-media-journey="v14"]{padding-bottom:84px}
+  .intent-router{width:calc(100% - 28px);grid-template-columns:1fr;margin-top:14px;padding:8px;border-radius:18px}
+  .intent-router>span{text-align:center;padding:7px 8px 2px}
+  .intent-router a{min-height:50px}
+  .format-guidance{grid-template-columns:1fr;gap:20px;border-radius:22px}
+  .format-guidance .btn{width:100%}
+  .mobile-journey-dock{position:fixed;z-index:45;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:.86fr 1.14fr;gap:8px;padding:8px;border:1px solid rgba(255,255,255,.13);border-radius:20px;background:rgba(3,9,22,.88);box-shadow:0 20px 60px rgba(0,0,0,.42);backdrop-filter:blur(24px) saturate(150%);transform:translateY(calc(100% + 30px));opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.22,1,.36,1),opacity .2s ease}
+  .mobile-journey-dock.is-visible{transform:none;opacity:1;pointer-events:auto}
+  .mobile-journey-dock a{min-height:50px;display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:14px;text-decoration:none;font-size:.83rem;font-weight:780;text-align:center}
+  .mobile-journey-dock a:first-child{border:1px solid rgba(255,255,255,.13);color:#fff;background:rgba(255,255,255,.055)}
+  .mobile-journey-dock a:last-child{color:#07101f;background:#f5f7fb}
+}
+@media(prefers-reduced-motion:reduce){.intent-router a,.mobile-journey-dock,.format-card[data-format-choice]{transition:none!important}}
