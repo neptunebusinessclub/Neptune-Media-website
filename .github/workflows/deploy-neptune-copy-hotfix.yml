@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'neptune-tv-media-cloudflare/src/public-router.js'
+      - 'neptune-tv-media-cloudflare/src/public-render.js'
+      - 'neptune-tv-media-cloudflare/src/public-seo.js'
       - 'neptune-tv-media-cloudflare/public/index.html'
       - 'neptune-tv-media-cloudflare/public/home-live.js'
       - 'neptune-tv-media-cloudflare/public/landing-conversion.js'
@@ -106,6 +108,27 @@ jobs:
           node -e "const d=require('/tmp/catalog.json'); if(!Array.isArray(d.programs)||!Array.isArray(d.episodes)||!Array.isArray(d.ads)) process.exit(1)"
           grep -qi '^cache-control:.*no-store' /tmp/catalog.headers
 
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/robots.txt?verify=$nonce" -D /tmp/robots.headers > /tmp/robots.txt
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/sitemap.xml?verify=$nonce" -D /tmp/sitemap.headers > /tmp/sitemap.xml
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/video-sitemap.xml?verify=$nonce" -D /tmp/video-sitemap.headers > /tmp/video-sitemap.xml
+          curl --fail --silent --show-error --location -H 'Cache-Control: no-cache' "$PUBLIC_URL/llms.txt?verify=$nonce" -D /tmp/llms.headers > /tmp/llms.txt
+          curl --fail --silent --show-error --location "$PUBLIC_URL/assets/posters/poster-neptune-media.webp?verify=$nonce" > /tmp/poster.webp
+          curl --fail --silent --show-error --location --range 0-1023 "$PUBLIC_URL/assets/media/neptune-media-mis-en-lumiere.mp4?verify=$nonce" > /tmp/video.bin
+
+          grep -qi '^content-type:.*text/plain' /tmp/robots.headers
+          grep -q 'Sitemap:' /tmp/robots.txt
+          grep -qi '^content-type:.*application/xml' /tmp/sitemap.headers
+          grep -q '<urlset' /tmp/sitemap.xml
+          grep -q '/emissions/' /tmp/sitemap.xml
+          grep -qi '^content-type:.*application/xml' /tmp/video-sitemap.headers
+          grep -q '<video:video>' /tmp/video-sitemap.xml
+          grep -q '<video:thumbnail_loc>' /tmp/video-sitemap.xml
+          grep -q '<video:content_loc>' /tmp/video-sitemap.xml
+          grep -qi '^content-type:.*text/plain' /tmp/llms.headers
+          grep -qi 'Neptune Media' /tmp/llms.txt
+          test -s /tmp/poster.webp
+          test -s /tmp/video.bin
+
           admin_list_status=$(curl --silent --show-error --output /tmp/admin-list.json --write-out '%{http_code}' \
             -H 'Cache-Control: no-cache' "$PUBLIC_URL/api/admin/clients?verify=$nonce")
           test "$admin_list_status" = "401"
@@ -144,7 +167,7 @@ jobs:
               'architecture': 'conversion-voice-v10',
               'home_live': 'v4',
               'landing_conversion': 'v5',
-              'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog', '/api/admin/clients', '/api/admin/client-update'],
+              'critical_routes': ['/', '/direct/', '/emissions/', '/studio/', '/api/health', '/api/public/catalog', '/robots.txt', '/sitemap.xml', '/video-sitemap.xml', '/llms.txt', '/api/admin/clients', '/api/admin/client-update'],
               'outcomes': outcomes,
           }
           with open('copy-hotfix-deployment-status.json', 'w', encoding='utf-8') as handle:
