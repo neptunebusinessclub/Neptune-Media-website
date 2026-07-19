@@ -1,0 +1,60 @@
+name: Diagnose public catalog
+
+on:
+  workflow_run:
+    workflows: ["Deploy Neptune Media to Cloudflare"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+    steps:
+      - name: Verify filtered public catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          status=$(curl --silent --show-error --dump-header /tmp/catalog.headers --output /tmp/catalog.json --write-out '%{http_code}' "$PUBLIC_URL/api/public/catalog")
+          test "$status" = "200"
+          grep -qi '^content-type:.*application/json' /tmp/catalog.headers
+          grep -qi '^cache-control:.*no-store' /tmp/catalog.headers
+          ! grep -qi '^etag:' /tmp/catalog.headers
+          ! grep -qi '^last-modified:' /tmp/catalog.headers
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          catalog = json.loads(Path('/tmp/catalog.json').read_text(encoding='utf-8'))
+          programs = catalog.get('programs', [])
+          episodes = catalog.get('episodes', [])
+
+          assert isinstance(programs, list), 'programs_not_list'
+          assert isinstance(episodes, list), 'episodes_not_list'
+
+          program_ids = set()
+          for program in programs:
+              assert program.get('slug'), 'program_without_slug'
+              assert program.get('active') is not False, 'inactive_program_exposed'
+              try:
+                  assert int(program.get('active', 1)) != 0, 'inactive_program_exposed'
+              except (TypeError, ValueError):
+                  pass
+              program_ids.add(program.get('id'))
+
+          for episode in episodes:
+              assert episode.get('programId') in program_ids, 'orphan_episode_exposed'
+              assert episode.get('status') == 'published', 'unpublished_episode_exposed'
+              assert episode.get('slug'), 'episode_without_slug'
+              assert episode.get('videoUrl'), 'episode_without_video'
+              assert episode.get('posterUrl'), 'episode_without_poster'
+          PY
+
+          head_status=$(curl --silent --show-error --head --output /tmp/catalog-head.headers --write-out '%{http_code}' "$PUBLIC_URL/api/public/catalog")
+          test "$head_status" = "200"
