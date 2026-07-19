@@ -6,94 +6,29 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Mon espace Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/client.css">
+  <link rel="stylesheet" href="/espace-client/client.css?v=30">
 </head>
 <body>
   <main class="page">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="Neptune Media">
-        <img src="/assets/logo-neptune.svg" alt="Neptune">
-        <span><b>Neptune Media</b><small>Espace client</small></span>
-      </a>
-      <button id="logout" class="ghost" type="button" hidden>Déconnexion</button>
-    </header>
+    <header class="site-header"><a class="brand" href="/"><img src="/assets/logo-neptune.svg" alt="Neptune"><span><b>Neptune Media</b><small>Espace client</small></span></a><button id="logout" class="ghost" type="button" hidden>Déconnexion</button></header>
 
     <section id="auth" class="auth-shell">
-      <div class="auth-copy">
-        <p class="eyebrow">VOTRE ESPACE PERMANENT</p>
-        <h1>Tous vos passages Neptune Media, au même endroit.</h1>
-        <p>Suivez chaque réservation, préparez vos interviews et retrouvez vos rushs et livrables sans mot de passe.</p>
-        <div class="trust-row">
-          <span>Code sécurisé</span><span>Accès privé</span><span>Historique conservé</span>
-        </div>
-      </div>
-
+      <div class="auth-copy"><p class="eyebrow">VOTRE ESPACE PERMANENT</p><h1>Votre passage, suivi comme une commande.</h1><p>Une prochaine étape claire, tous vos contenus et votre calendrier de publication au même endroit.</p><div class="trust-row"><span>Code sécurisé</span><span>Accès privé</span><span>Contenus téléchargeables</span></div></div>
       <form id="accessForm" class="access-card">
-        <div id="emailStep">
-          <p class="step">01 · IDENTIFICATION</p>
-          <h2>Recevoir mon code</h2>
-          <p>Utilisez l’adresse e-mail employée lors de votre réservation.</p>
-          <label>
-            <span>Adresse e-mail</span>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </label>
-          <button id="sendCode" class="primary" type="submit">Recevoir mon code de sécurité</button>
-        </div>
-
-        <div id="codeStep" hidden>
-          <p class="step">02 · VÉRIFICATION</p>
-          <h2>Saisissez le code reçu</h2>
-          <p id="codeHint">Le code à 6 chiffres est valable 10 minutes.</p>
-          <label>
-            <span>Code de sécurité</span>
-            <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}">
-          </label>
-          <button id="verifyCode" class="primary" type="submit">Accéder à mon espace</button>
-          <button id="changeEmail" class="text-button" type="button">Utiliser une autre adresse</button>
-        </div>
-
+        <div id="emailStep"><p class="step">01 · IDENTIFICATION</p><h2>Recevoir mon code</h2><p>Utilisez l’adresse e-mail employée lors de votre réservation.</p><label><span>Adresse e-mail</span><input id="email" name="email" type="email" autocomplete="email" required></label><button id="sendCode" class="primary" type="submit">Recevoir mon code</button></div>
+        <div id="codeStep" hidden><p class="step">02 · VÉRIFICATION</p><h2>Saisissez le code reçu</h2><p id="codeHint">Le code à 6 chiffres est valable 10 minutes.</p><label><span>Code de sécurité</span><input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}"></label><button id="verifyCode" class="primary" type="submit">Accéder à mon espace</button><button id="changeEmail" class="text-button" type="button">Utiliser une autre adresse</button></div>
         <p id="authMessage" class="message" aria-live="polite"></p>
       </form>
     </section>
 
     <section id="dashboard" class="dashboard" hidden>
-      <div class="hero">
-        <div>
-          <p class="eyebrow">ESPACE CLIENT NEPTUNE MEDIA</p>
-          <h1 id="welcome">Bonjour.</h1>
-          <p>Votre prochaine action apparaît toujours en premier.</p>
-        </div>
-        <a id="newBookingTop" class="primary link-button" href="https://media.neptunebusiness.com">Réserver un nouveau passage</a>
-      </div>
-
+      <div class="hero"><div><p class="eyebrow">ESPACE CLIENT NEPTUNE MEDIA</p><h1 id="welcome">Bonjour.</h1><p id="heroText">Votre prochaine action apparaît toujours en premier.</p></div><a class="primary link-button" href="https://media.neptunebusiness.com">Réserver un nouveau passage</a></div>
       <section id="nextAction" class="next-action" hidden></section>
-
-      <section class="section-block">
-        <div class="section-heading">
-          <div><p class="eyebrow">EN COURS</p><h2>Vos passages actifs</h2></div>
-          <span id="activeCount" class="count"></span>
-        </div>
-        <div id="activeOrders" class="orders"></div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-heading">
-          <div><p class="eyebrow">HISTORIQUE</p><h2>Vos anciens passages</h2></div>
-          <span id="historyCount" class="count"></span>
-        </div>
-        <div id="historyOrders" class="orders"></div>
-      </section>
-
-      <section class="reorder">
-        <div>
-          <p class="eyebrow">NOUVEAU PROJET</p>
-          <h2>Repasser devant les caméras</h2>
-          <p>Votre prochaine réservation sera automatiquement ajoutée à ce même compte.</p>
-        </div>
-        <a id="newBookingBottom" class="primary link-button" href="https://media.neptunebusiness.com">Voir les formats disponibles</a>
-      </section>
+      <nav id="clientNav" class="client-nav" aria-label="Espace client"><button data-view="tracking" class="active">Mon suivi</button><button data-view="content">Mes contenus</button><button data-view="calendar">Mon calendrier</button><button data-view="billing">Ma facturation</button></nav>
+      <section id="clientContent" class="client-content"></section>
     </section>
   </main>
-  <script type="module" src="/espace-client/client.js"></script>
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/espace-client/client.js?v=30"></script>
 </body>
 </html>

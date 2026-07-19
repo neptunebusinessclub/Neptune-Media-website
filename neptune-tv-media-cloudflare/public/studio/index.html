@@ -4,62 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Neptune Media Studio Admin</title>
+  <title>Neptune Media Studio</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/studio/studio.css">
+  <link rel="stylesheet" href="/studio/studio.css?v=30">
 </head>
 <body>
   <div id="auth" class="login">
     <form id="login" class="login-card">
       <img src="/assets/logo-neptune.svg" alt="Neptune">
-      <p class="eyebrow">STUDIO ADMIN · CLOUDFLARE</p>
-      <h1>Pilotez la chaîne depuis un seul espace.</h1>
-      <p>Émissions, programmation, campagnes, audience, utilisateurs et Neptune Copilot sont synchronisés avec la Web TV publique.</p>
+      <p class="eyebrow">STUDIO NEPTUNE MEDIA</p>
+      <h1>Une action claire. Un clic.</h1>
+      <p>Connectez-vous pour voir immédiatement ce qui demande votre attention.</p>
       <label><span>Adresse e-mail</span><input name="email" type="email" autocomplete="username" value="contact@neptunebusiness.com" readonly required></label>
       <label id="passwordField"><span>Mot de passe</span><input name="password" type="password" autocomplete="current-password" minlength="12" required></label>
       <label id="confirmField" hidden><span>Confirmer le mot de passe</span><input name="confirmPassword" type="password" autocomplete="new-password" minlength="12"></label>
-      <button class="btn btn-primary" type="submit" id="loginSubmit">Accéder au studio</button>
-      <button class="btn" type="button" id="requestReset">Première connexion ou mot de passe oublié</button>
-      <p id="authHint">Un lien sécurisé vous sera envoyé à contact@neptunebusiness.com.</p>
+      <button class="btn btn-primary" type="submit" id="loginSubmit">Ouvrir le Studio</button>
+      <button class="btn btn-quiet" type="button" id="requestReset">Première connexion ou mot de passe oublié</button>
+      <p id="authHint">Un lien sécurisé sera envoyé à contact@neptunebusiness.com.</p>
       <p id="authMsg" class="message" aria-live="polite"></p>
     </form>
   </div>
 
   <div id="app" class="shell" hidden>
     <aside class="sidebar">
-      <a class="brand" href="/" aria-label="Retour à Neptune Media"><img src="/assets/logo-neptune.svg" alt="Neptune"><div><b>Neptune Media</b><small>Studio Admin</small></div></a>
-      <nav id="nav">
-        <div class="nav-group"><div class="nav-label">Pilotage</div>
-          <button class="nav-btn" data-tab="dashboard"><span>⌁</span>Vue d’ensemble</button>
-          <button class="nav-btn" data-tab="programs" data-role="admin,editor"><span>▦</span>Programmes</button>
-          <button class="nav-btn" data-tab="episodes" data-role="admin,editor"><span>▶</span>Émissions</button>
-        </div>
-        <div class="nav-group"><div class="nav-label">Relation client</div>
-          <a class="nav-btn" href="/studio/clients" data-role="admin"><span>◇</span>Comptes clients</a>
-        </div>
-        <div class="nav-group"><div class="nav-label">Monétisation</div>
-          <button class="nav-btn" data-tab="ads" data-role="admin,editor,advertiser"><span>◈</span>Publicités</button>
-          <button class="nav-btn" data-tab="ai"><span>✦</span>Neptune Copilot</button>
-        </div>
-        <div class="nav-group"><div class="nav-label">Système</div>
-          <button class="nav-btn" data-tab="users" data-role="admin"><span>◎</span>Utilisateurs</button>
-          <button class="nav-btn" data-tab="audit" data-role="admin"><span>≣</span>Journal d’audit</button>
-        </div>
+      <a class="brand" href="/studio/" aria-label="Accueil du Studio"><img src="/assets/logo-neptune.svg" alt="Neptune"><div><b>Neptune Media</b><small>Studio Admin</small></div></a>
+      <nav id="nav" aria-label="Navigation principale">
+        <button class="nav-btn" data-tab="dashboard"><span>⌂</span><strong>Aujourd’hui</strong></button>
+        <a class="nav-btn" href="/studio/clients"><span>◎</span><strong>Clients</strong></a>
+        <button class="nav-btn" data-tab="episodes" data-role="admin,editor"><span>▶</span><strong>Programme</strong></button>
+        <a class="nav-btn" href="/studio/clients#contenus"><span>▣</span><strong>Contenus</strong></a>
+        <a class="nav-btn" href="/studio/clients#calendrier"><span>▦</span><strong>Calendrier</strong></a>
+        <button class="nav-btn" data-tab="insights"><span>↗</span><strong>Audience</strong></button>
+        <button class="nav-btn" data-tab="finances" data-role="admin"><span>€</span><strong>Finances</strong></button>
+        <a class="nav-btn nav-btn--accent" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener"><span>✦</span><strong>Video Studio</strong></a>
+        <button class="nav-btn" data-tab="settings"><span>⚙</span><strong>Réglages</strong></button>
       </nav>
       <div class="sidebar-bottom account">
-        <div class="user-card"><b id="accountName"></b><small id="accountRole"></small><button class="nav-btn" id="logout"><span>↪</span>Déconnexion</button></div>
+        <div class="user-card"><b id="accountName"></b><small id="accountRole"></small><button class="nav-btn" id="logout"><span>↪</span><strong>Déconnexion</strong></button></div>
       </div>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <div><p class="eyebrow">CHAÎNE NEPTUNE MEDIA</p><h1 id="title">Vue d’ensemble</h1></div>
-        <div class="top-actions"><a class="btn" href="/" target="_blank" rel="noopener">Voir la Web TV</a><span id="syncState" class="sync">Synchronisé</span><button class="btn btn-primary" id="refresh">Actualiser</button></div>
+        <div><p class="eyebrow">CENTRE D’ACTIONS</p><h1 id="title">Aujourd’hui</h1></div>
+        <div class="top-actions"><a class="btn" href="/direct/" target="_blank" rel="noopener">Voir le direct</a><span id="syncState" class="sync">Synchronisé</span><button class="btn btn-primary" id="refresh">Actualiser</button></div>
       </header>
       <section id="content" class="content"></section>
     </main>
   </div>
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/studio/studio.js"></script>
+  <script type="module" src="/studio/studio.js?v=30"></script>
 </body>
 </html>

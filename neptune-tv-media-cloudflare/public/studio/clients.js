@@ -1,245 +1,73 @@
-const $ = (selector, root = document) => root.querySelector(selector);
-const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const $=(selector,root=document)=>root.querySelector(selector);
+const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+let csrfToken=sessionStorage.getItem('neptune_csrf')||'';
+let state={clients:[],orders:[],supplierPayments:[],refundRequests:[],deletionRequests:[],finance:{}};
+let currentOrderId='';
+let detailTab='tracking';
+const columns=[
+  ['confirm','À confirmer',['payment_confirmed','reservation_confirmed','preparation_booking_pending','appointment_confirmed','appointment_booked','studio_date_confirmation_pending']],
+  ['prepare','À préparer',['preparation','preparation_complete']],
+  ['filming','Passage prochain',['filming_scheduled','filming_confirmed']],
+  ['production','En production',['filmed','videos_pending','videos_received']],
+  ['delivery','À livrer',['editing','approval']],
+  ['done','Terminé',['delivered','completed']],
+];
+const labels={payment_confirmed:'Paiement reçu',reservation_confirmed:'Rendez-vous à réserver',preparation_booking_pending:'Rendez-vous à réserver',appointment_confirmed:'Préparation réservée',appointment_booked:'Préparation réservée',preparation:'Préparation en cours',studio_date_confirmation_pending:'Date à confirmer',preparation_complete:'Préparation terminée',filming_scheduled:'Passage confirmé',filming_confirmed:'Passage confirmé',filmed:'Passage réalisé',videos_pending:'Vidéos attendues',videos_received:'Vidéos reçues',editing:'Traitement en cours',approval:'Traitement en cours',delivered:'Livré',completed:'Terminé'};
+const nextStatus={payment_confirmed:'reservation_confirmed',reservation_confirmed:'appointment_confirmed',preparation_booking_pending:'appointment_confirmed',appointment_confirmed:'studio_date_confirmation_pending',appointment_booked:'studio_date_confirmation_pending',preparation:'preparation_complete',studio_date_confirmation_pending:'preparation_complete',preparation_complete:'filming_scheduled',filming_scheduled:'filmed',filming_confirmed:'filmed',filmed:'videos_pending',videos_pending:'videos_received',videos_received:'editing',editing:'delivered',approval:'delivered',delivered:'completed'};
+const nextLabel={reservation_confirmed:'Rendez-vous réservé',preparation_booking_pending:'Rendez-vous réservé',appointment_confirmed:'Demander confirmation',appointment_booked:'Demander confirmation',preparation:'Préparation terminée',studio_date_confirmation_pending:'Préparation terminée',preparation_complete:'Confirmer le passage',filming_scheduled:'Passage réalisé',filming_confirmed:'Passage réalisé',filmed:'Vidéos attendues',videos_pending:'Vidéos reçues',videos_received:'Lancer le traitement',editing:'Marquer livré',approval:'Marquer livré',delivered:'Clôturer'};
 
-let csrfToken = sessionStorage.getItem('neptune_csrf') || '';
-let state = { clients: [], orders: [] };
-
-$('#newOrder').addEventListener('submit', createOrder);
-$('#refresh').addEventListener('click', load);
-$('#search').addEventListener('input', filterOrders);
-
+$('#newClient').addEventListener('click',()=>$('#newDialog').showModal());
+$('#newOrder').addEventListener('submit',createOrder);
+$('#refresh').addEventListener('click',load);
+$('#search').addEventListener('input',renderPipeline);
+$$('[data-close]').forEach((button)=>button.addEventListener('click',()=>document.getElementById(button.dataset.close).close()));
+$$('[data-open-section]').forEach((button)=>button.addEventListener('click',()=>openSection(button.dataset.openSection)));
+$('#clientDialog').addEventListener('click',(event)=>{if(event.target===$('#clientDialog'))$('#clientDialog').close();});$('#clientDialog').addEventListener('close',()=>{if(location.hash&&decodeURIComponent(location.hash.slice(1))===currentOrderId)history.replaceState({},'',location.pathname);});
 load();
 
-async function load() {
-  $('#orders').innerHTML = '<p class="loading">Chargement des comptes clients…</p>';
-  try {
-    const auth = await api('/api/auth/status', {}, false);
-    csrfToken = auth.csrfToken || csrfToken;
-    sessionStorage.setItem('neptune_csrf', csrfToken);
-    state = await api('/api/admin/clients');
-    render();
-  } catch (error) {
-    if (error.message === 'unauthorized' || error.message === 'http_401') {
-      location.href = '/studio/';
-      return;
-    }
-    $('#orders').innerHTML = `<p class="empty">${escapeHtml(humanError(error.message))}</p>`;
-  }
+async function load(){
+  $('#pipeline').innerHTML='<p class="empty">Chargement des parcours clients…</p>';
+  try{const auth=await api('/api/auth/status',{},false);csrfToken=auth.csrfToken||csrfToken;sessionStorage.setItem('neptune_csrf',csrfToken);state=await api('/api/admin/clients');render();openFromHash();}
+  catch(error){if(['unauthorized','http_401'].includes(error.message)){location.href='/studio/';return;}$('#pipeline').innerHTML=`<p class="empty">${esc(errorText(error.message))}</p>`;}
 }
+function render(){const active=state.orders.filter((order)=>order.status!=='completed');$('#clientCount').textContent=state.clients.length;$('#activeCount').textContent=active.length;$('#urgentCount').textContent=active.filter(isUrgent).length;renderPipeline();if(currentOrderId&&$('#clientDialog').open)renderDetail();}
+function renderPipeline(){const query=String($('#search').value||'').trim().toLowerCase();const orders=state.orders.filter((order)=>!query||[order.email,order.fullName,order.company,order.title,order.format].join(' ').toLowerCase().includes(query));$('#pipeline').innerHTML=columns.map(([id,title,statuses])=>{const list=orders.filter((order)=>statuses.includes(order.status));return `<section class="column" data-column="${id}"><div class="column-head"><h2>${title}</h2><span>${list.length}</span></div><div class="column-list">${list.length?list.map(card).join(''):'<p class="empty">Aucun client</p>'}</div></section>`;}).join('');$$('[data-order-card]').forEach((cardElement)=>cardElement.addEventListener('click',(event)=>{if(event.target.closest('[data-advance]'))return;openOrder(cardElement.dataset.orderCard);}));$$('[data-advance]').forEach((button)=>button.addEventListener('click',(event)=>{event.stopPropagation();advance(button.dataset.advance,button);}));}
+function card(order){const deadline=deadlineFor(order),remaining=deadline?remainingLabel(deadline):'',needsDate=order.status==='preparation_complete'&&!order.filmingAt,next=nextStatus[order.status];return `<article class="client-card ${isUrgent(order)?'urgent':''}" data-order-card="${order.id}"><div class="card-top"><div><span class="client-name">${esc(order.fullName||order.email)}</span><span class="client-company">${esc(order.company||order.email)}</span></div><span class="format">${esc(order.format||'Format')}</span></div><h3>${esc(labels[order.status]||order.status)}</h3><p>${esc(order.nextAction||'Consulter le dossier')}</p>${remaining?`<span class="deadline ${deadline<Date.now()?'overdue':''}">${esc(remaining)}</span>`:''}<div class="card-actions">${next&&!needsDate?`<button class="button" data-advance="${order.id}" type="button">${esc(nextLabel[order.status]||'Valider')}</button>`:`<button class="button" type="button">Ouvrir</button>`}</div></article>`;}
+async function advance(orderId,button){const order=getOrder(orderId),status=nextStatus[order?.status];if(!order||!status)return;if(order.status==='preparation_complete'&&!order.filmingAt){openOrder(orderId);return;}button.disabled=true;button.textContent='Envoi…';try{const result=await api('/api/admin/client-update',{method:'POST',body:JSON.stringify({orderId,status,appointmentAt:order.appointmentAt,filmingAt:order.filmingAt,preparationUrl:order.preparationUrl})});toast(result.warning?'Étape enregistrée. Vérifiez la configuration e-mail.':'Étape validée. Le client et Neptune ont reçu un e-mail.');await load();}catch(error){toast(errorText(error.message),true);button.disabled=false;}}
 
-async function createOrder(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const button = $('button[type="submit"]', form);
-  const message = $('#formMessage');
-  const data = new FormData(form);
-  const payload = {
-    email: data.get('email'),
-    fullName: data.get('fullName'),
-    company: data.get('company'),
-    title: data.get('title'),
-    format: data.get('format'),
-    productCode: data.get('productCode'),
-    amountTotal: Math.round(Number(data.get('amountEuros') || 0) * 100),
-    currency: 'eur',
-    appointmentAt: localToIso(data.get('appointmentAt')),
-    preparationUrl: data.get('preparationUrl'),
-    nextAction: data.get('nextAction'),
-    sendEmail: data.get('sendEmail') === 'on',
-  };
-  button.disabled = true;
-  setMessage(message, 'Création du compte et du passage…');
-  try {
-    const result = await api('/api/admin/client-order', { method: 'POST', body: JSON.stringify(payload) });
-    setMessage(
-      message,
-      result.warning
-        ? `Passage créé. Avertissement e-mail : ${humanError(result.warning)}`
-        : 'Passage créé et accès client préparé.',
-      result.warning ? 'error' : 'success',
-    );
-    form.reset();
-    form.elements.title.value = 'Passage Neptune Media';
-    form.elements.nextAction.value = 'Choisir ou confirmer votre rendez-vous';
-    form.elements.sendEmail.checked = true;
-    await load();
-  } catch (error) {
-    setMessage(message, humanError(error.message), 'error');
-  } finally {
-    button.disabled = false;
-  }
-}
+function openOrder(orderId,tabName='tracking'){currentOrderId=orderId;detailTab=tabName;history.replaceState({},'',`#${encodeURIComponent(orderId)}`);renderDetail();if(!$('#clientDialog').open)$('#clientDialog').showModal();}
+function openSection(section){const order=state.orders.find((item)=>item.status!=='completed')||state.orders[0];if(!order)return toast('Aucun dossier client disponible.',true);openOrder(order.id,section==='contenus'?'content':section==='calendrier'?'calendar':section==='finances'?'billing':'tracking');}
+function openFromHash(){const hash=decodeURIComponent(location.hash.slice(1));if(!hash)return;if(['contenus','calendrier','finances'].includes(hash)){openSection(hash);return;}if(getOrder(hash))openOrder(hash);}
+function renderDetail(){const order=getOrder(currentOrderId);if(!order)return;const supplier=state.supplierPayments.find((item)=>item.orderId===order.id);$('#clientDetail').innerHTML=`<div class="detail-title"><div><p class="eyebrow">DOSSIER CLIENT</p><h2>${esc(order.fullName||order.email)}</h2><p>${esc(order.company||'')} ${order.company?'·':''} ${esc(order.title)} · ${esc(order.format||'')}</p></div><button class="close" type="button" id="closeDetail">×</button></div><div class="tabs">${[['tracking','Suivi'],['content','Contenus'],['calendar','Calendrier'],['billing','Facturation'],['info','Informations']].map(([id,label])=>`<button class="${detailTab===id?'active':''}" data-detail-tab="${id}">${label}</button>`).join('')}</div><div id="detailBody">${detailBody(order,supplier)}</div>`;$('#closeDetail').onclick=()=>$('#clientDialog').close();$$('[data-detail-tab]').forEach((button)=>button.addEventListener('click',()=>{detailTab=button.dataset.detailTab;renderDetail();}));bindDetail(order,supplier);}
+function detailBody(order,supplier){if(detailTab==='tracking')return trackingView(order);if(detailTab==='content')return contentView(order);if(detailTab==='calendar')return calendarView(order);if(detailTab==='billing')return billingView(order,supplier);return infoView(order);}
+function trackingView(order){const next=nextStatus[order.status];return `<div class="detail-grid"><section class="panel"><h3>Suivi comme un colis</h3><div class="steps">${(order.steps||[]).map((step)=>`<div class="step-row ${esc(step.state)}"><span></span><div><b>${esc(step.label)}</b>${step.completedAt?`<small>${formatDate(step.completedAt)}</small>`:''}</div></div>`).join('')}</div></section><aside class="stack"><div class="action-box"><small>PROCHAINE ACTION</small><strong>${esc(order.nextAction||'Suivre le dossier')}</strong>${deadlineFor(order)?`<p>${esc(remainingLabel(deadlineFor(order)))}</p>`:''}</div>${next?`<button class="button" id="detailAdvance" type="button">${esc(nextLabel[order.status]||'Valider l’étape suivante')}</button>`:''}<form id="workflowForm" class="panel"><h3>Corriger une information</h3><div class="form-row"><label><span>Statut</span><select name="status">${Object.entries(labels).map(([value,label])=>`<option value="${value}" ${value===order.status?'selected':''}>${esc(label)}</option>`).join('')}</select></label><label><span>Rendez-vous de préparation</span><input name="appointmentAt" type="datetime-local" value="${isoToLocal(order.appointmentAt)}"></label><label><span>Date de passage</span><input name="filmingAt" type="datetime-local" value="${isoToLocal(order.filmingAt)}"></label><label class="full"><span>Lien de préparation</span><input name="preparationUrl" type="url" value="${esc(order.preparationUrl||'')}"></label></div><button class="secondary" type="submit">Enregistrer et notifier</button><p class="message" id="workflowMessage"></p></form></aside></div>`;}
+function contentView(order){const files=order.files||[];return `<div class="detail-grid"><section class="panel"><h3>Bibliothèque client</h3><div class="library">${files.length?files.map((file)=>`<article class="file-card"><span class="format">${esc(fileLabel(file.fileType))}</span><strong>${esc(file.name)}</strong><small>${esc(file.sizeLabel||'Disponible dans l’espace client')}</small>${file.externalUrl?`<a class="secondary" href="${safeHref(file.externalUrl)}" target="_blank" rel="noopener">Ouvrir</a>`:''}</article>`).join(''):'<p class="empty">Aucun contenu livré.</p>'}</div></section><aside class="stack"><form id="uploadForm" class="upload-zone"><div><p class="eyebrow">DÉPÔT RAPIDE</p><h3>Ajouter un contenu</h3></div><input name="orderId" type="hidden" value="${order.id}"><label><span>Type</span><select name="fileType"><option value="short">Short / Reel</option><option value="rushes">Rushs</option><option value="final">Émission complète</option><option value="teaser">Teaser</option><option value="document">Document</option></select></label><input name="file" type="file"><label><span>Ou lien externe</span><input name="externalUrl" type="url" placeholder="https://…"></label><button class="button" type="submit">Déposer et rendre visible</button><p>Les shorts sont ajoutés automatiquement au calendrier éditorial. Dépôt direct limité à 95 Mo ; utilisez Video Studio pour les fichiers plus lourds.</p><p id="uploadMessage" class="message"></p></form><a class="secondary" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener">Ouvrir Neptune Video Studio</a></aside></div>`;}
+function calendarView(order){const schedules=order.schedules||[],date=schedules[0]?.publishAt?new Date(schedules[0].publishAt):new Date();return `<section class="panel"><div class="dialog-head"><div><p class="eyebrow">CALENDRIER ÉDITORIAL</p><h3>${new Intl.DateTimeFormat('fr-FR',{month:'long',year:'numeric'}).format(date)}</h3></div></div>${renderCalendar(date,schedules,order.files||[])}</section>`;}
+function billingView(order,supplier){return `<div class="stack"><div class="finance-cards"><div class="finance-card"><b>${money(order.amountTotal,order.currency)}</b><span>Paiement client</span></div><div class="finance-card"><b>${supplier?money(supplier.amountTotal,supplier.currency):'—'}</b><span>Fournisseur studio</span></div><div class="finance-card"><b>${supplier?esc(supplier.status==='paid'?'Payé':'À payer'):'Non déclenché'}</b><span>Statut fournisseur</span></div></div>${supplier?.status==='due'?`<button class="button" id="paySupplier" type="button">Marquer les 720 € comme payés</button>`:''}<p class="empty">Les demandes de remboursement et d’annulation apparaissent dans l’espace Finances du Studio.</p></div>`;}
+function infoView(order){return `<div class="detail-grid"><section class="panel"><h3>Informations client</h3><div class="info-list"><div class="info-row"><span>E-mail</span><strong>${esc(order.email)}</strong></div><div class="info-row"><span>Nom</span><strong>${esc(order.fullName||'—')}</strong></div><div class="info-row"><span>Entreprise</span><strong>${esc(order.company||'—')}</strong></div><div class="info-row"><span>Format</span><strong>${esc(order.format||'—')}</strong></div><div class="info-row"><span>Créé le</span><strong>${formatDate(order.createdAt)}</strong></div></div></section><aside class="stack"><button class="button" id="sendAccess" type="button">Renvoyer l’accès client</button><a class="secondary" href="/espace-client/?email=${encodeURIComponent(order.email)}" target="_blank" rel="noopener">Prévisualiser l’espace client</a></aside></div>`;}
+function bindDetail(order,supplier){if($('#detailAdvance'))$('#detailAdvance').addEventListener('click',(event)=>advance(order.id,event.currentTarget));if($('#workflowForm'))$('#workflowForm').addEventListener('submit',updateWorkflow);if($('#uploadForm'))$('#uploadForm').addEventListener('submit',uploadFile);if($('#paySupplier'))$('#paySupplier').addEventListener('click',(event)=>paySupplier(supplier.id,event.currentTarget));if($('#sendAccess'))$('#sendAccess').addEventListener('click',(event)=>sendAccess(order.email,event.currentTarget));$$('[data-copy-caption]').forEach((button)=>button.addEventListener('click',()=>copyCaption(button.dataset.copyCaption)));}
 
-function render() {
-  const clients = Array.isArray(state.clients) ? state.clients : [];
-  const orders = Array.isArray(state.orders) ? state.orders : [];
-  $('#clientCount').textContent = String(clients.length);
-  $('#orderCount').textContent = String(orders.length);
-  $('#activeCount').textContent = String(orders.filter((order) => !['completed', 'delivered'].includes(order.status)).length);
+async function updateWorkflow(event){event.preventDefault();const form=event.currentTarget,button=$('button[type=submit]',form),order=getOrder(currentOrderId),data=new FormData(form);button.disabled=true;setMessage($('#workflowMessage'),'Enregistrement et envoi des e-mails…');try{const result=await api('/api/admin/client-update',{method:'POST',body:JSON.stringify({orderId:order.id,status:data.get('status'),appointmentAt:localToIso(data.get('appointmentAt')),filmingAt:localToIso(data.get('filmingAt')),preparationUrl:data.get('preparationUrl')})});toast(result.warning?'Mise à jour enregistrée, e-mail non confirmé.':'Suivi mis à jour et e-mails envoyés.');await load();renderDetail();}catch(error){setMessage($('#workflowMessage'),errorText(error.message),'error');}finally{button.disabled=false;}}
+async function uploadFile(event){event.preventDefault();const form=event.currentTarget,button=$('button[type=submit]',form),file=form.elements.file.files[0],externalUrl=String(form.elements.externalUrl.value||'').trim(),message=$('#uploadMessage');if(!file&&!externalUrl)return setMessage(message,'Choisissez un fichier ou ajoutez un lien externe.','error');button.disabled=true;setMessage(message,'Dépôt en cours…');try{if(file){const data=new FormData();data.set('orderId',currentOrderId);data.set('fileType',form.elements.fileType.value);data.set('file',file);await apiUpload('/api/admin/client-upload',data);}else{await api('/api/admin/client-file',{method:'POST',body:JSON.stringify({orderId:currentOrderId,name:externalUrl.split('/').pop()||'Contenu livré',fileType:form.elements.fileType.value,externalUrl})});}toast('Contenu ajouté à la bibliothèque client.');await load();detailTab='content';renderDetail();}catch(error){setMessage(message,errorText(error.message),'error');}finally{button.disabled=false;}}
+async function paySupplier(paymentId,button){button.disabled=true;try{await api('/api/admin/supplier-payment',{method:'POST',body:JSON.stringify({paymentId})});toast('Paiement fournisseur marqué comme payé.');await load();renderDetail();}catch(error){toast(errorText(error.message),true);button.disabled=false;}}
+async function sendAccess(email,button){button.disabled=true;try{await api('/api/admin/client-send-access',{method:'POST',body:JSON.stringify({email})});toast('Accès envoyé au client.');}catch(error){toast(errorText(error.message),true);}finally{button.disabled=false;}}
+async function createOrder(event){event.preventDefault();const form=event.currentTarget,button=$('button[type=submit]',form),message=$('#formMessage'),data=new FormData(form);button.disabled=true;setMessage(message,'Création du dossier et envoi de l’accès…');try{const result=await api('/api/admin/client-order',{method:'POST',body:JSON.stringify({email:data.get('email'),fullName:data.get('fullName'),company:data.get('company'),title:data.get('title'),format:data.get('format'),amountTotal:Math.round(Number(data.get('amountEuros')||0)*100),currency:'eur',appointmentAt:localToIso(data.get('appointmentAt')),preparationUrl:data.get('preparationUrl'),sendEmail:data.get('sendEmail')==='on'})});setMessage(message,result.warning?'Dossier créé. L’e-mail doit être vérifié.':'Dossier créé et accès envoyé.','success');form.reset();form.elements.title.value='Passage Neptune Media';form.elements.sendEmail.checked=true;await load();setTimeout(()=>$('#newDialog').close(),700);}catch(error){setMessage(message,errorText(error.message),'error');}finally{button.disabled=false;}}
 
-  const container = $('#orders');
-  container.innerHTML = '';
-  if (!orders.length) {
-    container.innerHTML = '<p class="empty">Aucun compte client pour le moment.</p>';
-    return;
-  }
-
-  const template = $('#orderTemplate');
-  for (const order of orders) {
-    const fragment = template.content.cloneNode(true);
-    const article = $('.order', fragment);
-    article.dataset.search = [order.email, order.fullName, order.company, order.title, order.format].join(' ').toLowerCase();
-    $('.client-line', article).textContent = [order.fullName || order.email, order.company].filter(Boolean).join(' · ');
-    $('h3', article).textContent = order.title || 'Passage Neptune Media';
-    $('.meta', article).textContent = [
-      order.email,
-      order.format,
-      order.amountTotal ? formatMoney(order.amountTotal, order.currency) : '',
-      order.createdAt ? `créé le ${formatDate(order.createdAt)}` : '',
-    ].filter(Boolean).join(' · ');
-
-    const updateForm = $('.update-form', article);
-    updateForm.elements.orderId.value = order.id;
-    updateForm.elements.status.value = order.status || 'reservation_confirmed';
-    updateForm.elements.appointmentAt.value = isoToLocal(order.appointmentAt);
-    updateForm.elements.filmingAt.value = isoToLocal(order.filmingAt);
-    updateForm.elements.nextAction.value = order.nextAction || '';
-    updateForm.elements.preparationUrl.value = order.preparationUrl || '';
-    updateForm.addEventListener('submit', updateOrder);
-
-    const fileForm = $('.file-form', article);
-    fileForm.elements.orderId.value = order.id;
-    fileForm.addEventListener('submit', addFile);
-
-    $('.send-access', article).addEventListener('click', () => sendAccess(order.email, article));
-    container.append(fragment);
-  }
-  filterOrders();
-}
-
-async function updateOrder(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const article = form.closest('.order');
-  const button = $('button[type="submit"]', form);
-  const data = new FormData(form);
-  button.disabled = true;
-  setOrderMessage(article, 'Mise à jour du parcours…');
-  try {
-    await api('/api/admin/client-update', {
-      method: 'POST',
-      body: JSON.stringify({
-        orderId: data.get('orderId'),
-        status: data.get('status'),
-        appointmentAt: localToIso(data.get('appointmentAt')),
-        filmingAt: localToIso(data.get('filmingAt')),
-        nextAction: data.get('nextAction'),
-        preparationUrl: data.get('preparationUrl'),
-      }),
-    });
-    setOrderMessage(article, 'Suivi client mis à jour.', 'success');
-    await load();
-  } catch (error) {
-    setOrderMessage(article, humanError(error.message), 'error');
-  } finally {
-    button.disabled = false;
-  }
-}
-
-async function addFile(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const article = form.closest('.order');
-  const button = $('button[type="submit"]', form);
-  const data = new FormData(form);
-  const locationValue = String(data.get('fileLocation') || '').trim();
-  const payload = {
-    orderId: data.get('orderId'),
-    name: data.get('name'),
-    fileType: data.get('fileType'),
-    sizeLabel: data.get('sizeLabel'),
-    externalUrl: /^https?:\/\//iu.test(locationValue) ? locationValue : '',
-    storageKey: /^https?:\/\//iu.test(locationValue) ? '' : locationValue,
-  };
-  button.disabled = true;
-  setOrderMessage(article, 'Ajout du livrable…');
-  try {
-    await api('/api/admin/client-file', { method: 'POST', body: JSON.stringify(payload) });
-    form.reset();
-    form.elements.orderId.value = payload.orderId;
-    setOrderMessage(article, 'Livrable rendu disponible dans l’espace client.', 'success');
-  } catch (error) {
-    setOrderMessage(article, humanError(error.message), 'error');
-  } finally {
-    button.disabled = false;
-  }
-}
-
-async function sendAccess(email, article) {
-  const button = $('.send-access', article);
-  button.disabled = true;
-  setOrderMessage(article, 'Envoi de l’accès…');
-  try {
-    await api('/api/admin/client-send-access', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-    });
-    setOrderMessage(article, `Accès envoyé à ${email}.`, 'success');
-  } catch (error) {
-    setOrderMessage(article, humanError(error.message), 'error');
-  } finally {
-    button.disabled = false;
-  }
-}
-
-function filterOrders() {
-  const query = String($('#search').value || '').trim().toLowerCase();
-  $$('.order').forEach((order) => { order.hidden = Boolean(query) && !order.dataset.search.includes(query); });
-}
-
-async function api(url, options = {}, includeCsrf = true) {
-  const headers = { Accept: 'application/json', ...(options.headers || {}) };
-  if (options.body) headers['Content-Type'] = 'application/json';
-  if (includeCsrf) headers['X-CSRF-Token'] = csrfToken;
-  const response = await fetch(url, { ...options, headers, credentials: 'same-origin' });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || `http_${response.status}`);
-  return data;
-}
-
-function setMessage(element, text, type = '') {
-  element.textContent = text;
-  element.className = `message${type ? ` ${type}` : ''}`;
-}
-function setOrderMessage(article, text, type = '') { setMessage($('.order-message', article), text, type); }
-function localToIso(value) { return value ? new Date(value).toISOString() : null; }
-function isoToLocal(value) {
-  if (!value) return '';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return '';
-  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 16);
-}
-function formatDate(value) {
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' }).format(date);
-}
-function formatMoney(cents, currency = 'eur') {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: String(currency || 'eur').toUpperCase() }).format(Number(cents || 0) / 100);
-}
-function escapeHtml(value) {
-  return String(value ?? '').replace(/[&<>"']/gu, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-}
-function humanError(code) {
-  return ({
-    unauthorized: 'Reconnectez-vous au Studio administrateur.',
-    csrf_failed: 'Votre session de sécurité a expiré. Rechargez la page.',
-    invalid_order: 'Les informations de commande sont incomplètes.',
-    payment_not_confirmed: 'Le paiement n’est pas confirmé.',
-    order_not_found: 'Ce passage est introuvable.',
-    invalid_file: 'Indiquez un nom de fichier et une URL ou une clé R2 valide.',
-    client_not_found: 'Ce client est introuvable.',
-    email_service_not_configured: 'La clé Resend doit être configurée dans Cloudflare.',
-    email_send_failed: 'L’e-mail n’a pas pu être envoyé. Vérifiez le domaine expéditeur Resend.',
-  })[code] || 'Une erreur est survenue. Réessayez.';
-}
+function renderCalendar(monthDate,schedules,files){const first=new Date(monthDate.getFullYear(),monthDate.getMonth(),1),last=new Date(monthDate.getFullYear(),monthDate.getMonth()+1,0),offset=(first.getDay()+6)%7,cells=[];for(let i=0;i<offset;i++)cells.push('<div class="day"></div>');for(let day=1;day<=last.getDate();day++){const entries=schedules.filter((item)=>{const date=new Date(item.publishAt);return date.getFullYear()===first.getFullYear()&&date.getMonth()===first.getMonth()&&date.getDate()===day;});cells.push(`<div class="day"><span>${day}</span>${entries.map((entry)=>{const file=files.find((item)=>item.id===entry.fileId);return `<span class="calendar-item" title="${esc(entry.caption)}">${esc(file?.name||'Contenu')}<button type="button" data-copy-caption="${esc(entry.caption)}">Copier</button></span>`;}).join('')}</div>`);}return `<div class="calendar">${['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map((day)=>`<div class="calendar-head">${day}</div>`).join('')}${cells.join('')}</div><p class="empty">Le bouton « Copier » prépare le texte. La publication directe nécessite la connexion des comptes sociaux.</p>`;}
+async function copyCaption(text){try{await navigator.clipboard.writeText(text);toast('Légende copiée.');}catch{toast('Copie impossible sur cet appareil.',true);}}
+function deadlineFor(order){const base=new Date(order.updatedAt||order.createdAt||Date.now());if(order.status==='studio_date_confirmation_pending')return new Date(base.getTime()+48*3600000);if(order.status==='videos_pending')return new Date(new Date(order.filmingAt||base).getTime()+7*86400000);if(['videos_received','editing','approval'].includes(order.status))return new Date(new Date(order.filmingAt||base).getTime()+15*86400000);if(['preparation_complete','filming_scheduled','filming_confirmed'].includes(order.status)&&order.filmingAt)return new Date(order.filmingAt);return null;}
+function remainingLabel(deadline){const ms=deadline-Date.now(),abs=Math.abs(ms),days=Math.floor(abs/86400000),hours=Math.max(1,Math.ceil((abs%86400000)/3600000));return ms<0?`Retard ${days?`${days} j`:`${hours} h`}`:days?`J-${days}`:`${hours} h restantes`;}
+function isUrgent(order){const deadline=deadlineFor(order);return Boolean(deadline&&deadline-Date.now()<48*3600000);}
+function getOrder(id){return state.orders.find((order)=>order.id===id);}
+async function api(url,options={},includeCsrf=true){const headers={Accept:'application/json',...(options.headers||{})};if(options.body)headers['Content-Type']='application/json';if(includeCsrf)headers['X-CSRF-Token']=csrfToken;const response=await fetch(url,{...options,headers,credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||`http_${response.status}`);return data;}
+async function apiUpload(url,body){const response=await fetch(url,{method:'POST',body,headers:{Accept:'application/json','X-CSRF-Token':csrfToken},credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||`http_${response.status}`);return data;}
+function setMessage(element,text,type=''){element.textContent=text;element.className=`message${type?` ${type}`:''}`;}
+function localToIso(value){return value?new Date(value).toISOString():null;}
+function isoToLocal(value){if(!value)return '';const date=new Date(value);if(Number.isNaN(date.getTime()))return '';const local=new Date(date.getTime()-date.getTimezoneOffset()*60000);return local.toISOString().slice(0,16);}
+function formatDate(value){if(!value)return '—';const date=new Date(value);return Number.isNaN(date.getTime())?'—':new Intl.DateTimeFormat('fr-FR',{dateStyle:'medium',timeStyle:'short'}).format(date);}
+function money(cents,currency='eur'){return new Intl.NumberFormat('fr-FR',{style:'currency',currency:String(currency||'eur').toUpperCase()}).format(Number(cents||0)/100);}
+function fileLabel(type){return ({final:'Émission complète',rushes:'Rushs',short:'Short / Reel',shorts:'Shorts',teaser:'Teaser',document:'Document'})[type]||'Livrable';}
+function safeHref(value){const text=String(value||'');return /^https?:\/\//iu.test(text)?esc(text):'#';}
+function toast(text,error=false){const element=$('#toast');element.textContent=text;element.className=`toast${error?' error':''}`;element.hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>element.hidden=true,3800);}
+function errorText(code){return ({unauthorized:'Reconnectez-vous au Studio.',csrf_failed:'La session de sécurité a expiré.',invalid_order:'Les informations du client sont incomplètes.',order_not_found:'Ce dossier est introuvable.',invalid_file:'Le fichier ou le lien est invalide.',file_too_large:'Le fichier dépasse 95 Mo. Utilisez Neptune Video Studio.',media_storage_unavailable:'Le stockage vidéo n’est pas disponible.',email_service_not_configured:'Resend n’est pas configuré.',email_send_failed:'L’e-mail n’a pas pu être envoyé.',supplier_payment_not_found:'Ce paiement fournisseur est introuvable.'})[code]||'Une erreur est survenue. Réessayez.';}
+function esc(value){return String(value??'').replace(/[&<>"']/gu,(character)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));}
