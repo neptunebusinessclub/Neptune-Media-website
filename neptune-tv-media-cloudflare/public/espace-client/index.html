@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Mon espace Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/client.css?v=30">
+  <link rel="stylesheet" href="/espace-client/client.css?v=31">
 </head>
 <body>
   <main class="page">
@@ -16,7 +16,7 @@
       <div class="auth-copy"><p class="eyebrow">VOTRE ESPACE PERMANENT</p><h1>Votre passage, suivi comme une commande.</h1><p>Une prochaine étape claire, tous vos contenus et votre calendrier de publication au même endroit.</p><div class="trust-row"><span>Code sécurisé</span><span>Accès privé</span><span>Contenus téléchargeables</span></div></div>
       <form id="accessForm" class="access-card">
         <div id="emailStep"><p class="step">01 · IDENTIFICATION</p><h2>Recevoir mon code</h2><p>Utilisez l’adresse e-mail employée lors de votre réservation.</p><label><span>Adresse e-mail</span><input id="email" name="email" type="email" autocomplete="email" required></label><button id="sendCode" class="primary" type="submit">Recevoir mon code</button></div>
-        <div id="codeStep" hidden><p class="step">02 · VÉRIFICATION</p><h2>Saisissez le code reçu</h2><p id="codeHint">Le code à 6 chiffres est valable 10 minutes.</p><label><span>Code de sécurité</span><input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}"></label><button id="verifyCode" class="primary" type="submit">Accéder à mon espace</button><button id="changeEmail" class="text-button" type="button">Utiliser une autre adresse</button></div>
+        <div id="codeStep" hidden><p class="step">02 · VÉRIFICATION</p><h2>Saisissez le code reçu</h2><p id="codeHint">Le code à 6 chiffres est valable 10 minutes.</p><label><span>Code de sécurité</span><input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}"></label><button id="verifyCode" class="primary" type="submit">Accéder à mon espace</button><button id="resendCode" class="text-button" type="button">Renvoyer un code</button><button id="changeEmail" class="text-button" type="button">Utiliser une autre adresse</button></div>
         <p id="authMessage" class="message" aria-live="polite"></p>
       </form>
     </section>
@@ -29,6 +29,6 @@
     </section>
   </main>
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/client.js?v=30"></script>
+  <script type="module" src="/espace-client/client.js?v=31"></script>
 </body>
 </html>
