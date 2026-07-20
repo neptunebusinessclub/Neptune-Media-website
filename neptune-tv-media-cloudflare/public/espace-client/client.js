@@ -7,15 +7,18 @@ const statusLabels={payment_confirmed:'Paiement reçu',reservation_confirmed:'Re
 
 $('#accessForm').addEventListener('submit',async(event)=>{event.preventDefault();$('#codeStep').hidden?await requestCode():await verifyCode();});
 $('#changeEmail').addEventListener('click',reset);
+$('#resendCode').addEventListener('click',requestCode);
 $('#logout').addEventListener('click',logout);
 $$('[data-view]').forEach((button)=>button.addEventListener('click',()=>{view=button.dataset.view;renderView();}));
-const query=new URLSearchParams(location.search).get('email');if(query)$('#email').value=query;
+const query=new URLSearchParams(location.search).get('email');
+if(query&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(query)){email=query.trim().toLowerCase();$('#email').value=email;showCodeStep('Saisissez le code reçu. Si vous n’en avez pas encore, demandez-en un nouveau.');}
 load();
 
 async function load(){try{state=await api('/api/client/session');render();}catch{showAuth();}}
-async function requestCode(){email=String($('#email').value||'').trim().toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email))return message('Saisissez une adresse e-mail valide.','error');const button=$('#sendCode');button.disabled=true;message('Envoi du code sécurisé…');try{const result=await api('/api/client/request-code',{method:'POST',body:JSON.stringify({email})});if(!result.codeExpected){message('Aucun espace client actif n’est associé à cette adresse.','error');return;}$('#emailStep').hidden=true;$('#codeStep').hidden=false;$('#code').required=true;$('#codeHint').textContent=`Code envoyé à ${maskEmail(email)}. Il expire dans 10 minutes.`;message(result.retryAfter?`Un code valide a déjà été envoyé. Réessayez dans ${result.retryAfter} secondes.`:result.throttled?'La limite d’envoi a été atteinte. Utilisez le dernier code reçu.':'Consultez votre boîte de réception et vos courriers indésirables.','success');$('#code').focus();}catch(error){message(errorText(error.message),'error');}finally{button.disabled=false;}}
+async function requestCode(){email=String($('#email').value||email||'').trim().toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email))return message('Saisissez une adresse e-mail valide.','error');const button=$('#codeStep').hidden?$('#sendCode'):$('#resendCode');button.disabled=true;message('Envoi du code sécurisé…');try{const result=await api('/api/client/request-code',{method:'POST',body:JSON.stringify({email})});showCodeStep(`Code envoyé à ${maskEmail(email)}. Il expire dans 10 minutes.`);message(result.retryAfter?`Un code valide a déjà été envoyé. Réessayez dans ${result.retryAfter} secondes.`:result.throttled?'La limite d’envoi a été atteinte. Utilisez le dernier code reçu.':result.delivered||result.codeExpected?'Consultez votre boîte de réception et vos courriers indésirables.':'Si un espace client actif correspond à cette adresse, un code vient d’être envoyé.','success');$('#code').focus();}catch(error){message(errorText(error.message),'error');}finally{button.disabled=false;}}
 async function verifyCode(){const code=String($('#code').value||'').replace(/\D/gu,'').slice(0,6);if(code.length!==6)return message('Le code doit contenir 6 chiffres.','error');const button=$('#verifyCode');button.disabled=true;message('Vérification…');try{await api('/api/client/verify-code',{method:'POST',body:JSON.stringify({email,code})});history.replaceState({},'','/espace-client/');await load();}catch(error){message(errorText(error.message),'error');$('#code').select();}finally{button.disabled=false;}}
-function reset(){$('#emailStep').hidden=false;$('#codeStep').hidden=true;$('#code').required=false;$('#code').value='';message('');$('#email').focus();}
+function showCodeStep(hint='Le code à 6 chiffres est valable 10 minutes.'){$('#emailStep').hidden=true;$('#codeStep').hidden=false;$('#code').required=true;$('#codeHint').textContent=hint;}
+function reset(){email='';$('#emailStep').hidden=false;$('#codeStep').hidden=true;$('#code').required=false;$('#code').value='';history.replaceState({},'','/espace-client/');message('');$('#email').focus();}
 async function logout(){await api('/api/client/logout',{method:'POST'}).catch(()=>{});state=null;reset();showAuth();}
 function showAuth(){$('#auth').hidden=false;$('#dashboard').hidden=true;$('#logout').hidden=true;}
 
