@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#081d4e">
+  <meta name="theme-color" content="#071d4f">
   <title>Mon espace Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/client.css?v=37">
+  <link rel="stylesheet" href="/espace-client/client.css?v=36">
+  <link rel="stylesheet" href="/espace-client/dashboard-v37.css?v=1">
 </head>
 <body>
   <main class="page">
@@ -21,8 +22,8 @@
     <section id="auth" class="auth-shell">
       <div class="auth-copy">
         <p class="eyebrow">ESPACE CLIENT NEPTUNE MEDIA</p>
-        <h1>Votre passage.<br><span>Simplement suivi.</span></h1>
-        <p>Rendez-vous, progression, vidéos, factures et calendrier éditorial réunis dans un espace privé, clair et sécurisé.</p>
+        <h1>Tout votre passage.<br><span>Au même endroit.</span></h1>
+        <p>Rendez-vous, suivi, vidéos, factures et calendrier de publication réunis dans votre espace privé.</p>
         <div class="trust-row" aria-label="Garanties de l’espace client">
           <span>Code sécurisé</span><span>Accès privé</span><span>Contenus téléchargeables</span>
         </div>
@@ -51,122 +52,165 @@
       </form>
     </section>
 
-    <section id="dashboard" class="dashboard" hidden>
+    <section id="dashboard" class="dashboard dashboard-v37" hidden>
       <header class="media-header">
         <a class="media-brand" href="/" aria-label="Neptune Media">
           <img src="/assets/logo-neptune.svg" alt="">
           <span class="media-wordmark"><b>Neptune</b><small>Media</small></span>
         </a>
 
-        <nav class="social-nav" aria-label="Réseaux sociaux Neptune">
-          <a class="social social-tiktok" href="https://www.tiktok.com/search?q=Neptune%20Business" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 3c.5 2.4 2 3.9 4.2 4.2v3.5a9 9 0 0 1-4.2-1.2v6.1A6.4 6.4 0 1 1 10.3 9v3.7a2.9 2.9 0 1 0 2 2.8V3h3.5Z"/></svg>
-          </a>
-          <a class="social social-instagram" href="https://www.instagram.com/explore/search/keyword/?q=neptune%20business" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r="1"/></svg>
-          </a>
-          <a class="social social-linkedin" href="https://fr.linkedin.com/company/neptune-business" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5.5v.1M10 19v-6.2c0-2.1 1.3-3.8 3.5-3.8s3.5 1.7 3.5 3.8V19M10 9v10"/></svg>
-          </a>
-          <a class="social social-youtube" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.5 12 5.5 12 5.5s-5 0-6.9.6A3 3 0 0 0 3 8.2 31 31 0 0 0 2.5 12 31 31 0 0 0 3 15.8a3 3 0 0 0 2.1 2.1c1.9.6 6.9.6 6.9.6s5 0 6.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-3.8 31 31 0 0 0-.5-3.8Z"/><path d="m10 15.5 5-3.5-5-3.5v7Z"/></svg>
-          </a>
-          <button class="logout-button" type="button" data-logout aria-label="Se déconnecter" title="Se déconnecter">↗</button>
-        </nav>
+        <div class="header-tools">
+          <span class="workspace-label">Espace client</span>
+          <nav class="social-nav" aria-label="Réseaux sociaux Neptune">
+            <a class="social social-tiktok" href="https://www.tiktok.com/search?q=Neptune%20Business" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 3c.5 2.4 2 3.9 4.2 4.2v3.5a9 9 0 0 1-4.2-1.2v6.1A6.4 6.4 0 1 1 10.3 9v3.7a2.9 2.9 0 1 0 2 2.8V3h3.5Z"/></svg>
+            </a>
+            <a class="social social-instagram" href="https://www.instagram.com/explore/search/keyword/?q=neptune%20business" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r="1"/></svg>
+            </a>
+            <a class="social social-linkedin" href="https://fr.linkedin.com/company/neptune-business" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5.5v.1M10 19v-6.2c0-2.1 1.3-3.8 3.5-3.8s3.5 1.7 3.5 3.8V19M10 9v10"/></svg>
+            </a>
+            <a class="social social-youtube" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.5 12 5.5 12 5.5s-5 0-6.9.6A3 3 0 0 0 3 8.2 31 31 0 0 0 2.5 12 31 31 0 0 0 3 15.8a3 3 0 0 0 2.1 2.1c1.9.6 6.9.6 6.9.6s5 0 6.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-3.8 31 31 0 0 0-.5-3.8Z"/><path d="m10 15.5 5-3.5-5-3.5v7Z"/></svg>
+            </a>
+            <button class="logout-button" type="button" data-logout aria-label="Se déconnecter" title="Se déconnecter">↗</button>
+          </nav>
+        </div>
       </header>
 
       <div class="dashboard-canvas">
-        <section class="welcome-row" aria-label="Résumé de votre passage">
-          <div class="welcome-copy">
-            <p class="welcome-eyebrow">ESPACE CLIENT</p>
+        <section class="dashboard-heading">
+          <div class="dashboard-heading-copy">
+            <p class="eyebrow">TABLEAU DE BORD</p>
             <h1 id="welcome">Bonjour</h1>
-            <p class="welcome-support">Tout ce qui concerne votre émission, au même endroit.</p>
+            <p>Suivez votre production, retrouvez vos documents et accédez à vos prochaines actions.</p>
           </div>
-          <div class="countdown-wrap">
-            <span class="status-label"><i></i> Prochaine étape</span>
-            <strong id="countdownText">Votre prochaine étape</strong>
-            <a id="prepareLink" class="prepare-link" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Me préparer</a>
+          <a class="header-booking" href="https://media.neptunebusiness.com" target="_blank" rel="noopener"><span>＋</span> Réserver un format</a>
+        </section>
+
+        <div class="overview-grid">
+          <section class="production-card" aria-labelledby="productionTitle">
+            <header class="production-card-header">
+              <span class="production-kicker"><i aria-hidden="true"></i> Projet en cours</span>
+              <span id="passageBadge" class="project-status">Suivi de production</span>
+            </header>
+
+            <div class="production-main">
+              <div class="countdown-wrap">
+                <span id="productionTitle">Prochaine étape</span>
+                <strong id="countdownText">Votre prochaine étape</strong>
+                <p>Votre espace se met à jour automatiquement à chaque avancée de la préparation, du tournage et du montage.</p>
+              </div>
+              <div class="production-actions">
+                <a id="prepareLink" class="primary-dashboard-action" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Me préparer</a>
+                <button class="secondary-dashboard-action" type="button" data-open-panel="tracking">Voir le suivi détaillé</button>
+              </div>
+            </div>
+
+            <nav class="production-shortcuts" aria-label="Raccourcis du projet">
+              <button class="production-shortcut" type="button" data-open-panel="appointments"><b>01</b><span>Rendez-vous</span></button>
+              <button class="production-shortcut" type="button" data-open-panel="tracking"><b>02</b><span>Avancement</span></button>
+              <button class="production-shortcut" type="button" data-open-panel="content"><b>03</b><span>Livrables</span></button>
+            </nav>
+          </section>
+
+          <aside class="show-card" aria-label="Votre émission">
+            <header class="card-heading">
+              <div><p class="section-label">VOTRE ÉMISSION</p><h2>Dernière livraison</h2></div>
+              <button class="inline-action" type="button" data-open-panel="content">Tout voir</button>
+            </header>
+            <div id="broadcastPreview" class="show-preview"><span>▶</span><small>Votre émission apparaîtra ici</small></div>
+            <footer class="show-footer">
+              <span>Diffusion Neptune TV et YouTube</span>
+              <a href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener">Ouvrir YouTube</a>
+            </footer>
+          </aside>
+        </div>
+
+        <section class="metrics-section" aria-labelledby="metricsTitle">
+          <header class="section-heading">
+            <div><p class="section-label">VOS INFORMATIONS</p><h2 id="metricsTitle">En un coup d’œil</h2><p>Les éléments importants de votre espace, sans avoir à chercher.</p></div>
+          </header>
+
+          <div class="metric-grid">
+            <button class="metric-card" type="button" data-open-panel="appointments">
+              <span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/><path d="m8 15 2 2 5-5"/></svg></span>
+              <span class="metric-copy"><span>Mes rendez-vous</span><strong id="appointmentBadge">À consulter</strong></span>
+              <span class="metric-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <button class="metric-card" type="button" data-open-panel="content">
+              <span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12H4zM4 7l3-4h4L8 7m5 0 3-4h4l-3 4"/><path d="m10 11 5 3-5 3Z"/></svg></span>
+              <span class="metric-copy"><span>Mes vidéos</span><strong id="videoBadge">0 contenu</strong></span>
+              <span class="metric-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <button class="metric-card" type="button" data-open-panel="billing">
+              <span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11v18H6zM9 7h5M9 11h4M9 15h3"/><path d="M20 13c-3-2-6 0-6 3s3 5 6 3"/></svg></span>
+              <span class="metric-copy"><span>Mes factures</span><strong id="billingBadge">0 facture</strong></span>
+              <span class="metric-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <button class="metric-card" type="button" data-open-panel="calendar">
+              <span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v14H5zM8 3v6m8-6v6"/><path d="m10 11 5 3-5 3Z"/></svg></span>
+              <span class="metric-copy"><span>Mes publications</span><strong id="publicationBadge">0 publication</strong></span>
+              <span class="metric-arrow" aria-hidden="true">→</span>
+            </button>
           </div>
         </section>
 
-        <div class="dashboard-grid">
-          <div class="dashboard-core">
-            <section class="quick-grid" aria-label="Accès rapides">
-              <button class="quick-card quick-appointments" type="button" data-open-panel="appointments">
-                <span class="quick-icon"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M27 14v16m42-16v16M17 37h62M23 24h50a8 8 0 0 1 8 8v43a8 8 0 0 1-8 8H23a8 8 0 0 1-8-8V32a8 8 0 0 1 8-8Z"/><path d="m34 60 9 9 21-23"/><path d="M29 45h7m10 0h7m10 0h7M29 56h7m17 0h7M29 69h7m10 0h7m10 0h7"/></svg></span>
-                <span class="quick-copy"><span class="quick-title">Mes rendez-vous</span><span id="appointmentBadge" class="quick-meta">À consulter</span></span>
-                <span class="quick-arrow" aria-hidden="true">→</span>
-              </button>
-              <button class="quick-card quick-content" type="button" data-open-panel="content">
-                <span class="quick-icon"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M18 30h60v49H18zM18 30l10-16h14L32 30m18 0 10-16h14L64 30"/><path d="m40 44 25 15-25 15Z"/></svg></span>
-                <span class="quick-copy"><span class="quick-title">Mes vidéos</span><span id="videoBadge" class="quick-meta">0 contenu</span></span>
-                <span class="quick-arrow" aria-hidden="true">→</span>
-              </button>
-              <button class="quick-card quick-tracking" type="button" data-open-panel="tracking">
-                <span class="quick-icon"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M18 28h60a7 7 0 0 1 7 7v32a7 7 0 0 1-7 7H18a7 7 0 0 1-7-7V35a7 7 0 0 1 7-7Z"/><circle cx="31" cy="51" r="9" class="record-dot"/><path d="M51 44v15m0-15h11a7 7 0 0 1 0 15H51"/></svg></span>
-                <span class="quick-copy"><span class="quick-title">Mes passages</span><span id="passageBadge" class="quick-meta">Suivi</span></span>
-                <span class="quick-arrow" aria-hidden="true">→</span>
-              </button>
-              <button class="quick-card quick-billing" type="button" data-open-panel="billing">
-                <span class="quick-icon"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M22 14h45v68H22zM31 30h27M31 42h18M31 54h23"/><path d="M73 51c-10-7-22-1-22 9s12 16 22 9m-11-22v27"/></svg></span>
-                <span class="quick-copy"><span class="quick-title">Mes factures</span><span id="billingBadge" class="quick-meta">Stripe</span></span>
-                <span class="quick-arrow" aria-hidden="true">→</span>
-              </button>
-              <button class="quick-card quick-calendar" type="button" data-open-panel="calendar">
-                <span class="quick-icon"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M20 27h56a7 7 0 0 1 7 7v43H13V34a7 7 0 0 1 7-7Zm10-12v23m36-23v23"/><path d="m36 48 22 13-22 13Z"/><path d="m75 13 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></svg></span>
-                <span class="quick-copy"><span class="quick-title">Mes publications</span><span id="publicationBadge" class="quick-meta">Calendrier</span></span>
-                <span class="quick-arrow" aria-hidden="true">→</span>
-              </button>
-            </section>
+        <div class="dashboard-content-grid">
+          <section class="formats-panel" aria-labelledby="formatsTitle">
+            <header class="section-heading">
+              <div><p class="section-label">NOUVEAU PASSAGE</p><h2 id="formatsTitle">Réserver un autre format</h2><p>Choisissez le cadre qui correspond à votre prochain objectif de communication.</p></div>
+              <a class="inline-action" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Voir toutes les offres</a>
+            </header>
 
-            <section class="lower-grid">
-              <article class="referral-panel">
-                <div><span class="section-kicker">PARRAINAGE</span><h2>Invitez votre réseau</h2><p>Partagez votre code et faites découvrir Neptune Media.</p></div>
-                <button id="copyReferral" class="referral-code" type="button" title="Copier mon code de parrainage">
-                  <span id="referralCode">NEPTUNE</span><small>Copier le code</small>
-                </button>
+            <div class="format-grid" aria-label="Formats Neptune Media">
+              <article class="format-card" data-format="hors norme">
+                <span class="format-symbol">▶</span>
+                <strong>Hors Norme</strong>
+                <p>L’interview signature pour raconter votre parcours, votre vision et ce qui vous rend différent.</p>
+                <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver ce format <span>→</span></a>
               </article>
+              <article class="format-card" data-format="connexio">
+                <span class="format-symbol">∞</span>
+                <strong>Connexio</strong>
+                <p>Un échange vivant et spontané conçu pour créer de la proximité avec votre audience.</p>
+                <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver ce format <span>→</span></a>
+              </article>
+              <article class="format-card" data-format="libre">
+                <span class="format-symbol">✦</span>
+                <strong>Libre</strong>
+                <p>Un plateau flexible pour enregistrer votre propre concept, seul ou avec plusieurs intervenants.</p>
+                <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver ce format <span>→</span></a>
+              </article>
+            </div>
+          </section>
 
-              <section class="formats-section" aria-labelledby="formatsTitle">
-                <div class="section-heading"><div><span class="section-kicker">FORMATS</span><h2 id="formatsTitle">Vos expériences Neptune</h2></div><a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Voir tous les formats</a></div>
-                <div class="format-grid" aria-label="Formats Neptune Media">
-                  <article class="format-card" data-format="hors norme">
-                    <strong>Hors Norme</strong>
-                    <div class="format-preview mini-screen"><span>▶</span></div>
-                    <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener"><b>›</b><span>Réserver</span></a>
-                  </article>
-                  <article class="format-card" data-format="connexio">
-                    <strong>Connexio</strong>
-                    <div class="format-preview format-mark">∞</div>
-                    <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener"><b>›</b><span>Réserver</span></a>
-                  </article>
-                  <article class="format-card" data-format="libre">
-                    <strong>Libre</strong>
-                    <div class="format-preview format-mark">✦</div>
-                    <a href="https://media.neptunebusiness.com" target="_blank" rel="noopener"><b>›</b><span>Réserver</span></a>
-                  </article>
-                </div>
-              </section>
-            </section>
+          <aside class="utility-column">
+            <article class="referral-panel">
+              <div class="utility-heading"><h2>Parrainez un contact</h2><p>Partagez votre code personnel avec une entreprise de votre réseau.</p></div>
+              <button id="copyReferral" class="referral-code" type="button" title="Copier mon code de parrainage">
+                <span id="referralCode">NEPTUNE</span><small>Cliquer pour copier</small>
+              </button>
+            </article>
 
-            <section class="bottom-actions">
-              <a class="club-cta" href="https://www.neptunebusiness.com/" target="_blank" rel="noopener"><span>Neptune Business Club</span><b>Rejoindre le club →</b></a>
-              <a class="contact-cta" href="mailto:contact@neptunebusiness.com"><span>Besoin d’aide ou d’un renseignement ?</span><b>Contacter Neptune →</b></a>
-            </section>
-          </div>
-
-          <aside class="broadcast-card" aria-label="Diffusion de votre émission">
-            <header><span class="section-kicker">DIFFUSION</span><h2>Votre émission</h2><p>Retrouvez votre programme dès sa mise en ligne.</p></header>
-            <section class="broadcast-primary">
-              <div class="broadcast-label"><span>Neptune TV</span><small>Votre espace de diffusion</small></div>
-              <div id="broadcastPreview" class="broadcast-screen"><span>▶</span><small>Votre émission apparaîtra ici</small></div>
-            </section>
-            <section class="broadcast-secondary">
-              <div><strong>YouTube</strong><small>Découvrir la chaîne Neptune Business</small></div>
-              <a class="youtube-screen" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener" aria-label="Ouvrir la chaîne YouTube">→</a>
-            </section>
+            <article class="support-card">
+              <div class="utility-heading"><h2>Besoin d’aide ?</h2><p>Une question sur votre passage, vos contenus ou une nouvelle réservation.</p></div>
+              <div class="support-actions">
+                <a class="utility-action" href="mailto:contact@neptunebusiness.com">Contacter Neptune</a>
+                <a class="utility-action" href="https://www.neptunebusiness.com/" target="_blank" rel="noopener">Découvrir le club</a>
+              </div>
+            </article>
           </aside>
         </div>
+
+        <footer class="client-footer">
+          <span>Neptune Media · Votre production, centralisée et sécurisée.</span>
+          <nav aria-label="Liens utiles"><a href="mailto:contact@neptunebusiness.com">Support</a><a href="https://www.neptunebusiness.com/" target="_blank" rel="noopener">Neptune Business</a></nav>
+        </footer>
       </div>
     </section>
   </main>
@@ -181,6 +225,6 @@
   </aside>
 
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/client.js?v=37"></script>
+  <script type="module" src="/espace-client/client.js?v=35"></script>
 </body>
 </html>
