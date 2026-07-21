@@ -47,7 +47,7 @@ function renderCues() {
     if (match && !badge) {
       const nextBadge = document.createElement('span');
       nextBadge.className = 'referral-card-badge';
-      nextBadge.textContent = 'Remerciement à intégrer';
+      nextBadge.textContent = `Recommandé par ${match.referrerCompany || match.referrerName || match.referralCode || 'un client'}`;
       card.append(nextBadge);
     } else if (!match && badge) badge.remove();
   });
@@ -62,8 +62,8 @@ function renderCues() {
   existingCue?.remove();
   const anchor = detail.querySelector('.detail-title');
   if (!anchor) return;
-  const name = referral.referrerName || referral.referrerCompany || 'la personne ayant recommandé ce client';
-  const company = referral.referrerCompany && referral.referrerCompany !== name ? ` · ${referral.referrerCompany}` : '';
+  const identity = referral.referrerCompany || referral.referrerName || referral.referralIdentity || 'la personne ayant recommandé ce client';
+  const contact = referral.referrerName && referral.referrerName !== identity ? ` · ${referral.referrerName}` : '';
   const cue = document.createElement('section');
   cue.className = 'referral-production-cue';
   cue.dataset.orderId = orderId;
@@ -71,9 +71,9 @@ function renderCues() {
     <div class="referral-cue-icon" aria-hidden="true">★</div>
     <div class="referral-cue-copy">
       <p>CONSIGNE MONTAGE OBLIGATOIRE · VIDÉO LONG FORMAT</p>
-      <h3>Mise en avant de remerciement pour ${escapeHtml(name)}${escapeHtml(company)}</h3>
-      <span>Cette réservation provient du lien de recommandation <strong>${escapeHtml(referral.referralCode || '')}</strong>. Prévoir un carton, une mention orale ou une séquence de remerciement visible dans la version longue.</span>
-      <blockquote>« Cette émission a été rendue possible grâce à la recommandation de ${escapeHtml(name)}. Merci pour sa confiance. »</blockquote>
+      <h3>Mise en avant de remerciement pour ${escapeHtml(identity)}${escapeHtml(contact)}</h3>
+      <span>Réservation attribuée au lien entreprise <strong>${escapeHtml(referral.referralCode || '')}</strong>. Prévoir un carton, une mention orale ou une séquence de remerciement visible dans la version longue.</span>
+      <blockquote>« Cette émission a été rendue possible grâce à la recommandation de ${escapeHtml(identity)}. Merci pour sa confiance. »</blockquote>
     </div>`;
   anchor.insertAdjacentElement('afterend', cue);
 }
