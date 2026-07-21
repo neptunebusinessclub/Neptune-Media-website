@@ -11,7 +11,7 @@
 
   appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
   appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
-  appendStylesheet('/styles/scroll-pipeline-3d-v1.css?v=2', 'scrollPipeline3d', 'v2', true);
+  appendStylesheet('/styles/scroll-pipeline-v2.css?v=4', 'scrollPipeline3d', 'v4', true);
 
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
@@ -20,10 +20,10 @@
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v21';
     document.body.dataset.heroRefresh = 'v27';
-    document.body.dataset.scrollPipeline = 'v2';
+    document.body.dataset.scrollPipeline = 'v4';
 
     loadJourneyV19();
-    loadScrollPipeline3D();
+    loadScrollPipelineV2();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
     appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
     appendStylesheet('/styles/intent-actions-v18.css?v=19', 'intentActions', 'v19', true);
@@ -63,12 +63,12 @@
     document.head.append(script);
   }
 
-  function loadScrollPipeline3D() {
-    document.querySelectorAll('script[data-scroll-pipeline-3d]').forEach((node) => node.remove());
+  function loadScrollPipelineV2() {
+    document.querySelectorAll('script[data-scroll-pipeline-3d],script[data-scroll-pipeline-v2]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/scroll-pipeline-3d-v1.js?v=2';
+    script.src = '/scroll-pipeline-v2.js?v=4';
     script.defer = true;
-    script.setAttribute('data-scroll-pipeline-3d', '1');
+    script.setAttribute('data-scroll-pipeline-v2', '1');
     document.head.append(script);
   }
 
@@ -179,4 +179,4 @@
   }
 })();
 
-// Production browser quality gate revision 23.
+// Production browser quality gate revision 24.
