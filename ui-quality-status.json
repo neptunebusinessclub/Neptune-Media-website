@@ -1,9 +1,9 @@
 {
   "status": "failed",
-  "source_sha": "4b45db3c1a98a89cde7eb7d2f02e2d0694af2cf4",
-  "source_workflow_id": "29845583501",
-  "ui_workflow_run_id": "29845631662",
-  "checked_at": "2026-07-21T15:48:44.483284+00:00",
+  "source_sha": "bca929db83a834d0e2a5d595d12c72180e33fc9f",
+  "source_workflow_id": "29847330334",
+  "ui_workflow_run_id": "29847378703",
+  "checked_at": "2026-07-21T16:11:52.246762+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -18,8 +18,7 @@
     "/direct/"
   ],
   "issues": [
-    "home-desktop: navigation de progression absente",
-    "home-mobile: cibles tactiles trop petites: 01 | 02 | 03 | 04 | 05"
+    "home-desktop: navigation de progression absente"
   ],
   "pages": [
     {
@@ -30,7 +29,7 @@
       ],
       "width": 1440,
       "height": 1100,
-      "scrollHeight": 15085
+      "scrollHeight": 14095
     },
     {
       "name": "home-tablet",
@@ -38,17 +37,15 @@
       "issues": [],
       "width": 834,
       "height": 1112,
-      "scrollHeight": 15459
+      "scrollHeight": 14459
     },
     {
       "name": "home-mobile",
       "route": "/",
-      "issues": [
-        "cibles tactiles trop petites: 01 | 02 | 03 | 04 | 05"
-      ],
+      "issues": [],
       "width": 390,
       "height": 844,
-      "scrollHeight": 13098
+      "scrollHeight": 12477
     },
     {
       "name": "emissions-desktop",
