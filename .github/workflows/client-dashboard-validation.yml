@@ -47,9 +47,8 @@ jobs:
         env:
           DASHBOARD_BASE_URL: http://127.0.0.1:4173
         run: |
-          mkdir -p test-results/client-dashboard
           set -o pipefail
-          node tests/client-dashboard-visual.mjs 2>&1 | tee test-results/client-dashboard/run.log
+          node tests/client-dashboard-visual.mjs 2>&1 | tee /tmp/client-dashboard-run.log
 
       - name: Upload screenshots and report
         if: always()
@@ -58,6 +57,7 @@ jobs:
           name: client-dashboard-v37-validation
           path: |
             test-results/client-dashboard
+            /tmp/client-dashboard-run.log
             /tmp/client-dashboard-server.log
           if-no-files-found: warn
           retention-days: 7
