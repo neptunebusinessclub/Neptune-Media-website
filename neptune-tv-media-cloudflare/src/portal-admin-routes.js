@@ -1,6 +1,7 @@
 import { isSameOrigin, json } from './security.js';
 import { adminAuth, normalizeOrderPayload, safeFilename } from './portal-http-utils.js';
 import { sendAccess, sendStatusUpdate } from './portal-email.js';
+import { sendFeedbackForOrder } from './portal-scheduled.js';
 
 const MAX_DIRECT_UPLOAD_BYTES=95*1024*1024;
 
@@ -13,19 +14,32 @@ export async function handlePortalAdminRoute(request,env,studio){
     const normalized=normalizeOrderPayload(payload,env);
     const response=await callStore(studio,'/portal/admin-upsert',{...adminAuth(request),payload:normalized});
     const result=await response.json().catch(()=>({}));if(!response.ok)return json(result,response.status);
+    const warnings=[];
     if(payload.sendEmail!==false&&result.email){
       const sent=await sendStatusUpdate(env,request.url,result.email,{...normalized,...result});
-      if(!sent.ok)return json({...result,warning:sent.error});
+      if(!sent.ok)warnings.push(sent.error);
     }
-    return json(result);
+    if(['delivered','completed'].includes(result.status)){
+      const feedback=await sendFeedbackForOrder(env,request.url,studio,result.orderId);
+      if(!feedback.ok)warnings.push(feedback.error);
+    }
+    return json(warnings.length?{...result,warning:warnings.join(',')} : result);
   }
   if(url.pathname==='/api/admin/client-update'&&request.method==='POST'){
     if(!isSameOrigin(request))return json({error:'origin_forbidden'},403);
     const payload=await request.json().catch(()=>({}));
     const response=await callStore(studio,'/portal/admin-update',{...adminAuth(request),payload});
     const result=await response.json().catch(()=>({}));if(!response.ok)return json(result,response.status);
-    if(result.email){const sent=await sendStatusUpdate(env,request.url,result.email,result);if(!sent.ok)return json({...result,warning:sent.error});}
-    return json(result);
+    const warnings=[];
+    if(result.email){
+      const sent=await sendStatusUpdate(env,request.url,result.email,result);
+      if(!sent.ok)warnings.push(sent.error);
+    }
+    if(['delivered','completed'].includes(result.status)){
+      const feedback=await sendFeedbackForOrder(env,request.url,studio,result.orderId);
+      if(!feedback.ok)warnings.push(feedback.error);
+    }
+    return json(warnings.length?{...result,warning:warnings.join(',')} : result);
   }
   if(url.pathname==='/api/admin/client-file'&&request.method==='POST')return proxyMutation(request,studio,'/portal/admin-file');
   if(url.pathname==='/api/admin/client-upload'&&request.method==='POST')return uploadClientFile(request,env,studio);
