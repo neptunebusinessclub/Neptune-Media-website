@@ -43,7 +43,7 @@ export async function enhanceHtml(response, request, env, mode) {
     : '<link rel="stylesheet" href="/studio-access.css?v=2"><link rel="stylesheet" href="/studio-live.css?v=2"><link rel="stylesheet" href="/studio-command.css?v=1">';
   const script = mode === 'studio' ? '/studio-upgrade.js?v=5' : '/upgrade.js?v=6';
   const extraScripts = mode === 'public'
-    ? '<script src="/referral-capture-v1.js?v=1"></script><script type="module" src="/home-live.js?v=4"></script><script src="/landing-conversion.js?v=5"></script>'
+    ? '<script src="/referral-capture-v1.js?v=2"></script><script type="module" src="/home-live.js?v=4"></script><script src="/landing-conversion.js?v=5"></script>'
     : '<script src="/studio-access.js?v=2"></script><script src="/studio-live.js?v=2"></script><script src="/studio-command.js?v=1"></script>';
   if (!body.includes(stylesheet)) body = body.replace('</head>', `<link rel="stylesheet" href="${stylesheet}">${supplementalStyles}</head>`);
   const marker = mode === 'studio' ? '<script type="module" src="/studio/studio.js"></script>' : '<script src="/app.js"></script>';
