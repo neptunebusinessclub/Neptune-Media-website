@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#081d4e">
   <title>Calendrier de contenu · Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/calendrier/calendar.css?v=2">
+  <link rel="stylesheet" href="/espace-client/calendrier/calendar.css?v=3">
 </head>
 <body>
   <header class="calendar-header">
@@ -17,31 +17,53 @@
 
   <main class="calendar-shell">
     <section class="calendar-intro">
-      <div><p class="eyebrow">NEPTUNE CONTENT</p><h1>Mes meilleurs contenus.</h1><p>Vos shorts prêts à publier et leur calendrier éditorial, au même endroit.</p></div>
-      <div class="calendar-summary"><div><strong id="shortCount">0</strong><span>shorts prêts</span></div><div><strong id="scheduledCount">0</strong><span>planifiés</span></div><div><strong id="publishedCount">0</strong><span>publications préparées</span></div></div>
+      <div><p class="eyebrow">NEPTUNE CONTENT</p><h1>Mes meilleurs contenus.</h1><p>Planifiez, réutilisez et renouvelez vos contenus courts sans mélanger vos différents passages.</p></div>
+      <div class="intro-tools">
+        <div class="view-switch" role="tablist" aria-label="Changer de vue">
+          <button class="active" type="button" role="tab" aria-selected="true" data-view="calendar">Calendrier de contenu</button>
+          <button type="button" role="tab" aria-selected="false" data-view="library">Bibliothèque des shorts</button>
+        </div>
+        <div class="calendar-summary"><div><strong id="shortCount">0</strong><span>shorts</span></div><div><strong id="scheduledCount">0</strong><span>programmations</span></div><div><strong id="publishedCount">0</strong><span>préparées</span></div></div>
+      </div>
     </section>
 
-    <section class="shorts-section" aria-labelledby="shortsTitle">
-      <header class="section-heading"><div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="shortsTitle">Mes contenus courts</h2></div><p>Sélectionnez un short pour modifier son texte, sa date ou ses canaux.</p></header>
-      <div id="shortRail" class="short-rail" aria-live="polite"></div>
+    <section class="reuse-guide" aria-label="Règle de réutilisation">
+      <div><strong>Un bon short ne sert pas qu’une fois.</strong><span>Vous pouvez le reprogrammer avec un nouvel angle, un nouveau titre et une nouvelle description.</span></div>
+      <div class="reuse-rules"><span><b>30 jours minimum</b> entre deux utilisations</span><span><b>Dès 3 utilisations</b> surveillez la fatigue</span><span><b>À 5 utilisations</b> une nouvelle émission est recommandée</span></div>
     </section>
 
-    <section class="calendar-section" aria-labelledby="calendarTitle">
-      <header class="section-heading calendar-toolbar">
-        <div><p class="eyebrow">PLANNING</p><h2 id="calendarTitle">Calendrier éditorial</h2><p>Les prochains imports occupent automatiquement les créneaux libres.</p></div>
-        <div class="month-controls"><button id="previousMonth" type="button" aria-label="Mois précédent">←</button><strong id="monthLabel"></strong><button id="nextMonth" type="button" aria-label="Mois suivant">→</button></div>
-      </header>
-      <div id="calendarGrid" class="content-calendar" aria-live="polite"></div>
+    <section id="calendarView" class="view-panel active" role="tabpanel">
+      <section class="calendar-section" aria-labelledby="calendarTitle">
+        <header class="section-heading calendar-toolbar">
+          <div><p class="eyebrow">PLANNING</p><h2 id="calendarTitle">Calendrier éditorial</h2><p>Cliquez sur une publication pour modifier son texte, sa date ou ses canaux.</p></div>
+          <div class="month-controls"><button id="previousMonth" type="button" aria-label="Mois précédent">←</button><strong id="monthLabel"></strong><button id="nextMonth" type="button" aria-label="Mois suivant">→</button></div>
+        </header>
+        <div id="calendarGrid" class="content-calendar" aria-live="polite"></div>
+      </section>
+      <button id="openLibraryDrawer" class="drawer-trigger" type="button" aria-controls="libraryDrawer" aria-expanded="false"><span>☰</span> Contenus courts</button>
+    </section>
+
+    <section id="libraryView" class="view-panel" role="tabpanel" hidden>
+      <section class="shorts-section" aria-labelledby="shortsTitle">
+        <header class="section-heading"><div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="shortsTitle">Mes shorts par passage</h2><p>Chaque box correspond à une émission. Reprogrammez un short sans perdre son origine.</p></div></header>
+        <div id="projectLibrary" class="project-library" aria-live="polite"></div>
+      </section>
     </section>
   </main>
 
+  <div id="libraryBackdrop" class="library-backdrop" hidden></div>
+  <aside id="libraryDrawer" class="library-drawer" hidden aria-modal="true" role="dialog" aria-labelledby="drawerTitle">
+    <header class="drawer-head"><div><p class="eyebrow">CONTENUS COURTS</p><h2 id="drawerTitle">Choisir un passage</h2><p>Ouvrez un short ou programmez une nouvelle utilisation.</p></div><button id="closeLibraryDrawer" type="button" aria-label="Fermer">×</button></header>
+    <div id="drawerProjects" class="drawer-projects"></div>
+  </aside>
+
   <div id="editorBackdrop" class="editor-backdrop" hidden></div>
   <aside id="editor" class="editor" hidden aria-modal="true" role="dialog" aria-labelledby="editorTitle">
-    <header class="editor-head"><div><p class="eyebrow">SHORT SÉLECTIONNÉ</p><h2 id="editorTitle">Préparer la publication</h2></div><button id="closeEditor" type="button" aria-label="Fermer">×</button></header>
+    <header class="editor-head"><div><p class="eyebrow">PUBLICATION SÉLECTIONNÉE</p><h2 id="editorTitle">Préparer la publication</h2></div><button id="closeEditor" type="button" aria-label="Fermer">×</button></header>
     <div id="editorBody" class="editor-body"></div>
   </aside>
 
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/calendrier/calendar.js?v=1"></script>
+  <script type="module" src="/espace-client/calendrier/calendar.js?v=3"></script>
 </body>
 </html>
