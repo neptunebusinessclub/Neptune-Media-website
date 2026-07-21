@@ -44,11 +44,7 @@ export async function clientContentCalendar(store, body) {
     client: { id: client.id, fullName: client.fullName, company: client.company },
     items: rows,
     publications,
-    platformModes: {
-      youtube: 'express',
-      tiktok: 'express',
-      instagram: 'express',
-    },
+    platformModes: { youtube: 'express', tiktok: 'express', instagram: 'express' },
   });
 }
 
@@ -123,7 +119,7 @@ export async function adminContentContext(store, body) {
   const fileId = sanitizeText(body.payload?.fileId || body.fileId, 100);
   const item = store.sql.exec(
     `SELECT f.id AS fileId,f.name,f.file_type AS fileType,f.order_id AS orderId,
-            o.title AS orderTitle,o.format,c.full_name AS clientName,c.company,
+            o.client_id AS clientId,o.title AS orderTitle,o.format,c.full_name AS clientName,c.company,
             s.id AS scheduleId,s.publish_at AS publishAt
      FROM portal_files f JOIN portal_orders o ON o.id=f.order_id JOIN portal_clients c ON c.id=o.client_id
      LEFT JOIN portal_content_schedule s ON s.file_id=f.id WHERE f.id=? LIMIT 1`,
@@ -138,7 +134,8 @@ export async function adminContentSave(store, body) {
   const payload = body.payload && typeof body.payload === 'object' ? body.payload : {};
   const fileId = sanitizeText(payload.fileId, 100);
   const item = store.sql.exec(
-    `SELECT f.id,f.order_id AS orderId,s.id AS scheduleId FROM portal_files f
+    `SELECT f.id,f.order_id AS orderId,o.client_id AS clientId,s.id AS scheduleId,s.publish_at AS publishAt
+     FROM portal_files f JOIN portal_orders o ON o.id=f.order_id
      LEFT JOIN portal_content_schedule s ON s.file_id=f.id WHERE f.id=? LIMIT 1`,
     fileId,
   ).toArray()[0];
@@ -161,14 +158,43 @@ export async function adminContentSave(store, body) {
     fileId, item.orderId, title, description, JSON.stringify(hashtags), JSON.stringify(trendSources), trendSummary,
     aiModel, generationStatus, now, now,
   );
+  let publishAt = item.publishAt;
   if (item.scheduleId) {
+    publishAt = nextEmptySlot(store, item.clientId, item.scheduleId, item.publishAt);
     store.sql.exec(
-      `UPDATE portal_content_schedule SET caption=?,network=?,updated_at=? WHERE id=?`,
-      buildCaption(title, description, hashtags), 'youtube,tiktok,instagram', now, item.scheduleId,
+      `UPDATE portal_content_schedule SET publish_at=?,caption=?,network=?,updated_at=? WHERE id=?`,
+      publishAt, buildCaption(title, description, hashtags), 'youtube,tiktok,instagram', now, item.scheduleId,
     );
   }
-  store.audit(actor.actor.id, 'portal_content_ai_save', 'portal_file', fileId, { generationStatus, trendSources });
-  return json({ ok: true, fileId, scheduleId: item.scheduleId, title, description, hashtags, trendSources, trendSummary });
+  store.audit(actor.actor.id, 'portal_content_ai_save', 'portal_file', fileId, { generationStatus, trendSources, publishAt });
+  return json({ ok: true, fileId, scheduleId: item.scheduleId, publishAt, title, description, hashtags, trendSources, trendSummary });
+}
+
+function nextEmptySlot(store, clientId, currentScheduleId, suggestedAt) {
+  const occupied = new Set(store.sql.exec(
+    `SELECT s.publish_at AS publishAt FROM portal_content_schedule s
+     JOIN portal_orders o ON o.id=s.order_id WHERE o.client_id=? AND s.id<>?`,
+    clientId, currentScheduleId,
+  ).toArray().map((row) => dayKey(row.publishAt)).filter(Boolean));
+  const start = new Date(suggestedAt || Date.now() + 86_400_000);
+  const tomorrow = new Date(Date.now() + 86_400_000);
+  if (Number.isNaN(start.getTime()) || start < tomorrow) start.setTime(tomorrow.getTime());
+  start.setUTCHours(17, 30, 0, 0);
+  const preferredDays = new Set([1, 3, 5]);
+  for (let pass = 0; pass < 2; pass += 1) {
+    for (let offset = 0; offset < 90; offset += 1) {
+      const candidate = new Date(start.getTime() + offset * 86_400_000);
+      if (candidate.getUTCDay() === 0) continue;
+      if (pass === 0 && !preferredDays.has(candidate.getUTCDay())) continue;
+      if (!occupied.has(dayKey(candidate))) return candidate.toISOString();
+    }
+  }
+  return start.toISOString();
+}
+
+function dayKey(value) {
+  const date = new Date(value || '');
+  return Number.isNaN(date.getTime()) ? '' : date.toISOString().slice(0, 10);
 }
 
 function normalizeNetworks(value) {
