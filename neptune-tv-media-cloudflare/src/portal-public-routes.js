@@ -37,6 +37,19 @@ export async function handlePortalPublicRoute(request, env, studio) {
   }
 
   if (url.pathname === '/api/client/session' && request.method === 'GET') return callStore(studio, '/portal/session', { token: clientToken(request) });
+  if (url.pathname === '/api/client/content-calendar' && request.method === 'GET') return callStore(studio, '/portal/content-calendar', { token: clientToken(request) });
+
+  if (url.pathname === '/api/client/content-calendar/update' && request.method === 'POST') {
+    if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
+    const payload = await request.json().catch(() => ({}));
+    return callStore(studio, '/portal/content-update', { token: clientToken(request), payload });
+  }
+
+  if (url.pathname === '/api/client/content-calendar/publish' && request.method === 'POST') {
+    if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
+    const payload = await request.json().catch(() => ({}));
+    return callStore(studio, '/portal/content-publish-log', { token: clientToken(request), payload });
+  }
 
   if (url.pathname === '/api/client/logout' && request.method === 'POST') {
     if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
