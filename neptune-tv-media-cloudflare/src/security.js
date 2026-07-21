@@ -126,7 +126,7 @@ export function securityHeaders(headers = {}) {
       "connect-src 'self'",
       "font-src 'self' data:",
       "object-src 'none'",
-      "frame-src 'none'",
+      "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self' https://media.neptunebusiness.com",
