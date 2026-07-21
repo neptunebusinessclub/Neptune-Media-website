@@ -11,7 +11,7 @@
 
   appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
   appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
-  appendStylesheet('/styles/scroll-pipeline-v2.css?v=5', 'scrollPipelineCurve', 'v5', true);
+  appendStylesheet('/styles/scroll-pipeline-v2.css?v=6', 'scrollPipelineCurve', 'v6', true);
 
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
@@ -20,7 +20,7 @@
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v21';
     document.body.dataset.heroRefresh = 'v27';
-    document.body.dataset.scrollPipeline = 'curve-v1';
+    document.body.dataset.scrollPipeline = 'curve-v2';
 
     loadJourneyV19();
     loadScrollPipelineCurve();
@@ -64,9 +64,12 @@
   }
 
   function loadScrollPipelineCurve() {
+    if (document.documentElement.dataset.scrollPipelineV2Bound === '1') return;
+    const current = document.querySelector('script[src="/scroll-pipeline-v2.js?v=6"]');
+    if (current) return;
     document.querySelectorAll('script[data-scroll-pipeline-3d],script[data-scroll-pipeline-v2],script[data-scroll-pipeline-curve]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/scroll-pipeline-v2.js?v=5';
+    script.src = '/scroll-pipeline-v2.js?v=6';
     script.defer = true;
     script.setAttribute('data-scroll-pipeline-curve', '1');
     document.head.append(script);
@@ -179,4 +182,4 @@
   }
 })();
 
-// Production browser quality gate revision 25.
+// Production browser quality gate revision 26.
