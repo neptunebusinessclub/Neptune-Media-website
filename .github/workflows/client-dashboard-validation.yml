@@ -43,9 +43,13 @@ jobs:
           exit 1
 
       - name: Validate responsive dashboard
+        shell: bash
         env:
           DASHBOARD_BASE_URL: http://127.0.0.1:4173
-        run: node tests/client-dashboard-visual.mjs
+        run: |
+          mkdir -p test-results/client-dashboard
+          set -o pipefail
+          node tests/client-dashboard-visual.mjs 2>&1 | tee test-results/client-dashboard/run.log
 
       - name: Upload screenshots and report
         if: always()
