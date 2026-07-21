@@ -4,6 +4,7 @@ import {isSameOrigin,json,securityHeaders} from './security.js';
 import {handlePortalPublicRoute} from './portal-public-routes.js';
 import {handlePortalAdminRoute} from './portal-admin-routes.js';
 import {runPortalScheduled} from './portal-scheduled.js';
+import {fixLandingAssetOrder} from './landing-html-fix.js';
 export {StudioStore};
 const TRACKING_PATHS=new Set(['/api/track','/api/ad-track']);
 const MAX_TRACKING_BYTES=16*1024;
@@ -33,6 +34,9 @@ export default {
       const portal=await handlePortalPublicRoute(request,env,studio)||await handlePortalAdminRoute(request,env,studio);if(portal)return secure(portal);
       const multipart=await handleMultipartRoute(request,env);if(multipart)return secure(multipart);
       const response=await application.fetch(request,env,ctx);
+      if(request.method==='GET'&&['/','/index.html'].includes(url.pathname)&&(response.headers.get('Content-Type')||'').includes('text/html')){
+        return secure(await fixLandingAssetOrder(response));
+      }
       if(request.method==='GET'&&['/espace-client/','/espace-client/index.html'].includes(url.pathname)&&(response.headers.get('Content-Type')||'').includes('text/html')){
         return secure(await injectClientCalendarLink(response));
       }
