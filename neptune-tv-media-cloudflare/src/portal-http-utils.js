@@ -79,10 +79,28 @@ export function normalizeOrderPayload(raw = {}, env = {}) {
 }
 
 function referralCodeFrom(source, metadata, clientReference) {
-  const direct = source.referralCode || source.referral_code || source.ref || metadata.referralCode || metadata.referral_code || metadata.ref;
-  const raw = String(direct || clientReference || '').toUpperCase();
-  const match = raw.match(/(?:NEPTUNE[-_:]?REF[-_:]?)?([A-Z0-9]{6,18})/u);
-  return match ? match[1] : '';
+  const direct = String(
+    source.referralCode
+    || source.referral_code
+    || source.ref
+    || metadata.referralCode
+    || metadata.referral_code
+    || metadata.ref
+    || '',
+  ).toUpperCase();
+  const directCode = normalizeReferral(direct);
+  if (directCode) return directCode;
+  const composite = String(clientReference || '').toUpperCase();
+  const marker = composite.match(/NEPTUNE[-_:]?REF[-_:]?([A-Z0-9]{6,18})(?:$|[^A-Z0-9])/u);
+  return marker ? marker[1] : '';
+}
+
+function normalizeReferral(value) {
+  const clean = String(value || '')
+    .replace(/^NEPTUNE[-_:]?REF[-_:]?/u, '')
+    .replace(/[^A-Z0-9]/gu, '')
+    .slice(0, 18);
+  return clean.length >= 6 ? clean : '';
 }
 
 export function safeFilename(value) {
