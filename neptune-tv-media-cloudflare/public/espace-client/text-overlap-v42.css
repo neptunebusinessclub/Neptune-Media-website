@@ -62,22 +62,39 @@
   white-space: normal;
 }
 
-/* Access screen: give both title lines their own line box. */
+/* Access screen: each title line owns its line box. */
 .auth-copy h1 {
-  max-width: 760px !important;
+  max-width: 860px !important;
   margin: .58rem 0 1rem !important;
-  font-size: clamp(2.85rem, 4.85vw, 5.2rem) !important;
-  line-height: 1.04 !important;
-  letter-spacing: -.065em !important;
+  font-size: clamp(2.65rem, 4.35vw, 4.7rem) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.06em !important;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
 }
 
-.auth-copy h1 span {
+.auth-copy h1 .auth-title-main,
+.auth-copy h1 .auth-title-accent {
   display: block;
+  line-height: 1.06;
+}
+
+.auth-copy h1 .auth-title-main {
+  color: var(--ink);
+  background: none;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  white-space: nowrap;
+}
+
+.auth-copy h1 .auth-title-accent {
   margin-top: .08em;
-  line-height: 1.04;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
 }
 
 .auth-copy > p:last-of-type {
@@ -85,10 +102,77 @@
   line-height: 1.55 !important;
 }
 
+/* Animated Neptune contour: replaces the static top stripe. */
+.auth-shell .access-card {
+  isolation: isolate;
+  border-color: transparent !important;
+  box-shadow: 0 24px 60px rgba(8, 29, 78, .14), 0 0 0 1px rgba(255, 255, 255, .78) inset;
+}
+
+.auth-shell .access-card::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: -1;
+  inset: -2px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 2px;
+  border-radius: calc(var(--radius-lg) + 2px) !important;
+  background: conic-gradient(
+    from var(--neptune-border-angle, 0deg),
+    #42d8ff 0deg,
+    #3975ff 76deg,
+    #7658f5 154deg,
+    #c94fd0 236deg,
+    #ef4ba2 306deg,
+    #42d8ff 360deg
+  ) !important;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: neptune-border-orbit 6s linear infinite;
+}
+
+.auth-shell .access-card::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -8px;
+  border-radius: calc(var(--radius-lg) + 8px);
+  background: conic-gradient(
+    from var(--neptune-border-angle, 0deg),
+    rgba(66, 216, 255, .18),
+    rgba(57, 117, 255, .12),
+    rgba(118, 88, 245, .18),
+    rgba(239, 75, 162, .14),
+    rgba(66, 216, 255, .18)
+  );
+  filter: blur(14px);
+  opacity: .55;
+  pointer-events: none;
+  animation: neptune-border-orbit 6s linear infinite;
+}
+
+@property --neptune-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes neptune-border-orbit {
+  to { --neptune-border-angle: 360deg; }
+}
+
 @media (max-width: 1100px) and (min-width: 821px) {
   .auth-copy h1 {
-    font-size: clamp(2.55rem, 5.1vw, 4rem) !important;
-    line-height: 1.06 !important;
+    font-size: clamp(2.35rem, 4.55vw, 3.75rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .auth-copy h1 .auth-title-main,
+  .auth-copy h1 .auth-title-accent {
+    white-space: normal;
   }
 
   .dashboard-v37 .referral-challenge h2 {
@@ -98,9 +182,14 @@
 
 @media (max-width: 820px) {
   .auth-copy h1 {
-    font-size: clamp(2.45rem, 10.2vw, 4rem) !important;
-    line-height: 1.07 !important;
-    letter-spacing: -.055em !important;
+    font-size: clamp(2.3rem, 9.6vw, 3.8rem) !important;
+    line-height: 1.09 !important;
+    letter-spacing: -.05em !important;
+  }
+
+  .auth-copy h1 .auth-title-main,
+  .auth-copy h1 .auth-title-accent {
+    white-space: normal;
   }
 
   .dashboard-v37 .referral-challenge-head {
@@ -134,6 +223,13 @@
   }
 
   .auth-copy h1 {
-    font-size: clamp(2.2rem, 11.5vw, 3.25rem) !important;
+    font-size: clamp(2rem, 10.4vw, 3rem) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-shell .access-card::before,
+  .auth-shell .access-card::after {
+    animation: none;
   }
 }
