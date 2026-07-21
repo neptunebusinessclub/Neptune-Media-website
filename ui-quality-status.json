@@ -1,9 +1,9 @@
 {
   "status": "failed",
-  "source_sha": "d4cd29b1865af08dc683a50c947ab1d40654bd4c",
-  "source_workflow_id": "29851133914",
-  "ui_workflow_run_id": "29851180030",
-  "checked_at": "2026-07-21T17:02:44.542142+00:00",
+  "source_sha": "fc4db6f4ecf968a473094f6a467cda3a13ca4e33",
+  "source_workflow_id": "29868555906",
+  "ui_workflow_run_id": "29868616970",
+  "checked_at": "2026-07-21T21:07:11.946692+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -17,59 +17,6 @@
     "/emissions/",
     "/direct/"
   ],
-  "issues": [
-    "home-desktop: navigation de progression absente"
-  ],
-  "pages": [
-    {
-      "name": "home-desktop",
-      "route": "/",
-      "issues": [
-        "navigation de progression absente"
-      ],
-      "width": 1440,
-      "height": 1100,
-      "scrollHeight": 10154
-    },
-    {
-      "name": "home-tablet",
-      "route": "/",
-      "issues": [],
-      "width": 834,
-      "height": 1112,
-      "scrollHeight": 10387
-    },
-    {
-      "name": "home-mobile",
-      "route": "/",
-      "issues": [],
-      "width": 390,
-      "height": 844,
-      "scrollHeight": 12017
-    },
-    {
-      "name": "emissions-desktop",
-      "route": "/emissions/",
-      "issues": [],
-      "width": 1440,
-      "height": 1000,
-      "scrollHeight": 2036
-    },
-    {
-      "name": "emissions-mobile",
-      "route": "/emissions/",
-      "issues": [],
-      "width": 390,
-      "height": 844,
-      "scrollHeight": 2788
-    },
-    {
-      "name": "direct-desktop",
-      "route": "/direct/",
-      "issues": [],
-      "width": 1440,
-      "height": 1000,
-      "scrollHeight": 2062
-    }
-  ]
+  "issues": [],
+  "pages": []
 }
