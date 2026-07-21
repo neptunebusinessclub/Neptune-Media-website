@@ -32,6 +32,7 @@ export function unwrapWebhookPayload(raw = {}) {
 export function normalizeOrderPayload(raw = {}, env = {}) {
   const source = unwrapWebhookPayload(raw);
   const metadata = source.metadata && typeof source.metadata === 'object' ? source.metadata : {};
+  const clientReference = String(source.client_reference_id || source.clientReferenceId || metadata.client_reference_id || '').trim();
   return {
     email: String(
       source.email
@@ -60,7 +61,7 @@ export function normalizeOrderPayload(raw = {}, env = {}) {
       || source.id
       || '',
     ).trim(),
-    orderReference: String(source.orderReference || source.reference || source.client_reference_id || metadata.orderReference || '').trim(),
+    orderReference: String(source.orderReference || source.reference || clientReference || metadata.orderReference || '').trim(),
     productCode: String(source.productCode || source.offer || metadata.productCode || metadata.offer || '').trim(),
     title: String(source.title || source.productName || metadata.title || metadata.productName || '').trim(),
     format: String(source.format || metadata.format || metadata.concept || '').trim(),
@@ -73,7 +74,15 @@ export function normalizeOrderPayload(raw = {}, env = {}) {
     nextAction: String(source.nextAction || metadata.nextAction || '').trim(),
     preparationUrl: String(source.preparationUrl || source.preparation_url || metadata.preparationUrl || '').trim(),
     bookingUrl: String(source.bookingUrl || source.booking_url || metadata.bookingUrl || env.BOOKING_URL || '').trim(),
+    referralCode: referralCodeFrom(source, metadata, clientReference),
   };
+}
+
+function referralCodeFrom(source, metadata, clientReference) {
+  const direct = source.referralCode || source.referral_code || source.ref || metadata.referralCode || metadata.referral_code || metadata.ref;
+  const raw = String(direct || clientReference || '').toUpperCase();
+  const match = raw.match(/(?:NEPTUNE[-_:]?REF[-_:]?)?([A-Z0-9]{6,18})/u);
+  return match ? match[1] : '';
 }
 
 export function safeFilename(value) {
