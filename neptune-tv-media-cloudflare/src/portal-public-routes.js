@@ -1,6 +1,6 @@
 import { isSameOrigin, json, timingSafeEqual } from './security.js';
 import { clientToken, clientCookie, normalizeOrderPayload, unwrapWebhookPayload, safeFilename } from './portal-http-utils.js';
-import { sendCode, sendOrderConfirmation, sendAppointmentConfirmation, sendDeletionRequest } from './portal-email.js';
+import { sendCode, sendOrderConfirmation, sendAppointmentConfirmation, sendDeletionRequest, sendReferralConfirmed } from './portal-email.js';
 
 export async function handlePortalPublicRoute(request, env, studio) {
   const url = new URL(request.url);
@@ -98,8 +98,25 @@ export async function handlePortalPublicRoute(request, env, studio) {
     const response = await callStore(studio, '/portal/order-upsert', normalized);
     const result = await response.json().catch(() => ({}));
     if (!response.ok) return json(result, response.status);
-    if (result.created && result.email) { const sent = await sendOrderConfirmation(env, request.url, result.email, source);if (!sent.ok) console.error('client_order_confirmation_failed', sent.error); }
-    return json({ ...result, conversionRecorded: url.pathname === '/api/webhooks/conversion' });
+    if (result.created && result.email) {
+      const sent = await sendOrderConfirmation(env, request.url, result.email, source);
+      if (!sent.ok) console.error('client_order_confirmation_failed', sent.error);
+    }
+    let referral = null;
+    if (normalized.referralCode && result.orderId && result.clientId) {
+      const referralResponse = await callStore(studio, '/portal/referral-register', {
+        orderId: result.orderId,
+        referredClientId: result.clientId,
+        referralCode: normalized.referralCode,
+        paymentStatus: normalized.paymentStatus,
+      });
+      referral = await referralResponse.json().catch(() => null);
+      if (referralResponse.ok && referral?.created && referral.referrerEmail) {
+        const sent = await sendReferralConfirmed(env, request.url, referral.referrerEmail, referral);
+        if (!sent.ok) console.error('referral_confirmation_failed', sent.error);
+      }
+    }
+    return json({ ...result, referral: referral ? { effective: Boolean(referral.effective), created: Boolean(referral.created) } : null, conversionRecorded: url.pathname === '/api/webhooks/conversion' });
   }
 
   if (url.pathname === '/api/webhooks/client-appointment' && request.method === 'POST') {
