@@ -30,7 +30,8 @@ function render(panel, referral) {
   const code = normalizeCode(referral.code);
   const shareUrl = new URL(REFERRAL_BOOKING_URL);
   shareUrl.searchParams.set('ref', code);
-  const encodedMessage = encodeURIComponent(shareMessage(shareUrl.toString()));
+  const message = shareMessage(shareUrl.toString());
+  const encodedMessage = encodeURIComponent(message);
   const progress = Array.from({ length: goal }, (_, index) => {
     const step = index + 1;
     const state = step <= visibleCount ? 'done' : step === visibleCount + 1 ? 'next' : 'waiting';
@@ -69,34 +70,63 @@ function render(panel, referral) {
     ${unlocked ? '<a class="referral-claim" href="mailto:contact@neptunebusiness.com?subject=Je souhaite utiliser mon émission au prix coûtant">Choisir mon émission avec Neptune →</a>' : ''}
   `;
 
-  panel.querySelector('#shareReferralNative')?.addEventListener('click', () => shareReferral(shareUrl.toString()));
+  panel.querySelector('#shareReferralNative')?.addEventListener('click', () => shareReferral(shareUrl.toString(), message));
   panel.querySelector('#copyReferralLink')?.addEventListener('click', () => copyReferral(shareUrl.toString(), panel));
 }
 
-async function shareReferral(url) {
+async function shareReferral(url, message) {
   const data = {
     title: 'Neptune Media',
     text: 'Je pense que ce format peut vraiment vous aider à gagner en visibilité sans passer vos journées à créer du contenu.',
     url,
   };
-  if (navigator.share) {
-    try { await navigator.share(data); return; } catch (error) { if (error?.name === 'AbortError') return; }
+  if (typeof navigator.share === 'function') {
+    try {
+      await navigator.share(data);
+      return;
+    } catch (error) {
+      if (error?.name === 'AbortError') return;
+    }
   }
-  await navigator.clipboard.writeText(`${data.text} ${url}`).catch(() => {});
-  announce('Lien copié. Vous pouvez maintenant le partager à vos contacts.');
+  const copied = await copyText(message);
+  announce(copied
+    ? 'Message et lien copiés. Vous pouvez maintenant les envoyer à vos contacts.'
+    : 'Le partage direct n’est pas disponible. Utilisez WhatsApp ou l’e-mail.');
 }
 
 async function copyReferral(url, panel) {
-  try {
-    await navigator.clipboard.writeText(url);
-    panel.querySelector('#copyReferralLink').textContent = '✓';
-    announce('Lien de recommandation copié.');
-    window.setTimeout(() => {
-      const button = panel.querySelector('#copyReferralLink');
-      if (button) button.textContent = '⧉';
-    }, 1800);
-  } catch {
+  const copied = await copyText(url);
+  if (!copied) {
     announce('Copie impossible sur cet appareil. Utilisez le bouton de partage.');
+    return;
+  }
+  const button = panel.querySelector('#copyReferralLink');
+  if (button) button.textContent = '✓';
+  announce('Lien de recommandation copié.');
+  window.setTimeout(() => {
+    const current = panel.querySelector('#copyReferralLink');
+    if (current) current.textContent = '⧉';
+  }, 1800);
+}
+
+async function copyText(value) {
+  try {
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+    const area = document.createElement('textarea');
+    area.value = value;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.append(area);
+    area.select();
+    const copied = document.execCommand('copy');
+    area.remove();
+    return copied;
+  } catch {
+    return false;
   }
 }
 
