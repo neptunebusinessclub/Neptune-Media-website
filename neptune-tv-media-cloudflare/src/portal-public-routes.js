@@ -1,6 +1,7 @@
 import { isSameOrigin, json, timingSafeEqual } from './security.js';
 import { clientToken, clientCookie, normalizeOrderPayload, unwrapWebhookPayload, safeFilename } from './portal-http-utils.js';
-import { sendCode, sendOrderConfirmation, sendAppointmentConfirmation, sendDeletionRequest, sendReferralConfirmed } from './portal-email.js';
+import { sendCode, sendOrderConfirmation, sendAppointmentConfirmation, sendDeletionRequest } from './portal-email.js';
+import { sendReferralConfirmed } from './portal-referral-email.js';
 
 export async function handlePortalPublicRoute(request, env, studio) {
   const url = new URL(request.url);
