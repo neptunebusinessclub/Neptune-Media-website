@@ -3,7 +3,7 @@
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at calc(12% + (var(--pipeline-progress) * 70%)) 20%, rgba(88, 75, 255, .16), transparent 26%),
+    radial-gradient(circle at calc(12% + var(--pipeline-shift, 0%)) 20%, rgba(88, 75, 255, .16), transparent 26%),
     radial-gradient(circle at 82% 72%, rgba(238, 76, 206, .1), transparent 28%),
     #020713;
   color: #f7f8ff;
@@ -75,16 +75,16 @@
   translate: -50% -50%;
   border: 1px solid rgba(117, 158, 255, .11);
   border-radius: 50%;
-  transform: rotateX(70deg) rotateZ(calc(var(--pipeline-progress) * 95deg));
+  transform: rotateX(70deg) rotateZ(var(--pipeline-rotate-one, 0deg));
 }
 
 .np-orbit--one { width: 56vw; height: 56vw; min-width: 620px; min-height: 620px; }
-.np-orbit--two { width: 76vw; height: 76vw; min-width: 850px; min-height: 850px; transform: rotateX(74deg) rotateZ(calc(-20deg + (var(--pipeline-progress) * -78deg))); }
-.np-orbit--three { width: 96vw; height: 96vw; min-width: 1080px; min-height: 1080px; opacity: .58; transform: rotateX(77deg) rotateZ(calc(31deg + (var(--pipeline-progress) * 52deg))); }
+.np-orbit--two { width: 76vw; height: 76vw; min-width: 850px; min-height: 850px; transform: rotateX(74deg) rotateZ(var(--pipeline-rotate-two, -20deg)); }
+.np-orbit--three { width: 96vw; height: 96vw; min-width: 1080px; min-height: 1080px; opacity: .58; transform: rotateX(77deg) rotateZ(var(--pipeline-rotate-three, 31deg)); }
 
 .np-light-beam {
   position: absolute;
-  left: calc(18% + (var(--pipeline-progress) * 62%));
+  left: calc(18% + var(--pipeline-light-shift, 0%));
   top: -22%;
   width: 24vw;
   height: 120%;
@@ -207,7 +207,7 @@
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(116deg, transparent 15%, rgba(255, 255, 255, .035) 38%, transparent 59%);
-  transform: translateX(calc(-68% + (var(--pipeline-progress) * 120%)));
+  transform: translateX(var(--pipeline-sheen, -68%));
   pointer-events: none;
 }
 
