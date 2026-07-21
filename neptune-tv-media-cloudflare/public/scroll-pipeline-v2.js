@@ -64,7 +64,7 @@
       section.className = 'section journey-curve-section';
       section.id = 'experience';
       section.dataset.aidaStage = 'desire';
-      section.dataset.journeyCurve = 'v3';
+      section.dataset.journeyCurve = 'v4';
       section.setAttribute('aria-labelledby', 'journey-curve-title');
       section.innerHTML = journeyMarkup();
       anchor.before(section);
@@ -186,7 +186,8 @@
     const map = section.querySelector('[data-journey-map]');
     const paths = [...section.querySelectorAll('[data-journey-progress]')];
     const steps = [...section.querySelectorAll('[data-journey-step]')];
-    if (!map || !paths.length || !steps.length) return;
+    const nodes = steps.map((step) => step.querySelector('.journey-curve-node'));
+    if (!map || !paths.length || !steps.length || nodes.some((node) => !node)) return;
 
     let frame = 0;
     let lastIndex = -1;
@@ -225,11 +226,8 @@
         });
       }
 
-      const measured = steps.map((step, index) => {
-        const node = step.querySelector('.journey-curve-node');
-        const rect = node?.getBoundingClientRect();
-        if (!rect) return Number(step.dataset.stepProgress || 0);
-
+      const measured = nodes.map((node, index) => {
+        const rect = node.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         let closest = points[0];
@@ -246,7 +244,7 @@
         });
 
         if (index === 0) return 0;
-        if (index === steps.length - 1) return 1;
+        if (index === nodes.length - 1) return 1;
         return closest.progress;
       });
 
@@ -257,15 +255,26 @@
       });
     }
 
+    function scrollProgress() {
+      const mapRect = map.getBoundingClientRect();
+      const firstRect = nodes[0].getBoundingClientRect();
+      const lastRect = nodes[nodes.length - 1].getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+
+      const firstOffset = firstRect.top - mapRect.top + firstRect.height / 2;
+      const lastOffset = lastRect.top - mapRect.top + lastRect.height / 2;
+      const firstCenter = mapRect.top + firstOffset;
+
+      const startLine = viewport * 0.76;
+      const completionLine = viewport * (window.innerWidth <= 820 ? 0.7 : 0.64);
+      const travel = Math.max(1, (lastOffset - firstOffset) + startLine - completionLine);
+
+      return clamp((startLine - firstCenter) / travel, 0, 1);
+    }
+
     function update() {
       frame = 0;
-      const rect = map.getBoundingClientRect();
-      const viewport = window.innerHeight || document.documentElement.clientHeight;
-      const startLine = viewport * 0.72;
-      const endLine = viewport * 0.34;
-      const travel = Math.max(1, rect.height + startLine - endLine);
-      const progress = clamp((startLine - rect.top) / travel, 0, 1);
-      const visualProgress = Number(progress.toFixed(4));
+      const visualProgress = Number(scrollProgress().toFixed(4));
 
       paths.forEach((path) => {
         path.style.strokeDashoffset = String(1 - visualProgress);
