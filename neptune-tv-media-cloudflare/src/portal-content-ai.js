@@ -12,6 +12,7 @@ Tu produis un titre très accrocheur mais honnête, jamais mensonger ni trompeur
 La description doit provoquer une discussion naturelle avec une à trois questions directement liées au titre.
 Le ton est oral, clair et humain. Maximum un emoji. Aucun jargon marketing creux.
 Tu peux utiliser des principes éditoriaux généraux observés dans les grandes interviews et le divertissement français : accroche immédiate, tension claire, contexte bref, curiosité, rythme et question ouverte. Tu ne dois pas imiter la voix, les formulations ou la personnalité d'un créateur identifiable.
+Quand le contexte indique qu'une vidéo est réutilisée, tu dois changer nettement l'angle, la promesse, le titre, les questions et l'ordre des idées. Tu ne répètes jamais un titre déjà utilisé et tu ne prétends jamais que la vidéo est nouvelle.
 Les hashtags doivent être réellement pertinents pour le sujet. Priorise les signaux des sept derniers jours fournis. N'invente jamais un signal tendance absent des données.
 Réponds uniquement en JSON strict :
 {"title":"...","description":"...","hashtags":["..."],"trendSummary":"..."}`;
@@ -23,6 +24,8 @@ Réponds uniquement en JSON strict :
     clientName: input.clientName || '',
     company: input.company || '',
     editorialContext: input.editorialContext || '',
+    reuseIndex: Number(input.reuseIndex || 1),
+    previousTitles: Array.isArray(input.previousTitles) ? input.previousTitles.slice(-5) : [],
     topic,
     sevenDaySignals: trend,
   };
@@ -33,7 +36,7 @@ Réponds uniquement en JSON strict :
         { role: 'system', content: system },
         { role: 'user', content: JSON.stringify(prompt) },
       ],
-      temperature: 0.35,
+      temperature: 0.45,
       max_tokens: 900,
       response_format: { type: 'json_object' },
     });
@@ -147,9 +150,19 @@ async function youtubeSignals(apiKey, topic) {
 }
 
 function fallbackMetadata(input, trend) {
-  const base = clean(stripExtension(input.filename || input.orderTitle || 'Le conseil que personne ne vous donne'), 110);
-  const title = base && base.length > 12 ? base : 'Ce conseil peut vous faire gagner des mois';
-  const description = `Vous êtes d’accord avec cette idée ? Qu’est-ce qui vous a le plus surpris dans cet extrait ? Dites-nous comment vous le vivez dans votre activité.`;
+  const base = clean(stripExtension(input.filename || input.orderTitle || 'Le conseil que personne ne vous donne'), 82);
+  const reuseIndex = Math.max(1, Number(input.reuseIndex || 1));
+  const angles = [
+    { prefix: '', question: 'Vous êtes d’accord avec cette idée ? Qu’est-ce qui vous a le plus surpris dans cet extrait ?' },
+    { prefix: 'Le détail que vous risquez de rater : ', question: 'Aviez-vous déjà regardé le sujet sous cet angle ? Qu’est-ce que cela change pour vous ?' },
+    { prefix: 'La question que personne ne pose sur ', question: 'Quelle réponse donneriez-vous à cette question ? Votre expérience confirme-t-elle cette idée ?' },
+    { prefix: 'Pourquoi cette idée divise sur ', question: 'Vous êtes plutôt d’accord ou pas du tout ? Quel argument manque encore au débat ?' },
+    { prefix: 'Ce que cette séquence révèle sur ', question: 'Quel enseignement gardez-vous de cette séquence ? Que conseilleriez-vous à quelqu’un qui débute ?' },
+  ];
+  const angle = angles[(reuseIndex - 1) % angles.length];
+  const fallbackBase = base && base.length > 12 ? base : 'ce conseil qui peut vous faire gagner des mois';
+  const title = clean(`${angle.prefix}${fallbackBase}`, 140);
+  const description = `${angle.question} Dites-nous comment vous le vivez dans votre activité.`;
   return {
     title,
     description,
