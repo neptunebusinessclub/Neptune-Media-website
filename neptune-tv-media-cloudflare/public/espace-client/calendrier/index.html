@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#081d4e">
+  <title>Calendrier de contenu · Neptune Media</title>
+  <link rel="icon" href="/assets/logo-neptune.svg">
+  <link rel="stylesheet" href="/espace-client/calendrier/calendar.css?v=1">
+</head>
+<body>
+  <header class="calendar-header">
+    <a class="brand" href="/espace-client/"><img src="/assets/logo-neptune.svg" alt=""><span><b>Neptune</b><small>Media</small></span></a>
+    <div class="header-actions"><span class="workspace">Calendrier de contenu</span><a class="back-link" href="/espace-client/">← Tableau de bord</a></div>
+  </header>
+
+  <main class="calendar-shell">
+    <section class="calendar-intro">
+      <div><p class="eyebrow">NEPTUNE CONTENT</p><h1>Vos shorts. Leur meilleur moment.</h1><p>Chaque short importé par Neptune est préparé, placé automatiquement dans un créneau libre et prêt à être publié.</p></div>
+      <div class="calendar-summary"><div><strong id="shortCount">0</strong><span>shorts prêts</span></div><div><strong id="scheduledCount">0</strong><span>planifiés</span></div><div><strong id="publishedCount">0</strong><span>publications préparées</span></div></div>
+    </section>
+
+    <section class="shorts-section" aria-labelledby="shortsTitle">
+      <header class="section-heading"><div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="shortsTitle">Vos shorts</h2></div><p>Faites défiler horizontalement, puis sélectionnez un short pour modifier son texte ou sa date.</p></header>
+      <div id="shortRail" class="short-rail" aria-live="polite"></div>
+    </section>
+
+    <section class="calendar-section" aria-labelledby="calendarTitle">
+      <header class="section-heading calendar-toolbar">
+        <div><p class="eyebrow">PLANNING</p><h2 id="calendarTitle">Calendrier éditorial</h2><p>Les cases vides sont utilisées automatiquement lors du prochain import.</p></div>
+        <div class="month-controls"><button id="previousMonth" type="button" aria-label="Mois précédent">←</button><strong id="monthLabel"></strong><button id="nextMonth" type="button" aria-label="Mois suivant">→</button></div>
+      </header>
+      <div id="calendarGrid" class="content-calendar" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div id="editorBackdrop" class="editor-backdrop" hidden></div>
+  <aside id="editor" class="editor" hidden aria-modal="true" role="dialog" aria-labelledby="editorTitle">
+    <header class="editor-head"><div><p class="eyebrow">SHORT SÉLECTIONNÉ</p><h2 id="editorTitle">Préparer la publication</h2></div><button id="closeEditor" type="button" aria-label="Fermer">×</button></header>
+    <div id="editorBody" class="editor-body"></div>
+  </aside>
+
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/espace-client/calendrier/calendar.js?v=1"></script>
+</body>
+</html>
