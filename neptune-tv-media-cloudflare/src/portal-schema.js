@@ -17,6 +17,9 @@ export function ensurePortalSchema(store){
     CREATE TABLE IF NOT EXISTS portal_notifications(id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,notification_key TEXT NOT NULL,email_id TEXT NOT NULL DEFAULT '',sent_at TEXT NOT NULL,UNIQUE(order_id,notification_key));
     CREATE TABLE IF NOT EXISTS portal_feedback_requests(id TEXT PRIMARY KEY,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,token_hash TEXT NOT NULL UNIQUE,expires_at TEXT NOT NULL,created_at TEXT NOT NULL,submitted_at TEXT);
     CREATE TABLE IF NOT EXISTS portal_feedback(id TEXT PRIMARY KEY,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,satisfaction INTEGER NOT NULL,experience TEXT NOT NULL DEFAULT '',recommend_to TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS portal_referral_codes(client_id TEXT PRIMARY KEY REFERENCES portal_clients(id) ON DELETE CASCADE,code TEXT NOT NULL UNIQUE,created_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS portal_referrals(id TEXT PRIMARY KEY,referrer_client_id TEXT NOT NULL REFERENCES portal_clients(id) ON DELETE CASCADE,referred_client_id TEXT NOT NULL UNIQUE REFERENCES portal_clients(id) ON DELETE CASCADE,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,referral_code TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'effective',created_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS portal_referral_rewards(id TEXT PRIMARY KEY,client_id TEXT NOT NULL UNIQUE REFERENCES portal_clients(id) ON DELETE CASCADE,threshold INTEGER NOT NULL DEFAULT 3,status TEXT NOT NULL DEFAULT 'unlocked',unlocked_at TEXT NOT NULL,claimed_at TEXT);
     CREATE INDEX IF NOT EXISTS idx_portal_orders_client ON portal_orders(client_id,created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_steps_order ON portal_steps(order_id,display_order);
     CREATE INDEX IF NOT EXISTS idx_portal_files_order ON portal_files(order_id,created_at DESC);
@@ -28,6 +31,8 @@ export function ensurePortalSchema(store){
     CREATE INDEX IF NOT EXISTS idx_portal_sessions_token ON portal_sessions(token_hash);
     CREATE INDEX IF NOT EXISTS idx_portal_notifications_order ON portal_notifications(order_id,notification_key);
     CREATE INDEX IF NOT EXISTS idx_portal_feedback_request_token ON portal_feedback_requests(token_hash);
+    CREATE INDEX IF NOT EXISTS idx_portal_referrals_referrer ON portal_referrals(referrer_client_id,created_at DESC);
+    CREATE INDEX IF NOT EXISTS idx_portal_referrals_order ON portal_referrals(order_id);
   `);
   const now=new Date().toISOString();
   for(const order of store.sql.exec('SELECT id,status,updated_at AS updatedAt FROM portal_orders').toArray())syncSteps(store,order.id,order.status,order.updatedAt||now);
