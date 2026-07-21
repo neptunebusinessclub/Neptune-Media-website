@@ -1,0 +1,354 @@
+/* Neptune Media — continuité éditoriale et lecture progressive de la section « pensées » v1. */
+:root{
+  --voice-cyan:#46cfff;
+  --voice-violet:#7d67ff;
+  --voice-pink:#ef52bd;
+  --voice-orange:#ff8b54;
+  --voice-surface:rgba(7,16,34,.84);
+  --voice-line:rgba(151,199,232,.14);
+}
+
+body[data-final-ux="v12"] #probleme.inner-voice-section{
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  margin:0;
+  padding-block:clamp(104px,11vw,164px)!important;
+  background:
+    radial-gradient(circle at 86% 4%,rgba(139,72,255,.13),transparent 31rem),
+    radial-gradient(circle at 8% 55%,rgba(43,177,255,.075),transparent 34rem),
+    linear-gradient(180deg,#030817 0%,#050b18 42%,#020611 100%);
+}
+body[data-final-ux="v12"] #probleme.inner-voice-section::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0 0 auto;
+  height:clamp(120px,16vw,240px);
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 5%,rgba(63,195,255,.34) 28%,rgba(126,92,255,.42) 53%,rgba(235,76,187,.32) 75%,transparent 96%) top/100% 1px no-repeat,
+    radial-gradient(ellipse at 52% 0%,rgba(122,79,255,.16),transparent 63%);
+  opacity:.9;
+}
+body[data-final-ux="v12"] #probleme.inner-voice-section::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:50%;
+  bottom:-1px;
+  width:min(860px,72vw);
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(107,209,255,.22),rgba(151,104,255,.22),transparent);
+}
+
+body[data-final-ux="v12"] #probleme>.container{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);
+  gap:clamp(54px,8vw,112px);
+  align-items:start;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-intro{
+  position:sticky;
+  top:clamp(96px,11vh,132px);
+  align-self:start;
+  min-width:0;
+}
+body[data-final-ux="v12"] #probleme .voice-section-head{
+  display:block!important;
+  margin:0!important;
+}
+body[data-final-ux="v12"] #probleme .voice-section-head>div{max-width:100%}
+body[data-final-ux="v12"] #probleme .voice-section-head .eyebrow{
+  margin-bottom:18px!important;
+  color:#79d7ff!important;
+}
+body[data-final-ux="v12"] #probleme .voice-section-head h2{
+  max-width:10.5ch!important;
+  margin:0!important;
+  font-size:clamp(3rem,5.4vw,5.55rem)!important;
+  line-height:.94!important;
+  letter-spacing:-.062em!important;
+  color:#f7f9ff;
+}
+body[data-final-ux="v12"] #probleme .voice-section-head h2::after{
+  content:"";
+  display:block;
+  width:clamp(54px,7vw,86px);
+  height:3px;
+  margin-top:28px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--voice-cyan),var(--voice-violet),var(--voice-pink));
+  box-shadow:0 0 24px rgba(109,103,255,.28);
+}
+
+body[data-final-ux="v12"] #probleme .inner-voice-reading-progress{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  margin-top:30px;
+  color:#7f91aa;
+  font-size:.69rem;
+  font-weight:820;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-reading-progress>i{
+  position:relative;
+  display:block;
+  height:3px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+}
+body[data-final-ux="v12"] #probleme .inner-voice-reading-progress>i::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform:scaleX(var(--voice-progress,0));
+  transform-origin:left center;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--voice-cyan),var(--voice-violet),var(--voice-pink),var(--voice-orange));
+  transition:transform .5s cubic-bezier(.2,.75,.2,1);
+}
+body[data-final-ux="v12"] #probleme .inner-voice-reading-progress small{
+  min-width:3.6em;
+  color:#b8c6d8;
+  font:inherit;
+  text-align:right;
+}
+
+body[data-final-ux="v12"] #probleme .inner-voice-grid{
+  position:relative;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:clamp(28px,6vh,64px)!important;
+  margin:0!important;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-grid::before{
+  content:"";
+  position:absolute;
+  left:24px;
+  top:34px;
+  bottom:34px;
+  width:1px;
+  background:linear-gradient(180deg,rgba(70,207,255,.45),rgba(125,103,255,.28) 42%,rgba(239,82,189,.24) 72%,rgba(255,139,84,.3));
+  opacity:.55;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card{
+  --voice-card-accent:var(--voice-cyan);
+  position:relative;
+  min-height:clamp(230px,28vh,310px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  overflow:hidden;
+  margin:0 5% 0 0;
+  padding:clamp(30px,4vw,48px) clamp(30px,4.5vw,54px) clamp(30px,4vw,48px) clamp(58px,6vw,78px)!important;
+  border:1px solid var(--voice-line)!important;
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--voice-card-accent) 10%,transparent),transparent 44%),
+    linear-gradient(145deg,rgba(10,24,49,.92),rgba(5,13,29,.96))!important;
+  box-shadow:0 24px 68px rgba(0,0,0,.2)!important;
+  transform-origin:center;
+  will-change:transform,opacity,filter;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(even){
+  margin:0 0 0 5%;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(2){--voice-card-accent:var(--voice-violet)}
+body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(3){--voice-card-accent:var(--voice-pink)}
+body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(4){--voice-card-accent:var(--voice-orange)}
+body[data-final-ux="v12"] #probleme .inner-voice-card::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:3px;
+  background:linear-gradient(180deg,transparent,var(--voice-card-accent) 22%,var(--voice-card-accent) 78%,transparent);
+  opacity:.42;
+  transition:opacity .55s ease,box-shadow .55s ease;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card::after{
+  content:"“";
+  position:absolute;
+  right:clamp(22px,3vw,38px);
+  top:clamp(12px,2vw,24px);
+  color:color-mix(in srgb,var(--voice-card-accent) 15%,transparent);
+  font-family:Georgia,serif;
+  font-size:clamp(5.5rem,10vw,9rem);
+  line-height:1;
+  pointer-events:none;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card>span{
+  position:absolute;
+  left:19px;
+  top:50%;
+  z-index:2;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  margin:0!important;
+  transform:translateY(-50%);
+  border:1px solid color-mix(in srgb,var(--voice-card-accent) 55%,rgba(255,255,255,.12));
+  border-radius:50%;
+  background:#071022;
+  color:var(--voice-card-accent)!important;
+  box-shadow:0 0 0 7px #050b18,0 0 24px color-mix(in srgb,var(--voice-card-accent) 22%,transparent);
+  font-size:.68rem!important;
+  font-weight:950;
+  letter-spacing:.06em;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card blockquote{
+  position:relative;
+  z-index:1;
+  max-width:27ch;
+  margin:0!important;
+  color:#f7f9ff;
+  font-size:clamp(1.32rem,2.15vw,2rem)!important;
+  font-weight:850;
+  line-height:1.15!important;
+  letter-spacing:-.035em;
+}
+body[data-final-ux="v12"] #probleme .inner-voice-card p{
+  position:relative;
+  z-index:1;
+  max-width:54ch;
+  margin:18px 0 0!important;
+  color:#9eacc0!important;
+  font-size:clamp(.9rem,1.15vw,1rem);
+  line-height:1.62!important;
+}
+
+body[data-final-ux="v12"] #probleme .thought-bridge{
+  position:relative;
+  display:block!important;
+  margin:34px 0 0!important;
+  padding:24px 24px 24px 27px!important;
+  overflow:hidden;
+  border:1px solid rgba(112,202,255,.18)!important;
+  border-radius:20px!important;
+  background:linear-gradient(145deg,rgba(11,27,55,.92),rgba(7,16,34,.96))!important;
+  box-shadow:0 22px 58px rgba(0,0,0,.2)!important;
+}
+body[data-final-ux="v12"] #probleme .thought-bridge::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:3px;
+  background:linear-gradient(180deg,var(--voice-cyan),var(--voice-violet),var(--voice-pink));
+}
+body[data-final-ux="v12"] #probleme .thought-bridge strong{
+  display:block;
+  max-width:24ch;
+  color:#fff;
+  font-size:clamp(1.18rem,1.8vw,1.5rem)!important;
+  line-height:1.18;
+  letter-spacing:-.025em;
+}
+body[data-final-ux="v12"] #probleme .thought-bridge p{
+  margin:11px 0 0!important;
+  color:#9eacc0!important;
+  font-size:.88rem;
+  line-height:1.55;
+}
+
+/* Lecture progressive : aucune interception du scroll, seulement une hiérarchie visuelle. */
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .voice-section-head,
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-reading-progress,
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .thought-bridge{
+  opacity:0;
+  transform:translate3d(0,28px,0);
+  transition:opacity .8s cubic-bezier(.2,.75,.2,1),transform .8s cubic-bezier(.2,.75,.2,1);
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .voice-section-head.is-voice-revealed,
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-reading-progress.is-voice-revealed,
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .thought-bridge.is-voice-revealed{
+  opacity:1;
+  transform:none;
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-reading-progress{transition-delay:.12s}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-card{
+  opacity:.14!important;
+  filter:blur(6px) saturate(.7);
+  transform:translate3d(0,68px,0) scale(.975)!important;
+  transition:
+    opacity .78s cubic-bezier(.2,.75,.2,1),
+    filter .78s cubic-bezier(.2,.75,.2,1),
+    transform .78s cubic-bezier(.2,.75,.2,1),
+    border-color .55s ease,
+    box-shadow .55s ease!important;
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-card.is-voice-revealed{
+  opacity:.4!important;
+  filter:blur(0) saturate(.9);
+  transform:none!important;
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-card.is-voice-read{
+  opacity:.72!important;
+  filter:none;
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-card.is-voice-active{
+  opacity:1!important;
+  filter:none;
+  transform:translate3d(0,-4px,0) scale(1.006)!important;
+  border-color:color-mix(in srgb,var(--voice-card-accent) 48%,rgba(255,255,255,.14))!important;
+  box-shadow:0 34px 86px rgba(0,0,0,.34),0 0 0 1px color-mix(in srgb,var(--voice-card-accent) 12%,transparent)!important;
+}
+body[data-final-ux="v12"] #probleme.voice-continuity-ready .inner-voice-card.is-voice-active::before{
+  opacity:1;
+  box-shadow:0 0 28px color-mix(in srgb,var(--voice-card-accent) 48%,transparent);
+}
+
+/* La section suivante reprend doucement le fond, sans rupture visuelle. */
+body[data-final-ux="v12"] #probleme + .desire-section{
+  position:relative;
+  background:linear-gradient(180deg,#020611 0%,rgba(6,13,28,.76) 30%,#020611 100%);
+}
+body[data-final-ux="v12"] #probleme + .desire-section::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:180px;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(78,167,255,.065),transparent 64%);
+}
+
+@media(max-width:980px){
+  body[data-final-ux="v12"] #probleme>.container{grid-template-columns:minmax(245px,.72fr) minmax(0,1.28fr);gap:44px}
+  body[data-final-ux="v12"] #probleme .voice-section-head h2{font-size:clamp(2.7rem,6vw,4.5rem)!important}
+  body[data-final-ux="v12"] #probleme .inner-voice-card{margin-right:0;padding-left:64px!important}
+  body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(even){margin-left:0}
+}
+
+@media(max-width:760px){
+  body[data-final-ux="v12"] #probleme.inner-voice-section{padding-block:76px 88px!important}
+  body[data-final-ux="v12"] #probleme>.container{display:block}
+  body[data-final-ux="v12"] #probleme .inner-voice-intro{position:static}
+  body[data-final-ux="v12"] #probleme .voice-section-head h2{max-width:12ch!important;font-size:clamp(2.65rem,12vw,4rem)!important}
+  body[data-final-ux="v12"] #probleme .voice-section-head h2::after{margin-top:22px}
+  body[data-final-ux="v12"] #probleme .inner-voice-reading-progress{margin:24px 0 34px}
+  body[data-final-ux="v12"] #probleme .inner-voice-grid{gap:18px!important}
+  body[data-final-ux="v12"] #probleme .inner-voice-grid::before{left:18px;top:28px;bottom:28px}
+  body[data-final-ux="v12"] #probleme .inner-voice-card,
+  body[data-final-ux="v12"] #probleme .inner-voice-card:nth-child(even){min-height:auto;margin:0;padding:28px 24px 28px 54px!important;border-radius:20px!important}
+  body[data-final-ux="v12"] #probleme .inner-voice-card>span{left:5px;width:28px;height:28px;box-shadow:0 0 0 5px #050b18}
+  body[data-final-ux="v12"] #probleme .inner-voice-card blockquote{font-size:clamp(1.18rem,6vw,1.55rem)!important}
+  body[data-final-ux="v12"] #probleme .inner-voice-card p{font-size:.9rem}
+  body[data-final-ux="v12"] #probleme .inner-voice-card::after{font-size:5.5rem;right:14px;top:8px}
+  body[data-final-ux="v12"] #probleme .thought-bridge{margin-top:24px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  body[data-final-ux="v12"] #probleme.voice-continuity-ready :where(.voice-section-head,.inner-voice-reading-progress,.thought-bridge,.inner-voice-card){
+    opacity:1!important;
+    filter:none!important;
+    transform:none!important;
+    transition:none!important;
+  }
+  body[data-final-ux="v12"] #probleme .inner-voice-reading-progress>i::after{transition:none!important}
+}
