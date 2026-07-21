@@ -52,17 +52,23 @@
     : callback();
 
   ready(() => {
-    const target = document.querySelector('#experience');
-    if (!target) return;
+    let section = document.querySelector('.journey-curve-section#experience');
 
-    const section = document.createElement('section');
-    section.className = 'section journey-curve-section';
-    section.id = 'experience';
-    section.dataset.aidaStage = 'desire';
-    section.dataset.journeyCurve = 'v1';
-    section.setAttribute('aria-labelledby', 'journey-curve-title');
-    section.innerHTML = journeyMarkup();
-    target.replaceWith(section);
+    // Le parcours doit se trouver exactement avant la section « Ce que vous vous dites déjà ».
+    // Si le HTML statique n'est pas présent, ce fallback l'insère sans remplacer la section suivante.
+    if (!section) {
+      const anchor = document.querySelector('.inner-voice-section#probleme');
+      if (!anchor) return;
+
+      section = document.createElement('section');
+      section.className = 'section journey-curve-section';
+      section.id = 'experience';
+      section.dataset.aidaStage = 'desire';
+      section.dataset.journeyCurve = 'v2';
+      section.setAttribute('aria-labelledby', 'journey-curve-title');
+      section.innerHTML = journeyMarkup();
+      anchor.before(section);
+    }
 
     document.querySelectorAll('a[href="#parcours"]').forEach((link) => link.setAttribute('href', '#experience'));
     initialiseJourney(section);
@@ -127,6 +133,9 @@
   }
 
   function initialiseJourney(section) {
+    if (section.dataset.journeyInitialised === '1') return;
+    section.dataset.journeyInitialised = '1';
+
     const paths = [...section.querySelectorAll('[data-journey-progress]')];
     const steps = [...section.querySelectorAll('[data-journey-step]')];
     if (!paths.length || !steps.length) return;
