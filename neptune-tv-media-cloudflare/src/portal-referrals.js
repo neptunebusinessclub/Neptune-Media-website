@@ -2,17 +2,54 @@ import { json, sanitizeText } from './security.js';
 
 const REFERRAL_GOAL = 3;
 const PAID_STATUSES = new Set(['paid', 'succeeded', 'complete', 'completed', 'no_payment_required']);
+const CODE_LENGTH = 18;
 
 export function normalizeReferralCode(value) {
   return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/gu, '')
     .toUpperCase()
     .replace(/^NEPTUNE[-_:]?REF[-_:]?/u, '')
     .replace(/[^A-Z0-9]/gu, '')
-    .slice(0, 18);
+    .slice(0, CODE_LENGTH);
 }
 
 export function ensureReferralCode(store, client) {
   if (!client?.id) return '';
+  const internalCode = ensureInternalCode(store, client);
+  const existingAlias = store.sql.exec(
+    'SELECT alias FROM portal_referral_aliases WHERE client_id=? LIMIT 1',
+    client.id,
+  ).toArray()[0];
+  if (existingAlias?.alias) return existingAlias.alias;
+
+  const source = client.company
+    || client.fullName
+    || client.full_name
+    || String(client.email || '').split('@')[0]
+    || internalCode;
+  let base = normalizeReferralCode(source);
+  if (base.length < 6) base = `${base}${internalCode}`.slice(0, Math.max(6, CODE_LENGTH));
+  base = base.slice(0, CODE_LENGTH);
+
+  let alias = base;
+  let suffix = 1;
+  while (referralCodeExists(store, alias, client.id)) {
+    suffix += 1;
+    const tail = String(suffix);
+    alias = `${base.slice(0, CODE_LENGTH - tail.length)}${tail}`;
+  }
+
+  store.sql.exec(
+    'INSERT INTO portal_referral_aliases (alias,client_id,created_at) VALUES (?,?,?)',
+    alias,
+    client.id,
+    new Date().toISOString(),
+  );
+  return alias;
+}
+
+function ensureInternalCode(store, client) {
   const existing = store.sql.exec(
     'SELECT code FROM portal_referral_codes WHERE client_id=? LIMIT 1',
     client.id,
@@ -44,6 +81,19 @@ export function ensureReferralCode(store, client) {
   return code;
 }
 
+function referralCodeExists(store, code, clientId) {
+  const aliasOwner = store.sql.exec(
+    'SELECT client_id AS clientId FROM portal_referral_aliases WHERE alias=? LIMIT 1',
+    code,
+  ).toArray()[0];
+  if (aliasOwner && aliasOwner.clientId !== clientId) return true;
+  const codeOwner = store.sql.exec(
+    'SELECT client_id AS clientId FROM portal_referral_codes WHERE code=? LIMIT 1',
+    code,
+  ).toArray()[0];
+  return Boolean(codeOwner && codeOwner.clientId !== clientId);
+}
+
 export function referralSummary(store, client) {
   const code = ensureReferralCode(store, client);
   const count = Number(store.sql.exec(
@@ -56,6 +106,7 @@ export function referralSummary(store, client) {
   ).toArray()[0] || null;
   return {
     code,
+    companyLabel: client.company || client.fullName || client.full_name || '',
     confirmedCount: count,
     goal: REFERRAL_GOAL,
     remaining: Math.max(0, REFERRAL_GOAL - count),
@@ -74,12 +125,7 @@ export function registerEffectiveReferral(store, body = {}) {
     return json({ ok: true, effective: false, reason: 'not_eligible' });
   }
 
-  const referrer = store.sql.exec(
-    `SELECT c.id,c.email,c.full_name AS fullName,c.company
-     FROM portal_referral_codes r JOIN portal_clients c ON c.id=r.client_id
-     WHERE r.code=? AND c.active=1 LIMIT 1`,
-    code,
-  ).toArray()[0];
+  const referrer = resolveReferrer(store, code);
   if (!referrer || referrer.id === referredClientId) {
     return json({ ok: true, effective: false, reason: referrer ? 'self_referral' : 'unknown_code' });
   }
@@ -133,9 +179,26 @@ export function registerEffectiveReferral(store, body = {}) {
     referrerEmail: referrer.email,
     referrerName: referrer.fullName,
     referrerCompany: referrer.company,
+    referralCode: code,
     confirmedCount: summary.confirmedCount,
     goal: REFERRAL_GOAL,
   });
+}
+
+function resolveReferrer(store, code) {
+  const aliasMatch = store.sql.exec(
+    `SELECT c.id,c.email,c.full_name AS fullName,c.company
+     FROM portal_referral_aliases a JOIN portal_clients c ON c.id=a.client_id
+     WHERE a.alias=? AND c.active=1 LIMIT 1`,
+    code,
+  ).toArray()[0];
+  if (aliasMatch) return aliasMatch;
+  return store.sql.exec(
+    `SELECT c.id,c.email,c.full_name AS fullName,c.company
+     FROM portal_referral_codes r JOIN portal_clients c ON c.id=r.client_id
+     WHERE r.code=? AND c.active=1 LIMIT 1`,
+    code,
+  ).toArray()[0] || null;
 }
 
 export function adminReferralList(store) {
@@ -149,7 +212,8 @@ export function adminReferralList(store) {
      WHERE r.status='effective' ORDER BY r.created_at DESC`,
   ).toArray().map((row) => ({
     ...row,
-    productionCue: `Intégrer dans la vidéo long format une mise en avant de remerciement pour ${row.referrerName || row.referrerCompany || 'la personne ayant recommandé ce client'}.`,
+    referralIdentity: row.referrerCompany || row.referrerName || row.referralCode,
+    productionCue: `Intégrer dans la vidéo long format une mise en avant de remerciement pour ${row.referrerCompany || row.referrerName || 'la personne ayant recommandé ce client'}.`,
   }));
   const rewards = store.sql.exec(
     `SELECT w.client_id AS clientId,w.status,w.unlocked_at AS unlockedAt,w.claimed_at AS claimedAt,
@@ -166,5 +230,5 @@ function fnv(value) {
     hash ^= character.charCodeAt(0);
     hash = Math.imul(hash, 16777619);
   }
-  return Math.abs(hash);
+  return Math.abs(hash >>> 0);
 }
