@@ -9,6 +9,7 @@ export async function handlePortalAdminRoute(request,env,studio){
   const url=new URL(request.url);
   if(url.pathname==='/api/admin/clients'&&request.method==='GET')return callStore(studio,'/portal/admin-list',adminAuth(request));
   if(url.pathname==='/api/admin/client-feedback'&&request.method==='GET')return getAdminFeedback(request,studio);
+  if(url.pathname==='/api/admin/client-referrals'&&request.method==='GET')return getAdminReferrals(request,studio);
   if(url.pathname==='/api/admin/client-order'&&request.method==='POST'){
     if(!isSameOrigin(request))return json({error:'origin_forbidden'},403);
     const payload=await request.json().catch(()=>({}));
@@ -58,6 +59,13 @@ async function getAdminFeedback(request,studio){
   const validation=await callStore(studio,'/portal/admin-list',auth);
   if(!validation.ok)return validation;
   return callStore(studio,'/portal/feedback-admin-list',auth);
+}
+
+async function getAdminReferrals(request,studio){
+  const auth=adminAuth(request);
+  const validation=await callStore(studio,'/portal/admin-list',auth);
+  if(!validation.ok)return validation;
+  return callStore(studio,'/portal/referral-admin-list',auth);
 }
 
 async function uploadClientFile(request,env,studio){
