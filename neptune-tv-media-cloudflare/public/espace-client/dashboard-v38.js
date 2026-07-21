@@ -1,3 +1,5 @@
+import './referral-v39.js?v=1';
+
 const STATUS = {
   payment_confirmed: 'Paiement reçu',
   reservation_confirmed: 'Rendez-vous à réserver',
@@ -112,7 +114,7 @@ function renderProject(order) {
     setText(studioTime, 'Réservez votre prochain passage');
     setText(deadlineLabel, 'Échéance');
     setText(deadlineValue, '—');
-    setText(deadlineDate, 'Aucune date définie');
+    setText(deadlineDate, 'Aucune deadline définie');
     setText(nextAction, 'Choisissez un format et un créneau pour lancer votre prochain projet.');
     updateProgress(0);
     return;
