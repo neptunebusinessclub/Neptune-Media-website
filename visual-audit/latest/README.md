@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T18:55:03.883Z
+Généré : 2026-07-21T19:01:27.257Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 269
+- Avertissements : 263
 
 ## Problèmes détectés
 
@@ -104,12 +104,6 @@ Généré : 2026-07-21T18:55:03.883Z
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
-| warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
-| warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | laptop-1280 | emissions | clipped-text | Un accident de moto met fin à son entreprise |
-| warning | laptop-1280 | emissions | clipped-text | Le secret d’un storytelling efficace |
-| warning | laptop-1280 | emissions | clipped-text | L’humain avant le business |
-| warning | laptop-1280 | emissions | clipped-text | Filmer chez soi ? Laissez tomber. |
 | warning | laptop-1280 | direct | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | direct | clipped-text | Neptune Media en direct |
 | warning | tablet-834 | home | clipped-text | Aller au contenu principal |
@@ -130,3 +124,9 @@ Généré : 2026-07-21T18:55:03.883Z
 | warning | tablet-834 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
 | warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
+| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
+| warning | tablet-834 | home | offscreen-element | video |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
+| warning | tablet-834 | home | offscreen-element | span.visibility-short__label |
+| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
+| warning | tablet-834 | home | offscreen-element | video |
