@@ -14,6 +14,9 @@ export function ensurePortalSchema(store){
     CREATE TABLE IF NOT EXISTS portal_codes(id TEXT PRIMARY KEY,email TEXT NOT NULL,code_hash TEXT NOT NULL,expires_at TEXT NOT NULL,created_at TEXT NOT NULL,used_at TEXT);
     CREATE TABLE IF NOT EXISTS portal_sessions(id TEXT PRIMARY KEY,client_id TEXT NOT NULL REFERENCES portal_clients(id) ON DELETE CASCADE,token_hash TEXT NOT NULL UNIQUE,expires_at TEXT NOT NULL,created_at TEXT NOT NULL,last_seen_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS portal_auth_attempts(email TEXT PRIMARY KEY,count INTEGER NOT NULL DEFAULT 0,window_started_at TEXT NOT NULL,locked_until TEXT);
+    CREATE TABLE IF NOT EXISTS portal_notifications(id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,notification_key TEXT NOT NULL,email_id TEXT NOT NULL DEFAULT '',sent_at TEXT NOT NULL,UNIQUE(order_id,notification_key));
+    CREATE TABLE IF NOT EXISTS portal_feedback_requests(id TEXT PRIMARY KEY,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,token_hash TEXT NOT NULL UNIQUE,expires_at TEXT NOT NULL,created_at TEXT NOT NULL,submitted_at TEXT);
+    CREATE TABLE IF NOT EXISTS portal_feedback(id TEXT PRIMARY KEY,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,satisfaction INTEGER NOT NULL,experience TEXT NOT NULL DEFAULT '',recommend_to TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL);
     CREATE INDEX IF NOT EXISTS idx_portal_orders_client ON portal_orders(client_id,created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_steps_order ON portal_steps(order_id,display_order);
     CREATE INDEX IF NOT EXISTS idx_portal_files_order ON portal_files(order_id,created_at DESC);
@@ -23,6 +26,8 @@ export function ensurePortalSchema(store){
     CREATE INDEX IF NOT EXISTS idx_portal_deletions_status ON portal_deletion_requests(status,requested_at);
     CREATE INDEX IF NOT EXISTS idx_portal_codes_email ON portal_codes(email,created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_sessions_token ON portal_sessions(token_hash);
+    CREATE INDEX IF NOT EXISTS idx_portal_notifications_order ON portal_notifications(order_id,notification_key);
+    CREATE INDEX IF NOT EXISTS idx_portal_feedback_request_token ON portal_feedback_requests(token_hash);
   `);
   const now=new Date().toISOString();
   for(const order of store.sql.exec('SELECT id,status,updated_at AS updatedAt FROM portal_orders').toArray())syncSteps(store,order.id,order.status,order.updatedAt||now);
