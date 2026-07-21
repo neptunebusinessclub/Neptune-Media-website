@@ -35,6 +35,101 @@
   white-space: nowrap;
 }
 
+/* Concept previews */
+.dashboard-v37 .format-card.has-format-preview {
+  min-height: 0;
+}
+
+.dashboard-v37 .format-card.has-format-preview > p {
+  flex: 0 0 auto;
+  margin-bottom: 14px;
+}
+
+.dashboard-v37 .format-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 0 14px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 43, 94, .12);
+  border-radius: 13px;
+  background: #09152f;
+  box-shadow: 0 12px 28px rgba(16, 36, 78, .10);
+}
+
+.dashboard-v37 .format-preview iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: #000;
+}
+
+.dashboard-v37 .format-preview--soon {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(105, 86, 255, .35), transparent 8rem),
+    linear-gradient(145deg, #14285b, #09142f 70%);
+  color: #fff;
+}
+
+.dashboard-v37 .format-preview--soon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.08), transparent 36%, rgba(220,76,190,.08));
+}
+
+.dashboard-v37 .format-preview-soon-icon {
+  position: relative;
+  z-index: 1;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 50%;
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-size: .85rem;
+  box-shadow: 0 0 28px rgba(93, 86, 255, .28);
+}
+
+.dashboard-v37 .format-preview--soon > div {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.dashboard-v37 .format-preview--soon small {
+  color: #9fdfff;
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.dashboard-v37 .format-preview--soon strong {
+  padding: 0;
+  color: #fff;
+  font-size: .88rem;
+  line-height: 1.25;
+}
+
+.dashboard-v37 .format-preview--soon span:last-child {
+  color: rgba(255,255,255,.62);
+  font-size: .66rem;
+  line-height: 1.4;
+}
+
 @media (min-width: 981px) {
   .dashboard-v37 .dashboard-content-grid {
     grid-template-columns: minmax(0, 1.7fr) minmax(320px, .72fr);
@@ -126,5 +221,9 @@
 
   .dashboard-v37 .support-card {
     display: block;
+  }
+
+  .dashboard-v37 .format-preview--soon {
+    padding: 15px;
   }
 }
