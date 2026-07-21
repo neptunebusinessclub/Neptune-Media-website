@@ -53,6 +53,16 @@ export async function handlePortalPublicRoute(request, env, studio) {
     return sent.ok ? json(result) : json({ ...result, warning: sent.error });
   }
 
+  if (url.pathname === '/api/client/feedback' && request.method === 'GET') {
+    return callStore(studio, '/portal/feedback-get', { token: url.searchParams.get('token') || '' });
+  }
+
+  if (url.pathname === '/api/client/feedback' && request.method === 'POST') {
+    if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
+    const payload = await request.json().catch(() => ({}));
+    return callStore(studio, '/portal/feedback-submit', payload);
+  }
+
   if (url.pathname.startsWith('/api/client/files/') && request.method === 'GET') {
     const fileId = decodeURIComponent(url.pathname.slice('/api/client/files/'.length));
     const response = await callStore(studio, '/portal/file-authorize', { token: clientToken(request), fileId });
