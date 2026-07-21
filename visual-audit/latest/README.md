@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T21:44:29.499Z
+Généré : 2026-07-21T21:52:25.798Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 269
+- Avertissements : 274
 
 ## Problèmes détectés
 
@@ -19,6 +19,7 @@ Généré : 2026-07-21T21:44:29.499Z
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
@@ -71,6 +72,7 @@ Généré : 2026-07-21T21:44:29.499Z
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
 | warning | laptop-1280 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
@@ -128,5 +130,3 @@ Généré : 2026-07-21T21:44:29.499Z
 | warning | tablet-834 | home | clipped-text | Créer de vraies connexions |
 | warning | tablet-834 | home | clipped-text | Le stress du premier direct |
 | warning | tablet-834 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
