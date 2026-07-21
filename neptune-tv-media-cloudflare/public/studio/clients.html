@@ -7,6 +7,7 @@
   <title>Clients · Neptune Media Studio</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
   <link rel="stylesheet" href="/studio/clients.css?v=30">
+  <link rel="stylesheet" href="/studio/clients-feedback-v31.css?v=1">
 </head>
 <body>
   <header class="topbar">
@@ -20,7 +21,7 @@
       <div class="stats" aria-label="Résumé"><div><b id="clientCount">0</b><span>clients</span></div><div><b id="activeCount">0</b><span>en cours</span></div><div><b id="urgentCount">0</b><span>urgents</span></div><button id="refresh" class="icon-button" type="button" aria-label="Actualiser">↻</button></div>
     </section>
 
-    <section class="controls"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un client, une entreprise ou un format"></label><div class="view-links"><button type="button" data-open-section="contenus">Contenus</button><button type="button" data-open-section="calendrier">Calendrier</button><button type="button" data-open-section="finances">Facturation</button></div></section>
+    <section class="controls"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un client, une entreprise ou un format"></label><div class="view-links"><button type="button" data-open-section="contenus">Contenus</button><button type="button" data-open-section="calendrier">Calendrier</button><button type="button" data-open-section="finances">Facturation</button><button id="feedbackView" class="feedback-button" data-count="0" type="button">Avis clients</button></div></section>
 
     <section id="pipeline" class="pipeline" aria-live="polite"></section>
   </main>
@@ -48,7 +49,19 @@
       <div id="clientDetail"></div>
     </section>
   </dialog>
+
+  <dialog id="feedbackDialog" class="feedback-dialog" aria-labelledby="feedbackDialogTitle">
+    <section class="feedback-dialog-card">
+      <header class="feedback-dialog-head">
+        <div><p class="eyebrow">EXPÉRIENCE CLIENT</p><h2 id="feedbackDialogTitle">Satisfaction et recommandations</h2><p>Les réponses envoyées après la livraison, centralisées sans retraitement.</p></div>
+        <button id="closeFeedback" class="feedback-close" type="button" aria-label="Fermer">×</button>
+      </header>
+      <div id="feedbackList" class="feedback-results" aria-live="polite"></div>
+    </section>
+  </dialog>
+
   <div id="toast" class="toast" hidden></div>
   <script type="module" src="/studio/clients.js?v=30"></script>
+  <script type="module" src="/studio/clients-feedback-v31.js?v=1"></script>
 </body>
 </html>
