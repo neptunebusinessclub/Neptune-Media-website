@@ -1,4 +1,4 @@
-import './referral-v39.js?v=1';
+import './referral-v39.js?v=2';
 
 const STATUS = {
   payment_confirmed: 'Paiement reçu',
