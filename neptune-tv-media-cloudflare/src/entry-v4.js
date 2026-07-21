@@ -33,6 +33,9 @@ export default {
       const portal=await handlePortalPublicRoute(request,env,studio)||await handlePortalAdminRoute(request,env,studio);if(portal)return secure(portal);
       const multipart=await handleMultipartRoute(request,env);if(multipart)return secure(multipart);
       const response=await application.fetch(request,env,ctx);
+      if(request.method==='GET'&&['/espace-client/','/espace-client/index.html'].includes(url.pathname)&&(response.headers.get('Content-Type')||'').includes('text/html')){
+        return secure(await injectClientCalendarLink(response));
+      }
       if(url.pathname==='/api/public/catalog'&&response.ok){
         if(request.method==='GET')return secure(await filterPublicCatalog(response));
         if(request.method==='HEAD')return secure(withNoStoreCatalogHeaders(response));
@@ -48,6 +51,13 @@ export default {
     ctx.waitUntil(runPortalScheduled(env,studio).catch((error)=>console.error('portal_scheduled_failed',error)));
   },
 };
+async function injectClientCalendarLink(response){
+  let body=await response.text();
+  const script='<script src="/espace-client/content-calendar-link-v43.js?v=1"></script>';
+  if(!body.includes('/espace-client/content-calendar-link-v43.js'))body=body.replace('</body>',`${script}</body>`);
+  const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Cache-Control','private, no-store, max-age=0');
+  return new Response(body,{status:response.status,statusText:response.statusText,headers});
+}
 async function handleAdminPasswordReset(request,env,studio){
   if(!isSameOrigin(request))return json({error:'origin_forbidden'},403);
   const payload=await request.json().catch(()=>({}));
