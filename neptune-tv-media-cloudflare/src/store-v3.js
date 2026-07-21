@@ -14,6 +14,13 @@ import {
   adminSupplierPayment,
   clientDeletionRequest,
 } from './portal-orders.js';
+import {
+  notificationCandidates,
+  markNotificationSent,
+  prepareFeedbackRequest,
+  getFeedbackRequest,
+  submitFeedback,
+} from './portal-notifications.js';
 
 export class StudioStore extends BaseStore {
   async fetch(request) {
@@ -36,6 +43,11 @@ export class StudioStore extends BaseStore {
       if (url.pathname === '/portal/admin-access' && method === 'POST') return adminAccess(this, body);
       if (url.pathname === '/portal/admin-supplier-payment' && method === 'POST') return adminSupplierPayment(this, body);
       if (url.pathname === '/portal/delete-request' && method === 'POST') return clientDeletionRequest(this, body);
+      if (url.pathname === '/portal/notifications-due' && method === 'POST') return notificationCandidates(this, body);
+      if (url.pathname === '/portal/notification-mark' && method === 'POST') return markNotificationSent(this, body);
+      if (url.pathname === '/portal/feedback-prepare' && method === 'POST') return prepareFeedbackRequest(this, body);
+      if (url.pathname === '/portal/feedback-get' && method === 'POST') return getFeedbackRequest(this, body);
+      if (url.pathname === '/portal/feedback-submit' && method === 'POST') return submitFeedback(this, body);
     }
     if (url.pathname === '/auth/setup-status') return this.setupStatus();
     if (url.pathname === '/auth/recover' && method === 'POST') return this.recoverAccess(body);
