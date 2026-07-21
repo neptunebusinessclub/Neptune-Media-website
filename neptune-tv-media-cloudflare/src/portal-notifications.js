@@ -161,3 +161,15 @@ export async function submitFeedback(store, body) {
   store.sql.exec('UPDATE portal_feedback_requests SET submitted_at=? WHERE id=?', now, request.id);
   return json({ ok: true });
 }
+
+export function adminFeedbackList(store) {
+  const feedback = store.sql.exec(
+    `SELECT f.order_id AS orderId,f.satisfaction,f.experience,f.recommend_to AS recommendTo,
+            f.created_at AS createdAt,o.title,o.format,c.email,c.full_name AS fullName,c.company
+     FROM portal_feedback f
+     JOIN portal_orders o ON o.id=f.order_id
+     JOIN portal_clients c ON c.id=o.client_id
+     ORDER BY f.created_at DESC`,
+  ).toArray().map((row) => ({ ...row, satisfaction: Number(row.satisfaction || 0) }));
+  return json({ ok: true, feedback });
+}
