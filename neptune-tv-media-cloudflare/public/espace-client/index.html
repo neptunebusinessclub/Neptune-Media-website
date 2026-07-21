@@ -4,18 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#060712">
+  <meta name="theme-color" content="#071f59">
   <title>Mon espace Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/client.css?v=33">
+  <link rel="stylesheet" href="/espace-client/client.css?v=34">
 </head>
 <body>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
-
   <main class="page">
-    <header id="publicHeader" class="site-header">
-      <a class="brand" href="/" aria-label="Neptune Media, accueil">
+    <header id="publicHeader" class="auth-header">
+      <a class="auth-brand" href="/" aria-label="Neptune Media, accueil">
         <img src="/assets/logo-neptune.svg" alt="">
         <span><b>Neptune Media</b><small>Espace client</small></span>
       </a>
@@ -23,110 +20,108 @@
 
     <section id="auth" class="auth-shell">
       <div class="auth-copy">
-        <p class="eyebrow">VOTRE ESPACE PERMANENT</p>
-        <h1>Votre passage.<br><span>Une étape claire.</span></h1>
-        <p>Suivi, contenus et calendrier de publication réunis dans un espace privé pensé pour aller droit à l’essentiel.</p>
+        <p class="eyebrow">ESPACE CLIENT NEPTUNE MEDIA</p>
+        <h1>Tout votre passage.<br><span>Au même endroit.</span></h1>
+        <p>Rendez-vous, suivi, vidéos, factures et calendrier de publication réunis dans votre espace privé.</p>
         <div class="trust-row" aria-label="Garanties de l’espace client">
-          <span><i></i> Code sécurisé</span>
-          <span><i></i> Accès privé</span>
-          <span><i></i> Contenus téléchargeables</span>
+          <span>Code sécurisé</span><span>Accès privé</span><span>Contenus téléchargeables</span>
         </div>
       </div>
-
       <form id="accessForm" class="access-card">
-        <div class="access-glow" aria-hidden="true"></div>
         <div id="emailStep">
           <p class="step">01 · IDENTIFICATION</p>
           <h2>Recevoir mon code</h2>
           <p>Utilisez l’adresse e-mail employée lors de votre réservation.</p>
-          <label>
-            <span>Adresse e-mail</span>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </label>
+          <label><span>Adresse e-mail</span><input id="email" name="email" type="email" autocomplete="email" required></label>
           <button id="sendCode" class="primary" type="submit">Recevoir mon code</button>
         </div>
-
         <div id="codeStep" hidden>
           <p class="step">02 · VÉRIFICATION</p>
           <h2>Saisissez le code reçu</h2>
           <p id="codeHint">Le code à 6 chiffres est valable 10 minutes.</p>
-          <label>
-            <span>Code de sécurité</span>
-            <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}">
-          </label>
+          <label><span>Code de sécurité</span><input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}"></label>
           <button id="verifyCode" class="primary" type="submit">Accéder à mon espace</button>
-          <div class="access-secondary-actions">
-            <button id="resendCode" class="text-button" type="button">Renvoyer un code</button>
-            <button id="changeEmail" class="text-button" type="button">Changer d’adresse</button>
-          </div>
+          <div class="access-secondary-actions"><button id="resendCode" class="text-button" type="button">Renvoyer un code</button><button id="changeEmail" class="text-button" type="button">Changer d’adresse</button></div>
         </div>
         <p id="authMessage" class="message" aria-live="polite"></p>
       </form>
     </section>
 
     <section id="dashboard" class="dashboard" hidden>
-      <div class="client-shell">
-        <aside class="client-sidebar" aria-label="Navigation de l’espace client">
-          <a class="sidebar-brand" href="/" aria-label="Neptune Media">
-            <img src="/assets/logo-neptune.svg" alt="">
-            <span><b>Neptune</b><small>Media</small></span>
-          </a>
+      <header class="media-header">
+        <a class="media-brand" href="/" aria-label="Neptune Media">
+          <img src="/assets/logo-neptune.svg" alt="">
+          <span><b>Neptune</b><small>Media</small></span>
+        </a>
+        <nav class="social-nav" aria-label="Réseaux sociaux Neptune">
+          <a class="social social-tiktok" href="https://www.tiktok.com/search?q=Neptune%20Business" target="_blank" rel="noopener" aria-label="TikTok"><span>♪</span></a>
+          <a class="social social-instagram" href="https://www.instagram.com/explore/search/keyword/?q=neptune%20business" target="_blank" rel="noopener" aria-label="Instagram"><span>◎</span></a>
+          <a class="social social-linkedin" href="https://fr.linkedin.com/company/neptune-business" target="_blank" rel="noopener" aria-label="LinkedIn"><span>in</span></a>
+          <a class="social social-youtube" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener" aria-label="YouTube"><span>▶</span></a>
+          <button class="social logout-button" type="button" data-logout aria-label="Se déconnecter"><span>↗</span></button>
+        </nav>
+      </header>
 
-          <nav id="clientNav" class="client-nav">
-            <button data-view="tracking" class="active" type="button" aria-current="page">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13.5V6.8a2.8 2.8 0 0 1 2.8-2.8h3.7v9.5H4Zm0 2h6.5V20H6.8A2.8 2.8 0 0 1 4 17.2v-1.7Zm8.5 4.5V10.5H20v6.7a2.8 2.8 0 0 1-2.8 2.8h-4.7Zm0-11.5V4h4.7A2.8 2.8 0 0 1 20 6.8v1.7h-7.5Z"/></svg>
-              <span>Accueil</span>
-            </button>
-            <button data-view="content" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 3.5h13A2.5 2.5 0 0 1 21 6v12a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18V6a2.5 2.5 0 0 1 2.5-2.5Zm4 4.3v8.4l7-4.2-7-4.2Z"/></svg>
-              <span>Contenus</span>
-            </button>
-            <button data-view="calendar" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2.5h2v2.8h6V2.5h2v2.8h1.3A2.7 2.7 0 0 1 21 8v10.3a2.7 2.7 0 0 1-2.7 2.7H5.7A2.7 2.7 0 0 1 3 18.3V8a2.7 2.7 0 0 1 2.7-2.7H7V2.5ZM5 10v8.3c0 .4.3.7.7.7h12.6c.4 0 .7-.3.7-.7V10H5Z"/></svg>
-              <span>Calendrier</span>
-            </button>
-            <button data-view="billing" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-13A2.5 2.5 0 0 1 5.5 3ZM5 8h14V5.5a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5V8Zm0 2v8.5c0 .28.22.5.5.5h13a.5.5 0 0 0 .5-.5V10H5Zm2 4h5v2H7v-2Z"/></svg>
-              <span>Facturation</span>
-            </button>
-          </nav>
+      <div class="dashboard-canvas">
+        <section class="welcome-row">
+          <h1 id="welcome">Bonjour.</h1>
+          <div class="countdown-wrap"><strong id="countdownText">Votre prochaine étape</strong><a id="prepareLink" class="prepare-link" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Me préparer</a></div>
+        </section>
 
-          <div class="sidebar-footer">
-            <a class="sidebar-link" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">
-              <span aria-hidden="true">＋</span> Nouveau passage
-            </a>
-            <button class="sidebar-link" type="button" data-logout>
-              <span aria-hidden="true">↗</span> Déconnexion
-            </button>
-          </div>
-        </aside>
-
-        <main class="client-main">
-          <header class="dashboard-topbar">
-            <div class="topbar-copy">
-              <p class="eyebrow">ESPACE CLIENT</p>
-              <h1 id="welcome">Bonjour.</h1>
-            </div>
-            <div class="topbar-actions">
-              <span class="secure-pill"><i></i> Synchronisé</span>
-              <a class="compact-action" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Nouveau passage</a>
-              <button class="icon-action" type="button" data-logout aria-label="Se déconnecter">↗</button>
-            </div>
-          </header>
-
-          <div class="workspace">
-            <section id="overview" class="overview" aria-label="Résumé de votre passage">
-              <section id="nextAction" class="status-hero" aria-live="polite"></section>
-              <section id="progressStage" class="progress-stage" aria-label="Étapes de votre passage"></section>
+        <div class="dashboard-grid">
+          <div class="dashboard-core">
+            <section class="quick-grid" aria-label="Accès rapides">
+              <button class="neon-card quick-card" type="button" data-open-panel="appointments">
+                <span class="card-inner"><strong>Mes rendez-vous</strong><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M25 18v14m46-14v14M17 38h62M22 25h52a8 8 0 0 1 8 8v43a8 8 0 0 1-8 8H22a8 8 0 0 1-8-8V33a8 8 0 0 1 8-8Z"/><path d="m34 60 8 8 20-22"/></svg><span id="appointmentBadge" class="card-badge">À consulter</span></span>
+              </button>
+              <button class="neon-card quick-card" type="button" data-open-panel="content">
+                <span class="card-inner"><strong>Mes vidéos</strong><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M18 27h60v49H18zM18 27l10-15h14L32 27m17 0 10-15h14L63 27"/><path d="m40 43 25 15-25 15Z"/></svg><span id="videoBadge" class="card-badge">0 contenu</span></span>
+              </button>
+              <button class="neon-card quick-card" type="button" data-open-panel="tracking">
+                <span class="card-inner"><strong>Mes passages</strong><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M18 29h60a7 7 0 0 1 7 7v31a7 7 0 0 1-7 7H18a7 7 0 0 1-7-7V36a7 7 0 0 1 7-7Z"/><circle cx="31" cy="51" r="9" class="record-dot"/><path d="M51 44v15m0-15h11a7 7 0 0 1 0 15H51"/></svg><span id="passageBadge" class="card-badge">Suivi</span></span>
+              </button>
+              <button class="neon-card quick-card" type="button" data-open-panel="billing">
+                <span class="card-inner"><strong>Mes factures</strong><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M22 14h45v68H22zM31 30h27M31 42h18M31 54h23"/><path d="M72 51c-10-7-22-1-22 9s12 16 22 9m-11-22v27"/></svg><span id="billingBadge" class="card-badge">Stripe</span></span>
+              </button>
+              <button class="neon-card quick-card" type="button" data-open-panel="calendar">
+                <span class="card-inner"><strong>Mes publications</strong><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M20 27h56a7 7 0 0 1 7 7v43H13V34a7 7 0 0 1 7-7Zm10-12v23m36-23v23"/><path d="m36 48 22 13-22 13Z"/><path d="m75 13 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></svg><span id="publicationBadge" class="card-badge">Calendrier</span></span>
+              </button>
             </section>
-            <section id="clientContent" class="client-content" aria-live="polite" tabindex="-1"></section>
+
+            <section class="lower-grid">
+              <article class="referral-panel neon-frame">
+                <div><p>Mon code parrainage :</p><button id="copyReferral" class="referral-code" type="button"><span id="referralCode">NEPTUNE</span><small>Cliquer pour copier</small></button></div>
+              </article>
+              <div class="format-grid" aria-label="Formats Neptune Media">
+                <article class="format-card neon-card"><div class="format-inner"><strong>Hors Norme</strong><div class="mini-screen"><span>▶</span></div><a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver <b>›</b></a></div></article>
+                <article class="format-card neon-card"><div class="format-inner"><strong>Connexio</strong><div class="format-symbol">∞</div><a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver <b>›</b></a></div></article>
+                <article class="format-card neon-card"><div class="format-inner"><strong>Libre</strong><div class="format-symbol">✦</div><a href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Réserver <b>›</b></a></div></article>
+              </div>
+            </section>
+
+            <section class="bottom-actions">
+              <a class="club-cta" href="https://www.neptunebusiness.com/" target="_blank" rel="noopener">Rejoindre le club</a>
+              <a class="contact-cta" href="mailto:contact@neptunebusiness.com"><span>Une demande, un besoin ?</span><b>J’ai une demande</b></a>
+            </section>
           </div>
-        </main>
+
+          <aside class="broadcast-card neon-card" aria-label="Diffusion de votre émission">
+            <div class="broadcast-inner">
+              <section><h2>Votre émission disponible sur Neptune TV</h2><div id="broadcastPreview" class="broadcast-screen"><span>▶</span><small>Votre émission apparaîtra ici</small></div></section>
+              <section><h2>Et sur notre chaîne YouTube</h2><a class="broadcast-screen youtube-screen" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener"><span>▶</span><small>Découvrir la chaîne</small></a></section>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   </main>
 
+  <div id="detailBackdrop" class="detail-backdrop" hidden></div>
+  <aside id="detailPanel" class="detail-panel" hidden aria-modal="true" role="dialog" aria-labelledby="detailTitle">
+    <header><div><p class="eyebrow">ESPACE CLIENT</p><h2 id="detailTitle">Détails</h2></div><button id="closePanel" type="button" aria-label="Fermer">×</button></header>
+    <div id="detailContent" class="detail-content" tabindex="-1"></div>
+  </aside>
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/client.js?v=33"></script>
+  <script type="module" src="/espace-client/client.js?v=34"></script>
 </body>
 </html>
