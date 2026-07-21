@@ -253,3 +253,210 @@
   .referral-link-row { align-items: flex-start; flex-direction: column; }
   .referral-milestones li small { font-size: .57rem; }
 }
+
+/* v41 — tighter, intentional spacing for the referral objective and access screen. */
+.dashboard-v37 .referral-panel.referral-challenge {
+  padding: 20px 21px !important;
+}
+
+.dashboard-v37 .referral-challenge-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+}
+
+.dashboard-v37 .referral-challenge-kicker {
+  margin-bottom: 4px;
+  font-size: .56rem;
+}
+
+.dashboard-v37 .referral-challenge h2,
+.dashboard-v37 .referral-challenge h2::before {
+  max-width: none !important;
+  font-size: clamp(1.28rem, 1.55vw, 1.48rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.045em !important;
+  text-wrap: balance;
+}
+
+.dashboard-v37 .referral-counter {
+  min-width: 54px;
+  min-height: 38px;
+  padding-inline: 10px;
+  font-size: .82rem;
+}
+
+.dashboard-v37 .referral-promise {
+  margin-top: 8px !important;
+  line-height: 1.25 !important;
+}
+
+.dashboard-v37 .referral-promise::before {
+  font-size: clamp(.57rem, .61vw, .66rem) !important;
+  line-height: 1.25 !important;
+}
+
+.dashboard-v37 .referral-milestones {
+  margin-top: 16px;
+  gap: 6px;
+}
+
+.dashboard-v37 .referral-milestones::before {
+  top: 18px;
+}
+
+.dashboard-v37 .referral-milestones li {
+  gap: 6px;
+}
+
+.dashboard-v37 .referral-milestones li > span {
+  width: 38px;
+  height: 38px;
+  font-size: .88rem;
+}
+
+.dashboard-v37 .referral-milestones li small {
+  font-size: .57rem;
+  line-height: 1.25;
+}
+
+.dashboard-v37 .referral-reward {
+  gap: 11px;
+  margin-top: 15px;
+  padding: 11px 13px;
+  border-radius: 13px;
+}
+
+.dashboard-v37 .referral-reward-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.dashboard-v37 .referral-actions,
+.dashboard-v37 .referral-panel.referral-challenge .referral-actions {
+  margin-top: 12px !important;
+  padding-top: 0 !important;
+}
+
+.dashboard-v37 .referral-share-primary,
+.dashboard-v37 .referral-share-icon {
+  min-height: 40px;
+  border-radius: 11px;
+}
+
+.dashboard-v37 .referral-link-row {
+  margin-top: 9px;
+  padding: 7px 9px;
+}
+
+.dashboard-v37 .referral-rule {
+  margin-top: 8px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+@media (min-width: 981px) {
+  .dashboard-v37 .referral-panel,
+  .dashboard-v37 .referral-panel.referral-challenge {
+    align-self: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
+
+/* Access screen: preserve impact without pushing the form or trust cues out of view. */
+.auth-shell {
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, .72fr);
+  gap: clamp(30px, 5vw, 72px);
+  padding: 94px clamp(26px, 4.8vw, 78px) 30px;
+}
+
+.auth-copy {
+  max-width: 720px;
+}
+
+.auth-copy h1 {
+  max-width: 700px;
+  margin: .48rem 0 .78rem;
+  font-size: clamp(3rem, 5.25vw, 5.55rem);
+  line-height: .9;
+}
+
+.auth-copy > p:last-of-type {
+  max-width: 620px;
+  margin: 0;
+  font-size: clamp(.96rem, 1.18vw, 1.08rem);
+  line-height: 1.5;
+}
+
+.auth-shell .trust-row {
+  margin-top: 17px;
+}
+
+.auth-shell .access-card {
+  padding: 27px;
+}
+
+@media (max-width: 1100px) and (min-width: 821px) {
+  .auth-shell {
+    grid-template-columns: minmax(0, 1.02fr) minmax(300px, .82fr);
+    gap: 26px;
+    padding: 88px 28px 24px;
+  }
+
+  .auth-copy h1 {
+    font-size: clamp(2.65rem, 5.6vw, 4.2rem);
+    max-width: 590px;
+  }
+
+  .auth-copy > p:last-of-type {
+    font-size: .94rem;
+    line-height: 1.45;
+  }
+
+  .auth-shell .access-card {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 820px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 24px;
+    padding: 92px 20px 28px;
+  }
+
+  .auth-copy,
+  .auth-shell .access-card {
+    width: min(100%, 640px);
+    margin-inline: auto;
+  }
+
+  .auth-copy h1 {
+    font-size: clamp(2.7rem, 11vw, 4.4rem);
+  }
+}
+
+@media (min-width: 821px) and (max-height: 680px) {
+  .auth-shell {
+    padding-top: 80px;
+    padding-bottom: 18px;
+  }
+
+  .auth-copy h1 {
+    margin-top: .35rem;
+    margin-bottom: .6rem;
+    font-size: clamp(2.65rem, 4.8vw, 4.65rem);
+  }
+
+  .auth-shell .trust-row {
+    margin-top: 13px;
+  }
+
+  .auth-shell .trust-row span {
+    padding-block: 6px;
+  }
+}
