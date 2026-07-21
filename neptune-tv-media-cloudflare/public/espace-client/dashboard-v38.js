@@ -42,6 +42,7 @@ document.readyState === 'loading'
   : init();
 
 function init() {
+  installAuthTitle();
   correctSocialLinks();
   installLogoutIcon();
   const dashboard = $('#dashboard');
@@ -62,6 +63,12 @@ function init() {
   });
 
   if (!dashboard.hidden) hydrate();
+}
+
+function installAuthTitle() {
+  const title = $('.auth-copy h1');
+  if (!title) return;
+  title.innerHTML = '<span class="auth-title-main">Toute votre expérience média,</span><span class="auth-title-accent">au même endroit</span>';
 }
 
 function installLogoutIcon() {
