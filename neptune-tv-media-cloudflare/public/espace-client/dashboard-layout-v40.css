@@ -130,6 +130,102 @@
   line-height: 1.4;
 }
 
+/* Referral copy: short promise, explicit attribution rule. */
+.dashboard-v37 .referral-challenge h2 {
+  max-width: 390px;
+  font-size: 0;
+  line-height: 1;
+}
+
+.dashboard-v37 .referral-challenge h2::before {
+  content: "3 reco’ = une émission à prix coûtant";
+  display: block;
+  color: #0b1f4f;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -.05em;
+}
+
+.dashboard-v37 .referral-promise {
+  max-width: none;
+  margin-top: 14px;
+  overflow: visible;
+  font-size: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dashboard-v37 .referral-promise::before {
+  content: "Pour chaque reco’, vous et votre entreprise serez mis à l’honneur lors de son format Hors Norme";
+  display: block;
+  color: #22365f;
+  font-size: clamp(.58rem, .67vw, .72rem);
+  font-weight: 760;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+}
+
+.dashboard-v37 .referral-link-row {
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid #e3e5ef;
+  border-radius: 11px;
+  background: #fff;
+}
+
+.dashboard-v37 .referral-link-row code {
+  max-width: 46%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-v37 .referral-link-row span {
+  font-size: 0;
+}
+
+.dashboard-v37 .referral-link-row span::before {
+  content: "Lien personnel identifié au nom de votre entreprise";
+  color: #596780;
+  font-size: .63rem;
+  font-weight: 720;
+}
+
+.dashboard-v37 .referral-rule {
+  position: relative;
+  margin-top: 10px;
+  padding: 11px 12px 11px 34px;
+  border: 1px solid rgba(91, 77, 247, .16);
+  border-radius: 11px;
+  background: #f5f3ff;
+  color: #34466b;
+  font-size: 0;
+  line-height: 1.4;
+}
+
+.dashboard-v37 .referral-rule::after {
+  content: "!";
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  width: 15px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #6554df;
+  color: #fff;
+  font-size: .58rem;
+  font-weight: 900;
+}
+
+.dashboard-v37 .referral-rule::before {
+  content: "La réservation doit être faite depuis votre lien personnel pour être comptabilisée. Sans ce lien, elle ne pourra pas être rattachée automatiquement à votre recommandation.";
+  font-size: .63rem;
+  font-weight: 680;
+}
+
 @media (min-width: 981px) {
   .dashboard-v37 .dashboard-content-grid {
     grid-template-columns: minmax(0, 1.7fr) minmax(320px, .72fr);
@@ -193,6 +289,10 @@
   .dashboard-v37 .support-card .support-actions {
     margin-top: 0;
   }
+
+  .dashboard-v37 .referral-promise {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 980px) {
@@ -211,6 +311,10 @@
   .dashboard-v37 .formats-panel { grid-area: formats; }
   .dashboard-v37 .referral-panel { grid-area: referral; }
   .dashboard-v37 .support-card { grid-area: support; }
+
+  .dashboard-v37 .referral-promise {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 720px) {
@@ -223,7 +327,12 @@
     display: block;
   }
 
-  .dashboard-v37 .format-preview--soon {
-    padding: 15px;
+  .dashboard-v37 .referral-link-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-v37 .referral-link-row code {
+    max-width: 100%;
   }
 }
