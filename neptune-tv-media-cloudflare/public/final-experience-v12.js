@@ -11,7 +11,7 @@
 
   appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
   appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
-  appendStylesheet('/styles/scroll-pipeline-v2.css?v=4', 'scrollPipeline3d', 'v4', true);
+  appendStylesheet('/styles/scroll-pipeline-v2.css?v=5', 'scrollPipelineCurve', 'v5', true);
 
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
@@ -20,10 +20,10 @@
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v21';
     document.body.dataset.heroRefresh = 'v27';
-    document.body.dataset.scrollPipeline = 'v4';
+    document.body.dataset.scrollPipeline = 'curve-v1';
 
     loadJourneyV19();
-    loadScrollPipelineV2();
+    loadScrollPipelineCurve();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
     appendStylesheet('/styles/visual-density-v17.css?v=17', 'visualDensity', 'v17', true);
     appendStylesheet('/styles/intent-actions-v18.css?v=19', 'intentActions', 'v19', true);
@@ -63,12 +63,12 @@
     document.head.append(script);
   }
 
-  function loadScrollPipelineV2() {
-    document.querySelectorAll('script[data-scroll-pipeline-3d],script[data-scroll-pipeline-v2]').forEach((node) => node.remove());
+  function loadScrollPipelineCurve() {
+    document.querySelectorAll('script[data-scroll-pipeline-3d],script[data-scroll-pipeline-v2],script[data-scroll-pipeline-curve]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/scroll-pipeline-v2.js?v=4';
+    script.src = '/scroll-pipeline-v2.js?v=5';
     script.defer = true;
-    script.setAttribute('data-scroll-pipeline-v2', '1');
+    script.setAttribute('data-scroll-pipeline-curve', '1');
     document.head.append(script);
   }
 
@@ -139,7 +139,7 @@
   }
 
   function bindRevealMotion() {
-    const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.voice-process article,.faq-item')
+    const items = qsa('main > section:not(.voice-hero),.inner-voice-card,.solution-voice-card,.proof-compact article,.format-card[data-format-choice],.faq-item')
       .filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
     items.forEach((item, index) => {
@@ -179,4 +179,4 @@
   }
 })();
 
-// Production browser quality gate revision 24.
+// Production browser quality gate revision 25.
