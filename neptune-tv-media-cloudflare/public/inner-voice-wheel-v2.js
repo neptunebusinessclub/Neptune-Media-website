@@ -22,7 +22,7 @@
     if (!container || !head || !grid || !bridge || cards.length < 2) return;
 
     document.querySelectorAll('link[href*="inner-voice-continuity-v1.css"],link[data-inner-voice-continuity]').forEach((node) => node.remove());
-    ensureStylesheet('/styles/inner-voice-wheel-v2.css?v=2');
+    const styleLink = ensureStylesheet('/styles/inner-voice-wheel-v2.css?v=2');
 
     section.dataset.voiceWheelBound = '1';
     section.dataset.voiceContinuity = 'wheel-v2';
@@ -122,6 +122,7 @@
         card.style.setProperty('--wheel-blur', `${blur.toFixed(2)}px`);
         card.style.setProperty('--wheel-saturation', saturation.toFixed(3));
         card.style.setProperty('--wheel-z', String(zIndex));
+        card.style.filter = `blur(${blur.toFixed(2)}px) saturate(${saturation.toFixed(3)})`;
       });
 
       const nextActive = clamp(Math.round(position), 0, cards.length - 1);
@@ -142,7 +143,9 @@
 
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', setGeometry, { passive: true });
-    setGeometry();
+    if (styleLink.sheet) setGeometry();
+    else styleLink.addEventListener('load', setGeometry, { once: true });
+    requestAnimationFrame(setGeometry);
   }
 
   function ensureStylesheet(href) {
@@ -154,5 +157,6 @@
     }
     link.dataset.innerVoiceWheel = 'v2';
     document.head.append(link);
+    return link;
   }
 })();
