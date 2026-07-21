@@ -1,9 +1,9 @@
 {
   "status": "failed",
-  "source_sha": "fc4db6f4ecf968a473094f6a467cda3a13ca4e33",
-  "source_workflow_id": "29868555906",
-  "ui_workflow_run_id": "29868616970",
-  "checked_at": "2026-07-21T21:07:11.946692+00:00",
+  "source_sha": "80e33c2cde528f9a4d2016854241e525aecea9d5",
+  "source_workflow_id": "29869843419",
+  "ui_workflow_run_id": "29869882360",
+  "checked_at": "2026-07-21T21:26:19.127919+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -17,6 +17,67 @@
     "/emissions/",
     "/direct/"
   ],
-  "issues": [],
-  "pages": []
+  "issues": [
+    "home-desktop: identifiants dupliqués: experience",
+    "home-desktop: navigation de progression absente",
+    "home-tablet: identifiants dupliqués: experience",
+    "home-mobile: identifiants dupliqués: experience"
+  ],
+  "pages": [
+    {
+      "name": "home-desktop",
+      "route": "/",
+      "issues": [
+        "identifiants dupliqués: experience",
+        "navigation de progression absente"
+      ],
+      "width": 1440,
+      "height": 1100,
+      "scrollHeight": 12071
+    },
+    {
+      "name": "home-tablet",
+      "route": "/",
+      "issues": [
+        "identifiants dupliqués: experience"
+      ],
+      "width": 834,
+      "height": 1112,
+      "scrollHeight": 11773
+    },
+    {
+      "name": "home-mobile",
+      "route": "/",
+      "issues": [
+        "identifiants dupliqués: experience"
+      ],
+      "width": 390,
+      "height": 844,
+      "scrollHeight": 13839
+    },
+    {
+      "name": "emissions-desktop",
+      "route": "/emissions/",
+      "issues": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollHeight": 2036
+    },
+    {
+      "name": "emissions-mobile",
+      "route": "/emissions/",
+      "issues": [],
+      "width": 390,
+      "height": 844,
+      "scrollHeight": 2788
+    },
+    {
+      "name": "direct-desktop",
+      "route": "/direct/",
+      "issues": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollHeight": 2006
+    }
+  ]
 }
