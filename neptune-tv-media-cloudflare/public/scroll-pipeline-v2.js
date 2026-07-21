@@ -64,7 +64,7 @@
       section.className = 'section journey-curve-section';
       section.id = 'experience';
       section.dataset.aidaStage = 'desire';
-      section.dataset.journeyCurve = 'v4';
+      section.dataset.journeyCurve = 'v5';
       section.setAttribute('aria-labelledby', 'journey-curve-title');
       section.innerHTML = journeyMarkup();
       anchor.before(section);
@@ -244,14 +244,14 @@
         });
 
         if (index === 0) return 0;
-        if (index === nodes.length - 1) return 1;
+        if (index === nodes.length - 1) return 0.965;
         return closest.progress;
       });
 
       thresholds = measured.map((value, index) => {
         if (index === 0) return 0;
-        if (index === measured.length - 1) return 1;
-        return clamp(Math.max(value, measured[index - 1] + 0.06), 0, 0.94);
+        if (index === measured.length - 1) return 0.965;
+        return clamp(Math.max(value, measured[index - 1] + 0.06), 0, 0.92);
       });
     }
 
@@ -265,8 +265,8 @@
       const lastOffset = lastRect.top - mapRect.top + lastRect.height / 2;
       const firstCenter = mapRect.top + firstOffset;
 
-      const startLine = viewport * 0.76;
-      const completionLine = viewport * (window.innerWidth <= 820 ? 0.7 : 0.64);
+      const startLine = viewport * 0.78;
+      const completionLine = viewport * (window.innerWidth <= 820 ? 0.86 : 0.82);
       const travel = Math.max(1, (lastOffset - firstOffset) + startLine - completionLine);
 
       return clamp((startLine - firstCenter) / travel, 0, 1);
@@ -274,7 +274,11 @@
 
     function update() {
       frame = 0;
-      const visualProgress = Number(scrollProgress().toFixed(4));
+      const rawProgress = scrollProgress();
+      const endBoost = rawProgress > 0.68
+        ? ((rawProgress - 0.68) / 0.32) * 0.14
+        : 0;
+      const visualProgress = Number(clamp(rawProgress + endBoost, 0, 1).toFixed(4));
 
       paths.forEach((path) => {
         path.style.strokeDashoffset = String(1 - visualProgress);
