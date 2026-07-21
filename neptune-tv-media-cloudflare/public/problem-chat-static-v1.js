@@ -9,6 +9,26 @@
     if (!section || section.dataset.chatBound === '1') return;
     section.dataset.chatBound = '1';
 
+    ensureJourneyBefore(section);
+    initialiseReveal(section);
+  });
+
+  function ensureJourneyBefore(section) {
+    if (document.querySelector('#experience.journey-curve-section')) return;
+
+    section.classList.add('inner-voice-section');
+    delete document.documentElement.dataset.journeyCurveBound;
+
+    const script = document.createElement('script');
+    script.src = '/scroll-pipeline-v2.js?v=11';
+    script.dataset.restoreJourney = '1';
+    script.addEventListener('load', () => {
+      requestAnimationFrame(() => section.classList.remove('inner-voice-section'));
+    }, { once: true });
+    document.head.append(script);
+  }
+
+  function initialiseReveal(section) {
     const items = [...section.querySelectorAll('.problem-chat-static__exchange, .problem-chat-static__conclusion')];
     if (!items.length) return;
 
@@ -28,5 +48,5 @@
     }, { threshold: 0.24, rootMargin: '0px 0px -10% 0px' });
 
     items.forEach((item) => observer.observe(item));
-  });
+  }
 })();
