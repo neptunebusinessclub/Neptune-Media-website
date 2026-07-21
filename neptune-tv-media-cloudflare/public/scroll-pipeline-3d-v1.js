@@ -194,6 +194,12 @@
       const spread = Math.min(window.innerWidth * 0.38, 510);
 
       section.style.setProperty('--pipeline-progress', progress.toFixed(4));
+      section.style.setProperty('--pipeline-shift', `${(progress * 70).toFixed(2)}%`);
+      section.style.setProperty('--pipeline-rotate-one', `${(progress * 95).toFixed(2)}deg`);
+      section.style.setProperty('--pipeline-rotate-two', `${(-20 - progress * 78).toFixed(2)}deg`);
+      section.style.setProperty('--pipeline-rotate-three', `${(31 + progress * 52).toFixed(2)}deg`);
+      section.style.setProperty('--pipeline-light-shift', `${(progress * 62).toFixed(2)}%`);
+      section.style.setProperty('--pipeline-sheen', `${(-68 + progress * 120).toFixed(2)}%`);
       if (fill) fill.style.transform = `scaleX(${progress})`;
 
       steps.forEach((step, index) => {
