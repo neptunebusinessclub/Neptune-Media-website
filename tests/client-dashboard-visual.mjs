@@ -52,12 +52,13 @@ for (const viewport of viewports) {
     if (message.type() === 'error') pageErrors.push(message.text());
   });
 
-  await page.route('**/api/client/session', async (route) => {
-    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(mockState) });
-  });
   await page.route('**/api/client/**', async (route) => {
-    if (route.request().url().endsWith('/api/client/session')) return route.continue();
-    await route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    const pathname = new URL(route.request().url()).pathname;
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: pathname === '/api/client/session' ? JSON.stringify(mockState) : '{}',
+    });
   });
 
   const response = await page.goto(`${baseUrl}/espace-client/?dashboard_test=${Date.now()}`, {
