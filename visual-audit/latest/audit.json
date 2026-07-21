@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T22:01:14.936Z",
+  "generatedAt": "2026-07-21T22:11:10.556Z",
   "base": "https://neptune-media-webtv.neptunebusinessclub.workers.dev",
   "captures": [
     {
@@ -129,14 +129,38 @@
           },
           {
             "selector": "h2",
-            "text": "Vous avez besoin d’être visible, pas de vous former.",
+            "text": "Vous avez besoin d’être visible,pas de vous former.",
             "client": [
-              830,
-              199
+              980,
+              126
             ],
             "scroll": [
-              830,
-              203
+              982,
+              130
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+            "text": "Vous avez besoin d’être visible,",
+            "client": [
+              980,
+              60
+            ],
+            "scroll": [
+              982,
+              65
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+            "text": "pas de vous former.",
+            "client": [
+              614,
+              60
+            ],
+            "scroll": [
+              614,
+              65
             ]
           },
           {
@@ -442,120 +466,116 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EbuSCqFMmnpCw03bBHdQS9t6ivu9YMa_ZXbu7Wc7aJlXmCf3B_HoB19EM4fWEeBti58fCqOQNsTfOhGYSjXXkWAUNOv7oYuxM9lY1pa4u7qozodyIeRxOH_SfixNIzuH0pz_Q75k9DWhzYi7iYcoskmcBQ5BzRHc5C6xaa_s170s_9YR1PtPgR_XuOQsfYXcUG0XYDDVaVtP5jz4RRzo5uHhDEbT63Yhe85bjmtJf0vHY9iXvkD9Y8%3Ds16383-w600&dsh=S1965084359%3A1784671276542406&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtibdZrA5821lsOCA0KfXUy5wEJbZhAZw_nSe4fEkn1974xECRqC4n39IjXvNiKEUVFJj1jdQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EK2IHHXhLsTYDCYh_y5FDGLXL_T30zNfMG8D1DF0umvslfR0jvEI07UTe0JEgsGhu85C4AxV0FWVJqj5scAmhb4VJrxNyT3Ws-7ZoiYZgbgpJUhQGZw3gQlWNsC3ppKymlpPXPZkXDdmHN51okMPMSHNVo87ayCbmCx-YDUIlKV-PaSYlyaObtgUhsguuBianb9KfoJ6-Qyw0by3jPf-M5ExNKURxzCVO8pUJkfW1kIUAccxmtAyMG%3Ds16383-w600&dsh=S775732460%3A1784671276542653&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtNE8qQ_XzhaDI__ASeeYGmBRZ6J12qEpbdsztR3j5bcqvxy26iXYTabtYBTGlWHOvDC1P6mQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F5uIDt9LBRT24Q7O1H5gxHPCWyLzWRtyA4q44XoZIY2-6_aOhLXbeE0VKpaJHuUDkEs70oWlFpFlGFAerUR_Cu4vS6Bno6OTwLbzTlfcYTWpsREkKNr155oqGEnVPmteLwx5Lataz0cs2aKBH632pYRHA7U7UnJr4EUWzBXQlR2AwH5wihRNWr1V-hEa6zFSpxCvFMgSuL2xj_M7TIDdGTrdtgalt3j5gJ5ZRteso_8SiOyvmhSImp%3Ds16383-w600&dsh=S-1390999758%3A1784671276541331&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsr2kfTkJkhicvx1mI0MOl9kNVfaM8bbfgOPh-N3XKlUYsaLk9bCUvLtJHktcRKCPCfbRxAzg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G-ABrUFXwbM87ckQXV3Q2m8g_hXtyKjqANdKMhr6gw_4694qTxQYu2LIetwd5wGGL6ehwT3JVwRYIT2kGVUlqiTAGx-7FwQf9zMBocxWXzKCATg5iyVo8v4xEZ5FhPi0-XQDoVOo96kBWfG1xRh5ykQ9ww3gwLN1zAeuXlnv3swXLw-5o-Gk_S1JaDhllkJk5ap8moDp658KT8FBpcGl_EdY09DBqVVOgSt5xJGOkuBHBr7BI5lPxR%3Ds16383-w600&dsh=S-2044204248%3A1784671276548532&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvZk8QDCN5kZ6A1dJJ4uztfJu7gUAhmBuygyjNaR5hlg98FveDsmMAEte5qEIR-vSzDXX2x8w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gk0Mrf5TwE4HB1MXHc1Lbl2yaX8ym1bep30_m6Xs7-pds3PsS__uOpJRrFlFgqjMBcjduv2ufSGME3HCDLuc-iuRCyKZcmXXCV1dRJ9LfCT7A3Xxi7TYAF2t55UGv4FvAHI68uezeaAHw7Inx9hNA52B9NNXrJvHy7vl4BXPJLVDiU0E79haN7FTfisORxeBgdCCreWtMRhrwRM942_poy81GLhGtqdBam1D9Hz2Pb64CB98DA2JRy%3Ds16383-w600&dsh=S-50198125%3A1784671276547071&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVfzk6TpdmFPKryrAKR_xv8D74J_YfXMZSLHxz9HQHn_My-nBQvM9UqxOTfS_LM5PoQ_BhFQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F91C6ycX3gqepiPM482xKYygcre-eXHGu-mfFQi3WpWArqGCP0IS09tFmlkODJFRP0V_-upvTWMdqCwDIeOPRGE7C-tmG2nuO3dEXYOjjkCRCIv2edtUL0iV-GHRjTgkKbfZsNwawxf4UEzzPHPo24VBk4my9eu2CjTnvEEqJd3ulCpq3R_gKiKgAd9z3qhCRYECUiKiz_EyMe0zD12DY914ma_fmxA_W8TDS73_KCQW-Fao37pzx5%3Ds16383-w600&dsh=S1110917073%3A1784671276546635&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuQoo4H2S33AO6SwRqXD9b_MT_Ec79gveGGZDWbVfzyYUjgEGtwY-LOFNIJe-4SsMLnyzCDPw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GalhHwtFN2LYgmAFaC1j_JcaUbiJVRlxYGB2w3oe4gl5OJfv1VPUG3YEzucHkcFBqO7E30wtBJDBnvF02US163Z8WTEn7ba0Lxpy4cyTKaqEzYvxdNTNFGIebbRGVqqY-4rPD9BhSx1Gt_cKPOX7RD9-MJrdaMEiHVtyjv6A9qnCdSyh-U4iUHNDXlHm6n8iPQCeJU602B8NO3P-bcI4Ue9RAZe4RPUJWGOiW1lVMPhNH8zbQnk8cc%3Ds16383-w600&dsh=S-1875581384%3A1784671276554917&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt5XoAigqHSBrr1IYJ4ZgDY6q8gsGDhYk9QNOkb2PuzzUAelBBt57vfwEbz5yGkHhzivPcC-w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fikju1B-v0DolRQsFkNIbpRhjwnWo4NjG8jAwFEew13-AXGVGQ4QQNbU2aO4qPqHX0TZXcF4agTFyGMAI6-t9Fi56Xf7-ScRwhzxByGG31Q2W_BXr4sALWZ2MljPLKPKyuunjgcsJf9zaDSqKjHm622dSER5-AAjAWkvVLnpTTjSJ9Wy3Ey-N5qAYmQp64ZwAue8EWnJDp-wwi0OxpBW1PCK-KZP-Tb0s_Vuxvsrz1wzMLbEn5_uHU%3Ds16383-w600&dsh=S-1038351619%3A1784671276552088&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuUXXL06KpJEu_nCvKwbyif88IJuHAms94M3mpavKAGvx26X5vR6fG5fvS-2obU4Fy_OXZDZA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GOjIiPstDHBa_jlsi9Hn3Nj0RqkGa3fpd5hMoYhbA-Qq6C6cP80iDWymSrXi3LWE-RktTO3ExT7KbT_Ln81ODnuY1zLdZ2L-AL4OZe5gIHw4ZkoT1deBefaa8xxG3vq5vD8-cHK_TXg_-v_MvIW1RmLE-9LoCjHLoEMxHHnd92lZ5_GonDOPlk9C5XwkfC_L5dvYsaEawytDf5D_VVcgGeBEx424kr9XZjvVeisCeGSpR-vudsisSA%3Ds16383-w600&dsh=S691242670%3A1784671276542223&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvmBKQvCJ-E48du4aXbcfZvUS7vb5VPkmfgMs8b-cjwuEPbSeXY11cR2hL6ZfHnPJOnUUdSaA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HwaW82_9ALAeIeaiR5dlsybrwfZpczGNIKmfNsy5XWP4SX9egtalAL2aEYdV_sKfDufMi7tgEaL5Mby8v5iUfWSiuEbvRmzfSTzOI8Ud-eSaXDp_0sr2puY0Ld02kqz-AnbMOUG7cJqmkkBZjKWTVbKA4loKWLvHJS9a1JLAEC839HBGEsRA2Dg8zUVHdM3kjQ899SB632C4liCh8_Iehv4vFbRu2djv7FottY6CEsQu3_qTucr7qj%3Ds16383-w600&dsh=S1965084359%3A1784671276553827&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuKxC81RTnEaEAAhJoTQnbPkywOgUZHRz2k_kI_jH0x1pyJaxXDX8u5fEiuhzJMBBRstJC0MA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GWlc89erNPPZuszNSTUIqpd0J8mUwfRM6vYiy3Kv6dcdekYFMnEoDo0jbvb2z1P2yZL-yXkpGB7bNVEGkSFR_dJkZwS1xfpVvKaZ7Wmk6p308AV2v77mw-rUbbP-eINjAFuVotJtuNY4gnSmsA3VywP7t4E3WmDv1MFdVXfnM2h34Jq4s7xf2uGXERd2kUjKezGUagDdBD9MpRF7fJEpswHMkE48x6MKVNT5azJdolmdsceqyRAkgi%3Ds16383-w600&dsh=S-1036871742%3A1784671276541964&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvRFXBwt_q7TiPKFLz7XN-xvOKuduivN_EHCs12akS2imHKeidkweRnidlZF5Q2RwEtXNP-Ig",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EPF_MpGDi5Aw9S-6bNnJdj5W2RFklGlyDXaqgDA8-Wn1jlnVQJTsmIR_aAc_e9oShgFiOyPGF_WZ2CvqQXo0b9csxCSjiS4Yf8B4d85hpChCADhZ7DnHy_yOgwjPFZ2qLr6vhp-q_MI0i88pfZ-4M3MumPm7zd2dfS4gdgnh_BYXSr0zlJ77k7o_rJHcvhidXCaA9tWyCpphzUwI6Z6jq_XCBKmuaONYnf6w-v4T9DIVSG8AoqLIU_%3Ds16383-w600&dsh=S1996946945%3A1784671276568392&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuksvZXfRx0u35aibpCYtdkAq3CH_HIv1QWRIhMON06HCvnJsXLHiV4-oyGeasXomaVzn5f9w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gv9Bf3qXCHrINPbc3_KJxcf_eaNZTeqgfAcmtzekWnar5PUE2dtEBO6WC5UqHwDkB2wE5ZCR7-PI3OLGDNcP7ftUqaw9-wSohE5QzXwulyDdJOi1Vw6aBTBaUILQXml4niCnx0MjrTv6i5QvIJl8bo9rQtjv8PhcB4ZLD1dZBZ9bkBpGY-bozxWKo8zbMuy6djhILCyk8R1EQYH88qHO6ZFTAevY9AWoC002Mjur66V4nZfGWwKWMG%3Ds16383-w600&dsh=S-1188587724%3A1784671276554882&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvAJThc99U4KC0_bZEMlBnVJ8PhPm1_tEgGy1D5tQHSLTa1BGJ8ObeRsikqhWnlcjDjorMvfw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FmZLGuj3mDTjcdPaIU4qznRJNY0F4Ds_OeB9G5EP-efLG9ALaAioT5mkVrAoP3eErKNrZGAwrcx627AVVXOIFr2jxn258vz0TDMWts-1uVAMZiTSnCDN2HY3YjYRVQFIVj9xfxs-Fud3q1-yu91shTAKSrb2ose4qsjdChpQloiUdB5tSAjp1wb4yuEPIwHbxgsls1p7M6UqnUGKitNZfkKmRc5ePRQqYkCumRhwq_gWSRP8rsAt26%3Ds16383-w600&dsh=S-1744264494%3A1784671276551983&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuQ_bSOs6hqmyicenWkzE0iNBRMBnRl0lFQtjm_btrRPx7Oz9UtQdxZe3GWv0DkM1BI2ewOWQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HIIq1fyHli7OU1V89r9YeOssF6HuULVbuGjKe0eihjOsqVLHViJR43U0zi_1RG0vU7NwLKVofUYYyNg2svYUofvelV2srG0vgvq1-04Zp4XqCUXzEVhuTSUVPeQM2gZRpF5UdRl4vcBjlThDLZVw74tCyM67S63GnsrNi9W4n6WluMxs1YnAPxXcfeWPhD3OYbv7eNex1Tv7afF7ENDEBI0pJyu5V8LBLtHX98xDBsw1Viq6RxE47E%3Ds16383-w600&dsh=S1996946945%3A1784671276550988&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuANjFTI9UbyQbAwvVklwzOCSVCf-2ttScfidccta0FX0jzKd_OmoG2ycB_5kbdPNg9DsfVgQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E_POUxxfY4C58JrVVmAvZHYAGR2_WFg_HZ-mSGay4BtPUKnf0YhY78CXsZdEHalp0AdixPtSiSjimMkYlM3crml1-dGBA9TwHBd7Zn-Gt6ZyJRO9I0Y4EO88z4l9XPeo7K6RG8VX5AlutwSxv1wrPlzx4EM67cXYxWfd_2orHjZ1FH6rZhV0wizmP51C0rlCLuQfVdyKNzSXH5vKS714d4vbmxKnDPaxVDKaYyWL821X-n4hAPxRHl%3Ds16383-w600&dsh=S-1390999758%3A1784671276574174&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxunfPrDReI7i56x9hCs7B0g8_65BHnYL-3R68LKz4vJH5LMoe_IQy6gCyMpr8EGoJ85vzsyGQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E1s6kGf2PLQyoTkK1n3hxyw7528G5Njb4GOTOT_BloHpS_iuI4uvtaoEALgGjQe6ZYsEndw9pgncLcShxgaKb-WP-7j8DmgPU5VbvECJspHSvcmIV5lnxeOWLFEcoG4NKhxaYEIa5ak9tGZI5cfG_zMEOsFLjA2YJ-8U-DXQjCYVMfatsUqEx04xA0SBtBuBirTNT1rOQUGWoWf01Ikih-tEHb1gsCoBTGrs8OQzyLWDkVl18aDRC2%3Ds16383-w600&dsh=S-1172319615%3A1784671276546544&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxud3vPvU7Gt7MSM3nWGSJMygYaXEOzrfklG-2YPcvR0zipulTauvHR-LfvOeluTgXQxq0dYUw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FneHMG-ciRNoSob8XAmcDQsmOrovLs_P9CDaA5CsiWFwayhnT57f4_XYhJC6_DxMGJkKRZwNB78wr7gRkSl0RjdCBWrV0ZfUxJblg3xDjA9p8mde4WkKxy27QsugTlhzvjkWcLK5vALUQClxwjw6ZrkbQa_gwhnVkVM-QC3pvC62XuoaIpCN3LEY0nmQ6E5ShwnP9kw3TVtnXtNl7kAUcTvIMHkDXplnq24HuIegclvxSmxJRpJ-rc%3Ds16383-w600&dsh=S-1172319615%3A1784671276557662&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxupqJX7ALnAC6j4Pv0nFEIIxAcxsiWHswShrKi66nWhOl9Enh3jyYq8JBRyRaCw3fsn7Hn1QA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H3seg77PoJ7ssYf1aaalFkHcQh8ifZO0n3cH4ievqeolot8H5be3N6WYUxrvmVPRrX-nXFeHAsIju7qe5KAUJsG-kFbsN4UlJVMCKRF2UP1OKEZCQiqVigmSNELntK8Yz9hZpqz0_kTuIU-MhyqxUbo7ASQrxTlbOF9O_bdHTdfS9z1_22gZd_eVjC7_zrOVt4s4FUSvIameLhhabPFUggnFxrnChqmc8mYlvUJ_AzU78Z2sX3NjJj%3Ds16383-w600&dsh=S1110917073%3A1784671276557565&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtvM866tEj9pZgLKPa_k-klE4MhYR9n1Iaki3o1P1NQv8M7LD6ptkBUv57pdVKQ1DZYIK2mHg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GfELSD-wo2ae7zJmyAX1C2au6iDW4J20emuy5u842rfNXv62bWHFsuRq5enUR7JZ8hW2er0G29bycYOqhp4miES4_F6fWt91NTeuPO9C6SbfUdqDQky-av7kq41yFHcZVvkN28XBQ86rmLtLQOJkAS7aL4aupSPIVbcgZn-MEzMjLe1xIPKkLABPBZ9bVBWeoAbQ8UEmbi4xO6pz1Y99afaLUpO1HTIV_bXqLDJH9ljsDsAuDTZHdg%3Ds16383-w600&dsh=S-418454306%3A1784671276554917&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvwmNgPoCg6XIvnIOwye7Ym7CVu8xaUWpmWyGBU6zMDTbvUfGckgDx1_WITiVFMs7uFQ-ehsA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HTeGNKiOwY873Cgsqxq6anG7ritAC3VIo8UgNAtgD5xnngBaqNY1D9_ntWcLHT908VibFIe7E-USmk9DJzEAluadpM9V8P0TmG4CFZIbcQZ_aiuRjJ0Os4UxEvylOs16jSMsT56xtttJO_PU6p19qAroJSNcyU6dCli2NBaYw9ELr0hx4dgRORfbq2wFrs9tqrfiUdRX67ini-6j6VJHBN0SEZMgcGXcCt78mhWnMUrfKUzBOiQ2hs%3Ds16383-w600&dsh=S-2044204248%3A1784671276578608&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu6yLnEIt8adULNIpUnqQauaUcvN1gre5Sdxr9Usq7gI0O3xWsAHdcapygOVXAmOMje8F2vpQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EPrpy1kXLj8E_GERpfdXSTz-J9aP6iwbPIiPcWJWXOVjxq_tqOhp1c9eVkhR7Z4GfFhY1ibL6ryddxSwZ78zrH9gfIUc2D2H6kdZSVzII232ubd3flP3VPgGAhrPKsukcmuvIh8rY517HaAaa5yP6DlLgPIaLGon1FPkGKkG0h31OhCBZdWQZp0y1OT5XEPtMv_RcG_2KraOVbctgkDQiKK7J4pTOQBTXU2SFCAWjbEH0bkBP5b8pE%3Ds16383-w600&dsh=S-1038351619%3A1784671276573999&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxte-VCj8gKwXfQATM2JCBWCq6_2BByUjc8mjdApC4T8EuVF21asDvDe1x5nwnUyD8X49zyWcw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GpH8qIHdoSo8qrtAybJBHiFJd4sl1lFWvX5Jxy8wFt9NQskzokCyIYLZoV2SoebXysSTHqiYOauWg47WzZ77K2KeB2PpP1zo-67PN4l8YL0ft4jtlduFwHhFqb5X06j53PxLu8AIAo6lcDlcpMxwkFbPqKltXr8HQVwPnT4bMqerRQlcEG1ykTv1KRM-pjeTwFrFkzRBdVpO47Imm3JS85P2j9NS4bAeKvm4RReD9guIUH7-O-676m%3Ds16383-w600&dsh=S-1188587724%3A1784671276575787&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu5sSC-7f9v8mCZENWjPZKiAjjSj7cY1OhbDiHqa2s3QW61bIcj3fC2an6mWFfklRMdwaACmw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H0TAXwTptES4gRra9wlX_9yGN6oRWGXFdLEUZemGdJNdQI9fJjVAgbQeakiLywxXrUASQn0EBMxd5PwRJIC01bgiIH63E_cLvHYo6p0x9yYgCqQ-zH4q2qfL-iOq9hEP7Px2Ziv7nEgPBxvsgSV4SZ-2g8xWU0NPHMxaWfXpe2o90WqsiuqPwnmAwNYjC4Kvni9biaixw2ZytJQRcVg6JWTxHMhtQ9P6nJFPD--iYHZxv3YYuJOKM0%3Ds16383-w600&dsh=S691242670%3A1784671276587867&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxshmJPQL0LYCjK05SHKLPsl_6fKELf9hBHBA8aAlUKp0NlEyQqWHiyw9idbWZEiVAkhVbJM9w",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F_Yq0S6cGP5arS80P3yVFUl-uBkQ8DKhQ3o9Pgy5vXSy2NYuTplpqPf4Ee-9Cqi7NSFm8c60j4nATwtQEC-WA-2w0sEgq-USS0VgCyvsIHiEymHbDgKIPuAh9wcxnxbZ_YU1Lka9XfpyAo6Nd0lxWMnlJuNwxDVrXgwIAjPLiiTNU3byq-RmqNRs5xAO3k-rORrYF5MrqWFWHmKbcADjKJ5ENkMQgVcDgP7W-Q_g8AKcFZqokIz9qL%3Ds16383-w600&dsh=S-181348360%3A1784671871910328&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsBgYcWprj7dsU6hI-NfIJnBdKn_zMtfeURadkqhAyqGVorLAac4VPiX-ukd7InZjhkHKEAyQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GQwiVoZrTDF1LQxMkoJDVVLZCir0eZTVvR9i3tBOwWPGgiY6DQrb5Cac01Tk7ImXnXIYaNMhagTC0TalmMtfx-1fsTZukduueXW_PoxLWfOvQK6LjwuuPBCpLFmQwD_wJaTChqmZcn2f2gi0SledvNEms1L21vWfqZ_9fJDVxZDxWzvNjzdaujz84ytrpvPuYXv99GzrxQadvELiF63l8lNscbwH7wMm2tmb-rUjRbHC-K2kdpFT74%3Ds16383-w600&dsh=S775732460%3A1784671276592783&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt5VT6H_iPj_WoMmO9NDi1-dTbEgfQy1kxt44Za2QKwF7C5LKlAavBfKCAHiwuLpSHXPkz32Q",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GWQB5Db64e9j7tE1aiSzy-Uqa2xWnRx_UFTZwMyisFewxc13Ab_KgfnwyhsHjn4-AlBqzl90DG8Yd4mXeQK4k4HzM9WeWliFCeQ4Ix0spVjwD-SiyU8R36rExvZWCR2y9IG60D8c-QkCSkH46MzZnDXSj0DBVmzZrMUnNca-BjTuTw30UmyszRLalHVY7p6kngPwo5GbMhtS9XtLPmjZ45xmD-gNUa6HJVgbIR89vzEeTcuOcs2MIj%3Ds16383-w600&dsh=S-771330088%3A1784671871909381&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtTLiq4-1O5sjZ4vivXD-AFnoSN8H672oWuqtA1e5VVzf4XUcLmjCNu1UoIs6gMkps10vOH0Q",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FRCM8Kw08zKbw8hmLwbs0CrN2J-lQrXtlpOGR9DAUWFk6Fb4gEiNK1jZK-rlHTMxm7wPhx8GWVao0KL5gtbd08BSBSr8suu1uCsl3mIFxGYCgFbq2e9TNME3MtYbV4u623stMoJQZrCoVRUmfWeab8kwNHRORgFhcNRB-vgdqb-B2Hrf-Gxjl8lyvdd9GUp4m2H7v7jgMGKoMPlRznDmo2AMrW5ZWs4SJ4kK2fmiwmcoDgSe2O1R17%3Ds16383-w600&dsh=S-1744264494%3A1784671276604701&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs_yT_koPnWBJxaxspz34ZkrN9_CYVPJE2_clNgkf47rfgOlJc5gEJoJSRLAhpoe43Px-CbBQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E7hcSsGXheHxIJ40SWq4hUpUVeBMHqiUpxlQ9kXqYeXcZkwIhHPNcFYVlOr8Jrw_1Vx7Z3Fqnpaefb8fQrxOE7KVs1ubgSAT-nhkQ8Avv3PJ90Bj7yQIQYQI-z38anlA_dvGHfhGwc1UlGfIK2BJiZ41vQQf-kZmzzwptfpao3Rn1jZ4w3g5NaUZojZD057snab3azGOJ4RpdElz2BBmTB8XlNnIq-doooqqBmA1KGSSdbRpz7hsg2%3Ds16383-w600&dsh=S-1238478504%3A1784671871907789&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt7Tto3x1FHUae8XDvggr1VERLBox9mJ0S6dQQIq5pqiz4jLA9OeuS5PraNjEdE54BR00qEWg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HXwDkC8IHx72EVm_scA4M3syLDVX1GzojkUsLJXngrdoMG78P2Nksa3SGmrJ33pM1EQf4mRvA6mbttXnOeM15untJpIo_kvltaJcnbgt2O-tb1I_bsbaoAdhpRkTDFCwsYlVWT1zlkcsdZpzAyimmbJ4nXFoM-1F_zCKglkJFKDj2PvIPKhZhmPGbG2cwAUtC4eHFq7HZsoDrP2exKKy36HtJLv4Vw7zpZABg8QaDS5CDTE2WM1aeP%3Ds16383-w600&dsh=S-50198125%3A1784671276588823&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtxYjwhjyPHmkOjrgLJFeNFlVeBymF2mULQEMiQibph3RI6vCg53Cd6GiMJviq1enBNq9Oibg",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E9WWDJ9xzzKL-qKpqXojWwPy_hFClQw4dDccHYxWsUpAQ04xnkaB_iS6r0yyZb1Fu8g6dXKBL8ArFLJBZfSFiYRAqwc9jOQ4ZdiFG5zNHkHKyy33aLk_KH_WGqflDyLzD5BomEgeQ7EEj6BmrclH26urqqZnMilH3Jel3OyxNnFd-zAz7nJZcVCZX81X-PbfCN4l87HDJe7pxuPTzyk0Pqg-bAyx_Rilo2C04p7IxH0QOqykFaW1Vh%3Ds16383-w600&dsh=S1748799207%3A1784671871909885&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuvLpPZ9VwtaW5JIM2to4cf5EYK6WTEEfk8DQpKKCcLgFCiVjRAFb4UsIxRMz3DUVY_MaILQA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F1__KtRuFtt5dZY1teuioPpblgdaDrgG4LxfIfD9_kXIkmwe0h7rWS4PTD5rRrzKwp0_FDAPAgRG72Zr7zPnIksfLl5bhcjqtEOA5Q9iQdyu1XwdiWz0rfNVbfFIp-rLc9_y3YfRAFf7h09rHgoBTrveHYjr4Y0gkkx3M-fdJ-gL_6hM7LPGCEaOwLaXGRjtqre6F9ml8TTDi90DjLqhDJvwkigiewum6wxCUsfGh-AEAnlEJaI9gW%3Ds16383-w600&dsh=S-771330088%3A1784671871910796&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxumlJrFXxy5bNsOohad8vJJrdJCPRzIMrPXCZG6QK-qv4bfPDjTOP-nLP_toyIGloLqysIIUw",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HNhmoox9hc2Ifsg8O1LjCXdAtjYJ3O6Z2sOyTZEg7Kk3ZxUVMnUYSw0mDvvh2KYb_nGKsmdTUETd38mlLRDsKSy9pt8RHzarQWel97nxtcHTVTOVWWd3rHL0o4DKuYqXQPSOMAxt7aqc7qMpqoNU3ziWZM4elFl_nx_-I3YEYWIGyYl-W1FLuJ2HRsODh-wE6XMSnxzBTUu2v7MBcde9QKRHg3ocbdKZGP57LqSOzBLwk8GIoiAovj%3Ds16383-w600&dsh=S-1238478504%3A1784671871933072&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtcaBRy98Hz6kITPZ7gKtwa-Cf52891arOHIEeevm98UFB3KrKwF0esRX5xTykoNn73gYdL",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FW3GY8wUyLUgH-GDR95iOsbFFfR31VsnO7ZvXRe7qvEe6Tj9-KWq3p-miKpQa5NRzNjj6K3KLIXABypTGrUdmATC88H-jsyaaWhM6pO9gIAs286ubNKmOHeSr7N99HmYL0ygIE_B7ChVQjCMiLbmOMTjiVOxE90n0re_zrQ99TqN0GN6gswzld_ohTwBAjnAMba73gRQ01Vg4XPmfFhnr08_Ek5Je89ocBZ7zQCGckebi9N4Zo9h9J%3Ds16383-w600&dsh=S689506340%3A1784671871912872&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtXEDjMhskCT5ke4hUuv9AZNk_s5_OqMd1DGcV7rRvoy4w1PpIkJhSvzSfqpyeauy0f9DRJ",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EBfJfvVNgHK2ex2Ef3CAoWi39rlzfUfJtGqqEv9M8L1uuFuDRLdYJCGvfxcxYUAy9rakTVSXZzsuScuMfrHS8ieqInh08LOy-uKHlxJ_R9f2xHILU5tVJyAIp5bYmVIkkq09N4EKh1XO0LjXsl-O9ZL_4IeWpm5SQtLf_sn32jA91ipl2ab5FNpP-NH4eepezWlaxYmsA91e1f7mUkJUiS2UhFeR2Sb7PBE3eE2mEQlp4zY6gD48Mz%3Ds16383-w600&dsh=S-181348360%3A1784671871912111&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs_tQki4hjEriBC4OK7JpVwuIpEBFvnGQtviZWUPnW6lVHhroWw2ehPCiLcrWRmQ031pAMc",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EXiH5fvEjoA82bMak-Cu_4Tn2IyOXgbD-W6EL71rlLJfzJ4ACiV4JqSILiDYU1inZfeRqDWbg5k_2wZAJkYZgldfcMc2zqG1vdnT_bU6YnL1WmjkoRjrkG4rHqRBDqX5XBqKZSNpJzQEqP483QlNNb4jll6b3wAVIjpqOFaKG7sRgLbI84xLqnIlc_u26PeH43A1N1fo8Mtuor6VuBjC6I4DRq517rJUzGx21f-FfMll-CW-RWs1Zh%3Ds16383-w600&dsh=S-771330088%3A1784671871946489&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsPQVGucoLR9pSV3RljEgL5VdG2cKo_xhehyOtj3ATsSrwOSQns4VcbIJECzHjgkUcEIB4U",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E9SfKa18Dp1mN0rq3CFHCVTIKZK8QmGYvuhQQthrdikXPXOv8oH9wH5vDCfYSuytYJGxW566yLRip3FFafjPJx28pVsBy03_2BFVALt4wpQctK5c07k7_BCKIXTeVlfJpmoo1RwxytsOqZfCfFhD0uTQ0it7DLe2Gvy7Ewd7QGtzJylgxw3dv7EHNAejIKq9dJVP_pRq8AtI1RkoVWXqpp_2pyHAaEm_Ez7yzF12ssT4dZTDncyRrL%3Ds16383-w600&dsh=S-1238478504%3A1784671871923846&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtCViRzPhVMunGzR4TAprLVHai-Q5ZBupyeZ2RrqrsyNDv32VMVoWqo-OrGMwvK1pOThDhn",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GMzhvo1_QYCMeEt0Wcc3rswJjVbRxiEOVBg-esBA14Vjxaf0MPP49FJ1AgxHAM3F2EVsRknLOSxaackCSZGnDnI4nZI1m3Aztn4B59o2ibZB_tq4b7KaLPJntFACAW6uuXCSC7a1ZU5PpZK3NrkNrvLiHQihyFI8oTaGS25t0Gqw5AbQm-1oPE4ZWIYEGwGJizU9t8WVXbvWF_BRxxj8qN1sNa5zmwskyBBlB1OLpU3JBKTBaA5b7j%3Ds16383-w600&dsh=S-1238478504%3A1784671871952750&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtLIzy5zBXJ8xI8BN-tRvws5lMsdhGRinTu2TZex6g3_dlcaZDHgWouZRbGaAcE1Pwf-wSM",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F_M26XCyZqrUY5DAinKKgIpZr29H38Yhd1EQz5dEJo1QjlwlGPROiaWh3N87iNW46PTZy9zfc8LVvUyksU7rdKEj8L2_IPcHwNaXGm_Cwe2DBQMzDwxhYiq-CyxRG4nZET3iXtDvGDuI6vfuNCPYmMamlBxJUdkMf3kpph0HIPfgXSwRBGHyQ-pXMjmOjqrOCtPjEo7GCzWVS9jrbR1kFLDWlLxFgVOcqlRacQEkUs9bZ8dVEVCbCF%3Ds16383-w600&dsh=S-181348360%3A1784671871940982&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu4Ut2fXvjcHaj3ZohGmsf3qlZyEpjI_FzATGJ-AoRfz2sczoOT-HXCtSqu-VjPoTfNBM5u",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ENnoebeZ7NRnJ5Y162lCVorx-A4hnfBWOJ-J0oixU6-25vptYTHKCrhVeN559osGLeZ-Z8yocPN-_2COXJN2BsB52jO1YqXMyWoo8j191sVBQ2zxA4iUGgXooStEpXwPOsV5FSViYERV4Q5Z5OkbR5dzIP8ItWhYI5q1Bt0tHnSvBCTO4bKU4mKWDKYSAdtMmvcc2jVJSpD7bvURa5IXS35kCfF1yY6PLfFvPK_ZMMRG6YQbv_S4W2%3Ds16383-w600&dsh=S-1238478504%3A1784671871950891&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu_dFYTOM27bpgU2id1hJzBr4ydaiXmNn9lHrDwcJrIIBHE-dZpgx4XrqK7fUfbQIrdDmfr",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GY5nRQLn1qNp-DweFBVIwgj-EZ2hM5ElHLGgMUwo0WnrhHjf1iZIQtFgtszLaa6XP-LefFr7aTwcTqZL-wc837o1yxWHcTHud_sKIWGUDV0Di0ALBdJEmvchA-wHm0-CoznAlY7YAozi7ATen0wy2OBylXw6X8wXVoTHpJ9NeTuOS4UmelA0AaL1wrOVRubxBYMf0CkI74IuZ0LM3KKbvZWAlsexgl6jwOP_Cemk1Uo8GEN-D-qLh6%3Ds16383-w600&dsh=S-771330088%3A1784671871954092&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtp_Fh-GU5JsBngOsBnmmTwofHUuLl4_8BUmnR8HvPCiDwJKn9ABgP78s8Rfv0lETubjT6t",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EQYd8mYm_tpARbQYiW5qZJqJ3M6RotZ4udFSvvXj0Dh0h2cD_Xi2WxZEU9pqId-lyf5CB0ReI2f2aH6zJ6xDx9Xhhte6tsT7TIbK74YCBhYXnGgFWnMiOKeFDYyhmRz6Wwv_wXSDbQpraw12Ec_UwXLqmQzFSCAfIlk3mzdyChqpzdvIYKnOJzCdDg-v_snFbE8JaZK2KU7-j0oOhEUYjfGQmvyD-i00xrUitzTS0KPl-bf23uHONG%3Ds16383-w600&dsh=S-771330088%3A1784671871934521&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsUIp-zvYdcsiY0cYKUd649XeLWgJ2h2r0fRtI0t8l_Hn8J99mThLeTk72RmuwvmYts_MHa",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GVoSQ-InL8oCAKuM3fH6zmjoAPXcNQjvcQaPM1Tv1bfhQETlEgw3BVWPNW75EbxkFcCBbJhZwBRl8VLKqRNYTi2Xrt29tOjNFQGlX8kmEAB7iWZXajr3856IEYZatL4GK8zGLDx4fNUOy2ssjfEK_gvb3yuJ58y_IGKcFDtd5_cEYvHD26H1DUQhftnaa1WmKDy5z481mijTPSX3RHUtx-4x9bZJIq-yIcdAHpR63LGupExWtBgrcX%3Ds16383-w600&dsh=S-1238478504%3A1784671871944736&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvDmpZRWgx1fClVKqC4EnUYpr7Tqgf7nxLeSzVVVU1uKEUmcoQUTQM8Mf3foXLNo2ZtOEXa",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EXr5vhZWQZYqrDg70EvFBHRenI8n5hIv5uD3DtUUWoZIOdk5rKV17X_ZYP35dwRdK2s_Vjo1UfXEWuYRm_6lu9q0g6d48OKTY-bTxcu0TVczC7englAwNmNA5xIppWpzHRMO7rEZ9t0dn7Y60_AsYOtSPYl5OHlc3n4nUyVST4FrdyJqyyfn7-SKkYFXOuGaj28WziWsFfV-2OZ04wNMZvnpzHL8Bok-MvqaC0n2qh8dEhevxjKo1M%3Ds16383-w600&dsh=S1748799207%3A1784671871979721&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtbWRcODpUjwbeTPllkx_Sba6iHRhTaRs9MKgyDfmIuL_gt2ynj_ql9PpNoQ6SAsdVHHL1D",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HsWiUCP5bsoHEzdv3OEZVQnyQ4Sw1EjqhI8BOWM4Ew83MuVTFg1GCzFyQG1KUL9E5o8-TG7yPa4GkaGuuSKikS9XrV_A7j33qYGeMz8VjWTitmvJdAg8KW8rIgzwT1W15KTCoGRL_EYVeojUYgil62OEADu9ZOscL4qQoFMO99oIqOBJL2m5xo9Jwh8jSo8zvBj_rZcwBTQrCOVxtyVt0_WytIwERb-DyYGxj85apMtJAZxv7RfC4U%3Ds16383-w600&dsh=S689506340%3A1784671871932207&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsnW82Nu1h24JA1UmYRYcOFQ4CqDzoLh5Al_5saKVZ5Vk8vJHrr_1kYSWr_mqwQ12aaY4MN",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G6xfsIMG0EtKiVRGYBRTeUs2VWVVyMux_h1VZ87FrBP8NwmSPP42huuaIyaVWqSFelkk6MOUQ5gSbqnKFemBl7XyVr80VZWcr7DO_hmAWY1f73PjV7Mu1FeI6NAUJFz4T4x2DtBKlaXtVoT3ACc5t35XEdijmt16UmM5EBrB-PL3J4mC4y3MLnXdKFZVXQOnK6rF70KHWJymJA1UHbu18hZegNT9NxyXcC74MbHRMDSwWTaDSAUPOW%3Ds16383-w600&dsh=S-181348360%3A1784671871959543&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtsagjYpksZuiyxQQq65kHnHiw-JPpknYjQ6-APX-BpUIjTAKsfemRhfmIY1jPSF7XJUBsL",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GsU7HI0dbGjhMDQ8P0KU9Jc4mlrTVkzAb-a1b6THD_oO45yi_es0BT9eCQqCDQ3lv5vvoSycv0DIKBQkjdioT7IhpO3TvZ_NZt7cbsZyfus6XdgFbgeXF7ranSoDl6YecQqCrnouKPjeZEprdspMb2Y6X1iANW_Nk_5KCh2es_AKTNfsYbqveZnKve0T4ERJ65DjZGzTq5b8iCyhBz3wWFZIS-gdASoO4p3IHC6ICpFos_BvpW5xb3%3Ds16383-w600&dsh=S1748799207%3A1784671871979704&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsuLMiiEqOQqyT9hc4FKY4RCrGdrDwKTKaNvVuq6S0RMCN8x6rldk7UHMZh0lTmDGAv0zcN",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ft9JfvOOxP_1LVf4ED62MX1ao7-LSOTRAI3-Zrw1VhDTzWHR3oTKTfjVLjv4cRAkCUN5RFfy_4srDZ5VMgtobK_DssOjIhFOE2AK43GT5zg9ySjfqOc76EA0Z8QcaXoxDufMUELzwwPTRj-rtEUygfXRQiZTSUIZfLkzVc_y7GlZb0oXXrEFGwk0gnAFWpjfeqv_ZMpaw-J7wycn_warZYP4YeZyXE2m28F7WkmDWa5I1-OqZ-ImM9%3Ds16383-w600&dsh=S1748799207%3A1784671871979720&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxveKIBLmG5-CNmsaTO7M9tXffuAwQtwzx7uXFeCqt_6mLJ2eWNGcGn9KGAu6_wd6So7NrsJ",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H1at6Kpb4LozpCdBaHaEsLbi7c_y4lTLlwEM6KreMSsJs1v1YkmBBHSNDc-B-JszV0PxAKMGIZoHvQIlHyoIx9kGuLr98FAHlCuMECuf6aSGfd54OJnZQG2yjKbFe9dO9kZXT5GTud5MvlIo90wJfU0xHAbCW0e0esgG-4TW7-pi6xwMuVzupT2sDc3vAmdoAN0x3Y-7Zb0Az3wyW2HBaVSHRGoYxpsqkuGXN1h1lSmOPSr49xsPwJ%3Ds16383-w600&dsh=S-771330088%3A1784671871937175&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtDX7axsUZatLqtL1XLyrTaSXrvDiBb8N1UxPbyIxnz0F4ED8eKHGw1EcOBXrs3ueplQ5XG",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HqRuqxa6zTffFTI8CXuU_fhrFjZrP3tzIsTwwD5Iy_wKyvkzjcOvPIXucAlDigBpzB2TRv4QpW8KHveQHvRrNbzNdz06_c6ZdcMJeAdEeJSMO8iiMJjuxir65FR2jB_jfeQVBHrfuInOItQaG2ArEQhAZbpYS-U9TWr1T3tWBxxuex5rLehzGs5IfKsDtSjk7jzaXht0K3Rgm2_AT41bPZjmFUXOdl5RkyFdwfPjNL4avPGKnOAD7p%3Ds16383-w600&dsh=S1748799207%3A1784671871980501&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv8w-i-dFr_V3eBv51qEWgc9uybQGKTJcdkHUCBpwisSNzBbuY7BbkkeIfVSzF8ew6ic1yv",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FBsa-oIB0i8Q4RtKblJPl0OoRI6_Szq4iAKITPjbfBN_tIJXkfybKDqx0z8y4mmJ-QNjI2xt3JNArqelahpzQaZb2aJNFpax545Hc91hJCMnhJa8OaKEHwEkdemnrKZL6vub2QIofaNQNizxaDCXi923iA9BJMvymiBYrew_VOisnPCvmDVhivNviPYAS3ICQ28K3mfykLeaNpjVCjCbKjI3eYtV67sqvOc_LFjWDJaYpEGvY32EcT%3Ds16383-w600&dsh=S1748799207%3A1784671871979938&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxukd_RkzecoywhkMY1PmUfEx_vdXPcfIGAsZJefkrryqX-Inh-A-WUNdQMhfv5fduSjJ7YS",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F8l4kyXdzUg4zPonq4EQKIcABoWP7AbEdor8BgyrxgIeKNEPjDuQ1x4HZ5d-x00LlcjD3KtbdvUFOY6ODnrz7j9lYugOJ2oMzWdKu__4s9y93fQETaD1J2P8EDyzd0HXHHQC5J9xzgNuoW9PjBKOSMScGbnXbw3qGfscB-iKWF7aUVQdXGrzejEVdWon7hBpDJZ00PSQHbXTnb5bM_hrXkJyJ_iaPoCSwYHavYcttr1KRDcRKvJpip%3Ds16383-w600&dsh=S-181348360%3A1784671871955854&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxumA39LShu6kexbfLLwY46Npm42qlTo1tpAM5uRVGqPCKkWSfplufBZxAUClPXoOFnjQ_WM",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FeIJP3G00vRuXJDuhjTlLypDkKlK4_CsN_vZ7QQIYT_K8a9oje3VphEgvJQj1kZBjbIWNhwcW1BXaR-KBRaRu5l3_yDvoLtRn2l2V9FDbsKUY7OeD7fhWRKNHCrWByzHw6vpGMJ_sBTV65UnYi7vn1uMkaqHNHSHAJAH8wX9AxKbQ0_MFKi_JEB3YVZaMz0JIA00qgUf4YpvsAAFK_tm16NViKTK0O0pGeK7k7fbTfUgysWI75UbiI%3Ds16383-w600&dsh=S-181348360%3A1784671871952944&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtKVfx0MLYw0EtICUFD3elrP387aIUHGe0jVbntIparClZcmushDaVeUZURMzaLMp-0JYgr",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FrXwNIj2cadGng7I3Pl3CXylqD1dRRpp6jLkIzpTpJk35Hv1czhtyxkQ3Q8rrGkPnAFZEa6_yxcstdDMIV2XFUyO2P8EHB0rTeiQxT4Vrfwc2aeBfCJFO17jjhKJTn2cTypMckxwsrQA-lRXOmSgfcKc6v4R21ifbDiDgeo3x33YxDgpqN_4ZAHUIqrurGfV7U_ViIZbrNkDs61zSHE1ZMIJXPgs9Oh-UqScstZdixLMKNd7bIRoUu%3Ds16383-w600&dsh=S689506340%3A1784671872040090&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtKiRJIzE1JeWdjoAPEP_HCsWT3D9XWI3CCPXtiT7YYQopEaQ78Aly8w-tjk6UorC03o0AA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
         }
       ],
       "files": [
@@ -725,11 +745,11 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         }
       ],
@@ -913,14 +933,38 @@
           },
           {
             "selector": "h2",
-            "text": "Vous avez besoin d’être visible, pas de vous former.",
+            "text": "Vous avez besoin d’être visible,pas de vous former.",
             "client": [
-              737,
-              177
+              980,
+              112
             ],
             "scroll": [
-              737,
-              181
+              980,
+              116
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+            "text": "Vous avez besoin d’être visible,",
+            "client": [
+              872,
+              54
+            ],
+            "scroll": [
+              872,
+              58
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+            "text": "pas de vous former.",
+            "client": [
+              545,
+              54
+            ],
+            "scroll": [
+              545,
+              58
             ]
           },
           {
@@ -1226,120 +1270,116 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E3cxaHpFFu6iC2P0F6D1BaYUtkWH9ilK7ZuGR_0ifHeTlnMh72y_Et5jG00cWnMLbulMRxZ4Iqrt_gS58duxG-dIiJGdhCEO6rw3hSLxmYSNO67PORrt7h3-W21L4KwKJG2LRlbRvoh0zevUttMSb_mUViN8DybeP1F6EZkiHMlnursnGABOoSl754IBro8g2wdC0gId-xSnb5v_VcYRlVgkgDqhE02_wIA1cOGfZHFgP9HEMWwH8Z%3Ds16383-w600&dsh=S-418454306%3A1784671290505032&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs8RugZ5UM7ljPsqRNMytPUg_ceq1NNuEc98WPfov5EJX6V94x8JwDpJF6V150LXYs7xEbKmQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GNY7PY0kfQanmMnxPawGpAOX5liSYxFWFumeIIs2YyTqIccmNmHy70_1ifQzrLCK1fUVFwFlelzOP9H1zCAPZFC2NezkbjKYudepV4sz0tFbKCOcQ2JiB564EfnkgYBBS0Gqk1hqlzTj_N1stS_Ne80NDes6mzqWGEjuqlBblLjYH2TYql6zMF_0sK02YupZcAIUqMI6iPGUsfIrsYEvtsXNYtTScKrsg9A9sKZmist42ktYYOKIK7%3Ds16383-w600&dsh=S-1038351619%3A1784671290505554&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsfPk5nV2-2EAlMNiXAC_Nndu48d6pezKu2aBtHMrd0G_uF-po0MhKIkxNmQqfLC1b3_dwQHA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gy8iZFFegZ63LETuQ0h_O_xTwEV0SV-wjwWmCdRyLBjTV5KL1zN5k30ZJIz94xuHVdmfNKfQ6n4mUK2hr5rIl3BkUuTCRD_zy3zGuQZIJ34c3XmnR_8BvnUIMiitZu6X2Zs-zHJoRNlLaPhL5n_8iRZOeEr6RRgY5yQT03ngz4A1Nvl1KWL_kMzu-F9BhdQhbdr626dLmClzk8JNjXGkHgnSdfdyxolRuUfetQOZtf4Z_mZfP-GEVD%3Ds16383-w600&dsh=S-1188587724%3A1784671290507158&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs9bKnsp8mpOAA-2skc7Mmmh89xo6-i1KkfqtbAagruEyMc58Qdw8vEb5fgW4burMzPJe_xVg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H1neuihUdbX8fFG61IiLheqROmEuMhXL0m38x4-DtpDnOXq7R9-Cbpch9EYzFz_BO48vWg-2ItZF8cMA0xyAVrXOQWZSZmxCX3xewg3QUXCgr3jkaptcrEadVuUSjEJDIO-fdIKM3HyWYzxEwmxChNRMZQYJ93dOR1UU-fiOTdKnmuaB9QmuUct1JxT60R5QQ_ApxPpcxB_io8SrwtgSXGyjGmmV9x-yrce5dm9PCx-1ndfFlVw9R0%3Ds16383-w600&dsh=S-1172319615%3A1784671290534495&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuoodNStYb8_3x1vC_x6_9NgFVtdUemvOpl7jQTwW2f4hESfvi1anA6Nu09zfjmdgZ-AkGfwA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EvYkrXhL-t_w_3aBXZ0NmyVXOLs3MYBXHc-FCExVVjFdFza-5J9IdyUB9zy0spT3Ny2ikN2P02ORsapDyBvG8KoG8-OCLR9YC_ZdkRkcGCEDaUL8HZTXX1YKUSGcR5bFbAVmWEdKhoZ3cXX0sX3bSwM4xhM_CVauqdXgwactSRMEpcEXb0681CCEsnN5YRiozFcO_sjMzsSzlhRmqwBzHvSYLLpIcN3mstLaLC7AlVXGt62gWWLWBY%3Ds16383-w600&dsh=S1965084359%3A1784671290509497&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuUXe5AnBykVT3KPRgutPixXISFwlZCERTWIlJVdglPeH4k6J1JLSNTQzjSA58J6cFKjfNqUw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FGJqMPCpspbkcTGhMMvCcCTpZ9iKSXUvIElDVOIK0jTtT_3TSjrpSJgxngGOmLN4WWfXcnJ_EMKMLPsi2NMVj7LkdXpCMfbms9c_Kcb-FnhjanWLj3WoeBOFCxukDfUTwI1bvyYsHOaSQmMBnpX3b8BPWyqNzS2ALoiY4bt_2rr6hcBEi_CWs1B1hzv17BDPcT6QXrBanGB4hQ5ItNGxHgtlDb5V22bD_peTYApgj-0S2mCv0WTf7f%3Ds16383-w600&dsh=S1996946945%3A1784671290571005&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt66gX6ZHpR5Afkmy_EtWCCfTE95IxnsKxUYd5z1yRpdsRqQk3ICQmPH8lYX4u154KmNHa-mQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GEOghK-s2Av4JDXJSsFcXP9nsZa0P9ryiEx4jW6dANO-KRw6Ng9mZT_Tj3_sHbPlxwYnrQRY5WkwTt3rFLYui5A4eCKoYzbFJ2lqpGpPDz8ss2kPXiVfvuY5XGpDT166G0BqnOvYBtcxaNbWr084pRnFcw2cm7EMjT0q673sh7OqTxf-kUg3yszdvO5gssNHL5wV5mxKvd2uuOD9M2oq7v-COuK3oDX1I2wtoXERdBGn9Y78yWN_Io%3Ds16383-w600&dsh=S-50198125%3A1784671290565557&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt6HHm7XCFGHK3lCTMWvleIJ-Yoz-6thpTHse153486bvO33PmymlfkQvNmWNPLa4WLxnmxOQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HW_kFbnQIcXRlJusparneN6EDm7Pd5VZH5JdHZdKlQAQ9JdpaI_A-lS1TlSNnsKkn7-bLKsFO13Ln4ITn7Im516AfDzq-aWcAvgiAQsI4pVMnLXRDOd-FT8I751fgwDbkZmWeV3pCfB-o-Z3Ln_CnFyiHeinLBP5zjjb1z5UaxD6jjV9N7MD60p_aUDA0xMWvEIfc7FpCn12E5FKt3imCV6Lvv7ae9JmPnUhT4ZbEY_bO4I9A1CbrV%3Ds16383-w600&dsh=S-1038351619%3A1784671290574544&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsJtxVBh9DPClOga-VBUVPeP4OiRVqEVcjl2JsACT0pfVAtSQckGke5x-uBjGhU60Un9FPdKw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ew3f1d_olW1DTroPCEFsCuyrqMDzbUm-gvryxKhABJoJ0K5qXor64x8u_Z8P7xP9AMjZlgqNNeOA10xjYbCSCgArteS_EUA8nxGeaiwy_HpdTT3XwgAme8IF2QqX8GlKvLwShqWnlZ64Gr1rmmwC4nEm0Ah4IEPKTu2T5OgX0xkfXN0rW17Ki_S0fqsxLD8qZO092Tma-0mCpBMmh5H6OXObyXFuaLtGq6uErKgC4czMQWUM_Y5mvF%3Ds16383-w600&dsh=S-418454306%3A1784671290575244&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtxh6VjrnLLWuIp62HiWP8kOPdao8pgwnoRx-Fev0f3PuaqklYmKOP9jkkbnHll0vTW2PwKmw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H7aakwoRmc6bRAdqfM9z4Sx_aYCJTjBXf2W4C7QqRwuwjwp_tIdGqzHp2lm-JNF3z3r7g1aXv_HrUUKe_FL9coNaUcN38DuCq3GnubIVYfChLfRFKhTOKkP32kOuZIx6ebzhcan6If8Q0S4JcV9rwv1HxekUPfIldPj_itK2QBXnP29mq3rVbvOyEdpfMB7Te7M5AgBI1IV3N3ZZUdLebRlZ4JRh-y9DYEs4nhmy_OPXlgkG4BEIS4%3Ds16383-w600&dsh=S1965084359%3A1784671290578303&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuoQoTqODETkRcvWkOlQyesLM65fGuXlPI6dJ09xo5TZaNrg663eUdb8jr7KTZvIesPooT2cA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FrHACCkqIXlG4TjNvFf76nUcr0rXr0iPKl-fL2CV6HTI4Y0_Zg3SHv-1YtHmbgtdlABY67HwxYzVrm1nWRx9-WNreppCABhSY7phnxdNlondBtCc92Hg8ZpZOrRSwEHkjCRL1rSm2engsquZThtE3TVhkOWCFBByfJ7Nzc86dgvh9L3o6Q5vFDQ9OwwLbMZ99poDsxzvdJcVpB61dxCiuJpIYlVWYFw7WLV2_O1ugbT_EnuvktRLt_%3Ds16383-w600&dsh=S-1875581384%3A1784671290570325&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtMkJQS6Ql-cN_Na98e8yMNfkd7LzEKC8vMLWWT1mwPMxYaf4Jfn4AguNwbXZNZBw3lDTKOhw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ExqE0RpkrZMeK41yIi1QZARlPmFiUMElQzflq51fW4SMbgzBzHAYU0apmH3gGyNLpGMgbCwX3E3_P7PXFqdXn08j4sl6be2ShSBVLWCaC-PyMczYvlOf1Q6lcZ6xcMiswDxB-3jbEMRnAcsZ6V3_7Qim9tSRekFBdDrrFXO494cnd6hN-njPG7Hm1mojSTH3LTFcDBnGiBCAhxwoOk4TWAOsmolsJ9t6agEnTrzTURB1l5i7XcRhz_%3Ds16383-w600&dsh=S691242670%3A1784671290568738&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxudaPUy6QLvCq1T-7-szAz4eLqlHXeL-2p9MYFMbKRYqlPWC55Pu0Ezp8BpSgHTHdo4oIE43A",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EWhXAx98z9Upod3wa1UJ9GwRRt5mn4YKxFeuhLdA70chRbSq5B3Ta1v7OeFCpjoK6g-d3kWcLf4Q73avNX19aboC39yVsqrdf-GnObb_OL0GUm0BCtaet889oGZiuZ5f5kyT0ToaWkWXsZH1pbBCUqNxMVupJW6SW8K2_wdw3MJmks1mfLJGrK9amA-eAr6JUjCJD8fP6H43E7s5fmD9lh_iniFEKfbCYm_L7gekCFoiaVA9RKISCD%3Ds16383-w600&dsh=S775732460%3A1784671290568129&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxufbaos-8FpaI6L6opSWvDylWDsJ4E5d0inj46hu-E3VChtg5L9A5TDVyZgTA2iZm1zFEjmfA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GX-SwzH5EF5TyubGb2dmEWIIlv9_ATWxV68UopeQe0bMiftyrZh9SRMv-_L33Coi1wUcDhsSn7gedXdC8LGKYW02nN44fEb9FgSbohmnBic1kNsJOuJj9l4_CI7Lp2fK4hW5_JiOlxdtAzzZDs0Bc6k6WfZrh0IX0M_mzmn5mZglbxwYvmzrBB7K4o5NX0brqT6yXN-8FNPloYiJCUFf_j3j5BRD5URgjl9cizkXhleeVwPeUSdSxr%3Ds16383-w600&dsh=S-2044204248%3A1784671290583321&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtYnHAwJ_7gTgqx4jgwNXQ2DQAyDVgplXGYNaHYPnDyiHRXBnw1c3C0lH4fNqYqOie1yA-dVA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E18xtZuT0yDRhww__iMO-7ux7KFND7MJvb_3dqtoRNIp76_oOEUrNxIuVWaWzCXrD9zSGb-hswUI3_bG6xsOrN00YrVzTfs0rlc70xY-t0u8sbk9ZzEAcQYp88vpMVR1MIh-eeQ7ejtxn6VFrk9auEtXDKiF16uFK4Yj6FZrK-L1iIDj8gnGwXv2HijjmeAxaTtcf89brvrExvt4uFP-f46HUQcf-BeeKhZ7QY9BbcZAEO9ewXgmZR%3Ds16383-w600&dsh=S-1390999758%3A1784671290579113&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsrAZYEyf0Z0tu6IFObTIdSqk1FPTCyvXAbaLJ45eebMH4SKcZPc_eW9NXYuaxu1N-QMifADQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G0kUhYj6uYB9oQ1f6sjui1oDF8-IvEt4oia3_ucBk1HKBYL2Hgtlw8ICR-nMuxZn-XFynfKxACoPM1ClRmbvnDummBpMrwCLhmHuFJJMbUikVALZZMFbh_rLSXH09YpNoZ_gmeEjyX52paKDOx-xm6w9prF4J8Sxt3dFipmoMZv3lzZa52BigT1ERlGXAwZI4MSAEl-mQ7EqjfMX-bXvRa41IjWTh7neBS2fHsvEpmd2aG7UJ7QYoz%3Ds16383-w600&dsh=S-2044204248%3A1784671290569399&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsKgZ_MFW1335GG74J9r-7b95Z1-yH1OJaCZ0waiZ4H-JngoZyVFa_OQYUkACOSkgmGFgR_Vg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ht4-XSqEoyhhKlAovJMHgID_ErkFk_LCgeAMlftGPOhhZ4MBYJdUMrukj-ZT9XWzdH1iL1udQoitUv9jiFakjZ3mLqV6vFSccnjoi9cdeLkrVsUl8Yna0Dn6UCHdj4lWjX7BOgzENVA7BRxOUczzzuMEfVtAYn54LxJ1tcq0kBqEaVJB4UQtrI0VLQsFb7OSK-4pQkhreXytz4lKCdc-ySdDwk63QJwV6TP7JlLWg-p9jDWfovYrt-%3Ds16383-w600&dsh=S775732460%3A1784671290583235&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsllvPswHf4z1BjbWoA58af77LcKGXAALgrKVeqGSvScfJm25ns-uwMmE8D8W0dl20qNot9oA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H3XDten2BycDZ-8pQOz00x1niAdPlSmoIkXpbn4IcMEZs2TlvEgpaWh2kw-rQ5FjeTKHseLfx8buXQnLfWb31vokXLJpo1_ii9wTFwDMgY-XOOgXkYCOdDWYDN3wL4ki5e6RyxOykSKGfMV3WhyAbBu46G0TxRZESbeq1nKZdC8KKGMNzTEoPrCKRTQcRRHyMrEUIu4UJM-E_JyaAybByAfGQj_O_eh7isfFNExzAqXvP9LZbVvgxT%3Ds16383-w600&dsh=S-1188587724%3A1784671290583260&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs2YsSeIcZyUdgufJPoMVfysID1bNL1vRrUjQwjR6JxW1Oj38uQJD7EpMonDuPZRAdUBnW8WA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HUYjIzYHmpf4wnCjA6y3a4Q8Wpx5Me1anxlQFPFupyVIN9-fd4EGWZaizqlNFADXfnNZOm57iW_WjrJv7R-uRmgEcWcMGH04W5UyRs1p_f40Pnc7v_gVFbo1plmDb5zPPt07VPGrd0eyAr-EKD-TyrsP2PVdlwbwb1oqTx-fhEtiLja7t9GXpGZKRw4WYnMeNOz_gt5vvqXBQX1TGmVE-w6WbcyoggOn7mIs_gjDf7P_C02xC09ugh%3Ds16383-w600&dsh=S-1744264494%3A1784671290575492&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsh1Jj8sQ-r_QRGBMNcIVKQ73SbK6RP_7m2f5ZDMlbPcXMqcLmeVulcrhq2L_9v4o8AuxTAcQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FJpFFXvsSCecEw23hwr9Sn3aL9KlpCjoU0YNuBN5cjJl4rQOvPPiVl50UKwL4uOwf2UBuUBWylrOhuOmMC2SHi14ufCbKCebv5oQUul6ZBTrr_AJKabVKdF_7oGBy6Mb80VIC3LMSfvgCk_kiBXEg4fSSwVVxTeu5ZJQq2KzMAo8W4e7DdZLDNkwsrYkefpIFeGxqqRGidL_OpApLqkupu2vh939Om3BAO3z7PJK7YCMj6_WvsgI1N%3Ds16383-w600&dsh=S1110917073%3A1784671290579313&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvWE88AsqEtJW-tvGfeKHyKzMF8bNUXd3U5fKcI_naKg2jI5fzZUdSKIeTHEI_eDbT0d3-UFQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Hz9c8mjT5VrSkLyNjvfOYLMKop_xgimq1KXTaQWHwiJ11wJOY5JY0z_ig7ePLamG62KKPUhlP7R4jwfr13M-PJTLWNpiFIU7_pWjA3f94IkQWl-wXEQ90OIuVqzZEC5Z7a3hMF2-oo05sQDFjRsY3w-ec2DjdH15xhKj6XZ32-a0BCQBmiTCM_f6nkEmJ1YDYngWEl8EEnrPWiX5b0Z8QXTVD1IrrzFVzWuAQCQVMpk6eXVFhRb_DP%3Ds16383-w600&dsh=S-1875581384%3A1784671290585807&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv6LXXB0Za_wamYuTJRNSNDNsBN2WT2D_vCSnYJZz3ux1TBLbbcLsUMmv56N2E2Bvcp5BDOCQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F0c4YZboA0WXCYCJvIWsK3i79ECXrWGQ5BNnxvCxIz4n9vVndxTLhEqt9g7PGVBZVm8EWoqMcFF0bY8RmBvP3UgHCgJPQNNxEhqC_NlsNHnaHPfSOYIcL8NcrrkwnPaf2GSLhGzZYAKBjLhAbYsdvLagFb0Su6FAbzMPTMDnGiA_kKxPaWoBds23c4SyJ87-bcYnMeCRID1QETyNVTLSMTNYHhhlX5pO6xztdB6kI7AhOeQII_f3at%3Ds16383-w600&dsh=S-1172319615%3A1784671290577244&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvNIQbXqg6v2whkrOMszLZn0EB7crDz8AueQ1xG4kuOTWoJIDYRvGtNhn6ZbPeHojliCLzqjQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EjnEsmUEztydGSNt-3oWSlL7d3-7cHeSAf9fQkRsENdJimlAqmIkyx789f5mmwIuRLsEasM_u7qmX_q7bdae7QwM-yYvexC0-WINbFew3c7CUdaZgq6vx8riKGw6EXFKp_I4RX7etgbg5j1s_ZgI1Ld-bvpuWTd_zSM1KAqOPsbHNu0gv5nfodifxt28OeyEs9UijilG3wdn3Fibd_AHHwfmVCwH7ZDsIPq__0g5d6FnASwx2S77dJ%3Ds16383-w600&dsh=S689506340%3A1784671884677393&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvZgTC6FvDXqnixI2K1VekU4GWtkMF__bwCF_OW7FNzlqdYCqwSg0tGFUABsI6O-0S_Ni46BQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H-ZeA_7IH-X7LdCARj82CxEcS9lSbfWPiYl8hda7cxfjH_UsdZjoV2S0V5AnI1pzUcfhLPlWK0dAiiDAmO3CXNoUoBOy0uXWzUQqoE_mzQ5bsZye5wJ8QsBOqapeM9b6zZHzyqJHFPWpx9ECUkYHqn7p6n6hvgvF1HebzWgOyMM0kXbyW3fsXe1AITHp51hQk-HhlOlNEjcWp9NaKixyqlOsD1S5xtwJpDNbopGsDXcNkokelJS3lu%3Ds16383-w600&dsh=S-1038351619%3A1784671290599005&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxttJV2xcuYdkBqBDgH09t5XN8FNH2KJe2oFwamvbawUG9Xn1WDSrrLiB2RVjsN4YI8O9daqRw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EsDUnA8gJGJNGJvYjdEzB5xMYyUV_-wwpxCfbTbPDdFsYtDBFvWP0iQC8OWzUKtH6GoKgERaiRNbomgYzBhlFzUZ575Snae_DNXf2k3Sruga2q-wQ1m-Se3qwXqXACoTeWffky-F-e_MZdYSr785TSPAhSC9q_JX_R8h2lxB2useKPOVhAL6bcHwBoS1PVnPb7lLK7R-uBV-Drcaz1nlJpjdjHjyNekKsBGjNB8-myd8AIglF1iRAJ%3Ds16383-w600&dsh=S-181348360%3A1784671884683467&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvbYMaecddhlVLR8rzircAwnpge-iS0znn04B8gSH1bZVC_JYbVNQirVQFzUb1OdHrBQxo0UQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ENdcJQK8ssipuWCi-z1UENuL62YNETUz38JsV-AMX4cXYUdhiiN6j9AbXydIN4HxHBfYR0B82BQsX8IOrw46VDg69W9RREsMuXyXOS86NxROSt3ivA1eqAWsusnXplfHqXeiduFgy3ctjr2hMiQnb9pqlkaXDJAwb4gDsYz9g2MQ5zwq8jf2svTh8jhHLoZ8cAA-4vPtO1ec2A7LQLrQEV6texOR3qJgtWS8j6k48KubDM27Jf3j9i%3Ds16383-w600&dsh=S1996946945%3A1784671290585134&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvCXwndUneLTJZqni1BYgz4DbPDjWHpSEIpb6tGZvkCiF1todCYxIZPHUHcwUElD_MsFy2ZLw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GoHwMAMLq1OWsY8mbCtFtNPE33gFfLW5qWGm87-PydcySdJ_a7b6pySStnKs7si9YH09LoRH-oDHpXXenS4KD9zGcMUvO-niuARRFYqCcQruxrOb5lAP8QS3OtCsQKhAWj4UN5LRT4uizpXNuY04AJ7Fub0p4d4NqPMNVGrjLZcpvKE59WvFbseXpZUXaQZOfOFXpW55kzNz3YEn9xtrcSmDcyvqIekzbQ9AP-08Ocw0EaQT-W1gdf%3Ds16383-w600&dsh=S-1238478504%3A1784671884697931&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtZzYhTHc5DBMar9ulavs9IlK8iiNEdTflonRAoAREuclfq1LOVE7nKCtWIvW_eol1iFIA_zA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FSqfWxPNb9XwvsKS6VZqlKsKy0LwMhlHggJUXdZQBdIqBICJzYx0bXPDH53_I944hHvEWIBDQuXXXpZmprwzwKoRGS192YKqmL0n6RoEEBbOps3l7UT7xW0qbVeSyUCeZa0QrmgUR6535Z8X3n48BZp1ckvHUiErW2Jz8YbaKOm1e4MODdfguCDaGkKungtEUAp344iVpfOV5Jr3ryqNMB_PhzCVKXpQg5_6u--3uIbaKzFTsKEmnH%3Ds16383-w600&dsh=S1110917073%3A1784671290507164&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsdBaIzUn6WjPpPz_ez8S4TsiAi0hNcyJuUCiacxuwScKQw51LTdcu38o9_i0vYi8UNKHfpXw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E9JnVVxLV0HXtiX8IOSekZfTttNuTWiBlhF1dAHkhjGEShK3mlSYWPQVZ8xTJfX03u39RDLpVwNBDB9GF6p38gp-u1eMaiBcZnF8xGdJt9MFgjOBa6mCZcxSRIs4KLxixCIINtHESIXPZuJpYkXSdRKL0d81FOG9JCyRPth2nAyZzMuxcFoRdnmUfJyur_LCw9V0dIHLklRk_C5Ar8P1jXBsmk-BIovvDgZhietZhsPJQtCqeClhay%3Ds16383-w600&dsh=S689506340%3A1784671884678591&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvxKIn34U0gsVGHQc6KlJ1fx3yeg98ifzFoWCba67eWF7Dd7BKachWKQjrs9FilrOX5EHiWXg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ge7QHo2E-yreuUGlrkyfyKmk0IOXBmkJtC2CAanaqxLQhWROVIQP7e7kNfJApg1O5_wctdzW1fgD8J2AE1JOrT1sYiWkSMS5TJxouGMbY6EUUaehdUBb1ySAKMvLc--W4c2bP5NAl_PLzGZOLAcMJj03cUi4XcF2crp-nCBbI9kItuaar0T8FPph6KoBg-B-BEWBzBKbt1hqv846lvGilQOy0xDf1oX0Bk2e20ZOf74bohksmptzgf%3Ds16383-w600&dsh=S-1390999758%3A1784671290508351&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvctjs3KnFKOeX36E-Clxs4v52hIl2_m2ImLIBt7Jhk7LW4W0Yt1kJhAW0NicjIw44CsSiGQg",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G8hyp1g5DxG14k3LqzLxO9lMD9js6ic_evHQwV6HhzRod_C2CqwWAso5683-zZXSO4Nef7OCNN7ty68JqbkuLfF6D4h3XnBWNTS5A-dDczBJO2ZCuhTtzBqQVsmehdabgTWYPFXO2lGbm7GqTX3A5ZVOcIBQ-SFauGwl70uaZSfnNGKmc1ZrrosJy1FPdz_n4lJtOMcx4lO4LNyFDNIHlHy3dUS30BdTcX353FqccPeqjd3Ei6u0-v%3Ds16383-w600&dsh=S-1238478504%3A1784671884700071&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtwOwnzjAcJXiapVwce4AdZypOQltUiJt85KxLu64yWMgjt5vdZDEBlpH6TrI6MJeKgFMljyw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GMbnk9qIkIdXwkC4ZoxIS05VCOI62dIiZj451DjZGqnRd8JrFMSczGUQCdOFLGpPwBFPpco7w0JRU6zrpU8FypahfNwcvFdMTB4Gi9h6y8BhFDKFxsppL03K8UU4huTJkx5W-EjtPUtZABJvTdkRLHeHIF9CDyfBTuIaz5_65Q8MHnyJRC-Y6ZYSCIeH1lXwyk4ubj-f2h0PWuScaASmG-IYzWFPN7_-DGEYC9Hh6R2NKLVPFggbvK%3Ds16383-w600&dsh=S-1036871742%3A1784671290587424&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxthejZsm2LCBapq-QWKdHg_q-apqArkmhUXScYnuDJ4GNamGoLobHf9_bNWU4mMmY3xP3fgPw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FZ-Lizr5WqYG9C4lOBFbsRiE4F0_5qdFZTGHvLRHhKTNRYMfQqz2UaRkzSiOm7mXbtBhlPp8eN5c91E4aw3h4YLzb5p83JfzF1Q9LM0MxgOpcUyNA3t6P4wxwrEuyTzr_10lB4zJYTKJSmYO35a0fsP3XCVr68tvtG5NnUCugJG3-h0RUHF2sYrIiE147qnYGPj06HbT_s9CpyUZzC1svn0HeGBUn4X7ZObPdjP4Idw6shYA5Yf-5F%3Ds16383-w600&dsh=S-181348360%3A1784671884702355&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuyg57B8crMKGuv0vkVvqiAQSU4xXRzF7sz5iuD3o31AEv1O9J8iCQM2H66VROxWj-CcUWEaQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G-ejK-6Rfzu3idsxCa3cV9mLX_DEb6CaQxwkvumg0Qk3VZ4fUHyksgUhu8k27Rvk66aKiXu5Kxw_TToD6jU0s2_H3oiMlH3wsDuoeunTCPd6oGPX1aBmcIKkRL0U4H7k8tNZ44groEV2FwS_hXPAQsMSJH1ewYc4ZBVvCW67p2S5ui1jDflMAWl00Hh7mEd7k12gZfXwtnSnyLFnAhooWUvjXaZcO_78m1NWqlkQ727uKAm5fGBmbN%3Ds16383-w600&dsh=S1748799207%3A1784671884698164&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtwJsHbPYDQmeCboAFwSJFeabMqyGNEzAbPHqpE-aZtxUpkUWVDZqJrNbdJvYLA3T7-bLh8LA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GbBXZ3KyaV9SpyB_dO7wqi3ZTH7uI1SLYm6Wd6gnGdWnBRZSDmPFFxvSLEKP7njcPBKeOfgIi3fidF5yakPPNTdrGaAQ6eHXGru24TAO6cx7J9RA8t5a3scd5HrsDa5E7VnuHm2ztI5t4n0g-XLzDUANVo7cgAt8VOQ0XrZedRzdSdrkf_IRRkeUZmSh2msx87jna-Mut0MkMl-uuCNkVdI1tqvqdNZ3TXfxwoFfuKc_gttDTTNVeF%3Ds16383-w600&dsh=S1748799207%3A1784671884705468&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxts9PC10Zrsfo544dJmzGxW2mIOVVOdzf2d9M7JK_KPx6uFCxSDUwLy-1L91KbEIJP_PdaADg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H6XBeNTZrS_WEhiK7Um8Kui6qKMFYsSIDLPtcuGXqzl2kM4-DDxa9Pl_gJG_-xo1PvJtCuU0ngBzvJOIQhFkb9sHHovl7bef3RlH7Ai6_ljZ2C-FoU0gsG3sqFwe8Mv2ZLc8l30Ck0iUqlm_AsjjFryY6FAowTRr61tNBHaC-oD0DhbCK7_DJWe6QZBk7w3BiOdJPpEwBpyyqGYV1fcggtd020oW3zKmTQpW-3WSr3Z1htVguspMO5%3Ds16383-w600&dsh=S1748799207%3A1784671884713832&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsKCvG7OXqJ5H6boTcOBtbjE_U-JqoafCz0kVqYthQMNr0c104-sZjNmGSswjSte2wFAjnjig",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EJFJ7sYphIXp0G5LEOEwfpnRxanvoP07_c78YZtC3sGsFkna70mBao1QTPMRyp1GmwbehkMKi85Go3CLbKLZfSiZE2tMqnHy1OUvpM5Mx3a1ntEUNWtfRDwQvxFMSSwuP5zbf5BKKdCidqmkAVpJmAcJG-kmVUo3AYQi6fL7f5FimjtqP6Mx_Ffqxf1CyiWXko2V__MO_3sSrx6bFJIO3in66UFF4lenHSAMySldXq41iQfzZMfjp2%3Ds16383-w600&dsh=S-771330088%3A1784671884683421&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuGYaqLwkdr50QB7lZ_dRbt9r1puJi48KrZcdj5ufJp8gGCIXm6gocKXywZ0kdU5MHhB2NZ2g",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HzLVtiypa6sje24HgHjKN9iXTMgMYKmZkrBkWd609YYhezu59lGpFCD-k9WjJcrKXiJHcQy_PMKYYX6lYv7AnLsRgp8gLxxt6tablXzacLa7A6QnQg6atygwNMn6iBSicbZ5L4D609PH2eseWsVQYN3dPk20vP2q6Pj_ERppmIkYAGd2ZUnhXZoRO4wvBNwNEcovLyqWuJBwzqu0V2_693QM14DxEyLAiF3ikaSsKmat0O1zRsckQa%3Ds16383-w600&dsh=S1748799207%3A1784671884678510&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVQzFs2rsspYQV90CEWV1lxILw-nJmig7Y3iHUfY_kW6NVvf-vsHjKkU-n80RMaZ9xbbAfxg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H7yC9Bc9FZ-lwbePo1oZUMXcMPt-aEBZKSH9i-KFBnUSmBP5nernn394L09IJcqfeKtBzr5E5Amzk8YDGpGH8jGenbvKWkyoogHvU8Vj_wafl-tbc_fOSGQSOXVhLmrwjZMuXZpU1fPN70gSGSuNW4OwbOLq8ELMIGVHkEIn1lXT3DHIViWCmPDP6iI2QS7_vkCF2L3zQgzKc7IBP-hTXZiwxlLwTLQClaQJEWUA4CRXXICkVWHGXy%3Ds16383-w600&dsh=S689506340%3A1784671884697059&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuyDhBqaPSi_mZ9KHKR9p2qj0v729xSlelXeSWEhvTJvnyLglRKFKMTlOuk5go90eFfFxDhMA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GD_CaqRgN9FQdFDKDAxVBeK3DmFLpfJewVXKwnJBOUUQm6vVSKLNfnmV6WYOjdzrcCzIRDOC8y23xn69FBNrfT-RlVDMD7elOqEnK-r8Re2LkUJkmZ7pjG4FoMdAb2R94eN1DklRqHp2ppuBB42uH0SEoPjQraY5c30E-xE2iqfFm-Xq8RaJ9AekdJgDmjkHH2smWdHMd2D0cuOrweMKxL_MP3lhb0M2RHyhho94KreOhh-H-p-U0v%3Ds16383-w600&dsh=S689506340%3A1784671884713496&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsJd08jlsPEtX7oVN6Iua2yMgG2avTZ1qYuNGHkr7_74Jo5vmLe1HZ_VgX6celTIlVdENuOnw",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F0GO-YD3zVrxIjBVdytIVC4CK-LuZrbmFqWwMIGyLbZAo11ruzYq-125gE2rl2iLooTgx7JHiziahYERNoNIVtf4dnKJ0tojgvqWdtpz6UHRDyKI6w33zwkOsepiuPWVODANE1zrz7auysv9EuQv4YeBH4UYc9dd6F29Wuyaj_SoOGyl2MlQSO3JkrlauwmorNpdCcLu93cklVmhm0wUGwO-cPgCVtEaAxgG0vbzPAA-pJ4T8MxF8-%3Ds16383-w600&dsh=S689506340%3A1784671884713935&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs_l3IDVjwxHt90nEPAS-1vZq5nhfzl6T5WlUEnKkEowcXczsVbZ_USy_eDfQ1ixDjQIRXYyQ",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HcPUhC_FKBRU9rSSH0wRrKQIZ2I0IVABhSXAg-5QWgc8Kt7usfYPMdaSd3ux-SEENxTRcHlyeHXBq4twsTHxtR064yOie_RmVr1yoGOghbdlMCbZwAPm4JsnrAhvSYHasM8Ms75YxlGXMl18krHAoEJkSWhVlSP8wGDQlrRGsxnpgo_kFoZxgTBGqdYdGH6RpOxHW9TKtMsP3JazskM8Yk-iXvGBxQG12WsPBn-f6jHr7GtMWdo1ff%3Ds16383-w600&dsh=S1748799207%3A1784671884714591&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsiis_24EcGrFKx32lFJpijUSG5mHKr3QHNfvR7aYqjjP6xqR9C5-pioCSoxUJ40HiO5niJow",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FycmHXpBsdIHk2KMmhOT7arCY9v-v93u0VgHZN5EOO6CrYdj4yMN-7yh02Zxzz2GNodE4D8eB6rXsP1rgx1W6Cu8ESEsRFaDgd4cA5aY_Us2DZNkM3TfFCLZ4bVoXCysW5E65j-IXS3AuAASbzhQX4NXHBtcw8BvNhq6yCb9B44IPwfgV_Zm-svvzu78rYlaYsEM2s3YfgcM_5rVsUHX5re1BFYncpOieto_gtSlHWmOvmyfawg9bl%3Ds16383-w600&dsh=S-181348360%3A1784671884681197&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtW1OVSuXawjqZPNpwpG2EzthTYiPqqFxratFITjEi4ivry9eOPVQX9f66tAlhf64KRKssxAA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EcZH7sNVbtjOVhSGnXO_eK_cmgkdkVDcTmNtCj7NJMi4XzcLM-VqeVlbUqXFjzUHxLU8xQIsWyk2cDXp3cmeJqyHh0-avLv75ityaxnagcSJLwuPjjMhApzlMlwhWwxDsog-W0pDD6crWYBZxpKOeZADlRzcXNkWrr_hf6MBgt2wt2XXNnlKJiZ82YTWeahnXJOFyPyI2zijEkKtLjfl2Gwtsvq5XjWK2WnqIMo3hCwMGgCivSzQH6%3Ds16383-w600&dsh=S-181348360%3A1784671884717851&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtDUIFIPrcNjRGIHxWnpWgp0yGN85i8qHI5CF_-MHMg4MfbJobG4jVAV9pQ_QrFLCBBkyMDCA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GoHGIJgtxdVj_Bka8DvYfgWdjsCZg0v9umNLG_I4am8LZepHr85L3JJTCp4xhc5SnVq91mOmCrFCnWblhMnpQwYYfcWk4fSMNY7wYJwe89iz_lQrNTgeuhV99KxjKayVqs58-DMZLKm94GyuhTsDfpIrFl2OA_K2LqEp2ta87kMNGruVoHQFLqaUvzoDB28t87kN9jQvYCkdN8iNkPkKxW32KFan-48yxAtUyWOLhE0FgOsrgrs3Hv%3Ds16383-w600&dsh=S-181348360%3A1784671884722711&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtUb3Cf38FPXTbmD9B1vlOqjZz8doC8tcgqk9GitEQ3oRMC5Bzi7zxgVza_2NE11I_2iK_vMg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HQWwl1jbCSLcUOxxwwjPNSzJlzO8_9mWB2maXRacj7S7WV5oupBAM7VOyXccdAFYpzpd9rQVTiCqBG37x_ALqbQrslcSXUFDW0K8ALyPBoFVvY0WquAdZ5LanX_9TNxisSXybGxmQZQhj64q3kiiHl-RN3i2U2opRzosHpOxJLFwFhlKYtzhVw_1bXDWB3XXeeKCIk6x9jZ17BFLs1s2lQ_VxbaySVHLEpggJVO-XmPRSm8G3gK4Yq%3Ds16383-w600&dsh=S-1238478504%3A1784671884715939&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt_KHMSLaICOsCJ7nONqNO7PJB3Dbv4aOFb--6MI5mrXdBHdjr2YhxRikXJdkDu2vOd56QHkg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HNle5bcjkCsYuj3Zh3U3Br5G-RMJx7z0Gx8Avb-5x0qzG90jp6Fy10fpA-g_fDkOoV0jq-WqlvYD6cYLuX-V_9OjKxKgGxKZ4pfwEfBR_N_SNrmPVeEVt8xHL6VHz84WtPhU2IBsLjAusD2kcPFg5D6r5VmbOXCkEgoA0b-uysjVCx1bBLr-vL3L1Q-6iepoXpI_Z9EPtQn2UzO2iYBlySuxgFDfz0yGKwe5_63qG4JIGLFq0tP9A1%3Ds16383-w600&dsh=S-1238478504%3A1784671884678382&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtmXzK0JGr3j7EVBMUkqcFR95sboVOCZtFmeR3C6uFO4KTcNwQgLdM32SVQykik-n0rCsGe1A",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GMJ_vy3KxbmVt5asUuHj6VQczUgt-0nWBnqFFFBnWyTpV9dwBHIVBESPVj_q_0INcOOfeEwSG6-LsBmsSgS4rQmffuSG9303modqwlfF7WhFR9JmB5rFNz-TmHM-bMEXw0H-aHso3h7Qltzj1bvoeN7zaf5wydWfCT9XyXMgl5MIs88McZi-s3TsBBTl8uTFW-_s1lm3ADi8FwKhMTZAW2tgvwRxIViG7HiIZmJ2S8twVP_hL5ps2d%3Ds16383-w600&dsh=S689506340%3A1784671884713497&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuDTr3Q_dXmr1Uw6hogiosXL_XNLu_TsFDKZkx6sWRoa4Oa6P3A9HeSQNFa0G5BH3Ho-UOJdg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EQro1hmkkEKHKq6DBLQlFgQtyuCUEvgwobJmDTLlb6fQBgltFFTAKFl407vLK7L7rnZE5gezmEpQvgx59I0Ah5E4ADbDBx8Xhrds4D43Gpmjo28_OKHVGYLUrUH-jXDCQdLCWiaCrN-QdFh0rd8awaHZ_81Mf7SknFXqhO_tPtmS25nwLWG0_99D49uW_X_E95U1Ke-GbeQKuOIhl2uzTBQeJ-lENLllyVrjoPeM5gnoGBHD9Kiy3l%3Ds16383-w600&dsh=S1748799207%3A1784671884697128&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvTBwNXZGlnt2MyD4Iftzc4EjqkGIF0YVC0eyjIiVlWPE_-hjJPKtTHMRL48EmIy2eajHICUA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FExkkst7KgtFhhdbtekgmnAhGcQtpTCEizA4mgxR8NaoxuWx35ysvVHuK84WF_h0VugCpXyrIPRXPtQBNFGrlKYNn_3hA_ZWYjTVYuku14Hok1eDSNMo4LogU_YngVv1Vq5c04u-Ui2nGKrHyNmqAAbjVqdeB8HLjxsULHiNM-cLOD3DDjpa4FMrFq66k9UXtAJMsg-iudi4o-LYmfwS6EsPkwYMPsHYh-jXyjXVi02CHtDoXVt685%3Ds16383-w600&dsh=S-1238478504%3A1784671884716172&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuUjwKnm87UxBfcBDdl-wqD17C0c0q3MZK9YXep6S4vXMw8z7IV52JdxseqZjZDI1pYgUwB8w",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HjMq3iyOC9Fp56VYZWNDYTXliG6g5G-E-oqeVhDyJ9GAOW8i3aVqDVcHLki2f59uEvp0ruUsXyToXOBqCG-QZfYSxbTqSzEqrMqwCCv_Idnsn8Fiucfv0VMIH7GHTpW3ANW0Io1OAOT4WHWPzfgi4P39qgdVunM_A19zQGQZVCDdGVsfzP_SI600wJ7fFcX7psDdZNeGR0t7gGP-JN8gik0it4lPsUQcqjTDWSwpyttn3LnxiBpDgz%3Ds16383-w600&dsh=S-771330088%3A1784671885365695&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv4ys4Ys0x1RUnzAk2IzBqIrM0BFrRH8NRtoS-PCluOw27k8yNocKyVxpKvjUnenfo8-LJOgw",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HN3r3jauaUAtrzF8avHTTzeyldDr4Mol6pdwlRtEnADeEcxSQE_iwxGX24YrE3MjuhYacA_fiDHBZDIaMIs9nN00pZ7d79TtKHzcalSyoifGKuAgLx2L8RFYMO7Uv7Go8xc_URp2VJveMpt44HkIk_VL0dZCe73HHSROItt3Dy3tI-zJAHM9wY2BpEmfAwZh7XRlI-uhGYjIQFXHM3-vGo-sRDFxTZg_73kMpn50qMP1K2JgVRRRkF%3Ds16383-w600&dsh=S-771330088%3A1784671885368898&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvOHsSmSQeUwIDRXsB5ZGhXZzLskiqJyhOe4f7y9ZOj1FG2LuC2gtSE4pQBwP9haNDM3XpO1A",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ELZLOeQyGbLXKg8d6AOm-hwlbFDkPDTkKAcDoVM0Pw1UTw8Ze_shfpu_5pAhtIZiA0TIAmu3knTC_qQY-6KCWxUsvwg1t8JZ1rGLblCud-0WtKwhO33gRDAF6KfWmm-MBSSeo6RDtJ93mYBl9U4Fx8ijBbktETzODTBHpglRj-r_Rg6X_I7LzHzUOGDuvl7Ll7-h6zgC9nFnDGfJtO1F0RhqbULWSg6_tBzG0yCFNKk6wbOHTrgMkg%3Ds16383-w600&dsh=S-771330088%3A1784671885369414&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvqOoasJXsWAvzM3JBA48FTxyCAO5G7iFC706ETPPBetXC0WweOtsENgp3JZoWEtmL8oLZNBA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F_Mx_R98LRR80wlpsGQDdh24A9EkOGWBnjgmqFa30noXIn47YcYnb_2Q5WzhAXe92x5d0Q5MKp625xUpOj4VYczqL2Vut8A6FlgV-geFlTqOCj3DikF5eX15HQCG9h6BN0i3P35rsvnWDf5kjxmxlXe1iQd4l5StAf1eAfLtwc2-ChdphFvkIDcbgjz_dCmwumWDad8prz4PegC7UZ-UayTZELq6E2CHUzVG1U97kz8Xrq74-jVs5E%3Ds16383-w600&dsh=S-771330088%3A1784671885366616&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt1GxHus8inRPnhFRFWAOOcaD2-OTY0T4WRCIeGXmO6coOikuu-KslTp1G44HMxCKh5aXWwcw",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
         }
       ],
       "files": [
@@ -1533,11 +1573,11 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         }
       ],
@@ -1753,6 +1793,42 @@
             "scroll": [
               767,
               131
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous avez besoin d’être visible,pas de vous former.",
+            "client": [
+              767,
+              73
+            ],
+            "scroll": [
+              767,
+              76
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+            "text": "Vous avez besoin d’être visible,",
+            "client": [
+              568,
+              35
+            ],
+            "scroll": [
+              568,
+              38
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+            "text": "pas de vous former.",
+            "client": [
+              355,
+              35
+            ],
+            "scroll": [
+              355,
+              38
             ]
           }
         ],
@@ -2139,11 +2215,7 @@
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://drive.google.com/uc?export=download&id=1aGylCxfH7zN6_SpHAhJIJlUYsJp4T8mT",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://drive.google.com/uc?export=download&id=1DGr3ApLkFaFdET7PMBiPzPNlk6VlgX0l",
+          "url": "https://drive.google.com/uc?export=download&id=1UuxhkVfnqflldz7yqxlTlT_WQD6X7CZR",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
@@ -2151,120 +2223,120 @@
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://drive.google.com/uc?export=download&id=1UuxhkVfnqflldz7yqxlTlT_WQD6X7CZR",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EjBQ96bpPkizLfqEdk8x-aMTGCUTplCS2qvwfOPlOY0IMrsZkgj-Ssbagg3uJc8MiSMwXynp5LijKDDngqQGj2kcqH4TD1GBNepBQsAcPGkeFY-c1hHT-jPzyYA8PAjJS_PjmsvAqwg8wQYp1TtQCRZinmUjfJMF6e8kYqPVi7yOxXZ1h02e3qcitAgBVsF4yCov6CGI1pyjAsaFpZruOrixhsNcbqXZRVDmbERdH6t5QAs9k7fCWr%3Ds16383-w600&dsh=S1996946945%3A1784671304513451&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvZYm2C640WSP8ONZe40rk9w1AkKOmpjrwuMZRdC182vM3FmxUXHyjFMbnRsZS6hJNRbUxB-w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G7v7_jZiemFp2CKbkRv0SsxMJwEHVwFiLyqSR5bCOBjBE0DkClR7ObXwikMACXuHIb4XCYFArgmIhwAsBc4-jNwLyEgQUElHPo0KCkvYyieLfFKCJiRJmXVxmttc2YgWTgI7Ryn4igZqb0KxQMm2SkLc9Dgt3AP-PZz53ZYBc2IienU0_XhgP9u8i9dq8HobEC4JEs7SrEG8nDNvtlMI0lbf-VoEJxSlsfXJI7cx15YHWSXc4UdJKt%3Ds16383-w600&dsh=S-50198125%3A1784671304520999&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuSa33wzp-3db1rfaCsTYSzyb4zk7XIVedUBWFc6XWxJjEEoumIHkT-pP7rgozJ8MMMwKFkig",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GSw4CuwAclmjCzCs-m5k4Kto6RKCfzOnVwyx0uBFJLctRWkaRewF2ce8A1ReQPb3UvjNVqBU6JE6rNhQ0xFK-QvdvFOhnaJzD9yfZmru_TpEoEXY9UyHZjEM0rhIdEOVOVvPQi8MkXQ51xJY7lcy651GbVJ9oAexkPFq5Zgi8VvNvjXBlKN0Ri74AOzqTTSLV6Y6I8IzNPLL-5otnfZjVv-b2lFHsedzsajjpipLWYRx__NoyrsDYA%3Ds16383-w600&dsh=S-2044204248%3A1784671304531281&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtIqXPtNjbSKHHfksqJRHlZr8DaEQ-5zvr0Wbqh5IbI_TxH-k1eISvyPPSMRHmj3z_hupLFaw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G625eP4IvxsoWv2ZDhfGtVMeoxAtLk0LtQxYAu0antcehvS078HtdKr8zC9FA8Aup74RU9Nx1q6eAP7eRTHSs559IwOaDQutlKvBQP2z0Aa0XaJt7LikahcNALu9yC4wBZKsmvty1y0Z0UzCkJ_H20o3b2kmmNYH9pglL5-plySwwM8QFf5_tCjCXREZNv_XV43Tr1dsWIT2RNgKU_j-bz2uNgT1JT8m46tOa0j2x38-KBbw5jl-II%3Ds16383-w600&dsh=S-1036871742%3A1784671304522607&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvVxj8hgMudqbVIZXGwU0hTtRkJLY7Ooc3WWt3VS6bn4lX2OqQ3hcobwBiVaMvGHMMD9yEoTw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EUEAyqZuopMRpXqobXgEa0W0ABUN_tS3lcYbcmDxCpPu7MEFzwW6-Fdl7uRsayIkDATKT_29O1ULMjxDPzNwS1wPqRtWinyfBc3qn949YUdKstlGWzTx6zSgSroVdP-uKLwlsUkBz_AVRzct0gVekEjr-hDi52I5Y9A2P21xn9GjobdwcoW0Xo7gZrDJOp9fL-M55G8szHsjodfzYtNz6Ea4_o04OmYX72I8xIVFtccfqm_aFy_Cs_%3Ds16383-w600&dsh=S691242670%3A1784671304518627&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxupm0ZAfV8VfMPiNfUhMTMCH3BeFFFLdpAjt-ZddFojztsSwBY6yklhB5dbnBcU3hy4XMle7w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G9xwimVNum3HVz7h4Cb8lEOutjjYwoJhbUfHjGQT_dqLhdy4ceM4wWDatsY5gzbHFfwXDNEv9cFNSQyUkT_EmZ_MZzOuXBTg7pY9rpCIxiWhrmCV7aF5lX5zxAlRVzTNQpycdjF9hjV2o_afYsayie-lxMBB3re-Kf11i0_WUGvI9VLwYNHQvJUIQ06ZvWVRZ8D1E9qL5a2WUCEm_-80Iz5vDs0z42Md64MSO5e6SPNDN6532RImpG%3Ds16383-w600&dsh=S-1390999758%3A1784671304527804&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu8UdR7luuhMNU33TXHpZSNuO1UQD5ggga_RIdXcWSv76s4SDWssY_--p9upAiABzKa6f8EVg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gy01Q-iTMGZ5rldSIAZyrFQ_MgjZla-faZi2iGBjY-E8Q-trLfu1O-gMJGki78wQO3hsWXEg8x37dr_OQrc9gzuTfkN4cofts-XINRhMHCpm-avE52nY4bBFzN6Kc0FQm5tPNqyPf78qJhEsDz10Xl3ClrMjI9_z8z-lD82diQgWi-xb7oZBt6VY0UV0J_HbvWpVUkdov_vPDyNIJH7XMPoYW3VJ0I2Ere9qRtbnPxCFPdd7RW7wtJ%3Ds16383-w600&dsh=S-1744264494%3A1784671304521114&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuhoLG3o3ZxilNNnCehu5kgoGuEFVs2lcgwPPbBaQvUTzlbe4RLD0XpbYVUWHTgC1W23B1FDQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EyOyMs9wma9RRpwgqyYG2ANwWu_wTtGEvevpYoyBAXro9p8Bl8aNFfnCi3EpB_IGXDzdet1gqNyMTP6enS5QIZfUwjZgwWwBlUED7XVPadTLh6u9ESSZee3J1UjbUDVjVIdVcV72kuZz5XWLmoU9FyH4ohzIsMIHDIEDLKjeQp8JC8Rryf1-8Ne8ufB59t2Q_YVsJY_ttNFx1fVB1k5Akl0EgFGm0kYNfSqguSGqjOs094A4Y6khjg%3Ds16383-w600&dsh=S-1875581384%3A1784671304523701&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsDQkMjlGBb_d3eAolDpFWLStB_NwyIg9w8dE1BIxudLGSU7fGQoliTnXh0vYrH7kqpCz9ZDw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E4tnMU5CVNND8mAGkQNYEwifjCDXarkbnJW1snWhuCUQ-Mz13Zr8Ydak2xm0TYZMp_ENWNUQ-1oQwX2XN-x-BgQ_L7Ad0mBcFMroXNHmaFFpyEbAInmpog8o5cWiT3TIkLAgJn4BspSCD8cZodvSC_XsMVlgGz6Jc6BgHI-GWNnggLsOf7ucVbTcSsXUQoFTzJNTFXeh-qwhgM5e0Ycn9Tn3kz9AnpfgXqqIwNzAUPw3Ggg2ikRZJZ%3Ds16383-w600&dsh=S-1038351619%3A1784671304515127&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuV2yr0nIjId7dtgPCRz8kLrWH8_ImCOYajRTlJskpbk1K6e-tJm-3ulS5TpR_M8NfvSFVynA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Hg3mqMtMLdXAtbl1BmlpUU-E7p07y3GBqTA5eXNWJK7-WdaHLXpTITHqMrDF-sRT_I9ES6aqlAlQ_UfZJKNUgYlv7Mx_96yEO1W0RCcEonh7KdIQtbpw7vwAIJz8peQZSBJfRHeuSYpgAE9q9NStSB15oorm20dEONnZrpMG44jT1-Vzi-gwgtfDvHi0btrYb7gb78lvyvCI_Y0H5Z7z8bxWxuMqdxo-JxpPbZzm5opfrVFXOWX3yH%3Ds16383-w600&dsh=S-418454306%3A1784671304517228&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv1siGLq5nRpXXY64o7fJV7eUj8v0YElgA3tMUufvLdBYlyiKpMo-WoRL6Zc_Krhd3M921b0w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FvaXhlOLjG2fdKDMmhYZwD2n6_8ym-kmsQ9u-x0nc3GZUxIgG5PHueES3dTfD7Qh62MMRSpPMmzuAXW7RWCHK8MUJiyUOnZ5Cqw0p8ffmTGUqE0xCeaEW7y0MIwkbvi83ADK-a4dJtPj-dolpTLa40kOjYsA_CxbwuToWxcgMmNXz_i4b2FaAIHmzxWDCAitx4zXkSk2bYgqXGbmOjKL93KTHm1xb7eu9lej7J1Iy05RF9MwbAFabC%3Ds16383-w600&dsh=S-1188587724%3A1784671304522018&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvsyiYouZ6xd0p02nI8QwAJ6zYJS38JuT2jGptzRJTW78s4MJT5lzrqRnkGNkfb2Q5DANH8ZA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G5yj9AtQm3EOqS-NvwhARlfN1KLhRYdytM21ENeNABEy_iOgfuVr9BWOGswfK2qY4xD8TXUnw4SyCluPs7THzfJ8i7CPqdjdjbGDKzgSXHxH5ZbOHv8vzwCZFCLrynE1PQLejhV0pjF2yBcEMtsdEvlQPGKTcv5j-0Cg04pHJKbT8h09Bos22ShKCaDd36dscLECWBWVRE2n-lhkhJIVL5E4fes0GzsiHlhvYK7_tTf9zUcSrgRjKv%3Ds16383-w600&dsh=S1965084359%3A1784671304515668&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvAVz3xWCvN79Gi5a5-Gn2YZZGHas4s_P835J4IhfwF27eL_Xh1-UW-02frcwSJP_JfSHRI2w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FJ3Ckq2blp3xjy2OsQlktaEH8_LBgavpwCXlYKfvWCBVZubaoNcJyIQ2ucq4ADV4RzAlGAig8C76sgxjWSYbelBAS1jkg7PBZzUdNTkwRDFssOyQZZ0_4u4MdSyX1MloUU_uM9pXb3I-PFDgrAlplJ81JnEQ00TbG476qkLdLLD0LKQaNk91Mnky2_ChzrXTi7cqAqvwoEUrikxcNxHQwV8bIojZw6ass9ZCPHjzH17hyUC5Yu0bin%3Ds16383-w600&dsh=S1110917073%3A1784671304524967&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu5RiZeGjbw_E4TYKY-3C82Yp7sg4EvWcrkZ8PdNkWGPQncCXg3WX92Wv-w_BO2xVfb4-D0pg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EiCW-IpfWq7HDS2zz2d6Q4hfNL5fxjfhR1OTBv-Rk9nCc2iAyuaF6231YBzFf9miekPG6SFviGIcbgUAuqEcE0fFOsvvKQ5onxJ9gL3uLmcHpiJTx2cMAmYwkc_3sgNb8_rWs5S-BR2cAC1v4jkNxvPyykNSopJw1mUkS-5eTjINBaa2MY3IE2-f_YPnI5zLN3BNFKgycNafX9GBsKKUnuk9cxEEQP_9gvsPh4FHRwBcRIcJcJfhMW%3Ds16383-w600&dsh=S-1172319615%3A1784671304525759&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu-RwXVxAKuT-0_R-zdQOni3VdW5BZ-pmJRL-n7N3zE9PHl-HTH1-dvRQcSsTkjuUZk0vYi1Q",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E602zRZ4gs3sYm3xdXSa2FBWMuk-ICFlPRuw-M35LW3nSSLI-hpRZRp1KNpNlnvJqeBvUMkcbzR_IP9oUvfiWytOghdtLZ6l-oNQSjpwXeC-4PZBxX2z604QE7nXU2cCLbkvDWhbycHcDzj0s73tNqZm4m0pzcv4LJ09Wv_TOQZTbgSEzGttL6GQXv9zOt9oA1DuUiCI04OT_176tp9GwiHHRTte82WAbM04UgBGqy2CIBiNMd2bqi%3Ds16383-w600&dsh=S1996946945%3A1784671304549485&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsLAWQwzautmT6QNihAPgWQcGp7VsVVLmrCFAvBejCvZYOFl2O0zvyKMOw5h1hZx3R6rC5P1g",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H3-JOJPmXG2Ts7Hk7Qb73nQZWEJrVkRWMqo7iqLl4MdjjWs9x58RA5R2xYXwvcQhPcUjR40wXTWIooOGP3I5vbKrynW8Zh1z7_90s0bKQWS2DrPsrdiNoz0kdLXWpN6NfcisGMFlYRCWlJstqlDbvtBYGOoBD1QgqmObnZPlORHVXEM_Lwg8LMffMHAPrlXgkyXWiTT3UOm9Fr4TalU2w0Bdh-_VMSd2F_nfsWuw3DkiaJJmq0B1DX%3Ds16383-w600&dsh=S775732460%3A1784671304527287&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs1XGMtakElSYaUeOYgJCaCq9FA9dt3FWCh7FpKyN-MMxebisyQqeRlys9qItlpGQbqup4MPg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E7Xlj-6o4J-KnUQAy4QIcYqUAyxXesrTVqV9FD-F7_aXRfP_29MV7wq6Q7TVf-QzpbOmUgXlhnMtHHzpOxRMWJazKELI7Nk_9BA2tVsayKvwt6SC0aOf0hYi6_uUt-2ayriMnhsGkhCs8ZsNKzJ-lQsCSTi_sEvb3MHlX7TBYIA7uaLOgXAYV1q5l98UpgPCqoWv7frZgao2qAfoG5Q1hGf8UFRVCDCu9IQ8i2_21OOQcwZQKh-zeA%3Ds16383-w600&dsh=S-1038351619%3A1784671304551877&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvpafoIfudWAiG2UBgkxIkYx6CCxF7LzFocbbB7wgEGBe1OxT6pkN8FjR0mtnU8XgD0J91aeQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EjkKDNe3iPzF6534UkWya2vn-YmnAKVi6lzvtRQEGG2dn8lWtO2gLbo_h93hAo5xulNkP3QmhViWkTkHhRtKedmPXYMHUEtS_wgddoRRKDDeVmk6QT9DtWakkP9TyAkO8LzMwoG1bU3j8fdQqEJgy1omIIO5QEoctrM7FXMjJQlCn6T_yuNq3YJyZIyGVC_Gn7fJRlFVP9b3-oT-cyd2caze8bZk5vf9aNYFKVsg4BQvdrF0Fi2jaL%3Ds16383-w600&dsh=S1965084359%3A1784671304551823&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvkznQu3p9P-t3VDLvDsMv_24mmoLKglxZdbeKpky6ITjHwIhQA0JpZUeJp3hIL8TFJWfbNiw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FquSDVGEUy2MtPQLBSgXkRju0PBv9CGcxaKK9ADcnKmcBKRHi2GLSnGC9hxq_Xjok0GHJuYJqXdDCnaSL7wjEGNqXY99gnwHC_zGuymfE3NKuG9hHVRUAdvJ9J-77reQpCJONuWfvkg5BC8IRF7IMNm44e7mG3B2qfv2kUR99kh4ZTZjbtfvn1_5akBl2ePxg6eLI8mpaOBnROTCTTLQ3O4COQ65D7K7SgN0nLFmt5incRaJlXxix_%3Ds16383-w600&dsh=S-50198125%3A1784671304559471&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtCpfX__FVL9b_ewO4KQLvylGjSjxBHTjk_t0f9pxz_pze-UvzUPBrImLWpqUO_Aeks8Hhzxw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FjwmMrWozIE_hn29L87W27Gk9ks4Hz_jPx5f2c2DQTFzobnRDhr-ryAT2ZceDItdQOY9e-h1CfA3qpNFMiPMdLtWU6dJ_2GfX4smyQKuqAZ4vhKUtgMUcPuzMx8FavVqLFkKutx6h9X3UnFlRP9cT4haO1O0IznYrRLlVIyZn3SKZ5YGsr5xQGrYS-Ktw5VGkTcs0RBv_plbFRBEh8Qc41O-Yg7muQYFgPy4qn7kpqEkgTr6qYa3vF%3Ds16383-w600&dsh=S-418454306%3A1784671304556199&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsM2PdIcFjrLHOMNnXjJ3Efc16Ftkga70SpZLW4Z-G38EuTE5tW0IXUWgdrt6sOs1rO1aLCXg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FIiZLdAMg6AKQUVwNYbJ9ZMZeM74XNHd3lmh-7C1TBBK9bV-YCfzA79VHlByde55OzmS6Q2TTziONSnf6GUTcZqZ6j8uKzy6U7M7x6iw8ds_F_4WKGI_8OoH4w4drEp54qDwlDeCioFApBSF2AODmnZhweFeqi3YrVWjY4PlzV8WUBj-H11Z0vBI8NcHzc7GJptjV6Yucuc26BFr74cuiERS7JoAAmMAWAQ6abnH7g5dTqdNMCOnnS%3Ds16383-w600&dsh=S691242670%3A1784671304557722&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuQLo6WuNhK70fpiFTRmDW3XAZiHJ70Q09ffasRYMkhk3j6u7FS6F0nM24GltuGJpD378Tw8g",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GNwi2g-2DfLiLAE-4dK0aHgLBQAAi3Q7W64yNDQw6AH2UQqLSRPY94RTFYPnal-YQN65I7LvtbVUAKhUwtiThx3Oc5D_fj17RfCUmBB00zuBWBv3rczu7IrQpavP0-O8oySyd2S2I-GtwLuTxYUZ4sTUg_YCdjiCr_yD8uFqQAI0RXGyrS2LLYEBcUw-VOao2oUMk1x4h1lCPHLhPK7743VajWxpWK9GN75i9RBbU6P1b1lfT0z5Pc%3Ds16383-w600&dsh=S-1875581384%3A1784671304561508&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtutEyzEOYXJhQyU0zlr2_B9cb6pq1PGZUgtkFjA0Od5MGeC_X8cM2mjK74Fqnx4KDkA5WAKA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ElaVn05UG8QpGPR0CZVZ7mXEAMyJibMTxMis84K6h7s_w1fUjtAxNGWfmDHXzV0NMl3pUzDLLJSrkgsxL_CrfofQ18x-_vtgjV-a_BWwMWeijhhOXmA2XHd-mJBal54S3XtxZAJWtTb8uY0vFZQQ7RMyZMDuFk1o7NMBD02JxUsD085sCvqDpX6wEZVvuQ3vOAjLOuKS5sGd7YV97LaANE62vQ7-E9QvZQtykq-tCiBfqZXcErUnAJ%3Ds16383-w600&dsh=S-1036871742%3A1784671304558244&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsTFd8e3wQ_QhQS9ZNdNgygFoQhf4_YCoJpQJg_WCuaesL5jGAcGUkbAedt32K7KjXwSVi6yA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FzpzOdb3Jkp7KRVFURVuBIBGJRinbO_nH3VlQ0DGEtuFjncEKQ6V3ueKQh4ISaEnCugg99GmdLpWMbsoIJ34i-Mdw-B71lK1-Xg6ZH22tP4OtXKRbVlKUdkLtsO4HN6cfEjJPym0slsRs_BThbexDRDjMt8v9DDe2NRn82CdXTsBudIOBC7rlSr8Nm9N2ENf65-Fyts9hSL2W9PSMmMl9RkOaJHSF3p060Ee9e48C31skXoSC2h24H%3Ds16383-w600&dsh=S-1172319615%3A1784671304567991&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxseOo-CrLWLBjqp2aoohwG0OW8Wl-uK14dGUpXYESxfDVhY8ViqxzFrDfHbKOsB-GwRzE5nYw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F6cs4WoyGAguVzLrXcNQ6ZskpUDdMpEBjV2xIKPSBouTHgl30vsjmor1S1ZDaflXHJBalC1aBBaHh5u5ICE1QOuPCZUXMDEttVjBckeD-xX1axedfDdpzFzuGF2cC7JfuSHrho5ykNZ1NRhBoD_nj6B_0BfJ1cwoGS8MyJtLR-XnwIldhl75uKLRrwayFwCBihC6AAmUf6BRvFjyR7dwap-yRM6L9wls9N-GfhroB8_DbL4cWlbQcp%3Ds16383-w600&dsh=S775732460%3A1784671304565933&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsZdQWHnMZgxp8ZuVO5BMpyekHtIja6UNiIjHr9sozmP5PAomJJMkC-o7hYfm3pvgBcvWubnQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FcImAjt6z2jBAlbsiFp4_Q--6XiVnQBUHVpzH73L3o5P3hEKAdKqkZUFiliUVcMVL_NiWm0zShrdvv5djW9SOgGq84vd3LPH30Gzz3o2nnahVnQCbhYtvIMTA_2yi1md0q4RfLAHWShLpfyZPm5VIrEUC2bSjDs72jfPWSBiWHBRyX7cWJIjkqoaiJfZmg-Ww7xkGrECyZcE8TjFyMx6YgVNmSAKGjIoJlpTh2htzfEv9QQsuc-8uf%3Ds16383-w600&dsh=S-1390999758%3A1784671304571671&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxstVnV5-wQjk2ZrNPy4a64hwqpjKmwxLzUhUMLWAbtauq1fZXWrW4XM4fmwPKd4ZVAdMJvi_A",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H4XefwtM198mv5Nvv_sWOBOmSKkMKTLMuXvq41Q6s8bwuQKBg9eGnXaOm_h3HotErlUCa688Cduimp8EQ8GRqMVL1vX5YhLdEswKuqIool4n_VBso4BePKf1YAVdw9nNm49xQErqc-5hZZq812yQhbXSDFxxl4482mVj9wGusqTlwDj228ftA3deImwBGP49fq4mCnJe2SaF3fW8feNVIEpu47hn6jGcPvKzQV-XOwLtDMqhbH993y%3Ds16383-w600&dsh=S-1744264494%3A1784671304662519&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv_H8VmUP2dWGLYbFicgWNM1zbUk4pj1k_lIkNKkG07mf1KhqhELvCDUBohR_11dEHJvvnt_w",
+          "url": "https://drive.google.com/uc?export=download&id=1DGr3ApLkFaFdET7PMBiPzPNlk6VlgX0l",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
           "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EB8KEHfrss3UH5dTdGEHMJdPTR_yMqdUePkzltRwHyDz7wrkab-CIK8adSTjnZwC1MUSJfQFodVBwqXXlp1z05eKKK6QxBiyMsvnDbAkLMuoqRflfgM5PYlt58Jgwknrp3KxzVsX6UuI3t9Msly7KXwyvSThWmEuJNE8iNombmduxbeHWkGGqEqWMpG2DTSCdfWSBAcIs4mNuVZlf7zg3Ot0F5WAM5PrFF0Gwc7Q7qP0IEsAM4Ujp3%3Ds16383-w600&dsh=S-1238478504%3A1784671897960472&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsOcV5mYknrgQ7V_KGvdUCk_5q7FL_VwmUc0aI1yGrdbdAtQJYuDF2LMOoxxHnlmmyC2y9Y",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GxS9ICK1UCqI-v6QKygit-Ec52Pd5534gCr8CQPTt8HBBxeFFodxSncdggQw3RKUrXUtZVBB3gzVxbevo0z31oe2Ld-Ge6WBKAriJFsLkqPOWbkdApUa2WDykzAFdS8H_yvTj1k1BnHkJcmbkkxhWG_tSNcEh-pll-PGPGLjVlhrItiBgd9cVwe4VDuiHmnej6QpLndseE-Oo6cmsHyy5BlTnb7XY-Pop2ZN4iQvJByUZO-q6WjYVB%3Ds16383-w600&dsh=S689506340%3A1784671897960463&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs8t1RoSze580lNoWz10CMmjMbM7agapSYUWvtfWJXHWO2TUheyDk3EGHVeGzKX37AzWC-o",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Geck2856qSZx6HwifEi0siVvLZy6vwwkcVjYLEfuzBJ-RZWfJNIUlK5nH4M5ru3sqvjwMLCpRaq572D8snoG2Ilq41t25B_6wGVFsxdjUyrOeVnbTWn4A3tdlPuyovvuPUKAYhch3DVJ-qT7tq2vLznd6gUBiMimoa0rB7IZo8eYo9Cozo0tPUNx6BNge376cNBrV29WRZCiLrmddgvkaJV3bfFps4zJaFDkO_6QXapLY8jEI_w-pZ%3Ds16383-w600&dsh=S-1238478504%3A1784671897957809&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtr0lqjRu7S96WdkGbb1c73_FYUbmDbjRB_hsogUdDuKHSqMtKlJK_leYFAvTkKHFVnrXvC",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GQjHcap0tTw0_GNw8DdqHtp1kc48C8jMrNS2kEh6gjg--wNY054H_zMjuAz3Iphws9_ml0Rxqu5KvInjSU35dYCJ4UbPze1Hkz7H49qBGyWVk5XPoGORV5tpzHWpGT7U1WkoFW770-spIc_gJenq-2iuOfzZg8iK6X-C-5J6rAyJ5MNY2erRekBPZDCf40g08ghoCuJG0DJqBKHmHIZbZF69xmci0opQvATsMVE3oTOCbppUtit_xI%3Ds16383-w600&dsh=S-181348360%3A1784671897960313&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtryO2zIvKB-tCleyYQo3URASx8iJeJTQH7zK-QmYTik5N6Y2kGW6HT16CyizfB2rksDLTS",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Hd4rA-tK-2mmPu3fa8zPhZJ5WaOjMTOOCJvxm_oF5UftSoQpCdkXZeHMU6rHpmcBbPliCDGVuUw3VaaVFCKdABdR-xKcKiGWwROPbxxvXMr6Ct0FTMoJ52fIzJGLtz9fYF39P2_Iof-7LC6lrFUpa4EnaMsFWQ31HUZLPq07ilWN8ihxS1nSlNdJEKczXzGVHG40FsSO78zzwwzatDTIbWDjpjv7OeCOqvrubsxf-tF__GuJfyei7G%3Ds16383-w600&dsh=S-771330088%3A1784671897959971&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuxNxT8kINWx52RnACzIe-2bxVBZOJChdU8XT7QFo48z4OZRr16IQ9RO8HvSzb_GyXI1MBD",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GlgH76Unt8Qpb8EmZUPskvWSoAkMhewbR7wmKnOjUjLl-kj4D5qsBI6qPWLwphzRU8tz_gO_YQSbPXFKoCtG38sndDibrr7kh6tjTJuwkvJdnWMZqz3aN6end_qn3qr9ck-6pWWK7fbNrHNfWE-LR_ZomLEYX_mFZoI6dj5moBuve4sywtuqpIq8CalVUR-qhv09DDzhFSsXiGIy3nSJ1_zFNSwvjlU7J4zuPJa1dDQPQSEFEIMDSw%3Ds16383-w600&dsh=S1748799207%3A1784671897959791&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsPWET41_l-gfSQZlDQi_bmnXqpgZhr82JHZsl2ZxfbhHlpjJe_U511OrfUbtJx4d0dEiN9",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F0RNnAOvFA9Xu68YuwYGH1UOENxaCZ5Kr-n8FVRk0vmc_WO7cKoIFbzPGH9LVP6t94k1tXUCKGMWAMLUOQd-cPg0bwF04Eto7QlcKXxNLZRCSpMGLcMUx-Ym-qci-uHmZUPaEAamGEPtIL1XIV6L71oORKENbn6bEFnV2n36kDWY8rAvNORNSEJTbP3-QBGsVkLd4KlfXQo9w08I2mXVgp7dJ4hVX4LmRY7I8HX-ZeJa91RLyLAxxI%3Ds16383-w600&dsh=S-771330088%3A1784671897980044&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu9ODinW__Yyt4govJHFYoTwgTfsCDehOLtF6fvdsejDGcYPzAnA6Sp7SKBq7OXRWo4b0YH",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E5SVMU8GMaGfxdAeGARQmFkSx2Zf9yLTe1LOCy2fPseyNEuOErLufH30BDml4UADy7BRrf9W8sZ2FJqCRziP_iMcuc8qCFqTaBYA59OmESmm_UMJHWQIxZgcZHrsG-40h1GWnYG9kyHM1JFpN7e5bopj534dkf8TKxNtnqAu1hUX8jHeb6zDzy57pyFfLdKvxoTTSD0iRyBjXBSBqwXt04sGG1gerPo70mmUmn1xEvzu2fVySYtqdz%3Ds16383-w600&dsh=S-1238478504%3A1784671897989645&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs4I4BR3vAE-F5poN4Dv9qM7r77wXgpHYR9RItu40Cr6lSO7byEbefkN5BRYjvy4ZDr6qNT",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EB8LQVfdYnZjk1Uk1JAisYjzyr1_4DxqQeHkmhH86YYyaqk39aLL1rvnTeiV3SyfF0sMjleFsiGS_hqjtMurozTdk2MLtrz84b9j35tgQe4DpfnvYj3dCMJWLOZ11g0ZSOfl7XepYARKqCozYenMVLuY6ggIaZGLxFF3t-lTIaqbGO4OThW19J2Xy2EITq6bYYpavUMHfobw7d7N-AAXAN84fhiBvskAsFkeosItCzfKbY9_xlHNyp%3Ds16383-w600&dsh=S-181348360%3A1784671897984535&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxta83_IBgvZ_YDHE9jU15ttSS8QYxB82AMU7q24raOoyGR3keAekjTgw9imkN0OoGTr-w6S",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Hjn7J0D7-gbNCrJS5YXZb7cSJWU_6rw9_awSHClXTw1VxwV8eUVSj3XdFCk472FlQbA_ZWPo4aSycRWtlgilKozYTJMppaoPDcObM5H5BVdU5D3LZbU4PAkjBu784wM-svF6N5wUzjnTiXMvPpuvGeAkKkf2h-68J0Y2r3wF8JcF1p7yVcwfH_K7un-JEj1D04QadUD50WPT8WbtatyOvMv3YkNJuSmsswO0aJFXz7MexYyUqZFKg6%3Ds16383-w600&dsh=S-771330088%3A1784671897985716&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuZsx9-IVKAV05Ql5kTwQm6mD4kaRwhZAjdmrioVLVyqfTdmNI9cGcmHCxwEyCGLjUCMtCc",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HMdF7QWiDnxKgTesbJvJ15n8E4t9ADYaf9QubYJ_l0ccm8TwEhXMxEmMJKABbg_cpGZe5DCpy3Pu46mIxY1ozEgOewQR7L78f5UP-LNt1fkyDmUNjS9OdtQPsv3S89RevFSZ0H4cPoKsIgEa6OUj3HNygYyvqGSEzyifQRMJ4yY2qq985RG-r9HZ2CP003yNhhKJ3csZ7rgcX8r5khtqP8d4WdsQF0S3jKk2u4kQkgnd8zernO17rF%3Ds16383-w600&dsh=S1748799207%3A1784671897978339&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuZLbRKEAc08bc2fc2P-NxhNziAUaG5eV-3xsbUtAF5aSa7DGPLZhpiE8pyT7mrWPHbDGU6",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HQNZVxo25t2WNrkW_DwUpAinSlrRfz3xNl-Xxx4Kb8sEZ7l11mq6E59cKMvMcgSldTBQa57yD4-uwGDahP98XCh3GBrFwPAeOF4HCbOfdo4BUOu8RHVJddCQv3CzL_2HlFRvRTiNeK1nitJtq2kHOAwu_FzbSDe_Bgk8oJKmQkfRw8ubzkHn3LR3aKU5SCiKLTPSgDRuT0vsMmFzzWyaW9PNgCimlC64IX0MmB4oTXT7CNGK0Zfz0z%3Ds16383-w600&dsh=S-771330088%3A1784671897989213&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtkAIFoZV1YZ-XRepN6TpEFtX6bKpr3alPp_RfYAQ_eiKRrx2O1cR685vCWZdYQp7Ber-0l",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fe4x1KPMfQza3aSv0dQfB_GPkC9WJtddNOTJI4OkXXRUtheBY4xdwvhw5AjVLaa6cSinOs441Gv2w1GpIykk3g-HAMEgqwz0lOrG-3nMO09E84MzAECLfMn-iueDSruUc6kzPwHh4JC1Wny2lshG5iMJ7pghCvgEI5DT-TNiqplbis0Ax082dSerkJmSWZ_VX5_5ZkQokC87eMLu7ZlGfM2gVN9pGmGd83e3fvv1ERQPr0mVtripcz%3Ds16383-w600&dsh=S-1238478504%3A1784671897979317&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvj1u5aBUWxq-2c_fK4lub-QXHiO_WZJbMpvCKcpKX3zJbmgPpIx9ymnHpeuAkeSZ0qOroP",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HHZv8Yw1_s3SLiHh_6Og5Td4djAjiV92d8E29XMKExS8nq_zG3sKtmfzc1nqiJshm8XxoW7KHKaxsRzKw2GMVDo3hZdWwd-nr_vJMJ2hxt6lP-s2F73Q8268c5BlHfbMzla3mGaxR_-5gFuOJ4OjIHpHzuU16XTQRC2PKMAPofz2bK-J1jWrN8ZTZxIAVm96rwdXdFV3-Ou5Lc2AvsWVqv_CFmm2Sj9VwkcQLPXyFE2h9iKQz1-JYg%3Ds16383-w600&dsh=S1748799207%3A1784671897980902&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsdbr1q3vpQ_65d_NLXZTHOAumGah9nrSy8O8OWAjSU8wrzSOqmcx5sdcJBGSxLEtjHkz2S",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gw7d6RSh7WrmWsnDzAPJqzocwEswSBFGaQmXENDFNgmIsi_CQhMSDEGtc32LoCS0pQi8hIC1hTsMurmDzeKyB8xQckQzLaAWJYB6Ey3xTBZfrqt7umLpIArb9tXBcfprNGwFjXblalNUPeOVyTDbLSP2OjTG72hEzUVSY51b2_K21U-C1bvZgJuJK2N_dv0dSEkedQu34j4AsaC_Ej3SqUSXiIp5IJBhUiCoY2oLT2KtBS8lA-CIbc%3Ds16383-w600&dsh=S-1238478504%3A1784671897982393&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxswVN0aqqNFaf_BhQDA-PoIbL4Xi1xa4w8eBVELjIvk_GOiCEssFZ45NEpajRShgrdAK3WY",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F0TvoLCpMjFB0to-Xvi2n29SUMiTqG-9N3mvwbPNFNysTLz2yRDwnHZF1x-Y2dpxBD8d6pe7EzMkzk-ekUiWV74-AFbK0b6D_vDazAkiDSKm5CTkQO-L9G4CCEf4ZXbLT3r0b2TuDK9CD-9tvNsXU3LNypftuLd2HfxSeftUoJYdQvBidHXxf9jPAoVnfQJkB-2jpKdB4KwE217dCGKqy71B80KrM-Amqqei7c75SJcAbZP9sbAZ7s%3Ds16383-w600&dsh=S1748799207%3A1784671897983737&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtf13Pg8dozPzHW06P4akLIWgGcQNCq2JqZBs1vNCJfg0LY6FKhEhWX2CmPnsBhbh2NLDZh",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Eom8gCjHgj1NFIkrgy8JewNJXcssupUJq47ia1Ufd1gLBTmRv0n9Lv5kFS2Xog7NYW8hPFWFLvwGImDZFEPixZqPJb5zMrrBOl6p6WJ4LQlRGRVbw5EzGU3MjN05VKfUgjaQTOqrrWEaTyhTBHdoyc1tzQoQai7fQ1V-WEktK8uBQO3NynGBEXLxFtxGTe3Ck_1aPg7CuNktEHWfCAOkQszwRIVtwSfgGLsoOSxVvUxVpAmfIILY8C%3Ds16383-w600&dsh=S689506340%3A1784671897960014&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuFfToArkVIRLWx3Slzi1p069mchHRfXg79BlvgJA_bJ0CA5i0TJK_B12NjrNxs4SRAooUV",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EUH5UQCJB4WmKcWRCmdkkI0a7FUXf_SN9pGYyHSYuqua8p45WlYGbQJhYvdwlQkgmmEYIoGe8F31CckSzkaWjOO_pIfN08nO41IijJoeoMs1YhySnbScbEh1UWOI-GZCvQjGdvV65F7g1bTQHV22KJehWRqVSsKgTz3_gL7ghsRnkvC5jPLZXynfrHhf-ci_Kf1Pg0Dj8NRDr9EV5lnMY9NvIMewBdNSITJFD3ixxCt8BsjVrBviwi%3Ds16383-w600&dsh=S-1238478504%3A1784671897987809&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuBZTvuNK0e7kAk6mjmWc9YxGkwUnf401Top6CTTTiTdFMioKq5HBny0MjYWjRtZNUAXxwu",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HSxmx21qezkrB-fb7Zb4YXg-qb3r5jj3bRt6sJpIoKjqMrYROPVoE9UPGne96ylGLUaPyTcyla7dYYzy9QxRXTkgwZxNm6LiR4q-omAm7d-cXD1Xil5ioaxIsh8tUDLnDcCuQGQCl9-JZUzLhD_K9tdy_CmtmnJLeO8Y-Nv08-I6uXN5cxzgXRSl8fix74x88EPe7uUIxI82upfDIMIIxskOz1eTFUdUjGIeUD0R-ITdM8Kfa7naDB%3Ds16383-w600&dsh=S1748799207%3A1784671897987766&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvnyLd2MJIOBjLio40LBSOr5G6zSEmjuVrFdWxiDNWZXasfrIosBs3G93JgEg9XbFrvxRIo",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GXozVi6ydcgS1N6wGE1f3aoO_P-wipQ5xwdMMi34Jpp7cho4fNMMTRswVhAXv5N7DDDA2Rudlnq1PaDAYG-cVbq38AxIwUzOlSm4JUnhv3prCraZDBBMXplRnwDbH_X4nJp_xcWc7xmiDq8rrRE2HzgHMQyHm7nanczi-AB0b3a034fBw_IQsGUUmNDoGMgPpv9WrSjY9ufBuYJPuLPvyftwY8hjsy-WLnewKVp-KdK7JN7G-KH9Vm%3Ds16383-w600&dsh=S-181348360%3A1784671897961968&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvIqcqC5cZJvTFEQTDeqJtItAuRsg-8Ed7zaesVc27IpclaqQHYVcPuNRoiazncyFfZbJbs",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G9TsEDjzKnY-8MHMU8qxKu-3tCZSs3LLawBUTUk54FlQQdPBjdqcp2VKq_VQr6IN4oY7V7Sy6YPMp_yBsdGev7WHlKw3wetbgHdaj3nKBwDbkaDPvdaA56I4lx-M3b2ji1Eq-mmJctrTBK_ngx5ktfgSbnzNGJgidvTanEUvsd6oH21medKlGGjgdIPHUaec_daZAXXN2Z3DAPvq9Vd5ExFulXQLrAy4TfCV5PZBG5aRvisQNntxeo%3Ds16383-w600&dsh=S689506340%3A1784671897986245&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt0PYoN6iw3n9EcUa2RSYnd5XsrU5MekWbCLYruNSeQJRWOTzAOAysUyM_O3EPk-tTH7M1e",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EFQZXD9_H4tR-HKG127gAm8ueYgTiRgShPi4K40vVVCftRcqbd2maWfxhfLKaFmcGTNJB-mNhLRRNWkG7HNdhzybWkTBPLDyjiV1o-DOlaAHnjsRYeLfStrk-PtgH7D3q_XJ0FjpJ13sp7mYCqilCoesIpbiD2OcA1MGUgldugJT1_e6UpO0HYr9nmLvwSdsCov9TuEmVOqnxASQ9TIJkr43zUvIJxaJylnBS0foUyTJPGh-3VaylW%3Ds16383-w600&dsh=S689506340%3A1784671898009991&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsrc2djUTf3NNfWwqRNDDDwqKdQ_IX2_1mdCbzGT2gn1MDahI9dBGAtzfYRa9g7MQtNrCUk",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GCuPH0vUtQcf2dkPa7n9ei_T7c5onzBOw8zaRYY6j3wN4jC_NoackXIf2TMQZJC7f4blbFrcqBxd1evbjZfsVsaGNSH8kJhUvBzck2OJ0ppO2cmsEqn-v0d1vyTEvV-ZLCn2cYzn0kjR-rDqFQVWpjuyhJbL8y746MqDItHBqvvFS_H14iYZ_9RoKJtKS1DHqQT3tloAKDSBaPMtazWt_wW41J-cvQfIhPe914k7fRwVnbHK0vNSC9%3Ds16383-w600&dsh=S689506340%3A1784671898006668&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtT-VWgjsy7rdJ7imKbPTXSW3nCW5Meb8PdZPpyRVPm13qN18UDorz9ZJ8gk1ngecpIz2Fz",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E9P7cWzelQttJrXB4XFI8tJdDKzv37D7hsJESUf1tJjYNrErhUmxX1sRz6xxuVkL2y4wNRVg17pT7t46BQi7r5lB0iSP_TxUR9hIVQjA67sJGcnyqCx2VnnSFyNLA_P6wqGLysTMFGT3GA_tAlCz2PdpF53Yg_k8PZX4NWQJg_dhlhJzZkFUCUdcFT7Q3GYHvmzcF3oEApL0hYfKAGo98s3Gcqqc_PW5xNhBi30C_YLabJpTVzuUj_%3Ds16383-w600&dsh=S-181348360%3A1784671897984536&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuKPjXfYN6pYpa-Voy7P0QYwl9w9ecefjxfeCes7o-CQJ9sQvO_Hz5KIs-O8-AyhYLGxK6H",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H-WIWNnNtkagV2OM6UrGaNhIjjAzSyKky864FLPTIpDXV6BjIiPWX0DaJsnPiTKA2Yy7zl2pd9WoFAM2ukos6D7-DZ0XaH2VWBVzBMOxhZsGAZ-voRPxI-TfQFHr1nduAHigtt8_Kx9PY6_sShRRQut3Y_Y26ME-ncKhPmsR8R0k2_Q5DxiOEIC4hrxljSH5mmzV8nHCtaPN-coKBtV_tNu34Cd6XoHPOVaSmyvZvsPbPgsmSc1N26%3Ds16383-w600&dsh=S-771330088%3A1784671897982409&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtG3uzyOMG-WVmxBursP7OXg9CVzSPav0fMLFIh0QSptD8lA5UFBAUcftjiZ9lOPoqGxC6N",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EnbtAm3YwA5E_QSyWSasQBRwhrcGgL8tpu4dUCrhF5FRFgrrUIFiCGuzcz4RGi0xt6cyWaZSOOnsykt2EDNd6QnE7eIdf0rMc3bstlrOFTWotJYVDqfHf3nB-njrN7q6l4aEUKCsfPMcXk87UylF24aZJXtBbSmx1YQO6YzJY23969v6XPLagUBQNGrwTpyyRmLC7QFyftbvC_d9-8rpL6inbt9z3sysrhdMwZZLv3WmPKW9Unki1h%3Ds16383-w600&dsh=S-181348360%3A1784671898009591&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsXcSGaViE3ksFz4b6waYaf0pYjek8QPMH31xtyBhS1JS6QIsUJNOR1MXSvmDe5nzfJ7iPQ",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ey1qncUzB298jrH0SEDQZzbUKF5TDzlV7ICIEfqx6YsqCaPCd8UAmIn7RLGqWR9dbrZb3upzcoTQ4yvziSNNxGguWBI0Dih7WhnbMj7DycSl00v8HAVyN3e4aiH0Xlb8Fid_x4N7CLsnzHLwLqub6E7DLEgFJDwglCHVt-XtrGOjaNZVb-AkvuXDft_4x_bho6t2PlayiplU9nvCiEpqBnWpwxxTSWlbhIK9As43uU9Ug4tKCSdFR1%3Ds16383-w600&dsh=S689506340%3A1784671898004479&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu2gXaZdRuPnecWkJmcVGnSBfM7iW_k_fxYkmMRbytAuAo8p-KzzmPEmFl8cNl-zccDhR5X",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
           "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
@@ -2824,11 +2896,11 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         }
       ],
@@ -3024,14 +3096,26 @@
           },
           {
             "selector": "h2",
-            "text": "Vous avez besoin d’être visible, pas de vous former.",
+            "text": "Vous avez besoin d’être visible,pas de vous former.",
             "client": [
-              342,
-              164
+              362,
+              58
             ],
             "scroll": [
-              342,
-              167
+              462,
+              60
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+            "text": "Vous avez besoin d’être visible,",
+            "client": [
+              362,
+              28
+            ],
+            "scroll": [
+              462,
+              30
             ]
           }
         ],
@@ -3410,111 +3494,111 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ERuRixAYoTElywfci7LIvXO-ljPfkVw8dgskj1Ga7JHD8aeLSoj7_sqbcuZ734uo0M_Hwx3u3DT9HQ_e-sJipc8eaKyU6Dm9OwFOH299DyXojohryWdO4zI0FI-XjW_BdiqfGBTyeiTIHMyAzQxEm_9ZC8Q45PcJkzbLvvsjyDcMRfRvN9s62HNNGv6h7j3W7FG84VR6JwJiGOI-RfCk_p4bmL8OdmqxyDwxUP7uXaCFMEPuPGbfKp%3Ds16383-w600&dsh=S-2044204248%3A1784671318544458&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv7RXD9o5sP1jAph3oz3GwR-ufCZgiqknKQzscKsXzm2D4qbs6aIpRx7_ZkLoEPekhhjEHYEw",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FxRHWmtGtnolQEibJK7n5YgJFs0xyeNjE5OwVIPujxHV0LzTlGZ4AqWl2_xSpTqiiTj5LpIo5YBbD_YzzLA7sAAknvyazBHzdmkP-8Kppi_7IRK6MvFNq-S4n-OVzB-Ihi-uCnOrkMJhFKd_jmFgWGCF8vMHdP6s8NQBrcsKFaN2s7Uty-5EcE54PV6cSDVb3U4zS_Nxdhj4thMQ6nGfwYmHbGoH4bk1muX64vHgqv3SrD4IJroAuW%3Ds16383-w600&dsh=S1748799207%3A1784671910722906&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtcdisf_iFOIir3ooIH0go5GJD3nWcPAerFxcex9dy1Z-9TW1X9hqt1BM7z3WLIiwkRzJpkmw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G40AWFPoiun7_lGpIq7INCRscZyPLT0k8nbUqakJ653BE5wVovqQaF9fK8bMSNc5710aC7SmhVBslARf6qSKcngQKk31xdHUqqtsVjYImclK8uRqykrH18bylNKVBZdBnTe9O-8z8q9cWdiJk3-GfmtqTnMjv3Pn0eS_DwIeLLWDebcZDte6KXJhwT9h4jX4UE5aki3iJEN9uvsiLWPeIR6c6Kb1Pek2XblBK3E9g5YH23xNTFH31b%3Ds16383-w600&dsh=S1110917073%3A1784671318545496&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs6RXuTK6pBPTWAWEyK9DFGsqCPnwDlVAIL6fSN4bONHIOeIZlGNK8wp765-pgMPF85-dQ8pw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EmVMjf1xozjfdzck86hCZrYUhj9SZJtL7PPiQ0c_IRBDeetRRkqQ9QnezHmIleBTXZOFzWv3vNEyqrxw-2r_LQLRu24GpR9bFEa-0qBKt6t_ylBThsao1SspzvtMCICaMzWg3SujHG7cNr1EyKym8vM4D0lyJNL7eUYGg7akC8ekiq2qk9URmwbDXjXQA9GMB2Gk9tze-1cGUjTt2nyLVpIzVtMy8KGPWZ5xP-L81-lPbjtDkrsAVe%3Ds16383-w600&dsh=S689506340%3A1784671910722956&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsFr2_1GJGkzIBzsn09C-UnvPlzGjcKMs2hh7H23ZHNlQnxbPLg5zMa8pU10B5rYe6u9bP3Uw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GHD8pDqoJrRNi6rVF9lNr0NJq8tl4glxuUs24d76fi7DtaEm_rAmPOAEafF2YEinpP4a_OuvRxGsVhXhA_6Crif3FBWXGyGk2dqlMCmmJeTh97_0WdfdXwOskTfq1zM4f5IcITgmLPWq9Fydr-QeGTEyQrFM2g42HYEwCDqX_J0mV-HoGJTV8oOjboXAPGmS5VY0DpgUx3YX9tG1LtfArSdWQL8FC52GH6UStTcMP0HMXI_B2OToO4%3Ds16383-w600&dsh=S-50198125%3A1784671318548936&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvGamo92bzhuY1TB5Zn2bdi6iLfMRPFL8chP1-HJXNpa7rYEqsnr3yx9NRCGKs77_UnlSAxJQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FFs5qzdwoXBCRWBXr05EkmN9eswrS3wN9lSUVH8lEy8Frez5xy2XNShgRbwo-7IhFDYMP4Kohz_Es82DYBA-4SZ_TOmdmwUnl2n74iEnb14UlIGy63YvHayzjHJq1vitJnqd1ry6-GTq5KsbtEMT1cnZTVYjsK4BCfzuJBaz6sES49u8tk9Di8nGGv5UiyZECkeYPZhRno8KbEa1CwLqJLoo9_wdFouIQuTSQ825GTYHKCTjVjkum6%3Ds16383-w600&dsh=S-771330088%3A1784671910724114&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvYjxsCxZ1sCG2lZwlPncT6Cbi7xgRhe8tn9U2jKr6PdkZ-cNIC5Luj6wplMd_QhMp4mCDCbA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fc-AeI_WfsQroZYYtkCv0B-SNrmEG5TXPMYhFaAz7YSfgLyZLiNYDl04uUo3XqVwXdfO9El8x80N_1gm-9wI-ufEIk8i6J3pQEdi3JN9fqNBo4haT5ubh5aW_WwnrKLKCdnCMdEZ7h3g3lh8_z5POPP54hOmLENOEZ_meVRM2PiwvQVuseHCMIgi0bBu4yodbkWf1jEgSZLVOvp8BtCh5xm7lZMJP8CqvKsYU9tCUDX8hyJcKDoc2o%3Ds16383-w600&dsh=S-1390999758%3A1784671318551274&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtj-8Fe9OLqRF5E8iBP7dt_pHyI1BSEh3mR2U9myYWtk79pgv_XAZaIPEGIqHhuRMb4HcQemg",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Er_svP7wFibF_VVZqqUJQ9HAextZ3eib9bkzgvBFxAyqLgjL6g8mcyPTNWaejgLYcNqyN6sMZln2EsExans-yvogphpt_aN8HpezNpbBtK4k1bPiTdG_CYzZ18HT2pGRGF5BU4GjvDc_3n5I3-YflKCJmCFPlzUfx2LxXWzxXCwxJkQpnWgkK7Tfmf4uMqRhcmax6s6LAG0QCCCqS1yPzBsq3M5nIeutM2QC0HKjTJq0d3ihmMmAtI%3Ds16383-w600&dsh=S1748799207%3A1784671910743222&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt4_f5m9dCsCl0cdG9KszNSWcV2VeumYZrFGR2IWHhhx7iRfRMDa8muOZjQM8wgMZ-CL35cOA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G2QDAgM4gcDAXTts0jm6Eo7zsZBlYh5tVQmJzipfgnMWj2hDDr7fyA3SMQWj4Q6alsQRKVCMp2OjHoGBecCfEe9LBeIOjBBuAwO7jvRylMOZfpF56NLGDEXJBEfqjNNJsVT-aaO0TM6UwWOnfiPg9OqY-TDFlJo_iKLPgKRWjNVJYufqGkzzZVy6vXzVUIfONCmi1ilET19iPDfUruQb0IhiY4j_T4sAvyRY35MNBKGltvShlWVeDg%3Ds16383-w600&dsh=S691242670%3A1784671318547584&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuBPGkRyzcCkGAe2Fk8RS4oKOb6Su0fFW6hnxbMjxyrlRxxT6l_j0ZLRm9c0Aa71JGtimZVyQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GdeTnSxA00pWCIj8mUCYkCEFJozEyRA8QNAJLvQKmAhWUDFKne8yFMFcYQerm5l5HGNhjAAjpi_GxQYNHEztWeoAJcmiRI9roP6Fhg0rGje3fbEzxWhyqrpbfyx9ivyBZ0FcDx1xJ2USXE5OMqMb_9Z3m7BG7Kv1eYHZVcMj8qqoorKsmMV9saQZTgaiei1auERPOPKPnYQnxGCMmsXi0LcxaJbIsSMoEoZOMn7xOo0ACMbkN_zrHq%3Ds16383-w600&dsh=S-181348360%3A1784671910726047&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvmAsa0DSMlNa6I5es8eaDxZQqgp9tnumGw52-ywvUuY-hyegGe0g1BWkuzDUxTlKfE03SRGw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FYii0_wgTMCwqrWjgKG_bfgPBCi9gw7SwLRI1wjRRfX2cbMawdbFUtJm50U8a2M4caXBvuzkUGvzgL8llBvZQJQbBVu5i_6nbaHhds434d6YdgJuW-liA7PoXhr4GanRUFCysq3YzW68oifQ7gM_rB8yujFaG_5ojkqA75cJZskIu3qvYcL8WY0xFVifAy3LNRtbh199RZe_0OtdIhDukKKzqP9TlYmp9ubdaVZLqR69bNQNS3Q5Ns%3Ds16383-w600&dsh=S-418454306%3A1784671318548842&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs5psIpAFtoqhR0svcZdJOLeEdI3McSStNRQpnS4YvhczQJt6LKYCxnC0rNCURA7b0APTTR8Q",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gm83r9mqBEhGEVq1jBCfruX0Qn7YBsVc3p9pc9XgJJ8msYwacrnj9_IMbc7w2vBbEsG-1LcA-6VQ2Xl8Ey9WHm4oBxtPMzIL1XP-g_hCl-hOneashPiR9rMtLxLjl5F6WFJb1z6Zd5peRTFvxhlAqYE_fK6EAKgZYfA4yFjHT1MrrE_z9W-8lGShPOKoxNTXI8-gn3nnht76YtmAZvQ0iPd_ApdnWK0ePdcTuRH20bx0V6SVgy6mmW%3Ds16383-w600&dsh=S-1238478504%3A1784671910722987&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv9kbLU7_sULLDaMs-823MtzbXeSQiFM1-RT5ScWyAFUFywhtgDDyLhSHBWrk_ECibDrBA9Tg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EoLKYnKYRXAQIxoFet6_rTKmmnSqTQX6taWcVjpUWU085d-8n5AaZ1omez8xV_yPoAWQCoUhdBGY3QQZcnIZ_r6Um7kz_psuTyZU5RRLflEvx3s-lF_Tpsm90BzR1MAyi_27--_cVPqqoISNwLTsDGJ0qeEU3vztS-geahYUM0Vb8c_uxc3HbW0-0Kw_pNDvoWTCcKeT88yHIJMTvj0ShXmMtyyVeIfjNWwaIbPi0Ygq_ZFmJk1OZG%3Ds16383-w600&dsh=S-1744264494%3A1784671318604001&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvbI8jEWnzWRnllNCEor4WXNWTzEQ1eg1d7_2Yg0d2L_YR4YpoJ-mXzDCT7zJQ9L6ti9dD2zA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G957Syc3o5oOQFMA2lhr3IhitI6hpdMbkt5TEAoWtu2-0d8hMZzoiPQ794du4uuV_J41bI3km_Hr9O8OsjH7HNTSD0DERAyclqk7UaficiL1uYBJdAqaI6-EhddsU24IO_NoPvaMnzKA3Vt2JVjx8WsD6EzftoLPWuAQCVBhyzGApOmfG22ewum6etUnK0SNCQ55LwlFQb3ElDIAsuG64lZFuaglAUpKtzXHwHlxzAZXaq7c5W7mzO%3Ds16383-w600&dsh=S689506340%3A1784671910745996&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvHPiBxPwuS_2eO4ZmQpNDEEsJbvj709NiWJex64DvDbUn3y7u22oY7p1ZH47sNEdKFO6ZgYg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F-wFM6g7lc8J9er4Lm8XX9K0yJDpxqme3bWp7MCHx-4xzeDQunwWdwr05K_D81_3BEF2U7H1SfcC8qlB3u0cNwwLz1xPcaXKYrmda2JeYy2eueiyIR4VL6fTfuex2xeOD1VtOO8BHxibz3kAP_cCbfxN-Q42oXcw4EdhVmCwJq_ylBRym3mXWZSwB_4Xym7hNv7TJWYAEnsvYBGcCBKv0s6Z_QCF0O7CJG3E03Ldfr3mxEetyTlz85%3Ds16383-w600&dsh=S-1038351619%3A1784671318600012&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs7NvaQQeVdTkBP0LyBBdTBnQXhXQkFnZISc_LyxtvU4bW6_5DlKco957TWpOnCQL0etqZERQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ExZ7joYsrFRcGC3VJgyMC-9x0-loOD_iVPHZDfDPezoLMkqm-ogq-1TJZ9N9cmzTWAMl2BT9rJb4RsHEmd71L1JAL5H_vMw44c0ETkm21pSFdt27kVX1o7WUvvR4_VuvXHr_Cd76QZRYaP2dWu99d2rLWtk61Z3c3XLS7vB0TEeqn1YL7aDtR0hY7W1wg5aTXgj8hKJeYXVeEd7RqBFHzIcKym7_JMhJLZ79OHzW8h31a9yG8SFy6g%3Ds16383-w600&dsh=S-1238478504%3A1784671910745539&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsZJOtlU2r1RpgL14CjrHhWDA9sjlWa27Y2Ktu-bmv6TB-0GyvJ9LdxlMFxVXt83zZBxFXUAA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EozHOoLe6HOzGCnJlTOsJYm59UCNB2VS4WoSjBzlfsk_pBaA8lM0T1q7jJm9lrauULV4rz9-o32B-3r1HN0WbbzsM6xoLRflLf1Yqw5QSSJ_H-nDdDo8hGaiC2b-3c0eUgteK9ooGJZgzp-t-Jq3chcwUSSvi5V467BF44kpU9HxiF5u812Dp_08Bru8sJJzY_v3fK-xIYexpnGI3zEqHVg_R8yl3FRmQpN1ZlRPKvc7zjbxOoL4Cl%3Ds16383-w600&dsh=S-1036871742%3A1784671318605241&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuJyniaut1eSkOXLSWcr9T_H2Qc85dOyDuGOHFklIwR-R7Vn-HNHPZAruVu20DpDVqbEKbm4g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GAZf3FJ6xnugPb6XYgPCKVbSGdF19aVFAxIMfWU6xZP2CRkXPw3A5yDjMmFb3N6vUadC8QRvfdK_e7WJwi3EGvBeb3BHe4nMt1CZ8k_ai9VsfjQaEla67OiiAb_BRiNvdRsbdAiooATeYB0K238BRMMGV8QhaSTe6jwOJLcmHPB1ntT3TCS1OOoueR6CEA8tjpcQUcxBo2A1aIVslDsJhWD_TYmKz2HeV40lrP6iHldNF-K_jWrthf%3Ds16383-w600&dsh=S-771330088%3A1784671910743668&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtKSgwsy36UJhhX_rJngwVHj-3clRkWX_9H6dqhGPlVoimrimIJ2NiCUkG4YCMo2GOoTkJwgg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H6ZrS3cDzqAnL_ScuOu6YsXuF7OX4szwoEmzk-ifg9lK7kr_VA8ybSV0UYDTKiMaNvnOQ2qZLIx9werOofNqtW7IN5tlmNtHhk4i-kUPuJKb8znwnYagdDFKzWcm-XMnvwQNM7z24NYYKoWrkayKlHCQbZKvWx-ML2PnEXYULoAklduqsXYNhrx86rov3J2tijHbl1RetH8GWAqOd4Avm84sEawEXEeHXVoNbEjpOvOOset0tcNNCw%3Ds16383-w600&dsh=S-1875581384%3A1784671318606947&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvGRLm8bshQHEvK-HoM-JE5dNoSqtbik-Y55SITmtSta1GCAcOvpqXQCjTr2Ez7LgFdFgTdJQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EX5sWioYMVbxRSW5BV1iiKtiCIm6YZwmg4MOuxV5qKmOo9TROCVHwXxKDTzcxFm4bBtiQvC_boGQUQQ3G8b4rlXU6sRYaZwMpOovKPH-VkqXiXNhglG-1brv3PDQUXKNCDVWiYF0hE6hxv29WZISK7bYwaZevA6M7OUnJ4TvOlxynoNXghp78BB3uJWyWF4h9KF2DPwoWKDU8Z2W7ysglTRZ1Vq7LFbT17tEoYpo3YQFssMTtzJPDl%3Ds16383-w600&dsh=S-181348360%3A1784671910724382&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs9Vcd4CNpXY6PQxTMYaamubSu9HO_FdED3HJ3rDIBJ5KKm230j6ETQJV5U26dsdughmCHMVw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HyrXTn_85TvzLr6z6G5cipz0lu-YpoKtjgGvyTLTjCwBjxEhqJXlckVkMT4ghgSSPf2rJd1Wz-WhONqQB3sqJC2UIxk-yY26QRZ7zU2rYQUq3EW5rXDb-dAAu4tRxN_ozVbPyxYnVUr7smb0GJQSxwcnyxar04PBa0GYq_rhMiW1T6588iOsOT3W-leGtzK4UV-uBdr8fy40ZInrl4CZng5VLqCfTBxQAupRaAOdnwVQ3KtpY9YajP%3Ds16383-w600&dsh=S-1172319615%3A1784671318604558&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuyuFY09LCiAtlCHdf97Z3oXx_LqoAR0gppBwhqfM41hxAY1WI8gbjR1jKmRPmd3Hga2tTaVw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fwvy8JLrNlT_cfneyQiAh_3pq4trEOGjin16kyWOMkWJ-sP2ikpr4peDyW_WfRoodZDMTxXo9d4s3VeO16kCEuFhsvKJC7H7sIWH_x_TatxJKpj5j7XkIcV9teS1JH8htjmjAYj5qUqwUALChKqJNdkulmTA4nbSG_bFUc1wSENATCphSyjTAkHEcijCFQVv7eQ_z-hbM-9gNcX_mXT8Vg-7Ml7soRJLxOvhGH77tm6CRqMPjY6dKf%3Ds16383-w600&dsh=S1748799207%3A1784671910743124&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtraxADXbcyBCi-42-t3ajB72G47m4BuSbQcVpSQMnCz8xwTBhYq088xOfqmWbzpFzRYW4qRA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EbGT9NKKJRqQDTVDLnW7DViGcJkXSWtGqo8h8KatTyuHixWy9tHb2nCCoiOLoBy6fs5_xVX9z5D8Sw5vp-vqd2Oa-yHo1euhmsCPXHVesHGkqLalCo2lAocR5GSMpcnQ9YXAJnAsBc0hytBGoIGIeYibSpRYxRmqT3xgnSihdYTvvFmZ60VUQ64yhtO4-x2Ci34CFpvhK6BolB_KSYXUnM0dtY_zEXa40NsJ2IG1VayT4bTnXZAX9Y%3Ds16383-w600&dsh=S1996946945%3A1784671318597682&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt9yj_XR9VEXqNaGCOKlrZw80cNAn-rqNEC6UIpMHtCHJxVEyxkXhEvLOKKzFjTSo236tPyfQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HJ-QPtM9jxBKJUtVJpiZCmAscRtB1SzeehyvFntlUuQ35pUra0NipijMSRZT1G8Gj5UcGdYGgsf-vM6wFk3AEKTuEbUrBSROGsbpi0jmSYcu0VqGYaBKRb4gFyP9aUmOflzfKhpPMGAtl5GO9GOVRkUDdFUUlE02v5RfaELwQoULesr2DtAwQuVowhXtIkTw-drB55TKJJWzX9SZz-aYvsj6WQOKd3UiillrVPL-eSfWYvSUNUmwFM%3Ds16383-w600&dsh=S689506340%3A1784671910750843&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsbWlO2a47PmuTgWn10cxcWdWky6ZR5OkXIF1RQhJvMSCHL1r1jTmpklUTszncIBSZ2Q-g2ig",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HL-uT8grVL-UxxdyVvEtczca4uNWJPtbICLjnE3l_aSQh_sW8panuYcqK_jhyHalD8Fk0duHUDPtiibiXRq9fL-f3YYZN4gnhTJ-Yd7yKszVUv3k9jTmJP4z_2kHL6kZrMd1WAKwTCBi3rSby-YBubULRswlU4YF5D1KmIzUtt3dLzgyZnVJthT7e_JpbFm17zdO7XHiQpFFshfhVjfF0mppKQldhsWXLwxbQRTSomT4gD_Kqyg35O%3Ds16383-w600&dsh=S775732460%3A1784671318596236&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsOHjAO7127KSOuPa7vFYoxWLghIfQcz1-eACImggVHnxoIT7y-1HOgXtjlf6DrV5aesT_4VA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GFboHamcJMss2HNdyJMnZOetsHAA12CgAWSTC3LQ5d1NErbfSKrl-Zt9KSGCs5hCkxNYMuwm7DhfoVZ8ijpIAFX7eyrZqrrOZLTHK_sc0RvHGXRaJwNUweG3KVKUmBPfQoWrC18qbXNICwO42dnTwe2uERuyp15vM-wgOi8BiOV7fBzDjLyLH1m9nMcDKijEL9simw4y9h1apNmGKUkYBcbSI6ii1ViLbmSzEiQJLiHikY0aJENWD8%3Ds16383-w600&dsh=S-181348360%3A1784671910746039&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtn5EguZOCr03uibRIkscQZGmq8hJaBEEw2K9WkY16uO2rGQ3a76U6q5vVAdyobUr5TqPZZdA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ECQtoKL0nsXN1Cn7cxmvCWI1SXTXdfvqIPUDTDAYNpQEb0Ftil59Qtg_vCyUbjV8GIk7MzPSBnmqn-8Z_D0VfLH9gZDwpdBlleXgNtxQRiHy_yeQ8NevVbczhlyGjqq7l2jZMouPVKxv2BYWh4xi1HabxK76h0cYQ6PNvKBYI0Ee-VzaBK4XhBaGXEHXGr93jdMvpYF2UqhTz-cIX-2aNR9jopaX0zsZkh_-AU1L1kqBmcqNaFunGj%3Ds16383-w600&dsh=S1965084359%3A1784671318608335&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu0Wsao6rfOJI5DW9mWoqkfADAuIk50ajNd-yk2RABU4J8tZuGsimbuQ6zMTNXQuC11jscyMw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HdsAL_uKWi9ycVOEAyDgI0BEK3K3BrHvTJ1cBXD51IL4Dcw31LuoAC0-T5j4MPw6iNHWBnHiE2ySxc4Odx3sVfWDxtWWeVpW4VZUYpdd7NBsjZ1bxZzQlMGlTCw-srkUKxu--FrylJLNdZRQ0EC1wv_SHdYPeCwhnyj0cPG1a_8FAqoQjeRGq45KpSb7QRuvruaZGk5TiSBgm6t-m_ThwbBwUPPwCjj2tvP2i2vI1AJqQtYRw0PO8C%3Ds16383-w600&dsh=S689506340%3A1784671910723301&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvxnkl7WF-CRfUms6aI9339Vz9c2YDEoi70Xg9xevWbU3ns7WcUjuUxcOyRA-EKgpqfTe4D5w",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EHixQncb89Z0YTMZloeoXXJzjCDKu4uYinXxDp39N1MZKGHp6dA3UOsCSlfDW5Slj7sNaXCxJSpL9EjDEPwraHqb6cU9lbJt8oDuqCJ5rZEWn13L2oWWwbxll6pT1rDBp9J7GQgVJZ9W5HQXg7WAwxvkGsJjT0FQSEmAmQQvNFXCJUvTuaMUntoDtGe7YUawiJcfyNtwUHVh-tjawUBLb7YdavTSkLzBiMm0nxDFqDVJApsicSSIzo%3Ds16383-w600&dsh=S-50198125%3A1784671318620343&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuNnTL-Pvt_9fgCibNguxKt5rDJKtxeDwin0sIAOeIUjCqJAaxN-u6OA5nLs6o-Du0LsrApwA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GWAy9sfnc9AaNRt4aFyH2fJSXK8Bpm756JXtpmqVemGsecUlHovW-x3Cu-1B94DTjOZ1nbx07emFq7hSm4xRxZ_qOl48UKAhXh8cHC8CqNeBmnYN2v2ikRhuwJgYXrs71FHJPynn2MxGIOAXUhaAbd8KPmmakmL7XdM4UXnJEbHYxSKYaycWsor8q3qoyu_LvnFqMqBdG6sDDbD6sRCV4DqXXi7QB1cFBAxy-kyjeIHetvkk7eyBJr%3Ds16383-w600&dsh=S-771330088%3A1784671910746141&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxslrJoN2uf2pOfUVYS47U0xWcyq8XhxqjhYs1trfypudRnx6GJpY9prObi3mFnH3cLAE6Vzbw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GczJ4OHeiQjtbJAucnsGwa5HTMqu6H5alDxni96GsqujJ6rUR-exR6n7EQdR-q6YcZNPHYQaKeJEQaNsLloVYTPhULFD8XLiVJM7-WNINNQvNnEpUYkzFJrqOJwuA_aLOcHiBswB-GsEvghJA8njkVo1lccE-TiFuJpstb0cqv-Q5oNoUauw5u05srGuGjzANXtBZmWfJpNupifdLKdaCfJYK9i90MrE7LjhMQ3bMUCxY2JDKeJK2Q%3Ds16383-w600&dsh=S-1188587724%3A1784671318618037&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvlxUj7JxeFJKKJrciXgs0FjEeStz0z_zHPTRBDYAgxe8S2xyiYcf3jF5N7Z10dmaZ81RigNQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fo0yN6TPZksi6xZQo5tHLM2efPcBjGvJ1FNza4j7RozF_v9ozoNrcDMFgdb7w_yEOX8pKRU5tNXKauotnGZgn57lWbXpxMuF3NzsC6A53XS9sgegxwMJiFPSE_8yogsvMfGQlGXz2RUASEHFRKxNVqDvezoPTtA1NzOULBZqel4g6oac-dXFSqmCyyWvhkDPlktD2qrE6_dSSI0kDXpDWJOG_9rPmNdPrLaTAg9cvQLA0wtNnSASx9%3Ds16383-w600&dsh=S689506340%3A1784671910744101&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt6CxcpuiXPiGw6GQm6_KudYsa0QnDL_idVUM42q1fwsi2rHjWEzh9vb7I6oqtv4jQl9CMwNA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EF7S_6eWrXQnR49PgaiT3s-xDnz2nuVTktw1eiaHYGUdhhdQi5bgPgcAKp-Pf7654AgmyW1S7YFvWe1R81V0_hCq_1td5WVEx7PQShU3wIeGwolSfQ0Z00ZQfGUUJ1kGSAb08T8Ka7XKw0jRaRHaXvTidLWSs28sxpC4VMUfAZSLgS6iQwFLHrQqt63QgpiVeAb1QAN1JBDwpEw6O-WMZjEV-soluf-JkmJN2VlZp7MjD9lCk9voId%3Ds16383-w600&dsh=S1110917073%3A1784671318612041&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsiKYleIkE7AI0Q26ghW4akzye4DCDMMqz1yR6zapBBc3qEgTOMK4VF9W6uRpoBGMQTBk6P8g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HyEChAEs_79wMD0LKZKEyhqIgHeu5f-SopM1p5WGDXWcGRRLANTkD1IWJJepX6T-Xc7g5aZdFydTw37mBDWjleE_4qoIfhBm7-73iA1vL2sy9hhD3gNuzEEquMc25ZXJxaAj9y0FCjwws1HvSOc7yGxk2inCoxc5UvjKstJbPhrSuDbZ_C7bQkVl12vpakbrLGkCgwruxJtWBz7ZOqGgshsw4bAcZgta4oOj7uJ9wyEaZMbKKQIrp5%3Ds16383-w600&dsh=S1748799207%3A1784671910747840&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsOJ0t3wU-cbxJR_zCZNPx1vowrD6th8GNc4OrvB5GxeRgUqH9EHPXfXcGs8ojQoHcvvjaA2Q",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EnYd5WQkiQ-Ocg5lIblhM14QRrCYpW3UgA594mFfmn7TPULHa6ie1fuZjlsgoPJfw6Evs9crrQJu3R8WlcG_680SF1lyc_yptJwIcrXuwZ3fFsyLK8aWQSAaNPhdNoyItXRsIbhW5YPkjVM8aB9OEdseHABKZZUljMTQbWMwhBGYSBWNbOAE6beNkPXF64NyUUYi6XSL-zk2gpsEtuXJFZbvWvByDq3KAxcKc3eLdKhwlMO3A-mvWP%3Ds16383-w600&dsh=S1996946945%3A1784671318630951&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsQrGXaCDXbLF7N6nZpWiy6Z9POquZqy93VXPIe90BKbjxOzzmdBZQmf2FK8w2ladaVwcXoDw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FnUPTg7yRlxzw0ONR6MXTPr_lM46juvQoXQEawpv9dDKFKkpLBCoQH8OhPq8UZscNun6QvFIfPWfPv39Cd9RkVM9ydQs7sAWWpWiLFvNxlN8FjrBxLtn_8FlhsrtEsqZWC_GJ5EBSrzgrDVWE9bMM6opON1LOFG1nvDX6lui4E600YApqmhK-H-Dq4S5q2PZMwZRilhNpiaLqbe1glabM9bAIFebJlN16b9l_d5JZSDmylWgjSCKQU%3Ds16383-w600&dsh=S-771330088%3A1784671910749289&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu4XjK6O3E0TMSz7oYtVDR84LEJU38RTb2zoeawVZPJrwEJA4LhSmNqRVxl4_uHES_FR29JHQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HUBj5PoaRAwqA1DX717V2yaJ_LJd_biZl4BdSl7-ExhC46GUwdvj-CzIQAG0OGMIX8txSyExLwfjMimd_UL7Fx0-O3g7iv-48G8DX3tnOhXEpRec2x0ul8hfN-2XhTjkHQrMnYJhNEZVgVUVM3ryX_PVjQxB3Pf0YByzUF7bDE4thX0Hgd-tFEwjwCxhWDa8OmYhYHoasgf-gXeqSO5JyQ46k1_-9vi9N5znuhZ1G9oYr2AS_zz0jM%3Ds16383-w600&dsh=S-1038351619%3A1784671318628251&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtgkO7siLrEIDFHEDZ9ywKt0uo5VUeOffSbM3Fy4EK-oeV40ITrWShQCLe3Bcqe9rvo6Yyg7g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FJutkv0ntRTvJNbYKP-6cQo6xolllbRXILxjPKovHlG80qPWlmJgH3fsQqnAY311K2B_LoMtReWZDi1vyUzVdgcf3sE_jCukszNn_fs9-hw444GnP87ExofytbC7sD4tpP7SC-OyRjUiYp_VzAtOqOTzW6o9utKxGHfcQhoemFX7vKrO4DItRtbI5Fx2Wf_yuE-OCTROuv8V18lsFgp1_IPl3RIlpFKgK1woWJKpapwQs6jM6D-OkE%3Ds16383-w600&dsh=S1748799207%3A1784671910750215&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvarJKKN-zJllNazPzDIbEsFdZeohW3WOadgC45wRgmzeA9xxONFXcgj-Eb7stO95vq5hWOPg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HIqeR7XrO2oH8zO_1dQmvOQeJsVnJxuKvkV3S2FWbizH0Ei3abWqavf5aQdIBw7TsD8vLCedYRL5xG-a_syrp7U__ewu_gwhxcUrmXLRQSkxtvfqlOhbE-VxzTd46zpU5Ldgr5mNRWWXQjTQBvqf60-zsHeJ6CwAhXZSCx1NMpwjoVGh_U6wXTiBkyB9loTtHWNMbvEOMGCaTp3NsVDa2-eTHfJ8jAVPlvg1hKcZSYwesjLJRoBHWY%3Ds16383-w600&dsh=S-50198125%3A1784671318626397&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtIvTp5zkwsEzlbeGMwEKIeFgedNs2JZp3GWN4PHPMB36m_Mkbvh8sQQtbZkQIX3fBFFkhbqw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HuvD78iAKwjbpoWnFRjGjYzCJsPK-Dk_Cy7KI-Sda-a8RG0idh-FQgaug1W8cVAsbTuECd8Hx4fXJJBi1s0GHaI1IaPMh9YicoiRyEr9reR77d_mo5j9NVZp06srEY_S67-G1_P9YLqNwUxkFq5uqJKFxfnGnc2Uy4rVuf_W3eNdjzTHq-z_VqqUBZV0NeFhCg8158_VTYpPOShfvr857VOO6eO6rvJ37SabBQGuNUKw3EGftCo-w4%3Ds16383-w600&dsh=S-1238478504%3A1784671910727569&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv3gs0ZFlJo1uFQwqRLEXBKW0QddGPlqArjz_WzQhocDYUoIZb_aoa3z4h4YSNSifm_L-9iTA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EFSsE_JbriOt-DykpI4M3fKLGWCMADa33IEi4cH1WWkUVXk0R1gPcBO0usT9oI-EsISFAnSee4zXXJTGNsY4C51Ls4HqwllDYh2AnGaIbPgJPh46TsN0BAZv2Ug1apgRYrNRBrQ-SgYxfwCiRoUwj8EbKJkHTRXct9sD2JCWk_R7C8gvOz9bQyANsKGvVJ2JgWfHnf9PhNPHyZzH5Bo5cv8dMTGBGs-3djnhqVZzursA3mr24IhBAM%3Ds16383-w600&dsh=S691242670%3A1784671318615628&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuydZaWpeMfs4dxBnyLsLcQh1nIXiWaZ-mhywWQxfIkSpaIOt0kE_-f57yMoEKwdbZWmaHBFg",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G5WvsMP7FtYAL4n2Dxf6hqDMqLxt1Vvqm-ecHfFhafC7sjaQjZnK6lJkOjyPdH3nlwkfIu2k1B9NZbO-kZw0MnYPGVt9axMBQCxhoYnL8HwMYKjDhbltR0S5C0oaRl9_5jUJicCsQQapmtC1AqJ8lTD9h8gw-We8jy4q4DtxmZ-_yyqBDeZ-FhMsljCScASLUOv9m4RGnsRuK_C3CsPLOONixDcNJyFQO2QyBLFUWD_IBg-PKAtD_V%3Ds16383-w600&dsh=S-771330088%3A1784671910752517&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxscYXpIg0b3blR7n8Snk32CTDYsoLCrsBhtYPfglI2qJprIkQMt79REPv8XYXBkYp3r7xaU-w",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HbHvu4le3wVwFCFwdRE6exU1-HlTFBkXAuf1h57W75aWHYjGZzKAWpWxb0Yvzx0SniqOSYEH3jTsi7tGaGd2Mm7Ac7w9dFya5EjaMcRCAKdNE3wxaDzn0fuF1mSXD_H7Bqae2DymjXSIsiB05R4abnUezQeGCJegEiGsMTRfszD4CgX80SDHpR1vg8BLExmcTKThzFcTzxcJBhQRJknn3b_p26YnYQV9fO99C3c1BhKs5G1JnUHV-f%3Ds16383-w600&dsh=S-418454306%3A1784671318622769&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvVmwodOiXwo437rbrmrci8YoJZBAP5GswcSHch4HEW6c88pvflnppceu6DeDrenP2jcC_33g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fj6f9Bclopwohe1WAb0UNt0KtlNFNOs_QDk2ruXckqyT7Ada7QJMuL5JMyvHCRLZa-Iy6seEwuaAIICPu9ZnRNbiFnKqCPIaD_bG-WylMfWtd5CeSlI2ZVcUW6M39sAKLbZOM5KAfp3U7LWauUaSfC7NrnysATv15dIJShWIs1QGz_9DryusgGqXlQlYiCRhzyApoSEc_lCtVXNT5Ek2yB4V_U-eIMJNRHfPzZ6I251SwYKMNWfBia%3Ds16383-w600&dsh=S-1238478504%3A1784671910751172&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtueT5WcQ5v3g6maPRMXs6Pyf0NYE4KskBQIXvFmdidw_8gobJPMlBsu9XbHW4M3w5Fc7N21w",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ETsEMDzf6s8EvUFUtHdNCSHSkQzGbX5vDEjchSMJR4qyqQGeaPmW25Y_DjZUdV2eZs-HGoRe_F6DzldLBGxG_I9bFGCMSci9CCzqBJrf4tl-9Sqbef3K6DjjiWb-oKSm8s2S7l7OTZs1CVoEKP8Nt9VI4tiD0sDqUZrbBSrMRupHHPd9_0mqGsbYooapJxx33ekxzLs3o4Ji4YSQQxIsdMBmcBkB3boMF1Ysqzkr6g5JaaVPeztdMS%3Ds16383-w600&dsh=S-1875581384%3A1784671318638437&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtCvXs5c3rS_PSxCqqGtmG49MPE-TbW5pvNTs_89Hbe5kXgvFEWBmDVVPWtnFj6BrP3uKgBaA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FMp8bnqeQxLrk2OM9UYU8RlutdkOyXhf8ytWdq7qvdwSdY4QfMMZ1CG4Y9UlTTKFctZhHP-QMarKSrU1mNVdhlVlvUucoEhy56nHCbYhrv8rEOIH08zzo8VIQvQQAG-5Xem1y5CYsNe4pTuYOLiEYTdozgCL0U4tLjDFiemINx1H9XoepXCtHZIKuHIS8c0VNj7WQeHeN50xckjPpefHE5BKmh8xpgn43YmRvwr2Lg1tqG9xMWaIPn%3Ds16383-w600&dsh=S-181348360%3A1784671910748467&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsKfTBs1upVQsrIcoMVbVEuftzFb5czJ_3VoeUvp4Y0i8L9hw6XS2BoXGLxbZA-W1rBYtvirg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HFAyK3WyJm1q60SnFdzGxMgq0mhISkuIMgCWWO-a_uU0Pu52RNPF0i6OS-Ri69KGVKvVeXxF7iwvDmCDuRGmDhUyou4njGxPA7GkMBroevvym9YIrDDhtIqLwsSlha8tPGliHiFQSkA0sHonb0kmOmC_hmcevYdpvaReM78y_bdGml5tV28X43GmczdRuWJqm6T26QiMYrZo0KLLbmqGoxmPn2tF_G0KZXezhb6bEVPSVTpuNUCvYj%3Ds16383-w600&dsh=S-1390999758%3A1784671318669460&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvsblF9dV4qyn69YsIUoXiD6xSPOMfoPetsv0rGsTIs68Us1AOgmSqoL2SqEN-L0xzTubI3qA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G5Bjrs-2hAelzVqtT9njfHQ5-SVezlgtgCLS_C9l6yDtJFp4yCUNrteicaAKrFEFqgrBsDV1Ti9zQCrbYYYWmaEg3qO5QoLqbX_FMGlThFxBU869iFSRvuMZiIoHbLuXBoYdpumXfnL1NEx_1WsZ6gMD6Kx4F1KWkp9NMNx_y27lL83J9bmbT5VwmcQ406SoMxX0pIhcS7xrZEkF9EuLVMewV8l-JSp4pjsLcrKTebrHm2rd6o0dId%3Ds16383-w600&dsh=S-1238478504%3A1784671910754547&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxts1xsN8vmry_tx4Rzmyc-SlUVRB9-LFjq9md51GblBc4Yp8T9nHIalWZ6mCF_5ykaOEDOr0Q",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HJ7iyp9koZ9xcf6M2EbRHJ7JiURXw8zrIJvKmcXsYpDSGe2FjxQsHOw0ET_PMHyQSwrcWd835Y0GjPKg1MqpAQ9jPluLFmrtqnCkkMguPqbx7KdaZ_yRkBT2Pdc6R2smuDsalgcYIQHiTUl8gKZR9YVCVLQnpuJxUUyNoJCQoHJhdPSCQa7RGZ_klUxtTKdpoZWFo41Buw3U6cdL_vzhHHel8WtFuYaE0C7O2aYfLIh8JxfOo0rAKf%3Ds16383-w600&dsh=S691242670%3A1784671318678829&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu5w5Av7jRHXGQAN1K8QGQbzg2q3xg63XklIFrJ6TMpIzNwHJAtZG6386VF8kqYxJrh4nbXHA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GT-JVBQ9obFEiWQXhc7thFSxq1YL9Get0EZdid-wFt3PbsSIzukrOz6bYOFS8r_CfpybY6QEfQSBSrZ357s9Y7UaN47bVzmUFTDNWs-xeoUUfFVw-1BMLry4cFtGWwnY2WNhv2AALqE2WVPvAKBtbAz4qtr3RQKbpmDbQWfkxGCSvuKE_YjHux3sv2yaB8wbgIpJt2iKshUp1N_Qw6mt_Pd-IK0_nZYnUrD-JToW8yWuUGeq2KEz3z%3Ds16383-w600&dsh=S689506340%3A1784671910749241&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuVKVEypmh6SxRGxvS1iS9B7HQ1BRFr5XKgPaFQ0fTcQf3-ybvvZyq11d5g2MuEICMbrpOa_Q",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FJhxehtDAFADbXAQpWiKo0TRUM2fhxyHSidHR9GaN_OXIhVSBWLI5GXFGusQBvYsfwOJGEidmE7kSnrk8ye6E2J1H4KmcHYtEaCo3jwdILRMCTJQzzlx3SQfXxcDSfGZu5oQP0OxHDZ3MdgZHmLXOa__5m8CdRq7tB_WgaLZWxIP9P7kkDGOc9xrs_gRrKDVDigWeoPrxmgQiD0r4mn5stEbaGHpVwhxiqsxTiydA20OeHWanpzeie%3Ds16383-w600&dsh=S-418454306%3A1784671318642656&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtqDcR_NPV4EdqYuO6Gc0Xap3MokDfVhHouNxLp4fMnysRQD6Zk-bkthSjoa86lwTma6Fa6DQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FeDy3DxCatp38oMyDJ4dNiB6gjygKdZRHacYx6EwnoNePcBZNgYtoJFb-lx8PWg4KElSqwk8ueYtxXgGXMCjmrflvmsAST5YH78Jw7Sc4OK3wuOjK6q5vm1p6bEPQIFaigld4ujlHWnLOepksHqayDggm3v3ijgXxp2gv0onz9PhXLCWPqhOukPHnUPDyTMb_TQXlPcO5PFBjXhtP1kLA1VOUUMTrOy87NIYfCYTbgukHMorvhWf_h%3Ds16383-w600&dsh=S1965084359%3A1784671318697255&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxusllMB9sy_5ut49oVkYP8VeSpV0mTc75txoVOqB77C9Of2eJrvsrjBy46FM_9aD7ffpATffw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G3Nalg2bdSn11jdN8Z-Ma3QL27UOkMyDoydD7nwwPKlMrNaTUUu7LbVl6xTtg-H0Q94dDpDMfF_jvJKitrnl7iPVhNrMnSQs_foQk_deDlSf09FJb1yF3G1ePSAFpHh3GNeGWSKdrdlzt-Z4-NtwQtKUGxYfC2XaMatlhmgC0NGFI3HtV1-4P4P_7nqwIPn3mXVk8xZj48TVuXvrX3bUjX5j5vvEnCkqLqGLFOKxdiqr2_jRwhTMRL%3Ds16383-w600&dsh=S-181348360%3A1784671910753789&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuKw8ooNc_uuLSC89w891oWplJi0uqM5KbN5lbvbXnTAxyuzoXGXC_BoYOy4_a7gzx_-gBaZQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
@@ -3522,8 +3606,8 @@
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EjjDRNyAduxyPvTfr9et5V1nGHRHQP0mO6ib7PbIQc0or0tzOnr22KvRaxzV4T0CkyPLxSseghtydrAPvK_Yk3JIm-BiO3nAm8ZypTStK9qQg8sLJlIV4NanijN72RsGRUd7CI3yTDoBMoib5MhBDjPdgmuhQOAJdH8wQEs7bNyX8ZhtKNlEJJb8yCB0pg7B1t5bXkD9Uv4aZhY47JJNgt09io9LGU798dosaZIJ-EeMej1NEsHOrw%3Ds16383-w600&dsh=S-181348360%3A1784671910752118&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvw_Suv-bLziKiZaT5DXKcVrQVt43KyTH8KDlUxhqH6xDz4EP6Wgrz4uElnVcmkUT4U4exnOg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
         }
       ],
       "files": [
@@ -3927,11 +4011,11 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         }
       ],
@@ -4123,6 +4207,42 @@
             "scroll": [
               332,
               197
+            ]
+          },
+          {
+            "selector": "h2",
+            "text": "Vous avez besoin d’être visible,pas de vous former.",
+            "client": [
+              332,
+              54
+            ],
+            "scroll": [
+              426,
+              55
+            ]
+          },
+          {
+            "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+            "text": "Vous avez besoin d’être visible,",
+            "client": [
+              332,
+              26
+            ],
+            "scroll": [
+              426,
+              27
+            ]
+          },
+          {
+            "selector": "p",
+            "text": "Alors arrêtez de chercher des solutions épuisantes.",
+            "client": [
+              332,
+              16
+            ],
+            "scroll": [
+              335,
+              16
             ]
           }
         ],
@@ -4501,111 +4621,83 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FXhWCzBldwTgtbXPu8hTnvxtkJ3jx-0knsxy6mHEMCH55KrZ7tsjt-3AL8DOCfMmS_c8yHt-6BWlmQQJ8MjxfI4yYfiYngq88aXProWmsdiWmOMVRvqzSNV5Tv0t890bINKmROuyRXZsUW4DMkEPZnMY74o5rQ6ilM6PrnawX2L_fEGnJgkqqZ6hJcMrEvkB0or8sq7JCXaOJPIgvqC2CNKZcH3DR3Yl_qltYx4PqmrIAIzAPRSUaa%3Ds16383-w600&dsh=S-2044204248%3A1784671332221901&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtlw3xrjQyspAMstAYUTWcpZTC2d7QDEECAIdn19Y_yt1BroAmFTVpzuWkLoWrIzBbTnfDm9w",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "reason": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HRk8XvDodrBxLknF64OymU7mZHRQ3jHJmS1zMZUTLCokLPFz9PTxTDOUVzQWkWPzbOYDeNx7rgi60wVGtLBMPvb7aLTzkVygxvDwvQm7FbWhwpq00lm02_l7vs_cReNGyRAIGjfQ83OZXgHAiHUbDzbaTy_cwo1r9ZMfmFzoLpJTjzmgxjCWBYUtWHJhq8GIsmEv4YwJ16hUe7eyvW23VqiaimGP1ySqORuMSnco_nu_HXxw0sxb57%3Ds16383-w600&dsh=S-1238478504%3A1784671922816622&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtPULExCNrFbin1pqZdgFGy9trPa7aqUYiyWLxs66VT5o1KnYYzv_ZJkpp6OA9afWWfqiaGdw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HcAaXKkLqY8irOlzh2jRmw7nAYQpsb0NJ5Idg5-gNAntFTXGVKUWladXmTn1s7N-mAqi4Woxw_8IcJ1RJNJM6H1HzMSGC6vdRHEPe47VCceDAahKjz9DEMUQoaZA6BQv_NSDcwExduYKxYYvPCv4hr224JYAd6dZFM8o5oqO7eB4Eut2tvxAtQ4-AKkTf1GYb1_fKtsclQW863uX-N8BIgmGveb_0ESIT5Hm4mn6ebNHgWpbg6QZaM%3Ds16383-w600&dsh=S1965084359%3A1784671332225586&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsLDV1hfq-zSfr2gAFDzf-S0HS5UBx4rdh_r0IjnTHIqIQYmJBQT011-GZmSZua0cNg89EDvA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G7FngMh08MAhh487BComAHQqZFCCey7jGANtKR57aDhSacYGvLbCXYSTHsMsESBNcZ7Ph_rb_GIoqU1881JWciyaXLnCOJd999tHjKSIS7ZSV69sVEkQYJ1tnP9yOA1vdYfAQJkL3ujVAdRUJfNhPmwy-GC0aOipADTP4BaCTkrjGEK09VYzxkRjtQfdV9vEztPMA1esnl4AabUeRi2mP52ZLWU7Rg-E6xj8-cMbk8hZsUfhW-u0Q8%3Ds16383-w600&dsh=S-181348360%3A1784671922821430&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsfZiatx0AZsu4QAbvuF9WGoh5YJwTacAk7X78eEC76RqkYMD15mozT6_aNnztQmquA1129fw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FZivgCyb5HqP1_hwIoWlKnVG3Xx0ljxY9yBa4nNt0cVyyznxDBUmYmdMgsGmJOLYs5NI78fwTnvIK67urSI5S4EUBLAqwe6AGvKBuEyK5nzul_IWHzGY9tZT4SNr_8tAgk1zUj0TWU4PdzZ3dVl2jTN28AD1GXxFoePgfoJ20inUmZD4--gR3vQfwrh7Lq_J39blgNm73bxOuHWD0FxPeJvcu7JQei4VXktXwIjjic6DWH4uW4aO-1%3Ds16383-w600&dsh=S-1172319615%3A1784671332226662&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu-xQQ_uGAps73zXKaQd5SSFd2ltzuD7lRPehZPvkCNwT1wvapYciXMru5jIoQBwV8sPSaS1g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G8agpS1DiQqAGP1sCL01uaivqvOkaJvbgXKIOd74E1Ijg1OAbKsIQHQ1rGv1A8zb1FNPla0IcpGOTQy6bMUCII00T3-5CNX6Jzkqk6N0m1rNCBbef_kbqI2d7qzUjDi0Djr0y6aaNjlU0Z_nhTrwilKQwxx8AW4TsLIbi1IPbw5Cwl8fRE5fyZrt9HxjU1KgagD9hzldAUCZLvfMtvHAWpL80T_uV44r1QY4UENbN10yIyh1ikN_lp%3Ds16383-w600&dsh=S-1238478504%3A1784671922821132&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvbbhXyQTeIS9dAbtczVDxTTHLX3_YU5R5oZ6heenVYBue8Qq-U7z7bHkRxQ-90kJ9-qZFBHQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HZE95nXRzPkHV9cwt6j6L1N8p7bxNR03uaWtMegIOfgKIMuEZFQjJeFK5QDqeveDtXhSvFL7m2cBOK6VFIelW0wCVLakwUEwfi67JnW3-XrfADwaRo0hFqYZCKOOYodoxUwKKCZyi8dxmffphGYAiOXBzHLksrwjUGFLkfASijyJiMqYN7osHK6gGvQKGI3Y8qZIT8KKW4qUQIeEssOKFuUv_u_BtQ41oVHr0xqcdPjFxfDATlVmKl%3Ds16383-w600&dsh=S1996946945%3A1784671332231444&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtuMOs0AKYjvS08-USk5UO9w5EADSx01T9AVJd17ZnxwwGv6T6zUGGo3NgRs9X5zhnlnfDEZQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F-P-GRwe4GxpN6mRAez3aS9nS1hQU79DVgKFTKzHYGUFNiC4hA_xJJAxiB2cEMlMymjKcjm30dkPxN9jpDNGgDxksay95CnYSfNwrXA1reL9UpD_jT3BngZzKnmKf5NsbANZSMXek7JKHrgmk3M3CfS5u6Hb6S_Nv1bOOlSTal0iXm-z_dy1F9zGKK_CPiG8fO2Hgdcmb38t136I3Tp6uMj_V7nxQXb-aE2SqpoM2g4f-DXBX_pQqU%3Ds16383-w600&dsh=S-1238478504%3A1784671922818683&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsxwr2F9o_v71r71Ym1dj8ZQtuhXVP-SA43obdQOI9IQnpm0RRNwrNE-T97tQTuU3K3oHWTdw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F18Ku8LBBDaUl9EF9EExUy0dyiPYuxRzd9_jQ04SR7vbSUAFlOnSi-kGiemCWHbVyBgdSrmSRe4wPVyRFYye0pDdpLNt15BVAwN_ZESxS-jwWhyoBdK6hUGTHS_15Iw0nKyCUzXKxx1qmRH52bbs2T0v1wiSq8zwbe7ytlsioBTlivfLB5yiianDNErc_Vcw9juFKmZWz-5b5_MjiXs2oBc4tDktZkoaa2NfXPoc-nAVYh135oKvKI%3Ds16383-w600&dsh=S-1875581384%3A1784671332226951&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuoQPVEwLCOZIvZGpBwc3Z80FTM-o_ZeD256pf91_l8ktvV3MXMWLVvLtBVsTiyl38Rgz3heQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GrDn2OIwSeXmpAi7F12A-SjXVBnrqoOz2y6JycRGtPoiybiViE8rCZLDO_jyTFTpGPWU7MWFzrw_kAnsRA2UgkulMTbWkvm0hXztwqqKcxqsqZeHV_bz5PMyds06Cn-EtpDduiD7WKOWiiklchA4fTiKxBgTYxyabpLgJTjEoeRSvHolNEU8N0xlGLXg2zW8OXJblPJJJWeIg3da0cRZKk6JYyqyAtRDHgRTIjWL2en3RmUCb6Sxbq%3Ds16383-w600&dsh=S-771330088%3A1784671922820323&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt6KhrRnOrh7sVY6OaUuAO4cl5qAPeOfxRIi8D0mkYpXZ6mwGO7MtmXAG7t-Eq9Q_QtAy8WiA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EGPI6CCJE9zkH1MVoZT94yi8bjt5hVKfcXsgxSVW-bHa88LqMTS8G1KxJLXofTGFDFQ6bnI_zWA2N06BiUq8BkIs_vE0xwtdR8kfJqM4hUMOSbTbVqedE9flZSaOvjRyCJEIlQgqFFRfrZAzFTtW_7vGfSZsxv5lrTAHz81um19ts0yCmuTpZnPz_dGXwa9VVwDccOsBYAND3gPO-GZ4_70xVGjaI2uk5iQDm8Qo--wGiddkxVJdel%3Ds16383-w600&dsh=S-1036871742%3A1784671332221886&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs9rr40OMBhEGtHEMzNtkGyf_z3n3KpdX3pSWu5UqvsNbqc5qcv2KVABgL3qZW5-iNFstOTnA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EU2742uZN_FCICCM1aaTjbUnYYkYkrI0c1BRBP9-3LvuV7HDmvgf-r7htjotJMvbyuadOKKDxVjCWkpP5Y_m0TeFvEP_GF0SI3Kt8arv4yemSgChBKsJfzAkkzvxFOP-1e_pBkGwc2tPvJGtKomdBRxC_YbqNBPbaZjEwuW08VGMYRnwbyKuf9T_085NzKdsYQ202VOoP_ca-jnNGYIap5kQSF7c8p9xk4mUCKeh3q_KNBkkC8ci79%3Ds16383-w600&dsh=S1748799207%3A1784671922819298&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxul1bTJ1R5YIT7fNbQsOliDlY2GerbgUeowKf_wuueFykQz6MazOvSXrrOO9Kv6xSfHScTtzA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Ffa7BH_8nqZSEhfhVfMtE05BvO0axpPFRYk0XWvNZJX_sEN-un1jbPT4Znre1AMjPhTGIfXraCvhbmOaZSs1Fv_VLFwFH4hVcdEMyUt_juVdH1htYBOjmh64LJhEa-obUr5vYxuRkaECKFr0CZQBfQaOS8d7AGOETgvzwjAyes3DcR1U3hPVqtr4lIQVgiCS27hBPg6UFWS9EQuQHPfWfAzTVdWiJBu3m_jC5xqawZa-Nh0hTfvNHa%3Ds16383-w600&dsh=S-1744264494%3A1784671332226945&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxukUjo-GCOGuqIOe_S6dEihX5Vx7nFx6LtVYAf4ptSFUYXLpHG8KzMK2BAw66YG-M3ZQBQPwA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GP7KGvs8ljiMf1_R1-UjSU9Twf9EEvnR0fIGCCjjpa1o-uurdc3b8jpX9lKwOBqA2M3EE5RXIQuDq51qlBvMEeSwKE8OKzfzlW70VO18t4s2q-LskYV-Dtkk2oplpY4vAojomqRuln4h6jJAT0EuWL3LpRhDqnd8wHiAcDp1WLQTRTBYKGh5jixxNtps_s57T-MVakN6Dy8zTD7SiR9wsDXYe1hRsTPsatEd8WyN2exdy40Yw4XJ0C%3Ds16383-w600&dsh=S1748799207%3A1784671922822028&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvlOh3cAeAm4C9duS6Y-UrvHiF_eJLztpR5_E8l6YwX3jH9CWLFneJSKIJikl5b3KKybKuapw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_F3A6MG47wP5xaQFnjt5MmatkNyZ86tClr0RbYzskRDf2Y3i4l78vAQAv_6dRAg2J7dobwV2DsGgzpzNz475hGHc2gaFnEwsw9kuqP12hwYmrITcYTeDvBanRQ7PF_qtdasYjvTq_9I5ZZs_FLGUntvFqBg0vv-UjkQCY7UlYidiNKikdklG2y7xbey9Eb-RnF0hUP3H6GqWTFj6nQwE1kKNmNCu85Dpz20LjtGp6BcW6RjliO7rvfH%3Ds16383-w600&dsh=S-1390999758%3A1784671332228658&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxshZVYxtAvWXKIlWT7KVKYr9_v76HGMqR2rdLViFQ3BFSAbYOZmhoEuPYR3cvw7wf1sKHW9ag",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GB9nL_hTunqZ1yUhT4YZtMraJoN8XcMi2cwopoH24eUM_uKapBQUzb-9kr8r7UwVbkmQG-9eBsHVpQpcQk6mTllaMu9KFN8uo2lMR8eFdw7cgkQ6xw5-ZvrJFyFS5wHBO0HyGhOEJCsjirq6R4-dNBzvz_jV40sQsbPBiOR83ZZyYBwebN9ikfLfgt7UDGf793JNyC1onqXm1PWGiI-7T9mSTJvSIV2gdEM2KzuEj8PdlzivpiFC4f%3Ds16383-w600&dsh=S1748799207%3A1784671922822801&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVyTjbQ7ajHfUQ42sqsNHNjKWTP7uS1JeHgLfOV-10XmZmhcVKhMxqMYWiKR_K8UHCEnnoTA",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_ED1V7keMX0U2g0iTEpkZA6esq9urqsXdONBcwO6GDPdrZTSH0BAkQm2RB71WHbbxM95aSM-o-ZABavLbcnLtsdfiRX4l7B0YrXlBlcnU2Cld7eGg_LKK8fzeNtZtV2QMSTDNR3gkVPvWfGuXYw4gBi9rcogWsbW7eHZ4iA0nm4kejLqaxRk7UfuRpYiVOBBWwGfD4DDECfBnzm0pymzGB5rQmoY2HWn_ihCYxwovn4CaAgURf9w8ps%3Ds16383-w600&dsh=S-1036871742%3A1784671332260654&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvulZyLR21AcwxojhfU9JVKhQgMby1FGoslFdOQ0EBviAzlVxu1Bt6t63JtxeC-M1Unzk1bTA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GGK33_hvqJmTbUV1ciangAvH8Z-J9X5t9jhoOAuK8W8GNMvw1uGMhN2f5eeNlf8lRAQuMTSTz20SFKxPWSk2M5QNefooH-6qKwenOClNrvHCGIsCcY8VZgeLTCZoR9BakF6WOdnH6vr8Sh90IQcJy6L1vV24xj7HbjYSd1wH_cMHG-SuDJevaVq_OLJLaq5M2ZUIV4oJggmYR6x6MIrxS8favEjcNhF9IOnx0W0ypRdsmyqx5XdZZi%3Ds16383-w600&dsh=S-771330088%3A1784671922817955&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvhwLOj0kXk-_MpmCWKSWMd_py07JlNCBXxquod3do26JRwUovtoLNVmOKxTa1SFcJ4jsB5-A",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FuKmJEb0qVzfuAd-blMX9g5eUmMqqiDzG6VBHBuuoikb86cmUzXQCBZrb9b33wncUrdpLHqnV7Wdnd6pACZDwd5Vpf1E8IZSBio7gPr8ysdiDT671UJ_Ke9YVYxFV7dv3SZNjXL0rvBf-7lmdNM5qoSUScUwqk2kjBHk41EfRAvnqXnRxyhZ04hL_L2tyizwAVaLmsdr_lmRx09E7YLjahhfGQ2O22k-uhPgLytfYc1gy0JssDwVL9%3Ds16383-w600&dsh=S-50198125%3A1784671332231977&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsxG-L23oba7zJr9-Wpmr-NpCVp-5aSVyP_zWVOQAKQgxSq9VSgjNJq22CEg3DPBdnJLkNf1w",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HHDpQCx1SwLeP050DhIZWklbUjxVqw4Qgq6ADuqkk8yTXdCe8SYeOxaPVbsJLxhXOt2Bqs4SG2XILcJEC5H3ipWR6CYsXVR7hjrNdut5olEinJ4Hk0Ib1K_DnVI0lHgJl7KV9DqxzgX-OLe2HAi8_-r7TlreiNgF3L9eUyveDyL-Wx9x1pyLhMcWIqJHaty9CpwGT6s0GQAoUtnfUGiyB2Ax304Bu07yS3Ol8A11RoXrAltSrprlq_%3Ds16383-w600&dsh=S-771330088%3A1784671922822154&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsRvdRgxmtf3JMG0rojHIMmSSd_NECyX1n9Fdds7YI6Ts2CjLCmue-h8INBPDHM6DSOsaSLYg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FxtUOwc6bqW3cz6fQuZB3RaeH9WAL6MuBQPgDc2v85ylATgN2z_A1wUPHm0Ce9H2UiRx_EPNvNXVVkjuQ2txJu9loHBbidLSOgpikyx9iP7gsnWRAWLV6vWksjzrlRnTgYgjEGwzN5bdz2nj8YMgJKMQcnwI4fOcB14UVjv5TIAyre6C48Qo_3YOPyrqD-vIgWFcgthrZmLexqFgFVtUYrnnFb-rU5rsVyxg66Zs-ZSjKP1VOdXuK7%3Ds16383-w600&dsh=S-1038351619%3A1784671332228709&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxv9lGmu1N0RbU9-ZLP4mmKRNmMn0bRpFMCepz9v7AcCgt9OIogKRnJ0Yj-6YOUQlc8fRxVkGg",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HeO9zgquQlm9-00yTjEXwodtXDIlwLFMmr9Qy4DPBdGfSR46EgRQyXGdk-wYFEwxi5X5CiphNBC5Zf-XMsc8mfyjVbA5C1bwUZVxvlBskFetfX-9W_Fx4XOSKoBzMmDF_4QwOqXIKlOhj2IVy8xC3Iuufc7buLJDleWryDwCKLUx8bG_VyHrB0OTE2oprNeF4KU-A44xODbFzFFnW1w8CyNF0r8i85TNGWV7zGupGrLT0gzt4wgvc2%3Ds16383-w600&dsh=S1748799207%3A1784671922817327&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvvyC9ZMywiy72uZEbhtNyRqvZdhi5xhYQTZhue1HkVg9-nXuLCik95Yy38ShxednR9TbqDQQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HwSCOtke2B2hPt7AJTfnEz6WfKyDlQ12KOnzoTwqKvj_wwnBPEDjEWnp8r3eJklnfosexfmiMaJTtCDcay1I3VUvoTOVFSyOoRo2S8ulOtYeHc0aXczDFJ-ilaUY3dUsBX8uOCEdKCO5It3Oy6O8TOP0spoMvfHx-VJkDTPCNj1LGMVGrx-V_O776xEt5Pkxh6Je0DAjjwXUys2AsAOo5J3SALonALSLAkjK5I67NfSglMqO-XHQe5%3Ds16383-w600&dsh=S1110917073%3A1784671332262776&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvhHCG6reKhBXWkS1EGaEVEo8dTf6m5FcKD-bsvlys4hITj5oYPgOIfugEgB99-2XeT1Us60g",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fviq0sQGWJb_mmp2waH69ud5JsZpuTcNRZZZJm53RqTO1JRRI-Rjll2M1hxjkcSMnqyIHl5ofbWcvNV3h7A8DduEVZAnE946vofr1OCcBfBm8ILKvLhxgEHMbcJUG86SjAOb49UNe_6SL2zFvGL-be8jK9FOfIWipWH_APcKnS052tbR3JNijrm5mjH8JoMaB0SzGicsKiyM9Tg9zzH5MR6vppYBJhnX0QQXlzL3hF_4A1Vkvis_Og%3Ds16383-w600&dsh=S689506340%3A1784671922822675&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtsoQV1mJmxF8DPxrUcsngP4JiYSSzUT2LexxGuGFuTg74HNy0xzWQE5T6GTVabYiFQnzJ6Dw",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Eki7t7YBJwnKEkY37IbUC8VORe9-UDAcSJJuo30YjDFaq0_bnzqs578tbeG94B61R_AFKm1ef8FI8_lRJBQe6GV4dJd0NaEEif5kqD9xvrT5JplGzJzguRdIKXTBNoNkxocflf1Aizzqr9gC3DWKOP5e92W4VnAjGtJn9VXHL6WGalaKgtfN5cmAsFH0gGP6sWGNQf4RvuEEZLcQYzPEtTkdg0TKK0lvQvkVXvAioD11cCrrnT9o4g%3Ds16383-w600&dsh=S-1875581384%3A1784671332280862&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxt1Nhu9YhoWO2jjluGhwayWVfN91q23hzZU2wWgVIM0QZiDalF0pwle6JKU9TgoC53QUZEczw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G-Ks2Wy3WP9vGkuqmeH7h_rmFLffsp8O7dBjEWu4mIcn05MpEA0MQolWTscqj_ZM1MtNACJQOLXGL8F4_wKdpctQYE9w6R-zH9filXX-M0AerW5_hFmqrqkcuZZCjd1LS22wRBl_zqlWKukcsjS7VUSPkKtUEA39sV_kCwM0iYYE1-VgpP2SVA4mZq70iLI8SWGBtW6dGE4GwH00OwS3Xid_K_z6XfQZWjvf-AeZHsK2yyMyHsAQRV%3Ds16383-w600&dsh=S689506340%3A1784671922826162&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtjhhMKTIif_pGIaHiut_fOAJK_OuPCnKoweBUyIKc_WN-X6A2tqR5ZBJp6yEYSJ88eJBhrUg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H-7iMcMqrr75cVW5-tLk9IkvZPvVb59QsFjR6wLTvpDQGqDvnsXx1a9Eym18LBFbIV7TmEmgm2f2ZT6_AVv62Pme_v2N4yLG1Cp7elYq0rQBYA3Jk-TUXMWUuhzxF4uFyz7VhKZdTiFk7W7C_OSdXQ6P-2JhnmbtYpgtNDFZx5Vp1DQCzDxksnOo0xsO2aOpXp11aPoZTC8fLz6J-4DxlVtPyKaeuQnq27_KK-zaCvmiCWyaWFOj4e%3Ds16383-w600&dsh=S-1172319615%3A1784671332263799&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu5K5IgpElmYy4mg8lVanl6FwSSWW1VTkryzt6KscgnRS7Pfwx4rK9qwIqJMg3ryivlpQgyWw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Grrgf_0aKP2oMeEKGog6FFepsiKhvWmUll4ca5vlI1MQIqyqxqYhPc2ouK8Ta9ouGgas0qWP_VF-TRBkxqkpPLyCmPWkc1bScgpaRyFAV2vPap1CSq_wTjHrvR6wMtrQscujEK2YtazJb62QfdDdL6hV72426vbIYJs--mlfp4sOLel5NxVfq8ZWm82hBGCRR3knEUPTSqgspViIAM1W96F-0GHXFTdo02TQLJpzmmgMBrFNRqqx5A%3Ds16383-w600&dsh=S689506340%3A1784671922843112&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVsYQbwhP2vYMsfBg0MCe3eHJ6E78E8nHoLqxO-KM8RKi3Y0c459D4CUNGG4uKgRHhAN053A",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Gq45w32dAm91OW1XMN2WHWcYKE2CU7-aw15oPtO2EAMl9EiOmzwK_BYvO555bQShDNlodwIfBJ0pIytBUZxIP6IFET2kqWdIfCo4lml7VGqd755rnbBfJGP-S2SSA3WIY2V_uMZozdaSL8yDmyT6cWSkX2nuHdWplBg0k4y-rb5Bk_WKiRY7PjCx6FxKiKVbPNh7rRbhf_HJESGUlDp7cJ1rfjG2V37n0MyqE8e8aKJadl-jW7JRcP%3Ds16383-w600&dsh=S-1038351619%3A1784671332265340&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsmaRMQs_n95J5bBu8UC4g9HVKYbGR6CNNjRtQJrLbdEWK7JW2X_SErgCbGq7tT5c9u7StVbw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EHGQaLzLBsjREn7sH8v--p8D3gdz56WQ2BFKM5pzIF_HyTIsmPWbz0oVhKN7-PB5z7kuhjOgcp_Uor0g1-h21_QHbwssl3vYcCF0eDwidnls5ibj7KmRNbIZ1_P0oIgF4VGhCah0vZ7WlLrkvk_29H69GdwHkNFeQRlMBtoMZUhoG4Rf80DpihocbjIwKYoZFt2cA9C9tcw8jwD3x_6CIHK1GzNv3C5Nvgdl1Cb3pQ7kThKsny5_xh%3Ds16383-w600&dsh=S-181348360%3A1784671922823379&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvHGZObc9ae4jn_EW4JSsPyPEAveVs9R9FPp2CumaAf4NhKznAd2r3yYqeJ0FWhsyuUH3T7Pg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GJlHmtRH9u4jacpmdSklePGKw9UTj-IIBZhfvLj7myOWAJqE_WlmP5EReH2SRvcJ3Vr949mR-KSp54gb7-XsYRHrzS0Q2xngdTUHmJP-0D10PI-KbgAtpE4HvtdAmgBRmLpRtC2Cvd3IBWyZ6mTjQtdkDVMdTBVQXVD36pIEC-YkGalYmsNFIptCIC-BQGrllFI3yhG0m8kMZcBRNWxstRkuuV7bn46FalnwAMHzOmjf_QNtdznBnd%3Ds16383-w600&dsh=S-1390999758%3A1784671332260093&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuKXE6Yyv14PoJlSij7D29eIzXqQUbskEGv_8B2eJceByAREUpK3uHEcPKuITF0OsCR8kBdEA",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GvfMuTYatNCY-NbChO9SUXvbh5xgzHZPmZbZEJtkg5U9boKZPuF-qaIzM4iurskWI-NdqLc98L8bRrAIIM-8iQVlDIEiOi1jATSc4jxiJ9NVBXDmcggh1cUmnMePBqtlcHXvXQ46E2PX2TgaT1oPQc12LKndRKXcJDFe1LB2GVX7OhauH1Ecrf3PM0ZiWU78HGxSbVca9JS-P1BudgZQSHk0YEMDUobTeqCo-re8dERg5OdxD9YVYc%3Ds16383-w600&dsh=S-181348360%3A1784671922826122&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtNvQhnwx16tgXegLQp0-DZNItOVQIUtz0Id1vDMg_Bo5LtZIR_YEh2OjGz7kd3K4ZE2o-zJQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G17qaEyJ5z2TUD_MiPlQpaLDyd7LIX4nMRSdvcUhBHdqf4rAG04LE0U8m3sj5UK7hv7zBZHQC5Efyd_TPs4O6iE_3ZaKE6ZQLjQn4tNcn2EeyyeXkYN31tHn3GmzyJMF9la_7d-P1n4cNqBtQ-n5bblEWHhCDaMCwKA5PZT16MCOgpfqOqWYc3vrocgcSIV1RAWfEe-1bNjdRa0RFB2nVGru28-CWZNcQU9OlZDi2w0QVoXYvIW3UV%3Ds16383-w600&dsh=S1965084359%3A1784671332266340&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs1zXbpx1tHgV0FsfoAy7kZJccY_2njE-WMdihnINDjNoIq5lQU1slXEZgfLs8UKelEX8ipLQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_G37he1Z0JWkjdnP3yX7LnYl70Y_cq5cnW1hFsDr7rdjHrY1S8OZ3_2a_OecTfNk_mMcwM1m4u_pyaArLQDJYDByF5fnRl-K_kKCD2woXuQJtydRGZ69hlh4IDQ2RwHToDJR_nlyr123EKl5FS305WQkPmi7w9Doa_5n7tViMUp6rbs8i1vXeNCqOf89qumj_EmHsQ_HaY6KqDs0iEwqym4u1EwXLgFiJigGdojJWFfFCI8ZCDDT5mx%3Ds16383-w600&dsh=S689506340%3A1784671922844745&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtwMxU24-tJ-owKmzx4I7lWWGdGO0URjTKu-f0l8IyXZio4jlFlOaaFDbevy_DOjzA0LYtYNQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FzU6UJlRaCcpplmxRRD199i-hnRSsua-hDSGSwm_P1XlryFsEj69djrnD5Tyvfh32i_QXhCpHM9fcHj4RVQLo_1KkU6MASSbstS89zwis3nU30sXoo6SrjHNG_eZb9x6Wliof9UFgCxoUyOFYU6EeP47sxlTsXHAWeVauDMu-r6jlfZoCuFAw1xbMgSJl8k6iGu-kF6xHrZhejByUlSjGbx_PKnLzULjaZLrQI_U4ZmiPka45Fe4wY%3Ds16383-w600&dsh=S-2044204248%3A1784671332265489&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxupz7Z8BZz5rOt8yBq2z1E0Mve1RtYBpcq3qoONXYj1eB7cgR48vYT3DHygwFXD4s-bobSfMw",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Hr1xUkkIbU2z8HMLY4-0aZyBNCCiq-6VZ_U-T563NwwAB3VT7TJhS0BdjDl8vH4bpfROrXbCMducFuP-eoefB2Qi9W0yi1D1cPAgvlJUqpPCQiTQrqazyoK5YIOH6CE85D9j3itG2czuyA5OhiBcNwbpVLlkmAuz_JVvfNR9f-RZ2cUXH3ormUe8yjOLAN3Hx1BPYZ32FkYXqcpzvK_CFxahELkDjcO32Ps-nOUmuHqfzuOizhljxZ%3Ds16383-w600&dsh=S-1238478504%3A1784671922824187&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuN_eJFdKNjhXCZVge4J4V4GGQaMJiP0tGECL01Ao2rvGdXAtjpr4n_aEA7Pwt9IIiqftTrZQ",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EN2r_pRUg42q-uDPiz-D_iiRIv9uWyKY9laz96Zl-I4Jar9Uk3CGZE0-_gBvSMfQ1O0LsYxEyzsQ8JA8ZpPbCBRtwtdZzc7NG8F9ibl1SJThXSEZU2_Ge6ovlurUY9I1030anNp303e0FX7XVnAFpO3bYGLzM9ZVU8BCdk5S-bI6Ml497S4YKWqVjJ0_3oODX1lsKIyf6GoOn_FRB62yFW7r8EW2yD1jiQw5KeIpwy3lxnpZQBpGgx%3Ds16383-w600&dsh=S-1188587724%3A1784671332238447&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvwOv6VkzsG64d3mnnyWeA4siHxfYeXFP1htHpCF1iI0HS5IJBQYnZNc8ZikSTKYbiIq0rQTw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_H27-ZcLC5pWjheTmvcHJ-22hvIBsB6us-tzDUct4ILqXkSxX2KaCSUL6OFlf--vBN71tn8oQ6GxfPsgw0i_JFnJb1UxVYc8vndHHVb8vNU3m836RnU6nmDhMng9Hs4VtaKaixEXYt91rQpSo6tbfEO32pE9-mLN37zIQqY5GrYdJK-_s4FRe5s3aCj8lQPsUZh2ADQHzFDL7ps4Ar8CO1kiNqBykeFu4-ZUpRhR8NsTxmetRREOB4y%3Ds16383-w600&dsh=S-1188587724%3A1784671332275326&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs5rlVf_bbnvAKqNkmSJpH687cFyuTJ4pys2ASPEH5vw20fCF0OLpQbbND9p7S65Zb-qfI4vw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FxFmQ0WP8ezfXj5pWcj81SzjjNr-JxWqUZcuPgLdYdXoiuOrbeU2W5tIAe67WuaKp7LiINu0EKcb3krVoGsAX0c2Yt-jIequPuZ5tzcTq_3ibiCl2hPBIqrPUD4pjnjRuBpt5AdbcVNTitA2lDOMThG6LtGEKwP1neLGGpNCUimwTMd4h5Lj4D3L5Al_cyvIKpROZyKds5HhTofNk3AejXnZy-cF8NSkld3zldjynwu680P1R-T5tJ%3Ds16383-w600&dsh=S-1744264494%3A1784671332271522&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvR7qZwS5jIvyuabT0-qVv5HchNAhKg0QG-yRUoE1cfRTqv85ea303maK5F3A8PSMC6i0kP1w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FdMuNY7r2WBDZ59VaTQcgv31scorZJePFoHCkAjNV3pXnX7L1lcpA-lYHFKEKCQHeWB5AObpYGe3ItN4NsL1r3SbpsPkGI5wQvdyofN3ydMnGqUqu2_q_oTaATVdvsdJbh_-vHkHU6nfMAIb4KZMap9puq-PlKJ7u4GTmNSj3RIMefjpBeG0tNfGLPKmsA6GM7VpHwpHcNpS4eYQUhnijDqmU7vlzuq8REDGyV2ZYlFwijW1BeNcvH%3Ds16383-w600&dsh=S-418454306%3A1784671332267317&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsethpjzmueYJZwrt8K7laKkFyX3zOzfORR6W9VTbcZi-KQehaedMDhhN1_zvw4LWZ9WOrUCw",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HN93bRey1RUGhk10Vcuk3zAP77GLs2-Zz6r5EHPGUNdjScpCbu0_OQ0XU9KsKJGdtuNao91ugmUAMMievW79dt45eU1FU2GYBgCJXiGVODbUMfmdLaBt8JfIUMM2qzq8jAHoswFAEH0yFcCBr1GFVtyQZMa8OcQPIy-xyLdf_jLPnjLviTaDy4NpuuUK1rMm7lxIf-nYGw6HvqjiOulYP-z04jy8KyxQJ0Ne1FWoYoKYz6O4vjSYIQ%3Ds16383-w600&dsh=S691242670%3A1784671332287069&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxs5V12piTbR38YRy4vrcjmEh1VZzr7PB-EYuGRmoD4zfZfqUOJBQTel3QwjGn-8YohOBMo7-w",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E0fASWZC6Av3i5cse1YW-6RuWneX4c5FiGThx9K1flioSWlZgXxjH_rtQLWjRx5vARwfuXlDMDzS0Lt_P1FhFgJO-ZbxHYLR610Y1eRxpIWmRY2P5NDC_b-L1pMKwnD5fTTLKLMy8UMV-RvDz0vt0neb6mlK0gPwwse_PI8jqWE_rnKgaAizTOeMdDk0jxvSbEwCU3fIJ1R2TUfdT87Kxvz6-RqHSlRqyUGTzR1p_XaZP5B6CGlswg%3Ds16383-w600&dsh=S691242670%3A1784671332234955&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvoYUZmC-sODqrkUMa8LbMMBik5FkJ8Q1JGK2-QmEomGKOtwo8eFN0xGPSXp_PVF67yIq9GcQ",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GlNRpQl5gWxwwE1QHGTz0HjkCWMSvndou4YF56l_D_vukqflDA6ozn9xqH9NLNogRwaVFC9PHpUMtmfYJ16vxVdJ3ca4dCNftBpnANrmiR4ifQK_ADTsAS1B9ADM9Y1-j0mYsqvgxmtuwTgmx2mbcTU_g9TLFRcSqnpFc_dKMkEEp6iveZWd4knagJ6KmSVykWEOKzRKGSO6w2CIj7cBbqzQ8HK5L3ybuf_JRmWSjg8OzeGPzjDGkf%3Ds16383-w600&dsh=S-418454306%3A1784671332224490&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtb87ym8cC6iEaqdtLvRVgTaXhTshLEqUwOeMl9uuKFinN9Xs2h-Os3ZXOzqRLw-ROiXi_dwA",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GD0mh4Zg_8Ip7eP8q9yrRxFA9Oyvw1VdYw5oiPMEAUnYPSoQE9SDfn1LSxnNReltVmzKrE3zCQSrUsQKEycv1iaZVDgtRqRA9308vDtIrGyY6HTbqc5QeKrhQTeNrR6DjkObtMZiypQtyG1GFOD5KCspDzfqF7QRp4nX5HvUrJi1XN57QvxVMcSJx3a78q3Obbah3SfgAy4n68J7OsnMPqgxjZpLy_8KhXysAG8nYOYqHJ9eFezG1T%3Ds16383-w600&dsh=S1110917073%3A1784671332222026&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxvF-G9aZiYm0qhsGIROZGDknCg0vPk9Hn259WR-V6xiu-8TV0y7fGd9JgPRsmljGjHa3c7PTg",
-          "reason": "net::ERR_BLOCKED_BY_ORB"
-        },
-        {
-          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EVBz-ZF5GBNFCK6vF7fnhCOXaVVucMjtu3uPezlaptnGhd_zJC9oJi34H5lSaF_rLNpxduKvssnrjnWz6Y8-3kDS02cPwj3JrX5RUNU3yFNZ4HGup34BIwcQMnp4H2_Icvx1aJw8lpEuIVkVa4mHVZQ3WByZ4VXldkJDPUPKA2RAHbywgxXRRi3HqSMy7cL3b60kxV0-_5osx4y-hFSrq32gHcdhjv3iSp7gatSd7AXszpqFAI7Mvo%3Ds16383-w600&dsh=S775732460%3A1784671332232788&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVML1CGC4FTUis0-D-6IdmXHFJQQdtQyfWAumBFdhAe9BCE1Np9Qx-qxyPuuBcdfYdWBQTuQ",
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HIwRtYy3go5Rrlnsobb51eQuV-P4r2NxpBbz_bQPOd-5mpSJD9jd8wet4zQS8N8Y0IpYEYEeC6r-DvUySKMDqqDhdotjXY5JFxv5R2oh81ZjEdwDHd5rOINzP8vSIhWIJrfeeJlFCmto5VUyE7i_nlh0_Z8PRbity4abOK1uagFlRdPpGSCHLSz7WE_b7-pbCDQS6yA_vA73IcMNyce7pbW8b2kVdOBpPFkOjLkltLwmqXd1K30woQ%3Ds16383-w600&dsh=S689506340%3A1784671922827849&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuEILNXJwPGS1ZoB4hLhFs36h5bjgowvqRLEH9Elod0YyaH-MCgoM2P65CIXu0gTfQxPfZcpg",
           "reason": "net::ERR_BLOCKED_BY_ORB"
         },
         {
@@ -4613,8 +4705,36 @@
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
-          "reason": "net::ERR_ABORTED"
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HEHpU4YDRs20O_4GyEpTKp1VoGbIIaRudSSpIw7agZlVLdRENJnsmo-MvfpvOp0iNcUVUaB_GrAcZXg4uIy9SMfzJgI6eOF23kjZKmynHrBCv065RTKa2xnwJWpPzj84JnThPq5BtI4df5V_AhppyfG051H08w20Bu1g9-b2KRdzGbn8mFiX7jCfC03acte9SFT-Bw5xU0tFq32hxE1AWg4oHV4Slby6dl9rLhZEK9FEro4Kelnf6N%3Ds16383-w600&dsh=S689506340%3A1784671922824181&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxseUK5EYOeHZ-q9esscyAXLE6vjBMKLWot_QBi0c_NHQ8QUtf-N3487fdd1qnIWFIfqOJnutw",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_GBsbPsHzSHL88YBezHk0onf3h_WFcCd6eQbGIsbQ2KPtDsWj6sNkKUl8nM0II6brYsz9qZSfHKgVFW1txszBXQHe8-2yS9_KbgfeT9sAYoanMXtod-hn0_PvxNAW7oHGCbROo0BA8Bl-7_29FbCGheF3A1qfPC9IumOU3ITpQW2Egp3JNqSjsB5wItDs9YtiX7JV4_Rv6WrjmQMwShwaIJfUdN9RaBWceKcqgiPgD2X9W9wKMm8-zp%3Ds16383-w600&dsh=S-181348360%3A1784671922825129&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsEMD7bG2PSftVs8yxjZEFmly85CsNwnGnqWem3JX4J3rHx2_8ol6SMDqrpfWUz26efBxMuRg",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_E7oQgo35BiceJkCLtNAj00gIIJWQcle38DvTiLjOnrFqxaj0mTQVQW7Gc45fc-e4QPMdX3NfJ7bc3u3xK2mTRaxMtd-_xNX9f826qI93WkNGiOvy_k8Cj1KbuQqQs-lUArTJJ3ZnMsThVXBj43m85GCRru2DnClp8r6yKAMJst1Z9wG-Qx4C-vapcZ79OJ7Rc52keg7iAPYLOImu2nW_dWKUERXX4T-AiN0X-_glXD08RebMregDqQ%3Ds16383-w600&dsh=S1748799207%3A1784671922839602&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtTRhsol87TvijdUP94YW52hooF1NX_rDxDt40s-d4Jq7AmFtRIV3rgFR22Z3CadyqM6WJT3g",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_EYKjRQ4MFarkpEFb7MthjcsPo0xtU2boWkCKfSSBKBHhOBz20Q-mSzEvTADLZvfk9VLIjS74WaDPWtAPpoiLnZ_EbRXIxbZddGcsYH7a078zdZFecZT6_AYu5aeXkayA4m8dDzK_BJjCvpplNkzavnaJUTkcALwPvnxf9kfR0aIqC1IJ8BUKTVsH8hWgZGilaxqLnroDKloMpIp5W0HzPytqk6WXhOF9nCJhsJJs4wfimyd_LyPfPm%3Ds16383-w600&dsh=S-1238478504%3A1784671922839468&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxtVEKpB23ougdKgZLJrr1xijanEhY_G6jLGt5oO6ft1vGNtIFcBWBQE1XXdwApnmbiIf45g1g",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_Fb2TDqDYKLT6cLfItdOVW12KnYmrAXMcswiu8roMHgOvghASSdavRH3SuWLZcMIO6n-4DYYBMdCDZjw-7euxrfgksYUZpnfZtOHrZhzNt4mmbbqQCOSG6TFxJ5k2gwGY1CEcFB2ETY5rxG09SiRlWM-4H08NybtOj5yjY3Ht5jFsTkQMcqN4PDTi0QqZAHNuw9I-kqmM0Ch7KJOjL5Ad9gRyq5xtXrMrUNgsHGQ94s-kps85cMxC-X%3Ds16383-w600&dsh=S-1238478504%3A1784671922856887&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxslHmFJ2j2_FGz7DiK9BRKxiDYnOHysZDIoKwkYN_aT1FQvafJ5Ouf1BTtIzyeHBI2zP0vr6Q",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_FRHdHK946NrIUxzcZ_ZD0h6w9XYjYJ_OKayUyE66lev9KVH7zzoe5RTGgQxkafsOVDrx_gPtLjHCu1aUWZyhmlfHS9bVPMMpHJgfOAU9JwHFLSj1fiO0Ie937VhfslHUfcmuYWewPfyXYfxj9DT-jdNTU6j8FRVyuIsSNyXfqBZ8PSIKHSYJalLQL8sm5iuoyg9z_6zfzTeJoqYMp95JCk1hKJLw8ZZyQ8G8qQXc3Akvjn6chD1fkZ%3Ds16383-w600&dsh=S-771330088%3A1784671922840436&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxuw3jMTSN4M6Ne_c36pdlUtZGEM1ZfCnggK_ZoEiCTIhXHWkwj_AetIoBuM373yoTBH1NkkyA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HVF04Ui2nYAedJVr3Vd4bF96-f23BKvt-B1DusBVlQjIiSuM60sCi9cAnBoWQABoiH_Hkl1OreurmAVbdVXtx_qKZT7agA6rOno7gAwr7OahLQqzNn7DyjwuhqHdo0zj5n_dNeFwyjmAQERYvWdzJwY4jSjhDZ5dKby4COiYwiHPzX2ZuTwjdlxNvsxrCD6NZCxFiSOY16EzcuEYuJ588Pu7FOMwBNeuH3ERuZDFq3DsJfhlPno2Ts%3Ds16383-w600&dsh=S1748799207%3A1784671922854080&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsxgc2nVS4DPLlUp6k3HsnOY1WQ-EWAtgrh57Nmdxs_szKQAqmRpd8gIEYOLAfL3OkB7xuvzA",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwork.fife.usercontent.google.com%2Frd-d%2FALs6j_HmlBO-AnDGVRubGMq1qntA6JSqBNOn1UETejCciCtorEQ_K4N-P6KbxxdTwPs7cFl3SFyXD601Jo5UJoANmx6eN6KNL6DC1BlwQBhKCu9v0kPHrsDU3jOTlwoG87zY-h-59ZprURIRXRdF1FFupsmXNS3XmzyDkZNu5Oi-MDEGrj7Gz36qO_gW7KPqZVi7rARYYMqr1958OOBntH1cN_gnXgdDGF2LEisk3mmKnIdJLYFI2PVm6oG8%3Ds16383-w600&dsh=S-181348360%3A1784671922842130&hl=en&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxu_kLJ8fQRpKEDkSlNF3kHN9_o6QzgH6OqyzXi249tL9FvtR-PUyGa1TNF93P-EfLEWpWRkNQ",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
         }
       ],
       "files": [
@@ -5018,11 +5138,11 @@
       "consoleErrors": [],
       "failedRequests": [
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         },
         {
-          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/hors-norme.mp4",
+          "url": "https://neptune-media-webtv.neptunebusinessclub.workers.dev/media/emissions/jeu-connexio.mp4",
           "reason": "net::ERR_ABORTED"
         }
       ],
@@ -5183,14 +5303,46 @@
       "route": "home",
       "type": "clipped-text",
       "selector": "h2",
-      "text": "Vous avez besoin d’être visible, pas de vous former.",
+      "text": "Vous avez besoin d’être visible,pas de vous former.",
       "client": [
-        830,
-        199
+        980,
+        126
       ],
       "scroll": [
-        830,
-        203
+        982,
+        130
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+      "text": "Vous avez besoin d’être visible,",
+      "client": [
+        980,
+        60
+      ],
+      "scroll": [
+        982,
+        65
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "desktop-1440",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+      "text": "pas de vous former.",
+      "client": [
+        614,
+        60
+      ],
+      "scroll": [
+        614,
+        65
       ]
     },
     {
@@ -5941,14 +6093,46 @@
       "route": "home",
       "type": "clipped-text",
       "selector": "h2",
-      "text": "Vous avez besoin d’être visible, pas de vous former.",
+      "text": "Vous avez besoin d’être visible,pas de vous former.",
       "client": [
-        737,
-        177
+        980,
+        112
       ],
       "scroll": [
-        737,
-        181
+        980,
+        116
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+      "text": "Vous avez besoin d’être visible,",
+      "client": [
+        872,
+        54
+      ],
+      "scroll": [
+        872,
+        58
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "laptop-1280",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+      "text": "pas de vous former.",
+      "client": [
+        545,
+        54
+      ],
+      "scroll": [
+        545,
+        58
       ]
     },
     {
@@ -6771,6 +6955,54 @@
       "scroll": [
         767,
         131
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous avez besoin d’être visible,pas de vous former.",
+      "client": [
+        767,
+        73
+      ],
+      "scroll": [
+        767,
+        76
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+      "text": "Vous avez besoin d’être visible,",
+      "client": [
+        568,
+        35
+      ],
+      "scroll": [
+        568,
+        38
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "tablet-834",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--accent",
+      "text": "pas de vous former.",
+      "client": [
+        355,
+        35
+      ],
+      "scroll": [
+        355,
+        38
       ]
     },
     {
@@ -7633,14 +7865,30 @@
       "route": "home",
       "type": "clipped-text",
       "selector": "h2",
-      "text": "Vous avez besoin d’être visible, pas de vous former.",
+      "text": "Vous avez besoin d’être visible,pas de vous former.",
       "client": [
-        342,
-        164
+        362,
+        58
       ],
       "scroll": [
-        342,
-        167
+        462,
+        60
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-390",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+      "text": "Vous avez besoin d’être visible,",
+      "client": [
+        362,
+        28
+      ],
+      "scroll": [
+        462,
+        30
       ]
     },
     {
@@ -8399,6 +8647,54 @@
       "scroll": [
         332,
         197
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "h2",
+      "text": "Vous avez besoin d’être visible,pas de vous former.",
+      "client": [
+        332,
+        54
+      ],
+      "scroll": [
+        426,
+        55
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "span.problem-chat-static__title-line.problem-chat-static__title-line--primary",
+      "text": "Vous avez besoin d’être visible,",
+      "client": [
+        332,
+        26
+      ],
+      "scroll": [
+        426,
+        27
+      ]
+    },
+    {
+      "severity": "warning",
+      "viewport": "mobile-360",
+      "route": "home",
+      "type": "clipped-text",
+      "selector": "p",
+      "text": "Alors arrêtez de chercher des solutions épuisantes.",
+      "client": [
+        332,
+        16
+      ],
+      "scroll": [
+        335,
+        16
       ]
     },
     {
