@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#081d4e">
   <title>Mes vidéos · Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/videos/videos.css?v=1">
+  <link rel="stylesheet" href="/espace-client/videos/videos.css?v=2">
 </head>
 <body>
   <header class="library-header">
@@ -21,31 +21,31 @@
 
   <main class="library-shell">
     <section class="library-intro">
-      <div><p class="eyebrow">VOS CONTENUS</p><h1>Toutes vos vidéos.<br><span>Enfin lisibles.</span></h1><p>Émissions complètes, shorts, rushs et documents livrés par Neptune, réunis dans une vraie bibliothèque.</p></div>
-      <div class="library-summary" aria-label="Résumé de la bibliothèque"><div><strong id="contentCount">0</strong><span>contenus</span></div><div><strong id="shortCount">0</strong><span>shorts</span></div><div><strong id="projectCount">0</strong><span>projets</span></div></div>
-    </section>
-
-    <section id="featuredSection" class="featured-section" hidden aria-labelledby="featuredTitle">
-      <header class="section-heading"><div><p class="eyebrow">À LA UNE</p><h2 id="featuredTitle">Votre dernière émission</h2></div><p>Regardez-la directement ou téléchargez le fichier final.</p></header>
-      <div id="featuredContent"></div>
+      <div class="intro-copy">
+        <p class="eyebrow">VOS CONTENUS</p>
+        <h1>Toutes mes vidéos.</h1>
+        <p>Chaque passage conserve son émission et ses contenus courts au même endroit.</p>
+      </div>
+      <div class="library-summary" aria-label="Résumé de la bibliothèque">
+        <div><strong id="contentCount">0</strong><span>vidéos</span></div>
+        <div><strong id="shortCount">0</strong><span>shorts</span></div>
+        <div><strong id="projectCount">0</strong><span>passages</span></div>
+      </div>
     </section>
 
     <section class="content-section" aria-labelledby="libraryTitle">
       <header class="section-heading content-toolbar">
-        <div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="libraryTitle">Mes contenus</h2><p id="resultLabel">Chargement de vos fichiers…</p></div>
-        <div id="filters" class="filters" aria-label="Filtrer les contenus">
-          <button class="active" type="button" data-filter="all">Tout</button>
-          <button type="button" data-filter="final">Émissions</button>
+        <div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="libraryTitle">Mes passages</h2><p id="resultLabel">Chargement de vos vidéos…</p></div>
+        <div id="filters" class="filters" aria-label="Choisir le type de vidéo">
+          <button class="active" type="button" data-filter="final">Émissions</button>
           <button type="button" data-filter="short">Shorts</button>
-          <button type="button" data-filter="rushes">Rushs</button>
-          <button type="button" data-filter="document">Documents</button>
         </div>
       </header>
-      <div id="contentGrid" class="content-grid" aria-live="polite"></div>
+      <div id="contentGrid" class="passage-list" data-view="final" aria-live="polite"></div>
     </section>
   </main>
 
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/videos/videos.js?v=1"></script>
+  <script type="module" src="/espace-client/videos/videos.js?v=2"></script>
 </body>
 </html>
