@@ -10,6 +10,8 @@ export function ensurePortalSchema(store){
     CREATE TABLE IF NOT EXISTS portal_content_schedule(id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,file_id TEXT NOT NULL UNIQUE REFERENCES portal_files(id) ON DELETE CASCADE,publish_at TEXT NOT NULL,network TEXT NOT NULL DEFAULT 'youtube,tiktok,instagram',status TEXT NOT NULL DEFAULT 'ready',caption TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS portal_content_ai(file_id TEXT PRIMARY KEY REFERENCES portal_files(id) ON DELETE CASCADE,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,title TEXT NOT NULL DEFAULT '',description TEXT NOT NULL DEFAULT '',hashtags TEXT NOT NULL DEFAULT '[]',trend_sources TEXT NOT NULL DEFAULT '[]',trend_summary TEXT NOT NULL DEFAULT '',ai_model TEXT NOT NULL DEFAULT '',generation_status TEXT NOT NULL DEFAULT 'pending',prompt_version TEXT NOT NULL DEFAULT 'neptune-content-v1',created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS portal_content_publications(id TEXT PRIMARY KEY,schedule_id TEXT NOT NULL REFERENCES portal_content_schedule(id) ON DELETE CASCADE,platform TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'prepared',published_url TEXT NOT NULL DEFAULT '',published_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(schedule_id,platform));
+    CREATE TABLE IF NOT EXISTS portal_content_occurrences(id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,file_id TEXT NOT NULL REFERENCES portal_files(id) ON DELETE CASCADE,source_schedule_id TEXT UNIQUE REFERENCES portal_content_schedule(id) ON DELETE SET NULL,publish_at TEXT NOT NULL,network TEXT NOT NULL DEFAULT 'youtube,tiktok,instagram',status TEXT NOT NULL DEFAULT 'ready',title TEXT NOT NULL DEFAULT '',description TEXT NOT NULL DEFAULT '',hashtags TEXT NOT NULL DEFAULT '[]',caption TEXT NOT NULL DEFAULT '',use_index INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS portal_content_occurrence_publications(id TEXT PRIMARY KEY,occurrence_id TEXT NOT NULL REFERENCES portal_content_occurrences(id) ON DELETE CASCADE,platform TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'prepared',published_url TEXT NOT NULL DEFAULT '',published_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(occurrence_id,platform));
     CREATE TABLE IF NOT EXISTS portal_supplier_payments(id TEXT PRIMARY KEY,order_id TEXT NOT NULL UNIQUE REFERENCES portal_orders(id) ON DELETE CASCADE,supplier_name TEXT NOT NULL DEFAULT 'Fournisseur studio',amount_total INTEGER NOT NULL DEFAULT 72000,currency TEXT NOT NULL DEFAULT 'eur',status TEXT NOT NULL DEFAULT 'due',due_at TEXT NOT NULL,paid_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS portal_refund_requests(id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES portal_orders(id) ON DELETE CASCADE,reason TEXT NOT NULL DEFAULT '',eligible INTEGER NOT NULL DEFAULT 0,status TEXT NOT NULL DEFAULT 'pending',requested_at TEXT NOT NULL,processed_at TEXT);
     CREATE TABLE IF NOT EXISTS portal_deletion_requests(id TEXT PRIMARY KEY,client_id TEXT NOT NULL REFERENCES portal_clients(id) ON DELETE CASCADE,status TEXT NOT NULL DEFAULT 'pending',requested_at TEXT NOT NULL,processed_at TEXT,note TEXT NOT NULL DEFAULT '');
@@ -29,6 +31,9 @@ export function ensurePortalSchema(store){
     CREATE INDEX IF NOT EXISTS idx_portal_schedule_order ON portal_content_schedule(order_id,publish_at);
     CREATE INDEX IF NOT EXISTS idx_portal_content_ai_order ON portal_content_ai(order_id,updated_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_content_publications_schedule ON portal_content_publications(schedule_id,platform);
+    CREATE INDEX IF NOT EXISTS idx_portal_occurrences_order ON portal_content_occurrences(order_id,publish_at);
+    CREATE INDEX IF NOT EXISTS idx_portal_occurrences_file ON portal_content_occurrences(file_id,publish_at);
+    CREATE INDEX IF NOT EXISTS idx_portal_occurrence_publications ON portal_content_occurrence_publications(occurrence_id,platform);
     CREATE INDEX IF NOT EXISTS idx_portal_supplier_status ON portal_supplier_payments(status,due_at);
     CREATE INDEX IF NOT EXISTS idx_portal_refunds_status ON portal_refund_requests(status,requested_at);
     CREATE INDEX IF NOT EXISTS idx_portal_deletions_status ON portal_deletion_requests(status,requested_at);
@@ -39,6 +44,14 @@ export function ensurePortalSchema(store){
     CREATE INDEX IF NOT EXISTS idx_portal_referrals_referrer ON portal_referrals(referrer_client_id,created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_portal_referrals_order ON portal_referrals(order_id);
     CREATE INDEX IF NOT EXISTS idx_portal_referral_alias_client ON portal_referral_aliases(client_id);
+  `);
+  store.sql.exec(`
+    INSERT OR IGNORE INTO portal_content_occurrences
+      (id,order_id,file_id,source_schedule_id,publish_at,network,status,title,description,hashtags,caption,use_index,created_at,updated_at)
+    SELECT 'occ-' || s.id,s.order_id,s.file_id,s.id,s.publish_at,s.network,s.status,
+           COALESCE(a.title,''),COALESCE(a.description,''),COALESCE(a.hashtags,'[]'),s.caption,1,s.created_at,s.updated_at
+    FROM portal_content_schedule s
+    LEFT JOIN portal_content_ai a ON a.file_id=s.file_id;
   `);
   const now=new Date().toISOString();
   for(const order of store.sql.exec('SELECT id,status,updated_at AS updatedAt FROM portal_orders').toArray())syncSteps(store,order.id,order.status,order.updatedAt||now);
