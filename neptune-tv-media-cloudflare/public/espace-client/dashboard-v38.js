@@ -45,6 +45,7 @@ function init() {
   installAuthTitle();
   correctSocialLinks();
   installLogoutIcon();
+  installDedicatedPageNavigation();
   const dashboard = $('#dashboard');
   if (!dashboard) return;
 
@@ -63,6 +64,21 @@ function init() {
   });
 
   if (!dashboard.hidden) hydrate();
+}
+
+function installDedicatedPageNavigation() {
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-open-panel]');
+    if (!trigger) return;
+    const destination = {
+      content: '/espace-client/videos/',
+      calendar: '/espace-client/calendrier/',
+    }[trigger.dataset.openPanel];
+    if (!destination) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.location.assign(destination);
+  }, { capture: true });
 }
 
 function installAuthTitle() {
