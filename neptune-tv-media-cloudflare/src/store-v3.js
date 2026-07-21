@@ -22,6 +22,7 @@ import {
   submitFeedback,
   adminFeedbackList,
 } from './portal-notifications.js';
+import { registerEffectiveReferral, adminReferralList } from './portal-referrals.js';
 
 export class StudioStore extends BaseStore {
   async fetch(request) {
@@ -50,6 +51,8 @@ export class StudioStore extends BaseStore {
       if (url.pathname === '/portal/feedback-get' && method === 'POST') return getFeedbackRequest(this, body);
       if (url.pathname === '/portal/feedback-submit' && method === 'POST') return submitFeedback(this, body);
       if (url.pathname === '/portal/feedback-admin-list' && method === 'POST') return adminFeedbackList(this, body);
+      if (url.pathname === '/portal/referral-register' && method === 'POST') return registerEffectiveReferral(this, body);
+      if (url.pathname === '/portal/referral-admin-list' && method === 'POST') return adminReferralList(this, body);
     }
     if (url.pathname === '/auth/setup-status') return this.setupStatus();
     if (url.pathname === '/auth/recover' && method === 'POST') return this.recoverAccess(body);
