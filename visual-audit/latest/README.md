@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T19:46:53.026Z
+Généré : 2026-07-21T19:56:29.733Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 269
+- Avertissements : 273
 
 ## Problèmes détectés
 
@@ -18,9 +18,10 @@ Généré : 2026-07-21T19:46:53.026Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | desktop-1440 | home | clipped-text | Être visible sans en faire un deuxième métier. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
+| warning | desktop-1440 | home | clipped-text | Une demi-journée. Deux émissions. Des mois de visibilité. |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -70,9 +71,10 @@ Généré : 2026-07-21T19:46:53.026Z
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
-| warning | laptop-1280 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | laptop-1280 | home | clipped-text | Être visible sans en faire un deuxième métier. |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
+| warning | laptop-1280 | home | clipped-text | Une demi-journée. Deux émissions. Des mois de visibilité. |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -127,6 +129,4 @@ Généré : 2026-07-21T19:46:53.026Z
 | warning | tablet-834 | home | clipped-text | Apprendre de ses erreurs |
 | warning | tablet-834 | home | clipped-text | Créer de vraies connexions |
 | warning | tablet-834 | home | clipped-text | Le stress du premier direct |
-| warning | tablet-834 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
+| warning | tablet-834 | home | clipped-text | Une demi-journée. Deux émissions. Des mois de visibilité. |
