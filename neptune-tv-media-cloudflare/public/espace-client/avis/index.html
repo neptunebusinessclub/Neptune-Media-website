@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#071d4f">
+  <title>Votre avis · Neptune Media</title>
+  <link rel="icon" href="/assets/logo-neptune.svg">
+  <link rel="stylesheet" href="/espace-client/avis/feedback.css?v=1">
+</head>
+<body>
+  <main class="feedback-page">
+    <a class="feedback-brand" href="/" aria-label="Neptune Media, accueil">
+      <img src="/assets/logo-neptune.svg" alt="">
+      <span><b>Neptune Media</b><small>Votre retour d’expérience</small></span>
+    </a>
+
+    <section class="feedback-card" aria-labelledby="feedbackTitle">
+      <p class="eyebrow">VOTRE EXPÉRIENCE COMPTE</p>
+      <h1 id="feedbackTitle">Comment s’est passé votre passage ?</h1>
+      <p id="feedbackIntro">Chargement de votre projet…</p>
+
+      <form id="feedbackForm" hidden>
+        <fieldset>
+          <legend>Votre satisfaction globale</legend>
+          <div class="score-grid" role="radiogroup" aria-label="Note de satisfaction de 1 à 5">
+            <label><input type="radio" name="satisfaction" value="1" required><span><b>1</b><small>Décevant</small></span></label>
+            <label><input type="radio" name="satisfaction" value="2"><span><b>2</b><small>Mitigé</small></span></label>
+            <label><input type="radio" name="satisfaction" value="3"><span><b>3</b><small>Correct</small></span></label>
+            <label><input type="radio" name="satisfaction" value="4"><span><b>4</b><small>Très bien</small></span></label>
+            <label><input type="radio" name="satisfaction" value="5"><span><b>5</b><small>Excellent</small></span></label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Qu’avez-vous le plus apprécié ou qu’est-ce qui pourrait être amélioré ?</span>
+          <textarea id="experience" maxlength="3000" rows="5" placeholder="Votre retour, avec vos mots."></textarea>
+        </label>
+
+        <label class="field">
+          <span>À qui recommanderiez-vous Neptune Media ?</span>
+          <input id="recommendTo" maxlength="600" type="text" placeholder="Ex. un dirigeant qui manque de visibilité, un indépendant, une équipe commerciale…">
+        </label>
+
+        <button id="submitFeedback" type="submit">Envoyer mon avis</button>
+        <p id="feedbackMessage" class="message" aria-live="polite"></p>
+      </form>
+
+      <div id="feedbackDone" class="feedback-done" hidden>
+        <span aria-hidden="true">✓</span>
+        <h2>Merci pour votre retour.</h2>
+        <p>Votre réponse a bien été enregistrée et sera lue par l’équipe Neptune Media.</p>
+        <a href="/espace-client/">Retourner dans mon espace client</a>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/espace-client/avis/feedback.js?v=1"></script>
+</body>
+</html>
