@@ -166,5 +166,5 @@ function fnv(value) {
     hash ^= character.charCodeAt(0);
     hash = Math.imul(hash, 16777619);
   }
-  return Math.abs(hash >>> 0);
+  return Math.abs(hash);
 }
