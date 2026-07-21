@@ -1,0 +1,15 @@
+/* Desktop reading order correction for the Neptune journey.
+   Steps 2 and 4 place their content card on the outward side of the curve. */
+@media (min-width:821px){
+  .journey-curve-step--2 .journey-curve-card{
+    left:106px!important;
+    right:auto!important;
+    text-align:left!important;
+  }
+
+  .journey-curve-step--4 .journey-curve-card{
+    right:106px!important;
+    left:auto!important;
+    text-align:right!important;
+  }
+}
