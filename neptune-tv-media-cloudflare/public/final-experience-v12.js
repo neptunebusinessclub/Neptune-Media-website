@@ -31,10 +31,12 @@
     loadVisibilityShowcaseV21();
     appendStylesheet('/styles/hero-live-v21.css?v=27', 'heroLive', 'v27', true);
     appendStylesheet('/styles/neptune-brand-bridge-v20.css?v=20', 'neptuneBrandBridge', 'v20', true);
+    appendStylesheet('/styles/inner-voice-continuity-v1.css?v=1', 'innerVoiceContinuity', 'v1', true);
     loadHeroLiveV27();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
+    bindInnerVoiceContinuity();
     bindRailAffordance();
   });
 
@@ -65,11 +67,11 @@
 
   function loadScrollPipelineCurve() {
     if (document.documentElement.dataset.scrollPipelineV2Bound === '1') return;
-    const current = document.querySelector('script[src="/scroll-pipeline-v2.js?v=6"]');
+    const current = document.querySelector('script[src="/scroll-pipeline-v2.js?v=8"]');
     if (current) return;
     document.querySelectorAll('script[data-scroll-pipeline-3d],script[data-scroll-pipeline-v2],script[data-scroll-pipeline-curve]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/scroll-pipeline-v2.js?v=6';
+    script.src = '/scroll-pipeline-v2.js?v=8';
     script.defer = true;
     script.setAttribute('data-scroll-pipeline-curve', '1');
     document.head.append(script);
@@ -163,6 +165,103 @@
     items.forEach((item) => observer.observe(item));
   }
 
+  function bindInnerVoiceContinuity() {
+    const section = qs('#probleme.inner-voice-section');
+    if (!section || section.dataset.voiceContinuityBound === '1') return;
+
+    const container = qs('.container', section);
+    const head = qs('.voice-section-head', section);
+    const grid = qs('.inner-voice-grid', section);
+    const bridge = qs('.thought-bridge', section);
+    const cards = qsa('.inner-voice-card', section);
+    if (!container || !head || !grid || !bridge || !cards.length) return;
+
+    section.dataset.voiceContinuityBound = '1';
+    section.dataset.voiceContinuity = 'v1';
+
+    const intro = document.createElement('div');
+    intro.className = 'inner-voice-intro';
+    head.before(intro);
+    intro.append(head);
+
+    const progress = document.createElement('div');
+    progress.className = 'inner-voice-reading-progress';
+    progress.setAttribute('aria-label', 'Progression de lecture des quatre constats');
+    progress.innerHTML = '<i aria-hidden="true"></i><small aria-live="polite">1 / 4</small>';
+    intro.append(progress, bridge);
+
+    cards.forEach((card, index) => {
+      card.dataset.voiceIndex = String(index);
+      card.style.setProperty('--voice-card-index', String(index));
+    });
+
+    section.classList.add('voice-continuity-ready');
+    const revealTargets = [head, progress, ...cards, bridge];
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-voice-revealed'));
+      cards.forEach((card, index) => card.classList.toggle('is-voice-active', index === 0));
+      progress.style.setProperty('--voice-progress', '0.25');
+      return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-voice-revealed');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -18% 0px', threshold: .16 });
+    revealTargets.forEach((target) => revealObserver.observe(target));
+
+    let frame = 0;
+    let activeIndex = -1;
+    const progressLabel = qs('small', progress);
+
+    const updateReadingState = () => {
+      frame = 0;
+      const sectionRect = section.getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      if (sectionRect.bottom < viewport * .14 || sectionRect.top > viewport * .9) return;
+
+      const readingLine = viewport * (window.innerWidth <= 760 ? .58 : .52);
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - readingLine);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+        if (rect.top < viewport * .82) card.classList.add('is-voice-revealed');
+      });
+
+      if (closestIndex === activeIndex) return;
+      activeIndex = closestIndex;
+      cards.forEach((card, index) => {
+        card.classList.toggle('is-voice-active', index === activeIndex);
+        card.classList.toggle('is-voice-read', index < activeIndex);
+      });
+      const completed = (activeIndex + 1) / cards.length;
+      progress.style.setProperty('--voice-progress', String(completed));
+      if (progressLabel) progressLabel.textContent = `${activeIndex + 1} / ${cards.length}`;
+      if (activeIndex === cards.length - 1) bridge.classList.add('is-voice-revealed');
+    };
+
+    const requestReadingUpdate = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(updateReadingState);
+    };
+
+    window.addEventListener('scroll', requestReadingUpdate, { passive: true });
+    window.addEventListener('resize', requestReadingUpdate, { passive: true });
+    requestAnimationFrame(updateReadingState);
+  }
+
   function bindRailAffordance() {
     qsa('[data-content-rail]').forEach((shell) => {
       const rail = qs('[data-rail-track]', shell);
@@ -182,4 +281,4 @@
   }
 })();
 
-// Production browser quality gate revision 26.
+// Production browser quality gate revision 27.
