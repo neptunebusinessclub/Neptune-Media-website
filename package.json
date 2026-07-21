@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev --config wrangler.jsonc",
     "deploy": "wrangler deploy --config wrangler.jsonc",
-    "check": "node --check neptune-tv-media-cloudflare/src/entry-v4.js && node --check neptune-tv-media-cloudflare/public/app.js && node --check neptune-tv-media-cloudflare/public/hero-live-v21.js && node --check neptune-tv-media-cloudflare/public/final-experience-v12.js"
+    "check": "node --check neptune-tv-media-cloudflare/src/entry-v4.js && node --check neptune-tv-media-cloudflare/public/app.js && node --check neptune-tv-media-cloudflare/public/hero-live-v21.js && node --check neptune-tv-media-cloudflare/public/final-experience-v12.js && node --check neptune-tv-media-cloudflare/public/scroll-pipeline-v2.js"
   },
   "devDependencies": {
     "wrangler": "^4.111.0"
