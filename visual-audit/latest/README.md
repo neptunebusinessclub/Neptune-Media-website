@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T16:48:11.615Z
+Généré : 2026-07-21T17:02:44.395Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 281
+- Avertissements : 271
 
 ## Problèmes détectés
 
@@ -18,13 +18,9 @@ Généré : 2026-07-21T16:48:11.615Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | desktop-1440 | home | clipped-text | Six étapes. Zéro zone floue. |
-| warning | desktop-1440 | home | clipped-text | Choisissez le format |
-| warning | desktop-1440 | home | clipped-text | Choisissez la date |
-| warning | desktop-1440 | home | clipped-text | Préparation |
-| warning | desktop-1440 | home | clipped-text | Prêt à publier |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
+| warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -74,13 +70,9 @@ Généré : 2026-07-21T16:48:11.615Z
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
-| warning | laptop-1280 | home | clipped-text | Six étapes. Zéro zone floue. |
-| warning | laptop-1280 | home | clipped-text | Choisissez le format |
-| warning | laptop-1280 | home | clipped-text | Choisissez la date |
-| warning | laptop-1280 | home | clipped-text | Préparation |
-| warning | laptop-1280 | home | clipped-text | Prêt à publier |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
+| warning | laptop-1280 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -111,6 +103,7 @@ Généré : 2026-07-21T16:48:11.615Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
+| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -130,3 +123,10 @@ Généré : 2026-07-21T16:48:11.615Z
 | warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
+| warning | tablet-834 | home | clipped-text | Dépasser ce qui vous bloque |
+| warning | tablet-834 | home | clipped-text | Éviter les erreurs de réseautage |
+| warning | tablet-834 | home | clipped-text | Apprendre de ses erreurs |
+| warning | tablet-834 | home | clipped-text | Créer de vraies connexions |
+| warning | tablet-834 | home | clipped-text | Le stress du premier direct |
+| warning | tablet-834 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
