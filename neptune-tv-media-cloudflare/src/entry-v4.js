@@ -24,6 +24,9 @@ export default {
         request=new Request(request,{body});
       }
       const studio=env.STUDIO.get(env.STUDIO.idFromName('neptune-media-main'));
+      if(url.pathname==='/api/public/connexio-availability'&&request.method==='GET'){
+        return secure(await studio.fetch('https://store/public/connexio-availability'));
+      }
       if(url.pathname==='/api/auth/request-reset'&&request.method==='POST'){
         return secure(await handleAdminPasswordReset(request,env,studio));
       }
