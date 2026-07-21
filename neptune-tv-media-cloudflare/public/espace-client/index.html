@@ -9,6 +9,7 @@
   <link rel="icon" href="/assets/logo-neptune.svg">
   <link rel="stylesheet" href="/espace-client/client.css?v=36">
   <link rel="stylesheet" href="/espace-client/dashboard-v37.css?v=1">
+  <link rel="stylesheet" href="/espace-client/dashboard-v38.css?v=1">
 </head>
 <body>
   <main class="page">
@@ -61,18 +62,18 @@
 
         <div class="header-tools">
           <span class="workspace-label">Espace client</span>
-          <nav class="social-nav" aria-label="Réseaux sociaux Neptune">
-            <a class="social social-tiktok" href="https://www.tiktok.com/search?q=Neptune%20Business" target="_blank" rel="noopener" aria-label="TikTok">
+          <nav class="social-nav" aria-label="Réseaux sociaux Neptune Business">
+            <a class="social social-tiktok" href="https://www.tiktok.com/@neptunebusiness" target="_blank" rel="noopener" aria-label="TikTok Neptune Business">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 3c.5 2.4 2 3.9 4.2 4.2v3.5a9 9 0 0 1-4.2-1.2v6.1A6.4 6.4 0 1 1 10.3 9v3.7a2.9 2.9 0 1 0 2 2.8V3h3.5Z"/></svg>
             </a>
-            <a class="social social-instagram" href="https://www.instagram.com/explore/search/keyword/?q=neptune%20business" target="_blank" rel="noopener" aria-label="Instagram">
+            <a class="social social-instagram" href="https://www.instagram.com/neptunebusiness/" target="_blank" rel="noopener" aria-label="Instagram Neptune Business">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r="1"/></svg>
             </a>
-            <a class="social social-linkedin" href="https://fr.linkedin.com/company/neptune-business" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a class="social social-linkedin" href="https://fr.linkedin.com/company/neptune-business" target="_blank" rel="noopener" aria-label="LinkedIn Neptune Business">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5.5v.1M10 19v-6.2c0-2.1 1.3-3.8 3.5-3.8s3.5 1.7 3.5 3.8V19M10 9v10"/></svg>
             </a>
-            <a class="social social-youtube" href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.5 12 5.5 12 5.5s-5 0-6.9.6A3 3 0 0 0 3 8.2 31 31 0 0 0 2.5 12 31 31 0 0 0 3 15.8a3 3 0 0 0 2.1 2.1c1.9.6 6.9.6 6.9.6s5 0 6.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-3.8 31 31 0 0 0-.5-3.8Z"/><path d="m10 15.5 5-3.5-5-3.5v7Z"/></svg>
+            <a class="social social-youtube" href="https://www.youtube.com/@neptunebusiness" target="_blank" rel="noopener" aria-label="YouTube Neptune Business">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.5 12 5.5 12 5.5s-5 0-6.9.6A3 3 0 0 0 3 8.2 31 31 0 0 0 2.5 12 31 31 0 0 0 3 15.8a3 3 0 0 0 2.1 2.1c1.9.6 6.9.6 6.9.6s5 0 6.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-3.8 31 31 0 0 0-.5-3.8Z"/><path class="youtube-play" d="m10 15.5 5-3.5-5-3.5v7Z"/></svg>
             </a>
             <button class="logout-button" type="button" data-logout aria-label="Se déconnecter" title="Se déconnecter">↗</button>
           </nav>
@@ -98,21 +99,47 @@
 
             <div class="production-main">
               <div class="countdown-wrap">
-                <span id="productionTitle">Prochaine étape</span>
+                <span id="productionTitle">Situation actuelle</span>
                 <strong id="countdownText">Votre prochaine étape</strong>
-                <p>Votre espace se met à jour automatiquement à chaque avancée de la préparation, du tournage et du montage.</p>
+                <p id="projectNextAction">Votre espace se met à jour automatiquement à chaque avancée de la préparation, du tournage et du montage.</p>
               </div>
               <div class="production-actions">
                 <a id="prepareLink" class="primary-dashboard-action" href="https://media.neptunebusiness.com" target="_blank" rel="noopener">Me préparer</a>
-                <button class="secondary-dashboard-action" type="button" data-open-panel="tracking">Voir le suivi détaillé</button>
               </div>
             </div>
 
-            <nav class="production-shortcuts" aria-label="Raccourcis du projet">
-              <button class="production-shortcut" type="button" data-open-panel="appointments"><b>01</b><span>Rendez-vous</span></button>
-              <button class="production-shortcut" type="button" data-open-panel="tracking"><b>02</b><span>Avancement</span></button>
-              <button class="production-shortcut" type="button" data-open-panel="content"><b>03</b><span>Livrables</span></button>
-            </nav>
+            <div class="project-snapshot" aria-label="Résumé du projet">
+              <article class="snapshot-card">
+                <span>Étape actuelle</span>
+                <strong id="projectPhaseValue">Préparation</strong>
+                <small>La phase active de votre production</small>
+              </article>
+              <article class="snapshot-card">
+                <span>Passage studio</span>
+                <strong id="studioDateValue">À confirmer</strong>
+                <small id="studioTimeValue">La date apparaîtra dès sa validation</small>
+              </article>
+              <article id="projectDeadlineCard" class="snapshot-card snapshot-card--deadline">
+                <span id="deadlineLabel">Échéance</span>
+                <strong id="deadlineValue">—</strong>
+                <small id="deadlineDateValue">Aucune date définie</small>
+              </article>
+            </div>
+
+            <div class="project-progress" aria-label="Avancement global du projet">
+              <div class="project-progress-head"><span>Avancement global</span><strong id="projectProgressLabel">1 sur 6</strong></div>
+              <div class="project-progress-track" aria-hidden="true"><span id="projectProgressFill"></span></div>
+              <ol class="project-stage-list">
+                <li data-project-stage data-state="current"><i></i><span>Réservation</span></li>
+                <li data-project-stage data-state="upcoming"><i></i><span>Préparation</span></li>
+                <li data-project-stage data-state="upcoming"><i></i><span>Tournage</span></li>
+                <li data-project-stage data-state="upcoming"><i></i><span>Montage</span></li>
+                <li data-project-stage data-state="upcoming"><i></i><span>Validation</span></li>
+                <li data-project-stage data-state="upcoming"><i></i><span>Livraison</span></li>
+              </ol>
+            </div>
+
+            <button type="button" data-open-panel="tracking" data-dashboard-technical aria-hidden="true" tabindex="-1">Suivi technique</button>
           </section>
 
           <aside class="show-card" aria-label="Votre émission">
@@ -123,7 +150,7 @@
             <div id="broadcastPreview" class="show-preview"><span>▶</span><small>Votre émission apparaîtra ici</small></div>
             <footer class="show-footer">
               <span>Diffusion Neptune TV et YouTube</span>
-              <a href="https://www.youtube.com/results?search_query=Neptune+Business" target="_blank" rel="noopener">Ouvrir YouTube</a>
+              <a href="https://www.youtube.com/@neptunebusiness" target="_blank" rel="noopener">Ouvrir YouTube</a>
             </footer>
           </aside>
         </div>
@@ -226,5 +253,6 @@
 
   <div id="toast" class="toast" hidden></div>
   <script type="module" src="/espace-client/client.js?v=35"></script>
+  <script type="module" src="/espace-client/dashboard-v38.js?v=1"></script>
 </body>
 </html>
