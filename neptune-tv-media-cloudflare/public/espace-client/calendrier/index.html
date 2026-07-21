@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#081d4e">
   <title>Calendrier de contenu · Neptune Media</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
-  <link rel="stylesheet" href="/espace-client/calendrier/calendar.css?v=3">
+  <link rel="stylesheet" href="/espace-client/calendrier/calendar.css?v=4">
 </head>
 <body>
   <header class="calendar-header">
@@ -40,30 +40,23 @@
         </header>
         <div id="calendarGrid" class="content-calendar" aria-live="polite"></div>
       </section>
-      <button id="openLibraryDrawer" class="drawer-trigger" type="button" aria-controls="libraryDrawer" aria-expanded="false"><span>☰</span> Contenus courts</button>
     </section>
 
     <section id="libraryView" class="view-panel" role="tabpanel" hidden>
       <section class="shorts-section" aria-labelledby="shortsTitle">
-        <header class="section-heading"><div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="shortsTitle">Mes shorts par passage</h2><p>Chaque box correspond à une émission. Reprogrammez un short sans perdre son origine.</p></div></header>
+        <header class="section-heading"><div><p class="eyebrow">BIBLIOTHÈQUE</p><h2 id="shortsTitle">Mes shorts par passage</h2><p>Cliquez sur un contenu pour ouvrir sa fiche complète analysée par Neptune IA.</p></div></header>
         <div id="projectLibrary" class="project-library" aria-live="polite"></div>
       </section>
     </section>
   </main>
 
-  <div id="libraryBackdrop" class="library-backdrop" hidden></div>
-  <aside id="libraryDrawer" class="library-drawer" hidden aria-modal="true" role="dialog" aria-labelledby="drawerTitle">
-    <header class="drawer-head"><div><p class="eyebrow">CONTENUS COURTS</p><h2 id="drawerTitle">Choisir un passage</h2><p>Ouvrez un short ou programmez une nouvelle utilisation.</p></div><button id="closeLibraryDrawer" type="button" aria-label="Fermer">×</button></header>
-    <div id="drawerProjects" class="drawer-projects"></div>
-  </aside>
-
   <div id="editorBackdrop" class="editor-backdrop" hidden></div>
   <aside id="editor" class="editor" hidden aria-modal="true" role="dialog" aria-labelledby="editorTitle">
-    <header class="editor-head"><div><p class="eyebrow">PUBLICATION SÉLECTIONNÉE</p><h2 id="editorTitle">Préparer la publication</h2></div><button id="closeEditor" type="button" aria-label="Fermer">×</button></header>
+    <header class="editor-head"><div><p id="editorEyebrow" class="eyebrow">FICHE NEPTUNE IA</p><h2 id="editorTitle">Détail du contenu</h2></div><button id="closeEditor" type="button" aria-label="Fermer">×</button></header>
     <div id="editorBody" class="editor-body"></div>
   </aside>
 
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/espace-client/calendrier/calendar.js?v=3"></script>
+  <script type="module" src="/espace-client/calendrier/calendar.js?v=4"></script>
 </body>
 </html>
