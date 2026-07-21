@@ -23,6 +23,13 @@ import {
   adminFeedbackList,
 } from './portal-notifications.js';
 import { registerEffectiveReferral, adminReferralList } from './portal-referrals.js';
+import {
+  clientContentCalendar,
+  clientContentUpdate,
+  clientContentPublishLog,
+  adminContentContext,
+  adminContentSave,
+} from './portal-content.js';
 
 export class StudioStore extends BaseStore {
   async fetch(request) {
@@ -54,6 +61,11 @@ export class StudioStore extends BaseStore {
       if (url.pathname === '/portal/feedback-admin-list' && method === 'POST') return adminFeedbackList(this, body);
       if (url.pathname === '/portal/referral-register' && method === 'POST') return registerEffectiveReferral(this, body);
       if (url.pathname === '/portal/referral-admin-list' && method === 'POST') return adminReferralList(this, body);
+      if (url.pathname === '/portal/content-calendar' && method === 'POST') return clientContentCalendar(this, body);
+      if (url.pathname === '/portal/content-update' && method === 'POST') return clientContentUpdate(this, body);
+      if (url.pathname === '/portal/content-publish-log' && method === 'POST') return clientContentPublishLog(this, body);
+      if (url.pathname === '/portal/content-admin-context' && method === 'POST') return adminContentContext(this, body);
+      if (url.pathname === '/portal/content-admin-save' && method === 'POST') return adminContentSave(this, body);
     }
     if (url.pathname === '/auth/setup-status') return this.setupStatus();
     if (url.pathname === '/auth/recover' && method === 'POST') return this.recoverAccess(body);
