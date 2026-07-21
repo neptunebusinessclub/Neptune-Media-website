@@ -1,0 +1,76 @@
+@import url('/espace-client/dashboard-v37-base.css?v=1');
+
+/* Final responsive and accessibility polish. */
+.dashboard-v37 .social,
+.dashboard-v37 .logout-button {
+  width: 44px;
+  height: 44px;
+}
+
+.dashboard-v37 .social-youtube {
+  width: 48px;
+}
+
+.dashboard-v37 .dashboard-heading h1 {
+  overflow: visible;
+  padding-bottom: .08em;
+  line-height: 1.08;
+}
+
+.dashboard-v37 .production-card .countdown-wrap,
+.dashboard-v37 .production-card .countdown-wrap strong {
+  justify-items: start;
+  text-align: left;
+}
+
+.dashboard-v37 .metric-copy strong {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.dashboard-v37 .referral-panel {
+  display: block;
+}
+
+.dashboard-v37 .utility-heading h2 {
+  overflow: visible;
+  line-height: 1.25;
+}
+
+.dashboard-v37 .referral-code {
+  background: linear-gradient(135deg, #f2f0ff, #edf4ff);
+}
+
+.dashboard-v37 .referral-code span {
+  color: var(--dashboard-text);
+}
+
+.dashboard-v37 .format-card.active::after {
+  position: absolute !important;
+  inset: 13px 13px auto auto !important;
+  display: inline-flex !important;
+  align-items: center;
+  width: auto !important;
+  max-width: calc(100% - 26px);
+  margin: 0 !important;
+  order: initial !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 720px) {
+  .dashboard-v37 .media-header {
+    height: 68px;
+  }
+}
+
+@media (max-width: 520px) {
+  .dashboard-v37 .show-card .inline-action {
+    width: auto;
+    min-width: 88px;
+  }
+
+  .dashboard-v37 .section-heading .inline-action {
+    width: 100%;
+  }
+}
