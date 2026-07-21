@@ -20,6 +20,7 @@ import {
   prepareFeedbackRequest,
   getFeedbackRequest,
   submitFeedback,
+  adminFeedbackList,
 } from './portal-notifications.js';
 
 export class StudioStore extends BaseStore {
@@ -48,6 +49,7 @@ export class StudioStore extends BaseStore {
       if (url.pathname === '/portal/feedback-prepare' && method === 'POST') return prepareFeedbackRequest(this, body);
       if (url.pathname === '/portal/feedback-get' && method === 'POST') return getFeedbackRequest(this, body);
       if (url.pathname === '/portal/feedback-submit' && method === 'POST') return submitFeedback(this, body);
+      if (url.pathname === '/portal/feedback-admin-list' && method === 'POST') return adminFeedbackList(this, body);
     }
     if (url.pathname === '/auth/setup-status') return this.setupStatus();
     if (url.pathname === '/auth/recover' && method === 'POST') return this.recoverAccess(body);
