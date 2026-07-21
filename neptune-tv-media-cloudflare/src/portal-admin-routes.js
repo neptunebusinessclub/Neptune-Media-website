@@ -8,6 +8,7 @@ const MAX_DIRECT_UPLOAD_BYTES=95*1024*1024;
 export async function handlePortalAdminRoute(request,env,studio){
   const url=new URL(request.url);
   if(url.pathname==='/api/admin/clients'&&request.method==='GET')return callStore(studio,'/portal/admin-list',adminAuth(request));
+  if(url.pathname==='/api/admin/client-feedback'&&request.method==='GET')return getAdminFeedback(request,studio);
   if(url.pathname==='/api/admin/client-order'&&request.method==='POST'){
     if(!isSameOrigin(request))return json({error:'origin_forbidden'},403);
     const payload=await request.json().catch(()=>({}));
@@ -50,6 +51,13 @@ export async function handlePortalAdminRoute(request,env,studio){
     const sent=await sendAccess(env,request.url,result.client.email,result.client.fullName||'');return sent.ok?json({ok:true,emailId:sent.id||null}):json({error:sent.error},503);
   }
   return null;
+}
+
+async function getAdminFeedback(request,studio){
+  const auth=adminAuth(request);
+  const validation=await callStore(studio,'/portal/admin-list',auth);
+  if(!validation.ok)return validation;
+  return callStore(studio,'/portal/feedback-admin-list',auth);
 }
 
 async function uploadClientFile(request,env,studio){
