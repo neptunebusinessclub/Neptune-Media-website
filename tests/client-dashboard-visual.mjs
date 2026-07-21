@@ -126,7 +126,7 @@ for (const viewport of viewports) {
     const title = (await page.locator('#detailTitle').textContent())?.trim();
     if (!title) report.errors.push(`${viewport.name}: panneau ${panel} sans titre`);
     await page.locator('#closePanel').click();
-    await page.waitForSelector('#detailPanel[hidden]');
+    await page.waitForFunction(() => document.querySelector('#detailPanel')?.hidden === true);
   }
 
   if (pageErrors.length) report.errors.push(`${viewport.name}: erreurs navigateur ${JSON.stringify(pageErrors)}`);
