@@ -112,7 +112,7 @@
 .auth-shell .access-card::before {
   content: "" !important;
   position: absolute !important;
-  z-index: -1;
+  z-index: 2;
   inset: -2px !important;
   width: auto !important;
   height: auto !important;
@@ -137,7 +137,7 @@
 .auth-shell .access-card::after {
   content: "";
   position: absolute;
-  z-index: -2;
+  z-index: -1;
   inset: -8px;
   border-radius: calc(var(--radius-lg) + 8px);
   background: conic-gradient(
