@@ -33,6 +33,7 @@ const $ = (selector, root = document) => root.querySelector(selector);
 
 let refreshTimer = 0;
 let lastOrder = null;
+let ordersCache = [];
 
 document.readyState === 'loading'
   ? document.addEventListener('DOMContentLoaded', init, { once: true })
@@ -48,6 +49,15 @@ function init() {
   });
   observer.observe(dashboard, { attributes: true, attributeFilter: ['hidden'] });
 
+  document.addEventListener('click', (event) => {
+    const selector = event.target.closest('[data-order-id]');
+    if (!selector) return;
+    const selected = ordersCache.find((order) => order.id === selector.dataset.orderId);
+    if (!selected) return;
+    lastOrder = selected;
+    requestAnimationFrame(() => renderProject(lastOrder));
+  });
+
   if (!dashboard.hidden) hydrate();
 }
 
@@ -60,13 +70,21 @@ async function hydrate() {
     });
     if (!response.ok) return;
     const state = await response.json();
-    const orders = Array.isArray(state.orders) ? state.orders : [];
-    lastOrder = orders.find((order) => order.status !== 'completed') || orders[0] || null;
+    ordersCache = Array.isArray(state.orders) ? state.orders : [];
+    lastOrder = ordersCache.find((order) => order.status !== 'completed') || ordersCache[0] || null;
     renderProject(lastOrder);
-    refreshTimer = window.setTimeout(() => renderProject(lastOrder), 60_000);
+    scheduleRefresh();
   } catch {
     // Le tableau de bord principal reste utilisable si cette amélioration ne peut pas se charger.
   }
+}
+
+function scheduleRefresh() {
+  clearTimeout(refreshTimer);
+  refreshTimer = window.setTimeout(() => {
+    renderProject(lastOrder);
+    scheduleRefresh();
+  }, 60_000);
 }
 
 function renderProject(order) {
