@@ -1,0 +1,59 @@
+name: Client Dashboard Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'neptune-tv-media-cloudflare/public/espace-client/**'
+      - 'tests/client-dashboard-visual.mjs'
+      - '.github/workflows/client-dashboard-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-dashboard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local static application
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --directory neptune-tv-media-cloudflare/public > /tmp/client-dashboard-server.log 2>&1 &
+          echo $! > /tmp/client-dashboard-server.pid
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/espace-client/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/client-dashboard-server.log
+          exit 1
+
+      - name: Validate responsive dashboard
+        env:
+          DASHBOARD_BASE_URL: http://127.0.0.1:4173
+        run: node tests/client-dashboard-visual.mjs
+
+      - name: Upload screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-dashboard-v37-validation
+          path: |
+            test-results/client-dashboard
+            /tmp/client-dashboard-server.log
+          if-no-files-found: warn
+          retention-days: 7
