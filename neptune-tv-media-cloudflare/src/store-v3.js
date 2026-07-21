@@ -26,6 +26,8 @@ import { registerEffectiveReferral, adminReferralList } from './portal-referrals
 import {
   clientContentCalendar,
   clientContentUpdate,
+  clientContentReuseContext,
+  clientContentReuseCreate,
   clientContentPublishLog,
   adminContentContext,
   adminContentSave,
@@ -63,6 +65,8 @@ export class StudioStore extends BaseStore {
       if (url.pathname === '/portal/referral-admin-list' && method === 'POST') return adminReferralList(this, body);
       if (url.pathname === '/portal/content-calendar' && method === 'POST') return clientContentCalendar(this, body);
       if (url.pathname === '/portal/content-update' && method === 'POST') return clientContentUpdate(this, body);
+      if (url.pathname === '/portal/content-reuse-context' && method === 'POST') return clientContentReuseContext(this, body);
+      if (url.pathname === '/portal/content-reuse-create' && method === 'POST') return clientContentReuseCreate(this, body);
       if (url.pathname === '/portal/content-publish-log' && method === 'POST') return clientContentPublishLog(this, body);
       if (url.pathname === '/portal/content-admin-context' && method === 'POST') return adminContentContext(this, body);
       if (url.pathname === '/portal/content-admin-save' && method === 'POST') return adminContentSave(this, body);
