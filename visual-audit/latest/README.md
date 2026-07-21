@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T15:29:07.660Z
+Généré : 2026-07-21T15:42:39.546Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 264
+- Avertissements : 284
 
 ## Problèmes détectés
 
@@ -18,6 +18,11 @@ Généré : 2026-07-21T15:29:07.660Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
+| warning | desktop-1440 | home | clipped-text | Vous choisissez. Neptune prend la suite. |
+| warning | desktop-1440 | home | clipped-text | Choisissez votre format |
+| warning | desktop-1440 | home | clipped-text | Choisissez la date |
+| warning | desktop-1440 | home | clipped-text | Préparation |
+| warning | desktop-1440 | home | clipped-text | Prêt à publier |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
@@ -69,6 +74,11 @@ Généré : 2026-07-21T15:29:07.660Z
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
+| warning | laptop-1280 | home | clipped-text | Vous choisissez. Neptune prend la suite. |
+| warning | laptop-1280 | home | clipped-text | Choisissez votre format |
+| warning | laptop-1280 | home | clipped-text | Choisissez la date |
+| warning | laptop-1280 | home | clipped-text | Préparation |
+| warning | laptop-1280 | home | clipped-text | Prêt à publier |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
@@ -120,13 +130,3 @@ Généré : 2026-07-21T15:29:07.660Z
 | warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
-| warning | tablet-834 | home | clipped-text | Dépasser ce qui vous bloque |
-| warning | tablet-834 | home | clipped-text | Éviter les erreurs de réseautage |
-| warning | tablet-834 | home | clipped-text | Apprendre de ses erreurs |
-| warning | tablet-834 | home | clipped-text | Créer de vraies connexions |
-| warning | tablet-834 | home | clipped-text | Le stress du premier direct |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
-| warning | tablet-834 | home | offscreen-element | article.visibility-short.visibility-short--large |
-| warning | tablet-834 | home | offscreen-element | video |
-| warning | tablet-834 | home | offscreen-element | span.visibility-short__shade |
