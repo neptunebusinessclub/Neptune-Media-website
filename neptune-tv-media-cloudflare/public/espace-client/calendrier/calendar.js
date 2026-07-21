@@ -22,7 +22,7 @@ async function load(){
   }catch(error){
     if(['unauthorized','http_401'].includes(error.message)){location.href='/espace-client/';return;}
     $('#shortRail').innerHTML=`<div class="empty-state">${esc(errorText(error.message))}</div>`;
-    $('#calendarGrid').innerHTML=`<div class="empty-state">Impossible de charger le calendrier.</div>`;
+    $('#calendarGrid').innerHTML='<div class="empty-state">Impossible de charger le calendrier.</div>';
   }
 }
 
@@ -112,7 +112,8 @@ async function saveItem(event,item){
 async function publishExpress(item,platform,button){
   const title=item.aiTitle||cleanName(item.name)||'Short Neptune Media';
   const caption=[title,item.aiDescription||item.caption,(item.hashtags||[]).map((tag)=>`#${tag}`).join(' ')].filter(Boolean).join('\n\n');
-  const popup=window.open('about:blank','_blank','noopener');
+  const popup=window.open('about:blank','_blank');
+  if(popup)popup.opener=null;
   button.disabled=true;
   try{
     await copyText(caption);
@@ -120,7 +121,7 @@ async function publishExpress(item,platform,button){
     if(shared){try{popup?.close();}catch{} }
     else{
       download(item.downloadUrl,item.name||'short-neptune.mp4');
-      if(popup)popup.location=PLATFORM_URLS[platform];else window.open(PLATFORM_URLS[platform],'_blank','noopener');
+      if(popup)popup.location.replace(PLATFORM_URLS[platform]);else window.open(PLATFORM_URLS[platform],'_blank','noopener');
     }
     await api('/api/client/content-calendar/publish',{method:'POST',body:JSON.stringify({scheduleId:item.scheduleId,platform})});
     data.publications=[...(data.publications||[]).filter((entry)=>!(entry.scheduleId===item.scheduleId&&entry.platform===platform)),{scheduleId:item.scheduleId,platform,status:'prepared',updatedAt:new Date().toISOString()}];
