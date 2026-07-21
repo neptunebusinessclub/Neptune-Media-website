@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T15:52:00.636Z
+Généré : 2026-07-21T16:10:24.410Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 284
+- Avertissements : 281
 
 ## Problèmes détectés
 
@@ -18,8 +18,8 @@ Généré : 2026-07-21T15:52:00.636Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | desktop-1440 | home | clipped-text | Vous choisissez. Neptune prend la suite. |
-| warning | desktop-1440 | home | clipped-text | Choisissez votre format |
+| warning | desktop-1440 | home | clipped-text | Six étapes. Zéro zone floue. |
+| warning | desktop-1440 | home | clipped-text | Choisissez le format |
 | warning | desktop-1440 | home | clipped-text | Choisissez la date |
 | warning | desktop-1440 | home | clipped-text | Préparation |
 | warning | desktop-1440 | home | clipped-text | Prêt à publier |
@@ -74,8 +74,8 @@ Généré : 2026-07-21T15:52:00.636Z
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
-| warning | laptop-1280 | home | clipped-text | Vous choisissez. Neptune prend la suite. |
-| warning | laptop-1280 | home | clipped-text | Choisissez votre format |
+| warning | laptop-1280 | home | clipped-text | Six étapes. Zéro zone floue. |
+| warning | laptop-1280 | home | clipped-text | Choisissez le format |
 | warning | laptop-1280 | home | clipped-text | Choisissez la date |
 | warning | laptop-1280 | home | clipped-text | Préparation |
 | warning | laptop-1280 | home | clipped-text | Prêt à publier |
