@@ -1,5 +1,6 @@
 const REFERRAL_BOOKING_URL = 'https://media.neptunebusiness.com/';
 const CONNEXIO_API = '/api/public/connexio-availability';
+const LIBRE_PREVIEW_URL = 'https://www.youtube.com/embed/jemcOyxlM6c?si=pFZGp4nmWY80Mv9m&controls=0&start=1590&rel=0&modestbranding=1&playsinline=1';
 
 const ready = document.readyState === 'loading'
   ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
@@ -9,10 +10,60 @@ ready.then(initDashboardEnhancements);
 
 async function initDashboardEnhancements() {
   installStylesheet();
+  initFormatPreviews();
   await Promise.allSettled([
     initReferralExperience(),
     initConnexioAvailability(),
   ]);
+}
+
+function initFormatPreviews() {
+  const horsNorme = document.querySelector('.format-card[data-format="hors norme"]');
+  const libre = document.querySelector('.format-card[data-format="libre"]');
+
+  installFormatPreview(horsNorme, {
+    type: 'soon',
+    label: 'Aperçu Hors Norme',
+    title: 'La vidéo d’aperçu arrive bientôt',
+    copy: 'Le format signature est en cours de finalisation.',
+  });
+
+  installFormatPreview(libre, {
+    type: 'youtube',
+    label: 'Aperçu du format Libre',
+    src: LIBRE_PREVIEW_URL,
+  });
+}
+
+function installFormatPreview(card, preview) {
+  if (!card || card.querySelector('.format-preview')) return;
+  const bookingLink = card.querySelector('a');
+  if (!bookingLink) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = `format-preview format-preview--${preview.type}`;
+
+  if (preview.type === 'youtube') {
+    const iframe = document.createElement('iframe');
+    iframe.src = preview.src;
+    iframe.title = preview.label;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    wrapper.append(iframe);
+  } else {
+    wrapper.innerHTML = `
+      <span class="format-preview-soon-icon" aria-hidden="true">▶</span>
+      <div>
+        <small>${escapeHtml(preview.label)}</small>
+        <strong>${escapeHtml(preview.title)}</strong>
+        <span>${escapeHtml(preview.copy)}</span>
+      </div>`;
+  }
+
+  card.classList.add('has-format-preview');
+  bookingLink.before(wrapper);
 }
 
 async function initReferralExperience() {
@@ -238,7 +289,7 @@ function installStylesheet() {
   if (!document.querySelector('link[data-dashboard-layout-v40]')) {
     const layout = document.createElement('link');
     layout.rel = 'stylesheet';
-    layout.href = '/espace-client/dashboard-layout-v40.css?v=1';
+    layout.href = '/espace-client/dashboard-layout-v40.css?v=2';
     layout.dataset.dashboardLayoutV40 = 'true';
     document.head.append(layout);
   }
