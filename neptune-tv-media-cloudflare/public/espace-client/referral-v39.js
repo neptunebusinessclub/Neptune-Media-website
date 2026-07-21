@@ -1,0 +1,132 @@
+const REFERRAL_BOOKING_URL = 'https://media.neptunebusiness.com/';
+
+const ready = document.readyState === 'loading'
+  ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
+  : Promise.resolve();
+
+ready.then(initReferralExperience);
+
+async function initReferralExperience() {
+  installStylesheet();
+  const panel = document.querySelector('.referral-panel');
+  if (!panel) return;
+  try {
+    const response = await fetch('/api/client/session', { headers: { Accept: 'application/json' }, credentials: 'same-origin' });
+    if (!response.ok) return;
+    const state = await response.json();
+    if (!state?.referral?.code) return;
+    render(panel, state.referral);
+  } catch {
+    // Le code de parrainage minimal reste visible si la session ne peut pas être relue.
+  }
+}
+
+function render(panel, referral) {
+  const count = Math.max(0, Number(referral.confirmedCount || 0));
+  const goal = Math.max(1, Number(referral.goal || 3));
+  const visibleCount = Math.min(goal, count);
+  const remaining = Math.max(0, goal - count);
+  const unlocked = Boolean(referral.rewardUnlocked || count >= goal);
+  const code = normalizeCode(referral.code);
+  const shareUrl = new URL(REFERRAL_BOOKING_URL);
+  shareUrl.searchParams.set('ref', code);
+  const encodedMessage = encodeURIComponent(shareMessage(shareUrl.toString()));
+  const progress = Array.from({ length: goal }, (_, index) => {
+    const step = index + 1;
+    const state = step <= visibleCount ? 'done' : step === visibleCount + 1 ? 'next' : 'waiting';
+    return `<li data-state="${state}"><span>${step <= visibleCount ? '✓' : step}</span><small>${step === goal ? 'Émission au prix coûtant' : 'Recommandation confirmée'}</small></li>`;
+  }).join('');
+
+  panel.classList.add('referral-challenge');
+  panel.innerHTML = `
+    <div class="referral-challenge-head">
+      <div>
+        <p class="referral-challenge-kicker">OBJECTIF RECOMMANDATION</p>
+        <h2>${unlocked ? 'Votre émission au prix coûtant est débloquée.' : '3 recommandations. Une émission au prix coûtant.'}</h2>
+      </div>
+      <span class="referral-counter">${visibleCount}/${goal}</span>
+    </div>
+    <p class="referral-promise">À chaque réservation confirmée issue de votre lien, <strong>vous êtes mis à l’honneur dans la vidéo long format de votre contact</strong> avec un remerciement pour votre recommandation.</p>
+    <ol class="referral-milestones" aria-label="Progression vers la récompense">${progress}</ol>
+    <div class="referral-reward ${unlocked ? 'is-unlocked' : ''}">
+      <span class="referral-reward-icon" aria-hidden="true">${unlocked ? '✓' : '✦'}</span>
+      <div>
+        <small>${unlocked ? 'AVANTAGE DÉBLOQUÉ' : 'PROCHAINE RÉCOMPENSE'}</small>
+        <strong>${unlocked ? 'Choisissez votre émission au prix coûtant.' : remaining === 1 ? 'Plus qu’une réservation confirmée.' : `Plus que ${remaining} réservations confirmées.`}</strong>
+      </div>
+    </div>
+    <div class="referral-actions">
+      <button id="shareReferralNative" class="referral-share-primary" type="button"><span aria-hidden="true">↗</span> Partager à mes contacts</button>
+      <a class="referral-share-icon" href="https://wa.me/?text=${encodedMessage}" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp" title="Partager sur WhatsApp">W</a>
+      <a class="referral-share-icon" href="mailto:?subject=${encodeURIComponent('Une idée pour votre visibilité')}&body=${encodedMessage}" aria-label="Partager par e-mail" title="Partager par e-mail">@</a>
+      <button id="copyReferralLink" class="referral-share-icon" type="button" aria-label="Copier le lien de recommandation" title="Copier le lien">⧉</button>
+    </div>
+    <div class="referral-link-row">
+      <code>${escapeHtml(code)}</code>
+      <span>Votre lien suit automatiquement les réservations.</span>
+    </div>
+    <p class="referral-rule">Une recommandation devient effective après réservation confirmée et paiement validé. Une même personne ne compte qu’une fois.</p>
+    ${unlocked ? '<a class="referral-claim" href="mailto:contact@neptunebusiness.com?subject=Je souhaite utiliser mon émission au prix coûtant">Choisir mon émission avec Neptune →</a>' : ''}
+  `;
+
+  panel.querySelector('#shareReferralNative')?.addEventListener('click', () => shareReferral(shareUrl.toString()));
+  panel.querySelector('#copyReferralLink')?.addEventListener('click', () => copyReferral(shareUrl.toString(), panel));
+}
+
+async function shareReferral(url) {
+  const data = {
+    title: 'Neptune Media',
+    text: 'Je pense que ce format peut vraiment vous aider à gagner en visibilité sans passer vos journées à créer du contenu.',
+    url,
+  };
+  if (navigator.share) {
+    try { await navigator.share(data); return; } catch (error) { if (error?.name === 'AbortError') return; }
+  }
+  await navigator.clipboard.writeText(`${data.text} ${url}`).catch(() => {});
+  announce('Lien copié. Vous pouvez maintenant le partager à vos contacts.');
+}
+
+async function copyReferral(url, panel) {
+  try {
+    await navigator.clipboard.writeText(url);
+    panel.querySelector('#copyReferralLink').textContent = '✓';
+    announce('Lien de recommandation copié.');
+    window.setTimeout(() => {
+      const button = panel.querySelector('#copyReferralLink');
+      if (button) button.textContent = '⧉';
+    }, 1800);
+  } catch {
+    announce('Copie impossible sur cet appareil. Utilisez le bouton de partage.');
+  }
+}
+
+function shareMessage(url) {
+  return `Je pense que Neptune Media pourrait vous aider à transformer une demi-journée en plusieurs mois de contenus professionnels, sans devoir jouer à l’influenceur. Découvrez les formats : ${url}`;
+}
+
+function announce(message) {
+  const toast = document.querySelector('#toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.className = 'toast';
+  toast.hidden = false;
+  clearTimeout(announce.timer);
+  announce.timer = window.setTimeout(() => { toast.hidden = true; }, 3800);
+}
+
+function normalizeCode(value) {
+  return String(value || '').toUpperCase().replace(/[^A-Z0-9]/gu, '').slice(0, 18);
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"']/gu, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+}
+
+function installStylesheet() {
+  if (document.querySelector('link[data-referral-v39]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/espace-client/referral-v39.css?v=1';
+  link.dataset.referralV39 = 'true';
+  document.head.append(link);
+}
