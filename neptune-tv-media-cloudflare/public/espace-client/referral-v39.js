@@ -1,13 +1,21 @@
 const REFERRAL_BOOKING_URL = 'https://media.neptunebusiness.com/';
+const CONNEXIO_API = '/api/public/connexio-availability';
 
 const ready = document.readyState === 'loading'
   ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
   : Promise.resolve();
 
-ready.then(initReferralExperience);
+ready.then(initDashboardEnhancements);
+
+async function initDashboardEnhancements() {
+  installStylesheet();
+  await Promise.allSettled([
+    initReferralExperience(),
+    initConnexioAvailability(),
+  ]);
+}
 
 async function initReferralExperience() {
-  installStylesheet();
   const panel = document.querySelector('.referral-panel');
   if (!panel) return;
   try {
@@ -18,6 +26,54 @@ async function initReferralExperience() {
     render(panel, state.referral);
   } catch {
     // Le code de parrainage minimal reste visible si la session ne peut pas être relue.
+  }
+}
+
+async function initConnexioAvailability() {
+  const card = document.querySelector('.format-card[data-format="connexio"]');
+  const grid = card?.closest('.format-grid');
+  if (!card || !grid) return;
+
+  card.classList.remove('is-event-available');
+  card.setAttribute('aria-hidden', 'true');
+  grid.classList.remove('has-connexio-event');
+
+  try {
+    const response = await fetch(CONNEXIO_API, {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      credentials: 'same-origin',
+    });
+    if (!response.ok) return;
+    const result = await response.json();
+    if (!result?.available || !result.event) return;
+
+    const event = result.event;
+    card.classList.add('is-event-available');
+    card.removeAttribute('aria-hidden');
+    grid.classList.add('has-connexio-event');
+
+    let badge = card.querySelector('.connexio-event-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'connexio-event-badge';
+      card.prepend(badge);
+    }
+    badge.textContent = event.scheduledAt ? `Ouvert · ${formatEventDate(event.scheduledAt)}` : 'Événement ouvert';
+
+    const copy = card.querySelector('p');
+    if (copy) {
+      const title = String(event.title || event.programName || 'Prochain événement Connexio');
+      copy.textContent = `${title}. Une émission collective et spontanée pour créer des rencontres, du contenu et de la visibilité.`;
+    }
+
+    const link = card.querySelector('a');
+    if (link) {
+      link.href = event.bookingUrl || connexioBookingUrl(event.id);
+      link.innerHTML = 'Réserver pour cet événement <span>→</span>';
+    }
+  } catch {
+    // Sans événement confirmé, Connexio reste volontairement absent des offres.
   }
 }
 
@@ -134,6 +190,24 @@ function shareMessage(url) {
   return `Je pense que Neptune Media pourrait vous aider à transformer une demi-journée en plusieurs mois de contenus professionnels, sans devoir jouer à l’influenceur. Découvrez les formats : ${url}`;
 }
 
+function connexioBookingUrl(eventId) {
+  const url = new URL(REFERRAL_BOOKING_URL);
+  url.searchParams.set('format', 'connexio');
+  if (eventId) url.searchParams.set('event', String(eventId));
+  return url.toString();
+}
+
+function formatEventDate(value) {
+  const date = new Date(value || '');
+  if (Number.isNaN(date.getTime())) return 'prochainement';
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'Europe/Paris',
+  }).format(date);
+}
+
 function announce(message) {
   const toast = document.querySelector('#toast');
   if (!toast) return;
@@ -153,10 +227,19 @@ function escapeHtml(value) {
 }
 
 function installStylesheet() {
-  if (document.querySelector('link[data-referral-v39]')) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/espace-client/referral-v39.css?v=1';
-  link.dataset.referralV39 = 'true';
-  document.head.append(link);
+  if (!document.querySelector('link[data-referral-v39]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/espace-client/referral-v39.css?v=1';
+    link.dataset.referralV39 = 'true';
+    document.head.append(link);
+  }
+
+  if (!document.querySelector('link[data-dashboard-layout-v40]')) {
+    const layout = document.createElement('link');
+    layout.rel = 'stylesheet';
+    layout.href = '/espace-client/dashboard-layout-v40.css?v=1';
+    layout.dataset.dashboardLayoutV40 = 'true';
+    document.head.append(layout);
+  }
 }
