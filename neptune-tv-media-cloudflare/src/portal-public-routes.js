@@ -2,6 +2,7 @@ import { isSameOrigin, json, timingSafeEqual } from './security.js';
 import { clientToken, clientCookie, normalizeOrderPayload, unwrapWebhookPayload, safeFilename } from './portal-http-utils.js';
 import { sendCode, sendOrderConfirmation, sendAppointmentConfirmation, sendDeletionRequest } from './portal-email.js';
 import { sendReferralConfirmed } from './portal-referral-email.js';
+import { generateContentMetadata } from './portal-content-ai.js';
 
 export async function handlePortalPublicRoute(request, env, studio) {
   const url = new URL(request.url);
@@ -43,6 +44,39 @@ export async function handlePortalPublicRoute(request, env, studio) {
     if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
     const payload = await request.json().catch(() => ({}));
     return callStore(studio, '/portal/content-update', { token: clientToken(request), payload });
+  }
+
+  if (url.pathname === '/api/client/content-calendar/reuse' && request.method === 'POST') {
+    if (!isSameOrigin(request)) return json({ error: 'origin_forbidden' }, 403);
+    const payload = await request.json().catch(() => ({}));
+    const token = clientToken(request);
+    const contextResponse = await callStore(studio, '/portal/content-reuse-context', { token, payload: { fileId: payload.fileId } });
+    const context = await contextResponse.json().catch(() => ({}));
+    if (!contextResponse.ok || !context.item) return json(context, contextResponse.status);
+    const item = context.item;
+    const previousTitles = Array.isArray(item.previousTitles) ? item.previousTitles.join(' | ') : '';
+    const editorialContext = [
+      `Réutilisation n°${item.reuseIndex || 2} du même short, espacée d’au moins 30 jours.`,
+      'Crée un nouvel angle éditorial et une nouvelle promesse sans modifier le sens réel de la vidéo.',
+      'Le titre, la description et les questions doivent être nettement différents des utilisations précédentes.',
+      previousTitles ? `Titres déjà utilisés à ne pas répéter : ${previousTitles}` : '',
+    ].filter(Boolean).join(' ');
+    const metadata = await generateContentMetadata(env, {
+      ...item,
+      filename: item.name,
+      editorialContext,
+    });
+    const createResponse = await callStore(studio, '/portal/content-reuse-create', {
+      token,
+      payload: {
+        fileId: payload.fileId,
+        publishAt: payload.publishAt || item.nextAllowedAt,
+        networks: payload.networks,
+        ...metadata,
+      },
+    });
+    const created = await createResponse.json().catch(() => ({}));
+    return json(created, createResponse.status);
   }
 
   if (url.pathname === '/api/client/content-calendar/publish' && request.method === 'POST') {
