@@ -1,0 +1,58 @@
+.referral-production-cue {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 15px;
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid rgba(116, 82, 255, .28);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f0edff, #fff7fc);
+  box-shadow: 0 12px 28px rgba(73, 49, 160, .10);
+}
+.referral-cue-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #3477ff, #7b55ef 58%, #e24bac);
+  color: #fff;
+  font-size: 1.15rem;
+  box-shadow: 0 10px 22px rgba(91, 77, 247, .22);
+}
+.referral-cue-copy { min-width: 0; }
+.referral-cue-copy > p {
+  margin: 0 0 5px;
+  color: #6956d8;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.referral-cue-copy h3 { margin: 0; color: #172653; font-size: 1rem; }
+.referral-cue-copy > span { display: block; margin-top: 7px; color: #52617c; font-size: .76rem; line-height: 1.5; }
+.referral-cue-copy blockquote {
+  margin: 11px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid #7955ed;
+  border-radius: 0 10px 10px 0;
+  background: rgba(255,255,255,.75);
+  color: #283960;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.client-card.has-referral-cue { border-color: rgba(120, 84, 239, .38); }
+.referral-card-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #efeaff;
+  color: #5c45cc;
+  font-size: .58rem;
+  font-weight: 850;
+}
+@media (max-width: 620px) {
+  .referral-production-cue { grid-template-columns: 1fr; }
+}
