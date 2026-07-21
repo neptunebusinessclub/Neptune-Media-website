@@ -135,6 +135,7 @@ function render(panel, referral) {
   const remaining = Math.max(0, goal - count);
   const unlocked = Boolean(referral.rewardUnlocked || count >= goal);
   const code = normalizeCode(referral.code);
+  const companyLabel = String(referral.companyLabel || code).trim();
   const shareUrl = new URL(REFERRAL_BOOKING_URL);
   shareUrl.searchParams.set('ref', code);
   const message = shareMessage(shareUrl.toString());
@@ -150,11 +151,11 @@ function render(panel, referral) {
     <div class="referral-challenge-head">
       <div>
         <p class="referral-challenge-kicker">OBJECTIF RECOMMANDATION</p>
-        <h2>${unlocked ? 'Votre émission au prix coûtant est débloquée.' : '3 recommandations. Une émission au prix coûtant.'}</h2>
+        <h2>${unlocked ? 'Votre émission au prix coûtant est débloquée.' : '3 reco’ = une émission à prix coûtant'}</h2>
       </div>
       <span class="referral-counter">${visibleCount}/${goal}</span>
     </div>
-    <p class="referral-promise">À chaque réservation confirmée issue de votre lien, <strong>vous êtes mis à l’honneur dans la vidéo long format de votre contact</strong> avec un remerciement pour votre recommandation.</p>
+    <p class="referral-promise">Pour chaque reco’, vous et votre entreprise serez mis à l’honneur lors de son format Hors Norme.</p>
     <ol class="referral-milestones" aria-label="Progression vers la récompense">${progress}</ol>
     <div class="referral-reward ${unlocked ? 'is-unlocked' : ''}">
       <span class="referral-reward-icon" aria-hidden="true">${unlocked ? '✓' : '✦'}</span>
@@ -171,9 +172,9 @@ function render(panel, referral) {
     </div>
     <div class="referral-link-row">
       <code>${escapeHtml(code)}</code>
-      <span>Votre lien suit automatiquement les réservations.</span>
+      <span>Lien personnel identifié au nom de ${escapeHtml(companyLabel)}.</span>
     </div>
-    <p class="referral-rule">Une recommandation devient effective après réservation confirmée et paiement validé. Une même personne ne compte qu’une fois.</p>
+    <p class="referral-rule">La réservation doit être faite depuis votre lien personnel pour être comptabilisée. Sans ce lien, elle ne pourra pas être rattachée automatiquement à votre recommandation.</p>
     ${unlocked ? '<a class="referral-claim" href="mailto:contact@neptunebusiness.com?subject=Je souhaite utiliser mon émission au prix coûtant">Choisir mon émission avec Neptune →</a>' : ''}
   `;
 
@@ -184,7 +185,7 @@ function render(panel, referral) {
 async function shareReferral(url, message) {
   const data = {
     title: 'Neptune Media',
-    text: 'Je pense que ce format peut vraiment vous aider à gagner en visibilité sans passer vos journées à créer du contenu.',
+    text: 'Je pense que ce format peut vraiment vous aider à gagner en visibilité. Réservez directement depuis mon lien pour que ma recommandation soit prise en compte.',
     url,
   };
   if (typeof navigator.share === 'function') {
@@ -197,7 +198,7 @@ async function shareReferral(url, message) {
   }
   const copied = await copyText(message);
   announce(copied
-    ? 'Message et lien copiés. Vous pouvez maintenant les envoyer à vos contacts.'
+    ? 'Message et lien copiés. Votre contact doit réserver depuis ce lien.'
     : 'Le partage direct n’est pas disponible. Utilisez WhatsApp ou l’e-mail.');
 }
 
@@ -209,7 +210,7 @@ async function copyReferral(url, panel) {
   }
   const button = panel.querySelector('#copyReferralLink');
   if (button) button.textContent = '✓';
-  announce('Lien de recommandation copié.');
+  announce('Lien personnel copié. La réservation doit être faite depuis ce lien.');
   window.setTimeout(() => {
     const current = panel.querySelector('#copyReferralLink');
     if (current) current.textContent = '⧉';
@@ -238,7 +239,7 @@ async function copyText(value) {
 }
 
 function shareMessage(url) {
-  return `Je pense que Neptune Media pourrait vous aider à transformer une demi-journée en plusieurs mois de contenus professionnels, sans devoir jouer à l’influenceur. Découvrez les formats : ${url}`;
+  return `Je pense que Neptune Media pourrait vous aider à transformer une demi-journée en plusieurs mois de contenus professionnels, sans devoir jouer à l’influenceur. Pour que ma recommandation soit prise en compte, réservez directement depuis ce lien : ${url}`;
 }
 
 function connexioBookingUrl(eventId) {
@@ -270,7 +271,12 @@ function announce(message) {
 }
 
 function normalizeCode(value) {
-  return String(value || '').toUpperCase().replace(/[^A-Z0-9]/gu, '').slice(0, 18);
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/gu, '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/gu, '')
+    .slice(0, 18);
 }
 
 function escapeHtml(value) {
@@ -289,7 +295,7 @@ function installStylesheet() {
   if (!document.querySelector('link[data-dashboard-layout-v40]')) {
     const layout = document.createElement('link');
     layout.rel = 'stylesheet';
-    layout.href = '/espace-client/dashboard-layout-v40.css?v=2';
+    layout.href = '/espace-client/dashboard-layout-v40.css?v=3';
     layout.dataset.dashboardLayoutV40 = 'true';
     document.head.append(layout);
   }
