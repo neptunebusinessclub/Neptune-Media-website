@@ -3,7 +3,7 @@ const PROBLEM_CHAT_SECTION = `
     <div class="container problem-chat-static__inner">
       <header class="problem-chat-static__header">
         <span class="eyebrow">Ce que vous vous dites déjà</span>
-        <h2>Vous avez besoin d’être visible, <span>pas de vous former.</span></h2>
+        <h2><span class="problem-chat-static__title-line problem-chat-static__title-line--primary">Vous avez besoin d’être visible,</span><span class="problem-chat-static__title-line problem-chat-static__title-line--accent">pas de vous former.</span></h2>
         <p>Alors arrêtez de chercher des solutions épuisantes.</p>
       </header>
 
@@ -72,13 +72,13 @@ export async function fixLandingAssetOrder(response) {
 
   body = body.replace(/<link[^>]+href="\/styles\/problem-solution-v3\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/problem-chat-static-v1\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=2"></head>');
+  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"></head>');
 
   body = body.replace(/<script[^>]+src="\/final-experience-v12\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-solution-v3\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-chat-static-v1\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=1" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
