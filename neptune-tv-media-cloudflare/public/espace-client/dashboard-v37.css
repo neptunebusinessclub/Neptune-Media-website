@@ -47,24 +47,30 @@
 }
 
 .dashboard-v37 .format-card.active::after {
-  top: 13px;
-  right: 13px;
-  bottom: auto;
-  left: auto;
-  width: auto;
+  position: absolute !important;
+  inset: 13px 13px auto auto !important;
+  display: inline-flex !important;
+  align-items: center;
+  width: auto !important;
   max-width: calc(100% - 26px);
+  margin: 0 !important;
+  order: initial !important;
+  border-radius: 999px !important;
 }
 
 @media (max-width: 720px) {
   .dashboard-v37 .media-header {
     height: 68px;
   }
+}
 
-  .dashboard-v37 .format-card.active::after {
-    top: 13px;
-    right: 13px;
-    bottom: auto;
-    left: auto;
+@media (max-width: 520px) {
+  .dashboard-v37 .show-card .inline-action {
     width: auto;
+    min-width: 88px;
+  }
+
+  .dashboard-v37 .section-heading .inline-action {
+    width: 100%;
   }
 }
