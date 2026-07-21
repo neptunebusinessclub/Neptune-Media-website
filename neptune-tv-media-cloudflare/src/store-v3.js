@@ -29,6 +29,7 @@ export class StudioStore extends BaseStore {
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
     const body = method === 'GET' ? {} : await request.clone().json().catch(() => ({}));
+    if (url.pathname === '/public/connexio-availability' && method === 'GET') return this.connexioAvailability();
     if (url.pathname.startsWith('/portal/')) {
       ensurePortalSchema(this);
       if (url.pathname === '/portal/request-code' && method === 'POST') return requestCode(this, body);
@@ -58,6 +59,41 @@ export class StudioStore extends BaseStore {
     if (url.pathname === '/auth/recover' && method === 'POST') return this.recoverAccess(body);
     if (url.pathname === '/internal/import-media' && method === 'POST') return this.importMedia(body);
     return super.fetch(request);
+  }
+
+  connexioAvailability() {
+    const now = new Date().toISOString();
+    const candidates = this.sql.exec(
+      `SELECT e.id,e.title,e.slug,e.status,e.scheduled_at AS scheduledAt,e.metadata,
+              p.name AS programName,p.slug AS programSlug
+       FROM episodes e JOIN programs p ON p.id=e.program_id
+       WHERE p.active=1 AND e.scheduled_at IS NOT NULL AND e.scheduled_at>=?
+         AND e.status IN ('scheduled','published')
+       ORDER BY e.scheduled_at ASC LIMIT 30`,
+      now,
+    ).toArray().map((row) => ({ ...row, metadata: safeParse(row.metadata) }));
+
+    const event = candidates.find(isConnexioEvent)
+      || candidates.find((item) => item.status === 'scheduled' && item.metadata?.live === true);
+    if (!event) return json({ available: false, event: null }, 200, { 'Cache-Control': 'public, max-age=60' });
+
+    const bookingUrl = sanitizeUrl(
+      event.metadata?.bookingUrl
+      || event.metadata?.reservationUrl
+      || event.metadata?.registrationUrl
+      || '',
+      1500,
+    );
+    return json({
+      available: true,
+      event: {
+        id: event.id,
+        title: event.title,
+        programName: event.programName,
+        scheduledAt: event.scheduledAt,
+        bookingUrl,
+      },
+    }, 200, { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' });
   }
 
   async login(body) {
@@ -119,6 +155,21 @@ export class StudioStore extends BaseStore {
     }
     return 1;
   }
+}
+function isConnexioEvent(item) {
+  const metadata = item.metadata && typeof item.metadata === 'object' ? item.metadata : {};
+  if (metadata.event === true || metadata.isEvent === true || metadata.liveEvent === true || metadata.connexio === true) return true;
+  const signature = [
+    item.programName,
+    item.programSlug,
+    item.title,
+    item.slug,
+    metadata.format,
+    metadata.type,
+    metadata.eventType,
+    metadata.category,
+  ].filter(Boolean).join(' ').normalize('NFD').replace(/[\u0300-\u036f]/gu, '').toLowerCase();
+  return /connexio|evenement|event|networking|rencontre/u.test(signature);
 }
 function slugify(value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/gu, '').toLowerCase().replace(/[^a-z0-9]+/gu, '-').replace(/(^-|-$)/gu, '').slice(0, 120) || crypto.randomUUID(); }
 function safeParse(value) { try { return JSON.parse(value); } catch { return {}; } }
