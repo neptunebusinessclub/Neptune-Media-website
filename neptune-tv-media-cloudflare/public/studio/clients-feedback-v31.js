@@ -1,3 +1,5 @@
+import './clients-referral-v32.js?v=1';
+
 const $ = (selector, root = document) => root.querySelector(selector);
 
 const button = $('#feedbackView');
