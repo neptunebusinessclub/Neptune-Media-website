@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-21T21:25:32.333Z
+Généré : 2026-07-21T21:29:45.101Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 269
+- Avertissements : 271
 
 ## Problèmes détectés
 
@@ -51,6 +51,9 @@ Généré : 2026-07-21T21:25:32.333Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
+| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 500 () |
+| warning | desktop-1440 | home | console-error | Error: catalog_unavailable
+    at bootstrapCatalog (https://neptune-media-webtv.neptunebusinessclub.workers.dev/app.js:54:31) |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -128,5 +131,3 @@ Généré : 2026-07-21T21:25:32.333Z
 | warning | tablet-834 | home | clipped-text | Créer de vraies connexions |
 | warning | tablet-834 | home | clipped-text | Le stress du premier direct |
 | warning | tablet-834 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__track |
-| warning | tablet-834 | home | offscreen-element | div.visibility-marquee__group |
