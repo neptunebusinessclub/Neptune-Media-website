@@ -1,5 +1,6 @@
 import { json, randomToken, sha256 } from './security.js';
 import { CODE_TTL, SESSION_TTL, normalizeEmail } from './portal-utils.js';
+import { referralSummary } from './portal-referrals.js';
 
 const INTERNAL_PORTAL_EMAIL = 'contact@neptunebusiness.com';
 
@@ -48,7 +49,8 @@ export async function portalSession(store,body){
     order.schedules=store.sql.exec(`SELECT id,file_id AS fileId,publish_at AS publishAt,network,status,caption,created_at AS createdAt,updated_at AS updatedAt FROM portal_content_schedule WHERE order_id=? ORDER BY publish_at ASC`,order.id).toArray();
   }
   const deletionRequest=store.sql.exec(`SELECT id,status,requested_at AS requestedAt,processed_at AS processedAt,note FROM portal_deletion_requests WHERE client_id=? ORDER BY requested_at DESC LIMIT 1`,client.id).toArray()[0]||null;
-  delete client.sessionId;delete client.expiresAt;return json({authenticated:true,client,orders,deletionRequest});
+  const referral=referralSummary(store,client);
+  delete client.sessionId;delete client.expiresAt;return json({authenticated:true,client,orders,deletionRequest,referral});
 }
 export async function logout(store,body){if(body.token)store.sql.exec('DELETE FROM portal_sessions WHERE token_hash=?',await sha256(String(body.token)));return json({ok:true});}
 export async function requireClient(store,token){if(!token)return null;const now=new Date().toISOString();const row=store.sql.exec(`SELECT s.id AS sessionId,s.expires_at AS expiresAt,c.id,c.email,c.full_name AS fullName,c.company,c.active FROM portal_sessions s JOIN portal_clients c ON c.id=s.client_id WHERE s.token_hash=?`,await sha256(String(token))).toArray()[0];if(!row||Number(row.active)!==1||row.expiresAt<=now){if(row?.sessionId)store.sql.exec('DELETE FROM portal_sessions WHERE id=?',row.sessionId);return null;}return row;}
