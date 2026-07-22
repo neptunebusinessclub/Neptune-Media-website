@@ -38,7 +38,7 @@ export default {
         return secure(await fixLandingAssetOrder(response));
       }
       if(request.method==='GET'&&['/espace-client/','/espace-client/index.html'].includes(url.pathname)&&(response.headers.get('Content-Type')||'').includes('text/html')){
-        return secure(await injectClientCalendarLink(response));
+        return secure(await injectClientEnhancements(response));
       }
       if(url.pathname==='/api/public/catalog'&&response.ok){
         if(request.method==='GET')return secure(await filterPublicCatalog(response));
@@ -55,10 +55,16 @@ export default {
     ctx.waitUntil(runPortalScheduled(env,studio).catch((error)=>console.error('portal_scheduled_failed',error)));
   },
 };
-async function injectClientCalendarLink(response){
+async function injectClientEnhancements(response){
   let body=await response.text();
-  const script='<script src="/espace-client/content-calendar-link-v43.js?v=1"></script>';
-  if(!body.includes('/espace-client/content-calendar-link-v43.js'))body=body.replace('</body>',`${script}</body>`);
+  const scripts=[
+    '<script src="/espace-client/content-calendar-link-v43.js?v=1"></script>',
+    '<script type="module" src="/espace-client/client-magic-login-v44.js?v=1"></script>',
+  ];
+  for(const script of scripts){
+    const source=script.match(/src="([^"]+)/)?.[1]||'';
+    if(source&&!body.includes(source))body=body.replace('</body>',`${script}</body>`);
+  }
   const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Cache-Control','private, no-store, max-age=0');
   return new Response(body,{status:response.status,statusText:response.statusText,headers});
 }
