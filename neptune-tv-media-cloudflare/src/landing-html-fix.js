@@ -54,6 +54,94 @@ const BACKSTAGE_STUDIO_SECTION = `
     </div>
   </section>`;
 
+const FORMATS_SHOWCASE_SECTION = `
+  <section class="section formats-showcase" id="formats" data-aida-stage="desire" data-formats-showcase-version="1">
+    <div class="container formats-showcase__inner">
+      <header class="formats-showcase__header">
+        <span class="formats-showcase__eyebrow">Deux façons de créer. Un seul objectif : des résultats.</span>
+        <h2>Comment avec du contenu je peux avoir plus de client&nbsp;?</h2>
+        <p class="formats-showcase__subtitle">En créant de la <span class="trust">confiance</span> et du <span class="link">lien</span> avec votre audience.</p>
+      </header>
+
+      <div class="formats-showcase__grid">
+        <article class="format-showcase-card format-showcase-card--guided">
+          <header class="format-showcase-card__head">
+            <span class="format-showcase-card__icon" aria-hidden="true"><img src="/assets/logo-neptune.svg" alt=""></span>
+            <div class="format-showcase-card__label">
+              <h3>Hors Norme</h3>
+              <p class="format-showcase-card__promise">Laissez-vous guider par notre format</p>
+            </div>
+            <p class="format-showcase-card__description">Nous structurons le fond et la forme pour raconter votre histoire de manière claire, impactante et mémorable.</p>
+          </header>
+
+          <div class="format-carousel" data-format-carousel data-interval="4600" role="region" aria-roledescription="carrousel" aria-label="Ambiances Hors Norme">
+            <div class="format-carousel__viewport">
+              <div class="format-carousel__track" data-format-track>
+                <figure class="format-carousel__slide is-active" data-format-slide><span class="format-carousel__visual format-carousel__visual--hn1" role="img" aria-label="Plateau Hors Norme avec deux canapés et une ambiance bleue"></span></figure>
+                <figure class="format-carousel__slide" data-format-slide><span class="format-carousel__visual format-carousel__visual--hn2" role="img" aria-label="Plateau Hors Norme avec deux fauteuils et une table ronde"></span></figure>
+              </div>
+            </div>
+            <div class="format-carousel__controls">
+              <button class="format-carousel__arrow" type="button" data-format-prev aria-label="Image précédente">‹</button>
+              <div class="format-carousel__dots" aria-label="Choisir une image">
+                <button class="format-carousel__dot" type="button" data-format-dot aria-current="true"></button>
+                <button class="format-carousel__dot" type="button" data-format-dot aria-current="false"></button>
+              </div>
+              <button class="format-carousel__arrow" type="button" data-format-next aria-label="Image suivante">›</button>
+            </div>
+          </div>
+
+          <ul class="format-showcase-card__features">
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Accompagnement expert</span></li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 3h8l3 3v15H7z" stroke="currentColor" stroke-width="1.7"/><path d="M10 11h5M10 15h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Récit structuré et percutant</span></li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m4 17 5-5 4 3 7-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 7h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Contenu pensé pour l’impact</span></li>
+          </ul>
+        </article>
+
+        <article class="format-showcase-card format-showcase-card--libre">
+          <header class="format-showcase-card__head">
+            <span class="format-showcase-card__icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 10h22M5 22h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="10" r="3" fill="#080b19" stroke="currentColor" stroke-width="2"/><circle cx="21" cy="22" r="3" fill="#080b19" stroke="currentColor" stroke-width="2"/></svg></span>
+            <div class="format-showcase-card__label">
+              <h3>Concept Libre</h3>
+              <p class="format-showcase-card__promise">Réservez le studio en autonomie et créez votre propre projet</p>
+            </div>
+            <p class="format-showcase-card__description">Profitez d’un studio modulaire, d’équipements haut de gamme et d’une totale liberté pour donner vie à vos idées.</p>
+          </header>
+
+          <div class="format-carousel" data-format-carousel data-interval="5100" role="region" aria-roledescription="carrousel" aria-label="Configurations Concept Libre">
+            <div class="format-carousel__viewport">
+              <div class="format-carousel__track" data-format-track>
+                <figure class="format-carousel__slide is-active" data-format-slide><span class="format-carousel__visual format-carousel__visual--cl1" role="img" aria-label="Concept Libre avec un comptoir central et deux tabourets"></span></figure>
+                <figure class="format-carousel__slide" data-format-slide><span class="format-carousel__visual format-carousel__visual--cl2" role="img" aria-label="Concept Libre avec deux canapés et une table basse"></span></figure>
+                <figure class="format-carousel__slide" data-format-slide><span class="format-carousel__visual format-carousel__visual--cl3" role="img" aria-label="Concept Libre avec trois comptoirs modulaires"></span></figure>
+              </div>
+            </div>
+            <div class="format-carousel__controls">
+              <button class="format-carousel__arrow" type="button" data-format-prev aria-label="Image précédente">‹</button>
+              <div class="format-carousel__dots" aria-label="Choisir une image">
+                <button class="format-carousel__dot" type="button" data-format-dot aria-current="true"></button>
+                <button class="format-carousel__dot" type="button" data-format-dot aria-current="false"></button>
+                <button class="format-carousel__dot" type="button" data-format-dot aria-current="false"></button>
+              </div>
+              <button class="format-carousel__arrow" type="button" data-format-next aria-label="Image suivante">›</button>
+            </div>
+          </div>
+
+          <ul class="format-showcase-card__features">
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/></svg><span>Liberté totale de création</span></li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 13V8M9 3h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Réservez et produisez à votre rythme</span></li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m16 10 5-3v10l-5-3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Un studio pro, 100&nbsp;% modulable</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="formats-showcase__note">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m12 2 1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2Z" stroke="currentColor" stroke-width="1.5"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>Que vous soyez accompagné ou totalement autonome, notre studio et notre équipe sont là pour faire de vos idées <strong>du contenu qui marque.</strong></span>
+      </div>
+    </div>
+  </section>`;
+
 export async function fixLandingAssetOrder(response) {
   let body = await response.text();
 
@@ -63,6 +151,9 @@ export async function fixLandingAssetOrder(response) {
   const oldSolutionSection = /<section\b[^>]*\bid=["']solution["'][^>]*>[\s\S]*?<\/section>/i;
   body = oldSolutionSection.test(body) ? body.replace(oldSolutionSection, BACKSTAGE_STUDIO_SECTION) : body.replace('<section class="section format-choice-section"', `${BACKSTAGE_STUDIO_SECTION}<section class="section format-choice-section"`);
 
+  const oldFormatsSection = /<section\b[^>]*\bid=["']formats["'][^>]*>[\s\S]*?<\/section>/i;
+  body = oldFormatsSection.test(body) ? body.replace(oldFormatsSection, FORMATS_SHOWCASE_SECTION) : body.replace('<section class="section experience-voice"', `${FORMATS_SHOWCASE_SECTION}<section class="section experience-voice"`);
+
   body = body.replace('<section class="section experience-voice" id="experience"', '<section class="section experience-voice" id="experience-details"');
 
   body = body.replace(/<link[^>]+href="\/styles\/problem-solution-v3\.css[^\"]*"[^>]*>/g, '');
@@ -70,14 +161,16 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<link[^>]+href="\/styles\/backstage-studio-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-exact-media-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-header-single-line-v1\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=2"><link rel="stylesheet" href="/styles/backstage-header-single-line-v1.css?v=1"></head>');
+  body = body.replace(/<link[^>]+href="\/styles\/formats-showcase-v1\.css[^\"]*"[^>]*>/g, '');
+  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=2"><link rel="stylesheet" href="/styles/backstage-header-single-line-v1.css?v=1"><link rel="stylesheet" href="/styles/formats-showcase-v1.css?v=1"></head>');
 
   body = body.replace(/<script[^>]+src="\/final-experience-v12\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-solution-v3\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-chat-static-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/backstage-studio-v1\.js[^\"]*"[^>]*><\/script>/g, '');
+  body = body.replace(/<script[^>]+src="\/formats-showcase-v1\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script><script src="/formats-showcase-v1.js?v=1" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
