@@ -19,7 +19,7 @@ const PROBLEM_CHAT_SECTION = `
   </section>`;
 
 const BACKSTAGE_STUDIO_SECTION = `
-  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="7">
+  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="8">
     <div class="container backstage-studio-section__inner">
       <header class="backstage-studio-section__header" data-backstage-reveal data-backstage-order="0">
         <span class="eyebrow">Dans les coulisses</span>
@@ -30,15 +30,15 @@ const BACKSTAGE_STUDIO_SECTION = `
 
       <div class="backstage-studio-section__gallery" aria-label="Quelques extraits exacts de l’expérience vécue au studio Neptune Media">
         <article class="backstage-studio-section__media backstage-studio-section__media--wide" data-backstage-reveal data-backstage-order="1">
-          <video src="https://drive.usercontent.google.com/download?id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57&export=download&confirm=t" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : découverte du studio"></video>
+          <video src="https://lh3.googleusercontent.com/d/1WlyVRXsKSxMsDov2mapvWhEoak5e8y57" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : découverte du studio"></video>
           <div class="backstage-studio-section__caption"><div><span>Le studio</span><strong>Tout est prêt avant votre arrivée.</strong></div></div>
         </article>
         <article class="backstage-studio-section__media" data-backstage-reveal data-backstage-order="2">
-          <video src="https://drive.usercontent.google.com/download?id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs&export=download&confirm=t" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : votre équipe pendant le tournage"></video>
+          <video src="https://lh3.googleusercontent.com/d/16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : votre équipe pendant le tournage"></video>
           <div class="backstage-studio-section__caption"><div><span>Votre équipe</span><strong>Elle découvre, réagit et partage le moment avec vous.</strong></div></div>
         </article>
         <article class="backstage-studio-section__media" data-backstage-reveal data-backstage-order="3">
-          <video src="https://drive.usercontent.google.com/download?id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-&export=download&confirm=t" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : la régie"></video>
+          <video src="https://lh3.googleusercontent.com/d/1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" data-backstage-video aria-label="Vidéo backstage Neptune Media : la régie"></video>
           <div class="backstage-studio-section__caption"><div><span>La régie</span><strong>Vous vivez le moment, Neptune gère le reste.</strong></div></div>
         </article>
         <article class="backstage-studio-section__media backstage-studio-section__media--landscape backstage-studio-section__media--exact-photo" data-backstage-reveal data-backstage-order="4">
@@ -77,7 +77,7 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<script[^>]+src="\/problem-chat-static-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/backstage-studio-v1\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=5" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
