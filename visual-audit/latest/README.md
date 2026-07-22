@@ -1,6 +1,6 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T15:32:51.066Z
+Généré : 2026-07-22T15:39:32.353Z
 
 - Captures : 15
 - Erreurs : 0
@@ -18,7 +18,7 @@ Généré : 2026-07-22T15:32:51.066Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
+| warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
@@ -77,7 +77,7 @@ Généré : 2026-07-22T15:32:51.066Z
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
-| warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
+| warning | laptop-1280 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | laptop-1280 | home | clipped-text | pas de vous former. |
