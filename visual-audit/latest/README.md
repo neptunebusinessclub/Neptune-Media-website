@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T10:07:47.444Z
+Généré : 2026-07-22T10:10:53.667Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 300
+- Avertissements : 287
 
 ## Problèmes détectés
 
@@ -55,9 +55,6 @@ Généré : 2026-07-22T10:07:47.444Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
-| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
-| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
-| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -81,7 +78,7 @@ Généré : 2026-07-22T10:07:47.444Z
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | laptop-1280 | home | clipped-text | pas de vous former. |
-| warning | laptop-1280 | home | clipped-text | à votre unique disposition. |
+| warning | laptop-1280 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
@@ -114,9 +111,6 @@ Généré : 2026-07-22T10:07:47.444Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
-| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
-| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -130,3 +124,9 @@ Généré : 2026-07-22T10:07:47.444Z
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
 | warning | tablet-834 | home | clipped-text | influenceur.se |
+| warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
+| warning | tablet-834 | home | clipped-text | Je suis un.e |
+| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
+| warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
+| warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
+| warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
