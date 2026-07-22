@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/publish-visual-artifact.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,14 +20,24 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install download and media tools
+        run: |
+          set -euxo pipefail
+          python -m pip install --quiet --upgrade gdown
+          ffmpeg -version
+
       - name: Download exact supplied media
         run: |
           set -euxo pipefail
           mkdir -p .tmp-backstage neptune-tv-media-cloudflare/public/assets/backstage
-          curl -fL 'https://drive.usercontent.google.com/download?id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57&export=download&confirm=t' -o .tmp-backstage/studio.mov
-          curl -fL 'https://drive.usercontent.google.com/download?id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs&export=download&confirm=t' -o .tmp-backstage/team.mov
-          curl -fL 'https://drive.usercontent.google.com/download?id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-&export=download&confirm=t' -o .tmp-backstage/control-room.mov
-          curl -fL 'https://drive.usercontent.google.com/download?id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO&export=download&confirm=t' -o .tmp-backstage/connexio.png
+          gdown --id '1WlyVRXsKSxMsDov2mapvWhEoak5e8y57' -O .tmp-backstage/studio.mov
+          gdown --id '16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs' -O .tmp-backstage/team.mov
+          gdown --id '1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-' -O .tmp-backstage/control-room.mov
+          gdown --id '1QT_UW8AWvBtv48lRdlgNKER0dmis8upO' -O .tmp-backstage/connexio.png
+          test $(stat -c%s .tmp-backstage/studio.mov) -gt 100000
+          test $(stat -c%s .tmp-backstage/team.mov) -gt 100000
+          test $(stat -c%s .tmp-backstage/control-room.mov) -gt 100000
+          test $(stat -c%s .tmp-backstage/connexio.png) -gt 10000
           file .tmp-backstage/*
 
       - name: Convert for browser playback
