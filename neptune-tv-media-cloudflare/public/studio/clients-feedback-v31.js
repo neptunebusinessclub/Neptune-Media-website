@@ -1,4 +1,5 @@
 import './clients-referral-v32.js?v=1';
+import './clients-automation-v35.js?v=1';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 
