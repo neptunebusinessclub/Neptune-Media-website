@@ -1,38 +1,134 @@
-name: Publish Visual Audit Artifact
+name: Install Exact Neptune Backstage Media
 
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/publish-visual-artifact.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  publish:
+  install:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: neptune-visual-audit-${{ github.run_id }}
-          path: visual-audit/latest
-          if-no-files-found: error
-          retention-days: 14
-
-      - name: Record artifact run
+      - name: Install media tools
         run: |
-          printf '{"run_id":%s,"artifact_name":"neptune-visual-audit-%s","source_sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ID" "$GITHUB_SHA" > visual-audit/latest/artifact-run.json
+          python -m pip install --quiet gdown
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Download the exact supplied files
+        run: |
+          mkdir -p .tmp-backstage neptune-tv-media-cloudflare/public/assets/backstage
+          gdown 1WlyVRXsKSxMsDov2mapvWhEoak5e8y57 -O .tmp-backstage/studio.mov
+          gdown 16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs -O .tmp-backstage/team.mov
+          gdown 1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls- -O .tmp-backstage/control-room.mov
+          gdown 1QT_UW8AWvBtv48lRdlgNKER0dmis8upO -O .tmp-backstage/connexio.png
+
+      - name: Convert the videos for reliable browser playback
+        run: |
+          OUT=neptune-tv-media-cloudflare/public/assets/backstage
+          COMMON="scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2:black,fps=24"
+          ffmpeg -y -i .tmp-backstage/studio.mov -an -vf "$COMMON" -c:v libx264 -profile:v high -level 4.0 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$OUT/studio-preparation.mp4"
+          ffmpeg -y -i .tmp-backstage/team.mov -an -vf "$COMMON" -c:v libx264 -profile:v high -level 4.0 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$OUT/team-preview.mp4"
+          ffmpeg -y -i .tmp-backstage/control-room.mov -an -vf "$COMMON" -c:v libx264 -profile:v high -level 4.0 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$OUT/control-room.mp4"
+          ffmpeg -y -i .tmp-backstage/connexio.png -vf "scale='min(1600,iw)':-2" -c:v libwebp -quality 84 -compression_level 6 "$OUT/connexio-team.webp"
+          ffmpeg -y -ss 0.5 -i "$OUT/studio-preparation.mp4" -frames:v 1 -vf scale=720:-2 -c:v libwebp -quality 82 "$OUT/studio-preparation.webp"
+          ffmpeg -y -ss 0.5 -i "$OUT/team-preview.mp4" -frames:v 1 -vf scale=720:-2 -c:v libwebp -quality 82 "$OUT/team-preview.webp"
+          ffmpeg -y -ss 0.5 -i "$OUT/control-room.mp4" -frames:v 1 -vf scale=720:-2 -c:v libwebp -quality 82 "$OUT/control-room.webp"
+
+      - name: Correct the media assignment in the section
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('neptune-tv-media-cloudflare/src/landing-html-fix.js')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+            '<video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-&export=download&confirm=t" aria-label="Découverte du studio Neptune Media"></video>':
+            '<video muted loop playsinline preload="metadata" poster="/assets/backstage/studio-preparation.webp" data-backstage-video data-src="/assets/backstage/studio-preparation.mp4" aria-label="Découverte du studio Neptune Media avant le tournage"></video>',
+
+            '<video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs&export=download&confirm=t" aria-label="L’équipe vit les coulisses de l’émission"></video>':
+            '<video muted loop playsinline preload="metadata" poster="/assets/backstage/team-preview.webp" data-backstage-video data-src="/assets/backstage/team-preview.mp4" aria-label="L’équipe accompagne et suit le tournage Neptune Media"></video>',
+
+            '<video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57&export=download&confirm=t" aria-label="La régie Neptune Media pilote le tournage"></video>':
+            '<video muted loop playsinline preload="metadata" poster="/assets/backstage/control-room.webp" data-backstage-video data-src="/assets/backstage/control-room.mp4" aria-label="La régie Neptune Media pilote le tournage en direct"></video>',
+
+            '<img src="/assets/posters/studio-wide.webp" data-backstage-src="https://drive.usercontent.google.com/download?id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO&export=download&confirm=t" alt="Équipe réunie sur le plateau Neptune Media pour le Jeu Connexio" loading="lazy" decoding="async">':
+            '<img src="/assets/backstage/connexio-team.webp" alt="Quatre participants réunis sur le plateau Neptune Media pour le Jeu Connexio" loading="lazy" decoding="async">'
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Expected media block not found: {old[:100]}')
+              text = text.replace(old, new)
+
+          text = text.replace('data-backstage-version="3"', 'data-backstage-version="4"')
+          text = text.replace('/styles/backstage-studio-v1.css?v=3', '/styles/backstage-studio-v1.css?v=4')
+          text = text.replace('/backstage-studio-v1.js?v=3', '/backstage-studio-v1.js?v=4')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Restore the normal visual artifact workflow
+        run: |
+          cat > .github/workflows/publish-visual-artifact.yml <<'YAML'
+          name: Publish Visual Audit Artifact
+
+          on:
+            push:
+              branches: [main]
+              paths:
+                - '.github/workflows/publish-visual-artifact.yml'
+            workflow_dispatch:
+
+          permissions:
+            contents: write
+
+          jobs:
+            publish:
+              runs-on: ubuntu-latest
+              timeout-minutes: 10
+              steps:
+                - uses: actions/checkout@v4
+                  with:
+                    token: ${{ secrets.GITHUB_TOKEN }}
+
+                - name: Upload screenshots
+                  uses: actions/upload-artifact@v4
+                  with:
+                    name: neptune-visual-audit-${{ github.run_id }}
+                    path: visual-audit/latest
+                    if-no-files-found: error
+                    retention-days: 14
+
+                - name: Record artifact run
+                  run: |
+                    printf '{"run_id":%s,"artifact_name":"neptune-visual-audit-%s","source_sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ID" "$GITHUB_SHA" > visual-audit/latest/artifact-run.json
+                    git config user.name 'github-actions[bot]'
+                    git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+                    git add visual-audit/latest/artifact-run.json
+                    git commit -m 'chore: record visual audit artifact run [skip ci]' || true
+                    git pull --rebase origin main || true
+                    git push
+          YAML
+
+      - name: Commit exact local media
+        run: |
+          rm -rf .tmp-backstage .github/workflows/install-exact-backstage-media.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add visual-audit/latest/artifact-run.json
-          git commit -m 'chore: record visual audit artifact run [skip ci]' || true
-          git pull --rebase origin main || true
-          git push
+          git add neptune-tv-media-cloudflare/public/assets/backstage neptune-tv-media-cloudflare/src/landing-html-fix.js .github/workflows/publish-visual-artifact.yml .github/workflows/install-exact-backstage-media.yml
+          git commit -m 'Use exact supplied backstage videos and Connexio photo'
+          git pull --rebase origin main
+          git push origin HEAD:main
