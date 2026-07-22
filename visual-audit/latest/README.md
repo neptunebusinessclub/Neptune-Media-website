@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T13:20:59.409Z
+Généré : 2026-07-22T13:24:17.123Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 293
+- Avertissements : 294
 
 ## Problèmes détectés
 
@@ -18,7 +18,7 @@ Généré : 2026-07-22T13:20:59.409Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
@@ -26,7 +26,6 @@ Généré : 2026-07-22T13:20:59.409Z
 | warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
-| warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -84,6 +83,7 @@ Généré : 2026-07-22T13:20:59.409Z
 | warning | laptop-1280 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
+| warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
