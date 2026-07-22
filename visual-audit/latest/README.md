@@ -1,6 +1,6 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T16:59:10.735Z
+Généré : 2026-07-22T17:09:29.578Z
 
 - Captures : 15
 - Erreurs : 45
@@ -19,13 +19,13 @@ Généré : 2026-07-22T16:59:10.735Z
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
+| warning | desktop-1440 | home | clipped-text | Hors Norme |
+| warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
-| warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
-| warning | desktop-1440 | home | clipped-text | Hors Norme |
-| warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | desktop-1440 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
@@ -97,13 +97,13 @@ Généré : 2026-07-22T16:59:10.735Z
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
 | warning | laptop-1280 | home | clipped-text | Créer de vraies connexions |
 | warning | laptop-1280 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
+| warning | laptop-1280 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
+| warning | laptop-1280 | home | clipped-text | Hors Norme |
+| warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | laptop-1280 | home | clipped-text | pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
-| warning | laptop-1280 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
-| warning | laptop-1280 | home | clipped-text | Hors Norme |
-| warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | laptop-1280 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | laptop-1280 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
