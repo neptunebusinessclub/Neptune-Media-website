@@ -34,35 +34,42 @@
     });
 
     videos.forEach((video) => {
+      video.autoplay = true;
+      video.loop = true;
       video.muted = true;
       video.defaultMuted = true;
       video.playsInline = true;
+      video.preload = 'auto';
+      video.setAttribute('autoplay', '');
+      video.setAttribute('loop', '');
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
+      video.setAttribute('preload', 'auto');
 
-      video.addEventListener('play', () => syncVideoControl(video));
-      video.addEventListener('pause', () => syncVideoControl(video));
+      video.addEventListener('canplay', () => {
+        if (video.dataset.backstageInView !== '0') playVideo(video);
+      });
+
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        if (video.dataset.backstageInView !== '0') playVideo(video);
+      });
+
       video.addEventListener('error', () => {
         const card = video.closest('.backstage-studio-section__media');
         card?.classList.add('is-backstage-video-fallback');
-        syncVideoControl(video, true);
       });
-    });
 
-    section.querySelectorAll('[data-backstage-toggle]').forEach((button) => {
-      const card = button.closest('.backstage-studio-section__media');
-      const video = card?.querySelector('[data-backstage-video]');
-      if (!video) return;
-
-      button.addEventListener('click', () => {
-        hydrateVideo(video);
-        if (video.paused) video.play().catch(() => {});
-        else video.pause();
-      });
+      hydrateVideo(video);
+      playVideo(video);
     });
 
     if (reducedMotion || !('IntersectionObserver' in window)) {
       targets.forEach((target) => target.classList.add('is-visible'));
+      videos.forEach((video) => {
+        video.dataset.backstageInView = '1';
+        playVideo(video);
+      });
       return;
     }
 
@@ -79,42 +86,46 @@
     const playbackObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
-        if (entry.isIntersecting && entry.intersectionRatio >= .48) {
+        const shouldPlay = entry.isIntersecting && entry.intersectionRatio >= .18;
+        video.dataset.backstageInView = shouldPlay ? '1' : '0';
+
+        if (shouldPlay) {
           hydrateVideo(video);
-          video.play().catch(() => {});
+          playVideo(video);
         } else {
           video.pause();
         }
-        syncVideoControl(video);
       });
-    }, { threshold: [0, .48, .82] });
+    }, { threshold: [0, .18, .48, .82] });
 
     targets.forEach((target) => revealObserver.observe(target));
     videos.forEach((video) => playbackObserver.observe(video));
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
+      videos.forEach((video) => {
+        if (video.dataset.backstageInView === '1') playVideo(video);
+      });
+    });
   });
 
   function hydrateVideo(video) {
     if (video.dataset.hydrated === '1') return;
     const source = video.dataset.src;
-    if (!source) return;
+    if (!source) {
+      video.dataset.hydrated = '1';
+      return;
+    }
     video.dataset.hydrated = '1';
     video.src = source;
     video.load();
   }
 
-  function syncVideoControl(video, failed = false) {
-    const button = video.closest('.backstage-studio-section__media')?.querySelector('[data-backstage-toggle]');
-    if (!button) return;
-
-    if (failed) {
-      button.hidden = true;
-      return;
-    }
-
-    button.hidden = false;
-    const paused = video.paused;
-    button.setAttribute('aria-label', paused ? 'Lire la vidéo' : 'Mettre la vidéo en pause');
-    const icon = button.querySelector('i');
-    if (icon) icon.textContent = paused ? '▶' : 'Ⅱ';
+  function playVideo(video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    const promise = video.play();
+    if (promise && typeof promise.catch === 'function') promise.catch(() => {});
   }
 })();
