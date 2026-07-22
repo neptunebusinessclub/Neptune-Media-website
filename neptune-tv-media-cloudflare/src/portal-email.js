@@ -50,13 +50,15 @@ export function portalUrl(requestUrl, email, step = '') {
 }
 
 export async function sendCode(env, requestUrl, email, code) {
-  const url = portalUrl(requestUrl, email, 'code');
+  const url = new URL(portalUrl(requestUrl, email, 'code'));
+  url.hash = new URLSearchParams({ code }).toString();
+  const directUrl = url.toString();
   return send(env, {
     from: sender(env),
     to: [email],
-    subject: `${code} · Votre code Neptune Media`,
-    html: layout('Votre code sécurisé', `<p style="font-size:34px;letter-spacing:.22em;font-weight:800">${code}</p><p>Ce code expire dans 10 minutes et ne peut être utilisé qu’une fois.</p>${button(url, 'Saisir mon code')}`),
-    text: `Votre code Neptune Media : ${code}. Il expire dans 10 minutes. ${url}`,
+    subject: `${code} · Votre accès Neptune Media`,
+    html: layout('Votre accès sécurisé', `<p>Cliquez sur le bouton pour ouvrir directement votre espace client.</p>${button(directUrl, 'Me connecter automatiquement')}<p style="font-size:13px;color:#666">Le lien expire dans 10 minutes et ne peut être utilisé qu’une fois.</p><p style="font-size:13px;color:#666">En cas de besoin, votre code est : <strong>${code}</strong></p>`),
+    text: `Ouvrez directement votre espace Neptune Media : ${directUrl}\nCode de secours : ${code}. Le lien expire dans 10 minutes.`,
   });
 }
 
