@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T15:39:32.353Z
+Généré : 2026-07-22T15:56:22.415Z
 
 - Captures : 15
-- Erreurs : 0
-- Avertissements : 302
+- Erreurs : 45
+- Avertissements : 352
 
 ## Problèmes détectés
 
@@ -28,6 +28,7 @@ Généré : 2026-07-22T15:39:32.353Z
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
+| warning | desktop-1440 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -58,13 +59,31 @@ Généré : 2026-07-22T15:39:32.353Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
+| error | desktop-1440 | emissions | broken-image | img |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | desktop-1440 | emissions | clipped-text | Un accident de moto met fin à son entreprise |
 | warning | desktop-1440 | emissions | clipped-text | Le secret d’un storytelling efficace |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| error | desktop-1440 | direct | broken-image | img |
+| error | desktop-1440 | direct | broken-image | img |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
+| warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
 | warning | laptop-1280 | home | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.e |
@@ -87,6 +106,7 @@ Généré : 2026-07-22T15:39:32.353Z
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | laptop-1280 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
+| warning | laptop-1280 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -110,23 +130,3 @@ Généré : 2026-07-22T15:39:32.353Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
-| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
-| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
-| warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
-| warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
-| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
-| warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
-| warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
-| warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | laptop-1280 | emissions | clipped-text | Un accident de moto met fin à son entreprise |
-| warning | laptop-1280 | emissions | clipped-text | Le secret d’un storytelling efficace |
-| warning | laptop-1280 | emissions | clipped-text | L’humain avant le business |
-| warning | laptop-1280 | emissions | clipped-text | Filmer chez soi ? Laissez tomber. |
-| warning | laptop-1280 | direct | clipped-text | Aller au contenu principal |
-| warning | laptop-1280 | direct | clipped-text | Neptune Media en direct |
-| warning | tablet-834 | home | clipped-text | Aller au contenu principal |
-| warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
-| warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
-| warning | tablet-834 | home | clipped-text | influenceur.se |
