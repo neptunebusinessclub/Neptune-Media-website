@@ -8,6 +8,7 @@
   <title>Neptune Media · Studio Admin</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
   <link rel="stylesheet" href="/studio/studio.css?v=32">
+  <link rel="stylesheet" href="/studio/studio-control-room-v35.css?v=1">
 </head>
 <body>
   <div id="auth" class="login">
@@ -29,17 +30,17 @@
   <div id="app" class="shell" hidden>
     <aside class="sidebar">
       <a class="brand" href="/studio/" aria-label="Accueil du Studio"><img src="/assets/logo-neptune.svg" alt=""><div><b>Neptune</b><small>Media · Studio Admin</small></div></a>
-      <div class="workspace-status"><i></i><span>Studio opérationnel</span></div>
+      <div class="workspace-status"><i></i><span>Surveillance active</span></div>
       <nav id="nav" aria-label="Navigation principale">
-        <p class="nav-label">Pilotage</p>
-        <button class="nav-btn" data-tab="dashboard"><span>⌂</span><strong>Aujourd’hui</strong></button>
-        <a class="nav-btn" href="/studio/clients"><span>◎</span><strong>Clients</strong></a>
+        <p class="nav-label">Contrôle</p>
+        <button class="nav-btn" data-tab="dashboard"><span>⌂</span><strong>Vue d’ensemble</strong></button>
+        <a class="nav-btn" href="/studio/clients"><span>◎</span><strong>Surveillance clients</strong></a>
         <button class="nav-btn" data-tab="episodes" data-role="admin,editor"><span>▶</span><strong>Programme</strong></button>
         <p class="nav-label">Production</p>
         <a class="nav-btn" href="/studio/clients#contenus"><span>▣</span><strong>Contenus</strong></a>
         <a class="nav-btn" href="/studio/clients#calendrier"><span>▦</span><strong>Calendrier</strong></a>
         <a class="nav-btn nav-btn--accent" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener"><span>✦</span><strong>Video Studio</strong><em>↗</em></a>
-        <p class="nav-label">Performance</p>
+        <p class="nav-label">Analyse</p>
         <button class="nav-btn" data-tab="insights"><span>↗</span><strong>Audience</strong></button>
         <button class="nav-btn" data-tab="finances" data-role="admin"><span>€</span><strong>Finances</strong></button>
         <button class="nav-btn" data-tab="settings"><span>⚙</span><strong>Réglages</strong></button>
@@ -51,8 +52,8 @@
 
     <main class="main">
       <header class="topbar">
-        <div><p class="eyebrow">CENTRE DE PILOTAGE</p><h1 id="title">Aujourd’hui</h1></div>
-        <div class="top-actions"><span id="syncState" class="sync"><i></i> Synchronisé</span><a class="btn" href="/direct/" target="_blank" rel="noopener">Voir le direct <span>↗</span></a><button class="btn btn-primary" id="refresh">Actualiser</button></div>
+        <div><p class="eyebrow">POSTE DE CONTRÔLE AUTOMATISÉ</p><h1 id="title">Contrôle automatique</h1></div>
+        <div class="top-actions"><span id="syncState" class="sync"><i></i> Synchronisé</span><a class="btn" href="/direct/" target="_blank" rel="noopener">Voir le direct <span>↗</span></a><button class="btn btn-primary" id="refresh">Vérifier maintenant</button></div>
       </header>
       <section id="content" class="content"></section>
     </main>
@@ -60,5 +61,6 @@
   <div id="toast" class="toast" hidden></div>
   <script type="module" src="/studio/studio.js?v=32"></script>
   <script type="module" src="/studio/studio-hash-v33.js?v=1"></script>
+  <script type="module" src="/studio/studio-control-room-v35.js?v=1"></script>
 </body>
 </html>
