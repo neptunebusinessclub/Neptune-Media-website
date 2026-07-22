@@ -12,6 +12,7 @@
   appendStylesheet('/styles/final-quality-v12.css?v=1', 'finalQuality', 'v12');
   appendStylesheet('/styles/clarity-air-v15.css?v=15', 'clarityAir', 'v15');
   appendStylesheet('/styles/scroll-pipeline-v2.css?v=6', 'scrollPipelineCurve', 'v6', true);
+  appendStylesheet('/styles/single-header-v1.css?v=2', 'singleHeader', 'v2', true);
 
   ready(() => {
     document.documentElement.dataset.finalExperience = 'v12';
@@ -22,6 +23,7 @@
     document.body.dataset.heroRefresh = 'v27';
     document.body.dataset.scrollPipeline = 'curve-v2';
 
+    installSingleHeader();
     loadJourneyV19();
     loadScrollPipelineCurve();
     appendStylesheet('/styles/prd-visual-v16.css?v=16', 'prdVisual', 'v16', true);
@@ -54,6 +56,36 @@
     link.href = href;
     link.dataset[dataKey] = dataValue;
     document.head.append(link);
+  }
+
+  function installSingleHeader() {
+    const header = qs('body > .site-header') || qs('.site-header');
+    if (!header) return;
+
+    header.dataset.singleHeader = '1';
+    header.innerHTML = `
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Neptune Media, accueil">
+          <img src="/assets/logo-neptune.svg" alt="Neptune Media">
+        </a>
+        <nav id="primary-navigation" class="nav" data-nav aria-label="Navigation principale">
+          <a href="/direct/">Direct</a>
+          <a href="/#formats">Les formats</a>
+          <a href="/actualites/">Actualités</a>
+          <a href="https://www.neptunebusiness.com">Neptune Club</a>
+          <a class="nav-action nav-action--client" href="/espace-client/">Espace Client</a>
+          <a class="nav-action nav-action--booking" data-funnel data-track="header_reservation" href="https://media.neptunebusiness.com/">Réserver mon passage</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle><span aria-hidden="true"></span></button>
+      </div>`;
+
+    if (!qs('script[data-single-header-script]')) {
+      const script = document.createElement('script');
+      script.src = '/single-header-v1.js?v=2';
+      script.defer = true;
+      script.dataset.singleHeaderScript = '1';
+      document.head.append(script);
+    }
   }
 
   function loadJourneyV19() {
@@ -96,9 +128,12 @@
   }
 
   function removeJourneyNavigation() {
-    qsa('.journey-nav').forEach((node) => node.remove());
-    const observer = new MutationObserver(() => qsa('.journey-nav').forEach((node) => node.remove()));
-    observer.observe(document.body, { childList: true });
+    const selectors = '.journey-nav,.mobile-journey-dock,.sticky-conversion-nav,.section-progress-nav,.conversion-nav,[data-journey-nav],[data-sticky-navigation],[data-scroll-navigation]';
+    const clean = () => qsa(selectors).forEach((node) => node.remove());
+    clean();
+    const observer = new MutationObserver(clean);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.setTimeout(() => observer.disconnect(), 20000);
   }
 
   function bindFormatDecision() {
@@ -281,4 +316,4 @@
   }
 })();
 
-// Production browser quality gate revision 27.
+// Production browser quality gate revision 28.
