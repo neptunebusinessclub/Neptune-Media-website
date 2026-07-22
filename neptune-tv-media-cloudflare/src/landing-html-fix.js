@@ -49,7 +49,7 @@ const BACKSTAGE_STUDIO_SECTION = `
 
       <div class="backstage-studio-section__signature" data-backstage-reveal data-backstage-order="5">
         <span aria-hidden="true"></span>
-        <p>Vous venez avec les bonnes personnes. <strong>Neptune s’occupe de tout le reste.</strong></p>
+        <p><strong>Tout servi sur un plateau</strong></p>
       </div>
     </div>
   </section>`;
