@@ -12,6 +12,7 @@
 
   ready(() => {
     ensureCompactStyles();
+    ensureFinalBroadcastClosing();
     mountGiftSection();
 
     mutationObserver = new MutationObserver(() => mountGiftSection());
@@ -27,6 +28,16 @@
     link.href = '/styles/gift-club-v3-compact.css?v=1';
     link.dataset.giftClubCompact = '1';
     document.head.append(link);
+  }
+
+  function ensureFinalBroadcastClosing() {
+    if (document.querySelector('script[data-final-broadcast-closing]')) return;
+
+    const script = document.createElement('script');
+    script.src = '/final-broadcast-closing-v1.js?v=1';
+    script.defer = true;
+    script.dataset.finalBroadcastClosing = '1';
+    document.head.append(script);
   }
 
   function getLastGiftTarget() {
@@ -160,7 +171,6 @@
       section.classList.remove('is-gift-triggered');
       section.classList.add('is-gift-pending');
 
-      // Force a style flush so transitions and particle keyframes restart reliably.
       void section.offsetWidth;
 
       replayFrame = window.requestAnimationFrame(() => {
@@ -179,11 +189,8 @@
       const hasReachedRevealZone = rect.top < viewport * 0.78 && rect.bottom > viewport * 0.16;
       const isFullyAway = rect.bottom < -viewport * 0.08 || rect.top > viewport * 1.08;
 
-      if (isFullyAway) {
-        reset();
-      } else if (hasReachedRevealZone) {
-        replay();
-      }
+      if (isFullyAway) reset();
+      else if (hasReachedRevealZone) replay();
     };
 
     const requestEvaluate = () => {
