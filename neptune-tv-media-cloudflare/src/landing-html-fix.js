@@ -19,7 +19,7 @@ const PROBLEM_CHAT_SECTION = `
   </section>`;
 
 const BACKSTAGE_STUDIO_SECTION = `
-  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="9">
+  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="10">
     <div class="container backstage-studio-section__inner">
       <header class="backstage-studio-section__header" data-backstage-reveal data-backstage-order="0">
         <span class="eyebrow">Dans les coulisses</span>
@@ -49,7 +49,7 @@ const BACKSTAGE_STUDIO_SECTION = `
 
       <div class="backstage-studio-section__signature" data-backstage-reveal data-backstage-order="5">
         <span aria-hidden="true"></span>
-        <p><strong>Tout servi sur un plateau</strong></p>
+        <p><strong>Le tout servi sur un plateau car c'est VOTRE moment</strong></p>
       </div>
     </div>
   </section>`;
