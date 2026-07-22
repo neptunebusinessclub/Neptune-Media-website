@@ -14,7 +14,11 @@
 
   ready(() => {
     normaliseHeader();
-    const observer = new MutationObserver(() => normaliseHeader());
+    placeFormatsShowcaseAfterSteps();
+    const observer = new MutationObserver(() => {
+      normaliseHeader();
+      placeFormatsShowcaseAfterSteps();
+    });
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), 20000);
   });
@@ -30,6 +34,26 @@
     removeCompetingNavigation(header);
     bindMenu(header);
     syncCurrentLink(header);
+  }
+
+  function placeFormatsShowcaseAfterSteps() {
+    if (normalisePath(location.pathname) !== '/') return;
+
+    const steps = document.querySelector('main .journey-curve-section#experience')
+      || document.querySelector('main #experience.journey-curve-section')
+      || document.querySelector('main [data-journey-map]')?.closest('section')
+      || document.querySelector('main .scroll-pipeline-section')
+      || document.querySelector('main #experience');
+
+    const showcase = document.querySelector('main .formats-showcase')
+      || [...document.querySelectorAll('main > section')].find((section) => {
+        const heading = normalise(section.querySelector('h1,h2')?.textContent || '');
+        return heading.includes('comment avec du contenu') && heading.includes('plus de client');
+      });
+
+    if (!steps || !showcase || steps === showcase || steps.nextElementSibling === showcase) return;
+    steps.insertAdjacentElement('afterend', showcase);
+    showcase.dataset.sectionOrder = 'after-steps';
   }
 
   function ensureStylesheet() {
