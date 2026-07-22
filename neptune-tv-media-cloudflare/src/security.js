@@ -114,7 +114,7 @@ export function securityHeaders(headers = {}) {
     'X-Frame-Options': 'DENY',
     'X-Permitted-Cross-Domain-Policies': 'none',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=() ',
     'Cross-Origin-Opener-Policy': 'same-origin',
     'Cross-Origin-Resource-Policy': 'same-site',
     'Content-Security-Policy': [
@@ -126,7 +126,7 @@ export function securityHeaders(headers = {}) {
       "connect-src 'self'",
       "font-src 'self' data:",
       "object-src 'none'",
-      "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+      "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self' https://media.neptunebusiness.com",
