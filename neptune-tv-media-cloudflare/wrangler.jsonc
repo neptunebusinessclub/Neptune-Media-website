@@ -1,9 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "neptune-media-webtv",
-  "main": "src/entry-v4.js",
+  "main": "src/entry-v7.js",
   "compatibility_date": "2026-07-16",
   "workers_dev": true,
+  "triggers": {
+    "crons": ["17 * * * *"]
+  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
@@ -39,7 +42,9 @@
   "ai": { "binding": "AI" },
   "vars": {
     "BOOKING_URL": "https://media.neptunebusiness.com",
-    "AI_MODEL": "@cf/openai/gpt-oss-120b"
+    "PUBLIC_ORIGIN": "https://tv.neptunebusiness.com",
+    "AI_MODEL": "@cf/openai/gpt-oss-120b",
+    "AUTH_FROM_EMAIL": "Neptune Media <connexion@neptunebusiness.com>"
   },
   "observability": { "enabled": true }
 }
