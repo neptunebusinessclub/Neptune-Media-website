@@ -19,7 +19,7 @@ const PROBLEM_CHAT_SECTION = `
   </section>`;
 
 const BACKSTAGE_STUDIO_SECTION = `
-  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="5">
+  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="6">
     <div class="container backstage-studio-section__inner">
       <header class="backstage-studio-section__header" data-backstage-reveal data-backstage-order="0">
         <span class="eyebrow">Dans les coulisses</span>
@@ -69,7 +69,8 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<link[^>]+href="\/styles\/problem-chat-static-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-studio-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-exact-media-v1\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=1"></head>');
+  body = body.replace(/<link[^>]+href="\/styles\/backstage-header-single-line-v1\.css[^\"]*"[^>]*>/g, '');
+  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=1"><link rel="stylesheet" href="/styles/backstage-header-single-line-v1.css?v=1"></head>');
 
   body = body.replace(/<script[^>]+src="\/final-experience-v12\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-solution-v3\.js[^\"]*"[^>]*><\/script>/g, '');
