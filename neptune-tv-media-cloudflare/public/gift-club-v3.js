@@ -2,6 +2,7 @@
   'use strict';
 
   const TARGET_SELECTOR = '#experience-details, #experience';
+  const GIFT_SELECTOR = '.gift-club-v3, .gift-club-section';
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let mutationObserver = null;
 
@@ -15,7 +16,7 @@
 
     mutationObserver = new MutationObserver(() => mountGiftSection());
     mutationObserver.observe(document.body, { childList: true, subtree: true });
-    window.setTimeout(() => mutationObserver?.disconnect(), 8000);
+    window.setTimeout(() => mutationObserver?.disconnect(), 12000);
   });
 
   function ensureCompactStyles() {
@@ -28,11 +29,32 @@
     document.head.append(link);
   }
 
+  function getLastGiftTarget() {
+    const candidates = [...new Set([
+      ...document.querySelectorAll(TARGET_SELECTOR),
+      ...document.querySelectorAll(GIFT_SELECTOR),
+    ])].filter((node) => node.isConnected);
+
+    candidates.sort((first, second) => {
+      if (first === second) return 0;
+      return first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+    });
+
+    return candidates.at(-1) || null;
+  }
+
+  function removeUpperGiftDuplicates(keep) {
+    document.querySelectorAll(GIFT_SELECTOR).forEach((section) => {
+      if (section !== keep) section.remove();
+    });
+  }
+
   function mountGiftSection() {
-    const target = document.querySelector(TARGET_SELECTOR);
+    const target = getLastGiftTarget();
     if (!target) return;
 
     if (target.classList.contains('gift-club-v3')) {
+      removeUpperGiftDuplicates(target);
       initialiseReveal(target);
       return;
     }
@@ -41,7 +63,7 @@
     section.className = 'section gift-club-v3 is-gift-pending';
     section.id = 'experience-details';
     section.dataset.aidaStage = 'action';
-    section.dataset.giftClubVersion = '3.3';
+    section.dataset.giftClubVersion = '3.4';
     section.innerHTML = `
       <div class="container gift-club-v3__inner">
         <header class="gift-club-v3__header">
@@ -102,6 +124,7 @@
       </div>`;
 
     target.replaceWith(section);
+    removeUpperGiftDuplicates(section);
     window.requestAnimationFrame(() => window.requestAnimationFrame(() => initialiseReveal(section)));
   }
 
