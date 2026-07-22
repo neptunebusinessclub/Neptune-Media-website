@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T10:41:42.258Z
+Généré : 2026-07-22T11:27:27.064Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 287
+- Avertissements : 292
 
 ## Problèmes détectés
 
@@ -23,6 +23,7 @@ Généré : 2026-07-22T10:41:42.258Z
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
+| warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
@@ -79,6 +80,7 @@ Généré : 2026-07-22T10:41:42.258Z
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | laptop-1280 | home | clipped-text | pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
+| warning | laptop-1280 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
@@ -128,5 +130,3 @@ Généré : 2026-07-22T10:41:42.258Z
 | warning | tablet-834 | home | clipped-text | Je suis un.e |
 | warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
