@@ -12,6 +12,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: neptune-tv-media-cloudflare
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,9 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install dependencies
+      - name: Install active worker dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Check JavaScript syntax
-        run: npm run check
-      - name: Validate Wrangler configuration
-        run: npx wrangler deploy --dry-run --config wrangler.jsonc
+      - name: Validate active Cloudflare Worker
+        run: npm run verify
