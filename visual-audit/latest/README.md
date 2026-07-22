@@ -1,16 +1,15 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T09:05:52.993Z
+Généré : 2026-07-22T09:20:47.265Z
 
 - Captures : 15
-- Erreurs : 6
-- Avertissements : 291
+- Erreurs : 1
+- Avertissements : 290
 
 ## Problèmes détectés
 
 | Niveau | Écran | Page | Type | Détail |
 |---|---|---|---|---|
-| error | desktop-1440 | home | broken-image | img |
 | warning | desktop-1440 | home | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | desktop-1440 | home | clipped-text | Je ne suis pas un.e |
@@ -23,7 +22,7 @@ Généré : 2026-07-22T09:05:52.993Z
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
-| warning | desktop-1440 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
+| warning | desktop-1440 | home | clipped-text | à votre unique disposition. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
@@ -63,7 +62,6 @@ Généré : 2026-07-22T09:05:52.993Z
 | warning | desktop-1440 | emissions | clipped-text | Le secret d’un storytelling efficace |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
-| error | laptop-1280 | home | broken-image | img |
 | warning | laptop-1280 | home | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.e |
@@ -80,7 +78,7 @@ Généré : 2026-07-22T09:05:52.993Z
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | laptop-1280 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | laptop-1280 | home | clipped-text | pas de vous former. |
-| warning | laptop-1280 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
+| warning | laptop-1280 | home | clipped-text | à votre unique disposition. |
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
@@ -113,7 +111,6 @@ Généré : 2026-07-22T09:05:52.993Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -123,10 +120,13 @@ Généré : 2026-07-22T09:05:52.993Z
 | warning | laptop-1280 | emissions | clipped-text | Filmer chez soi ? Laissez tomber. |
 | warning | laptop-1280 | direct | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | direct | clipped-text | Neptune Media en direct |
-| error | tablet-834 | home | broken-image | img |
 | warning | tablet-834 | home | clipped-text | Aller au contenu principal |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
 | warning | tablet-834 | home | clipped-text | influenceur.se |
 | warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | Je suis un.e |
+| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
+| warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
+| warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
+| warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
