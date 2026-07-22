@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T08:38:31.887Z
+Généré : 2026-07-22T08:42:02.544Z
 
 - Captures : 15
-- Erreurs : 0
-- Avertissements : 285
+- Erreurs : 2
+- Avertissements : 288
 
 ## Problèmes détectés
 
@@ -61,6 +61,7 @@ Généré : 2026-07-22T08:38:31.887Z
 | warning | desktop-1440 | emissions | clipped-text | Le secret d’un storytelling efficace |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
+| warning | desktop-1440 | direct | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | laptop-1280 | home | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.e |
@@ -109,6 +110,7 @@ Généré : 2026-07-22T08:38:31.887Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
+| error | laptop-1280 | emissions | broken-image | img |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -116,8 +118,10 @@ Généré : 2026-07-22T08:38:31.887Z
 | warning | laptop-1280 | emissions | clipped-text | Le secret d’un storytelling efficace |
 | warning | laptop-1280 | emissions | clipped-text | L’humain avant le business |
 | warning | laptop-1280 | emissions | clipped-text | Filmer chez soi ? Laissez tomber. |
+| warning | laptop-1280 | emissions | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | laptop-1280 | direct | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | direct | clipped-text | Neptune Media en direct |
+| warning | laptop-1280 | direct | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | tablet-834 | home | clipped-text | Aller au contenu principal |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
@@ -126,7 +130,3 @@ Généré : 2026-07-22T08:38:31.887Z
 | warning | tablet-834 | home | clipped-text | Je suis un.e |
 | warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
-| warning | tablet-834 | home | clipped-text | Dépasser ce qui vous bloque |
-| warning | tablet-834 | home | clipped-text | Éviter les erreurs de réseautage |
