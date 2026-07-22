@@ -6,7 +6,7 @@ import {
   autopilotReconcile,
   autopilotSnapshot,
   autopilotUndo,
-} from './portal-autopilot-v2.js';
+} from './portal-autopilot-v3.js';
 
 export class StudioStore extends LegacyStore {
   async fetch(request) {
