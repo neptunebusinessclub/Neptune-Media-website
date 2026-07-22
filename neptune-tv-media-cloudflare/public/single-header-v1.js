@@ -1,6 +1,13 @@
 (() => {
   'use strict';
 
+  const ICONS = {
+    direct: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M7.8 8.5a5.2 5.2 0 0 0 0 7M16.2 8.5a5.2 5.2 0 0 1 0 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    formats: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5h10.5M4 12h16M4 16.5h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17.5" cy="7.5" r="2.2" stroke="currentColor" stroke-width="1.5"/><circle cx="15.5" cy="16.5" r="2.2" stroke="currentColor" stroke-width="1.5"/></svg>',
+    actualites: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 12.5h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    club: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="10" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M3.8 19c.5-3.4 2.2-5.2 5.2-5.2s4.7 1.8 5.2 5.2M14 15c2.9-.5 5 .8 5.7 3.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
+  };
+
   const ready = (callback) => document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
@@ -17,9 +24,67 @@
     if (!header) return;
 
     header.dataset.singleHeader = '1';
+    ensureStylesheet();
+    structureNavigation(header);
+    decorateNavigation(header);
     removeCompetingNavigation(header);
     bindMenu(header);
     syncCurrentLink(header);
+  }
+
+  function ensureStylesheet() {
+    const href = '/styles/single-header-v1.css?v=3';
+    const links = [...document.querySelectorAll('link[href*="single-header-v1.css"]')];
+    const current = links[0];
+    links.slice(1).forEach((link) => link.remove());
+    if (current) {
+      if (current.getAttribute('href') !== href) current.setAttribute('href', href);
+      current.dataset.singleHeaderStyles = '3';
+      document.head.append(current);
+      return;
+    }
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset.singleHeaderStyles = '3';
+    document.head.append(link);
+  }
+
+  function structureNavigation(header) {
+    const nav = header.querySelector('[data-nav]');
+    if (!nav || nav.querySelector(':scope > .nav-main')) return;
+
+    const links = [...nav.querySelectorAll(':scope > a')];
+    if (!links.length) return;
+
+    const main = document.createElement('div');
+    main.className = 'nav-main';
+    const actions = document.createElement('div');
+    actions.className = 'nav-actions';
+
+    links.forEach((link) => {
+      if (link.classList.contains('nav-action')) actions.append(link);
+      else main.append(link);
+    });
+    nav.replaceChildren(main, actions);
+  }
+
+  function decorateNavigation(header) {
+    const mainLinks = [...header.querySelectorAll('.nav-main > a')];
+    mainLinks.forEach((link) => {
+      if (link.querySelector('.nav-icon')) return;
+      const text = normalise(link.textContent || '');
+      let icon = null;
+      if (text.includes('direct')) icon = ICONS.direct;
+      else if (text.includes('format')) icon = ICONS.formats;
+      else if (text.includes('actualit')) icon = ICONS.actualites;
+      else if (text.includes('club')) icon = ICONS.club;
+      if (!icon) return;
+      const span = document.createElement('span');
+      span.className = 'nav-icon';
+      span.innerHTML = icon;
+      link.prepend(span);
+    });
   }
 
   function removeCompetingNavigation(keep) {
@@ -88,7 +153,7 @@
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1080) close();
+      if (window.innerWidth > 1220) close();
     }, { passive: true });
   }
 
@@ -98,7 +163,7 @@
       const url = new URL(link.href, location.href);
       if (url.origin !== location.origin) return;
       const target = normalisePath(url.pathname);
-      const current = target === '/' ? path === '/' : path.startsWith(target);
+      const current = target === '/' ? path === '/' && !link.hash : path.startsWith(target);
       if (current && !link.hash) link.setAttribute('aria-current', 'page');
       else if (link.getAttribute('aria-current') === 'page') link.removeAttribute('aria-current');
     });
