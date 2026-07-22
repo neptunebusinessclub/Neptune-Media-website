@@ -11,18 +11,20 @@
     const header = normaliseHeader();
     placeFormatsShowcaseAfterSteps();
     watchFormatsPlacement();
-    if (header) watchCompetingNavigation(header);
+    if (!header) return;
+    bindScrollState(header);
+    watchCompetingNavigation(header);
   });
 
   function ensureStylesheet() {
-    const href = '/styles/single-header-v1.css?v=4';
+    const href = '/styles/single-header-v1.css?v=5';
     const links = [...document.querySelectorAll('link[href*="single-header-v1.css"]')];
     const current = links[0];
     links.slice(1).forEach((link) => link.remove());
 
     if (current) {
       if (current.getAttribute('href') !== href) current.setAttribute('href', href);
-      current.dataset.singleHeaderStyles = '4';
+      current.dataset.singleHeaderStyles = '5';
       document.head.append(current);
       return;
     }
@@ -30,7 +32,7 @@
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
-    link.dataset.singleHeaderStyles = '4';
+    link.dataset.singleHeaderStyles = '5';
     document.head.append(link);
   }
 
@@ -41,6 +43,7 @@
 
     header.dataset.singleHeader = '1';
     flattenLegacyNavigation(header);
+    ensureActionClasses(header);
     removeCompetingNavigation(header);
     bindMenu(header);
     syncCurrentLink(header);
@@ -48,19 +51,57 @@
   }
 
   function flattenLegacyNavigation(header) {
+    if (header.dataset.navigationFlattened === '1') return;
     const nav = header.querySelector('[data-nav]');
     if (!nav) return;
 
     const main = nav.querySelector(':scope > .nav-main');
     const actions = nav.querySelector(':scope > .nav-actions');
-    if (!main && !actions) return;
+    if (main || actions) {
+      const links = [
+        ...(main ? [...main.querySelectorAll(':scope > a')] : []),
+        ...(actions ? [...actions.querySelectorAll(':scope > a')] : []),
+      ];
+      if (links.length) nav.replaceChildren(...links);
+    }
 
-    const links = [
-      ...(main ? [...main.querySelectorAll(':scope > a')] : []),
-      ...(actions ? [...actions.querySelectorAll(':scope > a')] : []),
-    ];
-    if (!links.length) return;
-    nav.replaceChildren(...links);
+    header.dataset.navigationFlattened = '1';
+  }
+
+  function ensureActionClasses(header) {
+    const links = [...header.querySelectorAll('[data-nav] > a')];
+    links.forEach((link) => {
+      const label = normalise(link.textContent || '');
+      if (label.includes('espace client')) {
+        link.classList.add('nav-action', 'nav-action--client');
+      }
+      if (label.includes('reserver mon passage') || label.includes('voir les offres') || label.includes('voir les creneaux')) {
+        link.classList.add('nav-action', 'nav-action--booking');
+      }
+    });
+  }
+
+  function bindScrollState(header) {
+    if (header.dataset.scrollStateBound === '1') return;
+    header.dataset.scrollStateBound = '1';
+
+    let frame = 0;
+    let current = null;
+    const update = () => {
+      frame = 0;
+      const next = window.scrollY > 12;
+      if (next === current) return;
+      current = next;
+      header.classList.toggle('is-scrolled', next);
+    };
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    update();
   }
 
   function watchCompetingNavigation(header) {
