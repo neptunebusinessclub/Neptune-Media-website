@@ -30,7 +30,7 @@
     section.className = 'section gift-club-v3 is-gift-pending';
     section.id = 'experience-details';
     section.dataset.aidaStage = 'action';
-    section.dataset.giftClubVersion = '3.1';
+    section.dataset.giftClubVersion = '3.2';
     section.innerHTML = `
       <div class="container gift-club-v3__inner">
         <header class="gift-club-v3__header">
@@ -38,9 +38,10 @@
           <h2>Quoi&nbsp;? Vous êtes encore là&nbsp;?</h2>
           <p class="gift-club-v3__subtitle">C'est vrai on a oublié de vous offrir quelque chose...</p>
           <p class="gift-club-v3__copy">Parce qu'on croit que vous avez des affaires à faire au sein du réseau.</p>
+          <p class="gift-club-v3__copy"><strong>Offre valable uniquement avec le format Hors Norme.</strong> Vous recevrez un e-mail à ce sujet après votre réservation.</p>
         </header>
 
-        <div class="gift-club-v3__stage" aria-label="Un cadeau révèle un an offert au Neptune Business Club">
+        <div class="gift-club-v3__stage" aria-label="Un cadeau révèle six mois offerts au Neptune Business Club">
           <div class="gift-club-v3__orbit gift-club-v3__orbit--one" aria-hidden="true"></div>
           <div class="gift-club-v3__orbit gift-club-v3__orbit--two" aria-hidden="true"></div>
           <div class="gift-club-v3__halo" aria-hidden="true"></div>
@@ -56,7 +57,7 @@
 
               <div class="gift-box-v3__card">
                 <span>Votre cadeau</span>
-                <strong><em>1 an offert</em> au Neptune Business Club</strong>
+                <strong><em>6 mois offerts</em> au Neptune Business Club</strong>
               </div>
 
               <div class="gift-box-v3__lid">
