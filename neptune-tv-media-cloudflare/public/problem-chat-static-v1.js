@@ -10,6 +10,7 @@
     section.dataset.chatBound = '1';
 
     ensureJourneyBefore(section);
+    ensureGiftUpgrade();
     initialiseReveal(section);
   });
 
@@ -25,6 +26,15 @@
     script.addEventListener('load', () => {
       requestAnimationFrame(() => section.classList.remove('inner-voice-section'));
     }, { once: true });
+    document.head.append(script);
+  }
+
+  function ensureGiftUpgrade() {
+    if (document.querySelector('script[data-gift-club-v2]')) return;
+
+    const script = document.createElement('script');
+    script.src = '/gift-club-v2.js?v=1';
+    script.dataset.giftClubV2 = '1';
     document.head.append(script);
   }
 
