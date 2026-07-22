@@ -26,7 +26,7 @@
 
       <div class="backstage-studio-section__story" aria-label="Quelques extraits de l'expérience Neptune Media">
         <article class="backstage-shot backstage-shot--hero" data-backstage-reveal style="--backstage-order:0">
-          <img src="https://drive.google.com/thumbnail?id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO&sz=w1800" alt="Une équipe réunie sur le plateau Neptune Media pour vivre le Jeu Connexio" loading="lazy" decoding="async">
+          <img src="/assets/posters/studio-wide.webp" alt="Une équipe réunie sur le plateau Neptune Media pour vivre le Jeu Connexio" loading="lazy" decoding="async">
           <div class="backstage-shot__veil" aria-hidden="true"></div>
           <div class="backstage-shot__meta">
             <span><i>01</i> Vous arrivez ensemble</span>
@@ -35,8 +35,8 @@
         </article>
 
         <article class="backstage-shot backstage-shot--portrait backstage-shot--studio" data-backstage-reveal style="--backstage-order:1">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-&sz=w900" aria-label="Découverte du plateau Neptune Media">
-            <source src="https://drive.google.com/uc?export=download&id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-" type="video/mp4">
+          <video muted loop playsinline preload="metadata" poster="/assets/posters/studio-wide.webp" aria-label="Découverte du plateau Neptune Media">
+            <source src="https://drive.google.com/uc?export=download&id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-">
           </video>
           <div class="backstage-shot__veil" aria-hidden="true"></div>
           <div class="backstage-shot__meta">
@@ -47,8 +47,8 @@
         </article>
 
         <article class="backstage-shot backstage-shot--portrait backstage-shot--team" data-backstage-reveal style="--backstage-order:2">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs&sz=w900" aria-label="L'équipe suit l'émission depuis les coulisses">
-            <source src="https://drive.google.com/uc?export=download&id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs" type="video/mp4">
+          <video muted loop playsinline preload="metadata" poster="/assets/posters/studio-wide.webp" aria-label="L'équipe suit l'émission depuis les coulisses">
+            <source src="https://drive.google.com/uc?export=download&id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs">
           </video>
           <div class="backstage-shot__veil" aria-hidden="true"></div>
           <div class="backstage-shot__meta">
@@ -59,8 +59,8 @@
         </article>
 
         <article class="backstage-shot backstage-shot--portrait backstage-shot--control-room" data-backstage-reveal style="--backstage-order:3">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57&sz=w900" aria-label="La régie Neptune Media pilote la réalisation en direct">
-            <source src="https://drive.google.com/uc?export=download&id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57" type="video/mp4">
+          <video muted loop playsinline preload="metadata" poster="/assets/posters/studio-wide.webp" aria-label="La régie Neptune Media pilote la réalisation en direct">
+            <source src="https://drive.google.com/uc?export=download&id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57">
           </video>
           <div class="backstage-shot__veil" aria-hidden="true"></div>
           <div class="backstage-shot__meta">
@@ -87,6 +87,10 @@
     video.playsInline = true;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    video.addEventListener('error', () => {
+      const card = video.closest('.backstage-shot');
+      if (card) card.classList.add('is-video-unavailable');
+    });
   });
 
   section.classList.add('is-backstage-ready');
