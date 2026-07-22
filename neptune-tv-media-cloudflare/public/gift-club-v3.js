@@ -10,12 +10,23 @@
     : callback();
 
   ready(() => {
+    ensureCompactStyles();
     mountGiftSection();
 
     mutationObserver = new MutationObserver(() => mountGiftSection());
     mutationObserver.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => mutationObserver?.disconnect(), 8000);
   });
+
+  function ensureCompactStyles() {
+    if (document.querySelector('link[data-gift-club-compact]')) return;
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/styles/gift-club-v3-compact.css?v=1';
+    link.dataset.giftClubCompact = '1';
+    document.head.append(link);
+  }
 
   function mountGiftSection() {
     const target = document.querySelector(TARGET_SELECTOR);
@@ -30,7 +41,7 @@
     section.className = 'section gift-club-v3 is-gift-pending';
     section.id = 'experience-details';
     section.dataset.aidaStage = 'action';
-    section.dataset.giftClubVersion = '3.2';
+    section.dataset.giftClubVersion = '3.3';
     section.innerHTML = `
       <div class="container gift-club-v3__inner">
         <header class="gift-club-v3__header">
@@ -38,7 +49,6 @@
           <h2>Quoi&nbsp;? Vous êtes encore là&nbsp;?</h2>
           <p class="gift-club-v3__subtitle">C'est vrai on a oublié de vous offrir quelque chose...</p>
           <p class="gift-club-v3__copy">Parce qu'on croit que vous avez des affaires à faire au sein du réseau.</p>
-          <p class="gift-club-v3__copy"><strong>Offre valable uniquement avec le format Hors Norme.</strong> Vous recevrez un e-mail à ce sujet après votre réservation.</p>
         </header>
 
         <div class="gift-club-v3__stage" aria-label="Un cadeau révèle six mois offerts au Neptune Business Club">
@@ -77,6 +87,11 @@
             </div>
           </div>
         </div>
+
+        <p class="gift-club-v3__eligibility">
+          <strong>Offre réservée au format Hors Norme.</strong>
+          <span>Vous recevrez un e-mail à ce sujet après votre réservation.</span>
+        </p>
 
         <div class="gift-club-v3__action">
           <a class="gift-club-v3__cta" href="https://media.neptunebusiness.com/" data-funnel data-track="gift_club_booking">
@@ -122,7 +137,7 @@
       section.classList.remove('is-gift-triggered');
       section.classList.add('is-gift-pending');
 
-      // Force a style flush so CSS transitions and particle keyframes restart reliably.
+      // Force a style flush so transitions and particle keyframes restart reliably.
       void section.offsetWidth;
 
       replayFrame = window.requestAnimationFrame(() => {
