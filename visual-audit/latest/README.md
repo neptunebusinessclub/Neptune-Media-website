@@ -1,6 +1,6 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T10:04:56.504Z
+Généré : 2026-07-22T10:07:47.444Z
 
 - Captures : 15
 - Erreurs : 0
@@ -22,7 +22,7 @@ Généré : 2026-07-22T10:04:56.504Z
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible,pas de vous former. |
 | warning | desktop-1440 | home | clipped-text | Vous avez besoin d’être visible, |
 | warning | desktop-1440 | home | clipped-text | pas de vous former. |
-| warning | desktop-1440 | home | clipped-text | à votre unique disposition. |
+| warning | desktop-1440 | home | clipped-text | Une équipe et un studio complet à votre unique disposition. |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
