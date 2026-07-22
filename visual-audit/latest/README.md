@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T13:24:17.123Z
+Généré : 2026-07-22T13:40:42.350Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 294
+- Avertissements : 297
 
 ## Problèmes détectés
 
@@ -26,6 +26,7 @@ Généré : 2026-07-22T13:24:17.123Z
 | warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
+| warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -129,4 +130,3 @@ Généré : 2026-07-22T13:24:17.123Z
 | warning | tablet-834 | home | clipped-text | influenceur.se |
 | warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | Je suis un.e |
-| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
