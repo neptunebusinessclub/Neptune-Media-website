@@ -162,17 +162,17 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<link[^>]+href="\/styles\/backstage-exact-media-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-header-single-line-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/formats-showcase-v1\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace(/<link[^>]+href="\/styles\/gift-club-v2\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=2"><link rel="stylesheet" href="/styles/backstage-header-single-line-v1.css?v=1"><link rel="stylesheet" href="/styles/formats-showcase-v1.css?v=1"><link rel="stylesheet" href="/styles/gift-club-v2.css?v=2"></head>');
+  body = body.replace(/<link[^>]+href="\/styles\/gift-club-v[23]\.css[^\"]*"[^>]*>/g, '');
+  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=4"><link rel="stylesheet" href="/styles/backstage-exact-media-v1.css?v=2"><link rel="stylesheet" href="/styles/backstage-header-single-line-v1.css?v=1"><link rel="stylesheet" href="/styles/formats-showcase-v1.css?v=1"><link rel="stylesheet" href="/styles/gift-club-v3.css?v=1"></head>');
 
   body = body.replace(/<script[^>]+src="\/final-experience-v12\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-solution-v3\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-chat-static-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/backstage-studio-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/formats-showcase-v1\.js[^\"]*"[^>]*><\/script>/g, '');
-  body = body.replace(/<script[^>]+src="\/gift-club-v2\.js[^\"]*"[^>]*><\/script>/g, '');
+  body = body.replace(/<script[^>]+src="\/gift-club-v[23]\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/gift-club-v2.js?v=2" data-gift-club-v2 defer></script><script src="/problem-chat-static-v1.js?v=3" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script><script src="/formats-showcase-v1.js?v=1" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/gift-club-v3.js?v=1" data-gift-club-v2 defer></script><script src="/problem-chat-static-v1.js?v=3" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script><script src="/formats-showcase-v1.js?v=1" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
