@@ -38,6 +38,7 @@
   function mountClosingSection() {
     const existing = document.querySelector('.final-broadcast-closing');
     if (existing) {
+      removeLegacyClosingBlocks(existing);
       initialiseVideos(existing);
       return;
     }
@@ -47,7 +48,7 @@
     section.className = 'section final-broadcast-closing';
     section.id = 'passer-antenne';
     section.dataset.aidaStage = 'action';
-    section.dataset.finalBroadcastVersion = '1';
+    section.dataset.finalBroadcastVersion = '1.1';
     section.innerHTML = `
       <div class="container final-broadcast-closing__inner">
         <header class="final-broadcast-closing__header">
@@ -57,7 +58,7 @@
         </header>
 
         <div class="final-broadcast-closing__shows" aria-label="Dernières émissions réalisées par Neptune Media">
-          ${SHOWS.map(([id, title], index) => showCard(id, title, index)).join('')}
+          ${SHOWS.map(([id, title]) => showCard(id, title)).join('')}
         </div>
 
         <div class="final-broadcast-closing__primary-action">
@@ -93,14 +94,15 @@
       else document.body.insertBefore(section, document.querySelector('footer'));
     }
 
+    removeLegacyClosingBlocks(section);
     initialiseVideos(section);
   }
 
-  function showCard(id, title, index) {
+  function showCard(id, title) {
     const poster = `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1200`;
     const source = `https://drive.google.com/uc?export=download&id=${encodeURIComponent(id)}`;
     return `
-      <article class="final-broadcast-card" style="--show-index:${index}">
+      <article class="final-broadcast-card" tabindex="0">
         <video muted loop playsinline preload="none" poster="${poster}" data-final-show-video data-src="${source}" aria-label="${escapeHtml(title)}"></video>
         <span class="final-broadcast-card__shade" aria-hidden="true"></span>
         <div class="final-broadcast-card__copy">
@@ -144,6 +146,16 @@
       card?.addEventListener('mouseleave', () => stop(video));
       card?.addEventListener('focusin', () => loadAndPlay(video));
       card?.addEventListener('focusout', () => stop(video));
+    });
+  }
+
+  function removeLegacyClosingBlocks(keep) {
+    [...document.querySelectorAll('main > section, body > section')].forEach((section) => {
+      if (section === keep || section.classList.contains('final-broadcast-closing')) return;
+      const text = normalise(section.textContent || '');
+      const isLegacy = text.includes('votre entreprise a deja de la valeur')
+        || (text.includes('voir les creneaux disponibles') && text.includes('regarder neptune tv'));
+      if (isLegacy) section.remove();
     });
   }
 
