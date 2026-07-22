@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+
   const ready = (callback) => document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
@@ -71,79 +72,79 @@
     const mount = () => {
       const target = findFaqTarget();
       if (!target) return false;
-      if (target.classList.contains('objection-faq')) return true;
+      if (target.classList.contains('objection-faq') && target.dataset.objectionFaqVersion === '2') return true;
 
       const faq = document.createElement('section');
       faq.className = 'section objection-faq';
       faq.id = 'faq';
       faq.dataset.aidaStage = 'action';
-      faq.dataset.objectionFaqVersion = '1';
+      faq.dataset.objectionFaqVersion = '2';
       faq.innerHTML = `
         <div class="objection-faq__inner">
           <header class="objection-faq__header">
             <span class="objection-faq__eyebrow">Les vraies objections</span>
-            <h2>Si vous êtes encore là, c'est que vous vous posez <em>les mauvaises questions.</em></h2>
-            <p class="objection-faq__intro"><strong>Vos hésitations sont légitimes.</strong> Elles prouvent que vous prenez votre image, votre argent et votre temps au sérieux. Elles méritent donc mieux que des promesses vagues.</p>
+            <h2>Si vous êtes encore là, <em>voici les vraies questions.</em></h2>
+            <p class="objection-faq__intro"><strong>Votre prudence est légitime.</strong> Voici des réponses claires, sans promesse floue.</p>
           </header>
 
-          <div>
+          <div class="objection-faq__content">
             <div class="objection-faq__list" aria-label="Réponses aux objections avant de réserver">
               <details class="objection-faq__item" open>
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">01</span>
-                  <span class="objection-faq__question-text">« Et si je dépense encore de l’argent pour des vidéos qui ne changent rien ? »</span>
+                  <span class="objection-faq__question-text">Et si je paie encore pour des vidéos inutiles&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Votre méfiance est justifiée</span><strong>Vous avez raison de ne plus acheter de “belles images” à l’aveugle.</strong> Ici, on commence par ce que votre audience doit comprendre de vous. Le format, les questions et les contenus sont construits autour de cet objectif — pas autour d’un décor.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous n’achetez pas un décor</span><strong>Tout part de ce que votre audience doit comprendre de vous.</strong> L’angle, les questions et les contenus servent ce message — pas seulement l’esthétique.</p></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">02</span>
-                  <span class="objection-faq__question-text">« Je ne suis pas à l’aise face caméra. Et si je donne une mauvaise image de mon entreprise ? »</span>
+                  <span class="objection-faq__question-text">Et si je suis mauvais face caméra&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous n’avez aucun rôle à jouer</span><strong>Être mal à l’aise ne dit rien de votre valeur.</strong> Vous n’avez pas à devenir présentateur ni à réciter un texte. Avec Hors Norme, vous êtes guidé comme dans une vraie conversation. Votre expertise fait le reste.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Votre expertise suffit</span><strong>Aucun texte à apprendre. Aucun personnage à jouer.</strong> Avec Hors Norme, vous êtes guidé dans une vraie conversation et nous gardons ce qui vous ressemble.</p></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">03</span>
-                  <span class="objection-faq__question-text">« Honnêtement, je ne sais même pas ce que j’aurais d’intéressant à raconter. »</span>
+                  <span class="objection-faq__question-text">Et si je n’ai rien d’intéressant à raconter&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous avez déjà la matière</span><strong>Vous n’avez pas besoin d’inventer une histoire spectaculaire.</strong> Vos décisions, vos erreurs, vos convictions et les problèmes que vous résolvez chaque jour prouvent déjà votre savoir-faire. Notre travail est de les faire émerger clairement.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous avez déjà la matière</span><strong>Vos clients, vos décisions, vos erreurs et vos convictions sont votre contenu.</strong> Nous faisons émerger ce que vous savez déjà, sans inventer un personnage.</p></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">04</span>
-                  <span class="objection-faq__question-text">« Et si personne ne regarde — ou si ça ne m’apporte aucun client ? »</span>
+                  <span class="objection-faq__question-text">Est-ce que ça peut vraiment m’apporter des clients&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Pas de fausse garantie</span><strong>Aucune équipe sérieuse ne peut vous promettre qu’une vidéo créera des clients toute seule.</strong> Elle peut en revanche rendre votre valeur plus claire, renforcer la confiance et vous donner des contenus crédibles à diffuser et réutiliser dans le temps.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Pas de promesse magique</span><strong>Une vidéo ne vend pas toute seule.</strong> Elle peut rendre votre valeur évidente, réduire la méfiance et donner à vos prospects une raison crédible de vous choisir.</p></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">05</span>
-                  <span class="objection-faq__question-text">« Je n’ai pas le temps de devenir créateur de contenu. »</span>
+                  <span class="objection-faq__question-text">Est-ce que ça va me prendre trop de temps&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">C’est précisément le problème résolu</span><strong>Vous avez autre chose à faire que jouer à l’influenceur.</strong> La préparation, le tournage et la production sont pensés pour concentrer l’effort en une expérience cadrée — pas pour ajouter un nouveau métier à votre agenda.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous ne devenez pas influenceur</span><strong>Votre effort est concentré sur une demi-journée.</strong> Neptune prépare le cadre, tourne et produit les contenus. Vous restez concentré sur votre entreprise.</p></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">06</span>
-                  <span class="objection-faq__question-text">« Comment savoir que je ne vais pas regretter après avoir réservé ? »</span>
+                  <span class="objection-faq__question-text">Et si je regrette après avoir réservé&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">La prudence est saine</span><strong>Avant de payer, vous devez comprendre le format, ce qui est inclus, ce que vous recevrez et ce qui se passe ensuite.</strong> Si ce n’est pas clair pour vous, ne réservez pas. Une bonne décision n’a pas besoin de pression.</p></div>
+                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous gardez le contrôle</span><strong>Avant de payer, vous devez voir le format, ce qui est inclus et la suite.</strong> Si ce n’est pas clair, ne réservez pas. Une bonne décision n’a pas besoin de pression.</p></div>
               </details>
             </div>
 
-            <p class="objection-faq__closing"><strong>Votre prudence n’est pas un frein.</strong> C’est la preuve que votre image compte. La seule mauvaise question serait de vous demander si vous devez devenir quelqu’un d’autre pour être visible.</p>
+            <p class="objection-faq__closing">Vous n’avez pas besoin d’être plus extraverti. <strong>Vous avez besoin d’être mieux compris.</strong></p>
           </div>
         </div>`;
 
@@ -186,11 +187,15 @@
   }
 
   function ensureFaqStylesheet() {
-    if (document.querySelector('link[data-objection-faq-styles]')) return;
+    const existing = document.querySelector('link[data-objection-faq-styles]');
+    if (existing) {
+      existing.href = '/styles/faq-objections-v1.css?v=2';
+      return;
+    }
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/styles/faq-objections-v1.css?v=1';
+    link.href = '/styles/faq-objections-v1.css?v=2';
     link.dataset.objectionFaqStyles = '1';
     document.head.append(link);
   }
