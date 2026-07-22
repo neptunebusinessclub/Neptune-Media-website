@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T14:39:06.417Z
+Généré : 2026-07-22T14:58:40.523Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 297
+- Avertissements : 302
 
 ## Problèmes détectés
 
@@ -27,6 +27,7 @@ Généré : 2026-07-22T14:39:06.417Z
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
 | warning | desktop-1440 | home | clipped-text | Concept Libre |
 | warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
+| warning | desktop-1440 | home | clipped-text | Si vous êtes encore là, c'est que vous vous posez les mauvaises questions. |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -85,6 +86,7 @@ Généré : 2026-07-22T14:39:06.417Z
 | warning | laptop-1280 | home | clipped-text | Hors Norme |
 | warning | laptop-1280 | home | clipped-text | Concept Libre |
 | warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
+| warning | laptop-1280 | home | clipped-text | Si vous êtes encore là, c'est que vous vous posez les mauvaises questions. |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -128,5 +130,3 @@ Généré : 2026-07-22T14:39:06.417Z
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
 | warning | tablet-834 | home | clipped-text | influenceur.se |
-| warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
-| warning | tablet-834 | home | clipped-text | Je suis un.e |
