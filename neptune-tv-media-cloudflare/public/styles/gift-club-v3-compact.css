@@ -1,0 +1,70 @@
+.gift-club-v3{
+  padding:clamp(3.8rem,5.2vw,5.4rem) 0 clamp(3.2rem,4.5vw,4.6rem);
+}
+
+.gift-club-v3__stage{
+  min-height:clamp(430px,45vw,500px);
+  margin-top:clamp(.65rem,1.4vw,1.1rem);
+}
+
+.gift-club-v3__eligibility{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:.28rem .45rem;
+  width:min(760px,calc(100% - 2rem));
+  margin:clamp(-.25rem,-.4vw,0rem) auto .9rem;
+  padding:.8rem 1.05rem;
+  border:1px solid rgba(104,191,255,.2);
+  border-radius:14px;
+  color:#aab8cb;
+  background:linear-gradient(135deg,rgba(15,35,67,.72),rgba(31,18,64,.72));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  font-size:clamp(.84rem,1.1vw,.96rem);
+  line-height:1.45;
+  text-align:center;
+  opacity:.22;
+  transform:translateY(12px);
+  transition:opacity .6s ease 1.42s,transform .75s cubic-bezier(.2,.72,.2,1) 1.38s;
+}
+
+.gift-club-v3__eligibility strong{
+  color:#f5f8ff;
+  font-weight:900;
+}
+
+.gift-club-v3.is-gift-triggered .gift-club-v3__eligibility{
+  opacity:1;
+  transform:none;
+}
+
+.gift-club-v3__action{
+  margin-top:0;
+}
+
+@media(max-width:700px){
+  .gift-club-v3{
+    padding:3.5rem 0 3.4rem;
+  }
+
+  .gift-club-v3__stage{
+    min-height:410px;
+    margin-top:.15rem;
+  }
+
+  .gift-club-v3__eligibility{
+    width:min(100%,360px);
+    margin:-.15rem auto .8rem;
+    padding:.72rem .85rem;
+    font-size:.84rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .gift-club-v3__eligibility{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
