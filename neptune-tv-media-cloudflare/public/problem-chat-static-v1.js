@@ -72,79 +72,79 @@
     const mount = () => {
       const target = findFaqTarget();
       if (!target) return false;
-      if (target.classList.contains('objection-faq') && target.dataset.objectionFaqVersion === '2') return true;
+      if (target.classList.contains('objection-faq') && target.dataset.objectionFaqVersion === '3') return true;
 
       const faq = document.createElement('section');
       faq.className = 'section objection-faq';
       faq.id = 'faq';
       faq.dataset.aidaStage = 'action';
-      faq.dataset.objectionFaqVersion = '2';
+      faq.dataset.objectionFaqVersion = '3';
       faq.innerHTML = `
         <div class="objection-faq__inner">
           <header class="objection-faq__header">
-            <span class="objection-faq__eyebrow">Les vraies objections</span>
+            <span class="objection-faq__eyebrow">Projetez votre investissement</span>
             <h2>Si vous êtes encore là, <em>voici les vraies questions.</em></h2>
-            <p class="objection-faq__intro"><strong>Votre prudence est légitime.</strong> Voici des réponses claires, sans promesse floue.</p>
+            <p class="objection-faq__intro"><strong>Votre contenu doit continuer à travailler après le tournage.</strong> Voici ce que cet investissement peut concrètement changer.</p>
           </header>
 
           <div class="objection-faq__content">
-            <div class="objection-faq__list" aria-label="Réponses aux objections avant de réserver">
+            <div class="objection-faq__list" aria-label="Résultats attendus de votre investissement contenu">
               <details class="objection-faq__item" open>
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">01</span>
-                  <span class="objection-faq__question-text">Et si je paie encore pour des vidéos inutiles&nbsp;?</span>
+                  <span class="objection-faq__question-text">Qu’est-ce que cet investissement doit changer pour mon entreprise&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous n’achetez pas un décor</span><strong>Tout part de ce que votre audience doit comprendre de vous.</strong> L’angle, les questions et les contenus servent ce message — pas seulement l’esthétique.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Un actif, pas une dépense</span><strong>Vous ne repartez pas seulement avec une vidéo.</strong> Vous repartez avec un message clair, une émission crédible et des contenus réutilisables pour expliquer votre valeur, rassurer et vendre plus longtemps.</p></div></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">02</span>
-                  <span class="objection-faq__question-text">Et si je suis mauvais face caméra&nbsp;?</span>
+                  <span class="objection-faq__question-text">Comment mes futurs clients vont-ils me percevoir après l’émission&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Votre expertise suffit</span><strong>Aucun texte à apprendre. Aucun personnage à jouer.</strong> Avec Hors Norme, vous êtes guidé dans une vraie conversation et nous gardons ce qui vous ressemble.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Plus clair. Plus crédible.</span><strong>Ils doivent comprendre plus vite ce que vous faites et pourquoi vous le faites différemment.</strong> Votre expertise cesse d’être une affirmation&nbsp;: elle devient visible.</p></div></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">03</span>
-                  <span class="objection-faq__question-text">Et si je n’ai rien d’intéressant à raconter&nbsp;?</span>
+                  <span class="objection-faq__question-text">Comment ces contenus vont-ils m’aider avant même un rendez-vous&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous avez déjà la matière</span><strong>Vos clients, vos décisions, vos erreurs et vos convictions sont votre contenu.</strong> Nous faisons émerger ce que vous savez déjà, sans inventer un personnage.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Le contenu prépare la vente</span><strong>Un prospect qui connaît déjà votre approche arrive avec moins de doutes et de meilleures questions.</strong> Vous passez moins de temps à vous présenter, plus de temps à parler de son besoin.</p></div></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">04</span>
-                  <span class="objection-faq__question-text">Est-ce que ça peut vraiment m’apporter des clients&nbsp;?</span>
+                  <span class="objection-faq__question-text">Combien de temps une demi-journée peut-elle continuer à travailler pour moi&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Pas de promesse magique</span><strong>Une vidéo ne vend pas toute seule.</strong> Elle peut rendre votre valeur évidente, réduire la méfiance et donner à vos prospects une raison crédible de vous choisir.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Bien après le tournage</span><strong>L’émission et ses extraits peuvent être rediffusés, repartagés et intégrés à vos supports.</strong> Votre passage devient une matière commerciale réutilisable, pas un contenu jetable.</p></div></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">05</span>
-                  <span class="objection-faq__question-text">Est-ce que ça va me prendre trop de temps&nbsp;?</span>
+                  <span class="objection-faq__question-text">À quoi ressemble un vrai résultat, au-delà des vues&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous ne devenez pas influenceur</span><strong>Votre effort est concentré sur une demi-journée.</strong> Neptune prépare le cadre, tourne et produit les contenus. Vous restez concentré sur votre entreprise.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Des conversations plus avancées</span><strong>Le bon résultat, c’est qu’un prospect comprenne votre valeur avant de vous appeler.</strong> Il vous identifie plus vite comme une option crédible et avance avec davantage de confiance.</p></div></div>
               </details>
 
               <details class="objection-faq__item">
                 <summary class="objection-faq__question">
                   <span class="objection-faq__number">06</span>
-                  <span class="objection-faq__question-text">Et si je regrette après avoir réservé&nbsp;?</span>
+                  <span class="objection-faq__question-text">Quand cet investissement devient-il rentable&nbsp;?</span>
                   <span class="objection-faq__icon" aria-hidden="true"></span>
                 </summary>
-                <div class="objection-faq__answer"><p><span class="objection-faq__truth">Vous gardez le contrôle</span><strong>Avant de payer, vous devez voir le format, ce qui est inclus et la suite.</strong> Si ce n’est pas clair, ne réservez pas. Une bonne décision n’a pas besoin de pression.</p></div>
+                <div class="objection-faq__answer"><div class="objection-faq__answer-inner"><p><span class="objection-faq__truth">Quand il évite de repartir de zéro</span><strong>Il travaille chaque fois qu’il explique votre offre, rassure un prospect ou nourrit une prise de parole.</strong> Aucune promesse magique&nbsp;: sa rentabilité dépend aussi de la façon dont vous le diffusez et l’exploitez.</p></div></div>
               </details>
             </div>
 
-            <p class="objection-faq__closing">Vous n’avez pas besoin d’être plus extraverti. <strong>Vous avez besoin d’être mieux compris.</strong></p>
+            <p class="objection-faq__closing">Vous ne payez pas simplement pour être filmé. <strong>Vous investissez pour être compris avant même de prendre la parole.</strong></p>
           </div>
         </div>`;
 
@@ -189,26 +189,110 @@
   function ensureFaqStylesheet() {
     const existing = document.querySelector('link[data-objection-faq-styles]');
     if (existing) {
-      existing.href = '/styles/faq-objections-v1.css?v=2';
+      existing.href = '/styles/faq-objections-v1.css?v=3';
       return;
     }
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/styles/faq-objections-v1.css?v=2';
+    link.href = '/styles/faq-objections-v1.css?v=3';
     link.dataset.objectionFaqStyles = '1';
     document.head.append(link);
   }
 
   function bindFaq(section) {
     const items = [...section.querySelectorAll('.objection-faq__item')];
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     items.forEach((item) => {
-      item.addEventListener('toggle', () => {
-        if (!item.open) return;
+      const summary = item.querySelector('.objection-faq__question');
+      const answer = item.querySelector('.objection-faq__answer');
+      if (!summary || !answer) return;
+
+      item.dataset.accordionState = item.open ? 'open' : 'closed';
+      summary.setAttribute('aria-expanded', item.open ? 'true' : 'false');
+      answer.style.height = item.open ? 'auto' : '0px';
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const state = item.dataset.accordionState;
+        if (state === 'open' || state === 'opening') {
+          closeItem(item);
+          return;
+        }
+
         items.forEach((other) => {
-          if (other !== item) other.open = false;
+          if (other !== item && other.open) closeItem(other);
         });
+        openItem(item);
       });
     });
+
+    function openItem(item) {
+      const summary = item.querySelector('.objection-faq__question');
+      const answer = item.querySelector('.objection-faq__answer');
+      if (!summary || !answer) return;
+
+      item.classList.remove('is-closing');
+      item.open = true;
+      item.dataset.accordionState = 'opening';
+      summary.setAttribute('aria-expanded', 'true');
+      answer.style.height = '0px';
+
+      if (reducedMotion) {
+        answer.style.height = 'auto';
+        item.dataset.accordionState = 'open';
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        answer.style.height = `${answer.scrollHeight}px`;
+      });
+
+      const finish = (event) => {
+        if (event.target !== answer || event.propertyName !== 'height') return;
+        if (item.dataset.accordionState !== 'opening') return;
+        answer.style.height = 'auto';
+        item.dataset.accordionState = 'open';
+        answer.removeEventListener('transitionend', finish);
+      };
+      answer.addEventListener('transitionend', finish);
+    }
+
+    function closeItem(item) {
+      const summary = item.querySelector('.objection-faq__question');
+      const answer = item.querySelector('.objection-faq__answer');
+      if (!summary || !answer || !item.open) return;
+
+      item.dataset.accordionState = 'closing';
+      item.classList.add('is-closing');
+      summary.setAttribute('aria-expanded', 'false');
+      answer.style.height = `${answer.scrollHeight}px`;
+
+      if (reducedMotion) {
+        answer.style.height = '0px';
+        item.open = false;
+        item.classList.remove('is-closing');
+        item.dataset.accordionState = 'closed';
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          answer.style.height = '0px';
+        });
+      });
+
+      const finish = (event) => {
+        if (event.target !== answer || event.propertyName !== 'height') return;
+        if (item.dataset.accordionState !== 'closing') return;
+        item.open = false;
+        item.classList.remove('is-closing');
+        item.dataset.accordionState = 'closed';
+        answer.removeEventListener('transitionend', finish);
+      };
+      answer.addEventListener('transitionend', finish);
+    }
   }
 })();
