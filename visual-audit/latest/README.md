@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T09:00:36.025Z
+Généré : 2026-07-22T09:05:52.993Z
 
 - Captures : 15
-- Erreurs : 5
-- Avertissements : 288
+- Erreurs : 6
+- Avertissements : 291
 
 ## Problèmes détectés
 
@@ -113,6 +113,7 @@ Généré : 2026-07-22T09:00:36.025Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
+| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 500 () |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -129,4 +130,3 @@ Généré : 2026-07-22T09:00:36.025Z
 | warning | tablet-834 | home | clipped-text | influenceur.se |
 | warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
 | warning | tablet-834 | home | clipped-text | Je suis un.e |
-| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
