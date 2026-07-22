@@ -1,6 +1,6 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T09:53:14.818Z
+Généré : 2026-07-22T10:04:56.504Z
 
 - Captures : 15
 - Erreurs : 0
@@ -55,12 +55,9 @@ Généré : 2026-07-22T09:53:14.818Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
-| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
-| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
-| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
+| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
+| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
+| warning | desktop-1440 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -117,12 +114,9 @@ Généré : 2026-07-22T09:53:14.818Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
-| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
-| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
- |
+| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
+| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
+| warning | laptop-1280 | home | console-error | Failed to load resource: the server responded with a status of 401 () |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
