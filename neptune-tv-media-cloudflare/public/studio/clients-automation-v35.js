@@ -5,6 +5,7 @@ const nextStatuses={studio_date_confirmation_pending:'preparation_complete',prep
 const nextLabels={studio_date_confirmation_pending:'Confirmer la préparation',preparation_complete:'Confirmer le passage',filming_scheduled:'Marquer réalisé',filming_confirmed:'Marquer réalisé',filmed:'Passer aux vidéos',videos_pending:'Confirmer réception',videos_received:'Lancer le traitement',editing:'Confirmer livraison',approval:'Confirmer livraison',delivered:'Clôturer'};
 const statusLabels={studio_date_confirmation_pending:'Date à confirmer',preparation_complete:'Préparation terminée',filming_scheduled:'Passage confirmé',filming_confirmed:'Passage confirmé',filmed:'Passage réalisé',videos_pending:'Vidéos attendues',videos_received:'Vidéos reçues',editing:'Traitement en cours',approval:'Validation en cours',delivered:'Livré'};
 const manualStatuses=new Set(['studio_date_confirmation_pending','preparation_complete','filmed','videos_pending','videos_received','editing','approval','delivered']);
+let overviewRefreshTimer;
 
 function deadlineFor(order){
   const base=new Date(order.updatedAt||order.createdAt||Date.now());
@@ -67,8 +68,12 @@ function renderOverview(portal){
 
   const heroTitle=document.querySelector('.clients-hero-copy h1');
   const heroText=document.querySelector('.clients-hero-copy>p:last-child');
+  const topbarTitle=document.querySelector('.clients-topbar h1');
+  const statusText=document.querySelector('.studio-status span');
   if(heroTitle)heroTitle.innerHTML='Neptune surveille.<br><span>Vous validez l’exception.</span>';
   if(heroText)heroText.textContent='Les parcours avancent automatiquement. Cet écran ne remonte que les éléments qui méritent réellement votre attention.';
+  if(topbarTitle)topbarTitle.textContent='Surveillance clients';
+  if(statusText)statusText.textContent='Surveillance active';
 
   const stats=document.querySelectorAll('.stats>div');
   if(stats[0])stats[0].innerHTML=`<b>${actions.length}</b><span>actions</span>`;
@@ -117,6 +122,14 @@ function prepareExceptionFirstLayout(){
   summary.innerHTML='<span><b>Voir tous les parcours</b><small>Kanban complet, recherche et accès aux dossiers</small></span><i>＋</i>';
   details.append(summary,controls,pipeline);
   main.append(details);
+
+  const observer=new MutationObserver(()=>{
+    clearTimeout(overviewRefreshTimer);
+    overviewRefreshTimer=setTimeout(async()=>{
+      try{renderOverview(await api('/api/admin/clients'));}catch{}
+    },120);
+  });
+  observer.observe(pipeline,{childList:true,subtree:false});
 }
 
 async function initialise(){
@@ -126,3 +139,4 @@ async function initialise(){
 
 window.addEventListener('DOMContentLoaded',()=>setTimeout(initialise,80));
 setTimeout(initialise,180);
+setTimeout(initialise,600);
