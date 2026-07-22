@@ -170,7 +170,7 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<script[^>]+src="\/backstage-studio-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/formats-showcase-v1\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script><script src="/formats-showcase-v1.js?v=1" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=3" defer></script><script src="/backstage-studio-v1.js?v=6" defer></script><script src="/formats-showcase-v1.js?v=1" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
