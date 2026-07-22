@@ -19,32 +19,37 @@ const PROBLEM_CHAT_SECTION = `
   </section>`;
 
 const BACKSTAGE_STUDIO_SECTION = `
-  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire">
+  <section class="section backstage-studio-section" id="solution" data-aida-stage="desire" data-backstage-version="3">
     <div class="container backstage-studio-section__inner">
-      <header class="backstage-studio-section__header">
+      <header class="backstage-studio-section__header" data-backstage-reveal data-backstage-order="0">
         <span class="eyebrow">Dans les coulisses</span>
-        <h2>Une équipe et un studio complet à votre unique disposition.</h2>
-        <p class="backstage-studio-section__subtitle">C’est simple : vous ne réfléchissez pas et, en plus, tout est sur mesure.</p>
-        <p class="backstage-studio-section__copy">Venez accompagné de votre équipe : ça leur fera plaisir. Le jeu Connexio est fait pour ça.</p>
+        <h2>Une équipe et un studio complet <span>à votre unique disposition.</span></h2>
+        <p class="backstage-studio-section__subtitle">C'est simple, vous ne réfléchissez pas et en plus c'est sur-mesure.</p>
+        <p class="backstage-studio-section__copy">Venez accompagné avec votre équipe, ça leur fera plaisir, le Jeu Connexio est fait pour ça.</p>
       </header>
 
-      <div class="backstage-studio-section__gallery" aria-label="Aperçu des coulisses du studio Neptune Media">
-        <article class="backstage-studio-section__media backstage-studio-section__media--wide">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/uc?export=view&id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO" aria-label="Coulisses du studio Neptune Media"><source src="https://drive.google.com/uc?export=download&id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-" type="video/quicktime"></video>
-          <div class="backstage-studio-section__caption"><div><span>Le studio</span><strong>Tout est prêt avant votre arrivée.</strong></div><i class="backstage-studio-section__media-button" aria-hidden="true">▶</i></div>
+      <div class="backstage-studio-section__gallery" aria-label="Quelques extraits de l’expérience vécue au studio Neptune Media">
+        <article class="backstage-studio-section__media backstage-studio-section__media--wide" data-backstage-reveal data-backstage-order="1">
+          <video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=1zNuZx-QK9qeZvxfwHkHoQ4s-cZs68Ls-&export=download&confirm=t" aria-label="Découverte du studio Neptune Media"></video>
+          <div class="backstage-studio-section__caption"><div><span>Le studio</span><strong>Tout est prêt avant votre arrivée.</strong></div><button class="backstage-studio-section__media-button" type="button" data-backstage-toggle aria-label="Lire la vidéo"><i aria-hidden="true">▶</i></button></div>
         </article>
-        <article class="backstage-studio-section__media">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/uc?export=view&id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO" aria-label="Équipe Neptune Media en préparation"><source src="https://drive.google.com/uc?export=download&id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs" type="video/quicktime"></video>
-          <div class="backstage-studio-section__caption"><div><span>En coulisses</span><strong>Une équipe concentrée sur votre émission.</strong></div><i class="backstage-studio-section__media-button" aria-hidden="true">▶</i></div>
+        <article class="backstage-studio-section__media" data-backstage-reveal data-backstage-order="2">
+          <video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=16EQ9ZB_bX6l5RxdWr4KURGhKgLKjYoCs&export=download&confirm=t" aria-label="L’équipe vit les coulisses de l’émission"></video>
+          <div class="backstage-studio-section__caption"><div><span>Votre équipe</span><strong>Elle découvre, réagit et partage le moment avec vous.</strong></div><button class="backstage-studio-section__media-button" type="button" data-backstage-toggle aria-label="Lire la vidéo"><i aria-hidden="true">▶</i></button></div>
         </article>
-        <article class="backstage-studio-section__media">
-          <video muted loop playsinline preload="metadata" poster="https://drive.google.com/uc?export=view&id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO" aria-label="Expérience de tournage Neptune Media"><source src="https://drive.google.com/uc?export=download&id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57" type="video/quicktime"></video>
-          <div class="backstage-studio-section__caption"><div><span>L’expérience</span><strong>Vous vivez le moment, Neptune gère le reste.</strong></div><i class="backstage-studio-section__media-button" aria-hidden="true">▶</i></div>
+        <article class="backstage-studio-section__media" data-backstage-reveal data-backstage-order="3">
+          <video muted loop playsinline preload="none" poster="/assets/posters/studio-wide.webp" data-backstage-video data-src="https://drive.usercontent.google.com/download?id=1WlyVRXsKSxMsDov2mapvWhEoak5e8y57&export=download&confirm=t" aria-label="La régie Neptune Media pilote le tournage"></video>
+          <div class="backstage-studio-section__caption"><div><span>La régie</span><strong>Vous vivez le moment, Neptune gère le reste.</strong></div><button class="backstage-studio-section__media-button" type="button" data-backstage-toggle aria-label="Lire la vidéo"><i aria-hidden="true">▶</i></button></div>
         </article>
-        <article class="backstage-studio-section__media backstage-studio-section__media--landscape">
-          <img src="https://drive.google.com/uc?export=view&id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO" alt="Équipe réunie sur le plateau Neptune Media pour le jeu Connexio" loading="lazy" decoding="async">
-          <div class="backstage-studio-section__caption"><div><span>Avec votre équipe</span><strong>Connexio transforme le tournage en expérience collective.</strong></div></div>
+        <article class="backstage-studio-section__media backstage-studio-section__media--landscape" data-backstage-reveal data-backstage-order="4">
+          <img src="/assets/posters/studio-wide.webp" data-backstage-src="https://drive.usercontent.google.com/download?id=1QT_UW8AWvBtv48lRdlgNKER0dmis8upO&export=download&confirm=t" alt="Équipe réunie sur le plateau Neptune Media pour le Jeu Connexio" loading="lazy" decoding="async">
+          <div class="backstage-studio-section__caption"><div><span>Le Jeu Connexio</span><strong>Le tournage devient une expérience collective.</strong></div></div>
         </article>
+      </div>
+
+      <div class="backstage-studio-section__signature" data-backstage-reveal data-backstage-order="5">
+        <span aria-hidden="true"></span>
+        <p>Vous venez avec les bonnes personnes. <strong>Neptune s’occupe de tout le reste.</strong></p>
       </div>
     </div>
   </section>`;
@@ -63,14 +68,14 @@ export async function fixLandingAssetOrder(response) {
   body = body.replace(/<link[^>]+href="\/styles\/problem-solution-v3\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/problem-chat-static-v1\.css[^\"]*"[^>]*>/g, '');
   body = body.replace(/<link[^>]+href="\/styles\/backstage-studio-v1\.css[^\"]*"[^>]*>/g, '');
-  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=2"></head>');
+  body = body.replace('</head>', '<link rel="stylesheet" href="/styles/problem-chat-static-v1.css?v=3"><link rel="stylesheet" href="/styles/backstage-studio-v1.css?v=3"></head>');
 
   body = body.replace(/<script[^>]+src="\/final-experience-v12\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-solution-v3\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/problem-chat-static-v1\.js[^\"]*"[^>]*><\/script>/g, '');
   body = body.replace(/<script[^>]+src="\/backstage-studio-v1\.js[^\"]*"[^>]*><\/script>/g, '');
 
-  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=2" defer></script>';
+  const scripts = '<script src="/final-experience-v12.js?v=8" defer></script><script src="/problem-chat-static-v1.js?v=2" defer></script><script src="/backstage-studio-v1.js?v=3" defer></script>';
   body = body.replace('</body>', `${scripts}</body>`);
 
   const headers = new Headers(response.headers);
