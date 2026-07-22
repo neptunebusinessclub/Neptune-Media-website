@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-22T09:42:59.072Z
+Généré : 2026-07-22T09:53:14.818Z
 
 - Captures : 15
 - Erreurs : 0
-- Avertissements : 287
+- Avertissements : 300
 
 ## Problèmes détectés
 
@@ -55,6 +55,12 @@ Généré : 2026-07-22T09:42:59.072Z
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | desktop-1440 | home | offscreen-element | video |
+| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
+| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
+| warning | desktop-1440 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -111,6 +117,12 @@ Généré : 2026-07-22T09:42:59.072Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
+| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
+| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
+| warning | laptop-1280 | home | console-error | Refused to frame 'https://drive.google.com/' because it violates the following Content Security Policy directive: "frame-src https://www.youtube.com https://www.youtube-nocookie.com".
+ |
 | warning | laptop-1280 | emissions | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | emissions | clipped-text | Rechercher une émission |
 | warning | laptop-1280 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
@@ -124,9 +136,3 @@ Généré : 2026-07-22T09:42:59.072Z
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | tablet-834 | home | clipped-text | Je ne suis pas un.e |
 | warning | tablet-834 | home | clipped-text | influenceur.se |
-| warning | tablet-834 | home | clipped-text | Je suis un.echef.fe d'entreprise |
-| warning | tablet-834 | home | clipped-text | Je suis un.e |
-| warning | tablet-834 | home | clipped-text | chef.fe d'entreprise |
-| warning | tablet-834 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
-| warning | tablet-834 | home | clipped-text | Votre entrepreneuriat mis en lumière |
-| warning | tablet-834 | home | clipped-text | Rituels d’entrepreneur |
