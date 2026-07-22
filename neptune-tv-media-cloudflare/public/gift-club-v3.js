@@ -30,7 +30,7 @@
     section.className = 'section gift-club-v3 is-gift-pending';
     section.id = 'experience-details';
     section.dataset.aidaStage = 'action';
-    section.dataset.giftClubVersion = '3';
+    section.dataset.giftClubVersion = '3.1';
     section.innerHTML = `
       <div class="container gift-club-v3__inner">
         <header class="gift-club-v3__header">
@@ -93,53 +93,78 @@
     if (section.dataset.giftRevealBound === '1') return;
     section.dataset.giftRevealBound = '1';
 
-    let observer = null;
-    let frame = 0;
-    let fallbackTimer = 0;
-
-    const trigger = () => {
-      if (section.classList.contains('is-gift-triggered')) return;
+    if (reducedMotion) {
       section.classList.remove('is-gift-pending');
       section.classList.add('is-gift-triggered');
-      observer?.disconnect();
-      window.removeEventListener('scroll', requestCheck);
-      window.removeEventListener('resize', requestCheck);
-      if (fallbackTimer) window.clearTimeout(fallbackTimer);
-    };
-
-    const isVisible = (margin = 0) => {
-      const rect = section.getBoundingClientRect();
-      const viewport = window.innerHeight || document.documentElement.clientHeight;
-      return rect.top < viewport * (1 + margin) && rect.bottom > viewport * 0.04;
-    };
-
-    const check = () => {
-      frame = 0;
-      if (isVisible()) trigger();
-    };
-
-    const requestCheck = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(check);
-    };
-
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      trigger();
       return;
     }
 
-    observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting || entry.intersectionRatio > 0)) trigger();
-    }, { threshold: [0, 0.01, 0.05], rootMargin: '0px 0px -4% 0px' });
+    let frame = 0;
+    let armed = true;
+    let replayFrame = 0;
 
-    observer.observe(section);
-    window.addEventListener('scroll', requestCheck, { passive: true });
-    window.addEventListener('resize', requestCheck, { passive: true });
+    const reset = () => {
+      if (armed) return;
+      if (replayFrame) window.cancelAnimationFrame(replayFrame);
+      replayFrame = 0;
+      section.classList.remove('is-gift-triggered');
+      section.classList.add('is-gift-pending');
+      section.dataset.giftReplayState = 'ready';
+      armed = true;
+    };
 
-    check();
-    window.setTimeout(check, 250);
-    fallbackTimer = window.setTimeout(() => {
-      if (isVisible(0.35)) trigger();
-    }, 1400);
+    const replay = () => {
+      if (!armed) return;
+      armed = false;
+      section.dataset.giftReplayState = 'starting';
+
+      section.classList.remove('is-gift-triggered');
+      section.classList.add('is-gift-pending');
+
+      // Force a style flush so CSS transitions and particle keyframes restart reliably.
+      void section.offsetWidth;
+
+      replayFrame = window.requestAnimationFrame(() => {
+        replayFrame = 0;
+        section.classList.remove('is-gift-pending');
+        section.classList.add('is-gift-triggered');
+        section.dataset.giftReplayState = 'playing';
+      });
+    };
+
+    const evaluate = () => {
+      frame = 0;
+      const rect = section.getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+
+      const hasReachedRevealZone = rect.top < viewport * 0.78 && rect.bottom > viewport * 0.16;
+      const isFullyAway = rect.bottom < -viewport * 0.08 || rect.top > viewport * 1.08;
+
+      if (isFullyAway) {
+        reset();
+      } else if (hasReachedRevealZone) {
+        replay();
+      }
+    };
+
+    const requestEvaluate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(evaluate);
+    };
+
+    const observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver(requestEvaluate, {
+          threshold: [0, 0.01, 0.08, 0.2, 0.45, 0.8],
+          rootMargin: '8% 0px 8% 0px',
+        })
+      : null;
+
+    observer?.observe(section);
+    window.addEventListener('scroll', requestEvaluate, { passive: true });
+    window.addEventListener('resize', requestEvaluate, { passive: true });
+    window.addEventListener('pageshow', requestEvaluate, { passive: true });
+
+    evaluate();
+    window.setTimeout(requestEvaluate, 250);
   }
 })();
