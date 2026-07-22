@@ -1,13 +1,40 @@
 (() => {
   'use strict';
 
+  const EXACT_MEDIA = {
+    '.format-carousel__visual--hn1': '/assets/formats/exact-hn1.b64',
+    '.format-carousel__visual--hn2': '/assets/formats/exact-hn2.b64',
+    '.format-carousel__visual--cl1': '/assets/formats/exact-cl1.b64',
+    '.format-carousel__visual--cl2': '/assets/formats/exact-cl2.b64',
+    '.format-carousel__visual--cl3': '/assets/formats/exact-cl3.b64',
+  };
+
   const ready = (callback) => document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
 
   ready(() => {
+    loadExactMedia();
     document.querySelectorAll('[data-format-carousel]').forEach(initCarousel);
   });
+
+  async function loadExactMedia() {
+    await Promise.all(Object.entries(EXACT_MEDIA).map(async ([selector, url]) => {
+      const visual = document.querySelector(selector);
+      if (!visual) return;
+
+      try {
+        const response = await fetch(`${url}?v=2`, { cache: 'force-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const base64 = (await response.text()).trim();
+        if (!base64.startsWith('UklG')) throw new Error('Invalid WebP payload');
+        visual.style.backgroundImage = `url("data:image/webp;base64,${base64}")`;
+        visual.dataset.exactMedia = '1';
+      } catch (error) {
+        console.error('formats_exact_media_failed', { selector, error });
+      }
+    }));
+  }
 
   function initCarousel(root) {
     if (root.dataset.carouselBound === '1') return;
