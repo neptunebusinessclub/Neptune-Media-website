@@ -2,31 +2,90 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#06183f">
   <title>Clients · Neptune Media Studio</title>
   <link rel="icon" href="/assets/logo-neptune.svg">
   <link rel="stylesheet" href="/studio/clients.css?v=30">
   <link rel="stylesheet" href="/studio/clients-feedback-v31.css?v=1">
   <link rel="stylesheet" href="/studio/clients-referral-v32.css?v=1">
   <link rel="stylesheet" href="/studio/clients-content-ai-v33.css?v=1">
+  <link rel="stylesheet" href="/studio/clients-shell-v34.css?v=1">
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="/studio/"><img src="/assets/logo-neptune.svg" alt="Neptune"><span><b>Neptune Media</b><small>Parcours clients</small></span></a>
-    <div class="top-actions"><a class="button secondary" href="/studio/">Aujourd’hui</a><a class="button secondary" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener">Video Studio</a><button id="newClient" class="button" type="button">Nouveau client</button></div>
-  </header>
+<body class="clients-app">
+  <div class="studio-shell">
+    <aside class="studio-sidebar">
+      <a class="studio-brand" href="/studio/" aria-label="Accueil du Studio">
+        <img src="/assets/logo-neptune.svg" alt="">
+        <div><b>Neptune</b><small>Media · Studio Admin</small></div>
+      </a>
 
-  <main>
-    <section class="intro">
-      <div><p class="eyebrow">PARCOURS CLIENTS</p><h1>Une prochaine action. Pas dix formulaires.</h1><p>Les délais sont calculés automatiquement. Chaque validation met à jour le client et envoie les e-mails nécessaires.</p></div>
-      <div class="stats" aria-label="Résumé"><div><b id="clientCount">0</b><span>clients</span></div><div><b id="activeCount">0</b><span>en cours</span></div><div><b id="urgentCount">0</b><span>urgents</span></div><button id="refresh" class="icon-button" type="button" aria-label="Actualiser">↻</button></div>
+      <div class="studio-status"><i></i><span>Studio opérationnel</span></div>
+
+      <nav class="studio-nav" aria-label="Navigation du Studio">
+        <p class="studio-nav-label">Pilotage</p>
+        <a class="studio-nav-link" href="/studio/"><span>⌂</span><strong>Aujourd’hui</strong></a>
+        <a class="studio-nav-link active" href="/studio/clients"><span>◎</span><strong>Clients</strong></a>
+        <a class="studio-nav-link" href="/studio/#episodes"><span>▶</span><strong>Programme</strong></a>
+
+        <p class="studio-nav-label">Production</p>
+        <button class="studio-nav-link" type="button" data-open-section="contenus"><span>▣</span><strong>Contenus</strong></button>
+        <button class="studio-nav-link" type="button" data-open-section="calendrier"><span>▦</span><strong>Calendrier</strong></button>
+        <a class="studio-nav-link studio-nav-link--accent" href="https://neptune-video-clean.neptunebusinessclub.workers.dev/" target="_blank" rel="noopener"><span>✦</span><strong>Video Studio</strong><em>↗</em></a>
+
+        <p class="studio-nav-label">Performance</p>
+        <a class="studio-nav-link" href="/studio/#insights"><span>↗</span><strong>Audience</strong></a>
+        <a class="studio-nav-link" href="/studio/#finances"><span>€</span><strong>Finances</strong></a>
+        <a class="studio-nav-link" href="/studio/#settings"><span>⚙</span><strong>Réglages</strong></a>
+      </nav>
+
+      <a class="studio-account" href="/studio/" aria-label="Revenir au centre de pilotage">
+        <span class="studio-avatar">NM</span>
+        <span><b>Neptune Media</b><small>Administration</small></span>
+        <i>→</i>
+      </a>
+    </aside>
+
+    <section class="clients-workspace">
+      <header class="clients-topbar">
+        <div><p class="eyebrow">CENTRE DE PILOTAGE</p><h1>Parcours clients</h1></div>
+        <div class="clients-top-actions">
+          <span class="studio-sync"><i></i> Synchronisé</span>
+          <a class="secondary" href="/studio/">Vue d’ensemble</a>
+          <button id="newClient" class="button" type="button">Nouveau client</button>
+        </div>
+      </header>
+
+      <main class="clients-main">
+        <section class="clients-hero">
+          <div class="clients-hero-copy">
+            <p class="eyebrow">PARCOURS CLIENTS</p>
+            <h1>Une prochaine action.<br><span>Pas dix formulaires.</span></h1>
+            <p>Les délais sont calculés automatiquement. Chaque validation met à jour le client et envoie les e-mails nécessaires.</p>
+          </div>
+          <div class="stats" aria-label="Résumé">
+            <div><b id="clientCount">0</b><span>clients</span></div>
+            <div><b id="activeCount">0</b><span>en cours</span></div>
+            <div><b id="urgentCount">0</b><span>urgents</span></div>
+            <button id="refresh" class="icon-button" type="button" aria-label="Actualiser">↻</button>
+          </div>
+        </section>
+
+        <section class="controls">
+          <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un client, une entreprise ou un format"></label>
+          <div class="view-links">
+            <button type="button" data-open-section="contenus">Contenus</button>
+            <button type="button" data-open-section="calendrier">Calendrier</button>
+            <button type="button" data-open-section="finances">Facturation</button>
+            <button id="feedbackView" class="feedback-button" data-count="0" type="button">Avis clients</button>
+          </div>
+        </section>
+
+        <section id="pipeline" class="pipeline" aria-live="polite"></section>
+      </main>
     </section>
-
-    <section class="controls"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un client, une entreprise ou un format"></label><div class="view-links"><button type="button" data-open-section="contenus">Contenus</button><button type="button" data-open-section="calendrier">Calendrier</button><button type="button" data-open-section="finances">Facturation</button><button id="feedbackView" class="feedback-button" data-count="0" type="button">Avis clients</button></div></section>
-
-    <section id="pipeline" class="pipeline" aria-live="polite"></section>
-  </main>
+  </div>
 
   <dialog id="newDialog" class="dialog">
     <form id="newOrder" class="dialog-card">
@@ -63,7 +122,7 @@
   </dialog>
 
   <div id="toast" class="toast" hidden></div>
-  <script type="module" src="/studio/clients.js?v=31"></script>
+  <script type="module" src="/studio/clients.js?v=32"></script>
   <script type="module" src="/studio/clients-feedback-v31.js?v=2"></script>
 </body>
 </html>
