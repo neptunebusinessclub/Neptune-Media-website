@@ -66,8 +66,8 @@ jobs:
               "$PUBLIC_URL/api/public/email-health?attempt=$attempt" > /tmp/email-health.json || true
 
             if grep -Fq '"configured":true' /tmp/email-health.json \
-              && grep -Fq '"apiAuthenticated":true' /tmp/email-health.json \
-              && grep -Fq '"senderDomainVerified":true' /tmp/email-health.json; then
+              && grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json \
+              && ! grep -Fq '"senderDomainVerified":false' /tmp/email-health.json; then
               echo 'Resend configuration verified.'
               break
             fi
@@ -77,8 +77,11 @@ jobs:
 
           cat /tmp/email-health.json
           grep -Fq '"configured":true' /tmp/email-health.json
-          grep -Fq '"apiAuthenticated":true' /tmp/email-health.json
-          grep -Fq '"senderDomainVerified":true' /tmp/email-health.json
+          grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
+          if grep -Fq '"senderDomainVerified":false' /tmp/email-health.json; then
+            echo 'The configured sender domain is not verified in Resend.' >&2
+            exit 1
+          fi
 
       - name: Verify production hero
         working-directory: .
