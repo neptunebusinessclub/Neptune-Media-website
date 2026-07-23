@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-23T11:49:21.194Z
+Généré : 2026-07-23T11:51:55.224Z
 
 - Captures : 15
 - Erreurs : 35
-- Avertissements : 367
+- Avertissements : 363
 
 ## Problèmes détectés
 
@@ -20,7 +20,6 @@ Généré : 2026-07-23T11:49:21.194Z
 | warning | desktop-1440 | home | clipped-text | Je suis un.echef.fe d'entreprise |
 | warning | desktop-1440 | home | clipped-text | Je suis un.e |
 | warning | desktop-1440 | home | clipped-text | chef.fe d'entreprise |
-| warning | desktop-1440 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | desktop-1440 | home | clipped-text | Résultat : une demi-journée pour 3 mois de communication programmée. |
 | warning | desktop-1440 | home | clipped-text | Comment avec du contenu je peux avoir plus de client ? |
 | warning | desktop-1440 | home | clipped-text | Hors Norme |
@@ -94,7 +93,6 @@ Généré : 2026-07-23T11:49:21.194Z
 | warning | laptop-1280 | home | clipped-text | Je suis un.echef.fe d'entreprise |
 | warning | laptop-1280 | home | clipped-text | Je suis un.e |
 | warning | laptop-1280 | home | clipped-text | chef.fe d'entreprise |
-| warning | laptop-1280 | home | clipped-text | +30 contenus minimum garantis pour gagner en visibilité. |
 | warning | laptop-1280 | home | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | laptop-1280 | home | clipped-text | Dépasser ce qui vous bloque |
 | warning | laptop-1280 | home | clipped-text | Éviter les erreurs de réseautage |
@@ -130,3 +128,5 @@ Généré : 2026-07-23T11:49:21.194Z
 | warning | laptop-1280 | home | offscreen-element | video |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
+| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
+| warning | laptop-1280 | home | offscreen-element | video |
