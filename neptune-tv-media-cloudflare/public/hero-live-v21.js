@@ -47,9 +47,15 @@
       .identity-bridge__copy{width:min(1180px,calc(100% - clamp(28px,8vw,120px)));margin:0 auto;display:grid;justify-items:center;gap:8px;text-align:center}
       .identity-bridge__eyebrow{margin:0 0 9px;color:#70d5ff;font-size:.68rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
       .identity-bridge .hero-v21__micro{max-width:760px;margin-top:10px!important}
+      .visibility-showcase[data-promise-compact="v1"]{padding-top:clamp(24px,3.5vw,42px)!important}
+      .visibility-showcase[data-promise-compact="v1"] .visibility-showcase__stage{margin-top:0!important}
+      .visibility-showcase__promise{position:relative;z-index:5;min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px;padding:0 4px 10px;border-bottom:1px solid rgba(255,255,255,.09)}
+      .visibility-showcase__promise .eyebrow{margin:0;white-space:nowrap;font-size:.64rem;letter-spacing:.13em}
+      .visibility-showcase__promise p{max-width:none!important;margin:0!important;display:flex;align-items:baseline;gap:.42em;white-space:nowrap;color:#8f9db2;font-size:clamp(.78rem,1vw,.92rem);line-height:1.25}
+      .visibility-showcase__promise strong{font-size:clamp(.92rem,1.25vw,1.12rem);font-weight:900;letter-spacing:-.025em;background:linear-gradient(105deg,#f7fbff 0%,#70ceff 52%,#a58dff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
       @keyframes heroWordIn{from{opacity:0;transform:translateY(8px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
       @media(max-width:980px){.hero-v21__line--future{font-size:clamp(2.2rem,6.3vw,4rem)!important}.hero-v21__line--primary{font-size:clamp(1.85rem,5vw,3rem)!important}.hero-v21__line--secondary{font-size:clamp(1.45rem,4vw,2.35rem)!important}}
-      @media(max-width:760px){.voice-hero{padding:32px 0 58px!important}.hero-v21{gap:22px!important}.hero-v21__line{white-space:normal!important;flex-wrap:wrap!important;gap:6px!important}.hero-v21__word{text-align:center!important}.hero-v21__actions{display:grid!important;grid-template-columns:1fr!important;width:min(420px,100%)!important}.hero-v21__actions .btn{width:100%!important}.hero-v21__video-frame{border-radius:18px!important}.hero-v21__watch{bottom:12px!important;min-height:42px!important;font-size:.82rem!important}.identity-bridge{padding:38px 0}.identity-bridge__copy{width:min(100% - 28px,680px)}}
+      @media(max-width:760px){.voice-hero{padding:32px 0 58px!important}.hero-v21{gap:22px!important}.hero-v21__line{white-space:normal!important;flex-wrap:wrap!important;gap:6px!important}.hero-v21__word{text-align:center!important}.hero-v21__actions{display:grid!important;grid-template-columns:1fr!important;width:min(420px,100%)!important}.hero-v21__actions .btn{width:100%!important}.hero-v21__video-frame{border-radius:18px!important}.hero-v21__watch{bottom:12px!important;min-height:42px!important;font-size:.82rem!important}.identity-bridge{padding:38px 0}.identity-bridge__copy{width:min(100% - 28px,680px)}.visibility-showcase__promise{width:calc(100% - 28px);min-height:0;display:grid;justify-items:start;gap:5px;margin-bottom:10px;padding:0 0 9px}.visibility-showcase__promise .eyebrow{white-space:normal;font-size:.58rem}.visibility-showcase__promise p{display:flex;flex-wrap:wrap;gap:.25em .4em;white-space:normal;font-size:.74rem}.visibility-showcase__promise strong{font-size:.92rem}}
     `;
     document.head.append(style);
   };
@@ -103,6 +109,30 @@
       </div>`;
     anchor.before(section);
     return section;
+  };
+
+  const compactVisibilityPromise = () => {
+    const showcase = document.querySelector('.visibility-showcase');
+    const stage = showcase?.querySelector('.visibility-showcase__stage');
+    if (!showcase || !stage || showcase.dataset.promiseCompact === 'v1') return false;
+
+    showcase.querySelector('.visibility-showcase__intro')?.remove();
+    const promise = document.createElement('div');
+    promise.className = 'visibility-showcase__promise container';
+    promise.innerHTML = '<span class="eyebrow">Une production. Des semaines de visibilité.</span><p><strong>+30 contenus minimum garantis</strong><span>pour gagner en visibilité.</span></p>';
+    stage.prepend(promise);
+    showcase.dataset.promiseCompact = 'v1';
+    return true;
+  };
+
+  const watchVisibilityPromise = () => {
+    if (compactVisibilityPromise()) return;
+    const observer = new MutationObserver(() => {
+      if (!compactVisibilityPromise()) return;
+      observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    setTimeout(() => observer.disconnect(), 12000);
   };
 
   const startRotation = (nodes, values, delay = rotationDelay) => {
@@ -209,5 +239,6 @@
     const identityPrimary = identity?.querySelector('[data-identity-word-primary]');
     const identitySecondary = identity?.querySelector('[data-identity-word-secondary]');
     if (identityPrimary && identitySecondary) startRotation([identityPrimary, identitySecondary], [identityFirst, identitySecond]);
+    watchVisibilityPromise();
   });
 })();
