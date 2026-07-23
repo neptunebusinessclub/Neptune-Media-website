@@ -71,7 +71,7 @@
             <label><span>Nom</span><input id="prospectLastName" name="lastName" autocomplete="family-name" required maxlength="100"></label>
           </div>
           <label><span>Entreprise</span><input id="prospectCompany" name="company" autocomplete="organization" required maxlength="180"></label>
-          <label><span>E-mail professionnel</span><input id="prospectEmail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254"></label>
+          <label><span>Adresse e-mail</span><input id="prospectEmail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254"></label>
           <label class="prospect-modal__consent"><input id="prospectConsent" name="accepted" type="checkbox" required><span>J’accepte que Neptune utilise ces informations pour préparer ma réservation et mon espace client.</span></label>
           <p class="prospect-modal__message" id="prospectMessage" aria-live="polite"></p>
           <button class="prospect-modal__submit" id="prospectSubmit" type="submit"><span>Accéder aux formats et aux créneaux</span><b aria-hidden="true">→</b></button>
@@ -118,7 +118,7 @@
         expiresAt: Date.now() + Number(result.expiresIn || 172800) * 1000,
         contact: result.contact || payload,
       };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch {}
       setMessage('Accès prêt. Ouverture du tunnel…', 'success');
       goToTunnel(pendingTarget || `https://${TUNNEL_HOST}/`, result.token);
     } catch (error) {
