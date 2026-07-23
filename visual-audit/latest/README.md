@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-23T10:44:40.716Z
+Généré : 2026-07-23T10:49:52.771Z
 
 - Captures : 15
-- Erreurs : 45
-- Avertissements : 346
+- Erreurs : 35
+- Avertissements : 361
 
 ## Problèmes détectés
 
@@ -78,9 +78,8 @@ Généré : 2026-07-23T10:44:40.716Z
 | warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
 | warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
 | warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| error | desktop-1440 | direct | broken-image | img |
-| error | desktop-1440 | direct | broken-image | img |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
+| warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
 | warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
@@ -130,3 +129,4 @@ Généré : 2026-07-23T10:44:40.716Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
+| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
