@@ -9,6 +9,7 @@ export {StudioStore};
 const TRACKING_PATHS=new Set(['/api/track','/api/ad-track']);
 const MAX_TRACKING_BYTES=16*1024;
 const ADMIN_EMAIL='contact@neptunebusiness.com';
+const RESEND_USER_AGENT='Neptune-Media-Worker/3.4.1';
 export default {
   async fetch(request,env,ctx){
     try{
@@ -100,6 +101,7 @@ async function handleAdminPasswordReset(request,env,studio){
     headers:{
       Authorization:`Bearer ${env.RESEND_API_KEY}`,
       'Content-Type':'application/json',
+      'User-Agent':RESEND_USER_AGENT,
     },
     body:JSON.stringify({
       from,
