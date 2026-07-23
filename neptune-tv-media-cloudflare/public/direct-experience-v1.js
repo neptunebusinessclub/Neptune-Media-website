@@ -1,5 +1,6 @@
 (() => {
   const FUNNEL_URL = 'https://media.neptunebusiness.com/?utm_source=webtv&utm_medium=direct_own_show&utm_campaign=neptune_media&utm_content=votre_emission';
+  let lastFocusedElement = null;
 
   function enhanceDirectPage() {
     const page = document.querySelector('.live-page.live-page-immediate');
@@ -49,10 +50,10 @@
       related.append(link);
     }
 
-    renderProgrammeCards(page, related);
+    renderProgrammeCards(related);
   }
 
-  function renderProgrammeCards(page, related) {
+  function renderProgrammeCards(related) {
     const grid = related?.querySelector('.seo-grid');
     if (!grid) return;
 
@@ -83,62 +84,90 @@
         <span class="direct-program-card__action" aria-hidden="true">Découvrir →</span>
       </button>`;
 
-    const dialog = ensureOwnShowDialog(page);
-    const trigger = grid.querySelector('[data-own-show-trigger]');
-    trigger?.addEventListener('click', () => openDialog(dialog));
+    const dialog = ensureOwnShowDialog();
+    grid.querySelector('[data-own-show-trigger]')?.addEventListener('click', (event) => {
+      lastFocusedElement = event.currentTarget;
+      openDialog(dialog);
+    });
   }
 
-  function ensureOwnShowDialog(page) {
-    let dialog = document.querySelector('[data-own-show-dialog]');
-    if (dialog) return dialog;
+  function ensureOwnShowDialog() {
+    const existing = document.querySelector('[data-own-show-dialog]');
+    if (existing) existing.remove();
 
-    dialog = document.createElement('dialog');
+    const dialog = document.createElement('div');
     dialog.id = 'directOwnShowDialog';
     dialog.className = 'direct-own-show-dialog';
     dialog.dataset.ownShowDialog = '';
+    dialog.hidden = true;
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-hidden', 'true');
     dialog.setAttribute('aria-labelledby', 'directOwnShowTitle');
     dialog.innerHTML = `
-      <div class="direct-own-show-panel">
+      <div class="direct-own-show-panel" role="document">
         <button class="direct-own-show-close" type="button" data-dialog-close aria-label="Fermer">×</button>
         <span class="eyebrow">Neptune Media</span>
         <h2 id="directOwnShowTitle">Voulez-vous avoir votre propre émission&nbsp;?</h2>
         <p>Nous prenons en charge l’angle, la préparation, le plateau, l’interview et la production. Vous venez, vous échangez, nous faisons le reste.</p>
         <div class="direct-own-show-actions">
           <button class="btn btn-secondary" type="button" data-dialog-close>Pas maintenant</button>
-          <a class="btn btn-primary" href="${FUNNEL_URL}">Oui, je veux mon émission</a>
+          <a class="btn btn-primary" data-dialog-confirm href="${FUNNEL_URL}">Oui, je veux mon émission</a>
         </div>
       </div>`;
 
     document.body.append(dialog);
 
-    const close = () => closeDialog(dialog);
-    dialog.querySelectorAll('[data-dialog-close]').forEach((button) => button.addEventListener('click', close));
     dialog.addEventListener('click', (event) => {
-      if (event.target === dialog) close();
+      const closeTrigger = event.target.closest('[data-dialog-close]');
+      if (closeTrigger) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDialog(dialog);
+        return;
+      }
+
+      const confirmTrigger = event.target.closest('[data-dialog-confirm]');
+      if (confirmTrigger) {
+        event.preventDefault();
+        const destination = confirmTrigger.href;
+        closeDialog(dialog, false);
+        window.location.assign(destination);
+        return;
+      }
+
+      if (event.target === dialog) closeDialog(dialog);
+    }, true);
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeDialog(dialog);
+      }
     });
-    dialog.addEventListener('cancel', () => document.body.classList.remove('direct-modal-open'));
-    dialog.addEventListener('close', () => document.body.classList.remove('direct-modal-open'));
 
     return dialog;
   }
 
   function openDialog(dialog) {
     if (!dialog) return;
+    dialog.hidden = false;
+    dialog.setAttribute('aria-hidden', 'false');
+    dialog.classList.add('is-open');
     document.body.classList.add('direct-modal-open');
-    if (typeof dialog.showModal === 'function') {
-      dialog.showModal();
-      return;
-    }
-    dialog.setAttribute('open', '');
+    window.requestAnimationFrame(() => dialog.querySelector('[data-dialog-close]')?.focus());
   }
 
-  function closeDialog(dialog) {
+  function closeDialog(dialog, restoreFocus = true) {
+    if (!dialog) return;
+    dialog.classList.remove('is-open');
+    dialog.setAttribute('aria-hidden', 'true');
+    dialog.hidden = true;
     document.body.classList.remove('direct-modal-open');
-    if (typeof dialog.close === 'function' && dialog.open) {
-      dialog.close();
-      return;
+
+    if (restoreFocus && lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus({ preventScroll: true });
     }
-    dialog.removeAttribute('open');
   }
 
   if (document.readyState === 'loading') {
