@@ -55,6 +55,29 @@ jobs:
       - name: Deploy canonical Worker and assets
         run: npx wrangler deploy
 
+      - name: Verify prospect capture production
+        working-directory: .
+        run: |
+          set -euo pipefail
+          : > /tmp/home.html
+          : > /tmp/prospect.js
+          for attempt in 1 2 3 4 5 6; do
+            curl --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/?prospect-check=$attempt" > /tmp/home.html || true
+            curl --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/prospect-capture-v1.js?v=$GITHUB_SHA" > /tmp/prospect.js || true
+            if grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html \
+              && grep -Fq '/api/public/prospect/start' /tmp/prospect.js; then
+              break
+            fi
+            sleep 10
+          done
+          grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html
+          grep -Fq '/api/public/prospect/start' /tmp/prospect.js
+          curl --silent --show-error -D /tmp/prospect-headers.txt -o /dev/null -X OPTIONS \
+            -H 'Origin: https://media.neptunebusiness.com' \
+            -H 'Access-Control-Request-Method: POST' \
+            "$PUBLIC_URL/api/public/prospect/start"
+          grep -Fiq 'access-control-allow-origin: https://media.neptunebusiness.com' /tmp/prospect-headers.txt
+
       - name: Verify Resend production configuration
         working-directory: .
         run: |
