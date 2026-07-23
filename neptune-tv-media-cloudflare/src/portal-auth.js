@@ -2,15 +2,17 @@ import { json, randomToken, sha256 } from './security.js';
 import { CODE_TTL, SESSION_TTL, normalizeEmail } from './portal-utils.js';
 import { referralSummary } from './portal-referrals.js';
 
-const INTERNAL_PORTAL_EMAIL = 'contact@neptunebusiness.com';
+const INTERNAL_PORTAL_DOMAIN = 'neptunebusiness.com';
 
 export async function requestCode(store,body){
   const email=normalizeEmail(body.email);if(!email)return json({ok:true,deliver:false,reason:'invalid_email'});
   let client=store.sql.exec('SELECT id,active FROM portal_clients WHERE email=?',email).toArray()[0];
-  if(email===INTERNAL_PORTAL_EMAIL&&(!client||Number(client.active)!==1)){
+  if(isInternalPortalEmail(email)&&(!client||Number(client.active)!==1)){
     const now=new Date().toISOString();
-    if(client){store.sql.exec('UPDATE portal_clients SET active=1,updated_at=? WHERE id=?',now,client.id);}
-    else{store.sql.exec('INSERT INTO portal_clients (id,email,full_name,company,active,created_at,updated_at,last_access_at) VALUES (?,?,?,?,?,?,?,NULL)',crypto.randomUUID(),email,'Neptune Business','Neptune Business',1,now,now);}
+    const localPart=email.split('@')[0]||'neptune';
+    const displayName=localPart.split(/[._-]+/u).filter(Boolean).map(part=>part.charAt(0).toUpperCase()+part.slice(1)).join(' ')||'Équipe Neptune';
+    if(client){store.sql.exec('UPDATE portal_clients SET active=1,full_name=COALESCE(NULLIF(full_name,\'\'),?),company=COALESCE(NULLIF(company,\'\'),?),updated_at=? WHERE id=?',displayName,'Neptune Business',now,client.id);}
+    else{store.sql.exec('INSERT INTO portal_clients (id,email,full_name,company,active,created_at,updated_at,last_access_at) VALUES (?,?,?,?,?,?,?,NULL)',crypto.randomUUID(),email,displayName,'Neptune Business',1,now,now);}
     client=store.sql.exec('SELECT id,active FROM portal_clients WHERE email=?',email).toArray()[0];
   }
   if(!client||Number(client.active)!==1)return json({ok:true,deliver:false,reason:'client_not_found'});
@@ -54,5 +56,6 @@ export async function portalSession(store,body){
 }
 export async function logout(store,body){if(body.token)store.sql.exec('DELETE FROM portal_sessions WHERE token_hash=?',await sha256(String(body.token)));return json({ok:true});}
 export async function requireClient(store,token){if(!token)return null;const now=new Date().toISOString();const row=store.sql.exec(`SELECT s.id AS sessionId,s.expires_at AS expiresAt,c.id,c.email,c.full_name AS fullName,c.company,c.active FROM portal_sessions s JOIN portal_clients c ON c.id=s.client_id WHERE s.token_hash=?`,await sha256(String(token))).toArray()[0];if(!row||Number(row.active)!==1||row.expiresAt<=now){if(row?.sessionId)store.sql.exec('DELETE FROM portal_sessions WHERE id=?',row.sessionId);return null;}return row;}
+function isInternalPortalEmail(email){const parts=String(email||'').split('@');return parts.length===2&&parts[1]===INTERNAL_PORTAL_DOMAIN&&Boolean(parts[0]);}
 function recordFailure(store,email,now,row){if(!row||now-new Date(row.windowStartedAt)>900000){store.sql.exec('INSERT OR REPLACE INTO portal_auth_attempts (email,count,window_started_at,locked_until) VALUES (?,?,?,NULL)',email,1,now.toISOString());return;}const count=Number(row.count)+1;store.sql.exec('UPDATE portal_auth_attempts SET count=?,locked_until=? WHERE email=?',count,count>=6?new Date(now.getTime()+900000).toISOString():null,email);}
 function cleanup(store){const now=new Date().toISOString();store.sql.exec('DELETE FROM portal_sessions WHERE expires_at<=?',now);store.sql.exec('DELETE FROM portal_codes WHERE expires_at<=? OR used_at IS NOT NULL',new Date(Date.now()-86400000).toISOString());}
