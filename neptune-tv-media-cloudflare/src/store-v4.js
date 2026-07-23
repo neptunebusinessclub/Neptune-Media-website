@@ -1,6 +1,7 @@
 import { StudioStore as LegacyStore } from './store-v3.js';
 import { ensurePortalSchema } from './portal-schema.js';
 import { json } from './security.js';
+import { prospectContext, startProspect } from './portal-prospects.js';
 import {
   autopilotAction,
   autopilotPulse,
@@ -16,6 +17,19 @@ export class StudioStore extends LegacyStore {
   async fetch(request) {
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
+
+    if (url.pathname === '/portal/prospect-start' && method === 'POST') {
+      ensurePortalSchema(this);
+      const body = await request.clone().json().catch(() => ({}));
+      return startProspect(this, body);
+    }
+
+    if (url.pathname === '/portal/prospect-context' && method === 'POST') {
+      ensurePortalSchema(this);
+      const body = await request.clone().json().catch(() => ({}));
+      return prospectContext(this, body);
+    }
+
     if (url.pathname === '/portal/invalidate-code' && method === 'POST') {
       try {
         ensurePortalSchema(this);
