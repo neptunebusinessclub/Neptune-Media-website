@@ -1,16 +1,19 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-23T11:32:54.036Z
+Généré : 2026-07-23T11:49:21.194Z
 
 - Captures : 15
 - Erreurs : 35
-- Avertissements : 357
+- Avertissements : 367
 
 ## Problèmes détectés
 
 | Niveau | Écran | Page | Type | Détail |
 |---|---|---|---|---|
 | warning | desktop-1440 | home | clipped-text | Aller au contenu principal |
+| warning | desktop-1440 | home | clipped-text | Créez votre futur aveccommunication |
+| warning | desktop-1440 | home | clipped-text | Créez votre futur avec |
+| warning | desktop-1440 | home | clipped-text | communication |
 | warning | desktop-1440 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | desktop-1440 | home | clipped-text | Je ne suis pas un.e |
 | warning | desktop-1440 | home | clipped-text | influenceur.se |
@@ -29,6 +32,8 @@ Généré : 2026-07-23T11:32:54.036Z
 | warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | desktop-1440 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
+| warning | desktop-1440 | home | offscreen-element | p.hero-v21__line.hero-v21__line--future |
+| warning | desktop-1440 | home | offscreen-element | span.hero-v21__word |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -57,8 +62,6 @@ Généré : 2026-07-23T11:32:54.036Z
 | warning | desktop-1440 | home | offscreen-element | video |
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__shade |
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
-| warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
-| warning | desktop-1440 | home | offscreen-element | video |
 | error | desktop-1440 | emissions | broken-image | img |
 | error | desktop-1440 | emissions | broken-image | img |
 | error | desktop-1440 | emissions | broken-image | img |
@@ -82,6 +85,9 @@ Généré : 2026-07-23T11:32:54.036Z
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | laptop-1280 | home | clipped-text | Aller au contenu principal |
+| warning | laptop-1280 | home | clipped-text | Créez votre futur aveccommunication |
+| warning | laptop-1280 | home | clipped-text | Créez votre futur avec |
+| warning | laptop-1280 | home | clipped-text | communication |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.e |
 | warning | laptop-1280 | home | clipped-text | influenceur.se |
@@ -104,6 +110,8 @@ Généré : 2026-07-23T11:32:54.036Z
 | warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | laptop-1280 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | laptop-1280 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
+| warning | laptop-1280 | home | offscreen-element | p.hero-v21__line.hero-v21__line--future |
+| warning | laptop-1280 | home | offscreen-element | span.hero-v21__word |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -122,11 +130,3 @@ Généré : 2026-07-23T11:32:54.036Z
 | warning | laptop-1280 | home | offscreen-element | video |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
-| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
-| warning | laptop-1280 | home | offscreen-element | video |
-| warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
-| warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
-| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
-| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
-| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
-| warning | laptop-1280 | home | offscreen-element | video |
