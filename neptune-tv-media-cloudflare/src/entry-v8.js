@@ -62,11 +62,13 @@ async function requestClientCode(request, env) {
   try {
     sent = await sendCode(env, request.url, email, result.code);
   } catch (error) {
+    await revokeCode(studio, email);
     console.error('client_security_code_provider_exception', { to: email, ...safeError(error) });
     return json({ error: 'email_send_failed' }, 503);
   }
 
   if (!sent.ok) {
+    await revokeCode(studio, email);
     console.error('client_security_code_delivery_failed', {
       to: email,
       error: sent.error || 'email_send_failed',
@@ -85,6 +87,15 @@ async function requestClientCode(request, env) {
     retryAfter: 0,
     throttled: false,
   });
+}
+
+async function revokeCode(studio, email) {
+  try {
+    const response = await callStore(studio, '/portal/invalidate-code', { email });
+    if (!response.ok) console.error('client_security_code_revoke_failed', { to: email, status: response.status });
+  } catch (error) {
+    console.error('client_security_code_revoke_exception', { to: email, ...safeError(error) });
+  }
 }
 
 async function emailHealth(env) {
