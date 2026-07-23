@@ -4,6 +4,7 @@ const ADMIN_EMAIL = 'contact@neptunebusiness.com';
 const STUDIO_NAME = 'RECBOX';
 const STUDIO_COORDINATES = '43°38\'48.8"N 1°30\'46.3"E';
 const STUDIO_MAP_URL = 'https://www.google.com/maps?q=43.6468889,1.5128611';
+const RESEND_USER_AGENT = 'Neptune-Media-Worker/3.4.1';
 
 function sender(env) {
   return env.AUTH_FROM_EMAIL || 'Neptune Media <onboarding@resend.dev>';
@@ -14,32 +15,53 @@ async function send(env, payload) {
     console.error('resend_not_configured');
     return { ok: false, error: 'email_service_not_configured' };
   }
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+
+  let response;
+  try {
+    response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+        'User-Agent': RESEND_USER_AGENT,
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error('resend_unreachable', {
+      name: error?.name || 'Error',
+      message: String(error?.message || error || 'unknown').slice(0, 300),
+      to: payload.to,
+    });
+    return { ok: false, error: 'email_provider_unreachable' };
+  }
+
   const raw = await response.text();
   const result = parseJson(raw);
   if (!response.ok) {
+    const providerCode = result.name || result.code || '';
+    const providerMessage = result.message || raw.slice(0, 300);
     console.error('resend_failed', {
       status: response.status,
-      code: result.name || result.code || '',
-      message: result.message || raw.slice(0, 300),
+      code: providerCode,
+      message: providerMessage,
       from: payload.from,
       to: payload.to,
     });
-    return { ok: false, error: 'email_send_failed' };
+    return {
+      ok: false,
+      error: response.status === 401 || response.status === 403 ? 'email_service_not_configured' : 'email_send_failed',
+      providerStatus: response.status,
+      providerCode,
+      providerMessage,
+    };
   }
   if (!result.id) {
     console.error('resend_id_missing', { status: response.status, response: result, to: payload.to });
-    return { ok: false, error: 'email_send_unconfirmed' };
+    return { ok: false, error: 'email_send_unconfirmed', providerStatus: response.status };
   }
   console.log('resend_email_sent', { emailId: result.id, to: payload.to, subject: payload.subject });
-  return { ok: true, id: result.id };
+  return { ok: true, id: result.id, providerStatus: response.status };
 }
 
 export function portalUrl(requestUrl, email, step = '') {
