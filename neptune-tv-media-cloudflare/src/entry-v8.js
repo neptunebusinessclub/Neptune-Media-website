@@ -7,6 +7,7 @@ export { StudioStore };
 
 const REQUEST_CODE_PATH = '/api/client/request-code';
 const EMAIL_HEALTH_PATH = '/api/public/email-health';
+const RESEND_USER_AGENT = 'Neptune-Media-Worker/3.4.1';
 
 export default {
   async fetch(request, env, ctx) {
@@ -95,40 +96,72 @@ async function emailHealth(env) {
     return noStore(json({
       configured: false,
       apiAuthenticated: false,
+      providerKeyAccepted: false,
       sender,
       senderDomain,
-      senderDomainVerified: false,
+      senderDomainVerified: null,
       error: 'email_service_not_configured',
     }, 503));
   }
 
   try {
-    const response = await fetch('https://api.resend.com/domains', {
-      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}` },
+    const authProbe = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+        'User-Agent': RESEND_USER_AGENT,
+      },
+      body: '{}',
     });
-    const raw = await response.text();
-    const data = parseJson(raw);
-    const domains = Array.isArray(data.data) ? data.data : [];
-    const record = domains.find((item) => String(item.name || '').toLowerCase() === senderDomain);
-    const senderDomainVerified = senderDomain === 'resend.dev' || String(record?.status || '').toLowerCase() === 'verified';
+    const authRaw = await authProbe.text();
+    const authResult = parseJson(authRaw);
+    const providerKeyAccepted = authProbe.ok || [400, 422].includes(authProbe.status);
 
+    let senderDomainVerified = senderDomain === 'resend.dev' ? true : null;
+    let providerDomainStatus = senderDomain === 'resend.dev' ? 'provider_default' : 'not_checked';
+
+    if (providerKeyAccepted && senderDomain !== 'resend.dev') {
+      const domainProbe = await fetch('https://api.resend.com/domains', {
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          'User-Agent': RESEND_USER_AGENT,
+        },
+      });
+      if (domainProbe.ok) {
+        const domainResult = parseJson(await domainProbe.text());
+        const domains = Array.isArray(domainResult.data) ? domainResult.data : [];
+        const record = domains.find((item) => String(item.name || '').toLowerCase() === senderDomain);
+        providerDomainStatus = record?.status || 'not_found';
+        senderDomainVerified = String(record?.status || '').toLowerCase() === 'verified';
+      } else if (![401, 403].includes(domainProbe.status)) {
+        providerDomainStatus = `http_${domainProbe.status}`;
+      } else {
+        providerDomainStatus = 'sending_access_key';
+      }
+    }
+
+    const healthy = providerKeyAccepted && senderDomainVerified !== false;
     return noStore(json({
       configured: true,
-      apiAuthenticated: response.ok,
+      apiAuthenticated: providerKeyAccepted,
+      providerKeyAccepted,
       sender,
       senderDomain,
       senderDomainVerified,
-      providerStatus: response.status,
-      providerDomainStatus: record?.status || (senderDomain === 'resend.dev' ? 'provider_default' : 'not_found'),
-    }, response.ok && senderDomainVerified ? 200 : 503));
+      providerStatus: authProbe.status,
+      providerCode: authResult.name || authResult.code || '',
+      providerDomainStatus,
+    }, healthy ? 200 : 503));
   } catch (error) {
     console.error('resend_health_failed', safeError(error));
     return noStore(json({
       configured: true,
       apiAuthenticated: false,
+      providerKeyAccepted: false,
       sender,
       senderDomain,
-      senderDomainVerified: false,
+      senderDomainVerified: null,
       error: 'email_provider_unreachable',
     }, 503));
   }
