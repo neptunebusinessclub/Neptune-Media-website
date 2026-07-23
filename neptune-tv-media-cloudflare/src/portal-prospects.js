@@ -2,7 +2,7 @@ import { json, randomToken, sanitizeText, sha256 } from './security.js';
 import { normalizeEmail } from './portal-utils.js';
 
 const TOKEN_TTL_SECONDS = 48 * 60 * 60;
-const OPEN_STATUSES = new Set(['captured', 'tunnel_started']);
+const OPEN_STATUSES = new Set(['captured', 'tunnel_started', 'paid']);
 
 export async function startProspect(store, raw = {}) {
   const firstName = sanitizeText(raw.firstName, 80);
@@ -81,13 +81,14 @@ export async function prospectContext(store, raw = {}) {
   }
 
   store.sql.exec(
-    "UPDATE portal_prospects SET status='tunnel_started',tunnel_started_at=COALESCE(tunnel_started_at,?),updated_at=? WHERE id=?",
+    "UPDATE portal_prospects SET status=CASE WHEN status='paid' THEN status ELSE 'tunnel_started' END,tunnel_started_at=COALESCE(tunnel_started_at,?),updated_at=? WHERE id=?",
     nowIso, nowIso, prospect.id,
   );
 
   return json({
     ok: true,
     prospectId: prospect.id,
+    status: prospect.status,
     expiresAt: prospect.expiresAt,
     contact: {
       firstName: prospect.firstName,
