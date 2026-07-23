@@ -1,33 +1,36 @@
 (() => {
   'use strict';
 
-  const HERO_VERSION = 'v27';
+  const HERO_VERSION = 'v28';
   const ready = (callback) => document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', callback, { once: true })
     : callback();
 
-  const first = ['influenceur.se', 'caméraman', 'vidéaste'];
-  const second = ["chef.fe d'entreprise", 'entrepreneur.se', 'expert.e dans mon domaine'];
+  const futureWords = ['communication', 'clientèle', 'audience'];
+  const identityFirst = ['influenceur.se', 'caméraman', 'vidéaste'];
+  const identitySecond = ["chef.fe d'entreprise", 'entrepreneur.se', 'expert.e dans mon domaine'];
   const fallbackPoster = '/assets/posters/poster-neptune-media.webp';
+  const rotationDelay = 4300;
 
   const ensureCriticalStyles = () => {
-    document.getElementById('hero-live-critical-v26')?.remove();
-    if (document.getElementById('hero-live-critical-v27')) return;
+    document.getElementById('hero-live-critical-v27')?.remove();
+    document.getElementById('hero-live-critical-v28')?.remove();
 
     const style = document.createElement('style');
-    style.id = 'hero-live-critical-v27';
+    style.id = 'hero-live-critical-v28';
     style.textContent = `
       .voice-hero{padding:clamp(38px,5vw,64px) 0 clamp(56px,7vw,92px)!important;background:radial-gradient(circle at 50% 8%,rgba(98,63,255,.16),transparent 26%),radial-gradient(circle at 50% 34%,rgba(34,158,255,.08),transparent 40%),#020611!important}
       .hero-grid--v21{display:block!important}
       .hero-v21{display:grid!important;gap:clamp(24px,3vw,34px)!important;justify-items:center!important;text-align:center!important}
       .hero-v21__copy{width:min(1320px,94vw)!important;display:grid!important;justify-items:center!important;gap:10px!important}
       .hero-v21__line{margin:0!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;align-items:baseline!important;gap:.24em!important;font-weight:820!important;letter-spacing:-.055em!important;white-space:nowrap!important}
-      .hero-v21__line--primary{font-size:clamp(2.35rem,4.9vw,4.9rem)!important;line-height:.98!important;color:#f5f8ff!important}
-      .hero-v21__line--secondary{font-size:clamp(1.85rem,3.9vw,3.75rem)!important;line-height:1!important;color:#dfe8f7!important}
+      .hero-v21__line--future{font-size:clamp(2.65rem,5.6vw,5.8rem)!important;line-height:.96!important;color:#f5f8ff!important}
+      .hero-v21__line--primary{font-size:clamp(2rem,4vw,4.1rem)!important;line-height:.98!important;color:#f5f8ff!important}
+      .hero-v21__line--secondary{font-size:clamp(1.6rem,3.2vw,3.15rem)!important;line-height:1!important;color:#dfe8f7!important}
       .hero-v21__label{color:#f4f7fb!important}
-      .hero-v21__word{display:inline-block!important;min-width:0!important;text-align:left!important;background:linear-gradient(110deg,#68cfff 12%,#8c84ff 56%,#ff9a7a 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;transition:opacity .28s ease,transform .28s ease,filter .28s ease!important}
+      .hero-v21__word{display:inline-block!important;min-width:0!important;text-align:left!important;background:linear-gradient(110deg,#68cfff 12%,#8c84ff 56%,#ff9a7a 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;transition:opacity .34s ease,transform .34s ease,filter .34s ease!important}
       .hero-v21__word.is-exiting{opacity:0!important;transform:translateY(-8px)!important;filter:blur(7px)!important}
-      .hero-v21__word.is-entering{animation:heroWordIn .42s ease!important}
+      .hero-v21__word.is-entering{animation:heroWordIn .48s ease!important}
       .hero-v21__micro{margin:8px 0 0!important;color:#9aabc3!important;font-size:clamp(.95rem,1.3vw,1.08rem)!important;line-height:1.55!important}
       .hero-v21__actions{margin-top:10px!important;display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:12px!important}
       .hero-v21__actions .btn{min-height:50px!important;padding:0 22px!important;border-radius:999px!important}
@@ -40,9 +43,13 @@
       .hero-v21__video-frame{position:relative!important;z-index:1!important;width:100%!important;aspect-ratio:16/9!important;border:1px solid rgba(151,215,255,.32)!important;border-radius:24px!important;overflow:hidden!important;background:#071022!important;box-shadow:0 38px 100px rgba(0,0,0,.52),0 0 42px rgba(74,174,255,.18),0 0 78px rgba(116,91,255,.12)!important}
       .hero-v21__video-frame video{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important;background:#071022!important}
       .hero-v21__watch{position:absolute!important;z-index:2!important;left:50%!important;bottom:18px!important;transform:translateX(-50%)!important;min-height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0 20px!important;border-radius:999px!important;background:rgba(4,10,22,.84)!important;border:1px solid rgba(255,255,255,.18)!important;color:#fff!important;text-decoration:none!important;font-size:.88rem!important;font-weight:780!important;backdrop-filter:blur(12px)!important;box-shadow:0 12px 30px rgba(0,0,0,.28)!important}
+      .identity-bridge{position:relative;overflow:hidden;padding:clamp(42px,5vw,70px) 0;background:radial-gradient(circle at 50% 50%,rgba(84,70,255,.11),transparent 42%),#020611;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+      .identity-bridge__copy{width:min(1180px,calc(100% - clamp(28px,8vw,120px)));margin:0 auto;display:grid;justify-items:center;gap:8px;text-align:center}
+      .identity-bridge__eyebrow{margin:0 0 9px;color:#70d5ff;font-size:.68rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+      .identity-bridge .hero-v21__micro{max-width:760px;margin-top:10px!important}
       @keyframes heroWordIn{from{opacity:0;transform:translateY(8px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-      @media(max-width:980px){.hero-v21__line--primary{font-size:clamp(2rem,5.1vw,3.3rem)!important}.hero-v21__line--secondary{font-size:clamp(1.55rem,4vw,2.65rem)!important}}
-      @media(max-width:760px){.voice-hero{padding:32px 0 58px!important}.hero-v21{gap:22px!important}.hero-v21__line{white-space:normal!important;flex-wrap:wrap!important;gap:6px!important}.hero-v21__word{text-align:center!important}.hero-v21__actions{display:grid!important;grid-template-columns:1fr!important;width:min(420px,100%)!important}.hero-v21__actions .btn{width:100%!important}.hero-v21__video-frame{border-radius:18px!important}.hero-v21__watch{bottom:12px!important;min-height:42px!important;font-size:.82rem!important}}
+      @media(max-width:980px){.hero-v21__line--future{font-size:clamp(2.2rem,6.3vw,4rem)!important}.hero-v21__line--primary{font-size:clamp(1.85rem,5vw,3rem)!important}.hero-v21__line--secondary{font-size:clamp(1.45rem,4vw,2.35rem)!important}}
+      @media(max-width:760px){.voice-hero{padding:32px 0 58px!important}.hero-v21{gap:22px!important}.hero-v21__line{white-space:normal!important;flex-wrap:wrap!important;gap:6px!important}.hero-v21__word{text-align:center!important}.hero-v21__actions{display:grid!important;grid-template-columns:1fr!important;width:min(420px,100%)!important}.hero-v21__actions .btn{width:100%!important}.hero-v21__video-frame{border-radius:18px!important}.hero-v21__watch{bottom:12px!important;min-height:42px!important;font-size:.82rem!important}.identity-bridge{padding:38px 0}.identity-bridge__copy{width:min(100% - 28px,680px)}}
     `;
     document.head.append(style);
   };
@@ -76,6 +83,52 @@
     return metadata.previewUrl || metadata.trailerUrl || metadata.teaserUrl || episode?.videoUrl || '';
   };
 
+  const installIdentityBridge = () => {
+    const existing = document.querySelector('[data-identity-bridge]');
+    if (existing) return existing;
+
+    const anchor = document.querySelector('.visibility-showcase,.proof-by-content');
+    if (!anchor) return null;
+
+    const section = document.createElement('section');
+    section.className = 'identity-bridge';
+    section.dataset.identityBridge = 'v1';
+    section.setAttribute('aria-label', 'Votre rôle reste votre expertise');
+    section.innerHTML = `
+      <div class="identity-bridge__copy">
+        <p class="identity-bridge__eyebrow">Vous restez dans votre rôle</p>
+        <p class="hero-v21__line hero-v21__line--primary"><span class="hero-v21__label">Je ne suis pas un.e</span><span class="hero-v21__word" data-identity-word-primary>${identityFirst[0]}</span></p>
+        <p class="hero-v21__line hero-v21__line--secondary"><span class="hero-v21__label">Je suis un.e</span><span class="hero-v21__word" data-identity-word-secondary>${identitySecond[0]}</span></p>
+        <p class="hero-v21__micro">Neptune prend en charge la caméra, l’angle et la production. Vous restez concentré sur ce que vous savez faire.</p>
+      </div>`;
+    anchor.before(section);
+    return section;
+  };
+
+  const startRotation = (nodes, values, delay = rotationDelay) => {
+    if (!nodes.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let index = 0;
+    let locked = false;
+    const swap = () => {
+      if (locked) return;
+      locked = true;
+      index = (index + 1) % values[0].length;
+      nodes.forEach((node) => node.classList.add('is-exiting'));
+      setTimeout(() => {
+        nodes.forEach((node, nodeIndex) => {
+          node.textContent = values[nodeIndex][index];
+          node.classList.remove('is-exiting');
+          node.classList.add('is-entering');
+        });
+      }, 320);
+      setTimeout(() => {
+        nodes.forEach((node) => node.classList.remove('is-entering'));
+        locked = false;
+      }, 820);
+    };
+    setInterval(swap, delay);
+  };
+
   ready(async () => {
     ensureCriticalStyles();
     const hero = document.querySelector('.voice-hero');
@@ -89,8 +142,7 @@
     stage.className = 'hero-v21';
     stage.innerHTML = `
       <div class="hero-v21__copy">
-        <p class="hero-v21__line hero-v21__line--primary"><span class="hero-v21__label">Je ne suis pas un.e</span><span class="hero-v21__word" data-hero-word-primary>${first[0]}</span></p>
-        <p class="hero-v21__line hero-v21__line--secondary"><span class="hero-v21__label">Je suis un.e</span><span class="hero-v21__word" data-hero-word-secondary>${second[0]}</span></p>
+        <p class="hero-v21__line hero-v21__line--future"><span class="hero-v21__label">Créez votre futur avec</span><span class="hero-v21__word" data-hero-word-future>${futureWords[0]}</span></p>
         <p class="hero-v21__micro">Votre audience n'attend que ça ... et vos clients aussi.</p>
         <div class="hero-v21__actions"><a class="btn btn-primary" href="https://media.neptunebusiness.com/">Je veux être visible</a><a class="btn btn-secondary" href="#formats">Je choisis mon format</a></div>
       </div>
@@ -150,30 +202,12 @@
     }
     live.setAttribute('aria-busy', 'false');
 
-    const primaryNode = stage.querySelector('[data-hero-word-primary]');
-    const secondaryNode = stage.querySelector('[data-hero-word-secondary]');
-    let index = 0;
-    let locked = false;
-    const swap = () => {
-      if (locked) return;
-      locked = true;
-      index = (index + 1) % first.length;
-      primaryNode.classList.add('is-exiting');
-      secondaryNode.classList.add('is-exiting');
-      setTimeout(() => {
-        primaryNode.textContent = first[index];
-        secondaryNode.textContent = second[index];
-        primaryNode.classList.remove('is-exiting');
-        secondaryNode.classList.remove('is-exiting');
-        primaryNode.classList.add('is-entering');
-        secondaryNode.classList.add('is-entering');
-      }, 260);
-      setTimeout(() => {
-        primaryNode.classList.remove('is-entering');
-        secondaryNode.classList.remove('is-entering');
-        locked = false;
-      }, 680);
-    };
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(swap, 2600);
+    const futureNode = stage.querySelector('[data-hero-word-future]');
+    if (futureNode) startRotation([futureNode], [futureWords]);
+
+    const identity = installIdentityBridge();
+    const identityPrimary = identity?.querySelector('[data-identity-word-primary]');
+    const identitySecondary = identity?.querySelector('[data-identity-word-secondary]');
+    if (identityPrimary && identitySecondary) startRotation([identityPrimary, identitySecondary], [identityFirst, identitySecond]);
   });
 })();
