@@ -16,6 +16,21 @@ export class StudioStore extends LegacyStore {
   async fetch(request) {
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
+    if (url.pathname === '/portal/invalidate-code' && method === 'POST') {
+      try {
+        ensurePortalSchema(this);
+        const body = await request.clone().json().catch(() => ({}));
+        const email = String(body.email || '').trim().toLowerCase();
+        if (email) this.sql.exec('DELETE FROM portal_codes WHERE email=? AND used_at IS NULL', email);
+        return json({ ok: true });
+      } catch (error) {
+        console.error('portal_code_invalidation_failed', {
+          name: error?.name || 'Error',
+          message: String(error?.message || error || 'unknown').slice(0, 500),
+        });
+        return json({ error: 'code_invalidation_failed' }, 500);
+      }
+    }
     if (url.pathname.startsWith('/portal/autopilot-')) {
       try {
         ensurePortalSchema(this);
