@@ -20,7 +20,7 @@
     document.body.dataset.prdVisual = 'v16';
     document.body.dataset.visualDensity = 'v17';
     document.body.dataset.visibilityShowcase = 'v21';
-    document.body.dataset.heroRefresh = 'v27';
+    document.body.dataset.heroRefresh = 'v28';
     document.body.dataset.scrollPipeline = 'curve-v2';
 
     installSingleHeader();
@@ -31,10 +31,10 @@
     appendStylesheet('/styles/intent-actions-v18.css?v=19', 'intentActions', 'v19', true);
     appendStylesheet('/styles/visibility-showcase-v19.css?v=21', 'visibilityShowcase', 'v21', true);
     loadVisibilityShowcaseV21();
-    appendStylesheet('/styles/hero-live-v21.css?v=27', 'heroLive', 'v27', true);
+    appendStylesheet('/styles/hero-live-v21.css?v=28', 'heroLive', 'v28', true);
     appendStylesheet('/styles/neptune-brand-bridge-v20.css?v=20', 'neptuneBrandBridge', 'v20', true);
     appendStylesheet('/styles/inner-voice-continuity-v1.css?v=1', 'innerVoiceContinuity', 'v1', true);
-    loadHeroLiveV27();
+    loadHeroLiveV28();
     removeJourneyNavigation();
     bindFormatDecision();
     bindRevealMotion();
@@ -118,12 +118,12 @@
     document.head.append(script);
   }
 
-  function loadHeroLiveV27() {
-    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24],script[data-hero-live-v26],script[data-hero-live-v27]').forEach((node) => node.remove());
+  function loadHeroLiveV28() {
+    document.querySelectorAll('script[data-hero-live-v21],script[data-hero-live-v22],script[data-hero-live-v23],script[data-hero-live-v24],script[data-hero-live-v26],script[data-hero-live-v27],script[data-hero-live-v28]').forEach((node) => node.remove());
     const script = document.createElement('script');
-    script.src = '/hero-live-v21.js?v=27';
+    script.src = '/hero-live-v21.js?v=28';
     script.defer = true;
-    script.dataset.heroLiveV27 = '1';
+    script.dataset.heroLiveV28 = '1';
     document.head.append(script);
   }
 
@@ -316,4 +316,4 @@
   }
 })();
 
-// Production browser quality gate revision 28.
+// Production browser quality gate revision 29.
