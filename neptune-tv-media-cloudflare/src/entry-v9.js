@@ -1,0 +1,47 @@
+import base from './entry-v8.js';
+import { StudioStore } from './store-v4.js';
+
+export { StudioStore };
+
+const ORDER_WEBHOOKS = new Set(['/api/webhooks/client-order', '/api/webhooks/conversion']);
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const tracked = request.method === 'POST' && ORDER_WEBHOOKS.has(url.pathname) ? request.clone() : null;
+    const response = await base.fetch(request, env, ctx);
+    if (tracked && response.ok) {
+      ctx.waitUntil(linkProspectToOrder(tracked, response.clone(), env).catch((error) => {
+        console.error('prospect_payment_link_failed', {
+          name: error?.name || 'Error',
+          message: String(error?.message || error || 'unknown').slice(0, 500),
+        });
+      }));
+    }
+    return response;
+  },
+  async scheduled(controller, env, ctx) {
+    if (typeof base.scheduled === 'function') return base.scheduled(controller, env, ctx);
+  },
+};
+
+async function linkProspectToOrder(request, response, env) {
+  const payload = await request.json().catch(() => ({}));
+  const source = payload?.data?.object && typeof payload.data.object === 'object' ? payload.data.object : payload;
+  const reference = String(source.client_reference_id || source.clientReferenceId || source.metadata?.client_reference_id || '').trim();
+  if (!/^NP:[0-9a-f-]{36}(?::|$)/iu.test(reference)) return;
+
+  const result = await response.json().catch(() => ({}));
+  if (!result.orderId) return;
+
+  const studio = env.STUDIO.get(env.STUDIO.idFromName('neptune-media-main'));
+  const linked = await studio.fetch('https://store/portal/prospect-paid', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ reference, orderId: result.orderId }),
+  });
+  if (!linked.ok) {
+    const detail = await linked.text().catch(() => '');
+    throw new Error(`prospect_link_http_${linked.status}:${detail.slice(0, 180)}`);
+  }
+}
