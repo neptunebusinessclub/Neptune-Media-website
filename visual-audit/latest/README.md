@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-23T11:17:32.523Z
+Généré : 2026-07-23T11:25:07.607Z
 
 - Captures : 15
 - Erreurs : 35
-- Avertissements : 361
+- Avertissements : 358
 
 ## Problèmes détectés
 
@@ -81,8 +81,6 @@ Généré : 2026-07-23T11:17:32.523Z
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
-| warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | direct | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
 | warning | laptop-1280 | home | clipped-text | Aller au contenu principal |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.einfluenceur.se |
 | warning | laptop-1280 | home | clipped-text | Je ne suis pas un.e |
@@ -130,3 +128,5 @@ Généré : 2026-07-23T11:17:32.523Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
+| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
+| warning | laptop-1280 | home | offscreen-element | video |
