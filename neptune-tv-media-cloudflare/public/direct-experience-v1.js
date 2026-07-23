@@ -10,6 +10,13 @@
     const title = heading?.querySelector('h2');
     const description = heading?.querySelector('p');
 
+    if (heading && eyebrow && title && !heading.querySelector('.direct-heading-copy')) {
+      const copy = document.createElement('div');
+      copy.className = 'direct-heading-copy';
+      heading.insertBefore(copy, eyebrow);
+      copy.append(eyebrow, title);
+    }
+
     if (eyebrow) eyebrow.textContent = 'Chaîne officielle';
     if (title) title.textContent = 'Neptune Media en direct';
     if (description) description.textContent = 'La playlist officielle, diffusée directement depuis YouTube.';
