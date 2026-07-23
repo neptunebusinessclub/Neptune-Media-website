@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-23T11:56:52.598Z
+Généré : 2026-07-23T12:03:53.574Z
 
 - Captures : 15
 - Erreurs : 35
-- Avertissements : 362
+- Avertissements : 361
 
 ## Problèmes détectés
 
@@ -31,8 +31,6 @@ Généré : 2026-07-23T11:56:52.598Z
 | warning | desktop-1440 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | desktop-1440 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | desktop-1440 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
-| warning | desktop-1440 | home | offscreen-element | p.hero-v21__line.hero-v21__line--future |
-| warning | desktop-1440 | home | offscreen-element | span.hero-v21__word |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__track |
 | warning | desktop-1440 | home | offscreen-element | div.visibility-marquee__group |
 | warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -61,6 +59,8 @@ Généré : 2026-07-23T11:56:52.598Z
 | warning | desktop-1440 | home | offscreen-element | video |
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__shade |
 | warning | desktop-1440 | home | offscreen-element | span.visibility-short__label |
+| warning | desktop-1440 | home | offscreen-element | article.visibility-short.visibility-short--small |
+| warning | desktop-1440 | home | offscreen-element | video |
 | error | desktop-1440 | emissions | broken-image | img |
 | error | desktop-1440 | emissions | broken-image | img |
 | error | desktop-1440 | emissions | broken-image | img |
@@ -108,8 +108,6 @@ Généré : 2026-07-23T11:56:52.598Z
 | warning | laptop-1280 | home | clipped-text | Quoi ? Vous êtes encore là ? |
 | warning | laptop-1280 | home | clipped-text | Si vous êtes encore là, voici les vraies questions. |
 | warning | laptop-1280 | home | clipped-text | La prochaine histoire visible peut être la vôtre. |
-| warning | laptop-1280 | home | offscreen-element | p.hero-v21__line.hero-v21__line--future |
-| warning | laptop-1280 | home | offscreen-element | span.hero-v21__word |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
 | warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
@@ -130,3 +128,5 @@ Généré : 2026-07-23T11:56:52.598Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--large |
 | warning | laptop-1280 | home | offscreen-element | video |
+| warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
+| warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
