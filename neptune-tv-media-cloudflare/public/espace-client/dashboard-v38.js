@@ -31,6 +31,7 @@ const STAGES = [
 
 const POST_FILMING = new Set(['filmed', 'videos_pending', 'videos_received', 'editing', 'approval']);
 const COMPLETE = new Set(['delivered', 'completed']);
+const TRUSTED_TEST_EMAIL = 'contact@neptunebusiness.com';
 const $ = (selector, root = document) => root.querySelector(selector);
 
 let refreshTimer = 0;
@@ -42,6 +43,7 @@ document.readyState === 'loading'
   : init();
 
 function init() {
+  installTrustedTestLogin();
   installAuthTitle();
   correctSocialLinks();
   installLogoutIcon();
@@ -64,6 +66,45 @@ function init() {
   });
 
   if (!dashboard.hidden) hydrate();
+}
+
+function installTrustedTestLogin() {
+  const form = $('#accessForm');
+  const input = $('#email');
+  if (!form || !input) return;
+
+  form.addEventListener('submit', async (event) => {
+    const email = String(input.value || '').trim().toLowerCase();
+    if (email !== TRUSTED_TEST_EMAIL || !$('#codeStep')?.hidden) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const button = $('#sendCode');
+    const message = $('#authMessage');
+    if (button) button.disabled = true;
+    if (message) {
+      message.textContent = 'Ouverture de l’espace client Neptune…';
+      message.className = 'message';
+    }
+
+    try {
+      const response = await fetch('/api/client/request-code', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.authenticated) throw new Error(result.error || `http_${response.status}`);
+      window.location.reload();
+    } catch {
+      if (message) {
+        message.textContent = 'L’accès test Neptune n’a pas pu être ouvert. Réessayez.';
+        message.className = 'message error';
+      }
+      if (button) button.disabled = false;
+    }
+  }, { capture: true });
 }
 
 function installDedicatedPageNavigation() {
