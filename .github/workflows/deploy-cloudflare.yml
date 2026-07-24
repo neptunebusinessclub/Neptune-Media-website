@@ -28,7 +28,7 @@ jobs:
       RESEND_API: ${{ secrets.RESEND_API }}
       PUBLIC_URL: https://tv.neptunebusiness.com
       WORKERS_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
-      RELEASE_ID: neptune-email-auth-20260724-v5
+      RELEASE_ID: neptune-client-test-access-20260724-v6
 
     steps:
       - name: Checkout
@@ -106,6 +106,7 @@ jobs:
             cat /tmp/release.json
             grep -Fq "\"release\":\"$RELEASE_ID\"" /tmp/release.json
             grep -Fq '"resendSecretPresent":true' /tmp/release.json
+            grep -Fq '"trustedTestClient":"contact@neptunebusiness.com"' /tmp/release.json
           done
 
       - name: Verify Resend authentication from production
@@ -119,21 +120,28 @@ jobs:
           grep -Fq '"configured":true' /tmp/email-health.json
           grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
 
-      - name: Exercise client login email delivery
+      - name: Verify trusted Neptune client login
         working-directory: .
         shell: bash
         run: |
           set -euo pipefail
           curl --silent --show-error \
+            --cookie-jar /tmp/client-cookie.txt \
             -X POST "$PUBLIC_URL/api/client/request-code" \
             -H "Origin: $PUBLIC_URL" \
             -H 'Content-Type: application/json' \
             -H 'Cache-Control: no-cache, no-store' \
-            --data '{"email":"contact@neptunebusiness.com"}' > /tmp/client-code.json
-          cat /tmp/client-code.json
-          grep -Fq '"ok":true' /tmp/client-code.json
-          if ! grep -Fq '"delivered":true' /tmp/client-code.json \
-            && ! grep -Fq '"retryAfter":' /tmp/client-code.json; then
-            echo 'Client login email delivery was not confirmed.' >&2
-            exit 1
-          fi
+            --data '{"email":"contact@neptunebusiness.com"}' > /tmp/trusted-login.json
+          cat /tmp/trusted-login.json
+          grep -Fq '"ok":true' /tmp/trusted-login.json
+          grep -Fq '"authenticated":true' /tmp/trusted-login.json
+          grep -Fq '"trustedAccess":true' /tmp/trusted-login.json
+
+          curl --silent --show-error \
+            --cookie /tmp/client-cookie.txt \
+            -H 'Accept: application/json' \
+            -H 'Cache-Control: no-cache, no-store' \
+            "$PUBLIC_URL/api/client/session" > /tmp/client-session.json
+          cat /tmp/client-session.json
+          grep -Fq '"authenticated":true' /tmp/client-session.json
+          grep -Fq '"email":"contact@neptunebusiness.com"' /tmp/client-session.json
