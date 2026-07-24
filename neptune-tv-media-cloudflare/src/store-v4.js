@@ -1,5 +1,6 @@
 import { StudioStore as LegacyStore } from './store-v3.js';
 import { ensurePortalSchema } from './portal-schema.js';
+import { trustedTestLogin } from './portal-auth.js';
 import { json } from './security.js';
 import { markProspectPaid, prospectContext, prospectIdFromReference, startProspect } from './portal-prospects.js';
 import {
@@ -17,6 +18,12 @@ export class StudioStore extends LegacyStore {
   async fetch(request) {
     const url = new URL(request.url);
     const method = request.method.toUpperCase();
+
+    if (url.pathname === '/portal/trusted-test-login' && method === 'POST') {
+      ensurePortalSchema(this);
+      const body = await request.clone().json().catch(() => ({}));
+      return trustedTestLogin(this, body);
+    }
 
     if (url.pathname === '/portal/prospect-start' && method === 'POST') {
       ensurePortalSchema(this);
