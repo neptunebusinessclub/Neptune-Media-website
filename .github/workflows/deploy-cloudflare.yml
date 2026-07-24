@@ -26,10 +26,9 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       PUBLIC_URL: https://tv.neptunebusiness.com
       WORKERS_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
-      RELEASE_ID: neptune-email-auth-20260724-v1
+      RELEASE_ID: neptune-email-auth-20260724-v2
 
     steps:
       - name: Checkout canonical source
@@ -47,44 +46,7 @@ jobs:
       - name: Validate JavaScript
         run: npm run check
 
-      - name: Validate optional Resend repository secret
-        id: resend_secret
-        working-directory: .
-        shell: bash
-        run: |
-          set -euo pipefail
-          raw="${RESEND_API_KEY:-}"
-          normalized="$(printf '%s' "$raw" \
-            | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/^[Bb]earer[[:space:]]+//; s/^"(.*)"$/\1/; s/^'\''(.*)'\''$/\1/' \
-            | tr -d '\r\n')"
-
-          if [ -z "$normalized" ]; then
-            echo 'valid=false' >> "$GITHUB_OUTPUT"
-            echo 'No repository Resend secret supplied; preserving the Worker secret already configured in Cloudflare.'
-            exit 0
-          fi
-
-          status="$(curl --silent --show-error --output /tmp/resend-validation.json --write-out '%{http_code}' \
-            -X POST 'https://api.resend.com/emails' \
-            -H "Authorization: Bearer $normalized" \
-            -H 'Content-Type: application/json' \
-            -H 'User-Agent: Neptune-Media-Deploy/3.4.3' \
-            --data '{}')"
-
-          if [ "$status" = '200' ] || [ "$status" = '400' ] || [ "$status" = '422' ]; then
-            printf '%s' "$normalized" > /tmp/resend-api-key
-            chmod 600 /tmp/resend-api-key
-            echo 'valid=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'valid=false' >> "$GITHUB_OUTPUT"
-            echo "The repository Resend secret was rejected with HTTP $status; the existing Cloudflare Worker secret will not be overwritten." >&2
-          fi
-
-      - name: Synchronize validated Resend secret
-        if: ${{ steps.resend_secret.outputs.valid == 'true' }}
-        run: npx wrangler secret put RESEND_API_KEY < /tmp/resend-api-key
-
-      - name: Validate Cloudflare bundle
+      - name: Validate Cloudflare bundle and required Worker secrets
         run: npx wrangler deploy --dry-run
 
       - name: Deploy canonical Worker, assets and custom domain
@@ -110,20 +72,27 @@ jobs:
             grep -Fq '"resendSecretPresent":true' /tmp/release.json
           done
 
-      - name: Verify Resend on the client-facing domain
+      - name: Verify the Cloudflare-managed Resend credential
         working-directory: .
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error \
+          curl --silent --show-error \
             -H 'Cache-Control: no-cache, no-store' \
             "$PUBLIC_URL/api/public/email-health?release=$GITHUB_SHA" > /tmp/email-health.json
           cat /tmp/email-health.json
-          grep -Fq '"configured":true' /tmp/email-health.json
-          grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
-          if grep -Fq '"senderDomainVerified":false' /tmp/email-health.json; then
-            echo 'The configured sender domain is not verified in Resend.' >&2
+
+          if grep -Fq '"providerStatus":401' /tmp/email-health.json; then
+            echo 'The Worker contains a RESEND_API_KEY value, but Resend rejects the authorization header. Replace the Cloudflare Worker secret with a newly generated Resend API key.' >&2
             exit 1
           fi
+
+          if grep -Fq '"providerStatus":403' /tmp/email-health.json; then
+            echo 'The Cloudflare Worker Resend API key is invalid or revoked. Replace it with a newly generated Resend API key.' >&2
+            exit 1
+          fi
+
+          grep -Fq '"configured":true' /tmp/email-health.json
+          grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
 
       - name: Exercise the real client code endpoint
         working-directory: .
