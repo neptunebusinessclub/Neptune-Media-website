@@ -1,6 +1,6 @@
 name: Deploy Neptune Media to Cloudflare
 
-# Secret refresh trigger: 2026-07-24
+# Secret refresh trigger: 2026-07-24-v2
 on:
   push:
     branches:
@@ -31,7 +31,7 @@ jobs:
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       PUBLIC_URL: https://tv.neptunebusiness.com
       WORKERS_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
-      RELEASE_ID: neptune-email-auth-20260724-v3
+      RELEASE_ID: neptune-email-auth-20260724-v4
 
     steps:
       - name: Checkout canonical source
@@ -57,7 +57,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          raw="${RESEND_API_KEY:-${RESEND_API:-}}"
+          # RESEND_API is the freshly created repository secret and must win over any
+          # stale organization-level RESEND_API_KEY that may still be inherited.
+          raw="${RESEND_API:-${RESEND_API_KEY:-}}"
           normalized="$(printf '%s' "$raw" \
             | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/^[Bb]earer[[:space:]]+//; s/^"(.*)"$/\1/; s/^'\''(.*)'\''$/\1/' \
             | tr -d '\r\n')"
@@ -71,13 +73,13 @@ jobs:
             -X POST 'https://api.resend.com/emails' \
             -H "Authorization: Bearer $normalized" \
             -H 'Content-Type: application/json' \
-            -H 'User-Agent: Neptune-Media-Deploy/3.4.3' \
+            -H 'User-Agent: Neptune-Media-Deploy/3.4.4' \
             --data '{}')"
 
           cat /tmp/resend-validation.json
 
           if [ "$status" != '200' ] && [ "$status" != '400' ] && [ "$status" != '422' ]; then
-            echo "The new Resend credential was rejected with HTTP $status and was not deployed." >&2
+            echo "The selected Resend credential was rejected with HTTP $status and was not deployed." >&2
             exit 1
           fi
 
