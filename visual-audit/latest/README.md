@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-24T09:00:06.477Z
+Généré : 2026-07-24T09:15:11.479Z
 
 - Captures : 15
-- Erreurs : 35
-- Avertissements : 361
+- Erreurs : 10
+- Avertissements : 336
 
 ## Problèmes détectés
 
@@ -63,23 +63,13 @@ Généré : 2026-07-24T09:00:06.477Z
 | warning | desktop-1440 | home | offscreen-element | video |
 | error | desktop-1440 | emissions | broken-image | img |
 | error | desktop-1440 | emissions | broken-image | img |
-| error | desktop-1440 | emissions | broken-image | img |
-| error | desktop-1440 | emissions | broken-image | img |
-| error | desktop-1440 | emissions | broken-image | img |
-| error | desktop-1440 | emissions | broken-image | img |
-| error | desktop-1440 | emissions | broken-image | img |
 | warning | desktop-1440 | emissions | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | emissions | clipped-text | Rechercher une émission |
 | warning | desktop-1440 | emissions | clipped-text | Votre entrepreneuriat mis en lumière |
 | warning | desktop-1440 | emissions | clipped-text | Un accident de moto met fin à son entreprise |
 | warning | desktop-1440 | emissions | clipped-text | Le secret d’un storytelling efficace |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
-| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_NAME_NOT_RESOLVED |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameSite |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameSite |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
@@ -130,3 +120,13 @@ Généré : 2026-07-24T09:00:06.477Z
 | warning | laptop-1280 | home | offscreen-element | video |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
+| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__track |
+| warning | laptop-1280 | home | offscreen-element | div.visibility-marquee__group |
+| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
+| warning | laptop-1280 | home | offscreen-element | video |
+| warning | laptop-1280 | home | offscreen-element | span.visibility-short__shade |
+| warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
+| warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
+| warning | laptop-1280 | home | offscreen-element | video |
+| error | laptop-1280 | emissions | broken-image | img |
+| error | laptop-1280 | emissions | broken-image | img |
