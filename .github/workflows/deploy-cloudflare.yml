@@ -48,9 +48,43 @@ jobs:
       - name: Validate Cloudflare bundle
         run: npx wrangler deploy --dry-run
 
-      - name: Synchronize Resend secret
-        if: ${{ env.RESEND_API_KEY != '' }}
-        run: printf '%s' "$RESEND_API_KEY" | npx wrangler secret put RESEND_API_KEY
+      - name: Validate optional Resend repository secret
+        id: resend_secret
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          raw="${RESEND_API_KEY:-}"
+          normalized="$(printf '%s' "$raw" \
+            | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/^[Bb]earer[[:space:]]+//; s/^"(.*)"$/\1/; s/^'\''(.*)'\''$/\1/' \
+            | tr -d '\r\n')"
+
+          if [ -z "$normalized" ]; then
+            echo 'valid=false' >> "$GITHUB_OUTPUT"
+            echo 'No repository Resend secret supplied; preserving the Worker secret already configured in Cloudflare.'
+            exit 0
+          fi
+
+          status="$(curl --silent --show-error --output /tmp/resend-validation.json --write-out '%{http_code}' \
+            -X POST 'https://api.resend.com/emails' \
+            -H "Authorization: Bearer $normalized" \
+            -H 'Content-Type: application/json' \
+            -H 'User-Agent: Neptune-Media-Deploy/3.4.2' \
+            --data '{}')"
+
+          if [ "$status" = '200' ] || [ "$status" = '400' ] || [ "$status" = '422' ]; then
+            printf '%s' "$normalized" > /tmp/resend-api-key
+            chmod 600 /tmp/resend-api-key
+            echo 'valid=true' >> "$GITHUB_OUTPUT"
+            echo 'The repository Resend secret is accepted and may be synchronized.'
+          else
+            echo 'valid=false' >> "$GITHUB_OUTPUT"
+            echo "The repository Resend secret was rejected with HTTP $status; the existing Cloudflare Worker secret will not be overwritten." >&2
+          fi
+
+      - name: Synchronize validated Resend secret
+        if: ${{ steps.resend_secret.outputs.valid == 'true' }}
+        run: npx wrangler secret put RESEND_API_KEY < /tmp/resend-api-key
 
       - name: Deploy canonical Worker and assets
         run: npx wrangler deploy
