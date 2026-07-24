@@ -17,7 +17,7 @@ export async function requestCode(store,body){
   }
   if(!client||Number(client.active)!==1)return json({ok:true,deliver:false,reason:'client_not_found'});
   const now=new Date(),hourAgo=new Date(now.getTime()-3600000).toISOString();
-  const recent=store.sql.exec('SELECT created_at AS createdAt FROM portal_codes WHERE email=? AND created_at>? ORDER BY created_at DESC',email,hourAgo).toArray();
+  const recent=store.sql.exec('SELECT created_at AS createdAt FROM portal_codes WHERE email=? AND created_at>? AND used_at IS NULL AND expires_at>? ORDER BY created_at DESC',email,hourAgo,now.toISOString()).toArray();
   if(recent.length>=5)return json({ok:true,deliver:false,throttled:true});
   const last=recent[0]?.createdAt?new Date(recent[0].createdAt).getTime():0;
   if(last&&now.getTime()-last<60000)return json({ok:true,deliver:false,retryAfter:Math.ceil((60000-(now.getTime()-last))/1000)});
