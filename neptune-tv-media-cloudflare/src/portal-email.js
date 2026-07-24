@@ -1,37 +1,58 @@
 import { statusLabel } from './portal-utils.js';
 
 const ADMIN_EMAIL = 'contact@neptunebusiness.com';
+const DEFAULT_FROM_EMAIL = 'Neptune Media <contact@neptunebusiness.com>';
 const STUDIO_NAME = 'RECBOX';
 const STUDIO_COORDINATES = '43°38\'48.8"N 1°30\'46.3"E';
 const STUDIO_MAP_URL = 'https://www.google.com/maps?q=43.6468889,1.5128611';
-const RESEND_USER_AGENT = 'Neptune-Media-Worker/3.4.1';
+const RESEND_USER_AGENT = 'Neptune-Media-Worker/3.4.2';
 
-function sender(env) {
-  return env.AUTH_FROM_EMAIL || 'Neptune Media <onboarding@resend.dev>';
+function sender() {
+  return DEFAULT_FROM_EMAIL;
+}
+
+function resendApiKey(env) {
+  const raw = env?.RESEND_API_KEY
+    || env?.RESEND_API_TOKEN
+    || env?.RESEND_KEY
+    || env?.RESEND_TOKEN
+    || '';
+  return String(raw)
+    .trim()
+    .replace(/^Bearer\s+/iu, '')
+    .replace(/^(["'])(.*)\1$/u, '$2')
+    .trim();
 }
 
 async function send(env, payload) {
-  if (!env.RESEND_API_KEY) {
+  const apiKey = resendApiKey(env);
+  if (!apiKey) {
     console.error('resend_not_configured');
     return { ok: false, error: 'email_service_not_configured' };
   }
+
+  const requestPayload = {
+    ...payload,
+    from: DEFAULT_FROM_EMAIL,
+    reply_to: ADMIN_EMAIL,
+  };
 
   let response;
   try {
     response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'User-Agent': RESEND_USER_AGENT,
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(requestPayload),
     });
   } catch (error) {
     console.error('resend_unreachable', {
       name: error?.name || 'Error',
       message: String(error?.message || error || 'unknown').slice(0, 300),
-      to: payload.to,
+      to: requestPayload.to,
     });
     return { ok: false, error: 'email_provider_unreachable' };
   }
@@ -45,22 +66,22 @@ async function send(env, payload) {
       status: response.status,
       code: providerCode,
       message: providerMessage,
-      from: payload.from,
-      to: payload.to,
+      from: requestPayload.from,
+      to: requestPayload.to,
     });
     return {
       ok: false,
-      error: response.status === 401 || response.status === 403 ? 'email_service_not_configured' : 'email_send_failed',
+      error: 'email_send_failed',
       providerStatus: response.status,
       providerCode,
       providerMessage,
     };
   }
   if (!result.id) {
-    console.error('resend_id_missing', { status: response.status, response: result, to: payload.to });
+    console.error('resend_id_missing', { status: response.status, response: result, to: requestPayload.to });
     return { ok: false, error: 'email_send_unconfirmed', providerStatus: response.status };
   }
-  console.log('resend_email_sent', { emailId: result.id, to: payload.to, subject: payload.subject });
+  console.log('resend_email_sent', { emailId: result.id, to: requestPayload.to, subject: requestPayload.subject });
   return { ok: true, id: result.id, providerStatus: response.status };
 }
 
