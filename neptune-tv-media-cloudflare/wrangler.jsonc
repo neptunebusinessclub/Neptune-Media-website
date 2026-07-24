@@ -11,9 +11,6 @@
       "custom_domain": true
     }
   ],
-  "secrets": {
-    "required": ["RESEND_API_KEY"]
-  },
   "triggers": {
     "crons": ["17 * * * *"]
   },
