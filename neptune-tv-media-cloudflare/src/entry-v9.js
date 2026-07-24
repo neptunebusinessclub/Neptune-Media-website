@@ -3,7 +3,7 @@ import { StudioStore } from './store-v4.js';
 
 export { StudioStore };
 
-const RELEASE_ID = 'neptune-email-auth-20260724-v1';
+const RELEASE_ID = 'neptune-email-auth-20260724-v2';
 const RELEASE_PATH = '/api/public/release';
 const ORDER_WEBHOOKS = new Set(['/api/webhooks/client-order', '/api/webhooks/conversion']);
 
