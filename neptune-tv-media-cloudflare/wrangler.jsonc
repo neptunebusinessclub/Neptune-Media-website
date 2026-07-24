@@ -4,6 +4,16 @@
   "main": "src/entry-v9.js",
   "compatibility_date": "2026-07-16",
   "workers_dev": true,
+  "keep_vars": true,
+  "routes": [
+    {
+      "pattern": "tv.neptunebusiness.com",
+      "custom_domain": true
+    }
+  ],
+  "secrets": {
+    "required": ["RESEND_API_KEY"]
+  },
   "triggers": {
     "crons": ["17 * * * *"]
   },
