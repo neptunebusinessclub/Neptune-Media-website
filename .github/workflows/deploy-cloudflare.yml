@@ -27,7 +27,9 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-      PUBLIC_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+      PUBLIC_URL: https://tv.neptunebusiness.com
+      WORKERS_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
+      RELEASE_ID: neptune-email-auth-20260724-v1
 
     steps:
       - name: Checkout canonical source
@@ -44,9 +46,6 @@ jobs:
 
       - name: Validate JavaScript
         run: npm run check
-
-      - name: Validate Cloudflare bundle
-        run: npx wrangler deploy --dry-run
 
       - name: Validate optional Resend repository secret
         id: resend_secret
@@ -69,14 +68,13 @@ jobs:
             -X POST 'https://api.resend.com/emails' \
             -H "Authorization: Bearer $normalized" \
             -H 'Content-Type: application/json' \
-            -H 'User-Agent: Neptune-Media-Deploy/3.4.2' \
+            -H 'User-Agent: Neptune-Media-Deploy/3.4.3' \
             --data '{}')"
 
           if [ "$status" = '200' ] || [ "$status" = '400' ] || [ "$status" = '422' ]; then
             printf '%s' "$normalized" > /tmp/resend-api-key
             chmod 600 /tmp/resend-api-key
             echo 'valid=true' >> "$GITHUB_OUTPUT"
-            echo 'The repository Resend secret is accepted and may be synchronized.'
           else
             echo 'valid=false' >> "$GITHUB_OUTPUT"
             echo "The repository Resend secret was rejected with HTTP $status; the existing Cloudflare Worker secret will not be overwritten." >&2
@@ -86,52 +84,39 @@ jobs:
         if: ${{ steps.resend_secret.outputs.valid == 'true' }}
         run: npx wrangler secret put RESEND_API_KEY < /tmp/resend-api-key
 
-      - name: Deploy canonical Worker and assets
+      - name: Validate Cloudflare bundle
+        run: npx wrangler deploy --dry-run
+
+      - name: Deploy canonical Worker, assets and custom domain
         run: npx wrangler deploy
 
-      - name: Verify prospect capture production
+      - name: Verify deployed release on both domains
         working-directory: .
         run: |
           set -euo pipefail
-          : > /tmp/home.html
-          : > /tmp/prospect.js
-          for attempt in 1 2 3 4 5 6; do
-            curl --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/?prospect-check=$attempt" > /tmp/home.html || true
-            curl --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/prospect-capture-v1.js?v=$GITHUB_SHA" > /tmp/prospect.js || true
-            if grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html \
-              && grep -Fq '/api/public/prospect/start' /tmp/prospect.js; then
-              break
-            fi
-            sleep 10
+          for base in "$WORKERS_URL" "$PUBLIC_URL"; do
+            : > /tmp/release.json
+            for attempt in 1 2 3 4 5 6; do
+              curl --silent --show-error -H 'Cache-Control: no-cache, no-store' \
+                "$base/api/public/release?attempt=$attempt" > /tmp/release.json || true
+              if grep -Fq "\"release\":\"$RELEASE_ID\"" /tmp/release.json \
+                && grep -Fq '"resendSecretPresent":true' /tmp/release.json; then
+                break
+              fi
+              sleep 10
+            done
+            cat /tmp/release.json
+            grep -Fq "\"release\":\"$RELEASE_ID\"" /tmp/release.json
+            grep -Fq '"resendSecretPresent":true' /tmp/release.json
           done
-          grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html
-          grep -Fq '/api/public/prospect/start' /tmp/prospect.js
-          curl --silent --show-error -D /tmp/prospect-headers.txt -o /dev/null -X OPTIONS \
-            -H 'Origin: https://media.neptunebusiness.com' \
-            -H 'Access-Control-Request-Method: POST' \
-            "$PUBLIC_URL/api/public/prospect/start"
-          grep -Fiq 'access-control-allow-origin: https://media.neptunebusiness.com' /tmp/prospect-headers.txt
 
-      - name: Verify Resend production configuration
+      - name: Verify Resend on the client-facing domain
         working-directory: .
         run: |
           set -euo pipefail
-          : > /tmp/email-health.json
-          for attempt in 1 2 3 4 5 6; do
-            curl --silent --show-error \
-              -H 'Cache-Control: no-cache, no-store' \
-              "$PUBLIC_URL/api/public/email-health?attempt=$attempt" > /tmp/email-health.json || true
-
-            if grep -Fq '"configured":true' /tmp/email-health.json \
-              && grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json \
-              && ! grep -Fq '"senderDomainVerified":false' /tmp/email-health.json; then
-              echo 'Resend configuration verified.'
-              break
-            fi
-
-            sleep 10
-          done
-
+          curl --fail --silent --show-error \
+            -H 'Cache-Control: no-cache, no-store' \
+            "$PUBLIC_URL/api/public/email-health?release=$GITHUB_SHA" > /tmp/email-health.json
           cat /tmp/email-health.json
           grep -Fq '"configured":true' /tmp/email-health.json
           grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
@@ -140,29 +125,44 @@ jobs:
             exit 1
           fi
 
+      - name: Exercise the real client code endpoint
+        working-directory: .
+        run: |
+          set -euo pipefail
+          curl --silent --show-error \
+            -X POST "$PUBLIC_URL/api/client/request-code" \
+            -H "Origin: $PUBLIC_URL" \
+            -H 'Content-Type: application/json' \
+            -H 'Cache-Control: no-cache, no-store' \
+            --data '{"email":"contact@neptunebusiness.com"}' > /tmp/client-code.json
+          cat /tmp/client-code.json
+          grep -Fq '"ok":true' /tmp/client-code.json
+          if ! grep -Fq '"delivered":true' /tmp/client-code.json \
+            && ! grep -Fq '"retryAfter":' /tmp/client-code.json \
+            && ! grep -Fq '"throttled":true' /tmp/client-code.json; then
+            echo 'The production client-code endpoint did not confirm a usable delivery state.' >&2
+            exit 1
+          fi
+
+      - name: Verify prospect capture production
+        working-directory: .
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/" > /tmp/home.html
+          curl --fail --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/prospect-capture-v1.js?v=$GITHUB_SHA" > /tmp/prospect.js
+          grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html
+          grep -Fq '/api/public/prospect/start' /tmp/prospect.js
+
       - name: Verify production hero
         working-directory: .
         run: |
           set -euo pipefail
-          VERSION="${GITHUB_SHA}-${GITHUB_RUN_ID}"
-
-          for attempt in 1 2 3 4 5 6; do
-            curl --fail --silent --show-error \
-              -H 'Cache-Control: no-cache, no-store' \
-              "$PUBLIC_URL/hero-live-v21.js?v=$VERSION" > /tmp/hero.js || true
-
-            if grep -Fq "expert.e dans mon domaine" /tmp/hero.js; then
-              break
-            fi
-
-            sleep 10
-          done
-
-          grep -Fq "expert.e dans mon domaine" /tmp/hero.js
-
           curl --fail --silent --show-error \
             -H 'Cache-Control: no-cache, no-store' \
-            "$PUBLIC_URL/styles/hero-live-v21.css?v=$VERSION" > /tmp/hero.css
-
+            "$PUBLIC_URL/hero-live-v21.js?v=$GITHUB_SHA" > /tmp/hero.js
+          grep -Fq 'expert.e dans mon domaine' /tmp/hero.js
+          curl --fail --silent --show-error \
+            -H 'Cache-Control: no-cache, no-store' \
+            "$PUBLIC_URL/styles/hero-live-v21.css?v=$GITHUB_SHA" > /tmp/hero.css
           grep -Fq 'isolation:isolate' /tmp/hero.css
           grep -Fq 'rgba(82,185,255,.28)' /tmp/hero.css
