@@ -1,10 +1,10 @@
 # Audit visuel Neptune Media
 
-Généré : 2026-07-24T09:15:11.479Z
+Généré : 2026-07-24T09:20:00.566Z
 
 - Captures : 15
 - Erreurs : 10
-- Avertissements : 336
+- Avertissements : 338
 
 ## Problèmes détectés
 
@@ -70,6 +70,7 @@ Généré : 2026-07-24T09:15:11.479Z
 | warning | desktop-1440 | emissions | clipped-text | Le secret d’un storytelling efficace |
 | warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameSite |
 | warning | desktop-1440 | emissions | console-error | Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameSite |
+| warning | desktop-1440 | emissions | console-error | Failed to load resource: the server responded with a status of 503 () |
 | warning | desktop-1440 | direct | clipped-text | Aller au contenu principal |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
 | warning | desktop-1440 | direct | clipped-text | Neptune Media en direct |
@@ -128,5 +129,4 @@ Généré : 2026-07-24T09:15:11.479Z
 | warning | laptop-1280 | home | offscreen-element | span.visibility-short__label |
 | warning | laptop-1280 | home | offscreen-element | article.visibility-short.visibility-short--small |
 | warning | laptop-1280 | home | offscreen-element | video |
-| error | laptop-1280 | emissions | broken-image | img |
 | error | laptop-1280 | emissions | broken-image | img |
