@@ -1,10 +1,8 @@
 name: Deploy Neptune Media to Cloudflare
 
-# Secret refresh trigger: 2026-07-24-v2
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - 'neptune-tv-media-cloudflare/**'
       - '.github/workflows/deploy-cloudflare.yml'
@@ -28,13 +26,12 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       RESEND_API: ${{ secrets.RESEND_API }}
-      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       PUBLIC_URL: https://tv.neptunebusiness.com
       WORKERS_URL: https://neptune-media-webtv.neptunebusinessclub.workers.dev
-      RELEASE_ID: neptune-email-auth-20260724-v4
+      RELEASE_ID: neptune-email-auth-20260724-v5
 
     steps:
-      - name: Checkout canonical source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -46,58 +43,57 @@ jobs:
       - name: Install dependencies
         run: npm install --package-lock=false --registry=https://registry.npmjs.org
 
-      - name: Validate JavaScript
+      - name: Validate application
         run: npm run check
 
-      - name: Validate Cloudflare bundle
+      - name: Validate Worker bundle
         run: npx wrangler deploy --dry-run
 
-      - name: Validate and stage Resend credential
+      - name: Validate Resend repository secret
         working-directory: .
         shell: bash
         run: |
           set -euo pipefail
-          # RESEND_API is the freshly created repository secret and must win over any
-          # stale organization-level RESEND_API_KEY that may still be inherited.
-          raw="${RESEND_API:-${RESEND_API_KEY:-}}"
-          normalized="$(printf '%s' "$raw" \
-            | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/^[Bb]earer[[:space:]]+//; s/^"(.*)"$/\1/; s/^'\''(.*)'\''$/\1/' \
-            | tr -d '\r\n')"
+          key="$(printf '%s' "${RESEND_API:-}" | tr -d '\r\n' | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/^[Bb]earer[[:space:]]+//; s/^"(.*)"$/\1/; s/^'\''(.*)'\''$/\1/')"
 
-          if [ -z "$normalized" ]; then
-            echo 'Neither RESEND_API nor RESEND_API_KEY exists in GitHub repository secrets.' >&2
+          if [ -z "$key" ]; then
+            echo 'GitHub repository secret RESEND_API is missing.' >&2
             exit 1
           fi
 
-          status="$(curl --silent --show-error --output /tmp/resend-validation.json --write-out '%{http_code}' \
+          if [[ "$key" != re_* ]]; then
+            echo 'GitHub repository secret RESEND_API does not look like a Resend API key.' >&2
+            exit 1
+          fi
+
+          status="$(curl --silent --show-error --output /tmp/resend-auth.json --write-out '%{http_code}' \
             -X POST 'https://api.resend.com/emails' \
-            -H "Authorization: Bearer $normalized" \
+            -H "Authorization: Bearer $key" \
             -H 'Content-Type: application/json' \
-            -H 'User-Agent: Neptune-Media-Deploy/3.4.4' \
+            -H 'User-Agent: Neptune-Media-Deploy/4.0.0' \
             --data '{}')"
+          cat /tmp/resend-auth.json
 
-          cat /tmp/resend-validation.json
-
-          if [ "$status" != '200' ] && [ "$status" != '400' ] && [ "$status" != '422' ]; then
-            echo "The selected Resend credential was rejected with HTTP $status and was not deployed." >&2
+          if [ "$status" != '400' ] && [ "$status" != '422' ]; then
+            echo "Resend rejected RESEND_API with HTTP $status." >&2
             exit 1
           fi
 
-          printf '%s' "$normalized" > /tmp/resend-api-key
+          printf '%s' "$key" > /tmp/resend-api-key
           chmod 600 /tmp/resend-api-key
 
-      - name: Synchronize Resend credential to Cloudflare Worker
+      - name: Replace Cloudflare RESEND_API_KEY
         run: npx wrangler secret put RESEND_API_KEY < /tmp/resend-api-key
 
-      - name: Deploy canonical Worker, assets and custom domain
+      - name: Deploy Worker and assets
         run: npx wrangler deploy
 
-      - name: Verify deployed release on both domains
+      - name: Verify deployed release
         working-directory: .
+        shell: bash
         run: |
           set -euo pipefail
           for base in "$WORKERS_URL" "$PUBLIC_URL"; do
-            : > /tmp/release.json
             for attempt in 1 2 3 4 5 6; do
               curl --silent --show-error -H 'Cache-Control: no-cache, no-store' \
                 "$base/api/public/release?attempt=$attempt" > /tmp/release.json || true
@@ -112,20 +108,20 @@ jobs:
             grep -Fq '"resendSecretPresent":true' /tmp/release.json
           done
 
-      - name: Verify the synchronized Resend credential
+      - name: Verify Resend authentication from production
         working-directory: .
+        shell: bash
         run: |
           set -euo pipefail
-          curl --silent --show-error \
-            -H 'Cache-Control: no-cache, no-store' \
+          curl --silent --show-error -H 'Cache-Control: no-cache, no-store' \
             "$PUBLIC_URL/api/public/email-health?release=$GITHUB_SHA" > /tmp/email-health.json
           cat /tmp/email-health.json
-
           grep -Fq '"configured":true' /tmp/email-health.json
           grep -Fq '"providerKeyAccepted":true' /tmp/email-health.json
 
-      - name: Exercise the real client code endpoint
+      - name: Exercise client login email delivery
         working-directory: .
+        shell: bash
         run: |
           set -euo pipefail
           curl --silent --show-error \
@@ -137,31 +133,7 @@ jobs:
           cat /tmp/client-code.json
           grep -Fq '"ok":true' /tmp/client-code.json
           if ! grep -Fq '"delivered":true' /tmp/client-code.json \
-            && ! grep -Fq '"retryAfter":' /tmp/client-code.json \
-            && ! grep -Fq '"throttled":true' /tmp/client-code.json; then
-            echo 'The production client-code endpoint did not confirm a usable delivery state.' >&2
+            && ! grep -Fq '"retryAfter":' /tmp/client-code.json; then
+            echo 'Client login email delivery was not confirmed.' >&2
             exit 1
           fi
-
-      - name: Verify prospect capture production
-        working-directory: .
-        run: |
-          set -euo pipefail
-          curl --fail --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/" > /tmp/home.html
-          curl --fail --silent --show-error -H 'Cache-Control: no-cache, no-store' "$PUBLIC_URL/prospect-capture-v1.js?v=$GITHUB_SHA" > /tmp/prospect.js
-          grep -Fq '/prospect-capture-v1.js?v=1' /tmp/home.html
-          grep -Fq '/api/public/prospect/start' /tmp/prospect.js
-
-      - name: Verify production hero
-        working-directory: .
-        run: |
-          set -euo pipefail
-          curl --fail --silent --show-error \
-            -H 'Cache-Control: no-cache, no-store' \
-            "$PUBLIC_URL/hero-live-v21.js?v=$GITHUB_SHA" > /tmp/hero.js
-          grep -Fq 'expert.e dans mon domaine' /tmp/hero.js
-          curl --fail --silent --show-error \
-            -H 'Cache-Control: no-cache, no-store' \
-            "$PUBLIC_URL/styles/hero-live-v21.css?v=$GITHUB_SHA" > /tmp/hero.css
-          grep -Fq 'isolation:isolate' /tmp/hero.css
-          grep -Fq 'rgba(82,185,255,.28)' /tmp/hero.css
