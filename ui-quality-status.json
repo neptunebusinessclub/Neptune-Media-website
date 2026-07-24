@@ -1,9 +1,9 @@
 {
   "status": "failed",
-  "source_sha": "80e33c2cde528f9a4d2016854241e525aecea9d5",
-  "source_workflow_id": "29869843419",
-  "ui_workflow_run_id": "29869882360",
-  "checked_at": "2026-07-21T21:26:19.127919+00:00",
+  "source_sha": "81d6cdced408dd2b2b5ce60dc402c2e652701c29",
+  "source_workflow_id": "30087544317",
+  "ui_workflow_run_id": "30087577814",
+  "checked_at": "2026-07-24T10:52:02.150739+00:00",
   "architecture": "conversion-voice-v10",
   "experience": "final-v12",
   "audit": "playwright-production",
@@ -18,58 +18,72 @@
     "/direct/"
   ],
   "issues": [
-    "home-desktop: identifiants dupliqués: experience",
+    "home-desktop: pipeline de production absent",
+    "home-desktop: outil de choix de format absent",
     "home-desktop: navigation de progression absente",
-    "home-tablet: identifiants dupliqués: experience",
-    "home-mobile: identifiants dupliqués: experience"
+    "home-tablet: pipeline de production absent",
+    "home-tablet: outil de choix de format absent",
+    "home-mobile: cibles tactiles trop petites: ‹ |  |  | › | ‹",
+    "home-mobile: pipeline de production absent",
+    "home-mobile: outil de choix de format absent",
+    "emissions-desktop: images non chargées: https://tv.neptunebusiness.com/media/posters/jeu-connexio.webp, https://tv.neptunebusiness.com/media/posters/hors-norme.webp",
+    "emissions-mobile: images non chargées: https://tv.neptunebusiness.com/media/posters/jeu-connexio.webp, https://tv.neptunebusiness.com/media/posters/hors-norme.webp"
   ],
   "pages": [
     {
       "name": "home-desktop",
       "route": "/",
       "issues": [
-        "identifiants dupliqués: experience",
+        "pipeline de production absent",
+        "outil de choix de format absent",
         "navigation de progression absente"
       ],
       "width": 1440,
       "height": 1100,
-      "scrollHeight": 12071
+      "scrollHeight": 13802
     },
     {
       "name": "home-tablet",
       "route": "/",
       "issues": [
-        "identifiants dupliqués: experience"
+        "pipeline de production absent",
+        "outil de choix de format absent"
       ],
       "width": 834,
       "height": 1112,
-      "scrollHeight": 11773
+      "scrollHeight": 13088
     },
     {
       "name": "home-mobile",
       "route": "/",
       "issues": [
-        "identifiants dupliqués: experience"
+        "cibles tactiles trop petites: ‹ |  |  | › | ‹",
+        "pipeline de production absent",
+        "outil de choix de format absent"
       ],
       "width": 390,
       "height": 844,
-      "scrollHeight": 13839
+      "scrollHeight": 15186
     },
     {
       "name": "emissions-desktop",
       "route": "/emissions/",
-      "issues": [],
+      "issues": [
+        "images non chargées: https://tv.neptunebusiness.com/media/posters/jeu-connexio.webp, https://tv.neptunebusiness.com/media/posters/hors-norme.webp"
+      ],
       "width": 1440,
       "height": 1000,
-      "scrollHeight": 2036
+      "scrollHeight": 3016
     },
     {
       "name": "emissions-mobile",
       "route": "/emissions/",
-      "issues": [],
+      "issues": [
+        "images non chargées: https://tv.neptunebusiness.com/media/posters/jeu-connexio.webp, https://tv.neptunebusiness.com/media/posters/hors-norme.webp"
+      ],
       "width": 390,
       "height": 844,
-      "scrollHeight": 2788
+      "scrollHeight": 3217
     },
     {
       "name": "direct-desktop",
@@ -77,7 +91,7 @@
       "issues": [],
       "width": 1440,
       "height": 1000,
-      "scrollHeight": 2006
+      "scrollHeight": 1475
     }
   ]
 }
