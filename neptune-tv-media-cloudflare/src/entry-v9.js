@@ -3,11 +3,18 @@ import { StudioStore } from './store-v4.js';
 
 export { StudioStore };
 
+const RELEASE_ID = 'neptune-email-auth-20260724-v1';
+const RELEASE_PATH = '/api/public/release';
 const ORDER_WEBHOOKS = new Set(['/api/webhooks/client-order', '/api/webhooks/conversion']);
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    if (request.method === 'GET' && url.pathname === RELEASE_PATH) {
+      return releaseResponse(request, env);
+    }
+
     const tracked = request.method === 'POST' && ORDER_WEBHOOKS.has(url.pathname) ? request.clone() : null;
     const response = await base.fetch(request, env, ctx);
     if (tracked && response.ok) {
@@ -18,12 +25,41 @@ export default {
         });
       }));
     }
-    return response;
+    return withReleaseHeader(response);
   },
   async scheduled(controller, env, ctx) {
     if (typeof base.scheduled === 'function') return base.scheduled(controller, env, ctx);
   },
 };
+
+function releaseResponse(request, env) {
+  const resendSecretPresent = typeof env?.RESEND_API_KEY === 'string' && env.RESEND_API_KEY.trim().length > 0;
+  return new Response(JSON.stringify({
+    ok: true,
+    release: RELEASE_ID,
+    worker: 'neptune-media-webtv',
+    host: new URL(request.url).host,
+    resendSecretPresent,
+    sender: 'Neptune Media <contact@neptunebusiness.com>',
+  }), {
+    status: resendSecretPresent ? 200 : 503,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+      'X-Neptune-Release': RELEASE_ID,
+    },
+  });
+}
+
+function withReleaseHeader(response) {
+  const headers = new Headers(response.headers);
+  headers.set('X-Neptune-Release', RELEASE_ID);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 async function linkProspectToOrder(request, response, env) {
   const payload = await request.json().catch(() => ({}));
