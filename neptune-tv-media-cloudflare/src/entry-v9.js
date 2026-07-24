@@ -1,12 +1,10 @@
 import base from './entry-v8.js';
 import { StudioStore } from './store-v4.js';
-import { handleClientCodeRequest } from './portal-code-login.js';
 
 export { StudioStore };
 
-const RELEASE_ID = 'neptune-email-auth-20260724-v3';
+const RELEASE_ID = 'neptune-email-auth-20260724-v5';
 const RELEASE_PATH = '/api/public/release';
-const REQUEST_CODE_PATH = '/api/client/request-code';
 const ORDER_WEBHOOKS = new Set(['/api/webhooks/client-order', '/api/webhooks/conversion']);
 
 export default {
@@ -15,10 +13,6 @@ export default {
 
     if (request.method === 'GET' && url.pathname === RELEASE_PATH) {
       return releaseResponse(request, env);
-    }
-
-    if (request.method === 'POST' && url.pathname === REQUEST_CODE_PATH) {
-      return withReleaseHeader(await handleClientCodeRequest(request, env));
     }
 
     const tracked = request.method === 'POST' && ORDER_WEBHOOKS.has(url.pathname) ? request.clone() : null;
@@ -39,8 +33,7 @@ export default {
 };
 
 function releaseResponse(request, env) {
-  const resendSecretPresent = [env?.RESEND_API_KEY, env?.RESEND_API_TOKEN, env?.RESEND_KEY, env?.RESEND_TOKEN]
-    .some((value) => typeof value === 'string' && value.trim().length > 0);
+  const resendSecretPresent = typeof env?.RESEND_API_KEY === 'string' && env.RESEND_API_KEY.trim().length > 0;
 
   return new Response(JSON.stringify({
     ok: true,
@@ -48,7 +41,7 @@ function releaseResponse(request, env) {
     worker: 'neptune-media-webtv',
     host: new URL(request.url).host,
     resendSecretPresent,
-    emailTransport: 'official-resend-sdk',
+    emailTransport: 'resend-rest-v1',
     sender: 'Neptune Media <contact@neptunebusiness.com>',
   }), {
     status: resendSecretPresent ? 200 : 503,
